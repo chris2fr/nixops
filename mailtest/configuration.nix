@@ -6,8 +6,32 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   imports = [
     ./vpsadminos.nix
-    #<home-manager/nixos>
+    (builtins.fetchTarball {
+      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-23.05/nixos-mailserver-nixos-23.05.tar.gz";
+      sha256 = "sha256:1ngil2shzkf61qxiqw11awyl81cr7ks2kv3r3k243zz7v2xakm5c";
+    })
   ];
+
+  mailserver = {
+    enable = true;
+    fqdn = "mailtest.resdigita.org";
+    domains = [ "resdigita.org" ];
+
+    # A list of all login accounts. To create the password hashes, use
+    # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
+    loginAccounts = {
+      "user1@resdigita.org" = {
+        hashedPasswordFile = "/etc/nixos/.secrets.user1";
+        aliases = ["postmaster@resdigita.org"];
+      };
+    };
+
+    # Use Let's Encrypt certificates. Note that this needs to set up a stripped
+    # down nginx and opens port 80.
+    certificateScheme = "acme-nginx";
+  };
+  security.acme.acceptTerms = true;
+  security.acme.defaults.email = "postmaster@resdigita.org";
 
   environment.systemPackages = with pkgs; [
     ((vim_configurable.override {  }).customize{
