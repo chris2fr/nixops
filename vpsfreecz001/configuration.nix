@@ -29,6 +29,7 @@ in
       }
     )
     #vim
+    #django-redis
     cowsay
     home-manager
     curl
@@ -71,40 +72,21 @@ in
     ];
     globalRedirect = "https://www.lesgrandsvoisins.com/";
   };
+  services.httpd.virtualHosts."resdigita.com" = {
+    enableACME = true;
+    forceSSL = true;
+    globalRedirect = "https://www.resdigita.com";
+  };
+  services.httpd.virtualHosts."resdigita.org" = {
+    enableACME = true;
+    forceSSL = true;
+    globalRedirect = "https://www.resdigita.org";
+  };
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
-#    serverAliases = [ "*.l-g-v.com" ];
     documentRoot =  "/var/www/wagtail/";
-#    servedDirs = [ 
-#      { 
-#        urlPath = "/static/";
-#        dir = "/var/www/wagtail/static";
-#      }
-#      { 
-#        urlPath = "/media/";
-#        dir = "/var/www/wagtail/media";
-#      }
-#    ];
-#    locations."/media".proxyPass = "!";
-#    locations."/media".priority = 500;
-#    locations."/static".proxyPass = "!";
-#    locations."/static".priority = 500;
-#    locations."/".proxyPass = "unix:/var/www/wagtail/wagtail-lesgv.sock|http://127.0.0.1/";
     extraConfig = ''
-#  Alias /.well-known/acme-challenge /var/lib/acme/acme-challenge/.well-known/acme-challenge
-#  <Directory "/var/lib/acme/acme-challenge/">
-#      Options None
-#      AllowOverride None
-#      ForceType text/plain
-#      #RedirectMatch 404 "^(?!/\.well-known/acme-challenge/[\w-]{43}$)"
-#  </Directory>
-#  <Directory "/var/lib/acme/.challenges/">
-#      Options None
-#      AllowOverride None
-#      ForceType text/plain
-#      RedirectMatch 404 "^(?!/\.well-known/acme-challenge/[\w-]{43}$)"
-#  </Directory>
     <Location />
     Require all granted
     </Location>
@@ -113,8 +95,45 @@ in
     ProxyPass /static !
     ProxyPass /media !
     ProxyPass /favicon.ico !
-#    ProxyPass / http://127.0.0.1:8000/
-#    ProxyPassReverse / http://127.0.0.1:8000/
+    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPreserveHost On
+    CacheDisable /
+    '';
+  };
+  services.httpd.virtualHosts."www.resdigita.com" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/wagtail/";
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
+    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPreserveHost On
+    CacheDisable /
+    '';
+
+  };
+  services.httpd.virtualHosts."www.resdigita.org" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/wagtail/";
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
     ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
     ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
     ProxyPreserveHost On
