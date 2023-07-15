@@ -66,6 +66,25 @@ in
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "yes";
 
+  services.roundcube = {
+     enable = true;
+     # this is the url of the vhost, not necessarily the same as the fqdn of
+     # the mailserver
+     hostName = "mailtest.resdigita.org";
+     extraConfig = ''
+       # starttls needed for authentication, so the fqdn required to match
+       # the certificate
+       $config['smtp_server'] = "tls://${config.mailserver.fqdn}";
+       $config['smtp_user'] = "%u";
+       $config['smtp_pass'] = "%p";
+     '';
+  };
+
+  services.nginx.enable = true;
+
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+
   systemd.extraConfig = ''
     DefaultTimeoutStartSec=900s
   '';
