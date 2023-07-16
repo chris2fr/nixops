@@ -17,9 +17,9 @@ in
     postgresql
     openldap
   ];
-  systemd.enableUnifiedCgroupHierarchy = false;
-  systemd.enableCgroupAccounting = false;
-  services.httpd.virtualHosts."mailtest.resdigita.org" = {
+#  systemd.enableUnifiedCgroupHierarchy = false;
+#  systemd.enableCgroupAccounting = false;
+  services.httpd.virtualHosts."mail.resdigita.org" = {
       enableACME = true;
       forceSSL = true;
       documentRoot =  "/var/www/SOGo";
@@ -48,8 +48,8 @@ in
       CacheDisable /
       <Proxy http://127.0.0.1:20000/SOGo >
         RequestHeader set "x-webobjects-server-port" "443"
-        RequestHeader set "x-webobjects-server-name" "mailtest.resdigita.org"
-        RequestHeader set "x-webobjects-server-url" "https://mailtest.resdigita.org"
+        RequestHeader set "x-webobjects-server-name" "mail.resdigita.org"
+        RequestHeader set "x-webobjects-server-url" "https://mail.resdigita.org"
         # When using proxy-side autentication, you need to uncomment and
         ## adjust the following line:
         RequestHeader unset "x-webobjects-remote-user"
@@ -165,7 +165,7 @@ in
 ###################################################################################################################################
   mailserver = {
     enable = true;
-    fqdn = "mailtest.resdigita.org";
+    fqdn = "mail.resdigita.org";
     domains = [ "resdigita.org" ];
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped

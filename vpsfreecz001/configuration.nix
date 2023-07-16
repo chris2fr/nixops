@@ -6,7 +6,7 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   imports = [
     ./vpsadminos.nix
-    #./mailserver.nix
+    ./mailserver.nix
     <home-manager/nixos>
   ];
 
