@@ -24,11 +24,16 @@ in
       forceSSL = true;
       documentRoot =  "/var/www/SOGo";
       extraConfig = ''
-      Alias /.woa/WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
-      Alias /SOGo.woa/WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
-      Alias /SOGo/WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
-      Alias /WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
-      <Directory /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/>
+      Alias /.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
+      Alias /SOGo.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
+      Alias /SOGo/WebServerResources/ /var/www/SOGo/WebServerResources/
+      Alias /WebServerResources/ /var/www/SOGo/WebServerResources/
+#      Alias /.woa/WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
+#      Alias /SOGo.woa/WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
+#      Alias /SOGo/WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
+#      Alias /WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
+#      <Directory /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/>
+      <Directory /var/www/SOGo/WebServerResources/>
         AllowOverride none
         Require all granted
         <IfModule expires_module>
