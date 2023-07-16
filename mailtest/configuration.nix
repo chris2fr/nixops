@@ -15,8 +15,8 @@ in
 #    ./mailserver.nix
 #    ./sogo.nix
     (builtins.fetchTarball {
-      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-23.05/nixos-mailserver-nixos-23.05.tar.gz";
-      sha256 = "sha256:1ngil2shzkf61qxiqw11awyl81cr7ks2kv3r3k243zz7v2xakm5c";
+      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-23.05.tar.gz";
+      sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
     })
   ];
   environment.systemPackages = with pkgs; [
@@ -52,6 +52,7 @@ in
     openldap
     dig
     killall
+    inetutils
   ];
   systemd.enableUnifiedCgroupHierarchy = false;
   systemd.enableCgroupAccounting = false;
@@ -70,22 +71,6 @@ in
     defaults.email = "postmaster@resdigita.org";
     defaults.webroot = "/var/www";
   };
-  systemd.extraConfig = ''
-    LockPersonality=false
-    MemoryDenyWriteExecute=false
-    NoNewPrivileges=false
-    PrivateDevices=false
-    PrivateMounts=false
-    PrivateTmp=false
-    PrivateUsers=false
-    ProtectControlGroups=false
-    ProtectHome=false
-    ProtectKernelModules=false
-    ProtectKernelTunables=false
-    ProtectSystem=strict
-    RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
-    RestrictRealtime=false
-    '';
 
 ###################################################################################################################################
   services.httpd = {
@@ -98,33 +83,50 @@ in
       forceSSL = true;
       documentRoot =  "/var/www/SOGo";
       extraConfig = ''
-      Alias /.woa/ /var/www/SOGo/
-      Alias /SOGo.woa/ /var/www/SOGo/
-#      <Location />
-#      Order allow,deny
-#      Allow from all
-#      </Location>
+      Alias /.woa/WebServerResources/ /var/www/SOGo/WebServerResources/ 
+      Alias /SOGo.woa/WebServerResources/  /var/www/SOGo/WebServerResources/ 
+      Alias /SOGo/WebServerResources/  /var/www/SOGo/WebServerResources/ 
+      Alias /WebServerResources/  /var/www/SOGo/WebServerResources/ 
+      <Directory /var/www/SOGo/>
+        AllowOverride none
+        Require all granted
+        <IfModule expires_module>
+          ExpiresActive On
+          ExpiresDefault "access plus 1 year"
+        </IfModule>
+      </Directory>
       ProxyPass /.well-known !
+      ProxyPass /.woa/WebServerResources/ !
+      ProxyPass /SOGo.woa/WebServerResources/  !
+      ProxyPass /SOGo/WebServerResources/  !
+      ProxyPass /WebServerResources/  !
     #  ProxyPass /principals http://[::1]:20000/SOGo/dav/ interpolate
     #  ProxyPass /SOGo http://[::1]:20000/SOGo interpolate
-      ProxyPass /SOGo http://[::1]:20000/SOGo
+      ProxyPass /SOGo http://[::1]:20000/SOGo retry=0
+      ProxyRequests Off
+      SetEnv proxy-nokeepalive 1
       ProxyPreserveHost On
     #  ProxyPassInterpolateEnv On
       CacheDisable /
-#      <Proxy http://127.0.0.1:20000>
-#    RequestHeader set "x-webobjects-server-port" "8800"
-#    RequestHeader set "x-webobjects-server-name" "mailtest.resdigita.org:8800"
-#    RequestHeader set "x-webobjects-server-url" "https://mailtest.resdigita.org:8800"
-#    RequestHeader set "x-webobjects-server-protocol" "HTTP/1.0"
-#    RequestHeader set "x-webobjects-remote-host" "127.0.0.1"
-#    AddDefaultCharset UTF-8
-#      </Proxy>
+      <Proxy http://127.0.0.1:20000/SOGo >
+        RequestHeader set "x-webobjects-server-port" "443"
+        RequestHeader set "x-webobjects-server-name" "mailtest.resdigita.org"
+        RequestHeader set "x-webobjects-server-url" "https://mailtest.resdigita.org"
+        # When using proxy-side autentication, you need to uncomment and
+        ## adjust the following line:
+        RequestHeader unset "x-webobjects-remote-user"
+        #  RequestHeader set "x-webobjects-remote-user" "%{REMOTE_USER}e" env=REMOTE_USER
+        RequestHeader set "x-webobjects-server-protocol" "HTTP/1.0"
+        AddDefaultCharset UTF-8
+        Order allow,deny
+        Allow from all
+      </Proxy>
       '';
     };
   };
 ###################################################################################################################################
   services.openldap = {
-    enable=true;
+    enable = true;
     urlList = [ "ldap:///" ];
 #    urlList = [ "ldap:///" "ldaps:///" ];
     settings = {
@@ -345,12 +347,13 @@ in
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
     #certificateScheme = "acme-nginx";
-#    ldap.enable = true;
-#    ldap.bind.dn = "cn=admin,dc=resdigita,dc=org";
-#    ldap.bind.passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
-#    ldap.uris = [
-#        "ldap:///"
-#    ];
+    ldap.enable = true;
+    ldap.bind.dn = "cn=admin,dc=resdigita,dc=org";
+    ldap.bind.passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
+    ldap.uris = [
+        "ldap:///"
+    ];
+    ldap.searchBase = "ou=users,dc=resdigita,dc=org";
   };
 ###################################################################################################################################
 #{ config, pkgs, lib, ... }:
@@ -360,9 +363,6 @@ in
 #o{
   services.memcached = {
     enable = true;
-    listen = "[::1]";
-    enableUnixSocket = true;
-    extraOptions = [];
   };
 
   services.sogo = {
@@ -378,6 +378,9 @@ in
       OCSEMailAlarmsFolderURL = "postgresql:///sogo/sogo_alarms_folder";
       SOGoProfileURL = "postgresql:///sogo/sogo_user_profile";
       OCSFolderInfoURL = "postgresql:///sogo/sogo_folder_info";
+      OCSStoreURL = "postgresql:///sogo/sogo_store";
+      OCSAclURL = "postgresql:///sogo/sogo_acl";
+      OCSCacheFolderURL = "postgresql:///sogo/sogo_cache_folder";
       WOPort = "[::1]:20000";
       WONoDetach = NO;
       WOLogFile = /var/log/sogo/sogo.log;
@@ -412,7 +415,7 @@ in
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
       SOGoSMTPServer = "smtp://localhost:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
-      SOGoIMAPServer = "imap://mailtest.resdigita.org:993";
+      SOGoIMAPServer = "imap://localhost";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
           {
@@ -430,7 +433,7 @@ in
               isAddressBook = YES;
           }
       );
-      SOGoMemcachedHost = "[::1]:11211";
+      SOGoSuperUsernames = ("sogo@resdigita.org");
       '';
       #SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
   };
@@ -483,14 +486,14 @@ in
 #
 networking.firewall = {
   allowedTCPPorts = [ 80 443 20000 389 636 11211 ];
-#  enable = true;
-  enable = false;
+  enable = true;
+#  enable = false;
   trustedInterfaces = [ "lo" ];
 };
 
-#  systemd.extraConfig = ''
-#    DefaultTimeoutStartSec=900s
-#  '';
+  systemd.extraConfig = ''
+    DefaultTimeoutStartSec=900s
+  '';
 
   time.timeZone = "Europe/Amsterdam";
 
