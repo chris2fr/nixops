@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 let 
-  bindPassword = (builtins.readFile ./.secrets.adminresdigitaorg);
-  alicePassword = (builtins.readFile ./.secrets.mailserver.alice);
-  bobPassword = (builtins.readFile ./.secrets.mailserver.bob);
-  sogoPassword = (builtins.readFile ./.secrets.mailserver.sogo);
+  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.adminresdigitaorg));
+  alicePassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.mailserver.alice));
+  bobPassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.mailserver.bob));
+  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.mailserver.sogo));
 in
 {
   imports = [
@@ -101,7 +101,7 @@ in
 
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,dc=resdigita,dc=org";
-          olcRootPW = (builtins.readFile ./.secrets.adminresdigitaorg);
+          olcRootPW = (builtins.readFile /etc/nixos/.secrets.adminresdigitaorg);
 
           olcAccess = [
             /* custom access rules for userPassword attributes */
@@ -246,7 +246,7 @@ in
               UIDFieldName = mail;
               baseDN = "ou=users,dc=resdigita,dc=org";
               bindDN = "cn=admin,dc=resdigita,dc=org";
-              bindPassword = "hUkrazS8Gp7qgxH7UsMr";
+              bindPassword = "${bindPassword}";
               canAuthenticate = YES;
               displayName = "Dir";
               hostname = "ldap:///";
