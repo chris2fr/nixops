@@ -6,6 +6,7 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   imports = [
     ./vpsadminos.nix
+    #./mailserver.nix
     <home-manager/nixos>
   ];
 
@@ -35,7 +36,6 @@ in
     curl
     wget
     lynx
-    busybox
     git
     tmux
     bat
@@ -43,10 +43,13 @@ in
     python311Packages.pylibjpeg-libjpeg
     zlib
     lzlib
+    dig
+    killall
+    inetutils
   ];
 
   services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "yes";
+  services.openssh.settings.PermitRootLogin = "no";
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   services.httpd.enable = true;
@@ -232,32 +235,10 @@ in
     programs.home-manager.enable = true;
   };
 
-#      systemd.services.gunicorn = {
-#         wantedBy = [ "multi-user.target" ]; 
-#          after = [ "network.target" ];
-#          description = "Gunicorn daemon for wagtail";
-#          serviceConfig = {
-#            Type = "forking";
-#            User = "wagtail";
-#            WorkingDirectory = "/home/wagtail/lesgv/lesgv";
-#            ExecStart = ''/home/wagtail/lesgv/env/bin/gunicorn -c /home/wagtail/lesgv/lesgv/gunicorn.conf.py lesgv.wsgi:application'';         
-#          };
-#      };
-#    config.system.activationScripts.makeWagtailDir = ''
-#      mkdir -p /var/lib/wagtail
-#      chown wagtail:users /var/lib/wagtail
-#      chmod 0775 /var/lib/wagtail
-#    '';
     systemd.services.wagtail = {
       description = "Les Grands Voisins Wagtail Website";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
-#      preStart = ''
-#        export WAGTAIL_ENV='production';
-#        /home/wagtail/venv/bin/python manage.py makemigrations;
-#        /home/wagtail/venv/bin/python manage.py migrate;
-#        /home/wagtail/venv/bin/python manage.py collectstatic --no-input;
-#      '';
       serviceConfig = {
         WorkingDirectory = "/home/wagtail/wagtail-lesgv/";
         ExecStart = ''/home/wagtail/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access.log --chdir /home/wagtail/wagtail-lesgv --workers 3 --bind unix:/var/lib/wagtail/wagtail-lesgv.sock lesgv.wsgi:application'';
@@ -294,20 +275,6 @@ in
       '';
     };
   };
-#  environment.systemPackages = with pkgs; [
-#    ((vim_configurable.override {  }).customize{
-#      name = "vim";
-#      # Install plugins for example for syntax highlighting of nix files
-#      vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
-#        start = [ vim-nix vim-lastplace ];
-#        opt = [];
-#      };
-#    }
-#  )];
-
-
-#  vimrcConfig.customRC = ''
-#  '';
 
 
    containers.postgresql =
@@ -329,29 +296,6 @@ in
        system.stateVersion = "23.05";
      };
    };
-  containers.sogo = { 
-    privateNetwork = true;
-    hostAddress = "192.168.100.10";
-    localAddress = "192.168.100.12";
-    config = { config, pkgs, ... }: { 
-      systemd.services.sogod = {
-         wantedBy = [ "multi-user.target" ]; 
-          after = [ "network.target" ];
-          description = "SOGo daemon";
-          serviceConfig = {
-            Type = "forking";
-            User = "sogo";
-            ExecStart = ''${pkgs.sogo}/bin/sogod -WOWorkersCount 3 -WOPidFile /home/sogo.pid -WOLogFile /home/sogo/sogo.log '';         
-          };
-      };
-      time.timeZone = "Europe/Amsterdam";
-      system.stateVersion = "23.05";
-      environment.systemPackages = with pkgs; [
-        vim
-        sogo
-      ];
-    };
-  };
 }
 
 
