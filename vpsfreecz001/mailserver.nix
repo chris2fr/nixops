@@ -258,7 +258,7 @@ in
           {
               type = ldap;
               CNFieldName = cn;
-              IDFieldName = mail;
+              IDFieldName = cn;
               UIDFieldName = cn;
               baseDN = "ou=users,dc=resdigita,dc=org";
               bindDN = "cn=admin,dc=resdigita,dc=org";
