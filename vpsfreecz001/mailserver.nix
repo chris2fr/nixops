@@ -17,9 +17,10 @@ in
     postgresql
     openldap
   ];
-#  systemd.enableUnifiedCgroupHierarchy = false;
-#  systemd.enableCgroupAccounting = false;
+  systemd.enableUnifiedCgroupHierarchy = false;
+  systemd.enableCgroupAccounting = false;
   services.httpd.virtualHosts."mail.resdigita.org" = {
+    
       enableACME = true;
       forceSSL = true;
       documentRoot =  "/var/www/SOGo";
@@ -47,6 +48,7 @@ in
       ProxyPass /SOGo/WebServerResources/  !
       ProxyPass /WebServerResources/  !
       ProxyPass /SOGo http://[::1]:20000/SOGo retry=0
+      ProxyPass / http://localhost:9991/ retry=0
       ProxyRequests Off
       SetEnv proxy-nokeepalive 1
       ProxyPreserveHost On
@@ -112,7 +114,9 @@ in
 
             /* allow read on anything else */
             ''{1}to *
+                by dn.exact="cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org" manage
                 by * read''
+
           ];
         };
       };
@@ -126,27 +130,39 @@ in
           objectClass: organizationalUnit
           ou: users
 
-          dn: mail=alice@resdigita.org,ou=users,dc=resdigita,dc=org
+          dn: ou=mailings,dc=resdigita,dc=org
+          objectClass: organizationalUnit
+          ou: mailings
+
+          dn: ou=groups,dc=resdigita,dc=org
+          objectClass: organizationalUnit
+          ou: groups
+
+          dn: ou=invitations,dc=resdigita,dc=org
+          objectClass: organizationalUnit
+          ou: invitations
+
+          dn: cn=alice@resdigita.org,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
-          cn: alice
+          cn: alice@resdigita.org
           givenName: alice
           sn: Foo
           uid: alice
           mail: alice@resdigita.org
           userPassword: ${alicePassword}
 
-          dn: mail=bob@resdigita.org,ou=users,dc=resdigita,dc=org
+          dn: cn=bob@resdigita.org,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
-          cn: bob
+          cn: bob@resdigita.org
           uid: bob
           givenName: bob
           sn: Bar
           mail: bob@resdigita.org
           userPassword: ${bobPassword}
 
-          dn: mail=sogo@resdigita.org,ou=users,dc=resdigita,dc=org
+          dn: cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
-          cn: sogo
+          cn: sogo@resdigita.org
           givenName: sogo
           uid: sogo
           sn: Administrator
@@ -241,9 +257,9 @@ in
       SOGoUserSources = (
           {
               type = ldap;
-              CNFieldName = mail;
+              CNFieldName = cn;
               IDFieldName = mail;
-              UIDFieldName = mail;
+              UIDFieldName = cn;
               baseDN = "ou=users,dc=resdigita,dc=org";
               bindDN = "cn=admin,dc=resdigita,dc=org";
               bindPassword = "${bindPassword}";

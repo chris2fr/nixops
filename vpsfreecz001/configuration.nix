@@ -7,6 +7,7 @@ in
   imports = [
     ./vpsadminos.nix
     ./mailserver.nix
+    ./guichet.nix
     <home-manager/nixos>
   ];
 
@@ -47,6 +48,16 @@ in
     killall
     inetutils
   ];
+
+#  virtualisation.docker.enable = true;
+#  users.extraGroups.docker.members = [ "mannchri" ];
+#  pkgs.dockerTools.pullImage = {
+#    imageName = "dnknth/ldap-ui";
+#    finalImageTag = "latest";
+#    imageDigest = "sha256:c34a8feb5978888ebe5ff86884524b30759469c91761a560cdfe968f6637f051";
+#    sha256 = "";
+#  };
+
 
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "no";
