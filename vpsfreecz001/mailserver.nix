@@ -55,8 +55,8 @@ in
       CacheDisable /
       <Proxy http://127.0.0.1:20000/SOGo >
         RequestHeader set "x-webobjects-server-port" "443"
-        RequestHeader set "x-webobjects-server-name" "mail.resdigita.org"
-        RequestHeader set "x-webobjects-server-url" "https://mail.resdigita.org"
+        RequestHeader set "x-webobjects-server-name" "mail.resdigita.com"
+        RequestHeader set "x-webobjects-server-url" "https://mail.resdigita.com"
         # When using proxy-side autentication, you need to uncomment and
         ## adjust the following line:
         RequestHeader unset "x-webobjects-remote-user"
@@ -107,7 +107,7 @@ in
 
           olcAccess = [
             /* custom access rules for userPassword attributes */
-            ''{0}to attrs=userPassword
+            ''{0}to attrs=userPassword,cn,sn,givenName,displayName
                 by self write
                 by anonymous auth
                 by * none''
@@ -186,8 +186,8 @@ in
 ###################################################################################################################################
   mailserver = {
     enable = true;
-    fqdn = "mail.resdigita.org";
-    domains = [ "resdigita.org" ];
+    fqdn = "mail.resdigita.com";
+    domains = [ "resdigita.org" "resdigita.com" ];
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
@@ -241,7 +241,7 @@ in
       SOGoRefreshViewCheck = every_5_minutes;
       SOGoMailAuxiliaryUserAccountsEnabled = NO;
       SOGoPasswordChangeEnabled = YES;
-      SOGoPageTitle = "resdigita.org";
+      SOGoPageTitle = "resdigita.com";
       SOGoLoginModule = Mail;
       SOGoMailAddOutgoingAddresses = YES;
       SOGoSelectedAddressBook = autobook;
