@@ -20,6 +20,7 @@ in
   systemd.enableUnifiedCgroupHierarchy = false;
   systemd.enableCgroupAccounting = false;
   services.httpd.virtualHosts."mail.resdigita.org" = {
+      enableACME = true;
       forceSSL = true;
       documentRoot =  "/var/www/SOGo";
       globalRedirect = "https://mail.resdigita.com";
