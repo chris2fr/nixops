@@ -20,7 +20,7 @@ in
   systemd.enableUnifiedCgroupHierarchy = false;
   systemd.enableCgroupAccounting = false;
   services.httpd.virtualHosts."lesgv.com" = {
-    serverAliases = ["mail.resdigita.org" "www.lesgv.com" "lesgv.org" "www.resdigita.org" "resdigita.com" "www.lesgv.org" "www.resdigita.com"];
+    serverAliases = ["mail.resdigita.org" "www.lesgv.com" "lesgv.org" "resdigita.org" "www.resdigita.org" "resdigita.com" "www.lesgv.org" "www.resdigita.com"];
       enableACME = true;
       forceSSL = true;
       # documentRoot =  "/var/www/SOGo";

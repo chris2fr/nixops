@@ -86,7 +86,7 @@ in
     ];
     globalRedirect = "https://www.lesgrandsvoisins.com/";
   };
-  services.httpd.virtualHosts."lesgrandsvoisins.com" = {
+  services.httpd.virtualHosts."avmeet.com" = {
     enableACME = true;
     forceSSL = true;
     globalRedirect = "https://www.avmeet.com";
