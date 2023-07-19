@@ -86,17 +86,23 @@ in
     ];
     globalRedirect = "https://www.lesgrandsvoisins.com/";
   };
-  services.httpd.virtualHosts."resdigita.com" = {
+  services.httpd.virtualHosts."lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
-    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
+    globalRedirect = "https://www.avmeet.com";
   };
-  services.httpd.virtualHosts."resdigita.org" = {
-    enableACME = true;
-    forceSSL = true;
-    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
-  };
+#  services.httpd.virtualHosts."resdigita.com" = {
+#    enableACME = true;
+#    forceSSL = true;
+#    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
+#  };
+#  services.httpd.virtualHosts."resdigita.org" = {
+#    enableACME = true;
+#    forceSSL = true;
+#    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
+#  };
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
+    serverAliases = ["www.avmeet.com"];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
@@ -115,48 +121,48 @@ in
     CacheDisable /
     '';
   };
-  services.httpd.virtualHosts."www.resdigita.com" = {
-    enableACME = true;
-    forceSSL = true;
-#    documentRoot =  "/var/www/wagtail/";
-    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
-#    extraConfig = ''
-#    <Location />
-#    Require all granted
-#    </Location>
+#  services.httpd.virtualHosts."www.resdigita.com" = {
+#    enableACME = true;
+#    forceSSL = true;
+##    documentRoot =  "/var/www/wagtail/";
+#    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
+##    extraConfig = ''
+##    <Location />
+##    Require all granted
+##    </Location>
+##
+##    ProxyPass /.well-known !
+##    ProxyPass /static !
+##    ProxyPass /media !
+##    ProxyPass /favicon.ico !
+##    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+##    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+##    ProxyPreserveHost On
+##    CacheDisable /
+##    '';
 #
-#    ProxyPass /.well-known !
-#    ProxyPass /static !
-#    ProxyPass /media !
-#    ProxyPass /favicon.ico !
-#    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-#    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-#    ProxyPreserveHost On
-#    CacheDisable /
-#    '';
-
-  };
-  services.httpd.virtualHosts."www.resdigita.org" = {
-    enableACME = true;
-    forceSSL = true;
-#    documentRoot =  "/var/www/wagtail/";
-    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
-#    extraConfig = ''
-#    <Location />
-#    Require all granted
-#    </Location>
-#
-#    ProxyPass /.well-known !
-#    ProxyPass /static !
-#    ProxyPass /media !
-#    ProxyPass /favicon.ico !
-#    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-#    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-#    ProxyPreserveHost On
-#    CacheDisable /
-#    '';
-#
-  };
+#  };
+#  services.httpd.virtualHosts."www.resdigita.org" = {
+#    enableACME = true;
+#    forceSSL = true;
+##    documentRoot =  "/var/www/wagtail/";
+#    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
+##    extraConfig = ''
+##    <Location />
+##    Require all granted
+##    </Location>
+##
+##    ProxyPass /.well-known !
+##    ProxyPass /static !
+##    ProxyPass /media !
+##    ProxyPass /favicon.ico !
+##    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+##    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+##    ProxyPreserveHost On
+##    CacheDisable /
+##    '';
+##
+#  };
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
