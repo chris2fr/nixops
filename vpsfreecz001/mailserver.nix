@@ -19,6 +19,63 @@ in
   ];
   systemd.enableUnifiedCgroupHierarchy = false;
   systemd.enableCgroupAccounting = false;
+  services.httpd.virtualHosts."lesgv.com" = {
+    serverAliases = ["lesgv.org"];
+      enableACME = true;
+      forceSSL = true;
+      documentRoot =  "/var/www/SOGo";
+      globalRedirect = "https://www.lesgv.com";
+  };
+  services.httpd.virtualHosts."www.lesgv.com" = {
+    serverAliases = ["www.lesgv.org"];
+      enableACME = true;
+      forceSSL = true;
+      documentRoot =  "/var/www/SOGo";
+#      globalRedirect = "https://mail.resdigita.com";
+      extraConfig = ''
+      Alias /.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
+      Alias /SOGo.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
+      Alias /SOGo/WebServerResources/ /var/www/SOGo/WebServerResources/
+      Alias /WebServerResources/ /var/www/SOGo/WebServerResources/
+      <Directory /var/www/SOGo/WebServerResources/>
+        AllowOverride none
+        Require all granted
+        <IfModule expires_module>
+          ExpiresActive On
+          ExpiresDefault "access plus 1 year"
+        </IfModule>
+      </Directory>
+      ProxyPass /.well-known !
+      ProxyPass /.woa/WebServerResources/ !
+      ProxyPass /SOGo.woa/WebServerResources/  !
+      ProxyPass /SOGo/WebServerResources/  !
+      ProxyPass /WebServerResources/  !
+      ProxyPass /SOGo http://[::1]:20000/SOGo retry=0
+      ProxyPass / http://localhost:9991/ retry=0
+      ProxyRequests Off
+      SetEnv proxy-nokeepalive 1
+      ProxyPreserveHost On
+      CacheDisable /
+      <Proxy http://127.0.0.1:20000/SOGo >
+        SetEnvIf Host (.*) custom_host=$1
+        RequestHeader set "x-webobjects-server-name" "%{custom_host}e"
+        RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e"
+        #RequestHeader set X-Custom-Host-Header "%{custom_host}e"
+
+        RequestHeader set "x-webobjects-server-port" "443"
+        # RequestHeader set "x-webobjects-server-name" "%{HTTP_HOST}e" env=HTTP_HOST
+        # RequestHeader set "x-webobjects-server-url" "https://%{HTTP_HOST}e" env=HTTP_HOST
+        # When using proxy-side autentication, you need to uncomment and
+        ## adjust the following line:
+        RequestHeader unset "x-webobjects-remote-user"
+        #  RequestHeader set "x-webobjects-remote-user" "%{REMOTE_USER}e" env=REMOTE_USER
+        RequestHeader set "x-webobjects-server-protocol" "HTTP/1.0"
+        AddDefaultCharset UTF-8
+        Order allow,deny
+        Allow from all
+      </Proxy>
+      '';
+  };
   services.httpd.virtualHosts."mail.resdigita.org" = {
       enableACME = true;
       forceSSL = true;
