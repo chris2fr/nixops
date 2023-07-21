@@ -1,4 +1,5 @@
 { config, pkgs, lib, ... }:
+
 let 
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.adminresdigitaorg));
   alicePassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.mailserver.alice));
@@ -19,6 +20,17 @@ in
   ];
   systemd.enableUnifiedCgroupHierarchy = false;
   systemd.enableCgroupAccounting = false;
+  users.users."web2ldap" = {
+    isNormalUser = true;
+
+  };
+  home-manager.users."web2ldap" = {
+    home.stateVersion = "23.05";
+    home.packages = with pkgs; [
+      python311
+    ];
+  };
+################################################################################################################
   services.httpd.virtualHosts."lesgv.com" = {
     serverAliases = ["mail.resdigita.org" "www.lesgv.com" "lesgv.org" "resdigita.org" "www.resdigita.org" "resdigita.com" "www.lesgv.org" "www.resdigita.com"];
       enableACME = true;
@@ -53,6 +65,7 @@ in
       ProxyPass /SOGo.woa/WebServerResources/  !
       ProxyPass /SOGo/WebServerResources/  !
       ProxyPass /WebServerResources/  !
+      ProxyPass /SOGo/ http://[::1]:20000/SOGo/ retry=0
       ProxyPass /SOGo http://[::1]:20000/SOGo retry=0
       ProxyPass / http://localhost:9991/ retry=0
       ProxyRequests Off
@@ -117,7 +130,7 @@ in
 
           olcAccess = [
             /* custom access rules for userPassword attributes */
-            ''{0}to attrs=userPassword,cn,sn,givenName,displayName
+            ''{0}to attrs=userPassword
                 by self write
                 by anonymous auth
                 by * none''
@@ -125,61 +138,69 @@ in
             /* allow read on anything else */
             ''{1}to *
                 by dn.exact="cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org" manage
+                by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage
                 by * read''
-
+            ''{2}to dn.children="ou=newusers,dc=resdigita,dc=org"
+                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
+                by * read''
+            /* custom access rules for userPassword attributes */
+            ''{3}to attrs=cn,sn,givenName,displayName,member,memberof
+                by self write
+                by anonymous auth
+                by * none''
           ];
         };
       };
     };
-    declarativeContents."dc=resdigita,dc=org" = ''
-          dn: dc=resdigita,dc=org
-          objectClass: domain
-          dc: resdigita
-
-          dn: ou=users,dc=resdigita,dc=org
-          objectClass: organizationalUnit
-          ou: users
-
-          dn: ou=mailings,dc=resdigita,dc=org
-          objectClass: organizationalUnit
-          ou: mailings
-
-          dn: ou=groups,dc=resdigita,dc=org
-          objectClass: organizationalUnit
-          ou: groups
-
-          dn: ou=invitations,dc=resdigita,dc=org
-          objectClass: organizationalUnit
-          ou: invitations
-
-          dn: cn=alice@resdigita.org,ou=users,dc=resdigita,dc=org
-          objectClass: inetOrgPerson
-          cn: alice@resdigita.org
-          givenName: alice
-          sn: Foo
-          uid: alice
-          mail: alice@resdigita.org
-          userPassword: ${alicePassword}
-
-          dn: cn=bob@resdigita.org,ou=users,dc=resdigita,dc=org
-          objectClass: inetOrgPerson
-          cn: bob@resdigita.org
-          uid: bob
-          givenName: bob
-          sn: Bar
-          mail: bob@resdigita.org
-          userPassword: ${bobPassword}
-
-          dn: cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org
-          objectClass: inetOrgPerson
-          cn: sogo@resdigita.org
-          givenName: sogo
-          uid: sogo
-          sn: Administrator
-          mail: sogo@resdigita.org
-          userPassword: ${sogoPassword}
-
-        '';
+#    declarativeContents."dc=resdigita,dc=org" = ''
+#          dn: dc=resdigita,dc=org
+#          objectClass: domain
+#          dc: resdigita
+#
+#          dn: ou=users,dc=resdigita,dc=org
+#          objectClass: organizationalUnit
+#          ou: users
+#
+#          dn: ou=mailings,dc=resdigita,dc=org
+#          objectClass: organizationalUnit
+#          ou: mailings
+#
+#          dn: ou=groups,dc=resdigita,dc=org
+#          objectClass: organizationalUnit
+#          ou: groups
+#
+#          dn: ou=invitations,dc=resdigita,dc=org
+#          objectClass: organizationalUnit
+#          ou: invitations
+#
+#          dn: cn=alice@resdigita.org,ou=users,dc=resdigita,dc=org
+#          objectClass: inetOrgPerson
+#          cn: alice@resdigita.org
+#          givenName: alice
+#          sn: Foo
+#          uid: alice
+#          mail: alice@resdigita.org
+#          userPassword: ${alicePassword}
+#
+#          dn: cn=bob@resdigita.org,ou=users,dc=resdigita,dc=org
+#          objectClass: inetOrgPerson
+#          cn: bob@resdigita.org
+#          uid: bob
+#          givenName: bob
+#          sn: Bar
+#          mail: bob@resdigita.org
+#          userPassword: ${bobPassword}
+#
+#          dn: cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org
+#          objectClass: inetOrgPerson
+#          cn: sogo@resdigita.org
+#          givenName: sogo
+#          uid: sogo
+#          sn: Administrator
+#          mail: sogo@resdigita.org
+#          userPassword: ${sogoPassword}
+#
+#        '';
   };
 #  /* ensure openldap is launched after certificates are created */
 #  systemd.services.openldap = {
