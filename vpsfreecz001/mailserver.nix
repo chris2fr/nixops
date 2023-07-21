@@ -125,20 +125,17 @@ in
                 by self write
                 by anonymous auth
                 by * none''
-
-            /* allow read on anything else */
             ''{1}to *
                 by dn.exact="cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org" manage
-                by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage
-                by * read''
+                by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage''
+            /* allow read on anything else */
             ''{2}to dn.subtree="ou=newusers,dc=resdigita,dc=org"
-                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
-                by * read''
+                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write''
             /* custom access rules for userPassword attributes */
             ''{3}to attrs=cn,sn,givenName,displayName,member,memberof
-                by self write
-                by anonymous auth
-                by * none''
+                by self write''
+            ''{4}to *
+                by * read''
           ];
         };
       };
