@@ -24,12 +24,6 @@ in
     isNormalUser = true;
 
   };
-  home-manager.users."web2ldap" = {
-    home.stateVersion = "23.05";
-    home.packages = with pkgs; [
-      python311
-    ];
-  };
 ################################################################################################################
   services.httpd.virtualHosts."lesgv.com" = {
     serverAliases = ["mail.resdigita.org" "www.lesgv.com" "lesgv.org" "resdigita.org" "www.resdigita.org" "resdigita.com" "www.lesgv.org" "www.resdigita.com"];
@@ -77,9 +71,6 @@ in
         RequestHeader set "x-webobjects-server-name" "%{custom_host}e"
         RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e"
         RequestHeader set "x-webobjects-server-port" "443"
-        RequestHeader set "x-webobjects-server-port" "443"
-        RequestHeader set "x-webobjects-server-name" "mail.resdigita.com"
-        RequestHeader set "x-webobjects-server-url" "https://mail.resdigita.com"
         # When using proxy-side autentication, you need to uncomment and
         ## adjust the following line:
         RequestHeader unset "x-webobjects-remote-user"
@@ -230,6 +221,11 @@ in
         "ldap:///"
     ];
     ldap.searchBase = "ou=users,dc=resdigita,dc=org";
+    ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
+    ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
+    ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
+    ldap.postfix.mailAttribute = "cn";
+    ldap.postfix.uidAttribute = "uid";
   };
 ###################################################################################################################################
   services.memcached = {
