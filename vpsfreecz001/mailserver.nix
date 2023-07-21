@@ -121,16 +121,16 @@ in
 
           olcAccess = [
             /* custom access rules for userPassword attributes */
-            ''{0}to attrs=userPassword
+            /* allow read on anything else */
+            ''{0}to dn.subtree="ou=newusers,dc=resdigita,dc=org"
+                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write''
+            ''{1}to attrs=userPassword
                 by self write
                 by anonymous auth
                 by * none''
-            ''{1}to *
+            ''{2}to *
                 by dn.exact="cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org" manage
                 by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage''
-            /* allow read on anything else */
-            ''{2}to dn.subtree="ou=newusers,dc=resdigita,dc=org"
-                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write''
             /* custom access rules for userPassword attributes */
             ''{3}to attrs=cn,sn,givenName,displayName,member,memberof
                 by self write''
