@@ -123,7 +123,9 @@ in
             /* custom access rules for userPassword attributes */
             /* allow read on anything else */
             ''{0}to dn.subtree="ou=newusers,dc=resdigita,dc=org"
-                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write''
+                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
+                by group.exact="cn=administration,ou=groups,dc=resdigita,dc=org" write
+                by self write''
             ''{1}to attrs=userPassword
                 by self write
                 by anonymous auth
