@@ -131,7 +131,7 @@ in
                 by dn.exact="cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org" manage
                 by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage
                 by * read''
-            ''{2}to dn.children="ou=newusers,dc=resdigita,dc=org"
+            ''{2}to dn.subtree="ou=newusers,dc=resdigita,dc=org"
                 by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
                 by * read''
             /* custom access rules for userPassword attributes */
