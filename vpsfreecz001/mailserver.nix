@@ -85,19 +85,19 @@ in
 ###################################################################################################################################
   services.openldap = {
     enable = true;
-    urlList = [ "ldap:///" ];
-#    urlList = [ "ldap:///" "ldaps:///" ];
+    # urlList = [ "ldap:///" ];
+    urlList = [ "ldap:///" "ldaps:///" ];
     settings = {
       attrs = {
         olcLogLevel = "conns config";
          /* settings for acme ssl */
-#        olcTLSCACertificateFile = "/var/lib/acme/mailtest.resdigita.org/full.pem";
-#        olcTLSCertificateFile = "/var/lib/acme/mailtest.resdigita.org/cert.pem";
-#        olcTLSCertificateKeyFile = "/var/lib/acme/mailtest.resdigita.org/key.pem";
-#        olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
-#        olcTLSCRLCheck = "none";
-#        olcTLSVerifyClient = "never";
-#        olcTLSProtocolMin = "3.1";
+          olcTLSCACertificateFile = "/var/lib/acme/mail.resdigita.com/full.pem";
+          olcTLSCertificateFile = "/var/lib/acme/mail.resdigita.com/cert.pem";
+          olcTLSCertificateKeyFile = "/var/lib/acme/mail.resdigita.com/key.pem";
+        olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
+        olcTLSCRLCheck = "none";
+        olcTLSVerifyClient = "never";
+        olcTLSProtocolMin = "3.1";
       };
       children = {
         "cn=schema".includes = [
@@ -205,6 +205,12 @@ in
 #  security.acme.certs."mailtest.resdigita.org" = {
 #    extraDomainNames = [];
 #  };
+#############################
+systemd.services.openldap = {
+  wants = [ "acme-mail.resdigita.com.service" ];
+  after = [ "acme-mail.resdigita.com.service" ];
+};
+users.groups.wwwrun.members = [ "openldap" ];
 ###################################################################################################################################
   mailserver = {
     enable = true;
