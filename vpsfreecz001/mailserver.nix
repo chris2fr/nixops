@@ -37,6 +37,7 @@ in
       forceSSL = true;
       documentRoot =  "/var/www/SOGo";
       extraConfig = ''
+      Alias /SOGo.woa/WebServerResources/js/theme.js /var/www/SOGo/WebServerResources/theme.js
       Alias /.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
       Alias /SOGo.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
       Alias /SOGo/WebServerResources/ /var/www/SOGo/WebServerResources/
@@ -225,14 +226,14 @@ users.groups.wwwrun.members = [ "openldap" ];
     ldap.bind.dn = "cn=admin,dc=resdigita,dc=org";
     ldap.bind.passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
     ldap.uris = [
-        "ldap:///"
+        "ldap://mail.resdigita.com/"
     ];
     ldap.searchBase = "ou=users,dc=resdigita,dc=org";
-    ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
+    # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
+    # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
+    # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     ldap.postfix.mailAttribute = "cn";
-    ldap.postfix.uidAttribute = "uid";
+    ldap.postfix.uidAttribute = "cn";
   };
 ###################################################################################################################################
   services.memcached = {
@@ -245,6 +246,7 @@ users.groups.wwwrun.members = [ "openldap" ];
     timezone = "europe/paris";
     # SOGoForceExternalLoginWithEmail = YES;
     extraConfig = ''
+      SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
       OCSSessionsFolderURL = "postgresql:///sogo/sogo_sessions_folder";
       OCSEMailAlarmsFolderURL = "postgresql:///sogo/sogo_alarms_folder";
       SOGoProfileURL = "postgresql:///sogo/sogo_user_profile";
@@ -299,7 +301,7 @@ users.groups.wwwrun.members = [ "openldap" ];
               bindPassword = "${bindPassword}";
               canAuthenticate = YES;
               displayName = "Dir";
-              hostname = "ldap:///";
+              hostname = "ldap://mail.resdigita.com/";
               id = public;
               isAddressBook = YES;
           }
