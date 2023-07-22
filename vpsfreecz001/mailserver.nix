@@ -310,8 +310,6 @@ users.groups.wwwrun.members = [ "openldap" ];
           type = ldap;
           CNFieldName = displayName;
           IDFieldName = cn;
-          UIDFieldName = cn;
-          IMAPLoginFieldName = mail;
           baseDN = "ou=users,dc=resdigita,dc=org";
           bindDN = "cn=admin,dc=resdigita,dc=org";
           bindPassword = "${bindPassword}";
