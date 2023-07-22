@@ -333,7 +333,23 @@ users.groups.wwwrun.members = [ "openldap" ];
           mapping = {
             mozillasecondemail = ("carLicense");
             mozillaworkurl = ("labeldURI");
-            mozillahomelocalityname = ("l");
+            givenName = ("givenName");
+            sn = ("sn");
+            displayName = ("displayName");
+            mail = ("mail");
+            telephoneNumber = ("telephoneNumber");
+            mobile = ("mobile");
+            homephone = ("homephone");
+            title = ("title");
+            ou = ("ou");
+            o = ("o");
+            street = ("street");
+            l = ("l");
+            st = ("st");
+            postalCode = ("postalCode");
+            c = ("c");
+            description = ("description");
+            photo = ("photo");
           }
         }
       );
