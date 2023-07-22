@@ -232,7 +232,7 @@ users.groups.wwwrun.members = [ "openldap" ];
     ldap.bind.dn = "cn=admin,dc=resdigita,dc=org";
     ldap.bind.passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
     ldap.uris = [
-        "ldaps://mail.resdigita.com/"
+        "ldaps:///"
     ];
     ldap.searchBase = "ou=users,dc=resdigita,dc=org";
     #ldap.startTls = true;
