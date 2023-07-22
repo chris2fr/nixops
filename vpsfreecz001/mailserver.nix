@@ -226,14 +226,14 @@ users.groups.wwwrun.members = [ "openldap" ];
     ldap.bind.dn = "cn=admin,dc=resdigita,dc=org";
     ldap.bind.passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
     ldap.uris = [
-        "ldap://mail.resdigita.com/"
+        "ldaps://mail.resdigita.com/"
     ];
     ldap.searchBase = "ou=users,dc=resdigita,dc=org";
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    ldap.postfix.mailAttribute = "cn";
-    ldap.postfix.uidAttribute = "cn";
+    ldap.postfix.mailAttribute = "mail";
+    ldap.postfix.uidAttribute = "uid";
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
     #   =mail=%{ldap:cn}
@@ -268,7 +268,7 @@ users.groups.wwwrun.members = [ "openldap" ];
       WOLogFile = /var/log/sogo/sogo.log;
       WOWorkersCount = 3;
       SxVMemLimit = 300;
-      SOGoMailDomain = "lesgv.com";
+      SOGoMailDomain = "resdigita.org";
       SOGoLanguage = French;
       SOGoAppointmentSendEMailNotifications = YES;
       SOGoEnablePublicAccess = YES;
@@ -303,8 +303,8 @@ users.groups.wwwrun.members = [ "openldap" ];
           {
               type = ldap;
               CNFieldName = displayName;
-              IDFieldName = uid;
-              UIDFieldName = uid;
+              IDFieldName = cn;
+              UIDFieldName = cn;
               MailFieldNames = ("mail");
               baseDN = "ou=users,dc=resdigita,dc=org";
               bindDN = "cn=admin,dc=resdigita,dc=org";
@@ -316,7 +316,7 @@ users.groups.wwwrun.members = [ "openldap" ];
               isAddressBook = YES;
           }
       );
-      SOGoSuperUsernames = ("sogo@resdigita.org","chris@lesgrandsvoisins.com");
+      SOGoSuperUsernames = ("sogo@resdigita.org");
       '';
       #SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
   };
