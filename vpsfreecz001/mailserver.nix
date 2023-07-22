@@ -320,7 +320,7 @@ users.groups.wwwrun.members = [ "openldap" ];
           type = ldap;
           CNFieldName = displayName;
           IDFieldName = cn;
-          UIDFieldName = mail;
+          UIDFieldName = cn;
           baseDN = "ou=users,dc=resdigita,dc=org";
           bindDN = "cn=admin,dc=resdigita,dc=org";
           bindPassword = "${bindPassword}";
@@ -328,6 +328,8 @@ users.groups.wwwrun.members = [ "openldap" ];
           displayName = "Dir";
           hostname = "mail.resdigita.com";
           isAddressBook = YES;
+          MailFieldNames = ("mail");
+          IMAPLoginFieldName = mail;
         }
       );
       SOGoSuperUsernames = ("sogo@resdigita.org");
