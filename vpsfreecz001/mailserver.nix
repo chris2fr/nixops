@@ -301,8 +301,8 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoMailSignaturePlacement = above;
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
-      SOGoSMTPServer = "smtp://mail.resdigita.com:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
-      SOGoIMAPServer = "imaps://mail.resdigita.com";
+      SOGoSMTPServer = "smtp://mail.resdigita.com:587/?tls=YES";
+      SOGoIMAPServer = "imap://mail.resdigita.com/?tls=YES";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
