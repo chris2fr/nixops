@@ -302,7 +302,7 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
       SOGoSMTPServer = "smtp://mail.resdigita.com/?tls=YES";
-      SOGoIMAPServer = "imap://mail.resdigita.com/?tls=YES";
+      SOGoIMAPServer = "imaps://mail.resdigita.com";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
@@ -317,7 +317,7 @@ users.groups.wwwrun.members = [ "openldap" ];
           bindPassword = "${bindPassword}";
           canAuthenticate = YES;
           displayName = "Dir";
-          hostname = "imap://mail.resdigita.com/?tls=YES";
+          hostname = "imaps://mail.resdigita.com";
           isAddressBook = YES;
         }
       );
