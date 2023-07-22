@@ -257,9 +257,9 @@ users.groups.wwwrun.members = [ "openldap" ];
     timezone = "europe/paris";
 
     # SOGoEnableDomainBasedUID = YES;
-    # SOGoForceExternalLoginWithEmail = YES;
+    # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com");
     extraConfig = ''
-      SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com");
+      SOGoForceExternalLoginWithEmail = YES;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
       OCSSessionsFolderURL = "postgresql:///sogo/sogo_sessions_folder";
@@ -310,7 +310,7 @@ users.groups.wwwrun.members = [ "openldap" ];
           type = ldap;
           CNFieldName = displayName;
           IDFieldName = cn;
-          UIDFieldName = cn;
+          UIDFieldName = mail;
           IMAPLoginFieldName = mail;
           baseDN = "ou=users,dc=resdigita,dc=org";
           bindDN = "cn=admin,dc=resdigita,dc=org";
