@@ -235,7 +235,7 @@ users.groups.wwwrun.members = [ "openldap" ];
         "ldaps://mail.resdigita.com/"
     ];
     ldap.searchBase = "ou=users,dc=resdigita,dc=org";
-    ldap.startTls = true;
+    # ldap.startTls = true;
     ldap.tlsCAFile = "/var/certs/cert-mail.resdigita.com.pem";
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
