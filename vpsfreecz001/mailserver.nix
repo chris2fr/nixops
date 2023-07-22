@@ -238,7 +238,7 @@ users.groups.wwwrun.members = [ "openldap" ];
     #   =home=%{ldap:homeDirectory}, \
     #        =uid=%{ldap:uidNumber}, \
     #        =gid=%{ldap:gidNumber}
-    '';
+    # '';
   };
 ###################################################################################################################################
   services.memcached = {
