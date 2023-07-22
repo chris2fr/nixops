@@ -233,8 +233,8 @@ users.groups.wwwrun.members = [ "openldap" ];
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    ldap.postfix.mailAttribute = "mail";
-    ldap.postfix.uidAttribute = "mail";
+    # ldap.postfix.mailAttribute = "mail";
+    # ldap.postfix.uidAttribute = "mail";
     # ldap.tlsCAFile
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
@@ -258,8 +258,8 @@ users.groups.wwwrun.members = [ "openldap" ];
 
     # SOGoEnableDomainBasedUID = YES;
     # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com");
+    # SOGoForceExternalLoginWithEmail = YES;
     extraConfig = ''
-      SOGoForceExternalLoginWithEmail = YES;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
       OCSSessionsFolderURL = "postgresql:///sogo/sogo_sessions_folder";
@@ -301,8 +301,8 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoMailSignaturePlacement = above;
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
-      SOGoSMTPServer = "smtp://localhost:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
-      SOGoIMAPServer = "imap://localhost?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
+      SOGoSMTPServer = "smtp://mail.resdigita.com/?tls=YES";
+      SOGoIMAPServer = "imap://mail.resdigita.com/?tls=YES";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
@@ -317,7 +317,7 @@ users.groups.wwwrun.members = [ "openldap" ];
           bindPassword = "${bindPassword}";
           canAuthenticate = YES;
           displayName = "Dir";
-          hostname = "imap://localhost?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
+          hostname = "imap://mail.resdigita.com/?tls=YES";
           isAddressBook = YES;
         }
       );
