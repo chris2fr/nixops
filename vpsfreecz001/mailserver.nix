@@ -33,6 +33,7 @@ in
       globalRedirect = "https://mail.resdigita.com";
   };
   services.httpd.virtualHosts."mail.resdigita.com" = {
+      serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com"]
       enableACME = true;
       forceSSL = true;
       documentRoot =  "/var/www/SOGo";
@@ -256,7 +257,7 @@ users.groups.wwwrun.members = [ "openldap" ];
     # SOGoForceExternalLoginWithEmail = YES;
     extraConfig = ''
       SOGoEnableDomainBasedUID = YES;
-      SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com");
+      SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com");
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
       OCSSessionsFolderURL = "postgresql:///sogo/sogo_sessions_folder";
@@ -317,7 +318,7 @@ users.groups.wwwrun.members = [ "openldap" ];
           displayName = "Dir";
           hostname = "ldaps://mail.resdigita.com/";
           isAddressBook = YES;
-          imaps://mail.lesgv.com:993
+          imaps://mail.lesgv.com:993;
         }
       );
       SOGoSuperUsernames = ("sogo@resdigita.org");
