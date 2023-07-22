@@ -305,7 +305,6 @@ users.groups.wwwrun.members = [ "openldap" ];
               CNFieldName = displayName;
               IDFieldName = cn;
               UIDFieldName = cn;
-              # MailFieldNames = ("mail");
               baseDN = "ou=users,dc=resdigita,dc=org";
               bindDN = "cn=admin,dc=resdigita,dc=org";
               bindPassword = "${bindPassword}";
@@ -319,6 +318,7 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoSuperUsernames = ("sogo@resdigita.org");
       '';
       #SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
+                    # MailFieldNames = ("mail");
   };
 ###################################################################################################################################
   services.postgresql = {
