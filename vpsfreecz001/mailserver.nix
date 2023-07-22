@@ -313,6 +313,7 @@ users.groups.wwwrun.members = [ "openldap" ];
               hostname = "ldaps://mail.resdigita.com/";
               id = public;
               isAddressBook = YES;
+              IMAPLoginFieldName = mail;
           }
       );
       SOGoSuperUsernames = ("sogo@resdigita.org");
