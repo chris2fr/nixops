@@ -136,7 +136,8 @@ in
                 by self write''
             /* custom access rules for userPassword attributes */
             ''{3}to attrs=cn,sn,givenName,displayName,member,memberof
-                by self write''
+                by self write
+                by * read''
             ''{4}to *
                 by * read''
           ];
