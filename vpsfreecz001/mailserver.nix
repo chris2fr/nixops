@@ -232,9 +232,9 @@ users.groups.wwwrun.members = [ "openldap" ];
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    ldap.postfix.mailAttribute = "cn";
-    ldap.postfix.uidAttribute = "cn";
-    ldap.postfix.filter = "(cn=%s)";
+    ldap.postfix.mailAttribute = "mail";
+    ldap.postfix.uidAttribute = "uid";
+    ldap.postfix.filter = "(|(mail=*@lesgv.com)(mail=*@lesgrandsvoisins.com)(mail=*@resdigita.com)(mail=*@resdigita.org)(mail=*@lesgv.org))";
     # ldap.dovecot.userAttrs = ''
     #   =mail=%{ldap:cn}
     # '';
