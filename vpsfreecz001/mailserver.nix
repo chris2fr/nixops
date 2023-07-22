@@ -304,7 +304,7 @@ users.groups.wwwrun.members = [ "openldap" ];
               type = ldap;
               CNFieldName = displayName;
               IDFieldName = cn;
-              UIDFieldName = cn;
+              UIDFieldName = uid;
               MailFieldNames = ("mail");
               baseDN = "ou=users,dc=resdigita,dc=org";
               bindDN = "cn=admin,dc=resdigita,dc=org";
