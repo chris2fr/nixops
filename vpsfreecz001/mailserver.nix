@@ -217,7 +217,7 @@ users.groups.wwwrun.members = [ "openldap" ];
   mailserver = {
     enable = true;
     fqdn = "mail.resdigita.com";
-    domains = [ "resdigita.org" "resdigita.com" "lesgrandsvoisins.com" ];
+    domains = [ "resdigita.org" "resdigita.com" "lesgrandsvoisins.com" "lesgv.com" "lesgv.org" ];
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
@@ -233,7 +233,7 @@ users.groups.wwwrun.members = [ "openldap" ];
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     ldap.postfix.mailAttribute = "mail";
-    ldap.postfix.uidAttribute = "uid";
+    ldap.postfix.uidAttribute = "mail";
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
     #   =mail=%{ldap:cn}
