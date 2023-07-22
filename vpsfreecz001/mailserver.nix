@@ -355,7 +355,7 @@ users.groups.wwwrun.members = [ "openldap" ];
   };
 ###################################################################################################################################
   networking.firewall = {
-    allowedTCPPorts = [ 80 443 20000 389 636 11211 ];
+    allowedTCPPorts = [ 80 443 20000 389 636 993 11211 ];
     enable = true;
     trustedInterfaces = [ "lo" ];
   };
