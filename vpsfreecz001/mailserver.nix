@@ -235,7 +235,7 @@ users.groups.wwwrun.members = [ "openldap" ];
         "ldaps://mail.resdigita.com/"
     ];
     ldap.searchBase = "ou=users,dc=resdigita,dc=org";
-    ldap.startTls = true;
+    #ldap.startTls = true;
     ldap.tlsCAFile = "/var/certs/cert-mail.resdigita.com.pem";
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
@@ -309,8 +309,8 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoMailSignaturePlacement = above;
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
-      SOGoSMTPServer = "smtp://mail.resdigita.com/?tls=YES";
-      SOGoIMAPServer = "imap://mail.resdigita.com/?tls=YES";
+      SOGoSMTPServer = "smtps://mail.resdigita.com/";
+      SOGoIMAPServer = "imaps://mail.resdigita.com/";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
