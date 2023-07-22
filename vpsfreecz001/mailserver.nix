@@ -33,7 +33,7 @@ in
       globalRedirect = "https://mail.resdigita.com";
   };
   services.httpd.virtualHosts."mail.resdigita.com" = {
-      serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com"]
+      serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com"];
       enableACME = true;
       forceSSL = true;
       documentRoot =  "/var/www/SOGo";
