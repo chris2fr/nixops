@@ -217,7 +217,7 @@ users.groups.wwwrun.members = [ "openldap" ];
   mailserver = {
     enable = true;
     fqdn = "mail.resdigita.com";
-    domains = [ "resdigita.org" "resdigita.com" "lesgrandsvoisins.com" "lesgv.com" "lesgv.org" ];
+    domains = [ "resdigita.org" "resdigita.com" "lesgrandsvoisins.com" "lesgv.com" "lesgv.org" "gvoisin.com" ];
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
@@ -232,8 +232,8 @@ users.groups.wwwrun.members = [ "openldap" ];
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    ldap.postfix.mailAttribute = "mail";
-    ldap.postfix.uidAttribute = "mail";
+    # ldap.postfix.mailAttribute = "mail";
+    # ldap.postfix.uidAttribute = "mail";
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
     #   =mail=%{ldap:cn}
@@ -255,6 +255,9 @@ users.groups.wwwrun.members = [ "openldap" ];
     timezone = "europe/paris";
     # SOGoForceExternalLoginWithEmail = YES;
     extraConfig = ''
+      SOGoEnableDomainBasedUID = YES;
+      SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com");
+      SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
       OCSSessionsFolderURL = "postgresql:///sogo/sogo_sessions_folder";
       OCSEMailAlarmsFolderURL = "postgresql:///sogo/sogo_alarms_folder";
@@ -300,21 +303,22 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoIMAPServer = "imap://localhost";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
-          {
-              type = ldap;
-              CNFieldName = displayName;
-              IDFieldName = cn;
-              UIDFieldName = uid;
-              baseDN = "ou=users,dc=resdigita,dc=org";
-              bindDN = "cn=admin,dc=resdigita,dc=org";
-              bindPassword = "${bindPassword}";
-              canAuthenticate = YES;
-              displayName = "Dir";
-              hostname = "ldaps://mail.resdigita.com/";
-              id = public;
-              isAddressBook = YES;
-              IMAPLoginFieldName = mail;
-          }
+        {
+          id = public;
+          type = ldap;
+          CNFieldName = displayName;
+          IDFieldName = cn;
+          UIDFieldName = cn;
+          IMAPLoginFieldName = mail;
+          baseDN = "ou=users,dc=resdigita,dc=org";
+          bindDN = "cn=admin,dc=resdigita,dc=org";
+          bindPassword = "${bindPassword}";
+          canAuthenticate = YES;
+          displayName = "Dir";
+          hostname = "ldaps://mail.resdigita.com/";
+          isAddressBook = YES;
+          imaps://mail.lesgv.com:993
+        }
       );
       SOGoSuperUsernames = ("sogo@resdigita.org");
       '';
