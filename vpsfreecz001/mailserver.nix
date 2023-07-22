@@ -233,8 +233,9 @@ users.groups.wwwrun.members = [ "openldap" ];
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    # ldap.postfix.mailAttribute = "mail";
-    # ldap.postfix.uidAttribute = "mail";
+    ldap.postfix.mailAttribute = "mail";
+    ldap.postfix.uidAttribute = "mail";
+    # ldap.tlsCAFile
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
     #   =mail=%{ldap:cn}
@@ -254,9 +255,10 @@ users.groups.wwwrun.members = [ "openldap" ];
     enable = true;
     language = "fr-fr";
     timezone = "europe/paris";
+
+    # SOGoEnableDomainBasedUID = YES;
     # SOGoForceExternalLoginWithEmail = YES;
     extraConfig = ''
-      SOGoEnableDomainBasedUID = YES;
       SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com");
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
@@ -277,7 +279,6 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoAppointmentSendEMailNotifications = YES;
       SOGoEnablePublicAccess = YES;
       SOGoSMTPAuthenticationType = PLAIN;
-      SOGoForceExternalLoginWithEmail = YES;
       SOGoIMAPAclConformsToIMAPExt = YES;
       SOGoTimeZone = "Europe/Paris";
       SOGoSentFolderName = Sent;
