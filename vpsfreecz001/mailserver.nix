@@ -301,7 +301,7 @@ users.groups.wwwrun.members = [ "openldap" ];
               bindPassword = "${bindPassword}";
               canAuthenticate = YES;
               displayName = "Dir";
-              hostname = "ldap://mail.resdigita.com/";
+              hostname = "ldaps://mail.resdigita.com/";
               id = public;
               isAddressBook = YES;
           }
