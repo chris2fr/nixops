@@ -235,14 +235,13 @@ users.groups.wwwrun.members = [ "openldap" ];
         "ldaps://mail.resdigita.com/"
     ];
     ldap.searchBase = "ou=users,dc=resdigita,dc=org";
-    # ldap.startTls = true;
+    ldap.startTls = true;
     ldap.tlsCAFile = "/var/certs/cert-mail.resdigita.com.pem";
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    # ldap.postfix.mailAttribute = "mail";
-    # ldap.postfix.uidAttribute = "mail";
-    # ldap.tlsCAFile
+    ldap.postfix.mailAttribute = "mail";
+    ldap.postfix.uidAttribute = "mail";
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
     #   =mail=%{ldap:cn}
@@ -325,7 +324,7 @@ users.groups.wwwrun.members = [ "openldap" ];
           bindPassword = "${bindPassword}";
           canAuthenticate = YES;
           displayName = "Dir";
-          hostname = "imaps://mail.resdigita.com";
+          hostname = "mail.resdigita.com";
           isAddressBook = YES;
         }
       );
