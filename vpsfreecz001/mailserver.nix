@@ -301,8 +301,8 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoMailSignaturePlacement = above;
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
-      SOGoSMTPServer = "smtp://mail.resdigita.com:587/?tls=YES";
-      SOGoIMAPServer = "imap://mail.resdigita.com/?tls=YES";
+      SOGoSMTPServer = "smtp://localhost:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
+      SOGoIMAPServer = "imap://localhost?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
@@ -310,14 +310,14 @@ users.groups.wwwrun.members = [ "openldap" ];
           type = ldap;
           CNFieldName = displayName;
           IDFieldName = cn;
-          UIDFieldName = mail;
+          UIDFieldName = cn;
           IMAPLoginFieldName = mail;
           baseDN = "ou=users,dc=resdigita,dc=org";
           bindDN = "cn=admin,dc=resdigita,dc=org";
           bindPassword = "${bindPassword}";
           canAuthenticate = YES;
           displayName = "Dir";
-          hostname = "imap://mail.resdigita.com/?tls=YES";
+          hostname = "imap://localhost?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
           isAddressBook = YES;
         }
       );
