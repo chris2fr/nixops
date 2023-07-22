@@ -258,8 +258,9 @@ users.groups.wwwrun.members = [ "openldap" ];
 
     # SOGoEnableDomainBasedUID = YES;
     # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com");
-    # SOGoForceExternalLoginWithEmail = YES;
+    # 
     extraConfig = ''
+      SOGoForceExternalLoginWithEmail = YES;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
       OCSSessionsFolderURL = "postgresql:///sogo/sogo_sessions_folder";
