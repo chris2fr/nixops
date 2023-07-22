@@ -226,8 +226,8 @@ users.groups.wwwrun.members = [ "openldap" ];
     # certificateDomains = ("mail.resdigita.com" "gvoisin.com" );
     certificateFile = "/var/certs/cert-mail.resdigita.com.pem";
     certificateScheme = "acme";
-    certificateDirectory = "/var/certs/key-mail.resdigita.com.pem";
-    keyFile = "/var/certs/";
+    certificateDirectory = "/var/certs/";
+    keyFile = "/var/certs/key-mail.resdigita.com.pem";
     ldap.enable = true;
     ldap.bind.dn = "cn=admin,dc=resdigita,dc=org";
     ldap.bind.passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
@@ -265,10 +265,11 @@ users.groups.wwwrun.members = [ "openldap" ];
 
     # SOGoEnableDomainBasedUID = YES;
     # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com");
+    #       
     # 
     extraConfig = ''
-      SOGoForceExternalLoginWithEmail = YES;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
+      SOGoForceExternalLoginWithEmail = YES;
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
       OCSSessionsFolderURL = "postgresql:///sogo/sogo_sessions_folder";
       OCSEMailAlarmsFolderURL = "postgresql:///sogo/sogo_alarms_folder";
