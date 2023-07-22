@@ -234,6 +234,7 @@ users.groups.wwwrun.members = [ "openldap" ];
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     ldap.postfix.mailAttribute = "cn";
     ldap.postfix.uidAttribute = "cn";
+    ldap.postfix.filter = "(cn=%s)";
     # ldap.dovecot.userAttrs = ''
     #   =mail=%{ldap:cn}
     # '';
