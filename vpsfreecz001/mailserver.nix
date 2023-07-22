@@ -132,7 +132,8 @@ in
                 by * none''
             ''{2}to *
                 by dn.exact="cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org" manage
-                by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage''
+                by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage
+                by self write''
             /* custom access rules for userPassword attributes */
             ''{3}to attrs=cn,sn,givenName,displayName,member,memberof
                 by self write''
