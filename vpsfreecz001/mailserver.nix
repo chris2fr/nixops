@@ -262,14 +262,13 @@ users.groups.wwwrun.members = [ "openldap" ];
     language = "fr-fr";
     timezone = "europe/paris";
 
-    # ;
+    #       SOGoEnableDomainBasedUID = YES;
+      # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
+      # SOGoDomainsVisibility = ("lesgv.com", "lesgrandsvoisins.com");
     # 
     #       
     # 
     extraConfig = ''
-      SOGoEnableDomainBasedUID = YES;
-      SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
-      SOGoDomainsVisibility = ("lesgv.com", "lesgrandsvoisins.com");
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoForceExternalLoginWithEmail = YES;
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
