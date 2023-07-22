@@ -310,7 +310,7 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
       SOGoSMTPServer = "smtp://mail.resdigita.com/?tls=YES";
-      SOGoIMAPServer = "imaps://mail.resdigita.com";
+      SOGoIMAPServer = "imap://mail.resdigita.com/?tls=YES";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
