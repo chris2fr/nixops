@@ -232,8 +232,8 @@ users.groups.wwwrun.members = [ "openldap" ];
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    ldap.postfix.mailAttribute = "mail";
-    ldap.postfix.uidAttribute = "uid";
+    ldap.postfix.mailAttribute = "cn";
+    ldap.postfix.uidAttribute = "cn";
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
     #   =mail=%{ldap:cn}
@@ -303,9 +303,9 @@ users.groups.wwwrun.members = [ "openldap" ];
           {
               type = ldap;
               CNFieldName = displayName;
-              IDFieldName = uid;
-              UIDFieldName = uid;
-              MailFieldNames = ("mail");
+              IDFieldName = cn;
+              UIDFieldName = cn;
+              MailFieldNames = ("cn");
               baseDN = "ou=users,dc=resdigita,dc=org";
               bindDN = "cn=admin,dc=resdigita,dc=org";
               bindPassword = "${bindPassword}";
