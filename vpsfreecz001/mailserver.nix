@@ -330,6 +330,11 @@ users.groups.wwwrun.members = [ "openldap" ];
           isAddressBook = YES;
           MailFieldNames = ("mail");
           IMAPLoginFieldName = mail;
+          mapping = {
+            mozillasecondemail = ("carLicense");
+            mozillaworkurl = ("labeldURI");
+            mozillahomelocalityname = ("l");
+          }
         }
       );
       SOGoSuperUsernames = ("sogo@resdigita.org");
