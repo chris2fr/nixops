@@ -279,7 +279,7 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoSMTPAuthenticationType = PLAIN;
       SOGoForceExternalLoginWithEmail = YES;
       SOGoIMAPAclConformsToIMAPExt = YES;
-      SOGoTimeZone = UTC;
+      SOGoTimeZone = "Europe/Paris";
       SOGoSentFolderName = Sent;
       SOGoTrashFolderName = Trash;
       SOGoDraftsFolderName = Drafts;
@@ -290,7 +290,7 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoRefreshViewCheck = every_5_minutes;
       SOGoMailAuxiliaryUserAccountsEnabled = NO;
       SOGoPasswordChangeEnabled = YES;
-      SOGoPageTitle = "resdigita.com";
+      SOGoPageTitle = "gvoisin.com";
       SOGoLoginModule = Mail;
       SOGoMailAddOutgoingAddresses = YES;
       SOGoSelectedAddressBook = autobook;
@@ -300,8 +300,8 @@ users.groups.wwwrun.members = [ "openldap" ];
       SOGoMailSignaturePlacement = above;
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
-      SOGoSMTPServer = "smtp://localhost:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
-      SOGoIMAPServer = "imap://localhost";
+      SOGoSMTPServer = "smtp://mail.resdigita.com:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
+      SOGoIMAPServer = "imaps://mail.resdigita.com";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
@@ -318,7 +318,6 @@ users.groups.wwwrun.members = [ "openldap" ];
           displayName = "Dir";
           hostname = "ldaps://mail.resdigita.com/";
           isAddressBook = YES;
-          imaps://mail.lesgv.com:993;
         }
       );
       SOGoSuperUsernames = ("sogo@resdigita.org");
