@@ -223,6 +223,11 @@ users.groups.wwwrun.members = [ "openldap" ];
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
     #certificateScheme = "acme-nginx";
+    # certificateDomains = ("mail.resdigita.com" "gvoisin.com" );
+    certificateFile = "/var/certs/cert-mail.resdigita.com.pem";
+    certificateScheme = "acme";
+    certificateDirectory = "/var/certs/key-mail.resdigita.com.pem";
+    keyFile = "/var/certs/";
     ldap.enable = true;
     ldap.bind.dn = "cn=admin,dc=resdigita,dc=org";
     ldap.bind.passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
@@ -230,6 +235,8 @@ users.groups.wwwrun.members = [ "openldap" ];
         "ldaps://mail.resdigita.com/"
     ];
     ldap.searchBase = "ou=users,dc=resdigita,dc=org";
+    ldap.startTls = true;
+    ldap.tlsCAFile = "/var/certs/cert-mail.resdigita.com.pem";
     # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
