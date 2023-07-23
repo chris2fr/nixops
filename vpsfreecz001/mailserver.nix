@@ -30,7 +30,7 @@ in
       enableACME = true;
       forceSSL = true;
       # documentRoot =  "/var/www/SOGo";
-      globalRedirect = "https://mail.resdigita.com";
+      globalRedirect = "https://mail.resdigita.com/";
   };
   services.httpd.virtualHosts."mail.resdigita.com" = {
       serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com"];
@@ -149,7 +149,8 @@ in
             ''{4}to *
                 by dn.exact="cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org" manage
                 by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage
-                by self write''
+                by self write
+                by anonymous auth''
             /* custom access rules for userPassword attributes */
             ''{5}to attrs=cn,sn,givenName,displayName,member,memberof
                 by self write
@@ -280,9 +281,10 @@ users.groups.wwwrun.members = [ "openldap" ];
       # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
       # SOGoDomainsVisibility = ("lesgv.com", "lesgrandsvoisins.com");
     # 
-    #       
+    #       SOGoUIxDebugEnabled 
     # 
     extraConfig = ''
+      SOGoUIxDebugEnabled = YES;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoForceExternalLoginWithEmail = YES;
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
