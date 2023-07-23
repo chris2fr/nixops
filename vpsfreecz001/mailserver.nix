@@ -128,19 +128,23 @@ in
                 by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
                 by group.exact="cn=administration,ou=groups,dc=resdigita,dc=org" write
                 by self write''
-            ''{1}to attrs=userPassword
+            ''{1}to dn.subtree="ou=users,dc=resdigita,dc=org"
+                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
+                by group.exact="cn=administration,ou=groups,dc=resdigita,dc=org" write
+                by self write''
+            ''{2}to attrs=userPassword
                 by self write
                 by anonymous auth
                 by * none''
-            ''{2}to *
+            ''{3}to *
                 by dn.exact="cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org" manage
                 by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage
                 by self write''
             /* custom access rules for userPassword attributes */
-            ''{3}to attrs=cn,sn,givenName,displayName,member,memberof
+            ''{4}to attrs=cn,sn,givenName,displayName,member,memberof
                 by self write
                 by * read''
-            ''{4}to *
+            ''{5}to *
                 by * read''
           ];
         };
