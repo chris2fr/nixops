@@ -284,7 +284,7 @@ users.groups.wwwrun.members = [ "openldap" ];
     #       SOGoUIxDebugEnabled 
     # 
     extraConfig = ''
-      SOGoUIxDebugEnabled = NO;
+      SOGoUIxDebugEnabled = YES;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoForceExternalLoginWithEmail = YES;
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
@@ -369,7 +369,7 @@ users.groups.wwwrun.members = [ "openldap" ];
           }
         }
       );
-      SOGoSuperUsernames = ("sogo@resdigita.org");
+      SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com");
       '';
       #SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
                     # MailFieldNames = ("mail");
