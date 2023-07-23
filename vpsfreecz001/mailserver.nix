@@ -284,7 +284,7 @@ users.groups.wwwrun.members = [ "openldap" ];
     #       SOGoUIxDebugEnabled 
     # 
     extraConfig = ''
-      SOGoUIxDebugEnabled = NO;
+      SOGoUIxDebugEnabled = YES;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoForceExternalLoginWithEmail = YES;
       SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
