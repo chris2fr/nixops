@@ -127,11 +127,13 @@ in
             ''{0}to dn.subtree="ou=newusers,dc=resdigita,dc=org"
                 by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
                 by group.exact="cn=administration,ou=groups,dc=resdigita,dc=org" write
-                by self write''
+                by self write
+                by anonymous auth''
             ''{1}to dn.subtree="ou=users,dc=resdigita,dc=org"
                 by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
                 by group.exact="cn=administration,ou=groups,dc=resdigita,dc=org" write
-                by self write''
+                by self write
+                by anonymous auth''
             ''{2}to attrs=userPassword
                 by self write
                 by anonymous auth
