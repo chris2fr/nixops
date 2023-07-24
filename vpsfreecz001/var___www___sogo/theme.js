@@ -345,6 +345,8 @@ function showLesGV () {
   linkGV.style.color = "var(--lt-color-white)";
   linkGV.style.backgroundColor = "#1b1464";
   linkGV.style.borderRadius = "1rem";
+  linkGV.style.paddingRight = "0.5rem"
+  linkGV.style.paddingLeft = "0.5rem"
   linkGV.href="https://www.lesgrandsvoisins.com";
   linksHome.appendChild(linkGV);
   let sep = document.createElement("span");
@@ -355,6 +357,8 @@ function showLesGV () {
   linkLesGV.style.color = "var(--lt-color-white)";
   linkLesGV.style.backgroundColor = "#1b1464";
   linkLesGV.style.borderRadius = "1rem";
+  linkLesGV.style.paddingRight = "0.5rem"
+  linkLesGV.style.paddingLeft = "0.5rem"
   linkLesGV.href="https://www.lesgv.com";
   linksHome.appendChild(linkLesGV);
   document.getElementsByTagName("md-toolbar")[0].appendChild(linksHome);
