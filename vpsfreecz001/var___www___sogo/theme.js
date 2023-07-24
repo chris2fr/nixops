@@ -1,4 +1,14 @@
 /* -*- Mode: javascript; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+
+/* -*- Mode: javascript; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+
+(function() {
+  'use strict';
+
+  angular.module('SOGo.Common')
+    .config(configure)
+
+
 angular.module('SOGo.Common').config(function($mdThemingProvider) {
 $mdThemingProvider.definePalette('slateblue', {
   '50': 'edebfc',
@@ -214,7 +224,8 @@ $mdThemingProvider.definePalette('skobeloff', {
     .accentPalette('maxyellowred')
     .warnPalette('skobeloff')
     .backgroundPalette('grey');
-});
+// });
+})();
 /*
 $mdThemingProvider.theme('gv')
     .primaryPalette('slateblue')
