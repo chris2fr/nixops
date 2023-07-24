@@ -284,10 +284,10 @@ users.groups.wwwrun.members = [ "openldap" ];
     #       SOGoUIxDebugEnabled 
     # 
     extraConfig = ''
-      SOGoUIxDebugEnabled = NO;
+      SOGoUIxDebugEnabled = YES;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
       SOGoForceExternalLoginWithEmail = YES;
-      SOGoUIAdditionalJSFiles = ("js/theme.js", "lesgv.js");
+      SOGoUIAdditionalJSFiles = ("theme.js", "lesgv.js");
       OCSSessionsFolderURL = "postgresql:///sogo/sogo_sessions_folder";
       OCSEMailAlarmsFolderURL = "postgresql:///sogo/sogo_alarms_folder";
       SOGoProfileURL = "postgresql:///sogo/sogo_user_profile";
