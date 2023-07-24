@@ -336,7 +336,7 @@ function showLesGV () {
   let linkGV = document.createElement("a");
   linkGV.innerText="G.V.";
   linkGV.style.color = "var(--lt-color-white)";
-  linkGV.style.backgroundColor = "var(--lt-color-black)";
+  linkGV.style.backgroundColor = "#1b1464";
   linkGV.style.borderRadius = "1rem";
   linkGV.href="https://www.lesgrandsvoisins.com";
   linksHome.appendChild(linkGV);
@@ -346,7 +346,7 @@ function showLesGV () {
   let linkLesGV = document.createElement("a");
   linkLesGV.innerText="compte";
   linkLesGV.style.color = "var(--lt-color-white)";
-  linkLesGV.style.backgroundColor = "var(--lt-color-black)";
+  linkLesGV.style.backgroundColor = "#1b1464";
   linkLesGV.style.borderRadius = "1rem";
   linkLesGV.href="https://www.lesgv.com";
   linksHome.appendChild(linkLesGV);
