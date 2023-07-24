@@ -5,10 +5,6 @@
 (function() {
   'use strict';
 
-  angular.module('SOGo.Common')
-    .config(configure)
-
-
 angular.module('SOGo.Common').config(function($mdThemingProvider) {
 $mdThemingProvider.definePalette('slateblue', {
   '50': 'edebfc',
@@ -21,7 +17,7 @@ $mdThemingProvider.definePalette('slateblue', {
   '700': '594ae0',
   '800': '4f41dd',
   '900': '3d30d7',
-  'A100': 'ffffff',
+  'A100': 'eeeeee',
   'A200': 'e9e7ff',
   'A400': 'b9b4ff',
   'A700': 'a29bff',
@@ -91,8 +87,8 @@ $mdThemingProvider.definePalette('maxyellowred', {
   '700': 'fcbe5b',
   '800': 'fcb851',
   '900': 'fcac3f',
-  'A100': 'ffffff',
-  'A200': 'ffffff',
+  'A100': 'eeeeee',
+  'A200': 'eeeeee',
   'A400': 'fff3e4',
   'A700': 'ffe8ca',
   'contrastDefaultColor': 'light',
@@ -160,8 +156,8 @@ $mdThemingProvider.definePalette('frenchskyblue', {
   '700': '61aaff',
   '800': '57a2ff',
   '900': '4493ff',
-  'A100': 'ffffff',
-  'A200': 'ffffff',
+  'A100': 'eeeeee',
+  'A200': 'eeeeee',
   'A400': 'ebf3ff',
   'A700': 'd2e4ff',
   'contrastDefaultColor': 'light',
