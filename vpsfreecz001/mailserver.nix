@@ -277,6 +277,15 @@ users.groups.wwwrun.members = [ "openldap" ];
   };
 #############################################
   services.postfix.config.maillog_file = "/var/log/postfix.log";
+  # /run/current-system/sw/bin/postlog
+  services.postfix.masterConfig.postlog = {
+    command = "postlogd";
+    type = "unix-dgram"
+    priviliged = true;
+    private = false;
+    chroot = false;
+    maxproc = 1;
+  };
 ###################################################################################################################################
   services.memcached = {
     enable = true;
