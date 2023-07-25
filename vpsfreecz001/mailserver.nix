@@ -447,28 +447,28 @@ services.fail2ban = {
         bantime  = 600
         maxretry = 5
       '';
-      postfix = ''
-        port     = smtp,465,submission
-        logpath  = /var/log/fail2ban.log
-        backend  = auto
-        enabled  = true
-        mode     = more
-      '';
-      dovecot = ''
-        port     = smtp,465,submission
-        logpath  = /var/log/fail2ban.log
-        backend  = auto
-        enabled  = true
-        mode     = more
-      '';
-      postfix-sasl = ''
-        filter   = postfix[mode=auth]
-        port     = smtp,465,submission,imap,imaps,pop3,pop3s
-        logpath  = /var/log/fail2ban.log
-        backend  = auto
-        enabled  = true
-        mode     = more
-      '';
+      # postfix = ''
+      #   port     = smtp,465,submission
+      #   logpath  = /var/log/fail2ban.log
+      #   backend  = auto
+      #   enabled  = true
+      #   mode     = more
+      # '';
+      # dovecot = ''
+      #   port     = smtp,465,submission
+      #   logpath  = /var/log/fail2ban.log
+      #   backend  = auto
+      #   enabled  = true
+      #   mode     = more
+      # '';
+      # postfix-sasl = ''
+      #   filter   = postfix[mode=auth]
+      #   port     = smtp,465,submission,imap,imaps,pop3,pop3s
+      #   logpath  = /var/log/fail2ban.log
+      #   backend  = auto
+      #   enabled  = true
+      #   mode     = more
+      # '';
     };
   };
 
