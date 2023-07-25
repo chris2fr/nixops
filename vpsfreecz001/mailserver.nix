@@ -437,7 +437,17 @@ services.fail2ban = {
         bantime  = 600
         maxretry = 5
       '';
+      postfix-iptables = ''
+        filter = postfix
+        action = iptables-multiport[name=SMTP, port="993,143,587,995,25"]
+        /var/log/fail2postfix_log*
+        backend = auto
+        findtime = 600
+        bantime  = 600
+        maxretry = 5
+      '';
     };
   };
+
 ###################################################################################################################################
 }
