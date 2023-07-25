@@ -280,7 +280,7 @@ users.groups.wwwrun.members = [ "openldap" ];
   # /run/current-system/sw/bin/postlog
   services.postfix.masterConfig.postlog = {
     command = "postlogd";
-    type = "unix-dgram"
+    type = "unix-dgram";
     priviliged = true;
     private = false;
     chroot = false;
