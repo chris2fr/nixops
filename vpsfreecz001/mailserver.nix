@@ -33,7 +33,7 @@ in
       globalRedirect = "https://mail.resdigita.com/";
   };
   services.httpd.virtualHosts."mail.resdigita.com" = {
-      serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com" "gvoisin.org" "www.gvoisin.org" "gvoisins.org" "www.gvoisins.org" "gvoisins.com" "www.gvoisins.com" ];
+      serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com" "gvoisin.org" "www.gvoisin.org" "gvoisins.com" "www.gvoisins.com" ];
       enableACME = true;
       forceSSL = true;
       documentRoot =  "/var/www/SOGo";
@@ -233,7 +233,7 @@ users.groups.wwwrun.members = [ "openldap" ];
   mailserver = {
     enable = true;
     fqdn = "mail.resdigita.com";
-    domains = [ "resdigita.org" "resdigita.com" "lesgrandsvoisins.com" "lesgv.com" "lesgv.org" "gvoisin.com" "gvoisin.org" "gvoisins.org" "gvoisins.com"];
+    domains = [ "resdigita.org" "resdigita.com" "lesgrandsvoisins.com" "lesgv.com" "lesgv.org" "gvoisin.com" "gvoisin.org" "gvoisins.com"];
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
