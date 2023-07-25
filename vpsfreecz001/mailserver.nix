@@ -458,6 +458,7 @@ services.fail2ban = {
       '';
       postfix = ''
         port     = smtp,465,submission,imap,imaps,pop3,pop3s
+        action = iptables-multiport[name=HTTP, port="smtp,465,submission,imap,imaps,pop3,pop3s"]
         logpath  = /var/log/postfix.log
         backend  = auto
         enabled  = true
