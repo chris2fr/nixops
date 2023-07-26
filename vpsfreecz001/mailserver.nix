@@ -79,7 +79,7 @@ in
     '';
   };
   services.httpd.virtualHosts."mail.resdigita.com" = {
-    serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com" "gvoisin.org" "www.gvoisin.org" "gvoisins.org" "www.gvoisins.org" "gvoisins.com" "www.gvoisins.com" ];
+    serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com" "gvoisin.org" "www.gvoisin.org" "gvoisins.org" "www.gvoisins.org" "gvoisins.com" "www.gvoisins.com" "app.lesgrandsvoisins.com"];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/SOGo";
