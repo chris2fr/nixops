@@ -76,7 +76,7 @@ in
       '';
   };
   services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
-    serverAliases = ["mail.resdigita.org" "www.lesgv.com" "lesgv.org" "resdigita.org" "www.resdigita.org" "resdigita.com" "www.lesgv.org" "www.resdigita.com", "lesgv.com];
+    serverAliases = ["mail.resdigita.org" "www.lesgv.com" "lesgv.org" "resdigita.org" "www.resdigita.org" "resdigita.com" "www.lesgv.org" "www.resdigita.com" "lesgv.com];
       enableACME = true;
       forceSSL = true;
       # documentRoot =  "/var/www/SOGo";
