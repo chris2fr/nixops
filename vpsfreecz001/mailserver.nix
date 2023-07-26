@@ -55,14 +55,16 @@ in
     ProxyPass /SOGo/WebServerResources/  !
     ProxyPass /WebServerResources/  !
     ProxyPass / http://[::1]:20000/SOGo/ retry=0
+    ProxyPassReverse / http://[::1]:20000/SOGo/ retry=0
+
     ProxyRequests Off
     SetEnv proxy-nokeepalive 1
     ProxyPreserveHost On
     CacheDisable /
-    <Proxy http://[::1]:20000/SOGo >
+    <Proxy http://[::1]:20000/SOGo/ >
       SetEnvIf Host (.*) custom_host=$1
       RequestHeader set "x-webobjects-server-name" "%{custom_host}e"
-      RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e"
+      RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e/SOGo/"
       RequestHeader set "x-webobjects-server-port" "443"
       # When using proxy-side autentication, you need to uncomment and
       ## adjust the following line:
@@ -109,7 +111,7 @@ in
     SetEnv proxy-nokeepalive 1
     ProxyPreserveHost On
     CacheDisable /
-    <Proxy http://127.0.0.1:20000/SOGo >
+    <Proxy http://127.0.0.1:20000/SOGo/ >
       SetEnvIf Host (.*) custom_host=$1
       RequestHeader set "x-webobjects-server-name" "%{custom_host}e"
       RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e"
