@@ -77,21 +77,16 @@ in
     globalRedirect = "https://mail.resdigita.com/";
   };
   services.httpd.virtualHosts."mail.resdigita.com" = {
-      serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com" "gvoisin.org" "www.gvoisin.org" "gvoisins.org" "www.gvoisins.org" "gvoisins.com" "www.gvoisins.com" ];
-      enableACME = true;
-      forceSSL = true;
-      documentRoot =  "/var/www/SOGo";
-      extraConfig = ''
+    serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com" "gvoisin.org" "www.gvoisin.org" "gvoisins.org" "www.gvoisins.org" "gvoisins.com" "www.gvoisins.com"];
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/SOGo";
+    extraConfig = ''
       Alias /SOGo.woa/WebServerResources/js/theme.js /var/www/SOGo/WebServerResources/theme.js
       Alias /.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
       Alias /SOGo.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
       Alias /SOGo/WebServerResources/ /var/www/SOGo/WebServerResources/
       Alias /WebServerResources/ /var/www/SOGo/WebServerResources/
-#      Alias /.woa/WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
-#      Alias /SOGo.woa/WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
-#      Alias /SOGo/WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
-#      Alias /WebServerResources/ /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/
-#      <Directory /run/current-system/sw/lib/GNUstep/SOGo/WebServerResources/>
       <Directory /var/www/SOGo/WebServerResources/>
         AllowOverride none
         Require all granted
@@ -113,7 +108,7 @@ in
       ProxyPreserveHost On
       CacheDisable /
       <Proxy http://127.0.0.1:20000/SOGo >
-        SetEnvIf Host (.*) custom_host=$1
+        ## HERE 
         ## HERE 
         ## HERE 
         RequestHeader set "x-webobjects-server-port" "443"
@@ -126,11 +121,12 @@ in
         Order allow,deny
         Allow from all
       </Proxy>
-      '';
-    };
-      # HERE RequestHeader set "x-webobjects-server-name" "PERCENT{custom_host}e"
-      # HERE RequestHeader set "x-webobjects-server-url" "https://PERCENT{custom_host}e"
-      # HERE2 RequestHeader set "x-webobjects-remote-user" "PERCENT{REMOTE_USER}e" env=REMOTE_USER
+    '';
+  };
+  # HERE SetEnvIf Host (.*) custom_host=$1
+  # HERE RequestHeader set "x-webobjects-server-name" "PERCENT{custom_host} e"
+  # HERE RequestHeader set "x-webobjects-server-url" "https://PERCENT{custom_host} e"
+  # HERE2 RequestHeader set "x-webobjects-remote-user" "PERCENT{REMOTE_USER} e" env=REMOTE_USER
 ###################################################################################################################################
   services.openldap = {
     enable = true;
