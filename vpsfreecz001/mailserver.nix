@@ -115,7 +115,7 @@ in
       <Proxy http://127.0.0.1:20000/SOGo >
         SetEnvIf Host (.*) custom_host=$1
         ## HERE 
-        RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e"
+        ## HERE 
         RequestHeader set "x-webobjects-server-port" "443"
         # When using proxy-side autentication, you need to uncomment and
         ## adjust the following line:
@@ -128,6 +128,7 @@ in
       </Proxy>
       '';
       # HERE RequestHeader set "x-webobjects-server-name" "%{custom_host}e"
+      # HERE RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e"
     };
 ###################################################################################################################################
   services.openldap = {
