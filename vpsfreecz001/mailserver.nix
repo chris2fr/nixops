@@ -120,7 +120,7 @@ in
         # When using proxy-side autentication, you need to uncomment and
         ## adjust the following line:
         RequestHeader unset "x-webobjects-remote-user"
-        #  RequestHeader set "x-webobjects-remote-user" "%{REMOTE_USER}e" env=REMOTE_USER
+        # HERE2
         RequestHeader set "x-webobjects-server-protocol" "HTTP/1.0"
         AddDefaultCharset UTF-8
         Order allow,deny
@@ -129,6 +129,7 @@ in
       '';
       # HERE RequestHeader set "x-webobjects-server-name" "%{custom_host}e"
       # HERE RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e"
+      # HERE2 RequestHeader set "x-webobjects-remote-user" "%{REMOTE_USER}e" env=REMOTE_USER
     };
 ###################################################################################################################################
   services.openldap = {
