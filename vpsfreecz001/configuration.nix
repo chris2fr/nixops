@@ -102,7 +102,7 @@ in
 #    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
 #  };
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
-    serverAliases = ["www.avmeet.com"];
+    serverAliases = ["www.avmeet.com", "biz.lesgrandsvoisins.com", "auth.lesgrandsvoisins.com", "blog.lesgrandsvoisins.com", "forum.lesgrandsvoisins.com", "meet.lesgrandsvoisins.com", "wiki.lesgrandsvoisins.com" ];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
