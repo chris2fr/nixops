@@ -127,9 +127,9 @@ in
         Allow from all
       </Proxy>
       '';
-      # HERE RequestHeader set "x-webobjects-server-name" "%{custom_host}e"
-      # HERE RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e"
-      # HERE2 RequestHeader set "x-webobjects-remote-user" "%{REMOTE_USER}e" env=REMOTE_USER
+      # HERE RequestHeader set "x-webobjects-server-name" "PERCENT{custom_host}e"
+      # HERE RequestHeader set "x-webobjects-server-url" "https://PERCENT{custom_host}e"
+      # HERE2 RequestHeader set "x-webobjects-remote-user" "PERCENT{REMOTE_USER}e" env=REMOTE_USER
     };
 ###################################################################################################################################
   services.openldap = {
