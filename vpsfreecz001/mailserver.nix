@@ -55,7 +55,7 @@ in
     ProxyPass /SOGo.woa/WebServerResources/  !
     ProxyPass /SOGo/WebServerResources/  !
     ProxyPass /WebServerResources/  !
-    ProxyPass / http://[::1]:20000/ retry=0
+    ProxyPass /SOGo/ http://[::1]:20000/SOGo/ retry=0
     # ProxyPass /SOGo/ http://[::1]:20000/SOGo/ retry=0
 
     ProxyRequests Off
