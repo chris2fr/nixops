@@ -61,7 +61,7 @@ in
     SetEnv proxy-nokeepalive 1
     ProxyPreserveHost On
     CacheDisable /
-    <Proxy http://[::1]:20000/SOGo/ >
+    <Proxy http://[::1]:20000/ >
       SetEnvIf Host (.*) custom_host=$1
       RequestHeader set "x-webobjects-server-name" "%{custom_host}e"
       RequestHeader set "x-webobjects-server-url" "https://%{custom_host}e/SOGo/"
