@@ -41,6 +41,7 @@ in
     Alias /SOGo.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
     Alias /SOGo/WebServerResources/ /var/www/SOGo/WebServerResources/
     Alias /WebServerResources/ /var/www/SOGo/WebServerResources/
+    Redirect "/" "/SOGo/"
     <Directory /var/www/SOGo/WebServerResources/>
       AllowOverride none
       Require all granted
@@ -91,7 +92,6 @@ in
     Alias /SOGo.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
     Alias /SOGo/WebServerResources/ /var/www/SOGo/WebServerResources/
     Alias /WebServerResources/ /var/www/SOGo/WebServerResources/
-    Resdirect "/" "/SOGo/"
  
     <Directory /var/www/SOGo/WebServerResources/>
       AllowOverride none
