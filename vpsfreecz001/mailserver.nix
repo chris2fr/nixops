@@ -91,7 +91,7 @@ in
     Alias /SOGo.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
     Alias /SOGo/WebServerResources/ /var/www/SOGo/WebServerResources/
     Alias /WebServerResources/ /var/www/SOGo/WebServerResources/
-    RedirectMatch ^/$ /SOGo/
+    Resdirect "/" "/SOGo/"
  
     <Directory /var/www/SOGo/WebServerResources/>
       AllowOverride none
