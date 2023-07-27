@@ -310,11 +310,11 @@ users.groups.wwwrun.members = [ "openldap" ];
     #        =gid=%{ldap:gidNumber}
     # '';
     fullTextSearch = {
-      enable = true;
+      enable = false;
       # index new email as they arrive
       autoIndex = true;
       # this only applies to plain text attachments, binary attachments are never indexed
-      indexAttachments = true;
+      indexAttachments = false;
       enforced = "body";
     };
   };
