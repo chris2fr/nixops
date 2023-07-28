@@ -45,7 +45,6 @@ in
             "cn pres,eq"
             "mail pres,eq,subany"
             "uid pres,eq"
-            "member pres,eq"
             "carLicense pres,eq"
             "sn pres,eq,subany"
           ];
@@ -97,6 +96,10 @@ in
         };
       };
     };
+
+#             "member pres,eq"
+
+
 #    declarativeContents."dc=resdigita,dc=org" = ''
 #          dn: dc=resdigita,dc=org
 #          objectClass: domain
