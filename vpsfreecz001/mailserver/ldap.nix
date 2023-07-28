@@ -12,8 +12,7 @@ in
     # urlList = [ "ldap:///" ];
     urlList = [ "ldap:///" "ldaps:///" ];
     settings = {
-      index = "cn,sn,givenname,mail eq";
-      threads = 16;
+      attrs.threads = 16;
       attrs = {
         olcLogLevel = "conns config";
          /* settings for acme ssl */
@@ -40,6 +39,7 @@ in
           olcDbDirectory = "/var/lib/openldap/data";
 
           olcSuffix = "dc=resdigita,dc=org";
+          index = "cn,sn,givenname,mail eq";
 
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,dc=resdigita,dc=org";
