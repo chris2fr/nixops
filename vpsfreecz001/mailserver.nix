@@ -32,7 +32,7 @@ in
     enableUnixSocket = false;
   };
 
-  services.roundcube.enable
+  # services.roundcube
 
 
 
