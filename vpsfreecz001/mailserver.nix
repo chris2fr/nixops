@@ -30,7 +30,7 @@ in
     enable = true;
     maxMemory = 256;
     enableUnixSocket = true;
-    user = sogo;
+    user = "sogo";
   };
 
   # services.roundcube = {
