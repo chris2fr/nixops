@@ -40,6 +40,8 @@ in
 
           olcSuffix = "dc=resdigita,dc=org";
 
+          olcDbIndex = ["cn eq" "mail eq" "uid eq" "carLicense eq" "cn mail uid carLicense eq"];
+
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,dc=resdigita,dc=org";
           olcRootPW = (builtins.readFile /etc/nixos/.secrets.adminresdigitaorg);
