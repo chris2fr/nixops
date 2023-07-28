@@ -39,7 +39,7 @@ in
           olcDbDirectory = "/var/lib/openldap/data";
 
           olcSuffix = "dc=resdigita,dc=org";
-          index = "cn,sn,givenname,mail eq";
+          olcIndex = "cn,sn,givenname,mail eq";
 
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,dc=resdigita,dc=org";
