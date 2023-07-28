@@ -71,7 +71,7 @@ in
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
-          id = public;
+          id = voisins;
           type = ldap;
           CNFieldName = displayName;
           IDFieldName = cn;
@@ -80,37 +80,37 @@ in
           bindDN = "cn=admin,dc=resdigita,dc=org";
           bindPassword = "${bindPassword}";
           canAuthenticate = YES;
-          displayName = "Dir";
+          displayName = "Voisins";
           hostname = "mail.resdigita.com";
-          isAddressBook = YES;
+          isAddressBook = NO;
           MailFieldNames = ("mail");
           IMAPLoginFieldName = mail;
-          mapping = {
-            mozillasecondemail = ("carLicense");
-            mozillaworkurl = ("labeldURI");
-            givenName = ("givenName");
-            sn = ("sn");
-            displayName = ("displayName");
-            mail = ("mail");
-            telephoneNumber = ("telephoneNumber");
-            mobile = ("mobile");
-            homephone = ("homephone");
-            title = ("title");
-            ou = ("ou");
-            o = ("o");
-            street = ("street");
-            l = ("l");
-            st = ("st");
-            postalCode = ("postalCode");
-            c = ("c");
-            description = ("description");
-            photo = ("photo");
-          }
+          # mapping = {
+          #   mozillasecondemail = ("carLicense");
+          #   mozillaworkurl = ("labeldURI");
+          #   givenName = ("givenName");
+          #   sn = ("sn");
+          #   displayName = ("displayName");
+          #   mail = ("mail");
+          #   telephoneNumber = ("telephoneNumber");
+          #   mobile = ("mobile");
+          #   homephone = ("homephone");
+          #   title = ("title");
+          #   ou = ("ou");
+          #   o = ("o");
+          #   street = ("street");
+          #   l = ("l");
+          #   st = ("st");
+          #   postalCode = ("postalCode");
+          #   c = ("c");
+          #   description = ("description");
+          #   photo = ("photo");
+          # }
         }
       );
       SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris");
       '';
-      #SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
+      SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
                     # MailFieldNames = ("mail");
   };
 }
