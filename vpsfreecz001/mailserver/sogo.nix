@@ -73,6 +73,7 @@ in
       SOGoUserSources =
       (
         {
+          c_uid = c_cn
           type = sql;
           id = BaseVoisins;
           viewURL = "postgresql:///sogo/sogo_users";
