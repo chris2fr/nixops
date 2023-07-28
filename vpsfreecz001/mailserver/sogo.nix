@@ -69,7 +69,6 @@ in
       SOGoSMTPServer = "smtps://mail.resdigita.com/";
       SOGoIMAPServer = "imaps://mail.resdigita.com/";
       SOGoTrustProxyAuthentication = YES;
-      SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
       SOGoUserSources = (
         {
           id = voisins;
@@ -136,6 +135,9 @@ in
           # }
       
                     # MailFieldNames = ("mail");
+
+                          # SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
+
   };
   users.groups.memcached.members = [ "sogo" ];
 }
