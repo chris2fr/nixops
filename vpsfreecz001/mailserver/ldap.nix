@@ -38,7 +38,7 @@ in
           olcDbIndex = [
             "displayName,description eq,sub"
             "uid,ou,c eq"
-            "carLicense,labeldURI,telephoneNumber,mobile,homePhone,title,street,l,st,postalCode eq"
+            "carLicense,labeledURI,telephoneNumber,mobile,homePhone,title,street,l,st,postalCode eq"
             "objectClass,cn,sn,givenname,mail eq"
           ];
 
