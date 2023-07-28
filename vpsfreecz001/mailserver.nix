@@ -28,7 +28,6 @@ in
   };
   services.memcached = {
     enable = true;
-    user = "sogo";
     maxMemory = 256;
     enableUnixSocket = false;
   };
