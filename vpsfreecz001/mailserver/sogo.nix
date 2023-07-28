@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let 
+  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.adminresdigitaorg));
 in
 {
   environment.systemPackages = with pkgs; [
