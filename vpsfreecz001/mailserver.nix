@@ -31,7 +31,7 @@ in
     maxMemory = 256;
     enableUnixSocket = false;
     port = 11211;
-    services.memcached.listen = "[::1]"
+    listen = "[::1]";
     user = "memcached";
   };
 
