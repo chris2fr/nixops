@@ -114,4 +114,5 @@ in
       
                     # MailFieldNames = ("mail");
   };
+  users.groups.memcached.members = [ "sogo" ];
 }
