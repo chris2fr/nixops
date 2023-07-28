@@ -70,48 +70,62 @@ in
       SOGoIMAPServer = "imaps://mail.resdigita.com/";
       SOGoTrustProxyAuthentication = YES;
       SOGoMemcachedHost = "http://127.0.0.1";
-      SOGoUserSources = (
+      SOGoUserSources =
+      (
         {
-          id = voisins;
-          type = ldap;
-          CNFieldName = displayName;
-          IDFieldName = cn;
-          UIDFieldName = cn;
-          baseDN = "ou=users,dc=resdigita,dc=org";
-          bindDN = "cn=admin,dc=resdigita,dc=org";
-          bindPassword = "${bindPassword}";
+          type = sql;
+          id = BaseVoisins;
+          viewURL = "postgresql:///sogo/sogo_view";
           canAuthenticate = YES;
-          displayName = "Voisins";
-          hostname = "mail.resdigita.com";
           isAddressBook = NO;
-          MailFieldNames = ("mail");
-          IMAPLoginFieldName = mail;
-          mapping = {
-            mozillasecondemail = ("carLicense");
-            mozillaworkurl = ("labeldURI");
-            givenName = ("givenName");
-            sn = ("sn");
-            displayName = ("displayName");
-            mail = ("mail");
-            telephoneNumber = ("telephoneNumber");
-            mobile = ("mobile");
-            homephone = ("homephone");
-            title = ("title");
-            ou = ("ou");
-            o = ("o");
-            street = ("street");
-            l = ("l");
-            st = ("st");
-            postalCode = ("postalCode");
-            c = ("c");
-            description = ("description");
-            photo = ("photo");
-          }
+          userPasswordAlgorithm = sha;
         }
       );
+
       SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris");
       '';
-                
+
+      # SOGoUserSources = (
+      #   {
+      #     id = voisins;
+      #     type = ldap;
+      #     CNFieldName = displayName;
+      #     IDFieldName = cn;
+      #     UIDFieldName = cn;
+      #     baseDN = "ou=users,dc=resdigita,dc=org";
+      #     bindDN = "cn=admin,dc=resdigita,dc=org";
+      #     bindPassword = "${bindPassword}";
+      #     canAuthenticate = YES;
+      #     displayName = "Voisins";
+      #     hostname = "mail.resdigita.com";
+      #     isAddressBook = NO;
+      #     MailFieldNames = ("mail");
+      #     IMAPLoginFieldName = mail;
+      #     mapping = {
+      #       mozillasecondemail = ("carLicense");
+      #       mozillaworkurl = ("labeldURI");
+      #       givenName = ("givenName");
+      #       sn = ("sn");
+      #       displayName = ("displayName");
+      #       mail = ("mail");
+      #       telephoneNumber = ("telephoneNumber");
+      #       mobile = ("mobile");
+      #       homephone = ("homephone");
+      #       title = ("title");
+      #       ou = ("ou");
+      #       o = ("o");
+      #       street = ("street");
+      #       l = ("l");
+      #       st = ("st");
+      #       postalCode = ("postalCode");
+      #       c = ("c");
+      #       description = ("description");
+      #       photo = ("photo");
+      #     }
+      #   }
+      # );
+
+
           #### From SOGoUserSources = ( {  id = voisins;      
           # mapping = {
           #   mozillasecondemail = ("carLicense");
