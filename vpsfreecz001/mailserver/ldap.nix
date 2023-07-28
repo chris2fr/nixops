@@ -43,11 +43,10 @@ in
 
           olcDbIndex = [
             "objectClass eq"
-            "cn pres,eq"
-            "mail pres,eq,subany"
-            "uid pres,eq"
-            "carLicense pres,eq"
-            "sn pres,eq,subany"
+            "cn eq"
+            "mail eq,subany"
+            "uid eq"
+            "carLicense eq"
           ];
        
           /* your admin account, do not use writeText on a production system */
