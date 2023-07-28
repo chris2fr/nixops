@@ -86,7 +86,11 @@ in
           isAddressBook = NO;
           MailFieldNames = ("mail");
           IMAPLoginFieldName = mail;
-          # mapping = {
+        }
+      );
+      SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris");
+      '';
+                # mapping = {
           #   mozillasecondemail = ("carLicense");
           #   mozillaworkurl = ("labeldURI");
           #   givenName = ("givenName");
@@ -107,10 +111,6 @@ in
           #   description = ("description");
           #   photo = ("photo");
           # }
-        }
-      );
-      SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris");
-      '';
       
                     # MailFieldNames = ("mail");
   };
