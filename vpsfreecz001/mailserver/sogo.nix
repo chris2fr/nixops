@@ -71,11 +71,11 @@ in
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
-          id = mail;
+          id = cn;
           type = ldap;
-          CNFieldName = mail;
-          IDFieldName = mail;
-          UIDFieldName = mail;
+          CNFieldName = cn;
+          IDFieldName = cn;
+          UIDFieldName = cn;
           baseDN = "ou=users,dc=resdigita,dc=org";
           bindDN = "cn=admin,dc=resdigita,dc=org";
           bindPassword = "${bindPassword}";
