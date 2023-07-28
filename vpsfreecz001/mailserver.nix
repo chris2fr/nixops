@@ -29,7 +29,7 @@ in
   services.memcached = {
     enable = true;
     maxMemory = 256;
-    enableUnixSocket = true;
+    enableUnixSocket = false;
     port = 11211;
     listen = "[::1]";
     user = "sogo";
