@@ -40,14 +40,7 @@ in
 
           olcSuffix = "dc=resdigita,dc=org";
 
-          olcDbIndex = [
-            "objectClass eq"
-            "cn pres,eq"
-            "mail pres,eq,subany"
-            "uid pres,eq"
-            "carLicense pres,eq"
-            "sn pres,eq,subany"
-          ];
+
           
           
           ["cn eq" "mail eq" "uid eq" "carLicense eq" "cn mail uid carLicense eq"];
@@ -96,6 +89,15 @@ in
         };
       };
     };
+
+          # olcDbIndex = [
+          #   "objectClass eq"
+          #   "cn pres,eq"
+          #   "mail pres,eq,subany"
+          #   "uid pres,eq"
+          #   "carLicense pres,eq"
+          #   "sn pres,eq,subany"
+          # ];
 
 #             "member pres,eq"
 
