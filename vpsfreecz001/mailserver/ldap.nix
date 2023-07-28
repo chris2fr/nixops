@@ -12,6 +12,8 @@ in
     # urlList = [ "ldap:///" ];
     urlList = [ "ldap:///" "ldaps:///" ];
     settings = {
+      index = "cn,sn,givenname,mail eq";
+      threads = 16;
       attrs = {
         olcLogLevel = "conns config";
          /* settings for acme ssl */
