@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 
 let 
-  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.adminresdigitaorg));
-  alicePassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.mailserver.alice));
-  bobPassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.mailserver.bob));
-  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ./.secrets.mailserver.sogo));
+  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.adminresdigitaorg));
+  alicePassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.alice));
+  bobPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.bob));
+  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.sogo));
 in
 {
     services.openldap = {
