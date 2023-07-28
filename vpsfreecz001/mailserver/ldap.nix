@@ -22,6 +22,7 @@ in
         olcTLSCRLCheck = "none";
         olcTLSVerifyClient = "never";
         olcTLSProtocolMin = "3.1";
+        olcThreads = "16";
       };
       children = {
         "cn=schema".includes = [
