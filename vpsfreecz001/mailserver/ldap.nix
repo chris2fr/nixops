@@ -35,6 +35,18 @@ in
         "olcDatabase={1}mdb".attrs = {
           objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
 
+          olcDbIndex = [
+            "sn"
+            "givenName"
+            "displayName"
+            "cn"
+            "mail"
+            "uid"
+            "carLicense"
+          ];
+
+
+
           olcDatabase = "{1}mdb";
           olcDbDirectory = "/var/lib/openldap/data";
 
@@ -85,13 +97,7 @@ in
       };
     };
 
-          # olcDbIndex = [
-          #   "objectClass pres,eq"
-          #   "cn pres,eq"
-          #   "mail pres,eq,subany"
-          #   "uid pres,eq"
-          #   "carLicense pres,eq"
-          # ];
+
 
           # olcDbIndex = [
           #   "objectClass eq"

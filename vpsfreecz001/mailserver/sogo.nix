@@ -74,9 +74,9 @@ in
         {
           id = voisins;
           type = ldap;
-          CNFieldName = mail;
-          IDFieldName = mail;
-          UIDFieldName = mail;
+          CNFieldName = cn;
+          IDFieldName = cn;
+          UIDFieldName = cn;
           baseDN = "ou=users,dc=resdigita,dc=org";
           bindDN = "cn=admin,dc=resdigita,dc=org";
           bindPassword = "${bindPassword}";
