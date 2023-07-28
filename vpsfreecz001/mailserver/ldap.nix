@@ -40,7 +40,18 @@ in
 
           olcSuffix = "dc=resdigita,dc=org";
 
-          olcDbIndex = ["cn eq" "mail eq" "uid eq" "carLicense eq" "cn mail uid carLicense eq"];
+          olcDbIndex = [
+            "objectClass eq"
+            "cn pres,eq"
+            "mail pres,eq,subany"
+            "uid pres,eq"
+            "member pres,eq"
+            "carLicense pres,eq"
+            "sn pres,eq,subany"
+          ];
+          
+          
+          ["cn eq" "mail eq" "uid eq" "carLicense eq" "cn mail uid carLicense eq"];
 
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,dc=resdigita,dc=org";
