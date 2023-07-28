@@ -39,7 +39,7 @@ in
             "displayName eq,sub"
             "uid eq"
             "carLicense eq"
-            "objectClass, cn,sn,givenname,mail eq"
+            "objectClass,cn,sn,givenname,mail eq"
           ];
 
 
