@@ -36,13 +36,13 @@ in
           objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
 
           olcDbIndex = [
-            "sn eq"
-            "givenName eq"
-            "displayName eq"
-            "cn eq"
-            "mail eq"
-            "uid eq"
-            "carLicense eq"
+            "sn eq,sub"
+            "givenName eq,sub"
+            "displayName eq,sub"
+            "cn eq,sub"
+            "mail eq,sub"
+            "uid eq,sub"
+            "carLicense eq,sub"
           ];
 
 
