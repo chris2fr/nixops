@@ -69,14 +69,14 @@ in
       SOGoSMTPServer = "smtps://mail.resdigita.com/";
       SOGoIMAPServer = "imaps://mail.resdigita.com/";
       SOGoTrustProxyAuthentication = YES;
-      SOGoMemcachedHost = "http://127.0.0.1";
+      SOGoMemcachedHost = "unix:///var/run/memcached/memcached.sock";
       SOGoUserSources = (
         {
           id = voisins;
           type = ldap;
-          CNFieldName = displayName;
-          IDFieldName = cn;
-          UIDFieldName = cn;
+          CNFieldName = mail;
+          IDFieldName = mail;
+          UIDFieldName = mail;
           baseDN = "ou=users,dc=resdigita,dc=org";
           bindDN = "cn=admin,dc=resdigita,dc=org";
           bindPassword = "${bindPassword}";
@@ -86,27 +86,6 @@ in
           isAddressBook = NO;
           MailFieldNames = ("mail");
           IMAPLoginFieldName = mail;
-          mapping = {
-            mozillasecondemail = ("carLicense");
-            mozillaworkurl = ("labeldURI");
-            givenName = ("givenName");
-            sn = ("sn");
-            displayName = ("displayName");
-            mail = ("mail");
-            telephoneNumber = ("telephoneNumber");
-            mobile = ("mobile");
-            homephone = ("homephone");
-            title = ("title");
-            ou = ("ou");
-            o = ("o");
-            street = ("street");
-            l = ("l");
-            st = ("st");
-            postalCode = ("postalCode");
-            c = ("c");
-            description = ("description");
-            photo = ("photo");
-          }
         }
       );
       SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris", "sogo", "tt", "tt@lesgrandsvoisins.com");

@@ -29,10 +29,16 @@ in
   services.memcached = {
     enable = true;
     maxMemory = 256;
-    enableUnixSocket = false;
+    enableUnixSocket = true;
+    user = sogo;
   };
 
-  # services.roundcube
+  # services.roundcube = {
+  #   hostName = "mail.lesgrandsvoisins.com";
+  #   enable = true;
+  #   dicts = with pkgs.aspellDicts; [ en fr de ];
+
+  # }
 
 
 
