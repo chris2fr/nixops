@@ -67,7 +67,7 @@ in
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
       SOGoSMTPServer = "smtps://mail.resdigita.com/";
-      SOGoIMAPServer = "imap://mail.resdigita.com/";
+      SOGoIMAPServer = "imap://mail.resdigita.com:143/?tls=YES";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
