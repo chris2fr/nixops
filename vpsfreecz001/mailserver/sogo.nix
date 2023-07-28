@@ -75,14 +75,14 @@ in
         {
           type = sql;
           id = BaseVoisins;
-          viewURL = "postgresql:///sogo/sogo_view";
+          viewURL = "postgresql:///sogo/sogo_users";
           canAuthenticate = YES;
           isAddressBook = NO;
-          userPasswordAlgorithm = sha;
+          userPasswordAlgorithm = md5;
         }
       );
 
-      SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris");
+      SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris", "sogo", "tt", "tt@lesgrandsvoisins.com");
       '';
 
       # SOGoUserSources = (
