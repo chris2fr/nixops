@@ -43,6 +43,7 @@ in
             "mail eq,sub"
             "uid eq,sub"
             "carLicense eq,sub"
+            "cn,sn,givenname,mail eq"
           ];
 
 
