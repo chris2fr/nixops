@@ -29,8 +29,10 @@ in
   services.memcached = {
     enable = true;
     maxMemory = 256;
-    enableUnixSocket = true;
-    user = "sogo";
+    enableUnixSocket = false;
+    port = 11211;
+    services.memcached.listen = "[::1]"
+    user = "memcached";
   };
 
   # services.roundcube = {
