@@ -12,7 +12,6 @@ in
     # urlList = [ "ldap:///" ];
     urlList = [ "ldap:///" "ldaps:///" ];
     settings = {
-      attrs.threads = 16;
       attrs = {
         olcLogLevel = "conns config";
          /* settings for acme ssl */
@@ -23,6 +22,7 @@ in
         olcTLSCRLCheck = "none";
         olcTLSVerifyClient = "never";
         olcTLSProtocolMin = "3.1";
+        threads = "16";
       };
       children = {
         "cn=schema".includes = [
