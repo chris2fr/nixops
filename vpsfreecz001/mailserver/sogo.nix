@@ -71,7 +71,7 @@ in
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
-          id = voisins;
+          id = mail;
           type = ldap;
           CNFieldName = mail;
           IDFieldName = mail;
@@ -85,6 +85,27 @@ in
           isAddressBook = NO;
           MailFieldNames = ("mail");
           IMAPLoginFieldName = mail;
+          mapping = {
+            mozillasecondemail = ("carLicense");
+            mozillaworkurl = ("labeldURI");
+            givenName = ("givenName");
+            sn = ("sn");
+            displayName = ("displayName");
+            mail = ("mail");
+            telephoneNumber = ("telephoneNumber");
+            mobile = ("mobile");
+            homephone = ("homephone");
+            title = ("title");
+            ou = ("ou");
+            o = ("o");
+            street = ("street");
+            l = ("l");
+            st = ("st");
+            postalCode = ("postalCode");
+            c = ("c");
+            description = ("description");
+            photo = ("photo");
+          }
         }
       );
       SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris", "sogo", "tt", "tt@lesgrandsvoisins.com");
@@ -107,27 +128,7 @@ in
 
 
           #### From SOGoUserSources = ( {  id = voisins;      
-          # mapping = {
-          #   mozillasecondemail = ("carLicense");
-          #   mozillaworkurl = ("labeldURI");
-          #   givenName = ("givenName");
-          #   sn = ("sn");
-          #   displayName = ("displayName");
-          #   mail = ("mail");
-          #   telephoneNumber = ("telephoneNumber");
-          #   mobile = ("mobile");
-          #   homephone = ("homephone");
-          #   title = ("title");
-          #   ou = ("ou");
-          #   o = ("o");
-          #   street = ("street");
-          #   l = ("l");
-          #   st = ("st");
-          #   postalCode = ("postalCode");
-          #   c = ("c");
-          #   description = ("description");
-          #   photo = ("photo");
-          # }
+
       
                     # MailFieldNames = ("mail");
 
