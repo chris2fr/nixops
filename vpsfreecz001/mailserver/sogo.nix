@@ -67,7 +67,7 @@ in
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
       SOGoSMTPServer = "smtps://mail.resdigita.com/";
-      SOGoIMAPServer = "imaps://mail.resdigita.com/";
+      SOGoIMAPServer = "imap://mail.resdigita.com/";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
@@ -77,19 +77,20 @@ in
           IDFieldName = cn;
           UIDFieldName = cn;
           baseDN = "ou=users,dc=resdigita,dc=org";
-          bindDN = "cn=admin,dc=resdigita,dc=org";
-          bindPassword = "${bindPassword}";
           canAuthenticate = YES;
           displayName = "Voisins";
-          hostname = "mail.resdigita.com";
+          hostname = "ldaps://mail.resdigita.com";
           isAddressBook = NO;
           MailFieldNames = ("mail");
           IMAPLoginFieldName = mail;
+          bindAsCurrentUser = YES;
           mapping = {
             mozillasecondemail = ("carLicense");
             mozillaworkurl = ("labeldURI");
             givenName = ("givenName");
             sn = ("sn");
+            cn = ("cn");
+            uid = ("cn");
             displayName = ("displayName");
             mail = ("mail");
             telephoneNumber = ("telephoneNumber");
@@ -110,8 +111,11 @@ in
       );
       SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris", "sogo", "tt", "tt@lesgrandsvoisins.com");
       '';
+          #       bindDN = "cn=admin,dc=resdigita,dc=org";
+          # bindPassword = "${bindPassword}";
             # SOGoMemcachedHost = "/var/run/memcached.sock";
       # SOGoMemcachedHost = "unix:///var/run/memcached/memcached.sock";
+      # SOGoIMAPServer = "imaps://mail.resdigita.com/";
 
   # SOGoUserSources =
   #     (
