@@ -41,14 +41,6 @@ in
           olcSuffix = "dc=resdigita,dc=org";
 
 
-          olcDbIndex = [
-            "objectClass eq"
-            "cn eq"
-            "mail eq,subany"
-            "uid eq"
-            "carLicense eq"
-          ];
-       
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,dc=resdigita,dc=org";
           olcRootPW = (builtins.readFile /etc/nixos/.secrets.adminresdigitaorg);
@@ -94,6 +86,14 @@ in
       };
     };
 
+          # olcDbIndex = [
+          #   "objectClass eq"
+          #   "cn eq"
+          #   "mail eq,subany"
+          #   "uid eq"
+          #   "carLicense eq"
+          # ];
+       
 
 
 #             "member pres,eq"
