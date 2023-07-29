@@ -3,15 +3,26 @@
 let 
 in
 { 
+  mannchri.extraGroups = [ "wwwrun" ];
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@lesgrandsvoisins.com";
   services.httpd.extraModules = [ "proxy" "proxy_http" ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."www.resdigita.com" = {
+    serverAliases = [
+      "www.resdigita.org"
+      "resdigita.org"
+      "resdigita.com"
+    ]
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
+    extraConfig = ''
+      <If "%{HTTP_HOST} != 'www.resdigita.com'">
+          RedirectMatch /(.*)$ https://www.resdigita.com/$1
+      </If>
+    '';
   };
   services.httpd.virtualHosts."lesgrandsvoisins.com" = {
     enableACME = true;
