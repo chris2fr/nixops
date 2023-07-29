@@ -12,7 +12,7 @@ in
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
-  }
+  };
   services.httpd.virtualHosts."lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
