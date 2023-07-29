@@ -3,7 +3,7 @@
 let 
 in
 { 
-  mannchri.extraGroups = [ "wwwrun" ];
+  users.users.mannchri.extraGroups = [ "wwwrun" ];
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@lesgrandsvoisins.com";
