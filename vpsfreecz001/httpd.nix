@@ -14,7 +14,7 @@ in
       "www.resdigita.org"
       "resdigita.org"
       "resdigita.com"
-    ]
+    ];
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
