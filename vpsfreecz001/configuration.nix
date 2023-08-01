@@ -61,9 +61,6 @@ in
 #    sha256 = "";
 #  };
 
-  imports = [
-    <home-manager/nixos>
-  ];
   users.users = rec {
     fossil = {
       isNormalUser = true;
@@ -104,7 +101,7 @@ in
       '';
     };
   };
-  
+
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "no";
   #users.extraUsers.root.openssh.authorizedKeys.keys =
