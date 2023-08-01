@@ -78,7 +78,7 @@ in
       startTls = true;
       dovecot = {
          userFilter = "(cn=%n)";
-      }
+      };
     };
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "";
