@@ -3,6 +3,7 @@
 let 
 in
 { 
+  nix.settings.experimental-features = "nix-command flakes";
   users.users.mannchri.extraGroups = [ "wwwrun" ];
   services.httpd.enable = true;
   services.httpd.enablePHP = false;

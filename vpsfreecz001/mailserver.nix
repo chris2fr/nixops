@@ -15,12 +15,14 @@ in
     ./mailserver/sogo.nix
     ./mailserver/ldap.nix
     ./mailserver/httpd.nix
+    ./mailserver/fail2ban.nix
   ];
   environment.systemPackages = with pkgs; [
     sogo
     postgresql
     openldap
   ];
+  ## Needed for the contaiiner system of vpsfree.cz
   systemd.enableUnifiedCgroupHierarchy = false;
   systemd.enableCgroupAccounting = false;
   users.users."web2ldap" = {
@@ -43,11 +45,6 @@ in
   # }
 
 # SOGoMemcachedHost = "/var/run/memcached.sock";
-
-
-################################################################################################################
-################################################################################################################
-###################################################################################################################################
 ###################################################################################################################################
   mailserver = {
     enable = true;
@@ -62,20 +59,27 @@ in
     certificateScheme = "acme";
     certificateDirectory = "/var/certs/";
     keyFile = "/var/certs/key-mail.resdigita.com.pem";
-    ldap.enable = true;
-    ldap.bind.dn = "cn=admin,dc=resdigita,dc=org";
-    ldap.bind.passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
-    ldap.uris = [
-        "ldap:///"
-    ];
-    ldap.searchBase = "ou=users,dc=resdigita,dc=org";
-    #ldap.startTls = true;
-    ldap.tlsCAFile = "/var/certs/cert-mail.resdigita.com.pem";
-    # ldap.dovecot.passFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    # ldap.dovecot.userFilter = "(&(objectClass=inetOrgPerson)(cn=%u))";
+    ldap = {
+      enable = true;
+      bind = {
+        dn = "cn=admin,dc=resdigita,dc=org";
+        passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
+      };
+      uris = [
+        "ldap:///" ldaps:///
+      ];
+      searchBase = "ou=users,dc=resdigita,dc=org";
+      tlsCAFile = "/var/certs/cert-mail.resdigita.com.pem";
+      postfix = {
+        ldap.postfix.mailAttribute = "mail";
+        ldap.postfix.uidAttribute = "cn";
+      };
+      # startTls = true;
+      # dovecot = {
+
+      # }
+    };
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    ldap.postfix.mailAttribute = "mail";
-    ldap.postfix.uidAttribute = "mail";
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
     #   =mail=%{ldap:cn}
@@ -105,6 +109,7 @@ in
     chroot = false;
     maxproc = 1;
   };
+
 #services.postfix.networks = [
 #  "localhost"
 #  "127.0.0.1"
@@ -115,7 +120,6 @@ in
 #  "2001:bc8:1201:900:46a8:42ff:fe22:e5b6"
 #  ];
 
-###################################################################################################################################
 ###################################################################################################################################
   services.postgresql = {
     enable = true;
@@ -144,67 +148,7 @@ in
   };
 
   systemd.extraConfig = ''
-    DefaultTimeoutStartSec=900s
+    DefaultTimeoutStartSec=600s
   '';
 
-###################################################################################################################################
-
-services.fail2ban = {
-    enable = true;
-    maxretry = 5; # Observe 5 violations before banning an IP
-    ignoreIP = [
-      # Whitelisting some subnets:
-      "10.0.0.0/8" "172.16.0.0/12" "192.168.0.0/16"
-      "8.8.8.8" # Whitelists a specific IP
-      "mail.resdigita.com" # Resolves the IP via DNS
-    ];
-    bantime = "24h"; # Set bantime to one day
-    bantime-increment = {
-      enable = true; # Enable increment of bantime after each violation
-      formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
-      # multipliers = "1 2 4 8 16 32 64";
-      maxtime = "168h"; # Do not ban for more than 1 week
-      overalljails = true; # Calculate the bantime based on all the violations
-    };
-    jails = {
-      apache-nohome-iptables = ''
-        # Block an IP address if it accesses a non-existent
-        # home directory more than 5 times in 10 minutes,
-        # since that indicates that it's scanning.
-        filter = apache-nohome
-        action = iptables-multiport[name=HTTP, port="http,https"]
-        logpath = /var/log/httpd/error_log*
-        backend = auto
-        findtime = 600
-        bantime  = 600
-        maxretry = 5
-      '';
-      postfix = ''
-        port     = smtp,465,submission,imap,imaps,pop3,pop3s
-        action = iptables-multiport[name=HTTP, port="smtp,465,submission,imap,imaps,pop3,pop3s"]
-        logpath  = /var/log/postfix.log
-        backend  = auto
-        enabled  = true
-        filter   = postfix[mode=auth]
-        mode     = more
-      '';
-      # dovecot = ''
-      #   port     = smtp,465,submission
-      #   logpath  = /var/log/fail2ban.log
-      #   backend  = auto
-      #   enabled  = true
-      #   mode     = more
-      # '';
-      # postfix-sasl = ''
-      #   filter   = postfix[mode=auth]
-      #   port     = smtp,465,submission,imap,imaps,pop3,pop3s
-      #   logpath  = /var/log/fail2ban.log
-      #   backend  = auto
-      #   enabled  = true
-      #   mode     = more
-      # '';
-    };
-  };
-
-###################################################################################################################################
 }

@@ -9,6 +9,9 @@ in
     ./httpd.nix
     ./mailserver.nix
     ./guichet.nix
+    ./postgresql.nix
+    ./users.nix
+    ./wagtail.nix
     <home-manager/nixos>
   ];
 
@@ -64,38 +67,9 @@ in
   services.openssh.settings.PermitRootLogin = "no";
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
-  services.postgresql = {
-    enable = true;
-    enableTCPIP = true;
-    ensureDatabases = [
-      "wagtail"
-      "previous"
-      "fairemain"
-    ];
-    ensureUsers = [
-      {
-        name = "wagtail";
-        ensurePermissions = {
-          "DATABASE \"wagtail\"" = "ALL PRIVILEGES";
-          "DATABASE \"previous\"" = "ALL PRIVILEGES";
-          "DATABASE \"fairemain\"" = "ALL PRIVILEGES";
-          "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
-        };
-      }
-    ]; 
-#    authentication = ''
-#      local all all trust
-#      host all all 127.0.0.1/32 trust
-#      host all all ::1/128 trust
-#    '';
-#    initialScript = ''
-#      CREATE ROLE wagtail WITH LOGIN PASSWORD 'wagtail' CREATEDB;
-#      CREATE DATABASE wagtail;
-#      GRANT ALL PRIVILEGES ON DATABASE wagtail TO wagtail;
-#    '';
-  };
+  
 
-  networking.firewall.allowedTCPPorts = [ 80 443 8000 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 636 ];
 
   systemd.extraConfig = ''
     DefaultTimeoutStartSec=900s
@@ -115,107 +89,9 @@ in
     defaults.email = "contact@lesgrandsvoisins.com";
   };
 
-#  user.users = {
-#    mannchri.isNormalUser = true;
-#  };
-  users.users = rec {
-    fossil = {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    };
-    mannchri = {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-      extraGroups = [ "wheel" "networkmanager" ];
-    };
-    wagtail = {
-      isNormalUser = true;
-    };
-  };
-  home-manager.users.fossil = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      fossil
-    ];
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-  };
-  home-manager.users.wagtail = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      python311
-      python311Packages.pillow
-      python311Packages.gunicorn
-      python311Packages.pip
-      libjpeg
-      zlib
-      libtiff
-      freetype
-      python311Packages.venvShellHook
-    ];
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-  };
-
-    systemd.services.wagtail = {
-      description = "Les Grands Voisins Wagtail Website";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        WorkingDirectory = "/home/wagtail/wagtail-lesgv/";
-        ExecStart = ''/home/wagtail/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access.log --chdir /home/wagtail/wagtail-lesgv --workers 3 --bind unix:/var/lib/wagtail/wagtail-lesgv.sock lesgv.wsgi:application'';
-        Restart = "always";
-        RestartSec = "10s";
-        User = "wagtail";
-        Group = "users";
-      };
-      unitConfig = {
-        StartLimitInterval = "1min";
-      };
-    };
 
 
-  home-manager.users.mannchri = {pkgs, ...}: {
-    home.packages = [ pkgs.atool pkgs.httpie ];
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-    programs.vim = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [ vim-airline ];
-      settings = { ignorecase = true; tabstop = 2; };
-      extraConfig = ''
-        set mouse=a
-        set nocompatible
-        colo torte
-        syntax on
-        set tabstop     =2
-        set softtabstop =2
-        set shiftwidth  =2
-        set expandtab
-        set autoindent
-        set smartindent
-      '';
-    };
-  };
 
-
-   containers.postgresql =
-   { 
-      privateNetwork = true;
-      hostAddress = "192.168.100.10";
-      localAddress = "192.168.100.11";
-      config = { config, pkgs, ... }: { 
-#      nix.settings.experimental-features = "nix-command flakes";
-#      imports = [
-#        ./vpsadminos.nix
-#      ];
-#      environment.systemPackages = with pkgs; [
-#        vim
-#      ];
-        services.postgresql.enable = true;
-        services.postgresql.package = pkgs.postgresql_14;
-       time.timeZone = "Europe/Amsterdam";
-       system.stateVersion = "23.05";
-     };
-   };
 }
 
 
