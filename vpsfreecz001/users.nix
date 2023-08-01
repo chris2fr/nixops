@@ -6,9 +6,9 @@ in
 #  user.users = {
 #    mannchri.isNormalUser = true;
 #  };
-imports = (
-  <home-manager/nixos>
-);
+  imports = [
+    <home-manager/nixos>
+  ];
   users.users = rec {
     fossil = {
       isNormalUser = true;
