@@ -73,6 +73,7 @@ in
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "cn";
+        filter = "(cn=%s)"
       };
       # startTls = true;
       # dovecot = {
