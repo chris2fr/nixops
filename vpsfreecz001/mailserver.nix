@@ -71,8 +71,8 @@ in
       searchBase = "ou=users,dc=resdigita,dc=org";
       tlsCAFile = "/var/certs/cert-mail.resdigita.com.pem";
       postfix = {
-        ldap.postfix.mailAttribute = "mail";
-        ldap.postfix.uidAttribute = "cn";
+        mailAttribute = "mail";
+        uidAttribute = "cn";
       };
       # startTls = true;
       # dovecot = {
