@@ -5,7 +5,7 @@ let
   alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
-  domainName = "ghh.gvoisins.com";
+  domainName = "test.gvoisins.com";
 in
 {
   imports = [
