@@ -70,6 +70,7 @@ in
 #        userPassword=password
 #        mail=mail
 #        '';
+        userFilter = "uid=$n";
         passFilter = "uid=$n";
       };
       uris = [
