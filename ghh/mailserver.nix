@@ -66,7 +66,7 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
-        "ldap:///"
+        "ldap://test.gvoisins.com/"
       ];
       searchBase = "ou=users,dc=resdigita,dc=org";
       tlsCAFile = "/var/certs/cert-${domainName}.pem";
@@ -75,7 +75,7 @@ in
         uidAttribute = "uid";
         # filter = "uid=%n";
       };
-      startTls = true;
+     startTls = true;
 #      dovecot = {
 #         userFilter = "uid=%n";
 #         passFilter = "uid=%n";
