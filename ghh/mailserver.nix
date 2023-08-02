@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 
 let 
-  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.adminresdigitaorg));
-  alicePassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.alice));
-  bobPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.bob));
-  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.sogo));
+  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.bind));
+  alicePassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.alice));
+  bobPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.bob));
+  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.sogo));
 in
 {
   imports = [
@@ -21,6 +21,7 @@ in
     sogo
     postgresql
     openldap
+    pwgen-secure
   ];
   ## Needed for the contaiiner system of vpsfree.cz
   systemd.enableUnifiedCgroupHierarchy = false;
