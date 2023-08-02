@@ -51,7 +51,6 @@ in
   mailserver = {
     enable = true;
     fqdn = domainName;
-    domains = [ "resdigita.org" "resdigita.com" "lesgrandsvoisins.com" "lesgv.com" "lesgv.org" "gvoisin.com" "gvoisin.org" "gvoisins.org" "gvoisins.com"];
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.

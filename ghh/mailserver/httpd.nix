@@ -4,14 +4,7 @@ let
   domainName = "test.gvoisins.com";
 in
 {
-  services.httpd.virtualHosts."lesgv.com" = {
-    serverAliases = ["mail.resdigita.org" "www.lesgv.com" "lesgv.org" "www.lesgv.org"];
-    enableACME = true;
-    forceSSL = true;
-    documentRoot =  "/var/www/SOGo";
-    globalRedirect = "https://mail.lesgrandsvoisins.com/";
-  };
-  services.httpd.virtualHosts."mail.lesgrandsvoisins.com" = {
+  services.httpd.virtualHosts."${test.gvoisins.com}" = {
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/SOGo";
@@ -62,7 +55,6 @@ in
     '';
   };
   services.httpd.virtualHosts."${domainName}" = {
-    serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com" "gvoisin.org" "www.gvoisin.org" "gvoisins.org" "www.gvoisins.org" "gvoisins.com" "www.gvoisins.com" "app.lesgrandsvoisins.com"];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/SOGo";
