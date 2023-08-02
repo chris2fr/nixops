@@ -39,7 +39,7 @@ in
     dig
     killall
     inetutils
-    pwgen-secure
+    pwgen
     openldap
   ];
 }
