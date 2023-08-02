@@ -65,17 +65,25 @@ in
         dn = "cn=admin,dc=resdigita,dc=org";
         passwordFile = "/etc/nixos/.secrets.bind";
       };
+      dovecot = {
+        passAttrs = ''
+        userPassword=password
+        mail=mail
+        '';
+        passFilter = "uid=$n";
+      };
       uris = [
-        "ldap://test.gvoisins.com/"
+        "ldap:///"
       ];
       searchBase = "ou=users,dc=resdigita,dc=org";
-      tlsCAFile = "/var/certs/cert-${domainName}.pem";
+      startTls = true;
+      tlsCAFile = "/var/lib/acme/${domainName}/cert.pem";
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "uid";
         # filter = "uid=%n";
       };
-     startTls = true;
+     
 #      dovecot = {
 #         userFilter = "uid=%n";
 #         passFilter = "uid=%n";
