@@ -2,6 +2,7 @@
 
 let 
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.adminresdigitaorg));
+  domainName = "ghh.gvoisins.com";
 in
 {
   environment.systemPackages = with pkgs; [
@@ -66,8 +67,8 @@ in
       SOGoMailSignaturePlacement = above;
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
-      SOGoSMTPServer = "smtps://mail.resdigita.com/";
-      SOGoIMAPServer = "imap://mail.resdigita.com:143/?tls=YES";
+      SOGoSMTPServer = "smtps://${domainName}/";
+      SOGoIMAPServer = "imap://${domainName}:143/?tls=YES";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
@@ -79,7 +80,7 @@ in
           baseDN = "ou=users,dc=resdigita,dc=org";
           canAuthenticate = YES;
           displayName = "Voisins";
-          hostname = "ldaps://mail.resdigita.com";
+          hostname = "ldaps://${domainName}";
           isAddressBook = NO;
           MailFieldNames = ("mail");
           IMAPLoginFieldName = mail;
@@ -115,7 +116,7 @@ in
           # bindPassword = "${bindPassword}";
             # SOGoMemcachedHost = "/var/run/memcached.sock";
       # SOGoMemcachedHost = "unix:///var/run/memcached/memcached.sock";
-      # SOGoIMAPServer = "imaps://mail.resdigita.com/";
+      # SOGoIMAPServer = "imaps://${domainName}/";
 
   # SOGoUserSources =
   #     (

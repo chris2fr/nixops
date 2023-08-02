@@ -3,6 +3,7 @@
 #
 { config, pkgs, lib, ... }:
 let 
+  domainName = "ghh.gvoisins.com";
 in
 {
   services.fail2ban = {
@@ -12,7 +13,7 @@ in
       # Whitelisting some subnets:
       "10.0.0.0/8" "172.16.0.0/12" "192.168.0.0/16"
       "8.8.8.8" # Whitelists a specific IP
-      "mail.resdigita.com" # Resolves the IP via DNS
+      domainName # Resolves the IP via DNS
     ];
     bantime = "24h"; # Set bantime to one day
     bantime-increment = {

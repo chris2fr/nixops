@@ -5,6 +5,7 @@ let
   alicePassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.alice));
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.bob));
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.sogo));
+  domainName = "ghh.gvoisins.com";
 in
 {
     services.openldap = {
@@ -15,9 +16,9 @@ in
       attrs = {
         olcLogLevel = "conns config";
          /* settings for acme ssl */
-          olcTLSCACertificateFile = "/var/lib/acme/mail.resdigita.com/full.pem";
-          olcTLSCertificateFile = "/var/lib/acme/mail.resdigita.com/cert.pem";
-          olcTLSCertificateKeyFile = "/var/lib/acme/mail.resdigita.com/key.pem";
+          olcTLSCACertificateFile = "/var/lib/acme/${domainName}/full.pem";
+          olcTLSCertificateFile = "/var/lib/acme/${domainName}/cert.pem";
+          olcTLSCertificateKeyFile = "/var/lib/acme/${domainName}/key.pem";
         olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
         olcTLSCRLCheck = "none";
         olcTLSVerifyClient = "never";
@@ -173,8 +174,8 @@ in
 #  };
 #############################
   systemd.services.openldap = {
-    wants = [ "acme-mail.resdigita.com.service" ];
-    after = [ "acme-mail.resdigita.com.service" ];
+    wants = [ "acme-${domainName}.service" ];
+    after = [ "acme-${domainName}.service" ];
   };
   users.groups.wwwrun.members = [ "openldap" ];
 }

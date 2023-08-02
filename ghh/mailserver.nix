@@ -5,6 +5,7 @@ let
   alicePassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.alice));
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.bob));
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.sogo));
+  domainName = "ghh.gvoisins.com";
 in
 {
   imports = [
@@ -49,17 +50,17 @@ in
 ###################################################################################################################################
   mailserver = {
     enable = true;
-    fqdn = "mail.resdigita.com";
+    fqdn = domainName;
     domains = [ "resdigita.org" "resdigita.com" "lesgrandsvoisins.com" "lesgv.com" "lesgv.org" "gvoisin.com" "gvoisin.org" "gvoisins.org" "gvoisins.com"];
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
     #certificateScheme = "acme-nginx";
-    # certificateDomains = ("mail.resdigita.com" "gvoisin.com" );
-    certificateFile = "/var/certs/cert-mail.resdigita.com.pem";
+    # certificateDomains = (domainName "gvoisin.com" );
+    certificateFile = "/var/certs/cert-${domainName}.pem";
     certificateScheme = "acme";
     certificateDirectory = "/var/certs/";
-    keyFile = "/var/certs/key-mail.resdigita.com.pem";
+    keyFile = "/var/certs/key-${domainName}.pem";
     ldap = {
       enable = true;
       bind = {
@@ -70,7 +71,7 @@ in
         "ldap:///" ldaps:///
       ];
       searchBase = "ou=users,dc=resdigita,dc=org";
-      tlsCAFile = "/var/certs/cert-mail.resdigita.com.pem";
+      tlsCAFile = "/var/certs/cert-${domainName}.pem";
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "cn";
@@ -117,7 +118,7 @@ in
 #  "localhost"
 #  "127.0.0.1"
 #  "[::1]"
-#  "mail.resdigita.com"
+#  domainName
 #  "ooo.lesgrandsvoisins.com"
 #  "51.159.223.7"
 #  "2001:bc8:1201:900:46a8:42ff:fe22:e5b6"
