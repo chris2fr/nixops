@@ -47,8 +47,7 @@ in
 
 # SOGoMemcachedHost = "/var/run/memcached.sock";
 ###################################################################################################################################
-services.dovecot2 = {
-  sslServerKey = "/var/certs/cert-${domainName}.pem";
+# services.dovecot2 = {};
 
 
 
