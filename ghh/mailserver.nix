@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 
 let 
-  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.bind));
-  alicePassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.alice));
-  bobPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.bob));
-  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.sogo));
+  bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
+  alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
+  bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
+  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   domainName = "ghh.gvoisins.com";
 in
 {
