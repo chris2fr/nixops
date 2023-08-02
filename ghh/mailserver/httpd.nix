@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let 
-  domainName = "ghh.gvoisins.com";
+  domainName = "test.gvoisins.com";
 in
 {
   services.httpd.virtualHosts."lesgv.com" = {

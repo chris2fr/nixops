@@ -2,7 +2,7 @@
 
 let 
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
-  domainName = "ghh.gvoisins.com";
+  domainName = "test.gvoisins.com";
 in
 {
   environment.systemPackages = with pkgs; [
