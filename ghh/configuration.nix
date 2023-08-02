@@ -8,10 +8,12 @@
   nix.settings.experimental-features = "nix-command flakes";
   imports = [
     ./vpsadminos.nix # Sur vpsfree.cz, pour conformer au containeur
+    ./common.nix # Des configurations communes pratiques sur mes installations
   ];
   environment.systemPackages = with pkgs; [
     vim
     unzip # UnZip requiert pour installation de thème ZIP
+    git
   ];
 # Specific configuration for PHP goes here
 services.phpfpm.phpOptions = ''

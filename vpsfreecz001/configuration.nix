@@ -51,6 +51,7 @@ in
     dig
     killall
     inetutils
+    pwgen-secure
   ];
 
 #  virtualisation.docker.enable = true;
@@ -108,7 +109,6 @@ in
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   
-
   networking.firewall.allowedTCPPorts = [ 80 443 636 ];
 
   systemd.extraConfig = ''
@@ -128,10 +128,4 @@ in
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
   };
-
-
-
-
 }
-
-
