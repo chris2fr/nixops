@@ -4,7 +4,7 @@ let
   domainName = "test.gvoisins.com";
 in
 {
-  services.httpd.virtualHosts."${test.gvoisins.com}" = {
+  services.httpd.virtualHosts."${domainName}" = {
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/SOGo";
