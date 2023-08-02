@@ -73,7 +73,7 @@ in
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "uid";
-        filter = "uid=%n";
+        # filter = "uid=%n";
       };
       # startTls = true;
       dovecot = {
