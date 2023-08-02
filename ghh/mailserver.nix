@@ -66,10 +66,10 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       dovecot = {
-        passAttrs = ''
-        userPassword=password
-        mail=mail
-        '';
+#        passAttrs = ''
+#        userPassword=password
+#        mail=mail
+#        '';
         passFilter = "uid=$n";
       };
       uris = [
