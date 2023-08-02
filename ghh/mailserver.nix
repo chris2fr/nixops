@@ -72,14 +72,14 @@ in
         dn = "cn=admin,dc=resdigita,dc=org";
         passwordFile = "/etc/nixos/.secrets.bind";
       };
-      dovecot = {
+#      dovecot = {
 #        passAttrs = ''
 #        userPassword=password
 #        mail=mail
 #        '';
-        userFilter = "uid=$u";
-        passFilter = "uid=$u";
-      };
+#        userFilter = "uid=$u";
+#        passFilter = "uid=$u";
+#      };
       uris = [
         "ldap:///"
       ];
