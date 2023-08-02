@@ -70,15 +70,16 @@ in
 #        userPassword=password
 #        mail=mail
 #        '';
-        userFilter = "uid=$n";
-        passFilter = "uid=$n";
+        userFilter = "uid=$u";
+        passFilter = "uid=$u";
       };
       uris = [
         "ldap:///"
       ];
       searchBase = "ou=users,dc=resdigita,dc=org";
+      searchScope = "sub";
       startTls = true;
-      tlsCAFile = "/var/lib/acme/${domainName}/cert.pem";
+      tlsCAFile = "/var/lib/acme/${domainName}/full.pem";
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "uid";
