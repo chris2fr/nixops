@@ -133,12 +133,12 @@ in
 
           dn: uid=alice,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
-          cn: alice
-          uid: alice
+          cn: alice@${domainName}
+          uid: alice@${domainName}
           givenName: alice
           displayName: Alice
           sn: Foo
-          uid: alice
+          uid: alice@${domainName}
           mail: alice@${domainName}
           userPassword: ${alicePassword}
 
