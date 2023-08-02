@@ -58,19 +58,19 @@ in
             /* custom access rules for userPassword attributes */
             /* allow read on anything else */
             ''{0}to dn.subtree="ou=newusers,dc=resdigita,dc=org"
-                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
+                by dn.exact="cn=newuser,ou=users,dc=resdigita,dc=org" write
                 by group.exact="cn=administration,ou=groups,dc=resdigita,dc=org" write
                 by self write
                 by anonymous auth
                 by * read''
             ''{1}to dn.subtree="ou=invitations,dc=resdigita,dc=org"
-                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
+                by dn.exact="cn=newuser,ou=users,dc=resdigita,dc=org" write
                 by group.exact="cn=administration,ou=groups,dc=resdigita,dc=org" write
                 by self write
                 by anonymous auth
                 by * read''
             ''{2}to dn.subtree="ou=users,dc=resdigita,dc=org"
-                by dn.exact="cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org" write
+                by dn.exact="cn=newuser,ou=users,dc=resdigita,dc=org" write
                 by group.exact="cn=administration,ou=groups,dc=resdigita,dc=org" write
                 by self write
                 by anonymous auth
@@ -80,7 +80,7 @@ in
                 by anonymous auth
                 by * none''
             ''{4}to *
-                by dn.exact="cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org" manage
+                by dn.exact="cn=sogo@${domainName},ou=users,dc=resdigita,dc=org" manage
                 by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org" manage
                 by self write
                 by anonymous auth''
@@ -131,45 +131,45 @@ in
           objectClass: organizationalUnit
           ou: invitations
 
-          dn: cn=alice@resdigita.org,ou=users,dc=resdigita,dc=org
+          dn: cn=alice@${domainName},ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
-          cn: alice@resdigita.org
+          cn: alice@${domainName}
           givenName: alice
           sn: Foo
           uid: alice
-          mail: alice@resdigita.org
+          mail: alice@${domainName}
           userPassword: ${alicePassword}
 
-          dn: cn=bob@resdigita.org,ou=users,dc=resdigita,dc=org
+          dn: cn=bob@${domainName},ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
-          cn: bob@resdigita.org
+          cn: bob@${domainName}
           uid: bob
           givenName: bob
           sn: Bar
-          mail: bob@resdigita.org
+          mail: bob@${domainName}
           userPassword: ${bobPassword}
 
-          dn: cn=sogo@resdigita.org,ou=users,dc=resdigita,dc=org
+          dn: cn=sogo@${domainName},ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
-          cn: sogo@resdigita.org
+          cn: sogo@${domainName}
           givenName: sogo
           uid: sogo
           sn: Administrator
-          mail: sogo@resdigita.org
+          mail: sogo@${domainName}
           userPassword: ${sogoPassword}
 
         '';
   };
 #  /* ensure openldap is launched after certificates are created */
 #  systemd.services.openldap = {
-#    wants = [ "acme-mailtest.resdigita.org.service" ];
-#    after = [ "acme-mailtest.resdigita.org.service" ];
+#    wants = [ "acme-mailtest.${domainName}.service" ];
+#    after = [ "acme-mailtest.${domainName}.service" ];
 #  };
 #  /* make acme certificates accessible by openldap */
 #  security.acme.defaults.group = "certs";
 #  users.groups.certs.members = [ "openldap" ];
 #  /* trigger the actual certificate generation for your hostname */
-#  security.acme.certs."mailtest.resdigita.org" = {
+#  security.acme.certs."mailtest.${domainName}" = {
 #    extraDomainNames = [];
 #  };
 #############################

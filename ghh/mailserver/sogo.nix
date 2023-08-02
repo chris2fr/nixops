@@ -40,7 +40,7 @@ in
       WOLogFile = /var/log/sogo/sogo.log;
       WOWorkersCount = 3;
       SxVMemLimit = 300;
-      SOGoMailDomain = "resdigita.org";
+      SOGoMailDomain = "${domainName}";
       SOGoLanguage = French;
       SOGoAppointmentSendEMailNotifications = YES;
       SOGoEnablePublicAccess = YES;
@@ -110,7 +110,7 @@ in
           }
         }
       );
-      SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris", "sogo", "tt", "tt@lesgrandsvoisins.com");
+      SOGoSuperUsernames = ("sogo@${domainName}", "chris@lesgrandsvoisins.com", "chris", "sogo");
       '';
           #       bindDN = "cn=admin,dc=resdigita,dc=org";
           # bindPassword = "${bindPassword}";
