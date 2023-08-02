@@ -47,6 +47,12 @@ in
 
 # SOGoMemcachedHost = "/var/run/memcached.sock";
 ###################################################################################################################################
+services.dovecot2 = {
+  sslServerKey = "/var/certs/cert-${domainName}.pem";
+
+
+
+############################
   mailserver = {
     enable = true;
     fqdn = domainName;
@@ -55,10 +61,12 @@ in
     # down nginx and opens port 80.
     #certificateScheme = "acme-nginx";
     # certificateDomains = (domainName "gvoisin.com" );
-    certificateFile = "/var/certs/cert-${domainName}.pem";
+    # certificateFile = "/var/certs/cert-${domainName}.pem";
+    # keyFile = "/var/certs/key-${domainName}.pem";
     certificateScheme = "acme";
-    certificateDirectory = "/var/certs/";
-    keyFile = "/var/certs/key-${domainName}.pem";
+    certificateFile = "/var/lib/acme/${domainName}/cert.pem";
+    certificateDirectory = "/var/lib/acme/${domainName}/";
+    keyFile = "/var/lib/acme/${domainName}/key.pem";
     ldap = {
       enable = true;
       bind = {
@@ -78,7 +86,7 @@ in
       ];
       searchBase = "ou=users,dc=resdigita,dc=org";
       searchScope = "sub";
-      startTls = false;
+      startTls = true;
       tlsCAFile = "/var/lib/acme/${domainName}/full.pem";
       postfix = {
         mailAttribute = "mail";
