@@ -76,10 +76,10 @@ in
         filter = "uid=%n";
       };
       startTls = true;
-#      dovecot = {
-#         userFilter = "(uid=%n)";
-#         passFilter = "(uid=%n)";
-#      };
+      dovecot = {
+         userFilter = "uid=%n";
+         passFilter = "uid=%n";
+      };
     };
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "";
