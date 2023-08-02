@@ -65,7 +65,7 @@ in
       enable = true;
       bind = {
         dn = "cn=admin,dc=resdigita,dc=org";
-        passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
+        passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
         "ldap:///" ldaps:///

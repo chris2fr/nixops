@@ -158,7 +158,7 @@ in
 
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,dc=resdigita,dc=org";
-          olcRootPW = (builtins.readFile ./.secrets.adminresdigitaorg);
+          olcRootPW = (builtins.readFile ./.secrets.bind);
 
           olcAccess = [
             /* custom access rules for userPassword attributes */
@@ -348,7 +348,7 @@ in
     #certificateScheme = "acme-nginx";
     ldap.enable = true;
     ldap.bind.dn = "cn=admin,dc=resdigita,dc=org";
-    ldap.bind.passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
+    ldap.bind.passwordFile = "/etc/nixos/.secrets.bind";
     ldap.uris = [
         "ldap:///"
     ];
