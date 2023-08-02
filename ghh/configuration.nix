@@ -9,6 +9,7 @@
   imports = [
     ./vpsadminos.nix # Sur vpsfree.cz, pour conformer au containeur
     ./common.nix # Des configurations communes pratiques sur mes installations
+    ./mailserver.nix
   ];
   environment.systemPackages = with pkgs; [
     vim

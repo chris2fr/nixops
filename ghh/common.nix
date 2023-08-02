@@ -40,5 +40,6 @@ in
     killall
     inetutils
     pwgen-secure
+    openldap
   ];
 }
