@@ -75,7 +75,7 @@ in
         uidAttribute = "uid";
         filter = "uid=%n";
       };
-      startTls = true;
+      # startTls = true;
       dovecot = {
          userFilter = "uid=%n";
          passFilter = "uid=%n";
