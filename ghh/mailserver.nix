@@ -43,7 +43,6 @@ in
   #   hostName = "mail.lesgrandsvoisins.com";
   #   enable = true;
   #   dicts = with pkgs.aspellDicts; [ en fr de ];
-
   # }
 
 # SOGoMemcachedHost = "/var/run/memcached.sock";
@@ -77,11 +76,11 @@ in
         filter = "(uid=%n)";
       };
       startTls = true;
-      dovecot = {
-         userFilter = "(uid=%n)";
-         passFilter = "(uid=%n)";
-      };
-    };
+#      dovecot = {
+#         userFilter = "(uid=%n)";
+#         passFilter = "(uid=%n)";
+#      };
+#    };
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
