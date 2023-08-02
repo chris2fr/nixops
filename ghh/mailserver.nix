@@ -78,7 +78,7 @@ in
       ];
       searchBase = "ou=users,dc=resdigita,dc=org";
       searchScope = "sub";
-      startTls = true;
+      startTls = false;
       tlsCAFile = "/var/lib/acme/${domainName}/full.pem";
       postfix = {
         mailAttribute = "mail";
