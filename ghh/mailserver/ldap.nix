@@ -11,7 +11,7 @@ in
     services.openldap = {
     enable = true;
     # urlList = [ "ldap:///" ];
-    urlList = [ "ldaps:///" ];
+    urlList = [ "ldap:/// ldaps:///" ];
     settings = {
       attrs = {
         olcLogLevel = "conns config";
