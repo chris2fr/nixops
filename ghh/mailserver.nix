@@ -60,7 +60,7 @@ in
     certificateDirectory = "/var/certs/";
     keyFile = "/var/certs/key-${domainName}.pem";
     ldap = {
-      enable = true;
+      enable = false;
       bind = {
         dn = "cn=admin,dc=resdigita,dc=org";
         passwordFile = "/etc/nixos/.secrets.bind";
