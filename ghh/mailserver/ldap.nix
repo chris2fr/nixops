@@ -132,7 +132,7 @@ in
           ou: invitations
 
           dn: cn=alice,ou=users,dc=resdigita,dc=org
-          objectClass: top person organizationalPerson inetOrgPerson uidObject
+          objectClass: inetOrgPerson
           cn: alice
           uid: alice
           givenName: alice
@@ -143,7 +143,7 @@ in
           userPassword: ${alicePassword}
 
           dn: cn=bob,ou=users,dc=resdigita,dc=org
-          objectClass: top person organizationalPerson uidObject
+          objectClass: inetOrgPerson
           cn: bob
           uid: bob
           givenName: bob
