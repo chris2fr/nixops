@@ -80,7 +80,7 @@ in
 #         userFilter = "(uid=%n)";
 #         passFilter = "(uid=%n)";
 #      };
-#    };
+    };
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "";
     # ldap.dovecot.userAttrs = ''
