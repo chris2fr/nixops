@@ -72,14 +72,6 @@ in
         dn = "cn=admin,dc=resdigita,dc=org";
         passwordFile = "/etc/nixos/.secrets.bind";
       };
-#      dovecot = {
-#        passAttrs = ''
-#        userPassword=password
-#        mail=mail
-#        '';
-#        userFilter = "uid=$u";
-#        passFilter = "uid=$u";
-#      };
       uris = [
         "ldap:///"
       ];
@@ -89,14 +81,11 @@ in
       tlsCAFile = "/var/lib/acme/${domainName}/full.pem";
       postfix = {
         mailAttribute = "mail";
-        uidAttribute = "uid";
+        uidAttribute = "cn";
         # filter = "uid=%n";
       };
      
-#      dovecot = {
-#         userFilter = "uid=%n";
-#         passFilter = "uid=%n";
-#      };
+
     };
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "";

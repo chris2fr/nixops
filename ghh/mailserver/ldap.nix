@@ -131,21 +131,18 @@ in
           objectClass: organizationalUnit
           ou: invitations
 
-          dn: uid=alice,ou=users,dc=resdigita,dc=org
+          dn: cn=alice,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
           cn: alice@${domainName}
-          uid: alice@${domainName}
           givenName: alice
           displayName: Alice
           sn: Foo
-          uid: alice@${domainName}
           mail: alice@${domainName}
           userPassword: ${alicePassword}
 
-          dn: uid=bob,ou=users,dc=resdigita,dc=org
+          dn: cn=bob,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
           cn: bob
-          uid: bob
           givenName: bob
           sn: Bar
           mail: bob@${domainName}
@@ -155,7 +152,6 @@ in
           objectClass: inetOrgPerson
           cn: sogo
           givenName: sogo
-          uid: sogo
           sn: Administrator
           mail: sogo@${domainName}
           userPassword: ${sogoPassword}

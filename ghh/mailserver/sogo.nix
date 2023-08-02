@@ -3,6 +3,8 @@
 let 
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
   domainName = "test.gvoisins.com";
+  # dc = "dc=test,dc=gvoisins,dc=com";
+  dc = "dc=resdigita,dc=org";
 in
 {
   environment.systemPackages = with pkgs; [
@@ -18,8 +20,8 @@ in
     timezone = "europe/paris";
 
     #       SOGoEnableDomainBasedUID = YES;
-      # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
-      # SOGoDomainsVisibility = ("lesgv.com", "lesgrandsvoisins.com");
+    # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
+    # SOGoDomainsVisibility = ("lesgv.com", "lesgrandsvoisins.com");
     # 
     #       SOGoUIxDebugEnabled 
     # 
@@ -75,15 +77,15 @@ in
           id = cn;
           type = ldap;
           CNFieldName = cn;
-          IDFieldName = uid;
-          UIDFieldName = uid;
+          IDFieldName = cn;
+          UIDFieldName = cn;
           baseDN = "ou=users,dc=resdigita,dc=org";
           canAuthenticate = YES;
           displayName = "Voisins";
           hostname = "ldaps://${domainName}";
           isAddressBook = NO;
           MailFieldNames = ("mail");
-          IMAPLoginFieldName = uid;
+          IMAPLoginFieldName = cn;
           bindAsCurrentUser = YES;
           mapping = {
             mozillasecondemail = ("carLicense");
