@@ -75,15 +75,15 @@ in
           id = cn;
           type = ldap;
           CNFieldName = cn;
-          IDFieldName = cn;
-          UIDFieldName = cn;
+          IDFieldName = uid;
+          UIDFieldName = uid;
           baseDN = "ou=users,dc=resdigita,dc=org";
           canAuthenticate = YES;
           displayName = "Voisins";
           hostname = "ldaps://${domainName}";
           isAddressBook = NO;
           MailFieldNames = ("mail");
-          IMAPLoginFieldName = mail;
+          IMAPLoginFieldName = uid;
           bindAsCurrentUser = YES;
           mapping = {
             mozillasecondemail = ("carLicense");

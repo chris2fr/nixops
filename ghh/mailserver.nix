@@ -73,13 +73,13 @@ in
       tlsCAFile = "/var/certs/cert-${domainName}.pem";
       postfix = {
         mailAttribute = "mail";
-        uidAttribute = "cn";
-        filter = "(cn=%s)";
+        uidAttribute = "uid";
+        filter = "(uid=%n)";
       };
       startTls = true;
       dovecot = {
-         userFilter = "(cn=%n)";
-         passFilter = "(cn=%n)";
+         userFilter = "(uid=%n)";
+         passFilter = "(uid=%n)";
       };
     };
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";

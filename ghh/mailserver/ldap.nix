@@ -131,33 +131,34 @@ in
           objectClass: organizationalUnit
           ou: invitations
 
-          dn: cn=alice@${domainName},ou=users,dc=resdigita,dc=org
-          objectClass: inetOrgPerson
-          cn: alice@${domainName}
+          dn: cn=alice,ou=users,dc=resdigita,dc=org
+          objectClass: top person organizationalPerson inetOrgPerson uidObject
+          cn: alice
+          uid: alice
           givenName: alice
+          displayName: Alice
           sn: Foo
           uid: alice
           mail: alice@${domainName}
           userPassword: ${alicePassword}
 
-          dn: cn=bob@${domainName},ou=users,dc=resdigita,dc=org
-          objectClass: inetOrgPerson
-          cn: bob@${domainName}
+          dn: cn=bob,ou=users,dc=resdigita,dc=org
+          objectClass: top person organizationalPerson uidObject
+          cn: bob
           uid: bob
           givenName: bob
           sn: Bar
           mail: bob@${domainName}
           userPassword: ${bobPassword}
 
-          dn: cn=sogo@${domainName},ou=users,dc=resdigita,dc=org
+          dn: cn=sogo,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
-          cn: sogo@${domainName}
+          cn: sogo
           givenName: sogo
           uid: sogo
           sn: Administrator
           mail: sogo@${domainName}
           userPassword: ${sogoPassword}
-
         '';
   };
 #  /* ensure openldap is launched after certificates are created */
