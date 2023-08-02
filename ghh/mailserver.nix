@@ -66,7 +66,7 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
-        "ldaps://[::]:636/"
+        "ldaps://${domainName}"
       ];
       searchBase = "ou=users,dc=resdigita,dc=org";
       tlsCAFile = "/var/certs/cert-${domainName}.pem";
