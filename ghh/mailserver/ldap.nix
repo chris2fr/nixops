@@ -131,7 +131,7 @@ in
           objectClass: organizationalUnit
           ou: invitations
 
-          dn: cn=alice,ou=users,dc=resdigita,dc=org
+          dn: uid=alice,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
           cn: alice
           uid: alice
@@ -142,7 +142,7 @@ in
           mail: alice@${domainName}
           userPassword: ${alicePassword}
 
-          dn: cn=bob,ou=users,dc=resdigita,dc=org
+          dn: uid=bob,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
           cn: bob
           uid: bob
