@@ -85,16 +85,16 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
-        "ldap:///" ldaps:///
+        "ldap:///"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
       tlsCAFile = "/var/lib/acme/${domainName}/cert.pem";
-      postfix = {
-        mailAttribute = "mail";
-        uidAttribute = "cn";
-        filter = "(cn=%s)";
-      };
+      #postfix = {
+      #  mailAttribute = "mail";
+      #  uidAttribute = "cn";
+      #  filter = "(cn=%s)";
+      #};
 #      startTls = true;
 #      dovecot = {
 #         userFilter = "(cn=%s)";
