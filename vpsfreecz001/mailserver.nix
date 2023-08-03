@@ -93,13 +93,13 @@ in
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "cn";
-        filter = "(cn=%s)";
+        # filter = "(cn=%s)";
       };
 #      startTls = true;
-#      dovecot = {
-#         userFilter = "(cn=%s)";
-#         passFilter = "(cn=%s)";
-#      };
+      dovecot = {
+         userFilter = "(cn=%s)";
+         passFilter = "(cn=%s)";
+      };
     };
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "";
