@@ -3,7 +3,7 @@
 #
 { config, pkgs, lib, ... }:
 let 
-  domainName = "ghh.gvoisins.com";
+  domainName = import ./vars/domian-name.nix;
 in
 {
   services.fail2ban = {

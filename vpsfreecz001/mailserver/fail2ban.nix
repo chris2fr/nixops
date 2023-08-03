@@ -3,17 +3,22 @@
 #
 { config, pkgs, lib, ... }:
 let 
+  domainName = import ./domainName;
+  # Whitelisting some subnets:
+  whitelistSubnets =  [ 
+      "10.0.0.0/8" 
+      "172.16.0.0/12" 
+      "192.168.0.0/16"
+      "8.8.8.8" # Resolves the IP via DNS
+      domainName 
+      ];
+  
 in
 {
   services.fail2ban = {
     enable = true;
     maxretry = 5; # Observe 5 violations before banning an IP
-    ignoreIP = [
-      # Whitelisting some subnets:
-      "10.0.0.0/8" "172.16.0.0/12" "192.168.0.0/16"
-      "8.8.8.8" # Whitelists a specific IP
-      "mail.resdigita.com" # Resolves the IP via DNS
-    ];
+    ignoreIP = whitelistSubnets;
     bantime = "24h"; # Set bantime to one day
     bantime-increment = {
       enable = true; # Enable increment of bantime after each violation

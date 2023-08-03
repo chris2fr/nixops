@@ -13,7 +13,6 @@ in
     services.memcached = {
     enable = true;
   };
-
   services.sogo = {
     enable = true;
     language = "fr-fr";

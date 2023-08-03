@@ -22,7 +22,7 @@ in
     sogo
     postgresql
     openldap
-    pwgen-secure
+    pwgen
   ];
   ## Needed for the contaiiner system of vpsfree.cz
   systemd.enableUnifiedCgroupHierarchy = false;

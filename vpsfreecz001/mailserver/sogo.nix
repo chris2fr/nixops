@@ -1,7 +1,10 @@
 { config, pkgs, lib, ... }:
 
 let 
-  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.adminresdigitaorg));
+  bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
+  domainNameForEmail = import ./vars/domain-name-for-email.nix
+  ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix
+  domainName = import ./vars/domain-name-mail.nix
 in
 {
   environment.systemPackages = with pkgs; [
@@ -14,7 +17,7 @@ in
   services.sogo = {
     enable = true;
     language = "fr-fr";
-    timezone = "europe/paris";
+    timezone = "Europe/Paris";
 
     #       SOGoEnableDomainBasedUID = YES;
       # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
@@ -39,7 +42,7 @@ in
       WOLogFile = /var/log/sogo/sogo.log;
       WOWorkersCount = 3;
       SxVMemLimit = 300;
-      SOGoMailDomain = "resdigita.org";
+      SOGoMailDomain = domainNameForEmail;
       SOGoLanguage = French;
       SOGoAppointmentSendEMailNotifications = YES;
       SOGoEnablePublicAccess = YES;
@@ -66,8 +69,8 @@ in
       SOGoMailSignaturePlacement = above;
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
-      SOGoSMTPServer = "smtps://mail.resdigita.com/";
-      SOGoIMAPServer = "imap://mail.resdigita.com:143/?tls=YES";
+      SOGoSMTPServer = "smtps://${domainName}/";
+      SOGoIMAPServer = "imap://${domainName}:143/?tls=YES";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {
@@ -76,10 +79,10 @@ in
           CNFieldName = cn;
           IDFieldName = cn;
           UIDFieldName = cn;
-          baseDN = "ou=users,dc=resdigita,dc=org";
+          baseDN = "ou=users,${ldapBaseDCDN}";
           canAuthenticate = YES;
           displayName = "Voisins";
-          hostname = "ldaps://mail.resdigita.com";
+          hostname = "ldaps://${domainName}";
           isAddressBook = NO;
           MailFieldNames = ("mail");
           IMAPLoginFieldName = mail;
@@ -111,11 +114,11 @@ in
       );
       SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris", "sogo", "tt", "tt@lesgrandsvoisins.com");
       '';
-          #       bindDN = "cn=admin,dc=resdigita,dc=org";
+          #       bindDN = "cn=admin,${ldapBaseDCDN}";
           # bindPassword = "${bindPassword}";
             # SOGoMemcachedHost = "/var/run/memcached.sock";
       # SOGoMemcachedHost = "unix:///var/run/memcached/memcached.sock";
-      # SOGoIMAPServer = "imaps://mail.resdigita.com/";
+      # SOGoIMAPServer = "imaps://${domainName}/";
 
   # SOGoUserSources =
   #     (
@@ -132,11 +135,8 @@ in
 
 
           #### From SOGoUserSources = ( {  id = voisins;      
-
-      
-                    # MailFieldNames = ("mail");
-
-                          # SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
+          # MailFieldNames = ("mail");
+          # SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
 
   };
   users.groups.memcached.members = [ "sogo" ];

@@ -1,10 +1,23 @@
 { config, pkgs, lib, ... }:
 
 let 
-  bindPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.adminresdigitaorg));
-  alicePassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.alice));
-  bobPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.bob));
-  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile ../.secrets.mailserver.sogo));
+  bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
+  alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
+  bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
+  sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
+  domainName = import mailserver/vars/domain-name-mx.nix;
+  mailServerDomainAliases = [ 
+    "mail.resdigita.com"
+    "resdigita.org"
+    "resdigita.com"
+    "lesgrandsvoisins.com"
+    "lesgv.com"
+    "lesgv.org"
+    "gvoisin.com"
+    "gvoisin.org"
+    "gvoisins.org"
+    "gvoisins.com"
+    ];
 in
 {
   imports = [
@@ -21,13 +34,14 @@ in
     sogo
     postgresql
     openldap
+    pwgen
   ];
   ## Needed for the contaiiner system of vpsfree.cz
   systemd.enableUnifiedCgroupHierarchy = false;
   systemd.enableCgroupAccounting = false;
-  users.users."web2ldap" = {
-    isNormalUser = true;
-  };
+  # users.users."web2ldap" = {
+  #   isNormalUser = true;
+  # };
   services.memcached = {
     enable = true;
     # maxMemory = 256;
@@ -38,48 +52,53 @@ in
   };
 
   # services.roundcube = {
-  #   hostName = "mail.lesgrandsvoisins.com";
+  #   hostName = "${domainName}";
   #   enable = true;
   #   dicts = with pkgs.aspellDicts; [ en fr de ];
-
   # }
 
 # SOGoMemcachedHost = "/var/run/memcached.sock";
 ###################################################################################################################################
   mailserver = {
     enable = true;
-    fqdn = "mail.resdigita.com";
-    domains = [ "resdigita.org" "resdigita.com" "lesgrandsvoisins.com" "lesgv.com" "lesgv.org" "gvoisin.com" "gvoisin.org" "gvoisins.org" "gvoisins.com"];
+    fqdn = domainName;
+    domains = mailServerDomainAliases;
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
-    #certificateScheme = "acme-nginx";
+    # certificateScheme = "acme-nginx";
     # certificateDomains = ("mail.resdigita.com" "gvoisin.com" );
-    certificateFile = "/var/certs/cert-mail.resdigita.com.pem";
+    # certificateFile = "/var/certs/cert-mail.resdigita.com.pem";
+    # certificateScheme = "acme";
+    # certificateDirectory = "/var/certs/";
+    # keyFile = "/var/certs/key-mail.resdigita.com.pem";
     certificateScheme = "acme";
-    certificateDirectory = "/var/certs/";
-    keyFile = "/var/certs/key-mail.resdigita.com.pem";
+    certificateDirectory = "/var/lib/acme/${domainName}/";
+    keyFile =  "/var/lib/acme/${domainName}/key.pem";
+    certificateFile = "/var/lib/acme/${domainName}/cert.pem";
+    
     ldap = {
       enable = true;
       bind = {
-        dn = "cn=admin,dc=resdigita,dc=org";
-        passwordFile = "/etc/nixos/.secrets.adminresdigitaorg";
+        dn = "cn=admin,${ldapBaseDCDN}";
+        passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
         "ldap:///" ldaps:///
       ];
-      searchBase = "ou=users,dc=resdigita,dc=org";
-      tlsCAFile = "/var/certs/cert-mail.resdigita.com.pem";
+      searchBase = "ou=users,${ldapBaseDCDN}";
+      searchScope = "sub";
+      tlsCAFile = "/var/lib/acme/${domainName}/cert.pem";
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "cn";
         filter = "(cn=%s)";
       };
-      startTls = true;
-      dovecot = {
-         userFilter = "(cn=%n)";
-         passFilter = "(cn=%n)";
-      };
+#      startTls = true;
+#      dovecot = {
+#         userFilter = "(cn=%s)";
+#         passFilter = "(cn=%s)";
+#      };
     };
     # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
     # ldap.postfix.filter = "";
