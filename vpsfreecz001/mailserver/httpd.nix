@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }:
 let 
-  domainName = "${domainName}";
   # Each domain alias needs to always point here 
   domainRedirectAliases = [
     "mail.resdigita.org" 
@@ -20,6 +19,9 @@ let
     "app.lesgrandsvoisins.com"
     "mail.resdigita.com"
     ];
+    domainNameForEmail = import ./vars/domain-name-for-email.nix;
+    ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
+    domainName = import ./vars/domain-name-mail.nix;
 in
 {
   services.httpd.virtualHosts."www.${domainName}" = {
