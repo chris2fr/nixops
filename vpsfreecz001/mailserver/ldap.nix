@@ -5,13 +5,13 @@ let
   alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
-  domainName = import ./vars/domain-name-mx.nix;
+  domainName = import ./vars/domain-name-mail.nix;
   ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
 in
 {
     services.openldap = {
     enable = true;
-    urlList = [ "ldap:///" "ldaps:///" ];
+    urlList = [ "ldap:/// ldaps:///" ];
     settings = {
       attrs = {
         olcLogLevel = "conns config";
@@ -49,7 +49,7 @@ in
 
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,${ldapBaseDCDN}";
-          olcRootPW = (builtins.readFile /etc/nixos/.secrets.adminresdigitaorg);
+          olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
 
           olcAccess = [
             /* custom access rules for userPassword attributes */

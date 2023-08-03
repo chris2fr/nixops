@@ -8,10 +8,10 @@ let
   domainName = import mailserver/vars/domain-name-mx.nix;
   ldapBaseDCDN = import /etc/nixos/mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [ 
+    "lesgrandsvoisins.com"
     "mail.resdigita.com"
     "resdigita.org"
     "resdigita.com"
-    "lesgrandsvoisins.com"
     "lesgv.com"
     "lesgv.org"
     "gvoisin.com"
@@ -63,7 +63,7 @@ in
   mailserver = {
     enable = true;
     fqdn = domainName;
-    domains = mailServerDomainAliases;
+    # domains = mailServerDomainAliases;
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
@@ -74,10 +74,9 @@ in
     # certificateDirectory = "/var/certs/";
     # keyFile = "/var/certs/key-mail.resdigita.com.pem";
     certificateScheme = "acme";
-    certificateDirectory = "/var/lib/acme/${domainName}/";
-    keyFile =  "/var/lib/acme/${domainName}/key.pem";
     certificateFile = "/var/lib/acme/${domainName}/cert.pem";
-    
+    certificateDirectory = "/var/lib/acme/${domainName}/";
+    keyFile =  "/var/lib/acme/${domainName}/key.pem";    
     ldap = {
       enable = true;
       bind = {
@@ -90,12 +89,12 @@ in
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
       tlsCAFile = "/var/lib/acme/${domainName}/cert.pem";
-      #postfix = {
-      #  mailAttribute = "mail";
-      #  uidAttribute = "cn";
+      postfix = {
+        mailAttribute = "mail";
+        uidAttribute = "cn";
       #  filter = "(cn=%s)";
-      #};
-#      startTls = true;
+      };
+      startTls = false;
 #      dovecot = {
 #         userFilter = "(cn=%s)";
 #         passFilter = "(cn=%s)";
@@ -132,16 +131,16 @@ in
     maxproc = 1;
   };
 
-services.postfix.networks = [
-  "localhost"
-  "127.0.0.1"
-  "[::1]"
-  "mail.resdigita.com"
-  "mail.lesgrandsvoisins.com"
-  "ooo.lesgrandsvoisins.com"
-  "51.159.223.7"
-  "2001:bc8:1201:900:46a8:42ff:fe22:e5b6"
-  ];
+#services.postfix.networks = [
+#  "localhost"
+#  "127.0.0.1"
+#  "[::1]"
+#  "mail.resdigita.com"
+#  "mail.lesgrandsvoisins.com"
+#  "ooo.lesgrandsvoisins.com"
+#  "51.159.223.7"
+#  "2001:bc8:1201:900:46a8:42ff:fe22:e5b6"
+#  ];
 
 ###################################################################################################################################
   services.postgresql = {

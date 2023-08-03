@@ -47,7 +47,6 @@ in
 
           olcDatabase = "{1}mdb";
           olcDbDirectory = "/var/lib/openldap/data";
-
           olcSuffix = "dc=resdigita,dc=org";
 
           /* your admin account, do not use writeText on a production system */
