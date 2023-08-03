@@ -131,16 +131,16 @@ in
     maxproc = 1;
   };
 
-#services.postfix.networks = [
-#  "localhost"
-#  "127.0.0.1"
-#  "[::1]"
-#  "mail.resdigita.com"
-#  "mail.lesgrandsvoisins.com"
-#  "ooo.lesgrandsvoisins.com"
-#  "51.159.223.7"
-#  "2001:bc8:1201:900:46a8:42ff:fe22:e5b6"
-#  ];
+services.postfix.networks = [
+  "localhost"
+  "127.0.0.1"
+  "[::1]"
+  "mail.resdigita.com"
+  "mail.lesgrandsvoisins.com"
+  "ooo.lesgrandsvoisins.com"
+  "51.159.223.7"
+  "2001:bc8:1201:900:46a8:42ff:fe22:e5b6"
+  ];
 
 ###################################################################################################################################
   services.postgresql = {
