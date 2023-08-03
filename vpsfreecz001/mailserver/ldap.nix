@@ -6,7 +6,7 @@ let
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   domainName = import ./vars/domain-name-mx.nix;
-  ldapBaseDCDN = import ./vars/ldap-base-dc-dn;
+  ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
 in
 {
     services.openldap = {

@@ -6,7 +6,7 @@ let
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   domainName = import mailserver/vars/domain-name-mx.nix;
-  ldapBaseDCDN = import mailserver/vars/ldap-base-dc-dn.nix;
+  ldapBaseDCDN = import /etc/nixos/mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [ 
     "mail.resdigita.com"
     "resdigita.org"
