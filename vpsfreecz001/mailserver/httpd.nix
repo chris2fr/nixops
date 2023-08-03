@@ -21,7 +21,7 @@ let
     ];
     domainNameForEmail = import ./vars/domain-name-for-email.nix;
     ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
-    domainName = import ./vars/domain-name-mail.nix;
+    domainName = import /etc/nixos/mailserver/vars/domain-name-mail.nix;
 in
 {
   services.httpd.virtualHosts."www.${domainName}" = {
