@@ -1,1 +1,1 @@
-"dc=lesgrandsvoisins,dc=com"
+"dc=resdigita,dc=org"
