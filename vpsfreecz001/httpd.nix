@@ -40,8 +40,12 @@ in
       "coopgv.com"
       "www.coopgv.com"
       "wagtail.l-g-v.com"
+      "gvoisins.org"
+      "gvoisins.com"
+      "www.gvoisins.com"
+      "www.lesgrandsvoisins.com"
     ];
-    globalRedirect = "https://www.lesgrandsvoisins.com/";
+    globalRedirect = "https://www.gvoisins.org/";
   };
   services.httpd.virtualHosts."avmeet.com" = {
     enableACME = true;
@@ -58,7 +62,7 @@ in
 #    forceSSL = true;
 #    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
 #  };
-  services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
+  services.httpd.virtualHosts."www.gvoisins.org" = {
     serverAliases = [
       "app.lesgrandsvoisins.com"
       "www.avmeet.com"
@@ -66,7 +70,16 @@ in
       "auth.lesgrandsvoisins.com"
       "forum.lesgrandsvoisins.com"
       "meet.lesgrandsvoisins.com"
-      "wiki.lesgrandsvoisins.com" ];
+      "wiki.lesgrandsvoisins.com"
+      "app.gvoisins.org"
+      "guichet.gvoisins.org"
+      "odoo.gvoisins.org"
+      "discourse.gvoisins.org"
+      "keycloak.gvoisins.org"
+      "meet.gvoisins.org"
+      "meet.gvoisins.com"
+      "wiki.gvoisins.org"
+      ];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
