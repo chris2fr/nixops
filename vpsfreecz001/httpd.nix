@@ -43,9 +43,9 @@ in
       "gvoisins.org"
       "gvoisins.com"
       "www.gvoisins.com"
-      "www.lesgrandsvoisins.com"
+      "www.gvoisins.org"
     ];
-    globalRedirect = "https://www.gvoisins.org/";
+    globalRedirect = "https://www.lesgrandsvoisins.com/";
   };
   services.httpd.virtualHosts."avmeet.com" = {
     enableACME = true;
@@ -62,7 +62,7 @@ in
 #    forceSSL = true;
 #    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
 #  };
-  services.httpd.virtualHosts."www.gvoisins.org" = {
+  services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
     serverAliases = [
       "app.lesgrandsvoisins.com"
       "www.avmeet.com"

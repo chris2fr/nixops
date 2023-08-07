@@ -25,16 +25,14 @@ in
 #    sha256 = "";
 #  };
 
-  users.users = rec {
-    fossil = {
+  users.users.fossil = rec {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    };
-    mannchri = {
+  };
+  users.users.mannchri = rec {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
       extraGroups = [ "wheel" "networkmanager" ];
-    };
   };
   home-manager.users.fossil = {pkgs, ...}: {
     home.packages = with pkgs; [ 
@@ -77,7 +75,7 @@ in
     DefaultTimeoutStartSec=600s
   '';
 
-  time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/Paris";
 
   system.stateVersion = "23.05";
 
