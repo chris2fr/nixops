@@ -14,6 +14,7 @@ in
     serverAliases = [
       "villagevoisin.com"
       "www.villagevoisin.com"
+    ];
     enableACME = true;
     forceSSL = true;
     globalRedirect = "https://www.villagevoisin.org/";
