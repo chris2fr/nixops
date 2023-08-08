@@ -20,16 +20,9 @@ let
     ];
     domainNameForEmail = import ./vars/domain-name.nix;
     ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
-    domainName = import /etc/nixos/mailserver/vars/domain-name.nix;
+    domainName = import /etc/nixos/mailserver/vars/domain-name-mail.nix;
 in
 {
-  services.httpd.virtualHosts."www.${domainName}" = {
-    serverAliases = domainRedirectAliases;
-    enableACME = true;
-    forceSSL = true;
-    documentRoot =  "/var/www/SOGo";
-    globalRedirect = "https://${domainName}/";
-  };
   services.httpd.virtualHosts."${domainName}" = {
     enableACME = true;
     forceSSL = true;
