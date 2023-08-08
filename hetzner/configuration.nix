@@ -40,7 +40,7 @@ in
   };
 
   services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = false;
+  services.openssh.settings.PermitRootLogin = "no";
   # networking.firewall.enable = false;
 
   # Common configuration options
