@@ -26,16 +26,16 @@ in
 
   # Networking
   networking.hostName = "lesgrandsvoisins"; # Define your hostname.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-  networking.useDHCP = true;
-  networking.enableIPv6 = true;
-  networking.nat.externalIPv6 = "2a01:4f9:1a:9622::/96";
-  networking.interfaces.enp41s0.ipv6.addresses = [
-    {
-      address = "2a01:4f9:1a:9622::";
-      prefixLength = 96;
-    }
-  ];
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+#  networking.useDHCP = true;
+#  networking.enableIPv6 = true;
+#  networking.nat.externalIPv6 = "2a01:4f9:1a:9622::/96";
+#  networking.interfaces.enp41s0.ipv6.addresses = [
+#    {
+#      address = "2a01:4f9:1a:9622::";
+#      prefixLength = 96;
+#    }
+#  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
