@@ -27,6 +27,10 @@ in
   # Networking
   networking.hostName = "lesgrandsvoisins"; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.extraConfig = ''
+  [ipv6]
+  method=auto
+  '';
 #  networking.useDHCP = true;
   networking.enableIPv6 = true;
   networking.interfaces.enp41s0.ipv6.addresses = [
@@ -35,7 +39,7 @@ in
       prefixLength = 64;
     }
   ];
-  networking.defaultGateway6 = { address = "fe80::1"; interface = "enp41s0"; };
+#  networking.defaultGateway6 = { address = "fe80::1"; interface = "enp41s0"; };
 #  networking.defaultGateway6 = {
 #    address = "fe80::919c:2ec2:a837:ec1b";
 #    interface = "enp41s0";
