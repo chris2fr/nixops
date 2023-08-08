@@ -13,7 +13,6 @@ in
   services.httpd.virtualHosts."villagevoisin.org" = {
     serverAliases = [
       "villagevoisin.com"
-      "www.villagevoisin.com"
     ];
     enableACME = true;
     forceSSL = true;
