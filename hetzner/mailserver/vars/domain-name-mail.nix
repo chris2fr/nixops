@@ -1,1 +1,1 @@
-"mail.lesgrandsvoisins.com"
+"mail.villagevoisin.org"

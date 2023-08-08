@@ -58,6 +58,15 @@ in
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;
   };
+  home-manager.users.guichet = {pkgs, ...}: {
+    home.packages = with pkgs; [ 
+      go
+      gnumake
+      python311
+    ];
+    home.stateVersion = "23.05";
+    programs.home-manager.enable = true;
+  };
 
   home-manager.users.mannchri = {pkgs, ...}: {
     home.packages = [ pkgs.atool pkgs.httpie ];
