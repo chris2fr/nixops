@@ -10,6 +10,14 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+    ./httpd.nix
+    ./mailserver.nix
+    ./guichet.nix
+    ./postgresql.nix
+#    ./users.nix
+    ./wagtail.nix
+    ./common.nix # Des configurations communes pratiques
+    <home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -38,17 +46,28 @@ in
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     extraGroups = [ "wheel" ];
   };
+  users.users.fossil = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+  };
 
-  services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "no";
-  # networking.firewall.enable = false;
+  home-manager.users.fossil = {pkgs, ...}: {
+    home.packages = with pkgs; [ 
+      fossil
+    ];
+    home.stateVersion = "23.05";
+    programs.home-manager.enable = true;
+  };
 
-  # Common configuration options
-  environment.systemPackages = with pkgs; [
-    ((vim_configurable.override {  }).customize{
-      name = "vim";
-      vimrcConfig.customRC = ''
-        " your custom vimrc
+  home-manager.users.mannchri = {pkgs, ...}: {
+    home.packages = [ pkgs.atool pkgs.httpie ];
+    home.stateVersion = "23.05";
+    programs.home-manager.enable = true;
+    programs.vim = {
+      enable = true;
+      plugins = with pkgs.vimPlugins; [ vim-airline ];
+      settings = { ignorecase = true; tabstop = 2; };
+      extraConfig = ''
         set mouse=a
         set nocompatible
         colo torte
@@ -59,27 +78,13 @@ in
         set expandtab
         set autoindent
         set smartindent
-        " ...
       '';
-      }
-    )
-    home-manager
-    curl
-    wget
-    lynx
-    git
-    tmux
-    bat
-    python311Packages.pillow
-    python311Packages.pylibjpeg-libjpeg
-    zlib
-    lzlib
-    dig
-    killall
-    inetutils
-    pwgen
-    openldap
-  ];
+    };
+  };
+
+  services.openssh.enable = true;
+  services.openssh.settings.PermitRootLogin = "no";
+  # networking.firewall.enable = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -102,7 +107,7 @@ in
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 80 443 143 636 ];
+  networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -119,6 +124,15 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
+
+  environment.sessionVariables = rec {
+    EDITOR="vim";
+    WAGTAIL_ENV = "production";
+  };
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "contact@lesgrandsvoisins.com";
+  };
 
 }
 
