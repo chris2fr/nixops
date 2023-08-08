@@ -12,28 +12,7 @@ in
     services.openldap = {
     enable = true;
     urlList = [ "ldap:/// ldaps:///" ];
-    settings = {
-      attrs = {
-        olcLogLevel = "conns config";
-        /* settings for acme ssl */
-        olcTLSCACertificateFile = "/var/lib/acme/${domainName}/full.pem";
-        olcTLSCertificateFile = "/var/lib/acme/${domainName}/cert.pem";
-        olcTLSCertificateKeyFile = "/var/lib/acme/${domainName}/key.pem";
-        olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
-        olcTLSCRLCheck = "none";
-        olcTLSVerifyClient = "never";
-        olcTLSProtocolMin = "3.1";
-        olcThreads = "16";
-      };
-      children = {
-        "cn=schema".includes = [
-          "${pkgs.openldap}/etc/schema/core.ldif"
-          "${pkgs.openldap}/etc/schema/cosine.ldif"
-          "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
-          "${pkgs.openldap}/etc/schema/nis.ldif"
-        ];
-
-      declarativeContents."dc=resdigita,dc=org" = ''
+    declarativeContents."dc=resdigita,dc=org" = ''
           dn: dc=resdigita,dc=org
           objectClass: domain
           dc: resdigita
@@ -82,7 +61,28 @@ in
           userPassword: ${sogoPassword}
 
         '';
+    settings = {
+      attrs = {
+        olcLogLevel = "conns config";
+        /* settings for acme ssl */
+        olcTLSCACertificateFile = "/var/lib/acme/${domainName}/full.pem";
+        olcTLSCertificateFile = "/var/lib/acme/${domainName}/cert.pem";
+        olcTLSCertificateKeyFile = "/var/lib/acme/${domainName}/key.pem";
+        olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
+        olcTLSCRLCheck = "none";
+        olcTLSVerifyClient = "never";
+        olcTLSProtocolMin = "3.1";
+        olcThreads = "16";
+      };
+      children = {
+        "cn=schema".includes = [
+          "${pkgs.openldap}/etc/schema/core.ldif"
+          "${pkgs.openldap}/etc/schema/cosine.ldif"
+          "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
+          "${pkgs.openldap}/etc/schema/nis.ldif"
+        ];
 
+      
         "olcDatabase={1}mdb".attrs = {
           objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
 
