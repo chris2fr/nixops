@@ -35,6 +35,10 @@ in
       prefixLength = 96;
     }
   ];
+  networking.defaultGateway6 = {
+    address = "fe80::919c:2ec2:a837:ec1b";
+    interface = "enp41s0";
+  };
 
 
   # Set your time zone.
