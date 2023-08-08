@@ -18,9 +18,9 @@ let
     "www.gvoisins.com"
     "mail.resdigita.com"
     ];
-    domainNameForEmail = import ./vars/domain-name-for-email.nix;
+    domainNameForEmail = import ./vars/domain-name.nix;
     ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
-    domainName = import /etc/nixos/mailserver/vars/domain-name-mail.nix;
+    domainName = import /etc/nixos/mailserver/vars/domain-name.nix;
 in
 {
   services.httpd.virtualHosts."www.${domainName}" = {

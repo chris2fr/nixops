@@ -2,7 +2,7 @@
 
 let 
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
-  domainNameForEmail = import ./vars/domain-name-for-email.nix;
+  domainNameForEmail = import ./vars/domain-name.nix;
   ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
   domainName = import ./vars/domain-name-mail.nix;
 in
