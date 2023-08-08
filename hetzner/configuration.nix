@@ -30,6 +30,12 @@ in
   networking.useDHCP = true;
   networking.enableIPv6 = true;
   networking.nat.externalIPv6 = "2a01:4f9:1a:9622::/96";
+  networking.interfaces.enp41s0.ipv6.addresses = [
+    {
+      address = "2a01:4f9:1a:9622::";
+      prefixLength = "96";
+    }
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
