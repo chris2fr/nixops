@@ -141,6 +141,7 @@ in
   security.acme = {
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
+    defaults.webroot = "/var/www";
   };
 
 }
