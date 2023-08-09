@@ -42,5 +42,6 @@ in
     pwgen
     openldap
     mariadb
+    odoo
   ];
 }
