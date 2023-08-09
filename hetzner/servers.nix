@@ -12,7 +12,7 @@ in
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
-  home-manager.users.mannchri = {pkgs, ...}: {
+  home-manager.users.aaa = {pkgs, ...}: {
     nixpkgs = {
       config = {
         allowUnfree = true;
@@ -24,6 +24,18 @@ in
     home.packages = with pkgs; [ 
       nodejs_20
       mongodb
+    ];
+  };
+  users.users.ghostio = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+  }
+  home-manager.users.ghostio = {pkgs, ...}: {
+    home.stateVersion = "23.05";
+    programs.home-manager.enable = true;
+    home.packages = with pkgs; [ 
+      mariadb
+      nodejs_20
     ];
   };
 }
