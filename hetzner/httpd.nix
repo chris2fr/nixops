@@ -78,7 +78,7 @@ in
     ProxyPreserveHost On
     CacheDisable /
     '';
-  }
+  };
 #  services.httpd.virtualHosts."www.resdigita.com" = {
 #    enableACME = true;
 #    forceSSL = true;
