@@ -7,25 +7,22 @@ in
   users.users.mannchri.extraGroups = [ "wwwrun" ];
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
-  services.httpd.adminAddr = "contact@villagevoisin.org";
+  services.httpd.adminAddr = "contact@gvois.in";
   services.httpd.extraModules = [ "proxy" "proxy_http" ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
-  services.httpd.virtualHosts."villagevoisin.org" = {
-    serverAliases = [
-      "villagevoisin.com"
-    ];
+  services.httpd.virtualHosts."gvois.in" = {
     enableACME = true;
     forceSSL = true;
-    globalRedirect = "https://www.villagevoisin.org/";
+    globalRedirect = "https://www.gvois.in/";
   };
-  services.httpd.virtualHosts."www.villagevoisin.org" = {
+  services.httpd.virtualHosts."www.gvois.in" = {
     serverAliases = [
-      "guichet.villagevoisin.org"
-      "odoo.villagevoisin.org"
-      "keycloak.villagevoisin.org"
-      "discourse.villagevoisin.org"
-      "meet.villagevoisin.org"
-      "jswiki.villagevoisin.org"
+      "guichet.gvois.in"
+      "odoo.gvois.in"
+      "keycloak.gvois.in"
+      "discourse.gvois.in"
+      "meet.gvois.in"
+      "jswiki.gvois.in"
       ];
     enableACME = true;
     forceSSL = true;
@@ -49,7 +46,7 @@ in
 #    enableACME = true;
 #    forceSSL = true;
 ##    documentRoot =  "/var/www/wagtail/";
-#    globalRedirect = "https://www.villagevoisin.org/resdigita";
+#    globalRedirect = "https://www.gvois.in/resdigita";
 ##    extraConfig = ''
 ##    <Location />
 ##    Require all granted
@@ -70,7 +67,7 @@ in
 #    enableACME = true;
 #    forceSSL = true;
 ##    documentRoot =  "/var/www/wagtail/";
-#    globalRedirect = "https://www.villagevoisin.org/resdigita";
+#    globalRedirect = "https://www.gvois.in/resdigita";
 ##    extraConfig = ''
 ##    <Location />
 ##    Require all granted
