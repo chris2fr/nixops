@@ -13,7 +13,12 @@ in
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
   home-manager.users.mannchri = {pkgs, ...}: {
-    allowUnfree = true;
+    nixpkgs = {
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = (_: true);
+      };
+    };
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;
     home.packages = with pkgs; [ 
