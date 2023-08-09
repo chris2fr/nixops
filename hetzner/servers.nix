@@ -38,7 +38,7 @@ in
     programs.home-manager.enable = true;
     home.packages = with pkgs; [ 
       mariadb
-      nodejs_20
+      nodejs_18
     ];
   };
   ## ODOO FOR
