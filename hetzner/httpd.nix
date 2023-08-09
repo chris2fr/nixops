@@ -33,7 +33,7 @@ in
     ProxyPreserveHost On
     CacheDisable /
     '';
-  }
+  };
   services.httpd.virtualHosts."www.gvois.in" = {
     serverAliases = [
       "odoo.gvois.in"
