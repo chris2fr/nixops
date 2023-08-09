@@ -113,8 +113,8 @@ in
       WorkingDirectory = "/var/www/ghostio";
       User = "ghostio";
       Environment = "NODE_ENV=production";
-      ExecStart = "/home/ghostio/.nix-profile/bin/node /home/ghostio/node_modules/ghost-cli/bin/ghost run
-      Restart=always
+      ExecStart = "/home/ghostio/.nix-profile/bin/node /home/ghostio/node_modules/ghost-cli/bin/ghost run";
+      Restart = "always";
     };
     wantedBy = [ "multi-user.target" ];
   };
