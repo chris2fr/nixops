@@ -19,6 +19,7 @@ in
 #    ./users.nix
     ./wagtail.nix
     ./common.nix # Des configurations communes pratiques
+    ./servers.nix # I am migrating other services here
     (import "${home-manager}/nixos")
     ];
 
