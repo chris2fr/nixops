@@ -102,6 +102,7 @@ in
     };
   };
   users.extraGroups.docker.members = [ "mannchri" ];
+  services.mysql.enable = true;
   
 
 }
