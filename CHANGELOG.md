@@ -108,7 +108,7 @@ déconnexion
 
 [root@lesgrandsvoisins:~]# chmod +s /var/www/ghostio
 
-[ghostio@lesgrandsvoisins:/var/www/ghostio]$ ~/node_modules/ghost-cli/bin/ghost install
+[ghostio@lesgrandsvoisins:/var/www/ghostio]$ ~/node_modules/ghost-cli/bin/ghost install local
 
 
 
