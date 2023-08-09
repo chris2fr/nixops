@@ -9,7 +9,7 @@ in
   users.users.aaa = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-  }
+  };
   home-manager.users.mannchri = {pkgs, ...}: {
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;
@@ -17,4 +17,5 @@ in
       nodejs_20
       mongodb
     ];
+  };
 }
