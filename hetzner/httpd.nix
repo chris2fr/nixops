@@ -60,6 +60,25 @@ in
     CacheDisable /
     '';
   };
+  services.httpd.virtualHosts."blog.gvois.in" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/ghostio/";
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
+    ProxyPass / http://localhost:2368/
+    ProxyPassReverse / http://localhost:2368/
+    ProxyPreserveHost On
+    CacheDisable /
+    '';
+  }
 #  services.httpd.virtualHosts."www.resdigita.com" = {
 #    enableACME = true;
 #    forceSSL = true;
