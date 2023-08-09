@@ -8,12 +8,12 @@ in
   imports = [
     (import "${home-manager}/nixos")
   ];
-  pkgs.config.allowUnfree = true;
   users.users.aaa = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
   home-manager.users.mannchri = {pkgs, ...}: {
+    allowUnfree = true;
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;
     home.packages = with pkgs; [ 
