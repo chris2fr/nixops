@@ -108,7 +108,9 @@ in
   systemd.services.ghostio = {
     enable = true;
     description = "Ghost systemd service for blog: localhost";
-    environment = "NODE_ENV=production";
+    environment = {
+      NODE_ENV = "production";
+    };
     documentation = [ "https://ghost.org/docs/" ];
     serviceConfig = {
       Type = "simple";
