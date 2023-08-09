@@ -48,4 +48,10 @@ Intervention de Hetzner pour installer
 - [root@lesgrandsvoisins:~/nixops/hetzner]# su - guichet
 - [root@lesgrandsvoisins:~/nixops/hetzner]# nix-env --list-generations --profile /nix/var/nix/profiles/system
 - [root@lesgrandsvoisins:~]# ln -s /nix/var/nix/profiles/system/sw/lib/GNUstep/SOGo/ /var/www/SOGo
+
+
+[guichet@lesgrandsvoisins:~/guichet]$  scp lesgrandsvoisins.com:/home/guichet/guichet/config.json /home/guichet/guichet/config.json
+config.json   
+
+
 ```
