@@ -8,7 +8,7 @@ in
   imports = [
     (import "${home-manager}/nixos")
   ];
-  nixpkgs.config.allowUnfree = true;
+  pkgs.config.allowUnfree = true;
   users.users.aaa = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
