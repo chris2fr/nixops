@@ -107,7 +107,7 @@ in
   };
 
   services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "no";
+  services.openssh.settings.PermitRootLogin = "prohibit-password";
   # networking.firewall.enable = false;
 
   # List packages installed in system profile. To search, run:
