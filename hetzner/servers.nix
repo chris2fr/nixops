@@ -88,15 +88,15 @@ in
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
-  home-manager.users.odoo = {pkgs, ...}: {
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-    home.packages = with pkgs; [ 
-      postgresql
-      python311
-      python311Packages
-    ];
-  };
+#  home-manager.users.odoo = {pkgs, ...}: {
+#    home.stateVersion = "23.05";
+#    programs.home-manager.enable = true;
+#    home.packages = with pkgs; [ 
+#      postgresql
+#      python311
+#      python311Packages
+#    ];
+#  };
   # Docker
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
