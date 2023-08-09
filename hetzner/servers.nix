@@ -109,7 +109,7 @@ in
     enable = true;
     description = "Ghost systemd service for blog: localhost";
     environment = "NODE_ENV=production";
-    documentation = "https://ghost.org/docs/";
+    documentation = [ "https://ghost.org/docs/" ];
     serviceConfig = {
       Type = "simple";
       WorkingDirectory = "/var/www/ghostio";
