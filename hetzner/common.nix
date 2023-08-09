@@ -41,6 +41,5 @@ in
     inetutils
     pwgen
     openldap
-    dockerTools
   ];
 }
