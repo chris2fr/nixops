@@ -105,4 +105,19 @@ in
   services.mysql.enable = true;
   services.mysql.package = pkgs.mariadb;
 
+  systemd.services.ghostio = {
+    enable = true;
+    description = "Ghost systemd service for blog: localhost";
+    unitConfig = {
+      Type = "simple";
+      WorkingDirectory = "/var/www/ghostio";
+      User = "ghostio";
+      Environment = "NODE_ENV=production";
+      ExecStart = "/home/ghostio/.nix-profile/bin/node /home/ghostio/node_modules/ghost-cli/bin/ghost run
+      Restart=always
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
+
 }
