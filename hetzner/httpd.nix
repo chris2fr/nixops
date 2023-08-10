@@ -62,7 +62,7 @@ in
   services.httpd.virtualHosts."blog.gvois.in" = {
     serverAliases = [
       "ghost.gvois.in"
-    ]
+    ];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/ghostio/";
