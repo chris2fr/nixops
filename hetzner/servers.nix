@@ -106,7 +106,7 @@ in
     documentation = [ "https://ghost.org/docs/" ];
     serviceConfig = {
       Type = "simple";
-      WorkingDirectory = "/var/www/ghostio";
+      WorkingDirectory = "/var/www/ghost";
       User = "ghost";
       ExecStart = "/home/ghost/.nix-profile/bin/node /home/ghost/node_modules/ghost-cli/bin/ghost run";
       Restart = "always";

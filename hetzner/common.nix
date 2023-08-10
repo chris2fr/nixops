@@ -38,7 +38,7 @@ in
     lzlib
     dig
     killall
-    inetutils
+    # inetutils
     pwgen
     openldap
     mysql80
