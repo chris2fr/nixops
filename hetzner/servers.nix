@@ -94,8 +94,8 @@ in
     };
   };
   users.extraGroups.docker.members = [ "mannchri" ];
-  #services.mysql.enable = true;
-  #services.mysql.package = pkgs.mysql80;
+  services.mysql.enable = true;
+  services.mysql.package = pkgs.mysql80;
 
   systemd.services.ghostio = {
     enable = true;
