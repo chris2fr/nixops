@@ -49,6 +49,9 @@ in
     python311Packages.aiosasl
     python311Packages.psycopg2
     python311Packages.python-ldap
+    gcc
+    gnumake
+    cope
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
