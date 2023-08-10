@@ -137,6 +137,10 @@ in
     enableTCPIP = true;
     ensureDatabases = [
       "sogo"
+      "odoo"
+      "odootoo"
+      "odoothree"
+      "odoofor"
     ];
     settings = {
       max_connections = 150;
