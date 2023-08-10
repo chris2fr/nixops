@@ -51,6 +51,12 @@ in
     python311Packages.python-ldap
     gccgo
     gnumake
+    python311Packages.ldappool
+    python311Packages.ldap3
+    python311Packages.bonsai
+    python311Packages.python-ldap-test
+    ldapvi
+    shelldap
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
