@@ -48,5 +48,11 @@ in
     python311Packages.pq
     python311Packages.aiosasl
   ];
+  
+  {
+    nixpkgs.config.permittedInsecurePackages = [
+      "qtwebkit-5.212.0-alpha4"
+    ];
+  }
 
 }
