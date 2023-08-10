@@ -58,6 +58,8 @@ in
     ldapvi
     shelldap
     python311Packages.devtools
+    python311Packages.ldaptor
+    python311Packages.setuptools
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
