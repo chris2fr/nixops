@@ -76,6 +76,9 @@ in
     ProxyPass / http://localhost:2368/
     ProxyPassReverse / http://localhost:2368/
     ProxyPreserveHost On
+    ProxyVia On
+    ProxyAddHeaders On
+    
     CacheDisable /
     '';
   };
