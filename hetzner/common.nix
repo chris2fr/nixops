@@ -50,11 +50,9 @@ in
     python311Packages.psycopg2
     python311Packages.python-ldap
   ];
-  
-  {
-    nixpkgs.config.permittedInsecurePackages = [
-      "qtwebkit-5.212.0-alpha4"
-    ];
-  }
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebkit-5.212.0-alpha4"
+  ];
 
 }
