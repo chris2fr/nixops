@@ -47,6 +47,8 @@ in
     python311Packages.python-ldap
     python311Packages.pq
     python311Packages.aiosasl
+    python311Packages.psycopg2
+    python311Packages.python-ldap
   ];
   
   {
