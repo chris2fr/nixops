@@ -33,14 +33,14 @@ in
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
-  home-manager.users.ghostio = {pkgs, ...}: {
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-    home.packages = with pkgs; [ 
-      mariadb
-      nodejs_18
-    ];
-  };
+#  home-manager.users.ghostio = {pkgs, ...}: {
+#    home.stateVersion = "23.05";
+#    programs.home-manager.enable = true;
+#    home.packages = with pkgs; [ 
+#      mariadb
+#      nodejs_18
+#    ];
+#  };
   ## ODOO FOR
   users.users.odoofor = {
     isNormalUser = true;
@@ -116,7 +116,7 @@ in
       Type = "simple";
       WorkingDirectory = "/var/www/ghostio";
       User = "ghost";
-      ExecStart = "/home/ghostio/.nix-profile/bin/node /home/ghostio/node_modules/ghost-cli/bin/ghost run";
+      ExecStart = "/home/ghost/.nix-profile/bin/node /home/ghost/node_modules/ghost-cli/bin/ghost run";
       Restart = "always";
     };
     wantedBy = [ "multi-user.target" ];
@@ -124,6 +124,13 @@ in
   users.users.ghost = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+  };
+  home-manager.users.ghost = {pkgs, ...}: {
+    home.stateVersion = "23.05";
+    programs.home-manager.enable = true;
+    home.packages = with pkgs; [ 
+      nodejs_18
+    ];
   };
 
 }
