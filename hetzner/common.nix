@@ -57,6 +57,7 @@ in
     python311Packages.python-ldap-test
     ldapvi
     shelldap
+    python311Packages.devtools
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
