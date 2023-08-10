@@ -36,7 +36,6 @@ in
   };
   services.httpd.virtualHosts."www.gvois.in" = {
     serverAliases = [
-      "odoo.gvois.in"
       "keycloak.gvois.in"
       "discourse.gvois.in"
       "meet.gvois.in"
@@ -61,6 +60,9 @@ in
     '';
   };
   services.httpd.virtualHosts."blog.gvois.in" = {
+    serverAliases = [
+      "ghost.gvois.in"
+    ]
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/ghostio/";
@@ -78,7 +80,29 @@ in
     ProxyPreserveHost On
     ProxyVia On
     ProxyAddHeaders On
+
+    CacheDisable /
+    '';
+  };
+  services.httpd.virtualHosts."odoo.gvois.in" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/";
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
     
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
+    ProxyPass / http://localhost:8069/
+    ProxyPassReverse / http://localhost:8069/
+    ProxyPreserveHost On
+    ProxyVia On
+    ProxyAddHeaders On
+
     CacheDisable /
     '';
   };
