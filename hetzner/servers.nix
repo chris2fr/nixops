@@ -38,52 +38,20 @@ in
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
-  home-manager.users.odoofor = {pkgs, ...}: {
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-    home.packages = with pkgs; [ 
-      postgresql
-      python311
-    ];
-  };
   ## ODOO THREE
   users.users.odoothree = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-  };
-  home-manager.users.odoothree = {pkgs, ...}: {
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-    home.packages = with pkgs; [ 
-      postgresql
-      python311
-    ];
   };
   ## ODOO TOO
   users.users.odootoo = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
-  home-manager.users.odootoo = {pkgs, ...}: {
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-    home.packages = with pkgs; [ 
-      postgresql
-      python311
-    ];
-  };
   ## ODOO
   users.users.odoo = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-  };
-  home-manager.users.odoo = {pkgs, ...}: {
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-    home.packages = with pkgs; [ 
-      postgresql
-      python311
-    ];
   };
   # Docker
   virtualisation.docker = {
