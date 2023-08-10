@@ -33,14 +33,6 @@ in
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
-#  home-manager.users.ghostio = {pkgs, ...}: {
-#    home.stateVersion = "23.05";
-#    programs.home-manager.enable = true;
-#    home.packages = with pkgs; [ 
-#      mariadb
-#      nodejs_18
-#    ];
-#  };
   ## ODOO FOR
   users.users.odoofor = {
     isNormalUser = true;
@@ -103,7 +95,7 @@ in
   };
   users.extraGroups.docker.members = [ "mannchri" ];
   services.mysql.enable = true;
-  services.mysql.package = pkgs.mariadb;
+  services.mysql.package = pkgs.mysql80;
 
   systemd.services.ghostio = {
     enable = true;

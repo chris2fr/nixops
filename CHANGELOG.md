@@ -114,5 +114,7 @@ déconnexion
 
 [root@lesgrandsvoisins:~]# chown ghost:ghost /home/ghost
 
+[ghost@lesgrandsvoisins:~]$ npm install ghost-cli@latest
+
 ```
 

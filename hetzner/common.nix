@@ -41,7 +41,7 @@ in
     inetutils
     pwgen
     openldap
-    mariadb
+    mysql
   ];
 
 }
