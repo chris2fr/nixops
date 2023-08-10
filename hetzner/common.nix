@@ -41,6 +41,7 @@ in
     inetutils
     pwgen
     openldap
+    mysql80
   ];
 
 }
