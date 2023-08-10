@@ -115,12 +115,15 @@ in
     serviceConfig = {
       Type = "simple";
       WorkingDirectory = "/var/www/ghostio";
-      User = "ghostio";
+      User = "ghost";
       ExecStart = "/home/ghostio/.nix-profile/bin/node /home/ghostio/node_modules/ghost-cli/bin/ghost run";
       Restart = "always";
     };
     wantedBy = [ "multi-user.target" ];
   };
-
+  users.users.ghost = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+  };
 
 }

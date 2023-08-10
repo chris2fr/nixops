@@ -110,7 +110,9 @@ déconnexion
 
 [ghostio@lesgrandsvoisins:/var/www/ghostio]$ ~/node_modules/ghost-cli/bin/ghost install local
 
+[root@lesgrandsvoisins:~]# mkdir /home/ghost
 
+[root@lesgrandsvoisins:~]# chown ghost:ghost /home/ghost
 
 ```
 
