@@ -66,6 +66,9 @@ in
     sassc
     python311Packages.cython
     python311Packages.pip
+    python311Packages.pyproject-api
+    python311Packages.pyproject-hooks
+    
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
