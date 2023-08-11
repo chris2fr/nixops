@@ -164,8 +164,8 @@ in
       RequestHeader set X-Forwarded-Proto "https"
       RequestHeader set X-Forwarded-Port "443"
       ProxyPass /html/ !
-      ProxyPass / http://10.147.30.158:8069/
-      ProxyPassReverse / http://10.147.30.158:8069/
+      ProxyPass / http://10.245.101.158:8069/
+      ProxyPassReverse / http://10.245.101.158:8069/
       ProxyPreserveHost on
       CacheDisable /
     '';
