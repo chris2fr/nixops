@@ -158,6 +158,8 @@ in
       "mannfr.gvois.in"
     ];
     documentRoot = "/var/www/sites/";
+    enableACME = true;
+    forceSSL = true;
     extraConfig = ''
       Alias "/html/" "/var/www/sites/goodv.org/"
       ProxyPreserveHost On
