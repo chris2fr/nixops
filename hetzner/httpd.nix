@@ -169,5 +169,5 @@ in
       ProxyPreserveHost on
       CacheDisable /
     '';
-
+  };
 }
