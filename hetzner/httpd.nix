@@ -157,7 +157,7 @@ in
       "manndigital.gvois.in"
       "mannfr.gvois.in"
     ];
-    documentRoot = "DocumentRoot /var/www/sites/";
+    documentRoot = "/var/www/sites/";
     extraConfig = ''
       Alias "/html/" "/var/www/sites/goodv.org/"
       ProxyPreserveHost On
