@@ -61,6 +61,7 @@ in
     python311Packages.ldaptor
     python311Packages.setuptools
     python311Packages.libsass
+    libsass
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
