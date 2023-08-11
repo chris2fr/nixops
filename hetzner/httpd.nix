@@ -148,4 +148,26 @@ in
 ##    '';
 ##
 #  };
+
+  services.httpd.virtualHosts."odoo1.gvois.in" = {
+    serverAliases = [
+      "actentioncom.gvois.in"
+      "gvoisorg.gvois.in"
+      "lgvcoop.gvois.in"
+      "manndigital.gvois.in"
+      "mannfr.gvois.in"
+    ];
+    documentRoot = "DocumentRoot /var/www/sites/";
+    extraConfig = ''
+      Alias "/html/" "/var/www/sites/goodv.org/"
+      ProxyPreserveHost On
+      RequestHeader set X-Forwarded-Proto "https"
+      RequestHeader set X-Forwarded-Port "443"
+      ProxyPass /html/ !
+      ProxyPass / http://10.147.30.158:8069/
+      ProxyPassReverse / http://10.147.30.158:8069/
+      ProxyPreserveHost on
+      CacheDisable /
+    '';
+
 }
