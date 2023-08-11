@@ -64,6 +64,7 @@ in
     libsass
     sass
     sassc
+    python311Packages.cython
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
