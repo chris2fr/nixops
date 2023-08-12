@@ -304,20 +304,20 @@ in
         RequestHeader set X-Forwarded-Port "443"
 
         <Location /static/>
-        ProxyPass http://10.245.101.15:8888/
-        ProxyPassReverse http://10.245.101.15:8888/
+        ProxyPass http://localhost:8888/
+        ProxyPassReverse http://localhost:8888/
         ProxyPreserveHost On
         </Location>
 
         <Location /media/>
-        ProxyPass http://10.245.101.15:8889/
-        ProxyPassReverse http://10.245.101.15:8889/
+        ProxyPass http://localhost:8889/
+        ProxyPassReverse http://localhost:8889/
         ProxyPreserveHost On
         </Location>
 
         ProxyPass /.well-known !
-        ProxyPass / http://10.245.101.15:8080/
-        # ProxyPassReverse / http://10.245.101.15:8080/
+        ProxyPass / http://localhost:8080/
+        # ProxyPassReverse / http://localhost:8080/
         ProxyPreserveHost On
         CacheDisable /
       '';
