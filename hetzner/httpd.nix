@@ -358,7 +358,6 @@ services.httpd.virtualHosts."odoo2.gvois.in" = {
     serverAliases = [
       "ooolgvcoop.gvois.in"
     ];
-  };
   extraConfig = ''
       Alias "/html/" "/var/www/sites/goodv.org/"
       ProxyPreserveHost On
