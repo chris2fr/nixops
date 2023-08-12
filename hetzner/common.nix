@@ -58,17 +58,17 @@ in
     ldapvi
     shelldap
     python311Packages.devtools
-    python311Packages.ldaptor
-    python311Packages.setuptools
-    python311Packages.libsass
-    libsass
-    sass
-    sassc
-    python311Packages.cython
-    python311Packages.pip
-    python311Packages.pyproject-api
-    python311Packages.pyproject-hooks
-    
+#    python311Packages.ldaptor
+#    python311Packages.setuptools
+#    python311Packages.libsass
+#    libsass
+#    sass
+#    sassc
+#    python311Packages.cython
+#    python311Packages.pip
+#    python311Packages.pyproject-api
+#    python311Packages.pyproject-hooks
+
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
