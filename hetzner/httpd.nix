@@ -1,5 +1,4 @@
-  { config, pkgs, lib, ... }:
-
+{ config, pkgs, lib, ... }:
 let 
 in
 { 
@@ -84,28 +83,28 @@ in
     CacheDisable /
     '';
   };
-  services.httpd.virtualHosts."odoo.gvois.in" = {
-    enableACME = true;
-    forceSSL = true;
-    documentRoot =  "/var/www/";
-    extraConfig = ''
-    <Location />
-    Require all granted
-    </Location>
-    
-    ProxyPass /.well-known !
-    ProxyPass /static !
-    ProxyPass /media !
-    ProxyPass /favicon.ico !
-    ProxyPass / http://localhost:8069/
-    ProxyPassReverse / http://localhost:8069/
-    ProxyPreserveHost On
-    ProxyVia On
-    ProxyAddHeaders On
-
-    CacheDisable /
-    '';
-  };
+#  services.httpd.virtualHosts."odoo.gvois.in" = {
+#    enableACME = true;
+#    forceSSL = true;
+#    documentRoot =  "/var/www/";
+#    extraConfig = ''
+#    <Location />
+#    Require all granted
+#    </Location>
+#    
+#    ProxyPass /.well-known !
+#    ProxyPass /static !
+#    ProxyPass /media !
+#    ProxyPass /favicon.ico !
+#    ProxyPass / http://localhost:8069/
+#    ProxyPassReverse / http://localhost:8069/
+#    ProxyPreserveHost On
+#    ProxyVia On
+#    ProxyAddHeaders On
+#
+#    CacheDisable /
+#    '';
+#  };
 #  services.httpd.virtualHosts."www.resdigita.com" = {
 #    enableACME = true;
 #    forceSSL = true;
@@ -153,6 +152,7 @@ in
     serverAliases = [
       "actentioncom.gvois.in"
       "gvoisorg.gvois.in"
+      "manngvoisorg.gvois.in"
       "manndigital.gvois.in"
       "mannfr.gvois.in"
     ];
@@ -165,14 +165,15 @@ in
       RequestHeader set X-Forwarded-Proto "https"
       RequestHeader set X-Forwarded-Port "443"
       ProxyPass /html/ !
+      ProxyPass /.well-known !
       ProxyPass / http://10.245.101.158:8069/
-      ProxyPassReverse / http://10.245.101.158:8069/
+      # ProxyPassReverse / http://10.245.101.158:8069/
       ProxyPreserveHost on
       CacheDisable /
     '';
   };
 
-  services.httpd.virtualHosts."odoo2.gvois.in" = {
+  services.httpd.virtualHosts."odoo3.gvois.in" = {
     serverAliases = [
       "lgvcoop.gvois.in"
     ];
@@ -187,7 +188,7 @@ in
       ProxyPass /html/ !
       ProxyPass /.well-known !
       ProxyPass / http://10.245.101.128:8069/
-      ProxyPassReverse / http://10.245.101.128:8069/
+      # ProxyPassReverse / http://10.245.101.128:8069/
       ProxyPreserveHost on
       CacheDisable /
     '';
@@ -314,10 +315,63 @@ in
         ProxyPreserveHost On
         </Location>
 
+        ProxyPass /.well-known !
         ProxyPass / http://10.245.101.15:8080/
-        ProxyPassReverse / http://10.245.101.15:8080/
+        # ProxyPassReverse / http://10.245.101.15:8080/
         ProxyPreserveHost On
         CacheDisable /
       '';
+  };
+
+
+  services.httpd.virtualHosts."odoo4.gvois.in" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot = "/var/www/wagtail";
+    serverAliases = [
+      "voisandcom.gvois.in"
+      "voisandorg.gvois.in"
+      "lesgvcom.gvois.in"
+      "villagevoisincom.gvois.in"
+      "baldridgegvoisorg.gvois.in"
+      "ooolesgrandsvoisinscom.gvois.in"
+      "lesgrandsvoisinscom.gvois.in"
+    ];
+  };
+  extraConfig = ''
+      Alias "/html/" "/var/www/sites/goodv.org/"
+      ProxyPreserveHost On
+      RequestHeader set X-Forwarded-Proto "https"
+      RequestHeader set X-Forwarded-Port "443"
+      ProxyPass /html/ !
+      ProxyPass /.well-known !
+      ProxyPass / http://10.245.101.173:8069/
+      # ProxyPassReverse / http://10.245.101.173:8069/
+      ProxyPreserveHost on
+      CacheDisable /
+    '';
+
+};
+
+services.httpd.virtualHosts."odoo2.gvois.in" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot = "/var/www/wagtail";
+    serverAliases = [
+      "ooolgvcoop.gvois.in"
+    ];
+  };
+  extraConfig = ''
+      Alias "/html/" "/var/www/sites/goodv.org/"
+      ProxyPreserveHost On
+      RequestHeader set X-Forwarded-Proto "https"
+      RequestHeader set X-Forwarded-Port "443"
+      ProxyPass /html/ !
+      ProxyPass /.well-known !
+      ProxyPass / http://10.245.101.82:8069/
+      # ProxyPassReverse / http://10.245.101.82:8069/
+      ProxyPreserveHost on
+      CacheDisable /
+    '';
   };
 }
