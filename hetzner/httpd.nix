@@ -337,8 +337,7 @@ in
       "ooolesgrandsvoisinscom.gvois.in"
       "lesgrandsvoisinscom.gvois.in"
     ];
-  };
-  extraConfig = ''
+    extraConfig = ''
       Alias "/html/" "/var/www/sites/goodv.org/"
       ProxyPreserveHost On
       RequestHeader set X-Forwarded-Proto "https"
@@ -350,8 +349,7 @@ in
       ProxyPreserveHost on
       CacheDisable /
     '';
-
-};
+  };
 
 services.httpd.virtualHosts."odoo2.gvois.in" = {
     enableACME = true;
