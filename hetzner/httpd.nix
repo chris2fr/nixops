@@ -221,4 +221,32 @@ in
     CacheDisable /
     '';
   };
+  services.httpd.virtualHosts."tel.gvois.in" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot = "/var/www/sites/meet";
+    extraConfig = ''
+       ProxyRequests Off
+       SetEnv proxy-nokeepalive 1
+       ProxyPreserveHost On
+       ProxyPass / http://10.245.101.19/ retry=0
+       <Proxy http://10.245.101.19/>
+       ## adjust the following to your configuration
+       RequestHeader set "x-webobjects-server-port" "443"
+       RequestHeader set "x-webobjects-server-name" "tel.lgv.coop"
+       RequestHeader set "x-webobjects-server-url" "https://tel.gvois.in"
+      ## When using proxy-side autentication, you need to uncomment and
+      ## adjust the following line:
+        RequestHeader unset "x-webobjects-remote-user"
+      #  RequestHeader set "x-webobjects-remote-user" "%{REMOTE_USER}e" env=REMOTE_USER
+
+        RequestHeader set "x-webobjects-server-protocol" "HTTP/1.0"
+
+        AddDefaultCharset UTF-8
+
+        Order allow,deny
+        Allow from all
+      </Proxy>
+    '';
+  };
 }
