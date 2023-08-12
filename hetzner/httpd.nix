@@ -185,6 +185,7 @@ in
       RequestHeader set X-Forwarded-Proto "https"
       RequestHeader set X-Forwarded-Port "443"
       ProxyPass /html/ !
+      ProxyPass /.well-known !
       ProxyPass / http://10.245.101.128:8069/
       ProxyPassReverse / http://10.245.101.128:8069/
       ProxyPreserveHost on
@@ -229,6 +230,7 @@ in
        ProxyRequests Off
        SetEnv proxy-nokeepalive 1
        ProxyPreserveHost On
+       ProxyPass /.well-known !
        ProxyPass / http://10.245.101.19/ retry=0
        <Proxy http://10.245.101.19/>
        ## adjust the following to your configuration
@@ -248,5 +250,74 @@ in
         Allow from all
       </Proxy>
     '';
+  };
+  services.httpd.virtualHosts."wagtail.gvois.in" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot = "/var/www/wagtail";
+    serverAliases = [
+      "manncoach.gvois.in"
+      "resdigitacom.gvois.in"
+      "distractivescom.gvois.in"
+      "whowhatetccom.gvois.in"
+      "voisandcom.gvois.in"
+      "coopgvcom.gvois.in"
+      "voisandorg.gvois.in"
+      "lesgvcom.gvois.in"
+      "popuposcom.gvois.in"
+      "grandsvoisinscom.gvois.in"
+      "forumgrandsvoisinscom.gvois.in"
+      "baldridgegvoisorg.gvois.in"
+      "discourselesgvcom.gvois.in"
+      "iriviorg.gvois.in"
+      "ooolesgrandsvoisinscom.gvois.in"
+      "hyperattentioncom.gvois.in"
+      "forumgdvoisinscom.gvois.in"
+      "forumgrandsvoisinscom.gvois.in"
+      "agoodvillagecom.gvois.in"
+      "lgvcoop.gvois.in"
+      "configmagiccom.gvois.in"
+      "caplancitycom.gvois.in"
+      "quiquoietccom.gvois.in"
+      "lesartsvoisinscom.gvois.in"
+      "maelanccom.gvois.in"
+      "manncity.gvois.in"
+      "focusplexcom.gvois.in"
+      "gvoisorg.gvois.in"
+      "vlgorg.gvois.in"
+      "oldlesgrandsvoisinscom.gvois.in"
+      "cooptellgv.gvois.in"
+      "howwownowcom.gvois.in"
+      "aaalesgrandsvoisinscom.gvois.in"
+      "oldmanndigital.gvois.in"
+      "resolvactivecom.gvois.in"
+      "gvcity.gvois.in"
+      "toutdouxlissecom.gvois.in"
+      "iciwowcom.gvois.in"
+      ];
+      extraConfig = ''
+        SSLProxyEngine on
+        RewriteEngine on
+
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
+
+        <Location /static/>
+        ProxyPass http://10.245.101.15:8888/
+        ProxyPassReverse http://10.245.101.15:8888/
+        ProxyPreserveHost On
+        </Location>
+
+        <Location /media/>
+        ProxyPass http://10.245.101.15:8889/
+        ProxyPassReverse http://10.245.101.15:8889/
+        ProxyPreserveHost On
+        </Location>
+
+        ProxyPass / http://10.245.101.15:8080/
+        ProxyPassReverse / http://10.245.101.15:8080/
+        ProxyPreserveHost On
+        CacheDisable /
+      '';
   };
 }
