@@ -42,22 +42,21 @@ in
     pwgen
     openldap
     mysql80
-    wkhtmltopdf
+#    wkhtmltopdf
     python311Packages.pypdf2
     python311Packages.python-ldap
     python311Packages.pq
     python311Packages.aiosasl
     python311Packages.psycopg2
-    python311Packages.python-ldap
-    gccgo
-    gnumake
-    python311Packages.ldappool
-    python311Packages.ldap3
-    python311Packages.bonsai
-    python311Packages.python-ldap-test
-    ldapvi
-    shelldap
-    python311Packages.devtools
+#    gccgo
+#    gnumake
+#    python311Packages.ldappool
+#    python311Packages.ldap3
+#   python311Packages.bonsai
+#    python311Packages.python-ldap-test
+#    ldapvi
+#    shelldap
+#    python311Packages.devtools
 #    python311Packages.ldaptor
 #    python311Packages.setuptools
 #    python311Packages.libsass
