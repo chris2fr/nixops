@@ -153,7 +153,6 @@ in
     serverAliases = [
       "actentioncom.gvois.in"
       "gvoisorg.gvois.in"
-      "lgvcoop.gvois.in"
       "manndigital.gvois.in"
       "mannfr.gvois.in"
     ];
@@ -170,6 +169,56 @@ in
       ProxyPassReverse / http://10.245.101.158:8069/
       ProxyPreserveHost on
       CacheDisable /
+    '';
+  };
+
+  services.httpd.virtualHosts."odoo2.gvois.in" = {
+    serverAliases = [
+      "lgvcoop.gvois.in"
+    ];
+    documentRoot = "/var/www/sites/";
+    enableACME = true;
+    forceSSL = true;
+    extraConfig = ''
+      Alias "/html/" "/var/www/sites/goodv.org/"
+      ProxyPreserveHost On
+      RequestHeader set X-Forwarded-Proto "https"
+      RequestHeader set X-Forwarded-Port "443"
+      ProxyPass /html/ !
+      ProxyPass / http://10.245.101.128:8069/
+      ProxyPassReverse / http://10.245.101.128:8069/
+      ProxyPreserveHost on
+      CacheDisable /
+    '';
+  };
+
+  services.httpd.virtualHosts."ghostio.gvois.in" = {
+    serverAliases = [
+      "coopgvcom.gvois.in"
+      "coopgvorg.gvois.in"
+      "lesgrandsvoisinsfr.gvois.in"
+      "bloglesgrandsvoisinscom.gvois.in"
+      "ghostgvoisorg.gvois.in"
+      ];
+    documentRoot =  "/var/www/ghostio/";
+    enableACME = true;
+    forceSSL = true;
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
+    ProxyPass / http://fd42:48f1:fe79:8c4b:216:3eff:fec9:de31:2368/
+#    ProxyPassReverse / http://fd42:48f1:fe79:8c4b:216:3eff:fec9:de31:2368/
+    ProxyPreserveHost On
+    ProxyVia On
+    ProxyAddHeaders On
+
+    CacheDisable /
     '';
   };
 }
