@@ -213,8 +213,8 @@ in
     ProxyPass /static !
     ProxyPass /media !
     ProxyPass /favicon.ico !
-    ProxyPass / http://fd42:48f1:fe79:8c4b:216:3eff:fec9:de31:2368/
-#    ProxyPassReverse / http://fd42:48f1:fe79:8c4b:216:3eff:fec9:de31:2368/
+    ProxyPass / http://[fd42:48f1:fe79:8c4b:216:3eff:fec9:de31]:2368/
+#    ProxyPassReverse / http://[fd42:48f1:fe79:8c4b:216:3eff:fec9:de31]:2368/
     ProxyPreserveHost On
     ProxyVia On
     ProxyAddHeaders On
