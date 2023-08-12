@@ -354,7 +354,7 @@ in
 services.httpd.virtualHosts."odoo2.gvois.in" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot = "/var/www/wagtail";
+    documentRoot = "/var/www";
     serverAliases = [
       "ooolgvcoop.gvois.in"
     ];
