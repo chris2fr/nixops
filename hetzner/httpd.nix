@@ -105,7 +105,7 @@ in
 #    CacheDisable /
 #    '';
 #  };
-#  services.httpd.virtualHosts."www.resdigita.com" = {
+#  services.httpd.virtualHosts."www.resdigita.org" = {
 #    enableACME = true;
 #    forceSSL = true;
 ##    documentRoot =  "/var/www/wagtail/";
@@ -305,18 +305,18 @@ in
 
         <Location /static/>
         ProxyPass http://localhost:8888/
-        ProxyPassReverse http://localhost:8888/
+        # ProxyPassReverse http://localhost:8888/
         ProxyPreserveHost On
         </Location>
 
         <Location /media/>
         ProxyPass http://localhost:8889/
-        ProxyPassReverse http://localhost:8889/
+        # ProxyPassReverse http://localhost:8889/
         ProxyPreserveHost On
         </Location>
 
         ProxyPass /.well-known !
-        ProxyPass / http://localhost:8080/
+        ProxyPass /  unix:/var/lib/wagtail/wagtail-lesgv.sock/|http://127.0.0.1
         # ProxyPassReverse / http://localhost:8080/
         ProxyPreserveHost On
         CacheDisable /

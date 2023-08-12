@@ -10,9 +10,9 @@ in
   services.httpd.adminAddr = "contact@lesgrandsvoisins.com";
   services.httpd.extraModules = [ "proxy" "proxy_http" ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
-  services.httpd.virtualHosts."www.resdigita.com" = {
+  services.httpd.virtualHosts."www.resdigita.org" = {
     serverAliases = [
-      "www.resdigita.org"
+      "www.resdigita.com"
       "resdigita.org"
       "resdigita.com"
     ];
@@ -20,8 +20,8 @@ in
     forceSSL = true;
     enableACME = true;
     extraConfig = ''
-      <If "%{HTTP_HOST} != 'www.resdigita.com'">
-          RedirectMatch /(.*)$ https://www.resdigita.com/$1
+      <If "%{HTTP_HOST} != 'www.resdigita.org'">
+          RedirectMatch /(.*)$ https://www.resdigita.org/$1
       </If>
     '';
   };
