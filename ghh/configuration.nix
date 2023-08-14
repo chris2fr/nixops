@@ -16,6 +16,7 @@
     unzip # UnZip requiert pour installation de thème ZIP
     git
     php81Extensions.imagick
+    imagemagick
   ];
 # Specific configuration for PHP goes here
 services.phpfpm.phpOptions = ''
