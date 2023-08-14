@@ -37,11 +37,11 @@ services.phpfpm.phpOptions = ''
   extension=${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so
   max_execution_time=450
 '';
-  php.withExtensions ({ enabled, all }: enabled ++ [ all.imagick ]);
-  php.buildEnv {
-  extensions = { all, ... }: with all; [ imagick opcache ];
-  extraConfig = "memory_limit=256M";
-  };
+  #php.withExtensions ({ enabled, all }: enabled ++ [ all.imagick ]);
+  #php.buildEnv {
+  #extensions = { all, ... }: with all; [ imagick opcache ];
+  #extraConfig = "memory_limit=256M";
+  #};
   # Open Firewall Ports
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   # Configure Let's Encrypt Certificates
