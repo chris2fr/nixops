@@ -4,6 +4,9 @@
 # from 2023-07-30 to 2023-08-29
 #
 { config, pkgs, ... }:
+let
+  myPhp = php.withExtensions ({ all, ... }: with all; [ imagick opcache ]);
+in
 {
   nix.settings.experimental-features = "nix-command flakes";
   imports = [
@@ -19,12 +22,24 @@
     imagemagick
   ];
 # Specific configuration for PHP goes here
+services.phpfpm.pools."wordpress" = {
+  user = "wwwrun";
+  group = "users";
+  phpPackage = myPhp;
+  settings = {
+    "extension" = "${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so";
+    "max_execution_time" = "450";
+  };
+};
 services.phpfpm.phpOptions = ''
   upload_max_filesize = 128M
   post_max_size = 256M
-  extension = ${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so
-  max_execution_time = 450
+  extension=${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so
+  max_execution_time=450
 '';
+  php.withExtensions ({ enabled, all }:
+    enabled ++ [ all.imagick ])
+
   # Open Firewall Ports
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   # Configure Let's Encrypt Certificates
