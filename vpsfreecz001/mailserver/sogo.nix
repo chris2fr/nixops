@@ -52,8 +52,8 @@ in
       SOGoSentFolderName = Sent;
       SOGoTrashFolderName = Trash;
       SOGoDraftsFolderName = Drafts;
-      SOGoVacationEnabled = NO;
-      SOGoForwardEnabled = NO;
+      SOGoVacationEnabled = YES;
+      SOGoForwardEnabled = YES;
       SOGoSieveScriptsEnabled = NO;
       SOGoFirstDayOfWeek = 1;
       SOGoRefreshViewCheck = every_5_minutes;
