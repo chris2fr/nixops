@@ -20,23 +20,31 @@ in
     git
     php81Extensions.imagick
     imagemagick
+    (pkgs.php.withExtensions
+      ({ all, ... }: with all; [
+        imagick
+        opcache
+        pdo
+        pdo_mysql
+      ])
+    )
   ];
 # Specific configuration for PHP goes here
-services.phpfpm.pools."wordpress" = {
-  user = "wwwrun";
-  group = "users";
-  # phpPackage = myPhp;
-  settings = {
-    "extension" = "${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so";
-    "max_execution_time" = "450";
-  };
-};
-services.phpfpm.phpOptions = ''
-  upload_max_filesize = 128M
-  post_max_size = 256M
-  extension=${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so
-  max_execution_time=450
-'';
+#services.phpfpm.pools."wordpress" = {
+#  user = "wwwrun";
+#  group = "users";
+#  # phpPackage = myPhp;
+#  settings = {
+#    "extension" = "${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so";
+#    "max_execution_time" = "450";
+#  };
+# };
+# services.phpfpm.phpOptions = ''
+#  upload_max_filesize = 128M
+#  post_max_size = 256M
+#  extension=${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so
+#  max_execution_time=450
+#'';
   #php.withExtensions ({ enabled, all }: enabled ++ [ all.imagick ]);
   #php.buildEnv {
   #extensions = { all, ... }: with all; [ imagick opcache ];
@@ -88,7 +96,7 @@ services.phpfpm.phpOptions = ''
       FS_METHOD = "direct";
     };
     poolConfig = {
-       "extension" = "${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so";
+       "extension" = "imagick.so";
        "max_execution_time" = "450";
     };
   };
