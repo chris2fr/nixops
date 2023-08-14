@@ -15,11 +15,13 @@
     vim
     unzip # UnZip requiert pour installation de thème ZIP
     git
+    php81Extensions.imagick
   ];
 # Specific configuration for PHP goes here
 services.phpfpm.phpOptions = ''
   upload_max_filesize = 128M
   post_max_size = 256M
+  extension = ${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so
 '';
   # Open Firewall Ports
   networking.firewall.allowedTCPPorts = [ 80 443 ];
