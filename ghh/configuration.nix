@@ -87,6 +87,10 @@ services.phpfpm.phpOptions = ''
     settings = {
       FS_METHOD = "direct";
     };
+    poolConfig = {
+       "extension" = "${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so";
+       "max_execution_time" = "450";
+    };
   };
   #services.wordpress.webserver = "httpd"; # Defaults to httpd
   services.openssh.enable = true;
