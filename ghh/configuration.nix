@@ -25,7 +25,7 @@ in
 services.phpfpm.pools."wordpress" = {
   user = "wwwrun";
   group = "users";
-  phpPackage = myPhp;
+  # phpPackage = myPhp;
   settings = {
     "extension" = "${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so";
     "max_execution_time" = "450";
