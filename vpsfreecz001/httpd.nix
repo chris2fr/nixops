@@ -62,9 +62,27 @@ in
 #    forceSSL = true;
 #    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
 #  };
+services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
+   enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/";
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+#    ProxyPass /static !
+#    ProxyPass /media !
+#    ProxyPass /favicon.ico !
+    ProxyPass / http://[::1]:9991/
+    ProxyPassReverse / http://[::1]:9991/
+    ProxyPreserveHost On
+    CacheDisable /
+    '';
+  };
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
     serverAliases = [
-      "app.lesgrandsvoisins.com"
       "www.avmeet.com"
       "biz.lesgrandsvoisins.com"
       "auth.lesgrandsvoisins.com"
