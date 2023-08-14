@@ -5,7 +5,7 @@
 #
 { config, pkgs, ... }:
 let
-  myPhp = php.withExtensions ({ all, ... }: with all; [ imagick opcache ]);
+  # myPhp = php.withExtensions ({ all, ... }: with all; [ imagick opcache ]);
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
