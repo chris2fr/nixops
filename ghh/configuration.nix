@@ -22,7 +22,7 @@
 services.phpfpm.phpOptions = ''
   upload_max_filesize = 128M
   post_max_size = 256M
-  extension = ${php81Extensions.imagick}/lib/php/extensions/imagick.so
+  extension = ${pkgs.php81Extensions.imagick}/lib/php/extensions/imagick.so
   max_execution_time = 450
 '';
   # Open Firewall Ports
