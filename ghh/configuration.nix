@@ -23,9 +23,9 @@ in
     (pkgs.php.withExtensions
       ({ all, ... }: with all; [
         imagick
-        opcache
-        pdo
-        pdo_mysql
+#        opcache
+#        pdo
+#        pdo_mysql
       ])
     )
   ];
