@@ -17,7 +17,7 @@ in
     ];
 
   # Networking
-  networking.hostName = "stage"; # Define your hostname.
+  networking.hostName = "vpsfreecz003"; # Define your hostname.
 #  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 #  networking.useDHCP = true;
 #  networking.enableIPv6 = true;

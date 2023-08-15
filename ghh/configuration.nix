@@ -29,6 +29,8 @@ in
       ])
     )
   ];
+# Networking
+  networking.hostName = "vpsfreecz002"; # Define your hostname.
 # Specific configuration for PHP goes here
 #services.phpfpm.pools."wordpress" = {
 #  user = "wwwrun";

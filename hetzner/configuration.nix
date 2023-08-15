@@ -27,7 +27,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
-  networking.hostName = "lesgrandsvoisins"; # Define your hostname.
+  networking.hostName = "hetzner005"; # Define your hostname.
 #  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 #  networking.useDHCP = true;
   networking.enableIPv6 = true;
