@@ -6,20 +6,13 @@
 let
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
-    hasaeraRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
+  hasaeraRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
 in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ./httpd.nix
-    ./mailserver.nix
-    ./guichet.nix
-    ./postgresql.nix
-#    ./users.nix
-    ./wagtail.nix
     ./common.nix # Des configurations communes pratiques
-    ./servers.nix # I am migrating other services here
+    ./vpsadminos.nix
     (import "${home-manager}/nixos")
     ];
 
@@ -28,7 +21,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
-  networking.hostName = "lesgrandsvoisins"; # Define your hostname.
+  networking.hostName = "stage"; # Define your hostname.
 #  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 #  networking.useDHCP = true;
   networking.enableIPv6 = true;
@@ -43,20 +36,11 @@ in
     interface = "eno1";
   };
 
-
-
-
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "fr_FR.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
-
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mannchri = {
@@ -64,28 +48,11 @@ in
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     extraGroups = [ "wheel" ];
   };
-  users.users.fossil = {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+  users.users.hasaera = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [ hasaeraRsaPublic ];
+    extraGroups = [ "wheel" ];
   };
-
-  home-manager.users.fossil = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      fossil
-    ];
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-  };
-  home-manager.users.guichet = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      go
-      gnumake
-      python311
-    ];
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-  };
-
   home-manager.users.mannchri = {pkgs, ...}: {
     home.packages = [ pkgs.atool pkgs.httpie ];
     home.stateVersion = "23.05";
@@ -108,7 +75,28 @@ in
       '';
     };
   };
-
+  home-manager.users.hasaera = {pkgs, ...}: {
+    home.packages = [ pkgs.atool pkgs.httpie ];
+    home.stateVersion = "23.05";
+    programs.home-manager.enable = true;
+    programs.vim = {
+      enable = true;
+      plugins = with pkgs.vimPlugins; [ vim-airline ];
+      settings = { ignorecase = true; tabstop = 2; };
+      extraConfig = ''
+        set mouse=a
+        set nocompatible
+        colo torte
+        syntax on
+        set tabstop     =2
+        set softtabstop =2
+        set shiftwidth  =2
+        set expandtab
+        set autoindent
+        set smartindent
+      '';
+    };
+  };
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "prohibit-password";
   # networking.firewall.enable = false;
@@ -161,6 +149,10 @@ in
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www";
   };
+  ## Adding Linux Containers
+  virtualisation.lxd.enable = true;
+  virtualisation.lxc.enable = true;
+  virtualisation.lxc.lxcfs.enable = true;
 
 }
 

@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }:
-
 let
 in
 {
@@ -67,11 +66,12 @@ in
 #    python311Packages.pip
 #    python311Packages.pyproject-api
 #    python311Packages.pyproject-hooks
-
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "qtwebkit-5.212.0-alpha4"
-  ];
+#  nixpkgs.config.permittedInsecurePackages = [
+#    "qtwebkit-5.212.0-alpha4"
+#  ];
+
+
 
 }
