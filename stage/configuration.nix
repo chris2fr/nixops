@@ -16,25 +16,21 @@ in
     (import "${home-manager}/nixos")
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # Networking
   networking.hostName = "stage"; # Define your hostname.
 #  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 #  networking.useDHCP = true;
-  networking.enableIPv6 = true;
-  networking.interfaces.eno1.ipv6.addresses = [
-    {
-      address = "2a01:4f8:241:4faa::";
-      prefixLength = 96;
-    }
-  ];
-  networking.defaultGateway6 = {
-    address = "fe80::1";
-    interface = "eno1";
-  };
+#  networking.enableIPv6 = true;
+#  networking.interfaces.eno1.ipv6.addresses = [
+#    {
+#      address = "2a01:4f8:241:4faa::";
+#      prefixLength = 96;
+#    }
+#  ];
+#  networking.defaultGateway6 = {
+#    address = "fe80::1";
+#    interface = "eno1";
+#  };
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
