@@ -7,7 +7,16 @@ let
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   domainName = import mailserver/vars/domain-name-mx.nix;
   ldapBaseDCDN = import /etc/nixos/mailserver/vars/ldap-base-dc-dn.nix;
-  mailServerDomainAliases = [ ];
+  mailServerDomainAliases = [ "gvois.in" ];
+
+
+
+
+
+
+
+
+
 in
 {
   imports = [
@@ -26,12 +35,12 @@ in
     openldap
     pwgen
   ];
-  ## Needed for the contaiiner system of vpsfree.cz
-  systemd.enableUnifiedCgroupHierarchy = false;
-  systemd.enableCgroupAccounting = false;
+
   # users.users."web2ldap" = {
   #   isNormalUser = true;
   # };
+
+  
   services.memcached = {
     enable = true;
     # maxMemory = 256;
