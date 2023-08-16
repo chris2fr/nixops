@@ -14,10 +14,14 @@ in
     urlList = [ "ldap:/// ldaps:///" ];
     settings = {
       attrs = {
+        olcTLSReqCert = "allow" ;
+# TLS_CACERTDIR /home/myuser/cacertss
+# LDAPTLS_CACERT /home/myuser/cacertss
         olcLogLevel = "conns config";
         /* settings for acme ssl */
         olcTLSCACertificateFile = "/var/lib/acme/${domainName}/full.pem";
-        olcTLSCertificateFile = "/var/lib/acme/${domainName}/cert.pem";
+        olcTLSCertificateFile = "/var/lib/acme/${domainName}/full.pem";
+        # olcTLSCertificateFile = "/var/lib/acme/${domainName}/cert.pem";
         olcTLSCertificateKeyFile = "/var/lib/acme/${domainName}/key.pem";
         olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
         olcTLSCRLCheck = "none";
