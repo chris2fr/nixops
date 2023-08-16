@@ -19,6 +19,8 @@ in
     enable = true;
     maxretry = 5; # Observe 5 violations before banning an IP
     ignoreIP = whitelistSubnets;
+    extraPackages = [pkgs.ipset];
+    banaction = "iptables-ipset-proto6-allports";
     bantime = "24h"; # Set bantime to one day
     bantime-increment = {
       enable = true; # Enable increment of bantime after each violation
