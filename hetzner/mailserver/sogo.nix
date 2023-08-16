@@ -69,7 +69,7 @@ in
       SOGoMailSignaturePlacement = above;
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
-      SOGoSMTPServer = "smtps://localhost/";
+      SOGoSMTPServer = "smtps://${domainName}/";
       SOGoIMAPServer = "imap://localhost:143/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
