@@ -17,18 +17,17 @@ in
 {
   services.fail2ban = {
     enable = true;
-    noduplicates = true;
     maxretry = 5; # Observe 5 violations before banning an IP
     ignoreIP = whitelistSubnets;
-    extraPackages = [pkgs.ipset];
-    banaction = "iptables-ipset-proto6-allports";
+    # extraPackages = [pkgs.ipset];
+    # banaction = "iptables-ipset-proto6-allports";
     bantime = "24h"; # Set bantime to one day
     bantime-increment = {
       enable = true; # Enable increment of bantime after each violation
       formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
       # multipliers = "1 2 4 8 16 32 64";
       maxtime = "168h"; # Do not ban for more than 1 week
-      overalljails = true; # Calculate the bantime based on all the violations
+      # overalljails = true; # Calculate the bantime based on all the violations
     };
     jails = {
       apache-nohome-iptables = ''
@@ -42,7 +41,7 @@ in
         findtime = 600
         bantime  = 600
         maxretry = 5
-        noduplicates = true
+        # noduplicates = true
       '';
       postfix = ''
         port     = smtp,465,submission,imap,imaps,pop3,pop3s
@@ -52,7 +51,7 @@ in
         enabled  = true
         filter   = postfix[mode=auth]
         mode     = more
-        noduplicates = true
+        # noduplicates = true
       '';
       # dovecot = ''
       #   port     = smtp,465,submission

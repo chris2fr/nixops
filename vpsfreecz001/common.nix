@@ -41,6 +41,6 @@ in
     inetutils
     pwgen
     openldap
-    # nftables
+    nftables
   ];
 }

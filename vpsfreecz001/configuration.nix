@@ -73,6 +73,10 @@ in
   # Networking
   networking.hostName = "vpsfreecz001"; # Define your hostname.
   networking.enableIPv6 = true;
+  # networking.firewall.package
+  networking.nftables.enable = true;
+  
+
 
   systemd.extraConfig = ''
     DefaultTimeoutStartSec=600s
