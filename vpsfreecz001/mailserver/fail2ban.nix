@@ -17,6 +17,7 @@ in
 {
   services.fail2ban = {
     enable = true;
+    noduplicates = true;
     maxretry = 5; # Observe 5 violations before banning an IP
     ignoreIP = whitelistSubnets;
     extraPackages = [pkgs.ipset];
