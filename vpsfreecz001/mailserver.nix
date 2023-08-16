@@ -8,7 +8,7 @@ let
   domainName = import mailserver/vars/domain-name-mx.nix;
   ldapBaseDCDN = import /etc/nixos/mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [ 
-    "lesgrandsvoisins.com"
+    # "lesgrandsvoisins.com"
     "mail.resdigita.com"
     "resdigita.org"
     "resdigita.com"
