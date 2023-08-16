@@ -14,7 +14,7 @@ in
     urlList = [ "ldap:/// ldaps:///" ];
     settings = {
       attrs = {
-        olcTLSReqCert = "allow" ;
+       # olcTLSReqCert = "allow" ;
 # TLS_CACERTDIR /home/myuser/cacertss
 # LDAPTLS_CACERT /home/myuser/cacertss
         olcLogLevel = "conns config";
