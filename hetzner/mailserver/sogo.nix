@@ -70,7 +70,7 @@ in
       SOGoMailComposeMessageType = html;
       SOGoMailingMechanism = smtp;
       SOGoSMTPServer = "smtps://${domainName}/";
-      SOGoIMAPServer = "imap://${domainName}:143/?tls=YES";
+      SOGoIMAPServer = "imaps://${domainName}/";
       SOGoTrustProxyAuthentication = YES;
       SOGoUserSources = (
         {

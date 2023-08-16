@@ -82,7 +82,7 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
-        "ldaps:///"
+        "ldaps://${domainName}/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
