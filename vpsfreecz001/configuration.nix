@@ -72,6 +72,7 @@ in
   networking.firewall.allowedTCPPorts = [ 80 443 636 ];
   # Networking
   networking.hostName = "vpsfreecz001"; # Define your hostname.
+  networking.enableIPv6.enable = true;
 
   systemd.extraConfig = ''
     DefaultTimeoutStartSec=600s
