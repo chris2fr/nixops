@@ -33,7 +33,6 @@ in
           "${pkgs.openldap}/etc/schema/nis.ldif"
         ];
 
-      
         "olcDatabase={1}mdb".attrs = {
           objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
 
@@ -41,7 +40,7 @@ in
             "displayName,description eq,sub"
             "uid,ou,c eq"
             "carLicense,labeledURI,telephoneNumber,mobile,homePhone,title,street,l,st,postalCode eq"
-            "objectClass,cn,sn,givenname,mail eq"
+            "objectClass,cn,sn,givenName,mail eq"
           ];
 
           olcDatabase = "{1}mdb";

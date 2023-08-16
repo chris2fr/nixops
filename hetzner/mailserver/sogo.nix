@@ -52,14 +52,14 @@ in
       SOGoSentFolderName = Sent;
       SOGoTrashFolderName = Trash;
       SOGoDraftsFolderName = Drafts;
-      SOGoVacationEnabled = NO;
-      SOGoForwardEnabled = NO;
+      SOGoVacationEnabled = YES;
+      SOGoForwardEnabled = YES;
       SOGoSieveScriptsEnabled = NO;
       SOGoFirstDayOfWeek = 1;
       SOGoRefreshViewCheck = every_5_minutes;
       SOGoMailAuxiliaryUserAccountsEnabled = NO;
       SOGoPasswordChangeEnabled = YES;
-      SOGoPageTitle = "gvoisin.com";
+      SOGoPageTitle = "mail.lesgrandsvoisins.com";
       SOGoLoginModule = Mail;
       SOGoMailAddOutgoingAddresses = YES;
       SOGoSelectedAddressBook = autobook;

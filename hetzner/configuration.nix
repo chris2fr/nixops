@@ -8,6 +8,7 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
 in
 {
+  nix.settings.experimental-features = "nix-command flakes";
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
