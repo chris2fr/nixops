@@ -41,6 +41,7 @@ in
         findtime = 600
         bantime  = 600
         maxretry = 5
+        noduplicates = true
       '';
       postfix = ''
         port     = smtp,465,submission,imap,imaps,pop3,pop3s
@@ -50,6 +51,7 @@ in
         enabled  = true
         filter   = postfix[mode=auth]
         mode     = more
+        noduplicates = true
       '';
       # dovecot = ''
       #   port     = smtp,465,submission
