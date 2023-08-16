@@ -62,7 +62,7 @@ in
 #    forceSSL = true;
 #    globalRedirect = "https://www.lesgrandsvoisins.com/resdigita";
 #  };
-services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
+services.httpd.virtualHosts."app.gvois.in" = {
    enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/";
