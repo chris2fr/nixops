@@ -76,7 +76,7 @@ in
   services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
     serverAliases = [
       "app.lesgrandsvoisins.com"
-    ]
+    ];
    enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/";
