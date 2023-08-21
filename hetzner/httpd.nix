@@ -63,7 +63,7 @@ in
       "ghost.gvois.in"
     ];
     enableACME = true;
-    forceSSL = true;
+    # forceSSL = true;
     documentRoot =  "/var/www/ghostio/";
     extraConfig = ''
     <Location />
@@ -76,6 +76,8 @@ in
     ProxyPass /favicon.ico !
     ProxyPass / http://localhost:2368/
     ProxyPassReverse / http://localhost:2368/
+    RequestHeader set X-Forwarded-Proto "https"
+    RequestHeader set X-Forwarded-Port "443"
     ProxyPreserveHost On
     ProxyVia On
     ProxyAddHeaders On
