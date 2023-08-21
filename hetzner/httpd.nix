@@ -63,7 +63,7 @@ in
       "ghost.gvois.in"
     ];
     enableACME = true;
-    # forceSSL = true;
+    forceSSL = true;
     documentRoot =  "/var/www/ghostio/";
     extraConfig = ''
     <Location />
@@ -221,7 +221,8 @@ in
     ProxyPreserveHost On
     ProxyVia On
     ProxyAddHeaders On
-
+    RequestHeader set X-Forwarded-Proto "https"
+    RequestHeader set X-Forwarded-Port "443"
     CacheDisable /
     '';
   };
