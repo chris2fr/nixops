@@ -93,7 +93,7 @@ in
     ProxyPassReverse / http://[::1]:9991/
     ProxyPreserveHost On
     RewriteEngine On
-    RewriteCond %{HTTP_HOST} ^guichet\.lesgrandsvoisins\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^app.guichet\.lesgrandsvoisins\.com$ [NC]
     RewriteRule ^(/.*)$ https://guichet.lesgrandsvoisins.com$1 [L,R=301,NC]
     CacheDisable /
     '';
