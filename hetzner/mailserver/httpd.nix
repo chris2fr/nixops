@@ -99,6 +99,8 @@ in
     ProxyPassReverse / http://[::1]:9991/
     ProxyPreserveHost On
     CacheDisable /
+      RewriteEngine On
+      RewriteRule ^/SOGo(.*)$ https://mail.lesgrandsvoisins.com$1
     '';
   };
 #  services.httpd.virtualHosts."mail.resdigita.com" = {
