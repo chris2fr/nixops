@@ -73,11 +73,17 @@ in
     </Proxy>
     '';
   };
+  services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/";
+    extraConfig = ''
+      RewriteEngine On
+      RewriteRule ^(.*)$ https://guichet.lesgrandsvoisins.com$1
+    '';
+  };
   services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
-    serverAliases = [
-      "app.lesgrandsvoisins.com"
-    ];
-   enableACME = true;
+    enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/";
     extraConfig = ''
@@ -92,9 +98,6 @@ in
     ProxyPass / http://[::1]:9991/
     ProxyPassReverse / http://[::1]:9991/
     ProxyPreserveHost On
-    RewriteEngine On
-    RewriteCond %{HTTP_HOST} !^guichet.\.lesgrandsvoisins\.com$ [NC]
-    RewriteRule ^(/.*)$ https://guichet.lesgrandsvoisins.com$1 [L,R=301,NC]
     CacheDisable /
     '';
   };
