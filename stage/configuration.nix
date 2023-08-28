@@ -156,7 +156,7 @@ in
     upload_max_filesize = 128M
     post_max_size = 256M
   '';
-  service.httpd.virtualHost."vpsfreecz003.lesgrandsvoisins.com" = {
+  services.httpd.virtualHost."vpsfreecz003.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/ghh";
