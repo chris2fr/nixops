@@ -60,7 +60,7 @@ in
   # Configure the webserver
   services.httpd.enable = true;
   services.httpd.enablePHP = true;
-  # These PHP Settings are global to the websrver and nos FPM
+  # These PHP Settings are global to the webserver and nos FPM
   services.httpd.phpOptions = ''
     upload_max_filesize = 128M
     post_max_size = 256M
@@ -84,10 +84,10 @@ in
   services.mysql.enable = true;
   services.mysql.package = pkgs.mariadb;
   # Not using environmental variables now
-#      SetEnv MYSQL_HOST localhost
-#      SetEnv MYSQL_DATABASE ${dbConfig.db}
-#      SetEnv MYSQL_USER ${dbConfig.user}
-#      SetEnv MYSQL_PASSWORD ${dbConfig.password}
+  # SetEnv MYSQL_HOST localhost
+  # SetEnv MYSQL_DATABASE ${dbConfig.db}
+  # SetEnv MYSQL_USER ${dbConfig.user}
+  # SetEnv MYSQL_PASSWORD ${dbConfig.password}
   # Below is the stock Workpress configuration from Nixos
   # on ghh.village.voisin.com 
   # not quite satisfactory

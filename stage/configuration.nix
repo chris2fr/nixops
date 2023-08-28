@@ -149,6 +149,24 @@ in
   virtualisation.lxd.enable = true;
   virtualisation.lxc.enable = true;
   virtualisation.lxc.lxcfs.enable = true;
+  ## Adding httpd
+  services.httpd.enable = true;
+  services.httpd.enablePHP;
+  services.httpd.phpOptions = ''
+    upload_max_filesize = 128M
+    post_max_size = 256M
+  '';
+  service.httpd.virtualHost."vpsfreecz003.lesgrandsvoisins.com" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot = "/var/www/ghh";
+    extraConfig = ''
+      <Directory />
+        DirectoryIndex index.php
+        Require all granted
+      </Directory>
+      '';
+  };
 
 }
 
