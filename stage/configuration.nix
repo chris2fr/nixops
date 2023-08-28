@@ -167,6 +167,7 @@ in
       </Directory>
       '';
   };
+  services.mysql.enable = true;
   
 
 }
