@@ -151,7 +151,7 @@ in
   virtualisation.lxc.lxcfs.enable = true;
   ## Adding httpd
   services.httpd.enable = true;
-  services.httpd.enablePHP;
+  services.httpd.enablePHP = true;
   services.httpd.phpOptions = ''
     upload_max_filesize = 128M
     post_max_size = 256M
