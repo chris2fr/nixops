@@ -4,7 +4,11 @@ in
 {
   environment.systemPackages = with pkgs; [
     mariadb
-    php82
+    php82.buildEnv {
+      extensions = ({ enabled, all }: enabled ++ (with all; [
+        imagick
+      ]));
+    }
     php82Extensions.imagick
   ];
    ## Adding httpd
