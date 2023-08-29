@@ -156,6 +156,7 @@ in
   services.httpd.phpOptions = ''
     upload_max_filesize = 128M
     post_max_size = 256M
+    extension=imagick.so
   '';
   services.httpd.virtualHosts."vpsfreecz003.lesgrandsvoisins.com" = {
     serverAliases = [

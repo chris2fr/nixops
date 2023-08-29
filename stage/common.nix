@@ -66,8 +66,8 @@ in
 #    python311Packages.pip
 #    python311Packages.pyproject-api
 #    python311Packages.pyproject-hooks
-    imagemagick
-    php81Extensions.imagick
+#    imagemagick
+#    php81Extensions.imagick
   ];
 
 #  nixpkgs.config.permittedInsecurePackages = [

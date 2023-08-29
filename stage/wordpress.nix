@@ -4,5 +4,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     mariadb
+    php81Extensions.imagick
+
   ];
 }
