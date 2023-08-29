@@ -158,6 +158,9 @@ in
     post_max_size = 256M
   '';
   services.httpd.virtualHosts."vpsfreecz003.lesgrandsvoisins.com" = {
+    serverAliases = [
+      "ghh.villagevoisin.com"
+    ];
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/ghh";
