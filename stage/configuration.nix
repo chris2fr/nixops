@@ -12,6 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
     ./common.nix # Des configurations communes pratiques
+    ./wordpress.nix
     ./vpsadminos.nix
     (import "${home-manager}/nixos")
     ];
