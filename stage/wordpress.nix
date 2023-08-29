@@ -4,21 +4,31 @@ in
 {
   environment.systemPackages = with pkgs; [
     mariadb
-    php82.buildEnv {
+    (pkgs.php82.buildEnv {
       extensions = ({ enabled, all }: enabled ++ (with all; [
         imagick
       ]));
-    }
+      extraConfig = ''
+      '';
+    })
     php82Extensions.imagick
   ];
    ## Adding httpd
   services.httpd.enable = true; 
   services.httpd.enablePHP = true;
-  services.httpd.phpPackage = pkgs.php82;
+  services.httpd.phpPackage = pkgs.php.buildEnv {
+      extensions = ({ enabled, all }: enabled ++ (with all; [
+          imagick
+      ]));
+      extraConfig = ''
+          upload_max_filesize = 128M
+          post_max_size = 256M
+      '';
+  };
+
   services.httpd.phpOptions = ''
     upload_max_filesize = 128M
     post_max_size = 256M
-    extension=imagick.so
   '';
   services.httpd.virtualHosts."vpsfreecz003.lesgrandsvoisins.com" = {
     serverAliases = [
