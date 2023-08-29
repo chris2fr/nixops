@@ -170,7 +170,6 @@ in
   };
   services.mysql.package = pkgs.mariadb;
   services.mysql.enable = true;
-  users.mysql.enable = true;
 
 
 }
