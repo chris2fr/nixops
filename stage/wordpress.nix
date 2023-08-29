@@ -21,8 +21,6 @@ in
           imagick
       ]));
       extraConfig = ''
-          upload_max_filesize = 128M
-          post_max_size = 256M
       '';
   };
 
