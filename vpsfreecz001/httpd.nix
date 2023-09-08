@@ -18,8 +18,8 @@ in
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
     extraConfig = ''
-    <If "%{HTTP_HOST} != 'www.resdigita.org'">
-      RedirectMatch /(.*)$ https://www.resdigita.org/$1
+    <If "%{HTTP_HOST} != 'www.mann.fr'">
+      RedirectMatch /(.*)$ https://www.mann.fr/$1
     </If>
     <Location />
     Require all granted
