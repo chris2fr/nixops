@@ -121,9 +121,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
       "keycloak.gvoisins.org"
       "meet.gvoisins.org"
       "meet.gvoisins.com"
-      "wiki.gvoisins.org",
-      "mann.fr"
-      "www.mann.fr"
+      "wiki.gvoisins.org"
       ];
     enableACME = true;
     forceSSL = true;
