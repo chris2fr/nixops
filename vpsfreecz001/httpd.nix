@@ -44,6 +44,8 @@ in
       "gvoisins.com"
       "www.gvoisins.com"
       "www.gvoisins.org"
+      "mann.fr"
+      "www.mann.fr"
     ];
     globalRedirect = "https://www.lesgrandsvoisins.com/";
   };
