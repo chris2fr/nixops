@@ -10,6 +10,32 @@ in
   services.httpd.adminAddr = "contact@lesgrandsvoisins.com";
   services.httpd.extraModules = [ "proxy" "proxy_http" ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
+  services.httpd.virtualHosts."www.mann.fr" = {
+    serverAliases = [
+      "mann.fr"
+    ];
+    documentRoot =  "/var/www/mannfr/";
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/wagtail/";
+    extraConfig = ''
+    <If "%{HTTP_HOST} != 'www.resdigita.org'">
+      RedirectMatch /(.*)$ https://www.resdigita.org/$1
+    </If>
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
+    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPreserveHost On
+    CacheDisable /
+    '';
+  };
   services.httpd.virtualHosts."www.resdigita.org" = {
     serverAliases = [
       "www.resdigita.com"
@@ -44,8 +70,6 @@ in
       "gvoisins.com"
       "www.gvoisins.com"
       "www.gvoisins.org"
-      "mann.fr"
-      "www.mann.fr"
     ];
     globalRedirect = "https://www.lesgrandsvoisins.com/";
   };
@@ -98,7 +122,9 @@ services.httpd.virtualHosts."app.gvois.in" = {
       "keycloak.gvoisins.org"
       "meet.gvoisins.org"
       "meet.gvoisins.com"
-      "wiki.gvoisins.org"
+      "wiki.gvoisins.org",
+      "mann.fr"
+      "www.mann.fr"
       ];
     enableACME = true;
     forceSSL = true;
