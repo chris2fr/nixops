@@ -14,7 +14,6 @@ in
     serverAliases = [
       "mann.fr"
     ];
-    documentRoot =  "/var/www/mannfr/";
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
