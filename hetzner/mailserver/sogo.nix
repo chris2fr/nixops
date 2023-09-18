@@ -57,7 +57,7 @@ in
       SOGoSieveScriptsEnabled = NO;
       SOGoFirstDayOfWeek = 1;
       SOGoRefreshViewCheck = every_5_minutes;
-      SOGoMailAuxiliaryUserAccountsEnabled = NO;
+      SOGoMailAuxiliaryUserAccountsEnabled = YES;
       SOGoPasswordChangeEnabled = YES;
       SOGoPageTitle = "mail.lesgrandsvoisins.com";
       SOGoLoginModule = Mail;
@@ -85,7 +85,7 @@ in
           hostname = "ldaps://${domainName}";
           isAddressBook = NO;
           MailFieldNames = ("mail");
-          IMAPLoginFieldName = mail;
+          IMAPLoginFieldName = cn;
           bindAsCurrentUser = YES;
           mapping = {
             mozillasecondemail = ("carLicense");
