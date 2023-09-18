@@ -37,9 +37,11 @@ in
     forceSSL = true;
     documentRoot = "/var/www/ghh";
     extraConfig = ''
-      <Directory />
+      <Directory /var/www/ghh>
         DirectoryIndex index.php
         Require all granted
+        AllowOverride FileInfo
+        FallbackResource /index.php
       </Directory>
       '';
   };
