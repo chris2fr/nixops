@@ -79,7 +79,6 @@ in
     certificateFile = "/var/lib/acme/${domainName}/cert.pem";
     certificateDirectory = "/var/lib/acme/${domainName}/";
     keyFile =  "/var/lib/acme/${domainName}/key.pem";    
-    loginAccounts."chris@lesgrandsvoisins.com".aliases = ["@lesgrandsvoisins.com"];
     ldap = {
       enable = true;
       bind = {
