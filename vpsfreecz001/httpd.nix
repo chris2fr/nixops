@@ -106,6 +106,33 @@ services.httpd.virtualHosts."app.gvois.in" = {
     CacheDisable /
     '';
   };
+  services.httpd.virtualHosts."www.shitmuststop.org" = {
+    serverAliases = [
+      "shitmuststop.org",
+      "shitmuststop.com",
+      "www.shitmustsop.com"
+    ];
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/wagtail/";
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
+    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPreserveHost On
+    CacheDisable /
+    <If "%{HTTP_HOST} != 'www.shitmuststop.org'">
+        RedirectMatch /(.*)$ https://www.shitmuststop.org/$1
+    </If>
+    '';
+  };
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
     serverAliases = [
       "www.avmeet.com"
