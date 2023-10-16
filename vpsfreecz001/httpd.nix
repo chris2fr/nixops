@@ -110,7 +110,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
     serverAliases = [
       "shitmuststop.org"
       "shitmuststop.com"
-      "www.shitmustsop.com"
+      "www.shitmuststop.com"
     ];
     enableACME = true;
     forceSSL = true;
