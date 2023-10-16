@@ -53,23 +53,23 @@ in
   services.httpd.virtualHosts."lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
-    serverAliases = [ 
-      "gvois.in"
-      "www.gvois.in" 
-      "gvcoop.org"
-      "www.gvcoop.org"
-      "gvcoop.com"
-      "www.gvcoop.com"
-      "coopgv.org"
-      "www.coopgv.org"
-      "coopgv.com"
-      "www.coopgv.com"
-      "wagtail.l-g-v.com"
-      "gvoisins.org"
-      "gvoisins.com"
-      "www.gvoisins.com"
-      "www.gvoisins.org"
-    ];
+#    serverAliases = [ 
+#      "gvois.in"
+#      "www.gvois.in" 
+#      "gvcoop.org"
+#      "www.gvcoop.org"
+#      "gvcoop.com"
+#      "www.gvcoop.com"
+#      "coopgv.org"
+#      "www.coopgv.org"
+#      "coopgv.com"
+#      "www.coopgv.com"
+#      "wagtail.l-g-v.com"
+#      "gvoisins.org"
+#      "gvoisins.com"
+#      "www.gvoisins.com"
+#      "www.gvoisins.org"
+#    ];
     globalRedirect = "https://www.lesgrandsvoisins.com/";
   };
   services.httpd.virtualHosts."avmeet.com" = {
@@ -108,8 +108,8 @@ services.httpd.virtualHosts."app.gvois.in" = {
   };
   services.httpd.virtualHosts."www.shitmuststop.org" = {
     serverAliases = [
-      "shitmuststop.org",
-      "shitmuststop.com",
+      "shitmuststop.org"
+      "shitmuststop.com"
       "www.shitmustsop.com"
     ];
     enableACME = true;
@@ -141,14 +141,14 @@ services.httpd.virtualHosts."app.gvois.in" = {
       "forum.lesgrandsvoisins.com"
       "meet.lesgrandsvoisins.com"
       "wiki.lesgrandsvoisins.com"
-      "app.gvoisins.org"
-      "guichet.gvoisins.org"
-      "odoo.gvoisins.org"
-      "discourse.gvoisins.org"
-      "keycloak.gvoisins.org"
-      "meet.gvoisins.org"
-      "meet.gvoisins.com"
-      "wiki.gvoisins.org"
+#      "app.gvoisins.org"
+#      "guichet.gvoisins.org"
+#      "odoo.gvoisins.org"
+#      "discourse.gvoisins.org"
+#      "keycloak.gvoisins.org"
+#      "meet.gvoisins.org"
+#      "meet.gvoisins.com"
+#      "wiki.gvoisins.org"
       ];
     enableACME = true;
     forceSSL = true;
