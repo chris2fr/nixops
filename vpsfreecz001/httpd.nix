@@ -138,7 +138,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
       "www.avmeet.com"
       "biz.lesgrandsvoisins.com"
       "auth.lesgrandsvoisins.com"
-      "forum.lesgrandsvoisins.com"
+#      "forum.lesgrandsvoisins.com"
       "meet.lesgrandsvoisins.com"
       "wiki.lesgrandsvoisins.com"
 #      "app.gvoisins.org"
