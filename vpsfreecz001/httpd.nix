@@ -136,8 +136,8 @@ services.httpd.virtualHosts."app.gvois.in" = {
   services.httpd.virtualHosts."www.artsvoisins.org" = {
     serverAliases = [
       "artsvoisins.org"
-      #"artsvoisins.com"
-      #"www.artsvoisins.com"
+      "artsvoisins.com"
+      "www.artsvoisins.com"
     ];
     enableACME = true;
     forceSSL = true;
