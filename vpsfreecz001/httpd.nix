@@ -176,6 +176,8 @@ services.httpd.virtualHosts."app.gvois.in" = {
 #      "meet.gvoisins.org"
 #      "meet.gvoisins.com"
 #      "wiki.gvoisins.org"
+       "lesgrandsvoisins.fr"
+       "www.lesgrandsvoisins.fr"
       ];
     enableACME = true;
     forceSSL = true;
