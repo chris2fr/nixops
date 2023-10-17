@@ -133,11 +133,11 @@ services.httpd.virtualHosts."app.gvois.in" = {
     </If>
     '';
   };
-  services.httpd.virtualHosts."www.artsvoisins.org" = {
+  services.httpd.virtualHosts."www.lesartsvoisins.org" = {
     serverAliases = [
-      "artsvoisins.org"
-      "artsvoisins.com"
-      "www.artsvoisins.com"
+      "lesartsvoisins.org"
+      "lesartsvoisins.com"
+      "www.lesartsvoisins.com"
     ];
     enableACME = true;
     forceSSL = true;
