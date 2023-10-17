@@ -155,8 +155,8 @@ services.httpd.virtualHosts."app.gvois.in" = {
     ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
     ProxyPreserveHost On
     CacheDisable /
-    <If "%{HTTP_HOST} != 'www.artsvoisins.org'">
-        RedirectMatch /(.*)$ https://www.artsvoisins.org/$1
+    <If "%{HTTP_HOST} != 'www.lesartsvoisins.org'">
+        RedirectMatch /(.*)$ https://www.lesartsvoisins.org/$1
     </If>
     '';
   };
