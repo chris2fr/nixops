@@ -325,7 +325,7 @@ in
     ProxyPass /static !
     ProxyPass /media !
     ProxyPass /favicon.ico !
-        ProxyPass /  unix:/var/lib/wagtail/wagtail-lesgv.sock/|http://127.0.0.1/
+        ProxyPass /  unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
         ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
         # ProxyPassReverse / http://localhost:8080/
         ProxyPreserveHost On
