@@ -300,26 +300,33 @@ in
       "iciwowcom.gvois.in"
       ];
       extraConfig = ''
-        SSLProxyEngine on
-        RewriteEngine on
+          <Location />
+          Require all granted
+          </Location>
+#        SSLProxyEngine on
+#        RewriteEngine on
+#
+#        RequestHeader set X-Forwarded-Proto "https"
+#        RequestHeader set X-Forwarded-Port "443"
+#
+#        <Location /static/>
+#        ProxyPass http://localhost:8888/
+#        # ProxyPassReverse http://localhost:8888/
+#        ProxyPreserveHost On
+#        </Location>
+#
+#        <Location /media/>
+#        ProxyPass http://localhost:8889/
+#        # ProxyPassReverse http://localhost:8889/
+#        ProxyPreserveHost On
+#        </Location>
 
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
-
-        <Location /static/>
-        ProxyPass http://localhost:8888/
-        # ProxyPassReverse http://localhost:8888/
-        ProxyPreserveHost On
-        </Location>
-
-        <Location /media/>
-        ProxyPass http://localhost:8889/
-        # ProxyPassReverse http://localhost:8889/
-        ProxyPreserveHost On
-        </Location>
-
-        ProxyPass /.well-known !
-        ProxyPass /  unix:/var/lib/wagtail/wagtail-lesgv.sock/|http://127.0.0.1
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
+        ProxyPass /  unix:/var/lib/wagtail/wagtail-lesgv.sock/|http://127.0.0.1/
+        ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
         # ProxyPassReverse / http://localhost:8080/
         ProxyPreserveHost On
         CacheDisable /
