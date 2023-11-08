@@ -50,6 +50,14 @@ in
       </If>
     '';
   };
+  services.httpd.virtualHosts."blog.lesgrandsvoisins.com" = {
+    documentRoot =  "/var/www/resdigitacom/";
+    forceSSL = true;
+    enableACME = true;
+    extraConfig = ''
+       RedirectMatch /(.*)$ https://blog.gvois.in/$1
+    '';
+  };
   services.httpd.virtualHosts."lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
