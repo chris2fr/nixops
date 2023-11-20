@@ -94,6 +94,7 @@ in
   services.wordpress.sites."ghh.villagevoisin.com" = {
     virtualHost.enableACME = true;
     virtualHost.forceSSL = true;
+    documentRoot = "/var/www/ghh";
     settings = {
       FS_METHOD = "direct";
     };
@@ -101,6 +102,14 @@ in
        "extension" = "imagick.so";
        "max_execution_time" = "450";
     };
+    extraConfig = ''
+      <Directory />
+        DirectoryIndex index.php
+        Require all granted
+        Options Indexes FollowSymLinks
+        AllowOverride All
+      </Directory>
+      '';
   };
   #services.wordpress.webserver = "httpd"; # Defaults to httpd
   services.openssh.enable = true;
