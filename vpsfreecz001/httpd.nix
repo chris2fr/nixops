@@ -210,6 +210,11 @@ services.httpd.virtualHosts."app.gvois.in" = {
 #      "wiki.gvoisins.org"
 #       "lesgrandsvoisins.fr"
 #       "www.lesgrandsvoisins.fr"
+        "biglibre.org"
+        "biglibre.com"
+        "www.biglibre.org"
+        "www.biglibre.com"
+        "warfour.biglibre.org"
       ];
     enableACME = true;
     forceSSL = true;
