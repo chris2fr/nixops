@@ -215,6 +215,8 @@ services.httpd.virtualHosts."app.gvois.in" = {
         "www.biglibre.org"
         "www.biglibre.com"
         "warfour.biglibre.org"
+        "warfur.org"
+        "www.warfur.org"
       ];
     enableACME = true;
     forceSSL = true;
