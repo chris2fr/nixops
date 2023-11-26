@@ -217,6 +217,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
         "warfour.biglibre.org"
         "warfur.org"
         "www.warfur.org"
+        "partagemoi.lesgrandsvoisins.com"
       ];
     enableACME = true;
     forceSSL = true;
