@@ -220,6 +220,8 @@ services.httpd.virtualHosts."app.gvois.in" = {
         "partagemoi.lesgrandsvoisins.com"
         "desgrandsvoisins.org"
         "www.desgrandsvoisins.org"
+        "desgrandsvoisins.com"
+        "www.desgrandsvoisins.com"
       ];
     enableACME = true;
     forceSSL = true;
