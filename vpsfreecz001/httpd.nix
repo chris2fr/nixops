@@ -222,6 +222,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
         "www.desgrandsvoisins.org"
         "desgrandsvoisins.com"
         "www.desgrandsvoisins.com"
+        "francemali.lesgrandsvoisins.com"
       ];
     enableACME = true;
     forceSSL = true;
