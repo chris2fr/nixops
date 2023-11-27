@@ -240,6 +240,9 @@ services.httpd.virtualHosts."app.gvois.in" = {
     ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
     ProxyPreserveHost On
     CacheDisable /
+    <If "%{HTTP_HOST} == 'warfur.org'">
+        RedirectMatch /(.*)$ https://www.warfur.org/$1
+    </If>
     '';
   };
 #  services.httpd.virtualHosts."www.resdigita.com" = {
