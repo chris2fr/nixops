@@ -80,46 +80,46 @@ in
       SOGoSAML2IdpMetadataLocation = "https://authentik.lesgrandsvoisins.com/application/saml/sogo/metadata/";
       SOGoSAML2LogoutURL = "https://authentik.lesgrandsvoisins.com/flows/-/default/invalidation/";
       SOGoSAML2LogoutEnabled = YES;
-#      SOGoUserSources = (
-#        {
-#          id = cn;
-#          type = ldap;
-#          CNFieldName = cn;
-#          IDFieldName = cn;
-#          UIDFieldName = cn;
-#          baseDN = "ou=users,${ldapBaseDCDN}";
-#          canAuthenticate = YES;
-#          displayName = "Voisins";
-#          hostname = "ldaps://${domainName}";
-#          isAddressBook = NO;
-#          MailFieldNames = ("mail");
-#          IMAPLoginFieldName = cn;
-#          bindAsCurrentUser = YES;
-#          mapping = {
-#            mozillasecondemail = ("carLicense");
-#            mozillaworkurl = ("labeldURI");
-#            givenName = ("givenName");
-#            sn = ("sn");
-#            cn = ("cn");
-#            uid = ("cn");
-#            displayName = ("displayName");
-#            mail = ("mail");
-#            telephoneNumber = ("telephoneNumber");
-#            mobile = ("mobile");
-#            homephone = ("homephone");
-#            title = ("title");
-#            ou = ("ou");
-#            o = ("o");
-#            street = ("street");
-#            l = ("l");
-#            st = ("st");
-#            postalCode = ("postalCode");
-#            c = ("c");
-#            description = ("description");
-#            photo = ("photo");
-#          }
-#        }
-#      );
+      SOGoUserSources = (
+        {
+          id = cn;
+          type = ldap;
+          CNFieldName = cn;
+          IDFieldName = cn;
+          UIDFieldName = cn;
+          baseDN = "ou=users,${ldapBaseDCDN}";
+          canAuthenticate = YES;
+          displayName = "Voisins";
+          hostname = "ldaps://${domainName}";
+          isAddressBook = NO;
+          MailFieldNames = ("mail");
+          IMAPLoginFieldName = cn;
+          bindAsCurrentUser = YES;
+          mapping = {
+            mozillasecondemail = ("carLicense");
+            mozillaworkurl = ("labeldURI");
+            givenName = ("givenName");
+            sn = ("sn");
+            cn = ("cn");
+            uid = ("cn");
+            displayName = ("displayName");
+            mail = ("mail");
+            telephoneNumber = ("telephoneNumber");
+            mobile = ("mobile");
+            homephone = ("homephone");
+            title = ("title");
+            ou = ("ou");
+            o = ("o");
+            street = ("street");
+            l = ("l");
+            st = ("st");
+            postalCode = ("postalCode");
+            c = ("c");
+            description = ("description");
+            photo = ("photo");
+          }
+        }
+      );
       SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris", "sogo", "tt", "tt@lesgrandsvoisins.com");
       '';
           #       bindDN = "cn=admin,${ldapBaseDCDN}";
