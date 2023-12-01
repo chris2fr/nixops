@@ -243,6 +243,9 @@ services.httpd.virtualHosts."app.gvois.in" = {
     <If "%{HTTP_HOST} == 'warfur.org'">
         RedirectMatch /(.*)$ https://www.warfur.org/$1
     </If>
+    <If "%{HTTP_HOST} == 'desgrandsvoisins.com' || %{HTTP_HOST} == 'desgrandsvoisins.org' || %{HTTP_HOST} == 'www.desgrandsvoisins.org'" >
+        RedirectMatch /(.*)$ https://www.desgrandsvoisins.com/$1
+    </If>
     '';
   };
 #  services.httpd.virtualHosts."www.resdigita.com" = {
