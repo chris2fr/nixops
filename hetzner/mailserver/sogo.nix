@@ -77,7 +77,6 @@ in
       SOGoSAML2CertificateLocation = /var/lib/sogo/ssl/saml2sogo.crt;
       SOGoSAML2PrivateKeyLocation = /var/lib/sogo/ssl/saml2sogo.key;
       SOGoSAML2IdpCertificateLocation = /var/lib/sogo/ssl/authentik.pem;
-      /var/lib/sogo/ssl/authentik.key;
       SOGoSAML2IdpMetadataLocation = "https://authentik.lesgrandsvoisins.com/application/saml/sogo/metadata/";
       SOGoUserSources = (
         {
