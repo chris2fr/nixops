@@ -146,6 +146,6 @@ in
           # MailFieldNames = ("mail");
           # SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
 
-  };
+ # };
   users.groups.memcached.members = [ "sogo" ];
 }
