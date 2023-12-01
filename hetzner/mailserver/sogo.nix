@@ -72,12 +72,12 @@ in
       SOGoSMTPServer = "smtp://localhost:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoIMAPServer = "imap://localhost:143/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoTrustProxyAuthentication = YES;
-      SOGoSAML2LoginAttribute = username;
+      # SOGoSAML2LoginAttribute = username;
       SOGoAuthenticationType = saml2;
       SOGoSAML2CertificateLocation = /var/lib/sogo/ssl/saml2sogo.crt;
       SOGoSAML2PrivateKeyLocation = /var/lib/sogo/ssl/saml2sogo.key;
       SOGoSAML2IdpCertificateLocation = /var/lib/sogo/ssl/authentik.pem;
-      SOGoSAML2IdpMetadataLocation = "https://authentik.lesgrandsvoisins.com/application/saml/sogo/metadata/";
+      SOGoSAML2IdpMetadataLocation = "https://authentik.lesgrandsvoisins.com/api/v3/providers/saml/1/metadata/?download";
       SOGoSAML2LogoutURL = "https://authentik.lesgrandsvoisins.com/flows/-/default/invalidation/";
       SOGoSAML2LogoutEnabled = YES;
       SOGoUserSources = (
