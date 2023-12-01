@@ -72,7 +72,7 @@ in
       SOGoSMTPServer = "smtp://localhost:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoIMAPServer = "imap://localhost:143/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoTrustProxyAuthentication = YES;
-      # SOGoSAML2LoginAttribute = username;
+
       SOGoAuthenticationType = saml2;
       SOGoSAML2CertificateLocation = /var/lib/sogo/ssl/saml2sogo.crt;
       SOGoSAML2PrivateKeyLocation = /var/lib/sogo/ssl/saml2sogo.key;
@@ -127,7 +127,7 @@ in
             # SOGoMemcachedHost = "/var/run/memcached.sock";
       # SOGoMemcachedHost = "unix:///var/run/memcached/memcached.sock";
       # SOGoIMAPServer = "imaps://${domainName}/";
-
+      # SOGoSAML2LoginAttribute = username;
   # SOGoUserSources =
   #     (
   #       {
