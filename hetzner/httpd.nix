@@ -70,7 +70,7 @@ in
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade_keepalive;
     '';
-  }
+  };
   services.httpd.virtualHosts."blog.gvois.in" = {
     serverAliases = [
       "ghost.gvois.in"
