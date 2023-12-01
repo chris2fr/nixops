@@ -78,6 +78,8 @@ in
       SOGoSAML2PrivateKeyLocation = /var/lib/sogo/ssl/saml2sogo.key;
       SOGoSAML2IdpCertificateLocation = /var/lib/sogo/ssl/authentik.pem;
       SOGoSAML2IdpMetadataLocation = "https://authentik.lesgrandsvoisins.com/application/saml/sogo/metadata/";
+      SOGoSAML2LogoutURL = "https://authentik.lesgrandsvoisins.com/flows/-/default/invalidation/";
+      SOGoSAML2LogoutEnabled = YES;
 #      SOGoUserSources = (
 #        {
 #          id = cn;
