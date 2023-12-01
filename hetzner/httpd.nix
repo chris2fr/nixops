@@ -58,6 +58,19 @@ in
     CacheDisable /
     '';
   };
+  services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
+    enableACME = true;
+    forceSSL = true;
+    extraConfig = ''
+        proxy_pass http://10.245.101.35:9000;
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade_keepalive;
+    '';
+  }
   services.httpd.virtualHosts."blog.gvois.in" = {
     serverAliases = [
       "ghost.gvois.in"

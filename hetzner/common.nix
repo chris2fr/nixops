@@ -67,7 +67,7 @@ in
 #    python311Packages.pip
 #    python311Packages.pyproject-api
 #    python311Packages.pyproject-hooks
-
+     pwgen
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
