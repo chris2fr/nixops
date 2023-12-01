@@ -72,6 +72,11 @@ in
       SOGoSMTPServer = "smtp://localhost:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoIMAPServer = "imap://localhost:143/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoTrustProxyAuthentication = YES;
+      SOGoSAML2LoginAttribute = cn;
+      SOGoAuthenticationType = saml2;
+      SOGoSAML2CertificateLocation = /var/lib/sogo/ssl/saml2sogo.crt;
+      SOGoSAML2PrivateKeyLocation = /var/lib/sogo/ssl/saml2sogo.key;
+      SOGoSAML2IdpCertificateLocation = /var/lib/sogo/ssl/authentik.pem;
       SOGoUserSources = (
         {
           id = cn;
