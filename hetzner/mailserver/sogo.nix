@@ -68,10 +68,7 @@ in
       SOGoSMTPServer = "smtp://localhost:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoIMAPServer = "imap://localhost:143/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoTrustProxyAuthentication = YES;
-      SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris", "sogo", "tt", "tt@lesgrandsvoisins.com");
-      '';
-      SOGoUserSources = (
-        {
+      SOGoUserSources = ({
           id = cn;
           type = ldap;
           CNFieldName = cn;
@@ -107,9 +104,8 @@ in
             c = ("c");
             description = ("description");
             photo = ("photo");
-          }
-        }
-      );
+          }});
+      '';
   };
   users.groups.memcached.members = [ "sogo" ];
 #      SOGoAuthenticationType = saml2;
