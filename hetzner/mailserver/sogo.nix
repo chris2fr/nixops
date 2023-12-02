@@ -13,18 +13,14 @@ in
   services.memcached = {
     enable = true;
   };
-
   services.sogo = {
     enable = true;
     language = "fr-fr";
     timezone = "Europe/Paris";
-
-    #       SOGoEnableDomainBasedUID = YES;
-      # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
-      # SOGoDomainsVisibility = ("lesgv.com", "lesgrandsvoisins.com");
-    # 
-    #       SOGoUIxDebugEnabled 
-    # 
+    # SOGoEnableDomainBasedUID = YES;
+    # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
+    # SOGoDomainsVisibility = ("lesgv.com", "lesgrandsvoisins.com");
+    # SOGoUIxDebugEnabled 
     extraConfig = ''
       SOGoUIxDebugEnabled = NO;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
@@ -72,15 +68,6 @@ in
       SOGoSMTPServer = "smtp://localhost:587/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoIMAPServer = "imap://localhost:143/?tls=YES&tlsVerifyMode=allowInsecureLocalhost";
       SOGoTrustProxyAuthentication = YES;
-
-#      SOGoAuthenticationType = saml2;
-#      SOGoSAML2CertificateLocation = /var/lib/sogo/ssl/saml2sogo.crt;
-#      SOGoSAML2PrivateKeyLocation = /var/lib/sogo/ssl/saml2sogo.key;
-#      SOGoSAML2IdpCertificateLocation = /var/lib/sogo/ssl/authentik.pem;
-#      SOGoSAML2IdpMetadataLocation = "https://authentik.lesgrandsvoisins.com/api/v3/providers/saml/1/metadata/?download";
-#      SOGoSAML2LogoutURL = "https://authentik.lesgrandsvoisins.com/flows/-/default/invalidation/";
-#      SOGoSAML2LogoutEnabled = YES;
-
       SOGoSuperUsernames = ("sogo@resdigita.org", "chris@lesgrandsvoisins.com", "chris", "sogo", "tt", "tt@lesgrandsvoisins.com");
       '';
       SOGoUserSources = (
@@ -123,30 +110,35 @@ in
           }
         }
       );
-          #       bindDN = "cn=admin,${ldapBaseDCDN}";
-          # bindPassword = "${bindPassword}";
-            # SOGoMemcachedHost = "/var/run/memcached.sock";
-      # SOGoMemcachedHost = "unix:///var/run/memcached/memcached.sock";
-      # SOGoIMAPServer = "imaps://${domainName}/";
-      # SOGoSAML2LoginAttribute = username;
-  # SOGoUserSources =
-  #     (
-  #       {
-  #         type = sql;
-  #         id = BaseVoisins;
-  #         viewURL = "postgresql:///sogo/sogo_users";
-  #         canAuthenticate = YES;
-  #         isAddressBook = NO;
-  #         userPasswordAlgorithm = md5;
-  #       }
-  #     );
-
-
-
-          #### From SOGoUserSources = ( {  id = voisins;      
-          # MailFieldNames = ("mail");
-          # SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
-
   };
   users.groups.memcached.members = [ "sogo" ];
+#      SOGoAuthenticationType = saml2;
+#      SOGoSAML2CertificateLocation = /var/lib/sogo/ssl/saml2sogo.crt;
+#      SOGoSAML2PrivateKeyLocation = /var/lib/sogo/ssl/saml2sogo.key;
+#      SOGoSAML2IdpCertificateLocation = /var/lib/sogo/ssl/authentik.pem;
+#      SOGoSAML2IdpMetadataLocation = "https://authentik.lesgrandsvoisins.com/api/v3/providers/saml/1/metadata/?download";
+#      SOGoSAML2LogoutURL = "https://authentik.lesgrandsvoisins.com/flows/-/default/invalidation/";
+#      SOGoSAML2LogoutEnabled = YES;
+
+# bindDN = "cn=admin,${ldapBaseDCDN}";
+# bindPassword = "${bindPassword}";
+# SOGoMemcachedHost = "/var/run/memcached.sock";
+# SOGoMemcachedHost = "unix:///var/run/memcached/memcached.sock";
+# SOGoIMAPServer = "imaps://${domainName}/";
+# SOGoSAML2LoginAttribute = username;
+# SOGoUserSources =
+#     (
+#       {
+#         type = sql;
+#         id = BaseVoisins;
+#         viewURL = "postgresql:///sogo/sogo_users";
+#         canAuthenticate = YES;
+#         isAddressBook = NO;
+#         userPasswordAlgorithm = md5;
+#       }
+#     );
+
+#### From SOGoUserSources = ( {  id = voisins;      
+# MailFieldNames = ("mail");
+# SOGoMemcachedHost = "unix:///run/memcached/memcached.sock";
 }
