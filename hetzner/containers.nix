@@ -27,7 +27,7 @@ in
        }; 
      };
     config = { config, pkgs, ... }: {
-      users.users.wagtail.uid = 53;
+      users.users.wagtail.uid = 1003;
       # users.groups.users.gid = 1003;
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
