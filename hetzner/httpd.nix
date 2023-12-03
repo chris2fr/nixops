@@ -1,22 +1,19 @@
 { config, pkgs, lib, ... }:
 let 
-    wagtailHttpdLocations = {
-      "/.well-known".proxyPass = null;
-      "/static".proxyPass = null;
-      "/media".proxyPass = null;
-      "/favicon.ico".proxyPass = null;
-      "/" = {
-        proxyPass = "http://127.0.0.1:8000/";
-        extraConfig = ''
-           Require all granted
-           RequestHeader set X-Forwarded-Proto "https"
-           RequestHeader set X-Forwarded-Port "443"
-           ProxyPreserveHost On
-           ProxyAddHeaders On
-        '';
-        priority = 1500;
-      };
-    };
+    wagtailExtraConfig = ''
+        CacheDisable /
+        ProxyVia On
+        <Location />
+          Require all granted
+        </Location>
+        ProxyPass /.well-known !
+        ProxyPass /static !
+        ProxyPass /media !
+        ProxyPass /favicon.ico !
+        CacheDisable /
+        ProxyPass /  http://127.0.0.1:8000/
+        ProxyPassReverse /  http://127.0.0.1:8000/
+    '';
 in
 { 
   nix.settings.experimental-features = "nix-command flakes";
@@ -128,21 +125,19 @@ in
     #   };
 
     # };
-    extraConfig = ''
-        CacheDisable /
-        ProxyVia On
-        <Location />
-          Require all granted
-        </Location>
-        ProxyPass /.well-known !
-        ProxyPass /static !
-        ProxyPass /media !
-        ProxyPass /favicon.ico !
-        CacheDisable /
-        ProxyPass /  http://127.0.0.1:8000/
-        ProxyPassReverse /  http://127.0.0.1:8000/
-        # proxy_http_version 1.1;
-        
+    extraConfig = lib.strings.concatStrings [ wagtailExtraConfig ''
+        # CacheDisable /
+        # ProxyVia On
+        # <Location />
+        #   Require all granted
+        # </Location>
+        # ProxyPass /.well-known !
+        # ProxyPass /static !
+        # ProxyPass /media !
+        # ProxyPass /favicon.ico !
+        # CacheDisable /
+        # ProxyPass /  http://127.0.0.1:8000/
+        # ProxyPassReverse /  http://127.0.0.1:8000/
         #RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
         #RequestHeader set Host $host
         #RequestHeader set Upgrade $http_upgrade
@@ -151,7 +146,7 @@ in
       <If "%{HTTP_HOST} == 'desgv.com'">
           RedirectMatch /(.*)$ https://www.desgv.com/$1
       </If>
-    '';
+    ''];
   };
   services.httpd.virtualHosts."blog.gvois.in" = {
     serverAliases = [
