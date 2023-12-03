@@ -21,7 +21,7 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@gvois.in";
-  services.httpd.extraModules = [ "proxy" "proxy_http" "mod_dav" ];
+  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."gvois.in" = {
     enableACME = true;
@@ -102,27 +102,27 @@ in
     '';
   };
 
-  # services.httpd.virtualHosts."dav.desgv.com" = {
-  #   enableACME = true;
-  #   forceSSL = true;
-  #   documentRoot = "/var/www/dav/";
-  #   extraConfig = ''
-  #     DavLockDB /tmp/DavLock
-  #   '';
-  #   locations."/" = {
-  #     extraConfig = ''
-  #       Dav On
+  services.httpd.virtualHosts."dav.desgv.com" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot = "/var/www/dav/";
+    extraConfig = ''
+      DavLockDB /tmp/DavLock
+    '';
+    locations."/" = {
+      extraConfig = ''
+        Dav On
 
-  #       AuthType Basic
-  #       AuthName DAV
-  #       AuthUserFile /var/www/.htpasswd
+        AuthType Basic
+        AuthName DAV
+        AuthUserFile /var/www/.htpasswd
 
-  #       <LimitExcept GET HEAD OPTIONS>
-  #       require user admin
-  #       </LimitExcept>
-  #     '';
-  #   };
-  # };
+        <LimitExcept GET HEAD OPTIONS>
+        require user admin
+        </LimitExcept>
+      '';
+    };
+  };
 
   services.httpd.virtualHosts."www.desgv.com" = {
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"];
