@@ -28,7 +28,7 @@ in
           allowedTCPPorts = [ 80 443 ];
         };
         # Use systemd-resolved inside the container
-        useHostResolvConf = mkForce false;
+        # useHostResolvConf = mkForce false;
       };
       
       services.resolved.enable = true;
