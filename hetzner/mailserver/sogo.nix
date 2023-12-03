@@ -17,10 +17,6 @@ in
     enable = true;
     language = "fr-fr";
     timezone = "Europe/Paris";
-    # SOGoEnableDomainBasedUID = YES;
-    # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
-    # SOGoDomainsVisibility = ("lesgv.com", "lesgrandsvoisins.com");
-    # SOGoUIxDebugEnabled 
     extraConfig = ''
       SOGoUIxDebugEnabled = NO;
       SOGoHelpURL = "https://www.lesgrandsvoisins.com";
@@ -115,6 +111,10 @@ in
 #      SOGoSAML2IdpMetadataLocation = "https://authentik.lesgrandsvoisins.com/api/v3/providers/saml/1/metadata/?download";
 #      SOGoSAML2LogoutURL = "https://authentik.lesgrandsvoisins.com/flows/-/default/invalidation/";
 #      SOGoSAML2LogoutEnabled = YES;
+    # SOGoEnableDomainBasedUID = YES;
+    # SOGoLoginDomains = ("lesgv.com", "lesgrandsvoisins.com", "gvoisin.com", "resdigita.org");
+    # SOGoDomainsVisibility = ("lesgv.com", "lesgrandsvoisins.com");
+    # SOGoUIxDebugEnabled 
 
 # bindDN = "cn=admin,${ldapBaseDCDN}";
 # bindPassword = "${bindPassword}";
