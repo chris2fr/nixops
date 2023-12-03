@@ -54,7 +54,7 @@ in
 
       networking = {
         firewall = {
-          enable = true;
+          enable = false;
           allowedTCPPorts = [ 80 443 ];
         };
         # Use systemd-resolved inside the container
