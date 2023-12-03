@@ -76,7 +76,7 @@ in
     '';
   };
   services.httpd.virtualHosts."www.desgv.com" = {
-    serverAliases = ["desgv.com"];
+    serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"];
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
