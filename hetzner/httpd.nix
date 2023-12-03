@@ -104,7 +104,6 @@ in
            RequestHeader set X-Forwarded-Proto "https"
            RequestHeader set X-Forwarded-Port "443"
            ProxyPreserveHost On
-           ProxyVia On
            ProxyAddHeaders On
         '';
         priority = 1500;
@@ -113,6 +112,7 @@ in
     };
     extraConfig = ''
         CacheDisable /
+        ProxyVia On
         #<Location />
         #  Require all granted
         #</Location>
