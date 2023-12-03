@@ -134,11 +134,11 @@ in
         #<Location />
         #  Require all granted
         #</Location>
-        #ProxyPass /.well-known !
-        #ProxyPass /static !
-        #ProxyPass /media !
-        #ProxyPass /favicon.ico !
-        #CacheDisable /
+        ProxyPass /.well-known !
+        ProxyPass /static !
+        ProxyPass /media !
+        ProxyPass /favicon.ico !
+        CacheDisable /
         # ProxyPass /  http://127.0.0.1:8000/
         #ProxyPassReverse /  http://127.0.0.1:8000/
         # proxy_http_version 1.1;
