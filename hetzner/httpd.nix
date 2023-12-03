@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 let 
     wagtailHttpdLocations = {
-      "/.well-known".proxyPass = "!";
-      "/static".proxyPass = "!";
-      "/media".proxyPass = "!";
-      "/favicon.ico".proxyPass = "!";
+      "/.well-known".proxyPass = null;
+      "/static".proxyPass = null;
+      "/media".proxyPass = null;
+      "/favicon.ico".proxyPass = null;
       "/" = {
         proxyPass = "http://127.0.0.1:8000/";
         extraConfig = ''
