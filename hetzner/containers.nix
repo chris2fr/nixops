@@ -52,7 +52,7 @@ in
             };
           }
         ];
-
+      };
     users.users.wagtail.isNormalUser = true;
     home-manager.users.wagtail = {pkgs, ...}: {
       home.packages = with pkgs; [ 
@@ -68,7 +68,6 @@ in
       ];
       home.stateVersion = "23.05";
       programs.home-manager.enable = true;
-    };
       systemd.services.wagtail = {
         description = "Les Grands Voisins Wagtail Website";
         after = [ "network.target" ];
@@ -86,6 +85,5 @@ in
         };
       };
     };
-  };
   };
 }
