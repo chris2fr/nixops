@@ -67,7 +67,7 @@ in
         # useHostResolvConf = lib.mkForce false;
       #};
         
-      services.resolved.enable = true;
+      # services.resolved.enable = true;
 
       services.postgresql = {
         enable = true;
