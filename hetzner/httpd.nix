@@ -101,7 +101,6 @@ in
         proxyPass = "http://127.0.0.1:8000/";
         extraConfig = ''
            Require all granted
-           CacheDisable
            RequestHeader set X-Forwarded-Proto "https"
            RequestHeader set X-Forwarded-Port "443"
            ProxyPreserveHost On
@@ -113,6 +112,7 @@ in
 
     };
     extraConfig = ''
+        CacheDisable /
         #<Location />
         #  Require all granted
         #</Location>
