@@ -17,6 +17,7 @@ in
     localAddress = "192.168.100.11";
     hostAddress6 = "fc00::1";
     localAddress6 = "fc00::2";
+    time.timeZone = "Europe/Amsterdam";
     config = { config, pkgs, ... }: {
 
 
@@ -33,6 +34,26 @@ in
       
       services.resolved.enable = true;
 
+      services.postgresql = {
+        enable = true;
+        enableTCPIP = true;
+        ensureDatabases = [
+          "wagtail"
+          "previous"
+          "fairemain"
+        ];
+        ensureUsers = [
+          {
+            name = "wagtail";
+            ensurePermissions = {
+              "DATABASE \"wagtail\"" = "ALL PRIVILEGES";
+              "DATABASE \"previous\"" = "ALL PRIVILEGES";
+              "DATABASE \"fairemain\"" = "ALL PRIVILEGES";
+              "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
+            };
+          }
+        ];
+      }; 
     };
   };
 }
