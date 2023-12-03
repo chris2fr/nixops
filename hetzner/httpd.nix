@@ -108,9 +108,7 @@ in
     documentRoot = "/var/www/dav/";
     extraConfig = ''
       DavLockDB /tmp/DavLock
-    '';
-    locations."/" = {
-      extraConfig = ''
+
       <Directory "/var/www/dav/">
 
         Dav On
@@ -124,7 +122,6 @@ in
         </LimitExcept>
       </Directory>
       '';
-    };
   };
 
   services.httpd.virtualHosts."www.desgv.com" = {
