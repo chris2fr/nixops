@@ -101,6 +101,7 @@ in
       </If>
     '';
   };
+
   services.httpd.virtualHosts."www.desgv.com" = {
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"];
     documentRoot = "/var/www/wagtail/";
@@ -126,23 +127,6 @@ in
 
     # };
     extraConfig = lib.strings.concatStrings [ wagtailExtraConfig ''
-        # CacheDisable /
-        # ProxyVia On
-        # <Location />
-        #   Require all granted
-        # </Location>
-        # ProxyPass /.well-known !
-        # ProxyPass /static !
-        # ProxyPass /media !
-        # ProxyPass /favicon.ico !
-        # CacheDisable /
-        # ProxyPass /  http://127.0.0.1:8000/
-        # ProxyPassReverse /  http://127.0.0.1:8000/
-        #RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
-        #RequestHeader set Host $host
-        #RequestHeader set Upgrade $http_upgrade
-        #RequestHeader set Connection $connection_upgrade_keepalive
-
       <If "%{HTTP_HOST} == 'desgv.com'">
           RedirectMatch /(.*)$ https://www.desgv.com/$1
       </If>
