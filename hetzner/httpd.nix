@@ -85,6 +85,10 @@ in
         ProxyPass /static !
         ProxyPass /media !
         ProxyPass /favicon.ico !
+        CacheDisable /
+        <Location />
+          Require all granted
+        </Location>
         ProxyPass /  http://127.0.0.1:8000/
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
