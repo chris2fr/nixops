@@ -11,8 +11,8 @@ in
   # };
 
   containers.wagtail = {
-    users.users.wagtail.uid = 53;
-    # users.groups.users.gid = 1003;
+    
+    
     autoStart = true;
     # privateNetwork = true;
     # hostBridge = "br0";
@@ -27,6 +27,8 @@ in
        }; 
      };
     config = { config, pkgs, ... }: {
+      users.users.wagtail.uid = 53;
+      # users.groups.users.gid = 1003;
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "23.11";
