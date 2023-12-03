@@ -69,6 +69,8 @@ in
             python311Packages.aiosasl
             python311Packages.psycopg2
             gettext
+            sqlite
+            postgresql
         ];
 
       # networking = {
