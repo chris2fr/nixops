@@ -43,6 +43,9 @@ in
     address = "fe80::1";
     interface = "eno1";
   };
+  networking.firewall.trustedInterfaces = [
+    "ve-wagtail@if2"
+  ];
 
 
 
