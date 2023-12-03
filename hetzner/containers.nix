@@ -19,8 +19,31 @@ in
     localAddress6 = "fc00::2";
 
     config = { config, pkgs, ... }: {
+      nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "23.05";
+        environment.systemPackages = with pkgs; [
+          ((vim_configurable.override {  }).customize{
+            name = "vim";
+            vimrcConfig.customRC = ''
+              " your custom vimrc
+              set mouse=a
+              set nocompatible
+              colo torte
+              syntax on
+              set tabstop     =2
+              set softtabstop =2
+              set shiftwidth  =2
+              set expandtab
+              set autoindent
+              set smartindent
+              " ...
+            '';
+            }
+          )
+          cowsay
+          home-manager
+        ];
 
       networking = {
         firewall = {
