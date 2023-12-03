@@ -102,27 +102,27 @@ in
     '';
   };
 
-  services.httpd.virtualHosts."dav.desgv.com" = {
-    enableACME = true;
-    forceSSL = true;
-    documentRoot = "/var/www/dav/";
-    extraConfig = ''
-      DavLockDB /tmp/DavLock
-    '';
-    locations."/" = {
-      extraConfig = ''
-        Dav On
+  # services.httpd.virtualHosts."dav.desgv.com" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   documentRoot = "/var/www/dav/";
+  #   extraConfig = ''
+  #     DavLockDB /tmp/DavLock
+  #   '';
+  #   locations."/" = {
+  #     extraConfig = ''
+  #       Dav On
 
-        AuthType Basic
-        AuthName DAV
-        AuthUserFile /var/www/.htpasswd
+  #       AuthType Basic
+  #       AuthName DAV
+  #       AuthUserFile /var/www/.htpasswd
 
-        <LimitExcept GET HEAD OPTIONS>
-        require user admin
-        </LimitExcept>
-      '';
-    };
-  };
+  #       <LimitExcept GET HEAD OPTIONS>
+  #       require user admin
+  #       </LimitExcept>
+  #     '';
+  #   };
+  # };
 
   services.httpd.virtualHosts."www.desgv.com" = {
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"];
