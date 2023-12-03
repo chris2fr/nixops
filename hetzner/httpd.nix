@@ -116,10 +116,11 @@ in
         AuthType Basic
         AuthName DAV
         AuthUserFile /var/www/.htpasswd
+        require valid-user 
 
-        <LimitExcept GET HEAD OPTIONS>
-          require user admin
-        </LimitExcept>
+        # <LimitExcept GET HEAD OPTIONS>
+        #   require user admin
+        # </LimitExcept>
       </Directory>
       '';
   };
