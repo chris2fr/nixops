@@ -1,5 +1,24 @@
 { config, pkgs, lib, ... }:
 let 
+{
+    wagtailHttpdLocations = {
+      "/.well-known".proxyPass = "!";
+      "/static".proxyPass = "!";
+      "/media".proxyPass = "!";
+      "/favicon.ico".proxyPass = "!";
+      "/" = {
+        proxyPass = "http://127.0.0.1:8000/";
+        extraConfig = ''
+           Require all granted
+           RequestHeader set X-Forwarded-Proto "https"
+           RequestHeader set X-Forwarded-Port "443"
+           ProxyPreserveHost On
+           ProxyAddHeaders On
+        '';
+        priority = 1500;
+      };
+    };
+}
 in
 { 
   nix.settings.experimental-features = "nix-command flakes";
@@ -92,24 +111,25 @@ in
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
-    locations = {
-      "/.well-known".proxyPass = "!";
-      "/static".proxyPass = "!";
-      "/media".proxyPass = "!";
-      "/favicon.ico".proxyPass = "!";
-      "/" = {
-        proxyPass = "http://127.0.0.1:8000/";
-        extraConfig = ''
-           Require all granted
-           RequestHeader set X-Forwarded-Proto "https"
-           RequestHeader set X-Forwarded-Port "443"
-           ProxyPreserveHost On
-           ProxyAddHeaders On
-        '';
-        priority = 1500;
-      };
+    locations = wagtailHttpdLocations;
+    # {
+    #   "/.well-known".proxyPass = "!";
+    #   "/static".proxyPass = "!";
+    #   "/media".proxyPass = "!";
+    #   "/favicon.ico".proxyPass = "!";
+    #   "/" = {
+    #     proxyPass = "http://127.0.0.1:8000/";
+    #     extraConfig = ''
+    #        Require all granted
+    #        RequestHeader set X-Forwarded-Proto "https"
+    #        RequestHeader set X-Forwarded-Port "443"
+    #        ProxyPreserveHost On
+    #        ProxyAddHeaders On
+    #     '';
+    #     priority = 1500;
+    #   };
 
-    };
+    # };
     extraConfig = ''
         CacheDisable /
         ProxyVia On
