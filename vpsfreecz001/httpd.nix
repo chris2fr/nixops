@@ -192,13 +192,13 @@ services.httpd.virtualHosts."app.gvois.in" = {
     </If>
     '';
   };
-  services.httpd.virtualHosts."desgrandsvoisins.com" = {
-     extraConfig = ''
-      Dav On
-      DavLockDB /tmp/DavLock
-      
-     '';
-  };
+  # services.httpd.virtualHosts."desgrandsvoisins.com" = {
+  #    extraConfig = ''
+  #     Dav On
+  #     DavLockDB /tmp/DavLock
+
+  #    '';
+  # };
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
     serverAliases = [
       "www.avmeet.com"
