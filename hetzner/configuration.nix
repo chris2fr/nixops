@@ -11,7 +11,7 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    ./hardware-configuration.nix
     ./httpd.nix
     ./mailserver.nix
     ./guichet.nix
@@ -20,6 +20,7 @@ in
     ./wagtail.nix
     ./common.nix # Des configurations communes pratiques
     ./servers.nix # I am migrating other services here
+    ./containers.nix
     (import "${home-manager}/nixos")
     ];
 
