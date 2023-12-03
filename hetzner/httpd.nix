@@ -111,6 +111,8 @@ in
     '';
     locations."/" = {
       extraConfig = ''
+      <Directory "/var/www/dav/">
+
         Dav On
 
         AuthType Basic
@@ -118,8 +120,9 @@ in
         AuthUserFile /var/www/.htpasswd
 
         <LimitExcept GET HEAD OPTIONS>
-        require user admin
+          require user admin
         </LimitExcept>
+      </Directory>
       '';
     };
   };
