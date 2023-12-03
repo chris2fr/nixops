@@ -75,6 +75,27 @@ in
         ProxyAddHeaders On
     '';
   };
+  services.httpd.virtualHosts."www.desgv.com" = {
+    serverAliases = ["desgv.com"];
+    enableACME = true;
+    forceSSL = true;
+    extraConfig = ''
+        ProxyPass /  http://127.0.0.1:8000/
+        # proxy_http_version 1.1;
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
+        #RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
+        #RequestHeader set Host $host
+        #RequestHeader set Upgrade $http_upgrade
+        #RequestHeader set Connection $connection_upgrade_keepalive
+        ProxyPreserveHost On
+        ProxyVia On
+        ProxyAddHeaders On
+      <If "%{HTTP_HOST} != 'www.desgv.com'">
+          RedirectMatch /(.*)$ https://www.desgv.com/$1
+      </If>
+    '';
+  };
   services.httpd.virtualHosts."blog.gvois.in" = {
     serverAliases = [
       "ghost.gvois.in"
