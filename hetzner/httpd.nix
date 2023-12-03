@@ -109,7 +109,7 @@ in
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
-    locations = wagtailHttpdLocations;
+    #locations = wagtailHttpdLocations;
     # {
     #   "/.well-known".proxyPass = "!";
     #   "/static".proxyPass = "!";
@@ -131,16 +131,16 @@ in
     extraConfig = ''
         CacheDisable /
         ProxyVia On
-        #<Location />
-        #  Require all granted
-        #</Location>
+        <Location />
+          Require all granted
+        </Location>
         ProxyPass /.well-known !
         ProxyPass /static !
         ProxyPass /media !
         ProxyPass /favicon.ico !
         CacheDisable /
-        # ProxyPass /  http://127.0.0.1:8000/
-        #ProxyPassReverse /  http://127.0.0.1:8000/
+        ProxyPass /  http://127.0.0.1:8000/
+        ProxyPassReverse /  http://127.0.0.1:8000/
         # proxy_http_version 1.1;
         
         #RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
