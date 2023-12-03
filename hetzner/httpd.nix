@@ -21,7 +21,7 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@gvois.in";
-  services.httpd.extraModules = [ "proxy" "proxy_http" ];
+  services.httpd.extraModules = [ "proxy" "proxy_http" "mod_dav" ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."gvois.in" = {
     enableACME = true;
@@ -100,6 +100,28 @@ in
           RedirectMatch /(.*)$ https://resdigita.desgv.com/$1
       </If>
     '';
+  };
+
+  services.httpd.virtualHosts."dav.desgv.com" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot = "/var/www/dav/";
+    extraConfig = ''
+      DavLockDB /tmp/DavLock
+    '';
+    locations."/" = {
+      extraConfig = ''
+        Dav On
+
+        AuthType Basic
+        AuthName DAV
+        AuthUserFile /var/www/.htpasswd
+
+        <LimitExcept GET HEAD OPTIONS>
+        require user admin
+        </LimitExcept>
+      '';
+    };
   };
 
   services.httpd.virtualHosts."www.desgv.com" = {
