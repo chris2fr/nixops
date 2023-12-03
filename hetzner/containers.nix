@@ -18,7 +18,12 @@ in
     # localAddress = "192.168.100.11";
     # hostAddress6 = "fc00::1";
     # localAddress6 = "fc00::2";
-
+    bindMounts = { 
+      "/var/www/wagtail" = { 
+        hostPath = "/var/www/wagtail";
+        isReadOnly = false; 
+       }; 
+     };
     config = { config, pkgs, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";

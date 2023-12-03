@@ -80,12 +80,6 @@ in
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
-    bindMounts = { 
-      "/var/www/wagtail" = { 
-        hostPath = "/var/www/wagtail";
-        isReadOnly = false; 
-       }; 
-     };
     extraConfig = ''
         <Location />
           Require all granted
