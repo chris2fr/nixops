@@ -77,9 +77,14 @@ in
   };
   services.httpd.virtualHosts."www.desgv.com" = {
     serverAliases = ["desgv.com"];
+    documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
+        ProxyPass /.well-known !
+        ProxyPass /static !
+        ProxyPass /media !
+        ProxyPass /favicon.ico !
         ProxyPass /  http://127.0.0.1:8000/
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
