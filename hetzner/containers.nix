@@ -68,6 +68,7 @@ in
             python311Packages.pq
             python311Packages.aiosasl
             python311Packages.psycopg2
+            gettext
         ];
 
       # networking = {
@@ -81,26 +82,26 @@ in
         
       # services.resolved.enable = true;
 
-      services.postgresql = {
-        enable = true;
-        enableTCPIP = true;
-        ensureDatabases = [
-          "wagtail"
-          "previous"
-          "fairemain"
-        ];
-        ensureUsers = [
-          {
-            name = "wagtail";
-            ensurePermissions = {
-              "DATABASE \"wagtail\"" = "ALL PRIVILEGES";
-              "DATABASE \"previous\"" = "ALL PRIVILEGES";
-              "DATABASE \"fairemain\"" = "ALL PRIVILEGES";
-              "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
-            };
-          }
-        ];
-      };
+      # services.postgresql = {
+      #   enable = true;
+      #   enableTCPIP = true;
+      #   ensureDatabases = [
+      #     "wagtail"
+      #     "previous"
+      #     "fairemain"
+      #   ];
+      #   ensureUsers = [
+      #     {
+      #       name = "wagtail";
+      #       ensurePermissions = {
+      #         "DATABASE \"wagtail\"" = "ALL PRIVILEGES";
+      #         "DATABASE \"previous\"" = "ALL PRIVILEGES";
+      #         "DATABASE \"fairemain\"" = "ALL PRIVILEGES";
+      #         "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
+      #       };
+      #     }
+      #   ];
+      # };
       users.users.wagtail.isNormalUser = true;
       systemd.services.wagtail = {
         description = "Les Grands Voisins Wagtail Website";
