@@ -65,7 +65,7 @@ in
       #   };
         # Use systemd-resolved inside the container
         # useHostResolvConf = lib.mkForce false;
-      };
+      #};
         
       services.resolved.enable = true;
 
