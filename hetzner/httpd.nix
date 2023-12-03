@@ -92,28 +92,45 @@ in
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
+    locations = {
+      "/.well-known".proxyPass = "!";
+      "/static".proxyPass = "!";
+      "/media".proxyPass = "!";
+      "/favicon.ico".proxyPass = "!";
+      "/" = {
+        proxyPass = "http://127.0.0.1:8000/";
+        extraConfig = ''
+           Require all granted
+           CacheDisable
+           RequestHeader set X-Forwarded-Proto "https"
+           RequestHeader set X-Forwarded-Port "443"
+           ProxyPreserveHost On
+           ProxyVia On
+           ProxyAddHeaders On
+        '';
+        priority = 1500;
+      };
+
+    };
     extraConfig = ''
-        <Location />
-          Require all granted
-        </Location>
-        ProxyPass /.well-known !
-        ProxyPass /static !
-        ProxyPass /media !
-        ProxyPass /favicon.ico !
-        CacheDisable /
-        ProxyPass /  http://127.0.0.1:8000/
-        ProxyPassReverse /  http://127.0.0.1:8000/
+        #<Location />
+        #  Require all granted
+        #</Location>
+        #ProxyPass /.well-known !
+        #ProxyPass /static !
+        #ProxyPass /media !
+        #ProxyPass /favicon.ico !
+        #CacheDisable /
+        # ProxyPass /  http://127.0.0.1:8000/
+        #ProxyPassReverse /  http://127.0.0.1:8000/
         # proxy_http_version 1.1;
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
+        
         #RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
         #RequestHeader set Host $host
         #RequestHeader set Upgrade $http_upgrade
         #RequestHeader set Connection $connection_upgrade_keepalive
-        ProxyPreserveHost On
-        ProxyVia On
-        ProxyAddHeaders On
-      <If "%{HTTP_HOST} != 'www.desgv.com'">
+
+      <If "%{HTTP_HOST} == 'desgv.com'">
           RedirectMatch /(.*)$ https://www.desgv.com/$1
       </If>
     '';
