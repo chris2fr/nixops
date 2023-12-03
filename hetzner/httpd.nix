@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }:
 let 
-{
     wagtailHttpdLocations = {
       "/.well-known".proxyPass = "!";
       "/static".proxyPass = "!";
@@ -18,7 +17,6 @@ let
         priority = 1500;
       };
     };
-}
 in
 { 
   nix.settings.experimental-features = "nix-command flakes";
