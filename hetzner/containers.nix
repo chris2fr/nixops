@@ -11,6 +11,8 @@ in
   # };
 
   containers.wagtail = {
+    users.users.wagtail.uid = 53;
+    users.groups.wagtail.gid = 1003;
     autoStart = true;
     # privateNetwork = true;
     # hostBridge = "br0";
