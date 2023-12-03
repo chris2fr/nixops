@@ -21,7 +21,7 @@ in
     config = { config, pkgs, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
-      system.stateVersion = "23.05";
+      system.stateVersion = "23.11";
         environment.systemPackages = with pkgs; [
           ((vim_configurable.override {  }).customize{
             name = "vim";
@@ -50,6 +50,11 @@ in
             libtiff
             freetype
             python311Packages.venvShellHook
+            curl
+            wget
+            lynx
+            dig    
+            python311Packages.pylibjpeg-libjpeg
         ];
 
       networking = {
