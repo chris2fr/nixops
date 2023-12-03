@@ -12,7 +12,8 @@ in
 
   containers.wagtail = {
     autoStart = true;
-    privateNetwork = true;
+    # privateNetwork = true;
+    hostBridge = "br0";
     hostAddress = "192.168.100.10";
     localAddress = "192.168.100.11";
     hostAddress6 = "fc00::1";
@@ -57,11 +58,11 @@ in
             python311Packages.pylibjpeg-libjpeg
         ];
 
-      networking = {
-        firewall = {
-          enable = false;
-          allowedTCPPorts = [ 80 443 ];
-        };
+      # networking = {
+      #   firewall = {
+      #     enable = false;
+      #     allowedTCPPorts = [ 80 443 ];
+      #   };
         # Use systemd-resolved inside the container
         # useHostResolvConf = lib.mkForce false;
       };
