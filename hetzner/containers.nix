@@ -17,10 +17,9 @@ in
     localAddress = "192.168.100.11";
     hostAddress6 = "fc00::1";
     localAddress6 = "fc00::2";
-    time.timeZone = "Europe/Amsterdam";
+
     config = { config, pkgs, ... }: {
-
-
+      time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "23.05";
 
       networking = {
