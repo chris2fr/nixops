@@ -75,6 +75,18 @@ in
         ProxyAddHeaders On
     '';
   };
+  services.httpd.virtualHosts."resdigita.desgv.com" = {
+    serverAliases = [
+    ];
+    documentRoot =  "/var/www/resdigitacom/";
+    forceSSL = true;
+    enableACME = true;
+    extraConfig = ''
+      <If "%{HTTP_HOST} != 'resdigita.desgv.com'">
+          RedirectMatch /(.*)$ https://resdigita.desgv.com/$1
+      </If>
+    '';
+  };
   services.httpd.virtualHosts."www.desgv.com" = {
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"];
     documentRoot = "/var/www/wagtail/";
