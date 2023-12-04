@@ -117,7 +117,7 @@ in
         # AuthName DAV
         AuthType oauth2
         OAuth2TokenVerify introspect https://authentik.lesgrandsvoisins.com/application/o/introspect/ introspect.auth=client_secret_post&client_id=V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk&client_secret=Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-        Require oauth2_claim chris@lesgrandsvoinsins.com
+        Require oauth2_claim .*chris@lesgrandsvoinsins.com.*
 
         # AuthType Basic
         # 
