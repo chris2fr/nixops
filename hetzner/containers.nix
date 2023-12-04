@@ -10,38 +10,51 @@ in
   #   enableIPv6 = true;
   # };
 
-  networking.vlans."vlandav" = {
-    id = 8;
-    interface = "eno1";
-  };
+  # networking.vlans."vlandav" = {
+  #   id = 8;
+  #   interface = "eno1";
+  # };
 
-  networking.interfaces."vlandav" = {
-    ipv4 = {
-      addresses = [
-        {
-          address = "10.8.8.1";
-          prefixLength = 24;
-        }
-      ];
-    };
-    ipv6 = {
-      addresses = [
-        {
-          address = "fc00::8:8:1";
-          prefixLength = 96;
-        }
-      ];
-    };  
+  # To be able to ping containers from the host, it is necessary
+  # to create a macvlan on the host on the VLAN 1 network.
+  networking.macvlans.mv-eth1-host = {
+    interface = "eth1";
+    mode = "bridge";
   };
+        networking.interfaces.eth1.ipv4.addresses = lib.mkForce [];
+        networking.interfaces.eth1.ipv6.addresses = lib.mkForce [];
+        networking.interfaces.mv-eth1-host = {
+          ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
+          ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
+        };
+
+  # networking.interfaces."vlandav" = {
+  #   ipv4 = {
+  #     addresses = [
+  #       {
+  #         address = "10.8.8.1";
+  #         prefixLength = 24;
+  #       }
+  #     ];
+  #   };
+  #   ipv6 = {
+  #     addresses = [
+  #       {
+  #         address = "fc00::8:8:1";
+  #         prefixLength = 96;
+  #       }
+  #     ];
+  #   };  
+  # };
 
     networking.firewall.trustedInterfaces = [
-    "vlandav"
+    "mv-eth1-host"
   ];
 
   containers.dav = {
       autoStart = true;
-      hostBridge = "vlandav";
-      privateNetwork = true;
+      hostBridge = "mv-eth1-host";
+      # privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
       #   hostPort = 8080;
@@ -51,8 +64,8 @@ in
       #   hostPort = 8443;
       #   protocol = "tcp";
       # }];
-      localAddress6 = "fc00::8:8:8/96";
-      localAddress = "10.8.8.8/24";
+      #localAddress6 = "fc00::8:8:8/96";
+      #localAddress = "10.8.8.8/24";
 
       bindMounts = {
         "/usr/local/lib" = {hostPath="/usr/local/lib";};
@@ -60,12 +73,16 @@ in
 
 
       config = { config, pkgs, ... }: {
-        nix.settings.experimental-features = "nix-command flakes";
+        # nix.settings.experimental-features = "nix-command flakes";
         time.timeZone = "Europe/Amsterdam";
         system.stateVersion = "23.11";
         imports = [
           ./common.nix
         ];
+        networking.interfaces.mv-eth1 = {
+          ipv4.addresses = [ { address = "192.168.8.8"; prefixLength = 24; } ];
+          ipv6.addresses = [ { address = "fc00::8:8:8"; prefixLength = 96; } ];
+        };
         # environment.systemPackages = with pkgs; [
         #   httpd
         # ];
