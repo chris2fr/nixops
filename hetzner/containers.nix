@@ -10,7 +10,12 @@ in
   #   enableIPv6 = true;
   # };
 
-  networking.interfaces."brc0" = {
+  networking.vlans."vlandav" = {
+    id = 8;
+    interface = "eno1";
+  };
+
+  networking.interfaces."vlandav" = {
     ipv4 = {
       addresses = [
         {
@@ -29,9 +34,13 @@ in
     };  
   };
 
+    networking.firewall.trustedInterfaces = [
+    "vlandav"
+  ];
+
   containers.dav = {
       autoStart = true;
-      hostBridge = "brc0";
+      hostBridge = "vlandav";
       privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
@@ -62,6 +71,12 @@ in
         # ];
         services.httpd = {
           enable = true;
+          enablePHP = false;
+          adminAddr = "chris@lesgrandsvoisins.com";
+          extraModules = [ "proxy" "proxy_http" "dav"
+            { name = "oauth2"; path = "/usr/local/lib/modules/mod_oauth2.so"; }
+            { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
+          ];
           # virtualHosts = {
           #   "localhost" = {
           #      *.listen = 88
