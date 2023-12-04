@@ -109,7 +109,7 @@ in
           #      *.listen = 88
           #   };
           # };
-          virtualHosts."localhost" {
+          virtualHosts."localhost" = {
             listen = {
               ip = "*";
               port = 8080;
