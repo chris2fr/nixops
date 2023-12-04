@@ -27,7 +27,7 @@ in
       hostAddress6 = "fc00::8:8:1";
       hostAddress = "10.8.8.1";
       bindMounts = {
-        "/usr/local/lib" = {hostPath="/usr/local/lib"};
+        "/usr/local/lib" = {hostPath="/usr/local/lib";};
       };
 
 
