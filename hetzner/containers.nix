@@ -21,12 +21,12 @@ in
     interface = "eno1";
     mode = "bridge";
   };
-        networking.interfaces.eno1.ipv4.addresses = lib.mkForce [];
-        networking.interfaces.eno1.ipv6.addresses = lib.mkForce [];
-        networking.interfaces.mv-eno1-host = {
-          ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
-          ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
-        };
+  networking.interfaces.eno1.ipv4.addresses = lib.mkForce [];
+  networking.interfaces.eno1.ipv6.addresses = lib.mkForce [];
+  networking.interfaces.mv-eno1-host = {
+    ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
+    ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
+  };
 
   # networking.interfaces."vlandav" = {
   #   ipv4 = {
@@ -48,13 +48,13 @@ in
   # };
 
     networking.firewall.trustedInterfaces = [
-    "mv-eno1-host"
+    "mv-eno1-host@eno1"
   ];
 
   containers.dav = {
       autoStart = true;
       hostBridge = "mv-eno1-host";
-      # privateNetwork = true;
+      privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
       #   hostPort = 8080;
@@ -65,7 +65,7 @@ in
       #   protocol = "tcp";
       # }];
       #localAddress6 = "fc00::8:8:8/96";
-      #localAddress = "10.8.8.8/24";
+      localAddress = "192.168.8.8/24";
 
       bindMounts = {
         "/usr/local/lib" = {hostPath="/usr/local/lib";};
@@ -79,10 +79,10 @@ in
         imports = [
           ./common.nix
         ];
-        networking.interfaces.mv-eno1 = {
-          ipv4.addresses = [ { address = "192.168.8.8"; prefixLength = 24; } ];
-          ipv6.addresses = [ { address = "fc00::8:8:8"; prefixLength = 96; } ];
-        };
+        # networking.interfaces.mv-eno1 = {
+        #   ipv4.addresses = [ { address = "192.168.8.8"; prefixLength = 24; } ];
+        #   ipv6.addresses = [ { address = "fc00::8:8:8"; prefixLength = 96; } ];
+        # };
         # environment.systemPackages = with pkgs; [
         #   httpd
         # ];
