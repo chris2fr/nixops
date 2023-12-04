@@ -53,7 +53,7 @@ in
 
   containers.dav = {
       autoStart = true;
-      hostBridge = "mv-eno1-host";
+      hostBridge = "mv-eno1-host@eno1";
       privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
@@ -65,7 +65,7 @@ in
       #   protocol = "tcp";
       # }];
       #localAddress6 = "fc00::8:8:8/96";
-      localAddress = "192.168.8.8/24";
+      # localAddress = "192.168.8.8/24";
 
       bindMounts = {
         "/usr/local/lib" = {hostPath="/usr/local/lib";};
