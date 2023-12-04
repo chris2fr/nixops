@@ -129,31 +129,31 @@ in
   #   '';
   # };
 
-  services.httpd.virtualHosts."www.shitmuststop.com" = {
-    serverAliases = [
-      "shitmuststop.com"
-    ];
-    enableACME = true;
-    forceSSL = true;
-    documentRoot =  "/var/www/wagtail/";
-    extraConfig = ''
-    <Location />
-    Require all granted
-    </Location>
+  # services.httpd.virtualHosts."www.shitmuststop.com" = {
+  #   serverAliases = [
+  #     "shitmuststop.com"
+  #   ];
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   documentRoot =  "/var/www/wagtail/";
+  #   extraConfig = ''
+  #   <Location />
+  #   Require all granted
+  #   </Location>
 
-    ProxyPass /.well-known !
-    ProxyPass /static !
-    ProxyPass /media !
-    ProxyPass /favicon.ico !
-    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-    ProxyPreserveHost On
-    CacheDisable /
-    <If "%{HTTP_HOST} != 'www.shitmuststop.com'">
-        RedirectMatch /(.*)$ https://www.shitmuststop.com/$1
-    </If>
-    '';
-  };
+  #   ProxyPass /.well-known !
+  #   ProxyPass /static !
+  #   ProxyPass /media !
+  #   ProxyPass /favicon.ico !
+  #   ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+  #   ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+  #   ProxyPreserveHost On
+  #   CacheDisable /
+  #   <If "%{HTTP_HOST} != 'www.shitmuststop.com'">
+  #       RedirectMatch /(.*)$ https://www.shitmuststop.com/$1
+  #   </If>
+  #   '';
+  # };
 
 
 
@@ -257,6 +257,8 @@ in
       <If "%{HTTP_HOST} == 'francemali.org'">
           RedirectMatch /(.*)$ https://www.francemali.org/$1
       </If>
+        ProxyPreserveHost On
+        CacheDisable /
     ''];
   };
   services.httpd.virtualHosts."blog.gvois.in" = {
