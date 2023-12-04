@@ -48,7 +48,7 @@ in
   # };
 
     networking.firewall.trustedInterfaces = [
-    "mv-eno1-host@eno1"
+    "mv-eno1-host"
   ];
 
   containers.dav = {
@@ -82,10 +82,10 @@ in
         imports = [
           ./common.nix
         ];
-        # networking.interfaces.mv-eno1 = {
-        #   ipv4.addresses = [ { address = "192.168.8.8"; prefixLength = 24; } ];
-        #   ipv6.addresses = [ { address = "fc00::8:8:8"; prefixLength = 96; } ];
-        # };
+        networking.interfaces.mv-eno1-host = {
+          ipv4.addresses = [ { address = "192.168.8.8"; prefixLength = 24; } ];
+          ipv6.addresses = [ { address = "fc00::8:8:8"; prefixLength = 96; } ];
+        };
         # environment.systemPackages = with pkgs; [
         #   httpd
         # ];
