@@ -108,21 +108,21 @@ in
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/dav/";
-    extraConfig = ''
-      DavLockDB /tmp/DavLock
+    # extraConfig = ''
+    #   DavLockDB /tmp/DavLock
 
-      AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
-      AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
-      AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
-      <Location "/chris">
-      #Require valid-user
-      Require ldap-dn cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org
-      </Location>
-      <Directory "/var/www/dav/">
+    #   AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+    #   AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+    #   AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+    #   <Location "/chris">
+    #   #Require valid-user
+    #   Require ldap-dn cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org
+    #   </Location>
+    #   <Directory "/var/www/dav/">
 
-        Dav On
-          </Directory>
-    '';
+    #     Dav On
+    #       </Directory>
+    # '';
   };
 
   services.httpd.virtualHosts."dav.desgv.com" = {
