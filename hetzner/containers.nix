@@ -10,6 +10,21 @@ in
   #   enableIPv6 = true;
   # };
 
+  containers.dav = {
+      autoStart = true;
+      imports = [
+        ./common.nix
+      ];
+      config = { config, pkgs, ... }: {
+        nix.settings.experimental-features = "nix-command flakes";
+        time.timeZone = "Europe/Amsterdam";
+        system.stateVersion = "23.11";
+        environment.systemPackages = with pkgs; [
+          httpd
+        ];
+      };
+  };
+
   containers.wagtail = {
     
     
