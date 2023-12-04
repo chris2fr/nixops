@@ -109,53 +109,54 @@ in
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/dav/";
-    extraConfig = ''
-    ProxyPass / http://localhost:8080/
-    ProxyPassReverse / http://localhost:8080/
-    RequestHeader set X-Forwarded-Proto "https"
-    RequestHeader set X-Forwarded-Port "443"
-    ProxyPreserveHost On
-    ProxyVia On
-    ProxyAddHeaders On
-
-    CacheDisable /
-
-    '';
     # extraConfig = ''
-    #   DavLockDB /tmp/DavLock
+    # ProxyPass / http://localhost:8080/
+    # ProxyPassReverse / http://localhost:8080/
+    # RequestHeader set X-Forwarded-Proto "https"
+    # RequestHeader set X-Forwarded-Port "443"
+    # ProxyPreserveHost On
+    # ProxyVia On
+    # ProxyAddHeaders On
+
+    # CacheDisable /
+
+    # '';
+    extraConfig = ''
+      DavLockDB /tmp/DavLock
 
 
-    #     # OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
-    #     # OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
-    #     # OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-    #     # OIDCRedirectURI https://dav.desgv.com/secure/redirect_uri
-    #     # <Location "/">
-    #     #   AuthType openid-connect
-    #     #   Require valid-user
-    #     # </Location>
+        OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+        OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
+        OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+        OIDCRedirectURI https://dav.desgv.com/secure/redirect_uri
+        OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+        <Location "/chris">
+          AuthType openid-connect
+          Require valid-user
+        </Location>
 
-    #   <Directory "/var/www/dav/">
+      <Directory "/var/www/dav/">
 
-    #     Dav On
+        Dav On
 
 
-    #     # AuthName DAV
-    #     # AuthType oauth2
-    #     # OAuth2TokenVerify introspect https://authentik.lesgrandsvoisins.com/application/o/introspect/ introspect.ssl_verify=false&introspect.auth=client_secret_post&client_id=V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk&client_secret=Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+        # AuthName DAV
+        # AuthType oauth2
+        # OAuth2TokenVerify introspect https://authentik.lesgrandsvoisins.com/application/o/introspect/ introspect.ssl_verify=false&introspect.auth=client_secret_post&client_id=V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk&client_secret=Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
 
-    #     # Require oauth2_claim .*chris@lesgrandsvoinsins.com.*
-    #     # require valid-user 
+        # Require oauth2_claim .*chris@lesgrandsvoinsins.com.*
+        # require valid-user 
 
-    #     # AuthType Basic
-    #     # 
-    #     # AuthUserFile /var/www/.htpasswd
-    #     # require valid-user 
+        # AuthType Basic
+        # 
+        # AuthUserFile /var/www/.htpasswd
+        # require valid-user 
 
-    #     # <LimitExcept GET HEAD OPTIONS>
-    #     #   require user admin
-    #     # </LimitExcept>
-    #   </Directory>
-    #   '';
+        # <LimitExcept GET HEAD OPTIONS>
+        #   require user admin
+        # </LimitExcept>
+      </Directory>
+      '';
   };
 
   services.httpd.virtualHosts."www.desgv.com" = {
