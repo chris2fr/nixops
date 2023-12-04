@@ -17,16 +17,16 @@ in
 
   # To be able to ping containers from the host, it is necessary
   # to create a macvlan on the host on the VLAN 1 network.
-  # networking.macvlans.mv-eno1-host = {
-  #   interface = "eno1";
-  #   mode = "bridge";
-  # };
-  # networking.interfaces.eno1.ipv4.addresses = lib.mkForce [];
-  # networking.interfaces.eno1.ipv6.addresses = lib.mkForce [];
-  # networking.interfaces.mv-eno1-host = {
-  #   ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
-  #   ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
-  # };
+  networking.macvlans.mv-eno1-host = {
+    interface = "eno1";
+    mode = "bridge";
+  };
+  networking.interfaces.eno1.ipv4.addresses = lib.mkForce [];
+  networking.interfaces.eno1.ipv6.addresses = lib.mkForce [];
+  networking.interfaces.mv-eno1-host = {
+    ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
+    ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
+  };
 
   # networking.interfaces."vlandav" = {
   #   ipv4 = {
@@ -64,10 +64,11 @@ in
       #   hostPort = 8443;
       #   protocol = "tcp";
       # }];
-      localAddress6 = "fc00::8:8:8/96";
-      localAddress = "192.168.8.8/24";
-      hostAddress6 = "fc00::8:8:1";
-      hostAddress = "192.168.8.1";
+      interfaces = ["mv-eno1-host@eno1"];
+      # localAddress6 = "fc00::8:8:8/96";
+      # localAddress = "192.168.8.8/24";
+      # hostAddress6 = "fc00::8:8:1";
+      # hostAddress = "192.168.8.1";
 
       bindMounts = {
         "/usr/local/lib" = {hostPath="/usr/local/lib";};
