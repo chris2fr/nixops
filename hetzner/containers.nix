@@ -67,6 +67,7 @@ in
       # interfaces = ["mv-eno1-host"];
       localAddress6 = "fc00::8:8:8/96";
       localAddress = "192.168.8.8/24";
+      macvlans = ["eno1"];
       # hostAddress6 = "fc00::8:8:1";
       # hostAddress = "192.168.8.1";
 
