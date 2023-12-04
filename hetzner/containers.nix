@@ -27,6 +27,7 @@ in
           ];
       };
     };
+  };
 
   containers.dav = {
       autoStart = true;
