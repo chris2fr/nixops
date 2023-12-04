@@ -21,7 +21,8 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@gvois.in";
-  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" ];
+  services.httpd.extraModules = [ "proxy" "proxy_http" "dav"
+   { name = "oauth2"; path = "/usr/local/lib/modules/mod_oauth2.so"; } ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."gvois.in" = {
     enableACME = true;
