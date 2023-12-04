@@ -58,7 +58,9 @@ in
     # };
 
   containers.dav = {
-      autoStart = true;
+      # autoStart = true;
+
+
       #hostBridge = "mv-eno1-host";
       # privateNetwork = true;
       # forwardPorts = [{
@@ -119,7 +121,7 @@ in
               OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
               OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
               OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-              OIDCRedirectURI https://dav.desgv.com/secure/redirect_uri
+              OIDCRedirectURI https://dav.desgv.com/chris/redirect_uri
               <Location "/chris/">
                 AuthType openid-connect
                 Require valid-user
