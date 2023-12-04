@@ -48,8 +48,14 @@ in
   # };
 
     networking.firewall.trustedInterfaces = [
-      "mv-eno1-host"
+      "br0"
     ];
+
+    networking.bridges = { br0 = { interfaces = [ "eno1" ]; }; };
+    networking.interfaces.br0 = {
+      ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
+      ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
+    };
 
   containers.dav = {
       autoStart = true;
@@ -67,7 +73,7 @@ in
       # interfaces = ["mv-eno1-host"];
       localAddress6 = "fc00::8:8:8/96";
       localAddress = "192.168.8.8/24";
-      macvlans = ["eno1"];
+      # macvlans = ["eno1"];
       hostAddress6 = "fc00::8:8:1";
       hostAddress = "192.168.8.1";
 
