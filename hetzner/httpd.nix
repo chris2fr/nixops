@@ -116,9 +116,8 @@ in
 
         AuthName DAV
         AuthType oauth2
-        OAuth2TokenVerify jwks_uri https://authentik.lesgrandsvoisins.com/application/o/dav/jwks/
+        OAuth2TokenVerify jwks_uri https://authentik.lesgrandsvoisins.com/application/o/dav/jwks/ jwks_uri.ssl_verify=false
 
-        /application/o/
 
         # AuthType Basic
         # 
