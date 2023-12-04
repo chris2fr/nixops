@@ -18,7 +18,7 @@ in
   # To be able to ping containers from the host, it is necessary
   # to create a macvlan on the host on the VLAN 1 network.
   networking.macvlans.mv-eth1-host = {
-    interface = "eth1";
+    interface = "eno1";
     mode = "bridge";
   };
         networking.interfaces.eth1.ipv4.addresses = lib.mkForce [];
@@ -53,7 +53,7 @@ in
 
   containers.dav = {
       autoStart = true;
-      hostBridge = "mv-eth1-host";
+      hostBridge = "mv-eno1-host";
       # privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
