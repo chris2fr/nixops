@@ -21,7 +21,7 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@gvois.in";
-  services.httpd.extraModules = [ "proxy" "proxy_http" "dav"
+  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" 
    { name = "oauth2"; path = "/usr/local/lib/modules/mod_oauth2.so"; }
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
@@ -104,6 +104,22 @@ in
       </If>
     '';
   };
+
+  services.httpd.virtualHosts."davpass.desgv.com" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot = "/var/www/dav/";
+    extraConfig = ''
+      DavLockDB /tmp/DavLock
+      AuthLDAPSearchAsUser on
+      AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+      <Location "/chris">
+      #Require valid-user
+      Require ldap-dn cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org
+      </Location>
+
+    '';
+  }
 
   services.httpd.virtualHosts."dav.desgv.com" = {
     enableACME = true;
