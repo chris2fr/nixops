@@ -23,7 +23,7 @@ in
   services.httpd.adminAddr = "contact@gvois.in";
   services.httpd.extraModules = [ "proxy" "proxy_http" "dav"
    { name = "oauth2"; path = "/usr/local/lib/modules/mod_oauth2.so"; }
-    { name = "auth_oidc"; path = "/usr/local/lib/modules/mod_auth_oidc.so"; }
+    { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."gvois.in" = {
