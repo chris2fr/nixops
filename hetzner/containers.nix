@@ -41,7 +41,7 @@ in
   containers.dav = {
       autoStart = true;
       hostBridge = "vlandav";
-      privateNetwork = true;
+      # privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
       #   hostPort = 8080;
@@ -71,12 +71,12 @@ in
         # ];
         services.httpd = {
           enable = true;
-          enablePHP = false;
-          adminAddr = "chris@lesgrandsvoisins.com";
-          extraModules = [ "proxy" "proxy_http" "dav"
-            { name = "oauth2"; path = "/usr/local/lib/modules/mod_oauth2.so"; }
-            { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
-          ];
+          # enablePHP = false;
+          # adminAddr = "chris@lesgrandsvoisins.com";
+          # extraModules = [ "proxy" "proxy_http" "dav"
+          #   { name = "oauth2"; path = "/usr/local/lib/modules/mod_oauth2.so"; }
+          #   { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
+          # ];
           # virtualHosts = {
           #   "localhost" = {
           #      *.listen = 88
