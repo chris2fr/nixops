@@ -48,7 +48,7 @@ in
     interface = "eno1";
   };
   networking.firewall.trustedInterfaces = [
-    "ve-wagtail@if2"
+    "ve-dav@if2"
   ];
 
 
