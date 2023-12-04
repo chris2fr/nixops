@@ -12,7 +12,9 @@ in
 
   containers.dav = {
       autoStart = true;
+      privateNetwork = true;
       hostBridge = "br0";
+
       config = { config, pkgs, ... }: {
         nix.settings.experimental-features = "nix-command flakes";
         time.timeZone = "Europe/Amsterdam";
