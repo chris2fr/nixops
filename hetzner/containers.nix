@@ -47,20 +47,20 @@ in
   #   };  
   # };
 
-    networking.firewall.trustedInterfaces = [
-      "br0"
-    ];
+    # networking.firewall.trustedInterfaces = [
+    #   "br0"
+    # ];
 
-    networking.bridges = { br0 = { interfaces = [ "enp0s31f6" ]; }; };
-    networking.interfaces.br0 = {
-      ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
-      ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
-    };
+    # networking.bridges = { br0 = { interfaces = [ "enp0s31f6" "ve-dav" ]; }; };
+    # networking.interfaces.br0 = {
+    #   ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
+    #   ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
+    # };
 
   containers.dav = {
       autoStart = true;
       #hostBridge = "mv-eno1-host";
-      privateNetwork = true;
+      # privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
       #   hostPort = 8080;
@@ -71,11 +71,11 @@ in
       #   protocol = "tcp";
       # }];
       # interfaces = ["mv-eno1-host"];
-      localAddress6 = "fc00::8:8:8/96";
-      localAddress = "192.168.8.8/24";
-      # macvlans = ["eno1"];
-      hostAddress6 = "fc00::8:8:1";
-      hostAddress = "192.168.8.1";
+      # localAddress6 = "fc00::8:8:8/96";
+      # localAddress = "192.168.8.8/24";
+      # # macvlans = ["eno1"];
+      # hostAddress6 = "fc00::8:8:1";
+      # hostAddress = "192.168.8.1";
 
       bindMounts = {
         "/usr/local/lib" = {hostPath="/usr/local/lib";};
@@ -109,6 +109,12 @@ in
           #      *.listen = 88
           #   };
           # };
+          virtualHosts."localhost" {
+            listen = {
+              ip = "*";
+              port = 8080;
+            }
+          }
         };
       };
   };
