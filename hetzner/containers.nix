@@ -110,10 +110,10 @@ in
           #   };
           # };
           virtualHosts."localhost" = {
-            listen = {
+            listen = [{
               ip = "*";
               port = 8080;
-            };
+            }];
           };
         };
       };
