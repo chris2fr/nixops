@@ -19,9 +19,10 @@ in
         imports = [
           ./common.nix
         ];
-        environment.systemPackages = with pkgs; [
-          httpd
-        ];
+        # environment.systemPackages = with pkgs; [
+        #   httpd
+        # ];
+        services.httpd.enable = true;
       };
   };
 
