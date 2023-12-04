@@ -122,7 +122,7 @@ in
         # AuthType Basic
         # 
         # AuthUserFile /var/www/.htpasswd
-        require valid-user 
+        # require valid-user 
 
         # <LimitExcept GET HEAD OPTIONS>
         #   require user admin
