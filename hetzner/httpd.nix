@@ -160,7 +160,6 @@ in
         </Location>
         Alias /ldap /var/www/dav
 
-        <Location "/ldap">
       <Location /ldap/chris>
       AuthType Basic
       AuthBasicProvider ldap
