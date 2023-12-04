@@ -13,15 +13,23 @@ in
   containers.dav = {
       autoStart = true;
       privateNetwork = true;
-      forwardPorts = [{
-        containerPort = 80;
-        hostPort = 8080;
-        protocol = "tcp";
-      }{
-        containerPort = 443;
-        hostPort = 8443;
-        protocol = "tcp";
-      }];
+      # forwardPorts = [{
+      #   containerPort = 80;
+      #   hostPort = 8080;
+      #   protocol = "tcp";
+      # }{
+      #   containerPort = 443;
+      #   hostPort = 8443;
+      #   protocol = "tcp";
+      # }];
+      localAddress6 = "fc00::8:8:8";
+      localAddress = "10.8.8.8";
+      hostAddress6 = "fc00::8:8:1";
+      hostAddress = "10.8.8.1";
+      bindMounts = {
+        "/usr/local/lib" = {hostPath="/usr/local/lib"}
+      };
+
 
       config = { config, pkgs, ... }: {
         nix.settings.experimental-features = "nix-command flakes";
