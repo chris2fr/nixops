@@ -17,13 +17,13 @@ in
 
   # To be able to ping containers from the host, it is necessary
   # to create a macvlan on the host on the VLAN 1 network.
-  networking.macvlans.mv-eth1-host = {
+  networking.macvlans.mv-eno1-host = {
     interface = "eno1";
     mode = "bridge";
   };
-        networking.interfaces.eth1.ipv4.addresses = lib.mkForce [];
-        networking.interfaces.eth1.ipv6.addresses = lib.mkForce [];
-        networking.interfaces.mv-eth1-host = {
+        networking.interfaces.eno1.ipv4.addresses = lib.mkForce [];
+        networking.interfaces.eno1.ipv6.addresses = lib.mkForce [];
+        networking.interfaces.mv-eno1-host = {
           ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
           ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
         };
@@ -48,7 +48,7 @@ in
   # };
 
     networking.firewall.trustedInterfaces = [
-    "mv-eth1-host"
+    "mv-eno1-host"
   ];
 
   containers.dav = {
@@ -79,7 +79,7 @@ in
         imports = [
           ./common.nix
         ];
-        networking.interfaces.mv-eth1 = {
+        networking.interfaces.mv-eno1 = {
           ipv4.addresses = [ { address = "192.168.8.8"; prefixLength = 24; } ];
           ipv6.addresses = [ { address = "fc00::8:8:8"; prefixLength = 96; } ];
         };
