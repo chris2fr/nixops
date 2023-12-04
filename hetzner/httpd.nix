@@ -129,6 +129,59 @@ in
   #   '';
   # };
 
+  services.httpd.virtualHosts."www.shitmuststop.com" = {
+    serverAliases = [
+      "shitmuststop.com"
+    ];
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/wagtail/";
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
+    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPreserveHost On
+    CacheDisable /
+    <If "%{HTTP_HOST} != 'www.shitmuststop.com'">
+        RedirectMatch /(.*)$ https://www.shitmuststop.com/$1
+    </If>
+    '';
+  };
+
+
+  services.httpd.virtualHosts."www.francemali.org" = {
+    serverAliases = [
+      "francemali.org"
+    ];
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/wagtail/";
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+    ProxyPass /static !
+    ProxyPass /media !
+    ProxyPass /favicon.ico !
+    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+    ProxyPreserveHost On
+    CacheDisable /
+    <If "%{HTTP_HOST} != 'www.francemali.org'">
+        RedirectMatch /(.*)$ https://www.francemali.org/$1
+    </If>
+    '';
+  };
+
   services.httpd.virtualHosts."dav.desgv.com" = {
     enableACME = true;
     forceSSL = true;
@@ -158,18 +211,19 @@ in
           AuthType openid-connect
           Require valid-user
         </Location>
+
         Alias /ldap /var/www/dav
 
       <Location /ldap/chris>
-      AuthType Basic
-      AuthBasicProvider ldap
-      AuthName "DAV par LDAP"
-      AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
-      AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
-      AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
-      #Require valid-user
+        AuthType Basic
+        AuthBasicProvider ldap
+        AuthName "DAV par LDAP"
+        AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+        AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+        #Require valid-user
 
-      Require ldap-dn cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org
+        Require ldap-dn cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org
         </Location>
 
       <Directory "/var/www/dav/">
@@ -466,6 +520,8 @@ in
       "gvcity.gvois.in"
       "toutdouxlissecom.gvois.in"
       "iciwowcom.gvois.in"
+      "francemali.org"
+      "www.francemali.org"
       ];
       extraConfig = ''
           <Location />
