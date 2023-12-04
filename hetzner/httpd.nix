@@ -21,7 +21,7 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@gvois.in";
-  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" 
+  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias"
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
