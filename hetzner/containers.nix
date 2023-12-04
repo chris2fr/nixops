@@ -12,6 +12,7 @@ in
 
   containers.dav = {
       autoStart = true;
+      hostBridge = "br0";
       config = { config, pkgs, ... }: {
         nix.settings.experimental-features = "nix-command flakes";
         time.timeZone = "Europe/Amsterdam";
@@ -22,7 +23,14 @@ in
         # environment.systemPackages = with pkgs; [
         #   httpd
         # ];
-        services.httpd.enable = true;
+        services.httpd {
+          enable = true;
+          virtualHosts = {
+            "localhost" = {
+               *.listen = 88
+            };
+          };
+        };
       };
   };
 
