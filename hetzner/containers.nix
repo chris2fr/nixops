@@ -41,7 +41,7 @@ in
   containers.dav = {
       autoStart = true;
       hostBridge = "vlandav";
-      # privateNetwork = true;
+      privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
       #   hostPort = 8080;
