@@ -22,7 +22,9 @@ in
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@gvois.in";
   services.httpd.extraModules = [ "proxy" "proxy_http" "dav"
-   { name = "oauth2"; path = "/usr/local/lib/modules/mod_oauth2.so"; } ];
+   { name = "oauth2"; path = "/usr/local/lib/modules/mod_oauth2.so"; }
+    { name = "auth_oidc"; path = "/usr/local/lib/modules/mod_auth_oidc.so"; }
+     ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."gvois.in" = {
     enableACME = true;
@@ -114,11 +116,19 @@ in
 
         Dav On
 
+        OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+        OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
+        OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+        OIDCRedirectURI https://dav.desgv.com/secure/redirect_uri
+        AuthType openid-connect
+        Require valid-user
+
         # AuthName DAV
-        AuthType oauth2
-        OAuth2TokenVerify introspect https://authentik.lesgrandsvoisins.com/application/o/introspect/ introspect.ssl_verify=false&introspect.auth=client_secret_post&client_id=V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk&client_secret=Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+        # AuthType oauth2
+        # OAuth2TokenVerify introspect https://authentik.lesgrandsvoisins.com/application/o/introspect/ introspect.ssl_verify=false&introspect.auth=client_secret_post&client_id=V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk&client_secret=Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+
         # Require oauth2_claim .*chris@lesgrandsvoinsins.com.*
-        require valid-user 
+        # require valid-user 
 
         # AuthType Basic
         # 
