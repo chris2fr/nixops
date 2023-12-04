@@ -51,7 +51,7 @@ in
       "br0"
     ];
 
-    networking.bridges = { br0 = { interfaces = [ "eno1" ]; }; };
+    networking.bridges = { br0 = { interfaces = [ "enp0s31f6" ]; }; };
     networking.interfaces.br0 = {
       ipv4.addresses = [ { address = "192.168.8.1"; prefixLength = 24; } ];
       ipv6.addresses = [ { address = "fc00::8:8:1"; prefixLength = 96; } ];
