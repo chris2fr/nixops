@@ -22,10 +22,10 @@ in
       #   hostPort = 8443;
       #   protocol = "tcp";
       # }];
-      localAddress6 = "fc00::8:8:8";
-      localAddress = "10.8.8.8";
-      hostAddress6 = "fc00::8:8:1";
-      hostAddress = "10.8.8.1";
+      localAddress6 = "fc00::8:8:8/96";
+      localAddress = "10.8.8.8/24";
+      hostAddress6 = "fc00::8:8:1/96";
+      hostAddress = "10.8.8.1/24";
       bindMounts = {
         "/usr/local/lib" = {hostPath="/usr/local/lib";};
       };
