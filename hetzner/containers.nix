@@ -11,22 +11,22 @@ in
   # };
 
   networking.interfaces."brc0" = {
-        ipv4 = {
-          addresses = [
-            {
-              address = "10.8.8.1";
-              prefixLength = 24;
-            }
-          ];
-        ipv6 = {
-          addresses = [
-            {
-              address = "fc00::8:8:1";
-              prefixLength = 96;
-            }
-          ];
-      };
+    ipv4 = {
+      addresses = [
+        {
+          address = "10.8.8.1";
+          prefixLength = 24;
+        }
+      ];
     };
+    ipv6 = {
+      addresses = [
+        {
+          address = "fc00::8:8:1";
+          prefixLength = 96;
+        }
+      ];
+    };  
   };
 
   containers.dav = {
