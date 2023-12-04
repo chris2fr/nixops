@@ -54,7 +54,7 @@ in
   containers.dav = {
       autoStart = true;
       hostBridge = "mv-eno1-host";
-      # privateNetwork = true;
+      privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
       #   hostPort = 8080;
