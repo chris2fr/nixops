@@ -53,7 +53,7 @@ in
 
   containers.dav = {
       autoStart = true;
-      # hostBridge = "mv-eno1-host@eno1";
+      hostBridge = "mv-eno1-host";
       # privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
@@ -64,7 +64,7 @@ in
       #   hostPort = 8443;
       #   protocol = "tcp";
       # }];
-      interfaces = ["mv-eno1-host"];
+      # interfaces = ["mv-eno1-host"];
       localAddress6 = "fc00::8:8:8/96";
       localAddress = "192.168.8.8/24";
       # hostAddress6 = "fc00::8:8:1";
@@ -83,9 +83,9 @@ in
           ./common.nix
         ];
         networking.interfaces.mv-eno1-host = {
-          ipv4.addresses = [ { address = "192.168.8.8"; prefixLength = 24; } ];
-          ipv6.addresses = [ { address = "fc00::8:8:8"; prefixLength = 96; } ];
-        };
+        #   ipv4.addresses = [ { address = "192.168.8.8"; prefixLength = 24; } ];
+        #   ipv6.addresses = [ { address = "fc00::8:8:8"; prefixLength = 96; } ];
+        # };
         # environment.systemPackages = with pkgs; [
         #   httpd
         # ];
