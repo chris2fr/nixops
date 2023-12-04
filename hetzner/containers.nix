@@ -54,7 +54,7 @@ in
   containers.dav = {
       autoStart = true;
       # hostBridge = "mv-eno1-host@eno1";
-      privateNetwork = true;
+      # privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
       #   hostPort = 8080;
@@ -64,9 +64,9 @@ in
       #   hostPort = 8443;
       #   protocol = "tcp";
       # }];
-      interfaces = ["mv-eno1-host@eno1"];
-      # localAddress6 = "fc00::8:8:8/96";
-      # localAddress = "192.168.8.8/24";
+      interfaces = ["mv-eno1-host"];
+      localAddress6 = "fc00::8:8:8/96";
+      localAddress = "192.168.8.8/24";
       # hostAddress6 = "fc00::8:8:1";
       # hostAddress = "192.168.8.1";
 
