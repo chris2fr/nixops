@@ -13,6 +13,15 @@ in
   containers.dav = {
       autoStart = true;
       privateNetwork = true;
+      forwardPorts = [{
+        containerPort = 80;
+        hostPort = 8080;
+        protocol = "tcp";
+      }{
+        containerPort = 443;
+        hostPort = 8443;
+        protocol = "tcp";
+      }];
 
       config = { config, pkgs, ... }: {
         nix.settings.experimental-features = "nix-command flakes";
