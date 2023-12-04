@@ -23,7 +23,7 @@ in
         # environment.systemPackages = with pkgs; [
         #   httpd
         # ];
-        services.httpd {
+        services.httpd = {
           enable = true;
           # virtualHosts = {
           #   "localhost" = {
