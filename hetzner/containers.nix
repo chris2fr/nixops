@@ -10,8 +10,27 @@ in
   #   enableIPv6 = true;
   # };
 
+  networking.interfaces."brc0" = {
+        ipv4 = {
+          addresses = [
+            {
+              address = "10.8.8.1";
+              prefixLength = 24;
+            }
+          ];
+        ipv6 = {
+          addresses = [
+            {
+              address = "fc00::8:8:1";
+              prefixLength = 96;
+            }
+          ];
+      };
+    };
+
   containers.dav = {
       autoStart = true;
+      hostBridge = "brc0";
       privateNetwork = true;
       # forwardPorts = [{
       #   containerPort = 80;
@@ -24,8 +43,7 @@ in
       # }];
       localAddress6 = "fc00::8:8:8/96";
       localAddress = "10.8.8.8/24";
-      hostAddress6 = "fc00::8:8:1/96";
-      hostAddress = "10.8.8.1/24";
+
       bindMounts = {
         "/usr/local/lib" = {hostPath="/usr/local/lib";};
       };
