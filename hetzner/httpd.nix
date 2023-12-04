@@ -156,31 +156,6 @@ in
   };
 
 
-  services.httpd.virtualHosts."www.francemali.org" = {
-    serverAliases = [
-      "francemali.org"
-    ];
-    enableACME = true;
-    forceSSL = true;
-    documentRoot =  "/var/www/wagtail/";
-    extraConfig = ''
-    <Location />
-    Require all granted
-    </Location>
-
-    ProxyPass /.well-known !
-    ProxyPass /static !
-    ProxyPass /media !
-    ProxyPass /favicon.ico !
-    ProxyPass / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-    ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-    ProxyPreserveHost On
-    CacheDisable /
-    <If "%{HTTP_HOST} != 'www.francemali.org'">
-        RedirectMatch /(.*)$ https://www.francemali.org/$1
-    </If>
-    '';
-  };
 
   services.httpd.virtualHosts."dav.desgv.com" = {
     enableACME = true;
@@ -251,7 +226,8 @@ in
   };
 
   services.httpd.virtualHosts."www.desgv.com" = {
-    serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"];
+    serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"       "francemali.org"
+      "www.francemali.org" ];
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
@@ -277,6 +253,9 @@ in
     extraConfig = lib.strings.concatStrings [ wagtailExtraConfig ''
       <If "%{HTTP_HOST} == 'desgv.com'">
           RedirectMatch /(.*)$ https://www.desgv.com/$1
+      </If>
+      <If "%{HTTP_HOST} == 'francemali.org'">
+          RedirectMatch /(.*)$ https://www.francemali.org/$1
       </If>
     ''];
   };
@@ -520,8 +499,6 @@ in
       "gvcity.gvois.in"
       "toutdouxlissecom.gvois.in"
       "iciwowcom.gvois.in"
-      "francemali.org"
-      "www.francemali.org"
       ];
       extraConfig = ''
           <Location />
