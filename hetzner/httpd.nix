@@ -114,9 +114,15 @@ in
 
         Dav On
 
-        AuthType Basic
         AuthName DAV
-        AuthUserFile /var/www/.htpasswd
+        AuthType oauth2
+        OAuth2TokenVerify jwks_uri https://authentik.lesgrandsvoisins.com/application/o/dav/jwks/
+
+        /application/o/
+
+        # AuthType Basic
+        # 
+        # AuthUserFile /var/www/.htpasswd
         require valid-user 
 
         # <LimitExcept GET HEAD OPTIONS>
