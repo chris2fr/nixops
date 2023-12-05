@@ -81,6 +81,7 @@ in
 
       bindMounts = {
         "/usr/local/lib" = {hostPath="/usr/local/lib";};
+        "/home/wagtail/wagtail-lesgv/static" = {hostPath="/home/wagtail/wagtail-lesgv/static";};
       };
 
 
