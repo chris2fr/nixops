@@ -185,7 +185,7 @@ in
   services.httpd.virtualHosts."dav.desgv.com" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot = "/var/www/";
+    documentRoot = "/var/www/dav";
     # extraConfig = ''
     # ProxyPass / http://localhost:8080/
     # ProxyPassReverse / http://localhost:8080/
@@ -199,8 +199,8 @@ in
 
     # '';
     extraConfig = lib.strings.concatStrings [ ''
-      ProxyPass /auth !
-      ProxyPass /ldap !
+      # ProxyPass /auth !
+      # ProxyPass /ldap !
       Alias / /var/www/dav
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
