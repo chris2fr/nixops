@@ -77,6 +77,8 @@ in
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
     serverAliases = [
       "auth.lesgv.com"
+      "www.lesgv.com"
+      "lesgv.com"
     ];
     enableACME = true;
     forceSSL = true;
@@ -92,6 +94,9 @@ in
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
+        <If "%{HTTP_HOST} == 'lesgv.com'">
+          RedirectMatch /(.*)$ https://auth.lesgv.com/$1
+        </If>
     '';
   };
   services.httpd.virtualHosts."resdigita.desgv.com" = {
@@ -191,7 +196,7 @@ in
         </Location>
         <LocationMatch "^(/auth)?/chris.*$">
           AuthType openid-connect
-          Require user chris@lesgrandsvoisins.com
+          Require username chris@lesgrandsvoisins.com
         </LocationMatch>
 
         Alias /ldap /var/www/dav
