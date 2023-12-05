@@ -185,7 +185,7 @@ in
   services.httpd.virtualHosts."dav.desgv.com" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot = "/var/www/dav/";
+    documentRoot = "/var/www/";
     # extraConfig = ''
     # ProxyPass / http://localhost:8080/
     # ProxyPassReverse / http://localhost:8080/
@@ -198,6 +198,15 @@ in
     # CacheDisable /
 
     # '';
+    extraConfig = ''
+      ProxyPass /auth !
+      ProxyPass /ldap !
+      Alias / /var/www/dav
+      Alias /static /var/www/wagtail/static
+      Alias /media /var/www/wagtail/media
+
+    '';
+    extraConfig = wagtailExtraConfig;
     extraConfig = ''
       DavLockDB /tmp/DavLock
 
