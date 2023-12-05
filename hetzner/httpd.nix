@@ -237,6 +237,12 @@ in
         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         </LocationMatch>
 
+        <Directory "/var/www/wagtail">
+        Options Indexes FollowSymLinks
+AllowOverride None
+Require all granted
+        </Directory>
+
       <Directory "/var/www/dav/data">
 
         Dav On
