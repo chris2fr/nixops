@@ -233,7 +233,7 @@ in
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"  "francemali.org"
       "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com"];
     documentRoot = "/var/www/wagtail/";
-    enableACME = true;france
+    enableACME = true;
     forceSSL = true;
     #locations = wagtailHttpdLocations;
     # {
