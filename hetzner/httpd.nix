@@ -185,7 +185,7 @@ in
   services.httpd.virtualHosts."dav.desgv.com" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot = "/var/www/dav/";
+    documentRoot = "/var/dav/";
     # extraConfig = ''
     # ProxyPass / http://localhost:8080/
     # ProxyPassReverse / http://localhost:8080/
@@ -206,6 +206,9 @@ in
         OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
         OIDCRedirectURI https://dav.desgv.com/auth/redirect_uri
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+        <Location "/">
+          DocumentRoot /var/www/dav
+        </Location>
         <Location "/auth">
           AuthType openid-connect
           Require valid-user
@@ -215,8 +218,8 @@ in
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
 
-        Alias /ldap /var/www/dav
-        Alias /auth /var/www/dav
+        Alias /ldap /var/dav
+        Alias /auth /var/dav
 
        <LocationMatch "^/ldap/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
@@ -229,7 +232,7 @@ in
         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         </LocationMatch>
 
-      <Directory "/var/www/dav/">
+      <Directory "/var/dav/">
 
         Dav On
         # AuthName DAV
