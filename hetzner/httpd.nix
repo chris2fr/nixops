@@ -90,7 +90,7 @@ in
         ProxyVia On
         ProxyAddHeaders On
     '';
-  }
+  };
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
     serverAliases = [
       "auth.lesgv.com"
