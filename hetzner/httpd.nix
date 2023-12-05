@@ -194,7 +194,7 @@ in
           AuthType openid-connect
           Require valid-user
         </Location>
-        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/((?<usernameuser>[^/]+)">
+        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
           AuthType openid-connect
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
@@ -202,7 +202,7 @@ in
         Alias /ldap /var/www/dav
         Alias /auth /var/www/dav
 
-      <Location /ldap/chris>
+       <LocationMatch "^/ldap/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
         AuthBasicProvider ldap
         AuthName "DAV par LDAP"
@@ -211,8 +211,8 @@ in
         AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
         #Require valid-user
 
-        Require ldap-dn cn=chris@lesgrandsvoisins.com,ou=users,dc=resdigita,dc=org
-        </Location>
+        Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        </LocationMatch>
 
       <Directory "/var/www/dav/">
 
