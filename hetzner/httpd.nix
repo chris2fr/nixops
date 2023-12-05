@@ -94,8 +94,6 @@ in
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
     serverAliases = [
       "auth.lesgv.com"
-      "www.lesgv.com"
-      "lesgv.com"
     ];
     enableACME = true;
     forceSSL = true;
@@ -267,7 +265,8 @@ Require all granted
 
   services.httpd.virtualHosts."www.lesgrandsvoisins.fr" = {
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"  "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" "hopgv.com" "www.hopgv.com"];
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" "hopgv.com" "www.hopgv.com"       "www.lesgv.com"
+      "lesgv.com"];
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
@@ -299,6 +298,9 @@ Require all granted
       </If>
       <If "%{HTTP_HOST} == 'lesgrandsvoisins.fr'">
           RedirectMatch /(.*)$ https://www.lesgrandsvoisins.fr/$1
+      </If>
+      <If "%{HTTP_HOST} == 'lesgv.com'">
+          RedirectMatch /(.*)$ https://www.lesgv.com/$1
       </If>
         ProxyPreserveHost On
         CacheDisable /
