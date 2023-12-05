@@ -206,7 +206,7 @@ in
       Alias /media /var/www/wagtail/media
 
     ''
-    wagtailExtraConfig
+    # wagtailExtraConfig
     ''
       DavLockDB /tmp/DavLock
 
