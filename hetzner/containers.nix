@@ -81,7 +81,6 @@ in
 
       bindMounts = {
         "/usr/local/lib" = {hostPath="/usr/local/lib";};
-        "/var/www/wagtail" = {hostPath="/var/www/wagtail";};
       };
 
 
