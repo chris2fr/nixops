@@ -76,8 +76,7 @@ in
   };
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
     serverAliases = [
-      "lesgv.com"
-      "www.lesgv.com"
+      "auth.lesgv.com"
     ];
     enableACME = true;
     forceSSL = true;
