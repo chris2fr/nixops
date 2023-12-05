@@ -201,7 +201,6 @@ in
     extraConfig = lib.strings.concatStrings [ ''
       # ProxyPass /auth !
       # ProxyPass /ldap !
-      Alias / /var/www/dav
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
 
