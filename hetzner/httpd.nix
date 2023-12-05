@@ -185,7 +185,7 @@ in
   services.httpd.virtualHosts."dav.desgv.com" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot = "/var/dav/";
+    documentRoot = "/var/www/dav/";
     # extraConfig = ''
     # ProxyPass / http://localhost:8080/
     # ProxyPassReverse / http://localhost:8080/
@@ -218,8 +218,8 @@ in
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
 
-        Alias /ldap /var/dav
-        Alias /auth /var/dav
+        Alias /ldap /var/www/dav/
+        Alias /auth /var/www/dav/
 
        <LocationMatch "^/ldap/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
@@ -232,7 +232,7 @@ in
         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         </LocationMatch>
 
-      <Directory "/var/dav/">
+      <Directory "/var/www/dav/">
 
         Dav On
         # AuthName DAV
