@@ -253,7 +253,7 @@ in
 
   services.httpd.virtualHosts."www.lesgrandsvoisins.fr" = {
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"  "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"];
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" "hopgv.com" "www.hopgv.com"];
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
