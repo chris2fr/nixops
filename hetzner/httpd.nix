@@ -194,9 +194,9 @@ in
           AuthType openid-connect
           Require valid-user
         </Location>
-        <LocationMatch "^(/auth)?/chris.*$">
+        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/((?<usernameuser>[^/]+)">
           AuthType openid-connect
-          Require claim sub:chris@lesgrandsvoisins.com
+          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
 
         Alias /ldap /var/www/dav
