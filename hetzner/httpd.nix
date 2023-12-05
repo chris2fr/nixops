@@ -74,6 +74,23 @@ in
     CacheDisable /
     '';
   };
+  services.httpd.virtualHosts."hedgedoc.lesgv.com" = {
+    enableACME = true;
+    forceSSL = true;
+    extraConfig = ''
+        ProxyPass /  http://localhost:3000/
+        # proxy_http_version 1.1;
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
+        #RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
+        #RequestHeader set Host $host
+        #RequestHeader set Upgrade $http_upgrade
+        #RequestHeader set Connection $connection_upgrade_keepalive
+        ProxyPreserveHost On
+        ProxyVia On
+        ProxyAddHeaders On
+    '';
+  }
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
     serverAliases = [
       "auth.lesgv.com"
@@ -184,7 +201,6 @@ in
     extraConfig = ''
       DavLockDB /tmp/DavLock
 
-
         OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
         OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
         OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
@@ -210,15 +226,12 @@ in
         AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
         AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
         #Require valid-user
-
         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         </LocationMatch>
 
       <Directory "/var/www/dav/">
 
         Dav On
-
-
         # AuthName DAV
         # AuthType oauth2
         # OAuth2TokenVerify introspect https://authentik.lesgrandsvoisins.com/application/o/introspect/ introspect.ssl_verify=false&introspect.auth=client_secret_post&client_id=V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk&client_secret=Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
