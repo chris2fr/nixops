@@ -251,9 +251,9 @@ in
       '';
   };
 
-  services.httpd.virtualHosts."www.desgv.com" = {
+  services.httpd.virtualHosts."www.lesgrandsvoisins.fr" = {
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"  "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com"];
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"];
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
     forceSSL = true;
@@ -282,6 +282,9 @@ in
       </If>
       <If "%{HTTP_HOST} == 'francemali.org'">
           RedirectMatch /(.*)$ https://www.francemali.org/$1
+      </If>
+      <If "%{HTTP_HOST} == 'lesgrandsvoisins.fr'">
+          RedirectMatch /(.*)$ https://www.lesgrandsvoisins.fr/$1
       </If>
         ProxyPreserveHost On
         CacheDisable /
