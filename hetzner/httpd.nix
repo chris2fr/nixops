@@ -215,8 +215,8 @@ in
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
 
-        Alias /ldap /var/www/dav/
-        Alias /auth /var/www/dav/
+        Alias /ldap /var/www/dav/data
+        Alias /auth /var/www/dav/data
 
        <LocationMatch "^/ldap/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
@@ -229,7 +229,7 @@ in
         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         </LocationMatch>
 
-      <Directory "/var/www/dav/">
+      <Directory "/var/www/dav/data">
 
         Dav On
         # AuthName DAV
