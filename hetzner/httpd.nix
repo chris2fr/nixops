@@ -198,16 +198,16 @@ in
     # CacheDisable /
 
     # '';
-    extraConfig = ''
+    extraConfig = lib.strings.concatStrings [ ''
       ProxyPass /auth !
       ProxyPass /ldap !
       Alias / /var/www/dav
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
 
-    '';
-    extraConfig = wagtailExtraConfig;
-    extraConfig = ''
+    ''
+    wagtailExtraConfig
+    ''
       DavLockDB /tmp/DavLock
 
         OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
@@ -257,7 +257,7 @@ in
         #   require user admin
         # </LimitExcept>
       </Directory>
-      '';
+      ''];
   };
 
   services.httpd.virtualHosts."www.lesgrandsvoisins.fr" = {
