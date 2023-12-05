@@ -192,7 +192,7 @@ in
         <LocationMatch "^(/auth)?/chris.*$">
           AuthType openid-connect
           Require user chris@lesgrandsvoisins.com
-        </Location>
+        </LocationMatch>
 
         Alias /ldap /var/www/dav
         Alias /auth /var/www/dav
