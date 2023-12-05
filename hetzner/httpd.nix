@@ -75,6 +75,10 @@ in
     '';
   };
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
+    serverAliases = [
+      "lesgv.com"
+      "www.lesgv.com"
+    ];
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
@@ -229,7 +233,7 @@ in
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"  "francemali.org"
       "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com"];
     documentRoot = "/var/www/wagtail/";
-    enableACME = true;
+    enableACME = true;france
     forceSSL = true;
     #locations = wagtailHttpdLocations;
     # {
