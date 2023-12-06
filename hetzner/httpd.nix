@@ -211,7 +211,7 @@ in
 
         
         AliasMatch "[^/]*/([^/]+/[^/]+)/data/(.*)" "/var/www/dav/data/pass/$1/$2"
-        AliasMatch "[^/]*/[^/]+/[^/]+(.*)" "/var/www/dav/pass$1"
+        AliasMatch "[^/]*/[^/]+/[^/]+(.*)" "/var/www/secret$1"
 
         <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
           AuthType openid-connect
@@ -223,7 +223,7 @@ in
           </LimitExcept>
         </LocationMatch>
 
-                Alias /ldap /var/www/dav/data
+        Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
         Alias /pass /var/www/dav/data
         Alias /login /var/www/dav/data
