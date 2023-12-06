@@ -294,6 +294,10 @@ in
 
         # AllowMethods GET HEAD POST
 
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+          Require valid-user
+        </LimitExcept>
+
         # OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT
 
         # <LimitExcept GET HEAD POST>
