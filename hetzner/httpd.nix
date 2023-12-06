@@ -242,12 +242,12 @@ in
         # Alias /auth/pass /var/www/dav/data/pass
         # Alias "/auth/lesgrandsvoisins.com/chris/pass" "/var/www/dav/pass"
         # Alias "/auth/lesgrandsvoisins.com/chris/pass/custom.json" /var/www/dav/pass/custom.json"
-        AliasMatch "/secret/([^/]+/[^/]+)/data/(.*)" "/var/www/dav/data/pass/$1/$2"
-        AliasMatch "/secret/[^/]+/[^/]+(.*)" "/var/www/dav/pass$1"
+        AliasMatch "[^/]*/secret/([^/]+/[^/]+)/data/(.*)" "/var/www/dav/data/pass/$1/$2"
+        AliasMatch "[^/]*/secret/[^/]+/[^/]+(.*)" "/var/www/dav/pass$1"
         # /var/www/dav/pass/data/lesgrandsvoisins.com/chris
         # AliasMatch "/auth/[^/]+/[^/]+/pass/.*" /var/www/dav/pass
-        Alias /ldap/secret /var/www/dav/data/secret
-        Alias /auth/secret /var/www/dav/data/secret
+        #Alias /ldap/secret /var/www/dav/data/secret
+        #Alias /auth/secret /var/www/dav/data/secret
         Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
         Alias /data/pass /var/www/dav/data/pass
