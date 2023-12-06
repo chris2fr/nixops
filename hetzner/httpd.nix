@@ -223,6 +223,7 @@ in
 
         <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/pass">
           Alias /var/www/dav/pass
+          Dav Off
         </LocationMatch>
 
         Alias /ldap /var/www/dav/data
