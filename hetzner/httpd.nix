@@ -180,7 +180,7 @@ in
   services.httpd.virtualHosts."secret.desgv.com" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot = "/var/www/dav";
+    documentRoot = "/var/www/secret";
     extraConfig = ''
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
