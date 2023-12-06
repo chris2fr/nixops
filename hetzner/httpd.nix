@@ -212,6 +212,14 @@ in
         OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
         OIDCRedirectURI https://dav.desgv.com/auth/redirect_uri
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+        
+        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/pass/">
+          Alias /var/www/dav/pass/
+          Dav Off
+          AuthType openid-connect
+          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        </LocationMatch>
+
         <Location "/auth">
           AuthType openid-connect
           Require valid-user
@@ -221,13 +229,11 @@ in
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
 
-        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/pass">
-          Alias /var/www/dav/pass
-          Dav Off
-        </LocationMatch>
 
         Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
+        Alias /data/pass /var/www/dav/data/pass
+        AliasMatch /auth/[^/]+/[^/]+/pass/ /var/www/dav/data/pass/
 
        <LocationMatch "^/ldap/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
