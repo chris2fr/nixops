@@ -213,12 +213,10 @@ in
         OIDCRedirectURI https://dav.desgv.com/auth/redirect_uri
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
         
-        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/pass/">
-          Alias /var/www/dav/pass/
-          Dav Off
-          AuthType openid-connect
-          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
-        </LocationMatch>
+        # <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/pass/">
+        #   AuthType openid-connect
+        #   Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        # </LocationMatch>
 
         <Location "/auth">
           AuthType openid-connect
