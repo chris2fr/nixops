@@ -232,6 +232,10 @@ in
           AuthType openid-connect
           # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+            
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+             Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+          </LimitExcept>
         </LocationMatch>
 
 
@@ -263,6 +267,10 @@ in
         AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
         #Require valid-user
         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+          Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        </LimitExcept>
         </LocationMatch>
 
         <Directory "/var/www">
@@ -293,10 +301,6 @@ in
         # require valid-user 
 
         # AllowMethods GET HEAD POST
-
-        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-          Require valid-user
-        </LimitExcept>
 
         # OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT
 
