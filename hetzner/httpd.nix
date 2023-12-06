@@ -226,15 +226,22 @@ in
           AuthType openid-connect
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
-
+        <LocationMatch "^/pass/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+          AuthType openid-connect
+          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        </LocationMatch>
 
         Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
+        Alias /pass /var/www/dav/data/pass
+        Alias /login /var/www/dav/data
         # Alias /auth/pass /var/www/dav/data/pass
-        Alias /auth/lesgrandsvoisins.com/chris/pass /var/www/dav/pass/data/lesgrandsvoisins.com/chris
+        Alias /auth/lesgrandsvoisins.com/chris/pass /var/www/dav/pass
+        AliasMatch /auth/[^/]+/[^/]+/pass /var/www/dav/pass
+        # /var/www/dav/pass/data/lesgrandsvoisins.com/chris
         #AliasMatch /auth/[^/]+/[^/]+/pass /var/www/dav/pass/data
 
-       <LocationMatch "^/ldap/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+       <LocationMatch "^/(ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
         AuthBasicProvider ldap
         AuthName "DAV par LDAP"
