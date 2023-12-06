@@ -221,6 +221,10 @@ in
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
 
+        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/pass">
+          Alias /var/www/dav/pass
+        </LocationMatch>
+
         Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
 
@@ -237,8 +241,8 @@ in
 
         <Directory "/var/www/wagtail">
         Options Indexes FollowSymLinks
-AllowOverride None
-Require all granted
+        AllowOverride None
+        Require all granted
         </Directory>
 
       <Directory "/var/www/dav/data">
