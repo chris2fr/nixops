@@ -194,62 +194,46 @@ in
         Satisfy Any
         Allow from all
       </LocationMatch>
-        <Location "/auth">
-          AuthType openid-connect
-          Require valid-user
-        </Location>
-
-        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
-          AuthType openid-connect
-          # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
-            
-          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-             Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
-          </LimitExcept>
-        </LocationMatch>
-
-        
-        AliasMatch "[^/]*/([^/]+/[^/]+)/data/(.*)" "/var/www/dav/data/pass/$1/$2"
-        AliasMatch "[^/]*/[^/]+/[^/]+(.*)" "/var/www/secret$1"
-
-        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
-          AuthType openid-connect
-          # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
-            
-          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-             Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
-          </LimitExcept>
-        </LocationMatch>
-
-        Alias /ldap /var/www/dav/data
-        Alias /auth /var/www/dav/data
-        Alias /pass /var/www/dav/data
-        Alias /login /var/www/dav/data
-
-        <Directory "/var/www">
-          Options Indexes FollowSymLinks
-          AllowOverride None
-          Require all granted
-        </Directory>
-
-        <LocationMatch "^/(ldap|pass|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
-          AuthType Basic
-          AuthBasicProvider ldap
-          AuthName "DAV par LDAP"
-          AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
-          AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
-          AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
-          #Require valid-user
+      <Location "/auth">
+        AuthType openid-connect
+        Require valid-user
+      </Location>
+      <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+        AuthType openid-connect
+        # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
+        Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        </LimitExcept>
+      </LocationMatch>
+      <LocationMatch "^/(ldap|pass|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+        AuthType Basic
+        AuthBasicProvider ldap
+        AuthName "DAV par LDAP"
+        AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+        AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+        Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
           Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
-          
-          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-            Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
-          </LimitExcept>
-        </LocationMatch>
+        </LimitExcept>
+      </LocationMatch>
 
-      <Directory "/var/www/dav/data">
+      AliasMatch "[^/]*/([^/]+/[^/]+)/data/(.*)" "/var/www/secret/data/$1/$2"
+      AliasMatch "[^/]*/[^/]+/[^/]+(.*)" "/var/www/secret$1"
+
+      Alias /ldap /var/www/secret/data
+      Alias /auth /var/www/secret/data
+      Alias /pass /var/www/secret/data
+      Alias /login /var/www/secret/data
+
+      <Directory "/var/www">
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+      </Directory>
+
+      <Directory "/var/www/secret/data">
         Dav On
       </Directory>
 
