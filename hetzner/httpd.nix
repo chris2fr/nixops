@@ -218,7 +218,7 @@ in
         #   Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         # </LocationMatch>
 
-        <LocationMatch "^/secret/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
+        <LocationMatch "^/(auth|pass|ldap)/secret/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
           Satisfy Any
           Allow from all
         </LocationMatch>
@@ -227,17 +227,13 @@ in
           AuthType openid-connect
           Require valid-user
         </Location>
-        
-        <Location "/secret">
-          AuthType openid-connect
-          Require valid-user
-        </Location>
 
-
-        <LocationMatch "^/(?<directdirectory>auth|secret)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+        <LocationMatch "^/auth(/secret)?/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
           AuthType openid-connect
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
+
+
         # <LocationMatch "^/pass/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         #   AuthType none
         # </LocationMatch>
@@ -249,13 +245,15 @@ in
         AliasMatch "/secret/([^/]+/[^/]+)/data/(.*)" "/var/www/dav/data/pass/$1/$2"
         AliasMatch "/secret/[^/]+/[^/]+(.*)" "/var/www/dav/pass$1"
         # /var/www/dav/pass/data/lesgrandsvoisins.com/chris
-        AliasMatch "/auth/[^/]+/[^/]+/pass/.*" /var/www/dav/pass
+        # AliasMatch "/auth/[^/]+/[^/]+/pass/.*" /var/www/dav/pass
+        Alias /ldap/secret /var/www/dav/data/secret
+        Alias /auth/secret /var/www/dav/data/secret
         Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
         Alias /data/pass /var/www/dav/data/pass
         Alias /login /var/www/dav/data
 
-       <LocationMatch "^/(ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+       <LocationMatch "^/(ldap|pass)(/secret)?/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
         AuthBasicProvider ldap
         AuthName "DAV par LDAP"
