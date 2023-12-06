@@ -180,7 +180,7 @@ in
   services.httpd.virtualHosts."secret.desgv.com" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot = "/var/www/secret";
+    documentRoot = "/var/www/dav";
     extraConfig = ''
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
@@ -227,6 +227,12 @@ in
         Alias /auth /var/www/dav/data
         Alias /pass /var/www/dav/data
         Alias /login /var/www/dav/data
+
+        <Directory "/var/www">
+          Options Indexes FollowSymLinks
+          AllowOverride None
+          Require all granted
+        </Directory>
 
         <LocationMatch "^/(ldap|pass|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
           AuthType Basic
@@ -294,12 +300,6 @@ in
              Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
           </LimitExcept>
         </LocationMatch>
-
-        <Directory "/var/www">
-          Options Indexes FollowSymLinks
-          AllowOverride None
-          Require all granted
-        </Directory>
 
 
 
