@@ -115,8 +115,7 @@ in
     '';
   };
   services.httpd.virtualHosts."resdigita.desgv.com" = {
-    serverAliases = [
-    ];
+
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
@@ -178,7 +177,78 @@ in
   #   '';
   # };
 
+  services.httpd.virtualHosts."secret.desgv.com" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot = "/var/www/secret";
+    extraConfig = ''
+      Alias /static /var/www/wagtail/static
+      Alias /media /var/www/wagtail/media
+      DavLockDB /tmp/DavLockSecret
+      OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+      OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
+      OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+      OIDCRedirectURI https://secret.desgv.com/auth/redirect_uri
+      OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+      <LocationMatch "^/(auth|pass|ldap)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
+        Satisfy Any
+        Allow from all
+      </LocationMatch>
+        <Location "/auth">
+          AuthType openid-connect
+          Require valid-user
+        </Location>
 
+        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+          AuthType openid-connect
+          # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
+          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+            
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+             Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+          </LimitExcept>
+        </LocationMatch>
+
+        
+        AliasMatch "[^/]*/([^/]+/[^/]+)/data/(.*)" "/var/www/dav/data/pass/$1/$2"
+        AliasMatch "[^/]*/[^/]+/[^/]+(.*)" "/var/www/dav/pass$1"
+
+        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+          AuthType openid-connect
+          # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
+          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+            
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+             Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+          </LimitExcept>
+        </LocationMatch>
+
+                Alias /ldap /var/www/dav/data
+        Alias /auth /var/www/dav/data
+        Alias /pass /var/www/dav/data
+        Alias /login /var/www/dav/data
+
+        <LocationMatch "^/(ldap|pass|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+          AuthType Basic
+          AuthBasicProvider ldap
+          AuthName "DAV par LDAP"
+          AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+          AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+          AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+          #Require valid-user
+          Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+          
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+            Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+          </LimitExcept>
+        </LocationMatch>
+
+      <Directory "/var/www/dav/data">
+        Dav On
+      </Directory>
+
+    '';
+  };
 
   services.httpd.virtualHosts."dav.desgv.com" = {
     enableACME = true;
@@ -197,11 +267,8 @@ in
 
     # '';
     extraConfig = lib.strings.concatStrings [ ''
-      # ProxyPass /auth !
-      # ProxyPass /ldap !
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
-
     ''
     # wagtailExtraConfig
     ''
@@ -212,23 +279,13 @@ in
         OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
         OIDCRedirectURI https://dav.desgv.com/auth/redirect_uri
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
-        
-        # <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/pass/">
-        #   AuthType openid-connect
-        #   Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
-        # </LocationMatch>
-
-        <LocationMatch "^/(auth|pass|ldap)/secret/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
-          Satisfy Any
-          Allow from all
-        </LocationMatch>
 
         <Location "/auth">
           AuthType openid-connect
           Require valid-user
         </Location>
 
-        <LocationMatch "^/auth(/secret)?/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
           AuthType openid-connect
           # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
@@ -238,45 +295,38 @@ in
           </LimitExcept>
         </LocationMatch>
 
+        <Directory "/var/www">
+          Options Indexes FollowSymLinks
+          AllowOverride None
+          Require all granted
+        </Directory>
 
-        # <LocationMatch "^/pass/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
-        #   AuthType none
-        # </LocationMatch>
 
 
-        # Alias /auth/pass /var/www/dav/data/pass
-        # Alias "/auth/lesgrandsvoisins.com/chris/pass" "/var/www/dav/pass"
-        # Alias "/auth/lesgrandsvoisins.com/chris/pass/custom.json" /var/www/dav/pass/custom.json"
-        AliasMatch "[^/]*/secret/([^/]+/[^/]+)/data/(.*)" "/var/www/dav/data/pass/$1/$2"
-        AliasMatch "[^/]*/secret/[^/]+/[^/]+(.*)" "/var/www/dav/pass$1"
-        # /var/www/dav/pass/data/lesgrandsvoisins.com/chris
-        # AliasMatch "/auth/[^/]+/[^/]+/pass/.*" /var/www/dav/pass
-        #Alias /ldap/secret /var/www/dav/data/secret
-        #Alias /auth/secret /var/www/dav/data/secret
         Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
-        Alias /data/pass /var/www/dav/data/pass
+        Alias /pass /var/www/dav/data
         Alias /login /var/www/dav/data
 
-       <LocationMatch "^/(ldap|pass)(/secret)?/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
-        AuthType Basic
-        AuthBasicProvider ldap
-        AuthName "DAV par LDAP"
-        AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
-        AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
-        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
-        #Require valid-user
-        Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
-        
-        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+        <LocationMatch "^/(ldap|pass|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+          AuthType Basic
+          AuthBasicProvider ldap
+          AuthName "DAV par LDAP"
+          AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+          AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+          AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+          #Require valid-user
           Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
-        </LimitExcept>
+          
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+            Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+          </LimitExcept>
         </LocationMatch>
 
         <Directory "/var/www">
-        Options Indexes FollowSymLinks
-        AllowOverride None
-        Require all granted
+          Options Indexes FollowSymLinks
+          AllowOverride None
+          Require all granted
         </Directory>
 
         # <Directory "/var/www/wagtail">
@@ -286,31 +336,7 @@ in
         # </Directory>
 
       <Directory "/var/www/dav/data">
-
         Dav On
-        # AuthName DAV
-        # AuthType oauth2
-        # OAuth2TokenVerify introspect https://authentik.lesgrandsvoisins.com/application/o/introspect/ introspect.ssl_verify=false&introspect.auth=client_secret_post&client_id=V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk&client_secret=Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-
-        # Require oauth2_claim .*chris@lesgrandsvoinsins.com.*
-        # require valid-user 
-
-        # AuthType Basic
-        # 
-        # AuthUserFile /var/www/.htpasswd
-        # require valid-user 
-
-        # AllowMethods GET HEAD POST
-
-        # OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT
-
-        # <LimitExcept GET HEAD POST>
-        #     Require valid-user
-        # </LimitExcept>
-
-        # <LimitExcept GET HEAD OPTIONS>
-        #   require user admin
-        # </LimitExcept>
       </Directory>
       ''];
   };
