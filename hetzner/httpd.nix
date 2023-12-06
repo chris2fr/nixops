@@ -236,7 +236,7 @@ in
         # Alias "/auth/lesgrandsvoisins.com/chris/pass/custom.json" /var/www/dav/pass/custom.json"
         AliasMatch "/pass/[^/]+/[^/]+(.*)$" "/var/www/dav/pass$1"
         # /var/www/dav/pass/data/lesgrandsvoisins.com/chris
-        # AliasMatch /auth/[^/]+/[^/]+/pass /var/www/dav/pass/data
+        AliasMatch "/auth/[^/]+/[^/]+/pass/.*" /var/www/dav/pass/data
         Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
         Alias /data/pass /var/www/dav/data/pass
