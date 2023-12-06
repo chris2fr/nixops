@@ -202,7 +202,6 @@ in
             python311Packages.pillow
             python311Packages.gunicorn
             python311Packages.pip
-            python311Packages.python-ldap
             libjpeg
             zlib
             libtiff
