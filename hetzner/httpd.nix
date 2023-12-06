@@ -231,7 +231,8 @@ in
         Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
         Alias /data/pass /var/www/dav/data/pass
-        AliasMatch /auth/[^/]+/[^/]+/pass/ /var/www/dav/data/pass/
+        Alias /auth/lesgrandsvoisins.com/chris/pass /var/www/dav/data/pass/lesgrandsvoisins.com/chris
+        #AliasMatch /auth/[^/]+/[^/]+/pass /var/www/dav/data/pass
 
        <LocationMatch "^/ldap/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
