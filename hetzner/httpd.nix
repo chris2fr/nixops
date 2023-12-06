@@ -230,7 +230,7 @@ in
 
         <LocationMatch "^/auth(/secret)?/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
           AuthType openid-connect
-          Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
+          # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
 
@@ -294,7 +294,7 @@ in
 
         # AllowMethods GET HEAD POST
 
-        OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT from valid-user
+        OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT
 
         # <LimitExcept GET HEAD POST>
         #     Require valid-user
