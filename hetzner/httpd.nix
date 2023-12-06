@@ -222,7 +222,7 @@ in
         </LocationMatch>
 
         <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/pass">
-          Alias /var/www/dav/pass/
+          Alias /var/www/dav/pass
         </LocationMatch>
 
         Alias /ldap /var/www/dav/data
