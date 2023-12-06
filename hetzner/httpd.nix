@@ -210,7 +210,7 @@ in
         OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
         OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
         OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-        OIDCRedirectURI https://dav.desgv.com/auth/redirect_uri
+        
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
         
         # <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/pass/">
@@ -221,14 +221,22 @@ in
         <Location "/auth">
           AuthType openid-connect
           Require valid-user
+          OIDCRedirectURI https://dav.desgv.com/auth/redirect_uri
         </Location>
-        <LocationMatch "^/secret/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
-          Satisfy Any
-          Allow from all
-        </LocationMatch>
-        <LocationMatch "^/(auth|secret)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+        
+        <Location "/secret">
+          AuthType openid-connect
+          Require valid-user
+          OIDCRedirectURI https://dav.desgv.com/secret/redirect_uri
+        </Location>
+        # <LocationMatch "^/secret/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
+        #   Satisfy Any
+        #   Allow from all
+        # </LocationMatch>
+        <LocationMatch "^/(?<directdirectory>auth|secret)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
           AuthType openid-connect
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+          OIDCRedirectURI https://dav.desgv.com/%{env:MATCH_DIRECTDIRECTORY}/redirect_uri
         </LocationMatch>
         # <LocationMatch "^/pass/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         #   AuthType none
