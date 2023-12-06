@@ -226,9 +226,9 @@ in
           AuthType openid-connect
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
-        <LocationMatch "^/pass/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
-          AuthType none
-        </LocationMatch>
+        # <LocationMatch "^/pass/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+        #   AuthType none
+        # </LocationMatch>
 
 
         # Alias /auth/pass /var/www/dav/data/pass
