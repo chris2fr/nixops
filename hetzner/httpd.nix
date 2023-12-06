@@ -294,7 +294,7 @@ in
 
         # AllowMethods GET HEAD POST
 
-        # OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT
+        OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT from valid-user
 
         # <LimitExcept GET HEAD POST>
         #     Require valid-user
