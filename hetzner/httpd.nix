@@ -222,6 +222,10 @@ in
           AuthType openid-connect
           Require valid-user
         </Location>
+        <LocationMatch "^/secret/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
+          Satisfy Any
+          Allow from all
+        </LocationMatch>
         <LocationMatch "^/(auth|secret)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
           AuthType openid-connect
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
