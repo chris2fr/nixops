@@ -222,7 +222,7 @@ in
           AuthType openid-connect
           Require valid-user
         </Location>
-        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+        <LocationMatch "^/(auth|secret)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
           AuthType openid-connect
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
