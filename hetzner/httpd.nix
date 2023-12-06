@@ -231,16 +231,17 @@ in
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LocationMatch>
 
+
+        # Alias /auth/pass /var/www/dav/data/pass
+        Alias "/auth/lesgrandsvoisins.com/chris/pass" "/var/www/dav/pass"
+        Alias "/auth/lesgrandsvoisins.com/chris/pass/custom.json" /var/www/dav/pass/custom.json"
+        # AliasMatch /auth/[^/]+/[^/]+/pass /var/www/dav/pass
+        # /var/www/dav/pass/data/lesgrandsvoisins.com/chris
+        #AliasMatch /auth/[^/]+/[^/]+/pass /var/www/dav/pass/data
         Alias /ldap /var/www/dav/data
         Alias /auth /var/www/dav/data
         Alias /pass /var/www/dav/data/pass
         Alias /login /var/www/dav/data
-        # Alias /auth/pass /var/www/dav/data/pass
-        Alias /auth/lesgrandsvoisins.com/chris/pass /var/www/dav/pass
-        Alias /auth/lesgrandsvoisins.com/chris/pass/custom.json /var/www/dav/pass/custom.json
-        # AliasMatch /auth/[^/]+/[^/]+/pass /var/www/dav/pass
-        # /var/www/dav/pass/data/lesgrandsvoisins.com/chris
-        #AliasMatch /auth/[^/]+/[^/]+/pass /var/www/dav/pass/data
 
        <LocationMatch "^/(ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
