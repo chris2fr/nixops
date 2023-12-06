@@ -219,7 +219,7 @@ in
         </LimitExcept>
       </LocationMatch>
 
-      AliasMatch "[^/]*/([^/]+/[^/]+)/data/(.*)" "/var/www/secret/data/$1/$2"
+      AliasMatch "[^/]+/([^/]+/[^/]+)/data/(.*)" "/var/www/secret/data/$1/$2"
       AliasMatch "[^/]+/[^/]+/[^/]+(.*)" "/var/www/secret$1"
 
       Alias /ldap /var/www/secret/data
