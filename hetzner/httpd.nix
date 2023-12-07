@@ -98,7 +98,9 @@ in
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
-        ProxyPass /  http://10.245.101.35:9000/
+        # ProxyPass /  http://10.245.101.35:9000/
+        ProxyPass /  https://10.245.101.35:9443/
+         SSLVerifyClient none
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
@@ -188,9 +190,9 @@ in
       OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
       OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
       OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-      OIDCRedirectURI https://secret.desgv.com/auth/redirect_uri
+      OIDCRedirectURI https://secret.desgv.com/auth/data/redirect_uri
       OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
-      <LocationMatch "^/(auth|pass|ldap)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
+      <LocationMatch "^/(auth|pass|ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
         Satisfy Any
         Allow from all
       </LocationMatch>
@@ -277,7 +279,6 @@ in
 
         <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
           AuthType openid-connect
-          # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
             
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
