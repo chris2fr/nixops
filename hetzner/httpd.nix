@@ -26,7 +26,7 @@ in
   KeepAliveTimeout 10
   '';
   services.httpd.adminAddr = "contact@gvois.in";
-  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl"
+  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite"
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
@@ -106,6 +106,10 @@ in
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
+    RewriteEngine On
+RewriteCond %{HTTP:Connection} Upgrade [NC]
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
         #ProxyPass /  http://localhost:9000/
         #ProxyPass /  http://10.245.101.35:9000/
         ProxyPass /  https://10.245.101.35:9443/ connectiontimeout=28800 timeout=28800 keepalive=Off
