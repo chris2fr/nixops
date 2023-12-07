@@ -237,8 +237,7 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
   #   '';
   # };
 
-  services.httpd.virtualHosts."secret.desgv.com" = {
-    serverAliases = ["secret.lesgrandsvoisins.com"];
+  services.httpd.virtualHosts."secret.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/secret";
@@ -249,7 +248,7 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
       OIDCProviderMetadataURL https://authentik.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
       OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
       OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-      OIDCRedirectURI https://secret.desgv.com/auth/data/redirect_uri
+      OIDCRedirectURI https://secret.lesgrandsvoisins.com/auth/data/redirect_uri
       OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
       <LocationMatch "^/(auth|pass|ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
         Satisfy Any
@@ -301,8 +300,8 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
     '';
   };
 
-  services.httpd.virtualHosts."dav.desgv.com" = {
-    serverAliases = ["dav.lesgrandsvoisins.com"];
+  services.httpd.virtualHosts."dav.lesgrandsvoisins.com" = {
+    # serverAliases = ["dav.lesgrandsvoisins.com"];
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/dav";
