@@ -75,6 +75,10 @@ in
     '';
   };
   services.httpd.virtualHosts."hedgedoc.lesgv.com" = {
+    serverAliases = [
+      "hedgedoc.lesgrandsvoisins.com"
+      "hdoc.lesgrandsvoisins.com"
+    ];
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
@@ -94,12 +98,13 @@ in
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
     serverAliases = [
       "auth.lesgv.com"
+      "auth.lesgrandsvoisins.com"
     ];
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
         #ProxyPass /  http://10.245.101.35:9000/
-        ProxyPass /  https://10.245.101.35:9443/
+        ProxyPass /  https://localhost:9443/
         SSLProxyEngine on
         SSLProxyVerify none 
         SSLProxyCheckPeerCN off
@@ -184,6 +189,7 @@ in
   # };
 
   services.httpd.virtualHosts."secret.desgv.com" = {
+    serverAliases = ["secret.lesgrandsvoisins.com"];
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/secret";
@@ -247,6 +253,7 @@ in
   };
 
   services.httpd.virtualHosts."dav.desgv.com" = {
+    serverAliases = ["dav.lesgrandsvoisins.com"];
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/dav";
@@ -376,6 +383,7 @@ in
   services.httpd.virtualHosts."blog.gvois.in" = {
     serverAliases = [
       "ghost.gvois.in"
+      "blog.lesgrandsvoisins.com"
     ];
     enableACME = true;
     forceSSL = true;
