@@ -95,10 +95,39 @@ in
         ProxyAddHeaders On
     '';
   };
+  services.httpd.virtualHosts."auth.lesgrandsvoisins.com" = {
+    serverAliases = [
+    ];
+    enableACME = true;
+    forceSSL = true;
+    extraConfig = ''
+        #ProxyPass /  http://localhost:9000/
+        #ProxyPass /  http://10.245.101.35:9000/
+        #ProxyPass /  https://10.245.101.35:9443/
+        ProxyPass /  https://localhost:9443/
+        SSLProxyEngine on
+        SSLProxyVerify none 
+        SSLProxyCheckPeerCN off
+        SSLProxyCheckPeerName off
+        SSLProxyCheckPeerExpire off
+        # proxy_http_version 1.1;
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
+        # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
+        # RequestHeader set Host $host
+        # RequestHeader set Upgrade $http_upgrade
+        # RequestHeader set Connection $connection_upgrade_keepalive
+        ProxyPreserveHost On
+        ProxyVia On
+        ProxyAddHeaders On
+        <If "%{HTTP_HOST} == 'lesgv.com'">
+          RedirectMatch /(.*)$ https://auth.lesgv.com/$1
+        </If>
+    '';
+  };
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
     serverAliases = [
       "auth.lesgv.com"
-      "auth.lesgrandsvoisins.com"
     ];
     enableACME = true;
     forceSSL = true;
