@@ -116,7 +116,7 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
  #ProxySet keepalive=On 
         #ProxyPass /  http://localhost:9000/
         #ProxyPass /  http://10.245.101.35:9000/
-        ProxyPass /  https://10.245.101.35:9443/ 
+        ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://localhost:9443/
         SSLProxyEngine on
         SSLProxyVerify none 
@@ -149,8 +149,8 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
     forceSSL = true;
     extraConfig = ''
         #ProxyPass /  http://localhost:9000/
-        ProxyPass /  http://10.245.101.35:9000/ 
-        #ProxyPass /  https://10.245.101.35:9443/
+        #ProxyPass /  http://10.245.101.35:9000/ 
+        ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://localhost:9443/
          #ProxySet keepalive=On 
 
