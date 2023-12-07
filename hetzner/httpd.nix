@@ -103,7 +103,8 @@ in
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
-        ProxyPass /  https://10.245.101.35:9443/
+        ProxyPass /  http://10.245.101.35:9000/
+        #ProxyPass /  https://10.245.101.35:9443/
         #ProxyPass /  https://localhost:9443/
         SSLProxyEngine on
         SSLProxyVerify none 
@@ -115,8 +116,8 @@ in
         RequestHeader set X-Forwarded-Port "443"
         RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
         RequestHeader set Host $host
-        RequestHeader set Upgrade $http_upgrade
-        RequestHeader set Connection $connection_upgrade_keepalive
+        # RequestHeader set Upgrade $http_upgrade
+        # RequestHeader set Connection $connection_upgrade_keepalive
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
