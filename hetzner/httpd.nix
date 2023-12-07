@@ -21,7 +21,7 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.extraConfig = ''
-  KeepAlive On
+  KeepAlive Off
   MaxKeepAliveRequests 400
   KeepAliveTimeout 10
   Protocols h2 http/1.1
@@ -120,10 +120,13 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
         SSLProxyCheckPeerCN off
         SSLProxyCheckPeerName off
         SSLProxyCheckPeerExpire off
+        ProxyRequests Off
+       SetEnv proxy-nokeepalive 1
+       ProxyPreserveHost On
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
-        KeepAlive On
+        KeepAlive Off
         # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
         # RequestHeader set Host $host
         # RequestHeader set Upgrade $http_upgrade
@@ -147,7 +150,8 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
         ProxyPass /  http://10.245.101.35:9000/ 
         #ProxyPass /  https://10.245.101.35:9443/
         #ProxyPass /  https://localhost:9443/
-        KeepAlive On
+        KeepAlive Off
+
         SSLProxyEngine on
         SSLProxyVerify none 
         SSLProxyCheckPeerCN off
