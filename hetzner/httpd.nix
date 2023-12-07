@@ -114,8 +114,8 @@ in
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
-        RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
-        RequestHeader set Host $host
+        # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
+        # RequestHeader set Host $host
         # RequestHeader set Upgrade $http_upgrade
         # RequestHeader set Connection $connection_upgrade_keepalive
         ProxyPreserveHost On
