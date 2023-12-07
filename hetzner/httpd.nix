@@ -21,10 +21,11 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.extraConfig = ''
-  KeepAlive Off
+  KeepAlive On
   MaxKeepAliveRequests 400
   KeepAliveTimeout 10
   Protocols h2 http/1.1
+  ProxySet keepalive=On 
   '';
   services.httpd.adminAddr = "contact@gvois.in";
   services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite" "http2"
@@ -120,8 +121,7 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
         SSLProxyCheckPeerCN off
         SSLProxyCheckPeerName off
         SSLProxyCheckPeerExpire off
-        ProxyRequests Off
-       SetEnv proxy-nokeepalive 1
+        ProxyRequests On
        ProxyPreserveHost On
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
@@ -601,8 +601,7 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
     forceSSL = true;
     documentRoot = "/var/www/sites/meet";
     extraConfig = ''
-       ProxyRequests Off
-       SetEnv proxy-nokeepalive 1
+       ProxyRequests On
        ProxyPreserveHost On
        ProxyPass /.well-known !
        ProxyPass / http://10.245.101.19/ retry=0
