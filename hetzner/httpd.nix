@@ -100,8 +100,11 @@ in
     extraConfig = ''
         #ProxyPass /  http://10.245.101.35:9000/
         ProxyPass /  https://10.245.101.35:9443/
-        SSLVerifyClient none
         SSLProxyEngine on
+        SSLProxyVerify none 
+        SSLProxyCheckPeerCN off
+        SSLProxyCheckPeerName off
+        SSLProxyCheckPeerExpire off
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
