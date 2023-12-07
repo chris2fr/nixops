@@ -24,6 +24,7 @@ in
   KeepAlive On
   MaxKeepAliveRequests 400
   KeepAliveTimeout 10
+  Protocols http/1.1
   '';
   services.httpd.adminAddr = "contact@gvois.in";
   services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite"
