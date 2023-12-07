@@ -108,7 +108,7 @@ in
     extraConfig = ''
         #ProxyPass /  http://localhost:9000/
         #ProxyPass /  http://10.245.101.35:9000/
-        ProxyPass /  https://10.245.101.35:9443/ connectiontimeout=28800 timeout=28800 keepalive=On
+        ProxyPass /  https://10.245.101.35:9443/ connectiontimeout=28800 timeout=28800 keepalive=Off
         #ProxyPass /  https://localhost:9443/
         SSLProxyEngine on
         SSLProxyVerify none 
@@ -139,7 +139,7 @@ in
     forceSSL = true;
     extraConfig = ''
         #ProxyPass /  http://localhost:9000/
-        ProxyPass /  http://10.245.101.35:9000/ connectiontimeout=28800 timeout=28800 Keepalive=On
+        ProxyPass /  http://10.245.101.35:9000/ connectiontimeout=28800 timeout=28800 Keepalive=Off
         #ProxyPass /  https://10.245.101.35:9443/
         #ProxyPass /  https://localhost:9443/
         KeepAlive On
