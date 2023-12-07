@@ -98,9 +98,9 @@ in
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
-        # ProxyPass /  http://10.245.101.35:9000/
-        ProxyPass /  https://10.245.101.35:9443/
-         SSLVerifyClient none
+        ProxyPass /  http://10.245.101.35:9000/
+        #ProxyPass /  https://10.245.101.35:9443/
+        # SSLVerifyClient none
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
