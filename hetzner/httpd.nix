@@ -113,6 +113,7 @@ in
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
+        KeepAlive On
         # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
         # RequestHeader set Host $host
         # RequestHeader set Upgrade $http_upgrade
@@ -136,6 +137,7 @@ in
         ProxyPass /  http://10.245.101.35:9000/
         #ProxyPass /  https://10.245.101.35:9443/
         #ProxyPass /  https://localhost:9443/
+        KeepAlive On
         SSLProxyEngine on
         SSLProxyVerify none 
         SSLProxyCheckPeerCN off
