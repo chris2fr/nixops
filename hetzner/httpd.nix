@@ -25,7 +25,7 @@ in
   MaxKeepAliveRequests 400
   KeepAliveTimeout 10
   Protocols h2 http/1.1
-  ProxySet keepalive=On 
+ 
   '';
   services.httpd.adminAddr = "contact@gvois.in";
   services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite" "http2"
@@ -50,6 +50,7 @@ in
 #    ProxyPass /static !
 #    ProxyPass /media !
 #    ProxyPass /favicon.ico !
+
     ProxyPass / http://[::1]:9991/
     ProxyPassReverse / http://[::1]:9991/
     ProxyPreserveHost On
@@ -112,6 +113,7 @@ in
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
 RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
+ ProxySet keepalive=On 
         #ProxyPass /  http://localhost:9000/
         #ProxyPass /  http://10.245.101.35:9000/
         ProxyPass /  https://10.245.101.35:9443/ 
@@ -150,7 +152,7 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
         ProxyPass /  http://10.245.101.35:9000/ 
         #ProxyPass /  https://10.245.101.35:9443/
         #ProxyPass /  https://localhost:9443/
-        KeepAlive Off
+         ProxySet keepalive=On 
 
         SSLProxyEngine on
         SSLProxyVerify none 
