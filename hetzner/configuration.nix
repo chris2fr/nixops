@@ -5,7 +5,7 @@
 { config, pkgs, lib, ... }:
 let
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
@@ -80,7 +80,7 @@ in
     home.packages = with pkgs; [ 
       fossil
     ];
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     programs.home-manager.enable = true;
   };
   home-manager.users.guichet = {pkgs, ...}: {
@@ -89,13 +89,13 @@ in
       gnumake
       python311
     ];
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     programs.home-manager.enable = true;
   };
 
   home-manager.users.mannchri = {pkgs, ...}: {
     home.packages = [ pkgs.atool pkgs.httpie ];
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     programs.home-manager.enable = true;
     programs.vim = {
       enable = true;
