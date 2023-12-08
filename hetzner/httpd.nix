@@ -462,8 +462,8 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
     ProxyPass /static !
     ProxyPass /media !
     ProxyPass /favicon.ico !
-    ProxyPass / http://10.245.101.35:2368/
-    ProxyPassReverse / http://10.245.101.35:2368/
+    ProxyPass / http://10.245.101.151:2368/
+    ProxyPassReverse / http://10.245.101.151:2368/
     RequestHeader set X-Forwarded-Proto "https"
     RequestHeader set X-Forwarded-Port "443"
     ProxyPreserveHost On
