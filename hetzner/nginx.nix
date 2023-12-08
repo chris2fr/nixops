@@ -10,7 +10,7 @@ in
     virtualHosts."auth.lesgrandsvoisins.com" = {
       sslTrustedCertificate = /var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem;
       sslCertificateKey = /var/lib/acme/auth.lesgrandsvoisins.com/key.pem;
-      sslCertificateChainFile = /var/lib/acme/auth.lesgrandsvoisins.com/chain.pem;
+      # sslCertificateChainFile = /var/lib/acme/auth.lesgrandsvoisins.com/chain.pem;
     };
   };
 
