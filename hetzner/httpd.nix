@@ -90,7 +90,7 @@ in
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
-        ProxyPass /  http://localhost:3000/
+        ProxyPass /  http://10.245.101.35:3000/
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
@@ -112,12 +112,12 @@ in
     RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteRule /(.*) ws://localhost:9443/$1 [P,L]
+RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
  #ProxySet keepalive=On 
-        #ProxyPass /  http://localhost:9000/
-        ProxyPass /  http://localhost:9000/
-        #ProxyPass /  https://localhost:9443/ upgrade=websocket keepalive=on
-        #ProxyPass /  https://localhost:9443/
+        #ProxyPass /  http://10.245.101.35:9000/
+        ProxyPass /  http://10.245.101.35:9000/
+        #ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
+        #ProxyPass /  https://10.245.101.35:9443/
         SSLProxyEngine on
         SSLProxyVerify none 
         SSLProxyCheckPeerCN off
@@ -148,10 +148,10 @@ RewriteRule /(.*) ws://localhost:9443/$1 [P,L]
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
-        #ProxyPass /  http://localhost:9000/
-        #ProxyPass /  http://localhost:9000/ 
-        ProxyPass /  https://localhost:8443/ upgrade=websocket keepalive=on
-        #ProxyPass /  https://localhost:9443/
+        #ProxyPass /  http://10.245.101.35:9000/
+        #ProxyPass /  http://10.245.101.35:9000/ 
+        ProxyPass /  https://10.245.101.35:8443/ upgrade=websocket keepalive=on
+        #ProxyPass /  https://10.245.101.35:9443/
          #ProxySet keepalive=On 
 
         SSLProxyEngine on
@@ -306,8 +306,8 @@ RewriteRule /(.*) ws://localhost:9443/$1 [P,L]
     forceSSL = true;
     documentRoot = "/var/www/dav";
     # extraConfig = ''
-    # ProxyPass / http://localhost:8080/
-    # ProxyPassReverse / http://localhost:8080/
+    # ProxyPass / http://10.245.101.35:8080/
+    # ProxyPassReverse / http://10.245.101.35:8080/
     # RequestHeader set X-Forwarded-Proto "https"
     # RequestHeader set X-Forwarded-Port "443"
     # ProxyPreserveHost On
@@ -445,8 +445,8 @@ RewriteRule /(.*) ws://localhost:9443/$1 [P,L]
     ProxyPass /static !
     ProxyPass /media !
     ProxyPass /favicon.ico !
-    ProxyPass / http://localhost:2368/
-    ProxyPassReverse / http://localhost:2368/
+    ProxyPass / http://10.245.101.35:2368/
+    ProxyPassReverse / http://10.245.101.35:2368/
     RequestHeader set X-Forwarded-Proto "https"
     RequestHeader set X-Forwarded-Port "443"
     ProxyPreserveHost On
@@ -469,8 +469,8 @@ RewriteRule /(.*) ws://localhost:9443/$1 [P,L]
 #    ProxyPass /static !
 #    ProxyPass /media !
 #    ProxyPass /favicon.ico !
-#    ProxyPass / http://localhost:8069/
-#    ProxyPassReverse / http://localhost:8069/
+#    ProxyPass / http://10.245.101.35:8069/
+#    ProxyPassReverse / http://10.245.101.35:8069/
 #    ProxyPreserveHost On
 #    ProxyVia On
 #    ProxyAddHeaders On
@@ -680,14 +680,14 @@ RewriteRule /(.*) ws://localhost:9443/$1 [P,L]
 #        RequestHeader set X-Forwarded-Port "443"
 #
 #        <Location /static/>
-#        ProxyPass http://localhost:8888/
-#        # ProxyPassReverse http://localhost:8888/
+#        ProxyPass http://10.245.101.35:8888/
+#        # ProxyPassReverse http://10.245.101.35:8888/
 #        ProxyPreserveHost On
 #        </Location>
 #
 #        <Location /media/>
-#        ProxyPass http://localhost:8889/
-#        # ProxyPassReverse http://localhost:8889/
+#        ProxyPass http://10.245.101.35:8889/
+#        # ProxyPassReverse http://10.245.101.35:8889/
 #        ProxyPreserveHost On
 #        </Location>
 
@@ -697,7 +697,7 @@ RewriteRule /(.*) ws://localhost:9443/$1 [P,L]
     ProxyPass /favicon.ico !
         ProxyPass /  unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
         ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-        # ProxyPassReverse / http://localhost:8080/
+        # ProxyPassReverse / http://10.245.101.35:8080/
         ProxyPreserveHost On
         CacheDisable /
       '';
