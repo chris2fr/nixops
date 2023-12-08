@@ -48,6 +48,7 @@ in
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."gvois.in" = {
+    listenAddresses = ["0.0.0.0" "[2a01:4f8:241:4faa::/125]"];
     enableACME = true;
     forceSSL = true;
     globalRedirect = "https://www.gvois.in/";
