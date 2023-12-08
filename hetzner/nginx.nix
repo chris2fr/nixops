@@ -4,6 +4,11 @@ in
 { 
   services.nginx = {
     enable = true;
+    defaultListen = [
+        {addr = "[2a01:4f8:241:4faa::100]"; port=443; ssl=true;}
+        {addr = "[::]"; port=8443; ssl=true;}
+        {addr = "0.0.0.0"; port=8888; ssl=false;}
+      ];
     defaultSSLListenPort = 8443;
     defaultHTTPListenPort = 8888;
     defaultListen = [{ addr = "0.0.0.0"; } { addr = "[::0]"; }];
