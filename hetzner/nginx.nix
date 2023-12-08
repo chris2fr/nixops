@@ -8,7 +8,7 @@ in
     defaultHTTPListenPort = 8888;
     defaultListen = [{ addr = "0.0.0.0"; } { addr = "[::0]"; }];
     upstreams."authentik".extraConfig = ''
-      server localhost:9443;
+      server localhost:9000;
       # Improve performance by keeping some connections alive.
       keepalive 10;
       '';
@@ -26,7 +26,7 @@ in
       sslCertificate = /var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem;
       forceSSL = true;
       locations."/".extraConfig = ''
-        proxy_pass https://authentik;
+        proxy_pass http://authentik;
         proxy_http_version 1.1;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

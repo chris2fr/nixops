@@ -115,8 +115,8 @@ RewriteCond %{HTTP:Upgrade} websocket [NC]
 RewriteRule /(.*) ws://localhost:9443/$1 [P,L]
  #ProxySet keepalive=On 
         #ProxyPass /  http://localhost:9000/
-        #ProxyPass /  http://localhost:9000/
-        ProxyPass /  https://localhost:9443/ upgrade=websocket keepalive=on
+        ProxyPass /  http://localhost:9000/
+        #ProxyPass /  https://localhost:9443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://localhost:9443/
         SSLProxyEngine on
         SSLProxyVerify none 
