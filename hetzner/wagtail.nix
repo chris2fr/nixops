@@ -16,7 +16,7 @@ in
       freetype
       python311Packages.venvShellHook
     ];
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     programs.home-manager.enable = true;
   };
     # systemd.services.wagtail = {

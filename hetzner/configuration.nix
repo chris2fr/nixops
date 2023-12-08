@@ -5,7 +5,7 @@
 { config, pkgs, lib, ... }:
 let
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
@@ -21,7 +21,7 @@ in
     ./common.nix # Des configurations communes pratiques
     ./servers.nix # I am migrating other services here
     ./containers.nix
-    ./nginx.nix
+    #./nginx.nix
     (import "${home-manager}/nixos")
     ];
   #  environment.systemPackages = with pkgs; [
@@ -80,7 +80,7 @@ in
     home.packages = with pkgs; [ 
       fossil
     ];
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     programs.home-manager.enable = true;
   };
   home-manager.users.guichet = {pkgs, ...}: {
@@ -89,13 +89,13 @@ in
       gnumake
       python311
     ];
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     programs.home-manager.enable = true;
   };
 
   home-manager.users.mannchri = {pkgs, ...}: {
     home.packages = [ pkgs.atool pkgs.httpie ];
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     programs.home-manager.enable = true;
     programs.vim = {
       enable = true;
@@ -157,7 +157,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
   environment.sessionVariables = rec {
     EDITOR="vim";
