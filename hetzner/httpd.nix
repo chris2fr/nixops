@@ -106,7 +106,8 @@ in
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
-        ProxyPass /  http://10.245.101.35:3000/
+        #ProxyPass /  http://10.245.101.35:3000/
+        ProxyPass /  http://localhost:3000/
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
