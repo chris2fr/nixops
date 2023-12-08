@@ -115,8 +115,8 @@ RewriteCond %{HTTP:Upgrade} websocket [NC]
 RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
  #ProxySet keepalive=On 
         #ProxyPass /  http://10.245.101.35:9000/
-        ProxyPass /  http://10.245.101.35:9000/
-        #ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
+        #ProxyPass /  http://10.245.101.35:9000/
+        ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://10.245.101.35:9443/
         SSLProxyEngine on
         SSLProxyVerify none 
