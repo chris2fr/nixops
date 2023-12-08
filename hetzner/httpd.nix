@@ -116,9 +116,9 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
  #ProxySet keepalive=On 
         #ProxyPass /  http://10.245.101.35:9000/
         #ProxyPass /  http://10.245.101.35:9000/
-        ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
+        #ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://10.245.101.35:9443/
-        #ProxyPass /  https://localhost:8443/ upgrade=websocket keepalive=on
+        ProxyPass /  https://localhost:8443/ upgrade=websocket keepalive=on
         SSLProxyEngine on
         SSLProxyVerify none 
         SSLProxyCheckPeerCN off
