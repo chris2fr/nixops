@@ -159,14 +159,15 @@ in
       max_connections = 150;
       shared_buffers = "60MB";
     };
-    ensureUsers = [
-      {
-        name = "sogo";
-        ensurePermissions = {
-          "DATABASE \"sogo\"" = "ALL PRIVILEGES";
-        };
-      }
-    ];
+    ensureDBOwnership = true;
+    # ensureUsers = [
+    #   {
+    #     name = "sogo";
+    #     ensurePermissions = {
+    #       "DATABASE \"sogo\"" = "ALL PRIVILEGES";
+    #     };
+    #   }
+    #];
   };
 ###################################################################################################################################
   networking.firewall = {
