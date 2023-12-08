@@ -12,17 +12,17 @@ services.postgresql = {
       "fairemain"
     ];
         # ensureDBOwnership = true;
-    # ensureUsers = [
-    #   {
-    #     name = "wagtail";
-    #     ensurePermissions = {
-    #       "DATABASE \"wagtail\"" = "ALL PRIVILEGES";
-    #       "DATABASE \"previous\"" = "ALL PRIVILEGES";
-    #       "DATABASE \"fairemain\"" = "ALL PRIVILEGES";
-    #       "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
-    #     };
-    #   }
-    # ]; 
+    ensureUsers = [
+      {
+        name = "wagtail";
+        ensurePermissions = {
+          "DATABASE \"wagtail\"" = "ALL PRIVILEGES";
+          "DATABASE \"previous\"" = "ALL PRIVILEGES";
+          "DATABASE \"fairemain\"" = "ALL PRIVILEGES";
+          "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
+        };
+      }
+    ]; 
 #    authentication = ''
 #      local all all trust
 #      host all all 127.0.0.1/32 trust
