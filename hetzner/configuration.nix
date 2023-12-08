@@ -21,6 +21,7 @@ in
     ./common.nix # Des configurations communes pratiques
     ./servers.nix # I am migrating other services here
     ./containers.nix
+    ./nginx.nix
     (import "${home-manager}/nixos")
     ];
   #  environment.systemPackages = with pkgs; [
