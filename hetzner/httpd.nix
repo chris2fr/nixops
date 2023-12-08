@@ -155,10 +155,10 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
          #ProxySet keepalive=On 
 
         SSLProxyEngine on
-        # SSLProxyVerify none 
-        # SSLProxyCheckPeerCN off
-        # SSLProxyCheckPeerName off
-        # SSLProxyCheckPeerExpire off
+        SSLProxyVerify none 
+        SSLProxyCheckPeerCN off
+        SSLProxyCheckPeerName off
+        SSLProxyCheckPeerExpire off
         
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
