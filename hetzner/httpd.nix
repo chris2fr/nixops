@@ -155,17 +155,15 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
          #ProxySet keepalive=On 
 
         SSLProxyEngine on
-        SSLProxyVerify none 
-        SSLProxyCheckPeerCN off
-        SSLProxyCheckPeerName off
-        SSLProxyCheckPeerExpire off
-        # proxy_http_version 1.1;
+        # SSLProxyVerify none 
+        # SSLProxyCheckPeerCN off
+        # SSLProxyCheckPeerName off
+        # SSLProxyCheckPeerExpire off
+        
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
         # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
         # RequestHeader set Host $host
-        # RequestHeader set Upgrade $http_upgrade
-        # RequestHeader set Connection $connection_upgrade_keepalive
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
