@@ -11,7 +11,7 @@ in
       ];
     defaultSSLListenPort = 8443;
     defaultHTTPListenPort = 8888;
-    defaultListen = [{ addr = "0.0.0.0"; } { addr = "[::0]"; }];
+    # defaultListen = [{ addr = "0.0.0.0"; } { addr = "[::0]"; }];
     upstreams."authentik".extraConfig = ''
         server 10.245.101.35:9000;
         # Improve performance by keeping some connections alive.
