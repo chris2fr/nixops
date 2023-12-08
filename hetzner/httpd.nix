@@ -444,11 +444,12 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
         CacheDisable /
     ''];
   };
-  services.httpd.virtualHosts."blog.gvois.in" = {
-    serverAliases = [
-      "ghost.gvois.in"
-      "blog.lesgrandsvoisins.com"
-    ];
+  # services.httpd.virtualHosts."blog.gvois.in" = {
+  #   serverAliases = [
+  #     "ghost.gvois.in"
+  #     "blog.lesgrandsvoisins.com"
+  #   ];
+  services.httpd.virtualHosts."blog.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/ghostio/";
