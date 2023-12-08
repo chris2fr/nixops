@@ -12,7 +12,7 @@ in
       # Improve performance by keeping some connections alive.
       keepalive 10;
       '';
-      config = ''
+      commonHttpConfig = ''
         # Upgrade WebSocket if requested, otherwise use keepalive
         map $http_upgrade $connection_upgrade_keepalive {
             default upgrade;
