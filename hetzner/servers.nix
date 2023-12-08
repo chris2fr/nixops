@@ -2,7 +2,7 @@
 
 let 
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
 in
 {
   imports = [
@@ -21,7 +21,7 @@ in
 #        allowUnfreePredicate = (_: true);
 #      };
 #    };
-    home.stateVersion = "23.11";
+    home.stateVersion = "23.05";
     programs.home-manager.enable = true;
     home.packages = with pkgs; [ 
       nodejs_20
@@ -86,7 +86,7 @@ in
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
   home-manager.users.ghost = {pkgs, ...}: {
-    home.stateVersion = "23.11";
+    home.stateVersion = "23.05";
     programs.home-manager.enable = true;
     home.packages = with pkgs; [ 
       nodejs_18
