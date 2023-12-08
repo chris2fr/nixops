@@ -136,18 +136,18 @@ in
         #ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://10.245.101.35:9443/
         #ProxyPass /  https://localhost:8443/ upgrade=websocket keepalive=on
-        ProxyPass /  https://localhost:8443/
+        ProxyPass /  https://localhost:8443/ upgrade=websocket
         SSLProxyEngine on
         SSLProxyVerify none 
         SSLProxyCheckPeerCN off
         SSLProxyCheckPeerName off
         SSLProxyCheckPeerExpire off
-        ProxyRequests Off
+        #ProxyRequests Off
         ProxyPreserveHost On
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
-        KeepAlive On
+        #KeepAlive On
         # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
         # RequestHeader set Host $host
         # RequestHeader set Upgrade $http_upgrade
