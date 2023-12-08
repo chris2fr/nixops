@@ -126,24 +126,24 @@ in
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
-    RewriteEngine On
-RewriteCond %{HTTP:Connection} Upgrade [NC]
-RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
- #ProxySet keepalive=On 
+    # RewriteEngine On
+    #     RewriteCond %{HTTP:Connection} Upgrade [NC]
+    #     RewriteCond %{HTTP:Upgrade} websocket [NC]
+    #     RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
+        #ProxySet keepalive=On 
         #ProxyPass /  http://10.245.101.35:9000/
         #ProxyPass /  http://10.245.101.35:9000/
         #ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://10.245.101.35:9443/
         #ProxyPass /  https://localhost:8443/ upgrade=websocket keepalive=on
-        ProxyPass /  https://localhost:8443/ upgrade=websocket
+        ProxyPass /  https://localhost:8443/
         SSLProxyEngine on
         SSLProxyVerify none 
         SSLProxyCheckPeerCN off
         SSLProxyCheckPeerName off
         SSLProxyCheckPeerExpire off
-        ProxyRequests On
-       ProxyPreserveHost On
+        ProxyRequests Off
+        ProxyPreserveHost On
         # proxy_http_version 1.1;
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
