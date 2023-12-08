@@ -11,6 +11,7 @@ in
       sslTrustedCertificate = /var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem;
       sslCertificateKey = /var/lib/acme/auth.lesgrandsvoisins.com/key.pem;
       # sslCertificateChainFile = /var/lib/acme/auth.lesgrandsvoisins.com/chain.pem;
+      forceSSL = true;
     };
   };
 
