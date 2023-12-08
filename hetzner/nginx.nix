@@ -6,7 +6,7 @@ in
     enable = true;
     defaultListenPort = 8443;
     defaultHTTPListenPort = 8888;
-    defaultListen = [{ addr = "0.0.0.0"; } { addr = "[::0]"; }];
+    # defaultListen = [{ addr = "0.0.0.0"; } { addr = "[::0]"; }];
 
   };
   virtualHosts."auth.lesgrandsvoisins.com" = {
