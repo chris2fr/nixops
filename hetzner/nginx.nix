@@ -10,14 +10,14 @@ in
     config = ''
     upstream authentik {
       server localhost:9443;
-    # Improve performance by keeping some connections alive.
-    keepalive 10;
-    # Upgrade WebSocket if requested, otherwise use keepalive
-map $http_upgrade $connection_upgrade_keepalive {
-    default upgrade;
-    "        ";
-}
-    };
+      # Improve performance by keeping some connections alive.
+      keepalive 10;
+      # Upgrade WebSocket if requested, otherwise use keepalive
+      map $http_upgrade $connection_upgrade_keepalive {
+          default upgrade;
+          \'\'        \'\';
+      }
+    }
     '';
     virtualHosts."auth.lesgrandsvoisins.com" = {
       sslTrustedCertificate = /var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem;
