@@ -8,7 +8,7 @@ in
     defaultHTTPListenPort = 8888;
     defaultListen = [{ addr = "0.0.0.0"; } { addr = "[::0]"; }];
     upstreams."authentik".extraConfig = ''
-      server 172.17.0.1:9443;
+      server localhost:9443;
       # Improve performance by keeping some connections alive.
       keepalive 10;
       '';

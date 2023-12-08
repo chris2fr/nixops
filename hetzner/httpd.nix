@@ -112,11 +112,11 @@ in
     RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteRule /(.*) ws://172.17.0.1:9443/$1 [P,L]
+RewriteRule /(.*) ws://localhost:9443/$1 [P,L]
  #ProxySet keepalive=On 
         #ProxyPass /  http://localhost:9000/
-        #ProxyPass /  http://172.17.0.1:9000/
-        ProxyPass /  https://172.17.0.1:9443/ upgrade=websocket keepalive=on
+        #ProxyPass /  http://localhost:9000/
+        ProxyPass /  https://localhost:9443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://localhost:9443/
         SSLProxyEngine on
         SSLProxyVerify none 
@@ -149,8 +149,8 @@ RewriteRule /(.*) ws://172.17.0.1:9443/$1 [P,L]
     forceSSL = true;
     extraConfig = ''
         #ProxyPass /  http://localhost:9000/
-        #ProxyPass /  http://172.17.0.1:9000/ 
-        ProxyPass /  https://172.17.0.1:8443/ upgrade=websocket keepalive=on
+        #ProxyPass /  http://localhost:9000/ 
+        ProxyPass /  https://localhost:8443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://localhost:9443/
          #ProxySet keepalive=On 
 
