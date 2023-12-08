@@ -25,8 +25,7 @@ map $http_upgrade $connection_upgrade_keepalive {
       # sslCertificateChainFile = /var/lib/acme/auth.lesgrandsvoisins.com/chain.pem;
       sslCertificate = /var/lib/acme/auth.lesgrandsvoisins.com/cert.pem;
       forceSSL = true;
-      config = ''
-      location / {
+      locations."/".extraConfig = ''
         proxy_pass https://authentik;
         proxy_http_version 1.1;
         proxy_set_header X-Forwarded-Proto $scheme;
@@ -34,7 +33,6 @@ map $http_upgrade $connection_upgrade_keepalive {
         proxy_set_header Host $host;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade_keepalive;
-        }
       '';
     };
   };
