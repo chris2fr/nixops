@@ -6,6 +6,7 @@ in
 services.postgresql = {
     enable = true;
     enableTCPIP = true;
+    package = pkgs.postgresql_14;
     ensureDatabases = [
       "wagtail"
       "previous"
@@ -50,7 +51,7 @@ services.postgresql = {
         services.postgresql.enable = true;
         services.postgresql.package = pkgs.postgresql_14;
        time.timeZone = "Europe/Amsterdam";
-       system.stateVersion = "23.05";
+       system.stateVersion = "23.11";
      };
    };
 }

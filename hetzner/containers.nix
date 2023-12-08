@@ -226,7 +226,7 @@ in
             python311Packages.psycopg2
             gettext
             sqlite
-            postgresql
+            postgresql_14
         ];
 
       # networking = {
