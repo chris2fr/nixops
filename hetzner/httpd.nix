@@ -98,10 +98,11 @@ in
     CacheDisable /
     '';
   };
-  services.httpd.virtualHosts."hedgedoc.lesgv.com" = {
+  services.httpd.virtualHosts."hdoc.lesgrandsvoisins.com" = {
     serverAliases = [
       "hedgedoc.lesgrandsvoisins.com"
-      "hdoc.lesgrandsvoisins.com"
+      "hdoc.lesgv.com"
+      "hedgedoc.lesgv.com"
     ];
     enableACME = true;
     forceSSL = true;
