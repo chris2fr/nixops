@@ -25,22 +25,22 @@ in
   #MaxKeepAliveRequests 400
   #KeepAliveTimeout 10
   #Protocols h2 http/1.1
-  Listen [2a01:4f8:241:4faa::]:80
-  Listen [2a01:4f8:241:4faa::1]:80
-  Listen [2a01:4f8:241:4faa::2]:80
-  Listen [2a01:4f8:241:4faa::3]:80
-  Listen [2a01:4f8:241:4faa::4]:80
-  Listen [2a01:4f8:241:4faa::5]:80
-  Listen [2a01:4f8:241:4faa::]:80
-  Listen 116.202.236.241:80
-  Listen [2a01:4f8:241:4faa::]:443
-  Listen [2a01:4f8:241:4faa::1]:443
-  Listen [2a01:4f8:241:4faa::2]:443
-  Listen [2a01:4f8:241:4faa::3]:443
-  Listen [2a01:4f8:241:4faa::4]:443
-  Listen [2a01:4f8:241:4faa::5]:443
-  Listen [2a01:4f8:241:4faa::]:443
-  Listen 116.202.236.241:443
+  # Listen [2a01:4f8:241:4faa::]:80
+  # Listen [2a01:4f8:241:4faa::1]:80
+  # Listen [2a01:4f8:241:4faa::2]:80
+  # Listen [2a01:4f8:241:4faa::3]:80
+  # Listen [2a01:4f8:241:4faa::4]:80
+  # Listen [2a01:4f8:241:4faa::5]:80
+  # Listen [2a01:4f8:241:4faa::]:80
+  # Listen 116.202.236.241:80
+  # Listen [2a01:4f8:241:4faa::]:443
+  # Listen [2a01:4f8:241:4faa::1]:443
+  # Listen [2a01:4f8:241:4faa::2]:443
+  # Listen [2a01:4f8:241:4faa::3]:443
+  # Listen [2a01:4f8:241:4faa::4]:443
+  # Listen [2a01:4f8:241:4faa::5]:443
+  # Listen [2a01:4f8:241:4faa::]:443
+  # Listen 116.202.236.241:443
   '';
   services.httpd.adminAddr = "contact@gvois.in";
   services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite" "http2"
