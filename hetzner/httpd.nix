@@ -537,7 +537,7 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
 ##    '';
 ##
 #  };
-ProxyPass
+
   services.httpd.virtualHosts."odoo1.gvois.in" = {
     serverAliases = [
       "actentioncom.gvois.in"
