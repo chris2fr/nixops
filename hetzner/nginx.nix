@@ -33,6 +33,7 @@ in
         proxy_set_header Host $host;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade_keepalive;
+        proxy_ssl_verify              off;
       '';
     };
   };
