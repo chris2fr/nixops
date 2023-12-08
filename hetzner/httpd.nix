@@ -112,11 +112,11 @@ in
     RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
+RewriteRule /(.*) ws://DOCKER:9443/$1 [P,L]
  #ProxySet keepalive=On 
         #ProxyPass /  http://localhost:9000/
-        #ProxyPass /  http://10.245.101.35:9000/
-        ProxyPass /  https://10.245.101.35:9443/ upgrade=websocket keepalive=on
+        #ProxyPass /  http://DOCKER:9000/
+        ProxyPass /  https://DOCKER:9443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://localhost:9443/
         SSLProxyEngine on
         SSLProxyVerify none 
@@ -149,8 +149,8 @@ RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
     forceSSL = true;
     extraConfig = ''
         #ProxyPass /  http://localhost:9000/
-        #ProxyPass /  http://10.245.101.35:9000/ 
-        ProxyPass /  https://10.245.101.35:8443/ upgrade=websocket keepalive=on
+        #ProxyPass /  http://DOCKER:9000/ 
+        ProxyPass /  https://DOCKER:8443/ upgrade=websocket keepalive=on
         #ProxyPass /  https://localhost:9443/
          #ProxySet keepalive=On 
 
