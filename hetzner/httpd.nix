@@ -53,7 +53,46 @@ in
     forceSSL = true;
     globalRedirect = "https://www.gvois.in/";
   };
-  # services.httpd.virtualHosts."guichet.gvois.in" = {
+#   # services.httpd.virtualHosts."guichet.gvois.in" = {
+#   services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
+#     enableACME = true;
+#     forceSSL = true;
+#     documentRoot =  "/var/www/";
+#     extraConfig = ''
+#     <Location />
+#     Require all granted
+#     </Location>
+
+#     ProxyPass /.well-known !
+# #    ProxyPass /static !
+# #    ProxyPass /media !
+# #    ProxyPass /favicon.ico !
+
+#     ProxyPass / http://[::1]:9991/
+#     ProxyPassReverse / http://[::1]:9991/
+#     ProxyPreserveHost On
+#     CacheDisable /
+#     '';
+#   };
+  services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+    enableACME = true;
+    forceSSL = true;
+    documentRoot =  "/var/www/";
+    extraConfig = ''
+    <Location />
+    Require all granted
+    </Location>
+
+    ProxyPass /.well-known !
+#    ProxyPass /static !
+#    ProxyPass /media !
+    ProxyPass /favicon.ico !
+    ProxyPass / http://[::1]:9992/
+    ProxyPassReverse / http://[::1]:9992/
+    ProxyPreserveHost On
+    CacheDisable /
+    '';
+  };
   services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
@@ -67,11 +106,12 @@ in
 #    ProxyPass /static !
 #    ProxyPass /media !
 #    ProxyPass /favicon.ico !
-
     ProxyPass / http://[::1]:9991/
     ProxyPassReverse / http://[::1]:9991/
     ProxyPreserveHost On
     CacheDisable /
+      RewriteEngine On
+      RewriteRule ^/SOGo(.*)$ https://mail.lesgrandsvoisins.com$1
     '';
   };
   services.httpd.virtualHosts."www.gvois.in" = {

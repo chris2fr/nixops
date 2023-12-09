@@ -82,27 +82,7 @@ in
       RewriteRule ^(.*)$ https://guichet.lesgrandsvoisins.com$1
     '';
   };
-  services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
-    enableACME = true;
-    forceSSL = true;
-    documentRoot =  "/var/www/";
-    extraConfig = ''
-    <Location />
-    Require all granted
-    </Location>
 
-    ProxyPass /.well-known !
-#    ProxyPass /static !
-#    ProxyPass /media !
-#    ProxyPass /favicon.ico !
-    ProxyPass / http://[::1]:9991/
-    ProxyPassReverse / http://[::1]:9991/
-    ProxyPreserveHost On
-    CacheDisable /
-      RewriteEngine On
-      RewriteRule ^/SOGo(.*)$ https://mail.lesgrandsvoisins.com$1
-    '';
-  };
 #  services.httpd.virtualHosts."mail.resdigita.com" = {
 #    serverAliases = ["gvoisin.com" "www.gvoisin.com" "mail.gvoisin.com" "gvoisin.org" "www.gvoisin.org" "gvoisins.org" "www.gvoisins.org" "gvoisins.com" "www.gvoisins.com" "app.lesgrandsvoisins.com"];
 #    enableACME = true;
