@@ -277,6 +277,8 @@ in
         Require valid-user
       </Location>
       <Location "/auth/redirect">
+        AuthType openid-connect
+        Require valid-user
         RewriteEngine On
         # Check for the presence of the OIDC_CLAIM_email header
         RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
