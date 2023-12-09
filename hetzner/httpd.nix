@@ -282,7 +282,8 @@ in
       #   RewriteRule ^(.*)$ /auth/web/%2/%1 [R,L]
       # </Location>
       <LocationMatch "^/auth/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
-        AuthType openid-connect # Should already be inherited
+        AuthType openid-connect 
+        # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
         Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
@@ -290,7 +291,8 @@ in
         </LimitExcept>
       </LocationMatch>
       <LocationMatch "^/auth/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
-        AuthType openid-connect # Should already be inherited
+        AuthType openid-connect 
+        # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
         Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
