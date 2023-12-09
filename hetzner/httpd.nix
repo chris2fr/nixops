@@ -272,9 +272,11 @@ in
         Satisfy Any
         Allow from all
       </LocationMatch>
-      <Location "^/auth$">
+      <Location "^/auth">
         AuthType openid-connect
         Require valid-user
+      </Location>
+      <Location "/auth/redirect">
         RewriteEngine On
         # Check for the presence of the OIDC_CLAIM_email header
         RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
