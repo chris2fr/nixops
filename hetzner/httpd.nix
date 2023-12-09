@@ -266,7 +266,7 @@ in
       OIDCProviderMetadataURL https://auth.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
       OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
       OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-      OIDCRedirectURI https://secret.lesgrandsvoisins.com/auth/data/redirect_uri
+      OIDCRedirectURI https://secret.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
       OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
       <LocationMatch "^/(auth|pass|ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json">
         Satisfy Any
@@ -323,7 +323,7 @@ in
           Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         </LimitExcept>
       </LocationMatch>
-      <LocationMatch ^/(auth)?/?$>
+      <LocationMatch ^/$>
         AuthType openid-connect
         Require valid-user
         RewriteEngine On
@@ -380,7 +380,7 @@ in
         OIDCProviderMetadataURL https://auth.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
         OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
         OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-        OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri
+        OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
         <Location "/auth">
