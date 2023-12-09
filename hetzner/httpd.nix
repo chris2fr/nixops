@@ -328,7 +328,7 @@ in
         </LimitExcept>
       </LocationMatch>
       <LocationMatch ^/$>
-          Redirect /auth
+          Redirect /redirect
       </LocationMatch>
 
       AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)/data/(.*)" "/var/www/secret/data/$2/$3"
