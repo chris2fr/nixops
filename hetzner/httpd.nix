@@ -334,8 +334,8 @@ in
       AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)/data/(.*)" "/var/www/secret/data/$2/$3"
       AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)(.*)" "/var/www/secret/keeweb$3"
 
-      Alias /auth /var/www/secret/data
-      Alias /pass /var/www/secret/data
+      Alias /auth/dav /var/www/secret/data
+      Alias /pass/dav /var/www/secret/data
 
       <Directory "/var/www">
         Options Indexes FollowSymLinks
