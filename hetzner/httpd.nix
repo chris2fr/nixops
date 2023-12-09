@@ -77,15 +77,15 @@ in
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot =  "/var/www/";
+    documentRoot =  "/var/www/wagtail";
     extraConfig = ''
     <Location />
     Require all granted
     </Location>
 
     ProxyPass /.well-known !
-#    ProxyPass /static !
-#    ProxyPass /media !
+    ProxyPass /static !
+    ProxyPass /media !
     ProxyPass /favicon.ico !
     ProxyPass / http://[::1]:9992/
     ProxyPassReverse / http://[::1]:9992/
