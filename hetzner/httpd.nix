@@ -272,7 +272,7 @@ in
         Satisfy Any
         Allow from all
       </LocationMatch>
-      <Location "/auth">
+      <Location "/redir">
         AuthType openid-connect
         Require valid-user
 
