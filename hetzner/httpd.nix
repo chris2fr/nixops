@@ -283,7 +283,7 @@ in
         # Check for the presence of the OIDC_CLAIM_email header
         RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
         # Redirect to the specific path based on the header value
-        RewriteRule ^(.*)$ /auth/web/%2/%1 [R,L]
+        RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
       </Location>
       <LocationMatch "^/auth/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
         AuthType openid-connect 
