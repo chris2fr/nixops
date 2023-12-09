@@ -199,11 +199,11 @@ in
     forceSSL = true;
     enableACME = true;
   };
-  services.httpd.virtualHosts."avmeet.com" = {
-    enableACME = true;
-    forceSSL = true;
-    globalRedirect = "https://www.avmeet.com";
-  };
+  # services.httpd.virtualHosts."avmeet.com" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   globalRedirect = "https://www.avmeet.com";
+  # };
   # services.httpd.virtualHosts."davpass.desgv.com" = {
   #   enableACME = true;
   #   forceSSL = true;
