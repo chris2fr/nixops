@@ -272,28 +272,32 @@ in
         Satisfy Any
         Allow from all
       </LocationMatch>
-      <Location "/redir">
-        AuthType openid-connect
-        Require valid-user
-
-        RewriteEngine On
-
-        # Check for the presence of the OIDC_CLAIM_email header
-        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
-
-        # Redirect to the specific path based on the header value
-        RewriteRule ^(.*)$ /auth/%2/%1 [R,L]
-
-      </Location>
-      <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
-        AuthType openid-connect
+      # <Location "^/auth$">
+      #   AuthType openid-connect
+      #   Require valid-user
+      #   RewriteEngine On
+      #   # Check for the presence of the OIDC_CLAIM_email header
+      #   RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
+      #   # Redirect to the specific path based on the header value
+      #   RewriteRule ^(.*)$ /auth/web/%2/%1 [R,L]
+      # </Location>
+      <LocationMatch "^/auth/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+        AuthType openid-connect # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
         Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
            Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LimitExcept>
       </LocationMatch>
-      <LocationMatch "^/(ldap|pass|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+      <LocationMatch "^/auth/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+        AuthType openid-connect # Should already be inherited
+        # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
+        Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        </LimitExcept>
+      </LocationMatch>
+      <LocationMatch "^/pass/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
         AuthType Basic
         AuthBasicProvider ldap
         AuthName "DAV par LDAP"
@@ -305,14 +309,33 @@ in
           Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         </LimitExcept>
       </LocationMatch>
+      <LocationMatch "^/pass/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+        AuthType Basic
+        AuthBasicProvider ldap
+        AuthName "DAV par LDAP"
+        AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+        AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+        Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+          Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        </LimitExcept>
+      </LocationMatch>
+      <Location />
+        AuthType openid-connect
+        Require valid-user
+        RewriteEngine On
+        # Check for the presence of the OIDC_CLAIM_email header
+        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
+        # Redirect to the specific path based on the header value
+        RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
+      </Location>
 
-      AliasMatch "[^/]+/([^/]+/[^/]+)/data/(.*)" "/var/www/secret/data/$1/$2"
-      AliasMatch "[^/]+/[^/]+/[^/]+(.*)" "/var/www/secret/keeweb$1"
+      AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)/data/(.*)" "/var/www/secret/data/$2/$3"
+      AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)" "/var/www/secret/keeweb$2"
 
-      Alias /ldap /var/www/secret/data
       Alias /auth /var/www/secret/data
       Alias /pass /var/www/secret/data
-      Alias /login /var/www/secret/data
 
       <Directory "/var/www">
         Options Indexes FollowSymLinks
