@@ -323,7 +323,7 @@ in
           Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         </LimitExcept>
       </LocationMatch>
-      <Location />
+      <LocationMatch ^/(auth)?/?$>
         AuthType openid-connect
         Require valid-user
         RewriteEngine On
@@ -331,7 +331,7 @@ in
         RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
         # Redirect to the specific path based on the header value
         RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
-      </Location>
+      </LocationMatch>
 
       AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)/data/(.*)" "/var/www/secret/data/$2/$3"
       AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)" "/var/www/secret/keeweb$2"
