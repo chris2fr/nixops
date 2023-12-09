@@ -272,15 +272,15 @@ in
         Satisfy Any
         Allow from all
       </LocationMatch>
-      # <Location "^/auth$">
-      #   AuthType openid-connect
-      #   Require valid-user
-      #   RewriteEngine On
-      #   # Check for the presence of the OIDC_CLAIM_email header
-      #   RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
-      #   # Redirect to the specific path based on the header value
-      #   RewriteRule ^(.*)$ /auth/web/%2/%1 [R,L]
-      # </Location>
+      <Location "^/auth$">
+        AuthType openid-connect
+        Require valid-user
+        RewriteEngine On
+        # Check for the presence of the OIDC_CLAIM_email header
+        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
+        # Redirect to the specific path based on the header value
+        RewriteRule ^(.*)$ /auth/web/%2/%1 [R,L]
+      </Location>
       <LocationMatch "^/auth/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
         AuthType openid-connect 
         # Should already be inherited
@@ -324,13 +324,7 @@ in
         </LimitExcept>
       </LocationMatch>
       <LocationMatch ^/$>
-        AuthType openid-connect
-        Require valid-user
-        RewriteEngine On
-        # Check for the presence of the OIDC_CLAIM_email header
-        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
-        # Redirect to the specific path based on the header value
-        RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
+          Redirect /auth
       </LocationMatch>
 
       AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)/data/(.*)" "/var/www/secret/data/$2/$3"
