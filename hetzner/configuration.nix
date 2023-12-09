@@ -141,8 +141,13 @@ in
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" ];
-  networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
+  networking = {
+    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" ];
+    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
+    # interfaces."eno1".ipv6 = {
+
+    # }
+  };
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

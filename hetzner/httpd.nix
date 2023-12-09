@@ -193,18 +193,17 @@ in
         </If>
     '';
   };
-  services.httpd.virtualHosts."resdigita.desgv.com" = {
-
+  services.httpd.virtualHosts."resdigita.com" = {
+    serverAliases = ["resdigita.desgv.com" "resdigita.org"]
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
-    extraConfig = ''
-      <If "%{HTTP_HOST} != 'resdigita.desgv.com'">
-          RedirectMatch /(.*)$ https://resdigita.desgv.com/$1
-      </If>
-    '';
   };
-
+  services.httpd.virtualHosts."avmeet.com" = {
+    enableACME = true;
+    forceSSL = true;
+    globalRedirect = "https://www.avmeet.com";
+  };
   # services.httpd.virtualHosts."davpass.desgv.com" = {
   #   enableACME = true;
   #   forceSSL = true;
@@ -276,6 +275,15 @@ in
       <Location "/auth">
         AuthType openid-connect
         Require valid-user
+
+        RewriteEngine On
+
+        # Check for the presence of the OIDC_CLAIM_email header
+        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
+
+        # Redirect to the specific path based on the header value
+        RewriteRule ^(.*)$ /auth/%2/%1 [R,L]
+
       </Location>
       <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
         AuthType openid-connect
