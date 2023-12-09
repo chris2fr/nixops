@@ -77,7 +77,7 @@ in
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot =  "/var/www/wagtail";
+    documentRoot =  "/var/www/guichet";
     extraConfig = ''
     <Location />
     Require all granted
