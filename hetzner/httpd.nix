@@ -276,7 +276,7 @@ in
         AuthType openid-connect
         Require valid-user
       </Location>
-      <Location "/auth/redirect">
+      <Location "/redirect">
         AuthType openid-connect
         Require valid-user
         RewriteEngine On
