@@ -53,7 +53,8 @@ in
     forceSSL = true;
     globalRedirect = "https://www.gvois.in/";
   };
-  services.httpd.virtualHosts."guichet.gvois.in" = {
+  # services.httpd.virtualHosts."guichet.gvois.in" = {
+  services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/";
