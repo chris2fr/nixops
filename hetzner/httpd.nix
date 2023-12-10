@@ -474,7 +474,7 @@ in
 
       <Directory "/var/www/dav/data">
         Dav On
-       DavDepthInfinity on
+        DavDepthInfinity On
       </Directory>
       ''];
   };
