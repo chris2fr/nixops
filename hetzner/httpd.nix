@@ -479,7 +479,7 @@ in
 
   services.httpd.virtualHosts."www.lesgrandsvoisins.fr" = {
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"  "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" "hopgv.com" "www.hopgv.com"       "www.lesgv.com"
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" "lesgrandsvoisins.com"  "hopgv.com" "www.hopgv.com"       "www.lesgv.com"
       "lesgv.com"];
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
@@ -515,6 +515,9 @@ in
       </If>
       <If "%{HTTP_HOST} == 'lesgv.com'">
           RedirectMatch /(.*)$ https://www.lesgv.com/$1
+      </If>
+      <If "%{HTTP_HOST} == 'lesgrandsvoisins.com'">
+          RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
       </If>
         ProxyPreserveHost On
         CacheDisable /
