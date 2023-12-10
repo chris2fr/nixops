@@ -75,6 +75,7 @@ in
 #     '';
 #   };
   services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
+    serverAliases = ["app.lesgrandsvoisins.com"];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/guichet";
@@ -91,6 +92,9 @@ in
     ProxyPassReverse / http://[::1]:9991/
     ProxyPreserveHost On
     CacheDisable /
+    <If "%{HTTP_HOST} != 'guichet.lesgrandsvoisins.com'">
+      RedirectMatch /(.*)$ https://guichet.lesgrandsvoisins.com/$1
+    </If>
     '';
   };
 #   services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
@@ -197,9 +201,6 @@ in
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
-        <If "%{HTTP_HOST} == 'lesgv.com'">
-          RedirectMatch /(.*)$ https://auth.lesgv.com/$1
-        </If>
     '';
   };
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
