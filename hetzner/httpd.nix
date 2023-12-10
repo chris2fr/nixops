@@ -387,6 +387,7 @@ in
 
       <Directory "/var/www/secret/dav">
         Dav On
+        DavDepthInfinity On
       </Directory>
 
     '';
@@ -473,6 +474,7 @@ in
 
       <Directory "/var/www/dav/data">
         Dav On
+       DavDepthInfinity on
       </Directory>
       ''];
   };
