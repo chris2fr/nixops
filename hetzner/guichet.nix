@@ -23,15 +23,15 @@
       Group = "users";
     };
   };
-  systemd.services.guichetwork = {
-    enable = true;
-    wantedBy = ["default.target"];
-    script = "/home/guichet/guichet2/guichet";
-    description = "Guichet, Self-Service LDAP account admin";
-    serviceConfig = {
-      WorkingDirectory = "/home/guichet/guichet2";
-      User = "guichet";
-      Group = "users";
-    };
-  };
+  # systemd.services.guichetwork = {
+  #   enable = true;
+  #   wantedBy = ["default.target"];
+  #   script = "/home/guichet/guichet2/guichet";
+  #   description = "Guichet, Self-Service LDAP account admin";
+  #   serviceConfig = {
+  #     WorkingDirectory = "/home/guichet/guichet2";
+  #     User = "guichet";
+  #     Group = "users";
+  #   };
+  # };
 }

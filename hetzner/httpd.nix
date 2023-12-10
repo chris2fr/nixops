@@ -74,7 +74,7 @@ in
 #     CacheDisable /
 #     '';
 #   };
-  services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+  services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/guichet";
@@ -93,27 +93,27 @@ in
     CacheDisable /
     '';
   };
-  services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
-    enableACME = true;
-    forceSSL = true;
-    documentRoot =  "/var/www/";
-    extraConfig = ''
-    <Location />
-    Require all granted
-    </Location>
+#   services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
+#     enableACME = true;
+#     forceSSL = true;
+#     documentRoot =  "/var/www/";
+#     extraConfig = ''
+#     <Location />
+#     Require all granted
+#     </Location>
 
-    ProxyPass /.well-known !
-#    ProxyPass /static !
-#    ProxyPass /media !
-#    ProxyPass /favicon.ico !
-    ProxyPass / http://[::1]:9991/
-    ProxyPassReverse / http://[::1]:9991/
-    ProxyPreserveHost On
-    CacheDisable /
-      RewriteEngine On
-      RewriteRule ^/SOGo(.*)$ https://mail.lesgrandsvoisins.com$1
-    '';
-  };
+#     ProxyPass /.well-known !
+# #    ProxyPass /static !
+# #    ProxyPass /media !
+# #    ProxyPass /favicon.ico !
+#     ProxyPass / http://[::1]:9991/
+#     ProxyPassReverse / http://[::1]:9991/
+#     ProxyPreserveHost On
+#     CacheDisable /
+#       RewriteEngine On
+#       RewriteRule ^/SOGo(.*)$ https://mail.lesgrandsvoisins.com$1
+#     '';
+#   };
   services.httpd.virtualHosts."www.gvois.in" = {
     serverAliases = [
       "keycloak.gvois.in"
