@@ -479,9 +479,9 @@ in
       ''];
   };
 
-  services.httpd.virtualHosts."www.lesgrandsvoisins.fr" = {
-    serverAliases = ["desgv.com" "www.lesgrandsvoisins.com"  "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" "lesgrandsvoisins.com"  "hopgv.com" "www.hopgv.com"       "www.lesgv.com"
+  services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
+    serverAliases = ["desgv.com" "www.lesgrandsvoisins.fr"  "francemali.org"
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" "lesgrandsvoisins.com"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com"
       "lesgv.com"];
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
