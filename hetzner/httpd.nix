@@ -229,8 +229,8 @@ in
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
-        <If "%{HTTP_HOST} == 'lesgv.com'">
-          RedirectMatch /(.*)$ https://auth.lesgv.com/$1
+        <If "%{HTTP_HOST} != 'auth.lesgrandsvoisins.com'">
+          RedirectMatch /(.*)$ https://auth.lesgrandsvoisins.com/$1
         </If>
     '';
   };
