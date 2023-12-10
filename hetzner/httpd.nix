@@ -479,6 +479,15 @@ in
       ''];
   };
 
+  services.httpd.virtualHosts."lesgrandsvoisins.com" = {
+    documentRoot = "/var/www/wagtail/";
+    enableACME = true;
+    forceSSL = true;
+    extraConfig = ''
+      RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
+    '';
+  };
+
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
     serverAliases = ["desgv.com" "www.lesgrandsvoisins.fr"  "francemali.org"
       "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" "lesgrandsvoisins.com"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com"
