@@ -87,8 +87,8 @@ in
     ProxyPass /static !
     ProxyPass /media !
     ProxyPass /favicon.ico !
-    ProxyPass / http://[::1]:9992/
-    ProxyPassReverse / http://[::1]:9992/
+    ProxyPass / http://[::1]:9991/
+    ProxyPassReverse / http://[::1]:9991/
     ProxyPreserveHost On
     CacheDisable /
     '';
