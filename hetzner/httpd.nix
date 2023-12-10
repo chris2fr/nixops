@@ -365,7 +365,7 @@ in
         AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
         AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
-        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
           Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         </LimitExcept>
       </LocationMatch>
@@ -432,7 +432,7 @@ in
           AuthType openid-connect
           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
             
-          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPOFIND CONNECT>
              Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
           </LimitExcept>
         </LocationMatch>
@@ -454,7 +454,7 @@ in
           #Require valid-user
           Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
           
-          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
             Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
           </LimitExcept>
         </LocationMatch>
