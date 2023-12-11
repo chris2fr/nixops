@@ -542,7 +542,7 @@ in
   #     "blog.lesgrandsvoisins.com"
   #   ];
   services.httpd.virtualHosts."blog.lesgrandsvoisins.com" = {
-    serverAliases = ["blog.gvois.in"]
+    serverAliases = ["blog.gvois.in"];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/ghostio/";
