@@ -53,10 +53,10 @@ in
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade_keepalive;
         
-        proxy_buffering off;
-        tcp_nodelay on;
+
       '';
-    };
+        # proxy_buffering off;
+        # tcp_nodelay on;    };
   };
 
 }
