@@ -53,7 +53,7 @@ in
     forceSSL = true;
     globalRedirect = "https://www.gvois.in/";
   };
-  services.httpd.virtualHosts."hetzner005.lesgransdvoisins.com" = {
+  services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/";
