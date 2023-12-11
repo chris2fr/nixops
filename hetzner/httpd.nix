@@ -199,10 +199,10 @@ in
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
-        # <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-        #    Order allow,deny
-        #    Allow from all
-        # </LimitExcept>
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+           Order allow,deny
+           Allow from all
+        </LimitExcept>
     '';
   };
   services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
