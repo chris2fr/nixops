@@ -542,6 +542,7 @@ in
   #     "blog.lesgrandsvoisins.com"
   #   ];
   services.httpd.virtualHosts."blog.lesgrandsvoisins.com" = {
+    serverAliases = ["blog.gvois.in"]
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/ghostio/";
@@ -563,6 +564,10 @@ in
     ProxyAddHeaders On
 
     CacheDisable /
+
+    <If "%{HTTP_HOST} != 'blog.lesgrandsvoisins.com'">
+      RedirectMatch /(.*)$ https://blog.lesgrandsvoisins.com/$1
+    </If>
     '';
   };
 #  services.httpd.virtualHosts."odoo.gvois.in" = {
