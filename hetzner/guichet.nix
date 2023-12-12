@@ -36,7 +36,7 @@
   systemd.services."guichet-wwwrun-fix-perms" = {
     script = ''
       set -eu
-      ${pkgs.coreutils}/bin/chown -R wwwrun:users /var/www/{secret:dav} ; ${pkgs.coreutils}/bin/chmod g+w /var/www/{secret:dav}
+      ${pkgs.coreutils}/bin/chown -R wwwrun:users /var/www/{secret,dav} ; ${pkgs.coreutils}/bin/chmod g+w /var/www/{secret,dav}
     '';
     serviceConfig = {
       Type = "oneshot";
