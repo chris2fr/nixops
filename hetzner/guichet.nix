@@ -27,7 +27,7 @@
   systemd.timers."guichet-wwwrun-fix-perms" = {
   wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnCalendar = "5m";
+      OnUnitActiveSec = "5m";
       Unit = "guichet-wwwrun-fix-perms.service";
     };
   };
