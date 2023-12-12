@@ -440,6 +440,17 @@ in
           </LimitExcept>
         </LocationMatch>
 
+      <Location "/redirect">
+        AuthType openid-connect
+        Require valid-user
+        RewriteEngine On
+        # Check for the presence of the OIDC_CLAIM_email header
+        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
+        # Redirect to the specific path based on the header value
+        RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
+      </Location>
+      RedirectMatch ^/$ /redirect
+
 
 
         Alias /ldap /var/www/dav/data
