@@ -24,6 +24,25 @@
       Group = "users";
     };
   };
+  systemd.timers."guichet-wwwrun-fix-perms" = {
+  wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "5m";
+      OnUnitActiveSec = "5m";
+      Unit = "guichet-wwwrun-fix-perms.service";
+    };
+  };
+
+  systemd.services."guichet-wwwrun-fix-perms" = {
+    script = ''
+      set -eu
+      ${pkgs.coreutils}/bin/chown -R wwwrun:user /var/www/{secret:dav} ; ${pkgs.coreutils}/bin/chmod g+w /var/www/{secret:dav}
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+  };
   # systemd.services.guichetwork = {
   #   enable = true;
   #   wantedBy = ["default.target"];
