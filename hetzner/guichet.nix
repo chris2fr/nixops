@@ -27,8 +27,7 @@
   systemd.timers."guichet-wwwrun-fix-perms" = {
   wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnBootSec = "5m";
-      OnUnitActiveSec = "5m";
+      OnCalendar = "5m";
       Unit = "guichet-wwwrun-fix-perms.service";
     };
   };
@@ -40,7 +39,6 @@
       ${pkgs.coreutils}/bin/chmod -R g+w /var/www/{secret,dav}
     '';
     serviceConfig = {
-      Type = "oneshot";
       User = "root";
     };
   };
