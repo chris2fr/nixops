@@ -2,6 +2,7 @@
 {
   users.users."guichet" = {
       isNormalUser = true;
+      extraGroups = [ "wwwrun" ];
   };
   home-manager.users.fossil = {pkgs, ...}: {
     home.packages = with pkgs; [ 
