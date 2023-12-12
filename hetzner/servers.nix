@@ -32,6 +32,7 @@ in
   users.users.ghostio = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    extraGroups = ["wwwrun"];
   };
   ## ODOO FOR
   users.users.odoofor = {
@@ -84,6 +85,7 @@ in
   users.users.ghost = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    extraGroups = ["wwwrun"];
   };
   home-manager.users.ghost = {pkgs, ...}: {
     home.stateVersion = "23.11";
