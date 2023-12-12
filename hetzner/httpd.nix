@@ -426,6 +426,8 @@ in
         OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
+        RedirectMatch ^/?$ /redirect
+
         <Location "/auth">
           AuthType openid-connect
           Require valid-user
@@ -447,9 +449,9 @@ in
         # Check for the presence of the OIDC_CLAIM_email header
         RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
         # Redirect to the specific path based on the header value
-        RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
+        RewriteRule ^(.*)$ /auth/%2/%1 [R,L]
       </Location>
-      RedirectMatch ^/$ /redirect
+      
 
 
 
