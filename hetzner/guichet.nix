@@ -20,7 +20,7 @@
     description = "Guichet, Self-Service LDAP account admin";
     serviceConfig = {
       WorkingDirectory = "/home/guichet/guichet";
-      User = "wwwrun";
+      User = "guichet";
       Group = "users";
     };
   };
