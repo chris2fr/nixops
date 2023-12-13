@@ -502,14 +502,35 @@ in
       RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
     '';
   };
-
-  services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
-    serverAliases = ["desgv.com" "www.lesgrandsvoisins.fr"  "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" "lesgrandsvoisins.com"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com"
-      "lesgv.com"];
+  services.httpd.virtualHosts."www.lesgrandsvoisins.fr" = {
+     serverAliases = ["desgv.com" "www.lesgrandsvoisins.fr"  "francemali.org"
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com"];
     documentRoot = "/var/www/wagtail/";
     enableACME = true;
+     forceSSL = true;
+         extraConfig = lib.strings.concatStrings [ wagtailExtraConfig ''
+      <If "%{HTTP_HOST} == 'desgv.com'">
+          RedirectMatch /(.*)$ https://www.desgv.com/$1
+      </If>
+      <If "%{HTTP_HOST} == 'francemali.org'">
+          RedirectMatch /(.*)$ https://www.francemali.org/$1
+      </If>
+      <If "%{HTTP_HOST} == 'lesgrandsvoisins.fr'">
+          RedirectMatch /(.*)$ https://www.lesgrandsvoisins.fr/$1
+      </If>
+      <If "%{HTTP_HOST} == 'lesgv.com'">
+          RedirectMatch /(.*)$ https://www.lesgv.com/$1
+      </If>
+        ProxyPreserveHost On
+        CacheDisable /
+    ''];
+  }
+  services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
+    serverAliases = ["lesgrandsvoisins.com" ];
     forceSSL = true;
+    sslServerKey = "/etc/ssl/lesgrandsvoisins.com.key";
+    sslServerChain = "/etc/ssl/lesgrandsvoisins.com.crt";
+    sslServerCert = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
     #locations = wagtailHttpdLocations;
     # {
     #   "/.well-known".proxyPass = "!";
@@ -530,19 +551,7 @@ in
 
     # };
     extraConfig = lib.strings.concatStrings [ wagtailExtraConfig ''
-      <If "%{HTTP_HOST} == 'desgv.com'">
-          RedirectMatch /(.*)$ https://www.desgv.com/$1
-      </If>
-      <If "%{HTTP_HOST} == 'francemali.org'">
-          RedirectMatch /(.*)$ https://www.francemali.org/$1
-      </If>
-      <If "%{HTTP_HOST} == 'lesgrandsvoisins.fr'">
-          RedirectMatch /(.*)$ https://www.lesgrandsvoisins.fr/$1
-      </If>
-      <If "%{HTTP_HOST} == 'lesgv.com'">
-          RedirectMatch /(.*)$ https://www.lesgv.com/$1
-      </If>
-      <If "%{HTTP_HOST} == 'lesgrandsvoisins.com'">
+      <If "%{HTTP_HOST} != 'www.lesgrandsvoisins.com'">
           RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
       </If>
         ProxyPreserveHost On
