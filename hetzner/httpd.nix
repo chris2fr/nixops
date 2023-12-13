@@ -2,7 +2,6 @@
 let 
     wagtailExtraConfig = ''
         CacheDisable /
-        ProxyVia On
         <Location />
           Require all granted
         </Location>
@@ -13,6 +12,11 @@ let
         CacheDisable /
         ProxyPass /  http://127.0.0.1:8000/
         ProxyPassReverse /  http://127.0.0.1:8000/
+        ProxyPreserveHost On
+        ProxyVia On
+        ProxyAddHeaders On
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
     '';
 in
 { 
