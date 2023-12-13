@@ -530,6 +530,7 @@ in
     ''];
   };
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
+    documentRoot = "/var/www/wagtail/";
     serverAliases = ["lesgrandsvoisins.com" ];
     forceSSL = true;
     # enableACME = true;
