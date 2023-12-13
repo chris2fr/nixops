@@ -529,7 +529,7 @@ in
     serverAliases = ["lesgrandsvoisins.com" ];
     forceSSL = true;
     # enableACME = true;
-    addSSL = true;
+    # addSSL = true;
     sslServerKey = "/etc/ssl/lesgrandsvoisins.com.key";
     sslServerCert = "/etc/ssl/lesgrandsvoisins.com.crt";
     sslServerChain = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
