@@ -528,10 +528,11 @@ in
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
     serverAliases = ["lesgrandsvoisins.com" ];
     forceSSL = true;
-    enableACME = true;
-    # sslServerKey = "/etc/ssl/lesgrandsvoisins.com.key";
-    # sslServerChain = "/etc/ssl/lesgrandsvoisins.com.crt";
-    # sslServerCert = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
+    # enableACME = true;
+    addSSL = true;
+    sslServerKey = "/etc/ssl/lesgrandsvoisins.com.key";
+    sslServerChain = "/etc/ssl/lesgrandsvoisins.com.crt";
+    sslServerCert = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
     #locations = wagtailHttpdLocations;
     # {
     #   "/.well-known".proxyPass = "!";
