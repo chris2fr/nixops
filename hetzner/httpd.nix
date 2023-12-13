@@ -524,7 +524,7 @@ in
         ProxyPreserveHost On
         CacheDisable /
     ''];
-  }
+  };
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
     serverAliases = ["lesgrandsvoisins.com" ];
     forceSSL = true;
