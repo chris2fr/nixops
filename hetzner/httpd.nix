@@ -11,12 +11,12 @@ let
         ProxyPass /favicon.ico !
         CacheDisable /
         ProxyPass /  http://127.0.0.1:8000/
-        ProxyPassReverse /  http://127.0.0.1:8000/
+        # ProxyPassReverse /  http://127.0.0.1:8000/
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
+        # RequestHeader set X-Forwarded-Proto "https"
+        # RequestHeader set X-Forwarded-Port "443"
     '';
 in
 { 
@@ -498,14 +498,14 @@ in
       ''];
   };
 
-  services.httpd.virtualHosts."lesgrandsvoisins.com" = {
-    documentRoot = "/var/www/wagtail/";
-    enableACME = true;
-    forceSSL = true;
-    extraConfig = ''
-      RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
-    '';
-  };
+  # services.httpd.virtualHosts."lesgrandsvoisins.com" = {
+  #   documentRoot = "/var/www/wagtail/";
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   extraConfig = ''
+  #     RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
+  #   '';
+  # };
   services.httpd.virtualHosts."www.lesgrandsvoisins.fr" = {
      serverAliases = ["desgv.com" "www.lesgrandsvoisins.fr"  "francemali.org"
       "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com"];
@@ -560,8 +560,8 @@ in
       <If "%{HTTP_HOST} != 'www.lesgrandsvoisins.com'">
           RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
       </If>
-        ProxyPreserveHost On
-        CacheDisable /
+        # ProxyPreserveHost On
+        # CacheDisable /
     ''];
   };
   # services.httpd.virtualHosts."blog.gvois.in" = {
