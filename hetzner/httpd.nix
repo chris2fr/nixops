@@ -519,11 +519,11 @@ in
       <If "%{HTTP_HOST} == 'francemali.org'">
           RedirectMatch /(.*)$ https://www.francemali.org/$1
       </If>
-      <If "%{HTTP_HOST} == 'lesgrandsvoisins.fr'">
-          RedirectMatch /(.*)$ https://www.lesgrandsvoisins.fr/$1
-      </If>
       <If "%{HTTP_HOST} == 'lesgv.com'">
           RedirectMatch /(.*)$ https://www.lesgv.com/$1
+      </If>
+      <If "%{HTTP_HOST} == 'lesgrandsvoisins.fr' || %{HTTP_HOST} == 'www.lesgrandsvoisins.fr' || %{HTTP_HOST} == '(www.)?lesgv.com' || %{HTTP_HOST} == '(www.)?hopgv.com'">
+          RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
       </If>
         ProxyPreserveHost On
         CacheDisable /
