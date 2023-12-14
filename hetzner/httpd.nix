@@ -15,6 +15,8 @@ let
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
+        RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
+        RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
         # RequestHeader set X-Forwarded-Proto "https"
         # RequestHeader set X-Forwarded-Port "443"
     '';
@@ -572,6 +574,7 @@ in
         ProxyPass /blog/static/ !
         ProxyPass /blog/media/ !
         ProxyPass /blog/ http://localhost:2368/
+        
 
         
         ''
