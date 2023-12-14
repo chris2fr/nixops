@@ -569,6 +569,10 @@ in
         SSLProxyCheckPeerCN off
         SSLProxyCheckPeerName off
         SSLProxyCheckPeerExpire off
+        ProxyPass /blog/static/ !
+        ProxyPass /blog/media/ !
+        ProxyPass /blog/ http://localhost:2368/
+
         
         ''];
     # locations."/auth" = {
