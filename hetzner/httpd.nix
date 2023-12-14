@@ -169,15 +169,15 @@ in
     '';
   };
   services.httpd.virtualHosts."auth.lesgrandsvoisins.com" = {
-    serverAliases = [
-    ];
+    # serverAliases = [
+    # ];
     enableACME = true;
     forceSSL = true;
     extraConfig = ''
-    # RewriteEngine On
-    #     RewriteCond %{HTTP:Connection} Upgrade [NC]
-    #     RewriteCond %{HTTP:Upgrade} websocket [NC]
-    #     RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
+        # RewriteEngine On
+        #     RewriteCond %{HTTP:Connection} Upgrade [NC]
+        #     RewriteCond %{HTTP:Upgrade} websocket [NC]
+        #     RewriteRule /(.*) ws://10.245.101.35:9443/$1 [P,L]
         #ProxySet keepalive=On 
         #ProxyPass /  http://10.245.101.35:9000/
         #ProxyPass /  http://10.245.101.35:9000/
@@ -623,7 +623,7 @@ in
     # ProxyPass /media !
     # ProxyPass /favicon.ico !
     ProxyPass / http://localhost:2368/
-    # ProxyPassReverse http://localhost:2368/
+    # ProxyPassReverse / http://localhost:2368/
     RequestHeader set X-Forwarded-Proto "https"
     RequestHeader set X-Forwarded-Port "443"
     ProxyPreserveHost On
