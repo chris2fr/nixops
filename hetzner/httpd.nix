@@ -584,7 +584,7 @@ in
     locations."/blog" = {
       alias =  "/var/www/ghostio/";
       extraConfig = ''
-      # Require all granted
+      Require all granted
 
       # ProxyPass /.well-known !
       # ProxyPass /static !
