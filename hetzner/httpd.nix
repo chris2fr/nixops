@@ -557,7 +557,7 @@ in
     #   };
 
     # };
-    extraConfig = lib.strings.concatStrings [ wagtailExtraConfig ''
+    extraConfig = lib.strings.concatStrings [  ''
       <If "%{HTTP_HOST} != 'www.lesgrandsvoisins.com'">
           RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
       </If>
@@ -574,7 +574,9 @@ in
         ProxyPass /blog/ http://localhost:2368/
 
         
-        ''];
+        ''
+        wagtailExtraConfig
+        ];
     # locations."/auth" = {
     #   # proxyPass = "https://localhost:8443/ upgrade=websocket";
     #   extraConfig = ''
