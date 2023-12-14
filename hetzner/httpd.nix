@@ -562,25 +562,25 @@ in
           RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
       </If>
     ''];
-    locations."/auth" = {
-      # proxyPass = "https://localhost:8443/ upgrade=websocket";
-      extraConfig = ''
+    # locations."/auth" = {
+    #   # proxyPass = "https://localhost:8443/ upgrade=websocket";
+    #   extraConfig = ''
 
-        ProxyPass https://localhost:8443/ upgrade=websocket
+    #     ProxyPass https://localhost:8443/ upgrade=websocket
 
-        SSLProxyEngine on
-        SSLProxyVerify none 
-        SSLProxyCheckPeerCN off
-        SSLProxyCheckPeerName off
-        SSLProxyCheckPeerExpire off
+    #     SSLProxyEngine on
+    #     SSLProxyVerify none 
+    #     SSLProxyCheckPeerCN off
+    #     SSLProxyCheckPeerName off
+    #     SSLProxyCheckPeerExpire off
         
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
-        ProxyPreserveHost On
-        ProxyVia On
-        ProxyAddHeaders On
-      '';
-    };
+    #     RequestHeader set X-Forwarded-Proto "https"
+    #     RequestHeader set X-Forwarded-Port "443"
+    #     ProxyPreserveHost On
+    #     ProxyVia On
+    #     ProxyAddHeaders On
+    #   '';
+    # };
   #   locations."/blog/static".proxyPass = null;
   #   locations."/blog/media".proxyPass = null;
   #   locations."/blog" = {
