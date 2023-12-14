@@ -522,7 +522,7 @@ in
       <If "%{HTTP_HOST} == 'lesgv.com'">
           RedirectMatch /(.*)$ https://www.lesgv.com/$1
       </If>
-      <If "%{HTTP_HOST} == 'lesgrandsvoisins.fr' || %{HTTP_HOST} == 'www.lesgrandsvoisins.fr' || %{HTTP_HOST} == '(www.)?lesgv.com' || %{HTTP_HOST} == '(www.)?hopgv.com'">
+      <If "%{HTTP_HOST} == 'lesgrandsvoisins.fr' || %{HTTP_HOST} == 'www.lesgrandsvoisins.fr' || %{HTTP_HOST} =~ /(www.)?lesgv.com/ || %{HTTP_HOST} =~ /(www.)?hopgv.com/">
           RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
       </If>
         ProxyPreserveHost On
