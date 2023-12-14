@@ -562,48 +562,48 @@ in
           RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
       </If>
     ''];
-    locations."/auth" = {
-      # proxyPass = "https://localhost:8443/ upgrade=websocket";
-      extraConfig = ''
+  #   locations."/auth" = {
+  #     # proxyPass = "https://localhost:8443/ upgrade=websocket";
+  #     extraConfig = ''
 
-        ProxyPass https://localhost:8443/ upgrade=websocket
+  #       ProxyPass https://localhost:8443/ upgrade=websocket
 
-        SSLProxyEngine on
-        SSLProxyVerify none 
-        SSLProxyCheckPeerCN off
-        SSLProxyCheckPeerName off
-        SSLProxyCheckPeerExpire off
+  #       SSLProxyEngine on
+  #       SSLProxyVerify none 
+  #       SSLProxyCheckPeerCN off
+  #       SSLProxyCheckPeerName off
+  #       SSLProxyCheckPeerExpire off
         
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
-        ProxyPreserveHost On
-        ProxyVia On
-        ProxyAddHeaders On
-      '';
-    };
-    locations."/blog/static".proxyPass = null;
-    locations."/blog/media".proxyPass = null;
-    locations."/blog" = {
-      alias =  "/var/www/ghostio/";
-      extraConfig = ''
-      Require all granted
+  #       RequestHeader set X-Forwarded-Proto "https"
+  #       RequestHeader set X-Forwarded-Port "443"
+  #       ProxyPreserveHost On
+  #       ProxyVia On
+  #       ProxyAddHeaders On
+  #     '';
+  #   };
+  #   locations."/blog/static".proxyPass = null;
+  #   locations."/blog/media".proxyPass = null;
+  #   locations."/blog" = {
+  #     alias =  "/var/www/ghostio/";
+  #     extraConfig = ''
+  #     Require all granted
 
-      # ProxyPass /.well-known !
-      # ProxyPass /static !
-      # ProxyPass /media !
-      # ProxyPass /favicon.ico !
-      ProxyPass http://localhost:2368/
-      # ProxyPassReverse http://localhost:2368/
-      RequestHeader set X-Forwarded-Proto "https"
-      RequestHeader set X-Forwarded-Port "443"
-      ProxyPreserveHost On
-      ProxyVia On
-      ProxyAddHeaders On
+  #     # ProxyPass /.well-known !
+  #     # ProxyPass /static !
+  #     # ProxyPass /media !
+  #     # ProxyPass /favicon.ico !
+  #     ProxyPass http://localhost:2368/
+  #     # ProxyPassReverse http://localhost:2368/
+  #     RequestHeader set X-Forwarded-Proto "https"
+  #     RequestHeader set X-Forwarded-Port "443"
+  #     ProxyPreserveHost On
+  #     ProxyVia On
+  #     ProxyAddHeaders On
 
-      # CacheDisable 
-    '';
-    };
-  };
+  #     # CacheDisable 
+  #   '';
+  #   };
+  # };
   # services.httpd.virtualHosts."blog.gvois.in" = {
   #   serverAliases = [
   #     "ghost.gvois.in"
