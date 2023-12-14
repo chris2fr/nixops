@@ -561,7 +561,16 @@ in
       <If "%{HTTP_HOST} != 'www.lesgrandsvoisins.com'">
           RedirectMatch /(.*)$ https://www.lesgrandsvoisins.com/$1
       </If>
-    ''];
+      ProxyPass /auth/ https://localhost:8443/ upgrade=websocket
+      ProxyPassReverse /auth/ https://localhost:8443/ upgrade=websocket
+
+        SSLProxyEngine on
+        SSLProxyVerify none 
+        SSLProxyCheckPeerCN off
+        SSLProxyCheckPeerName off
+        SSLProxyCheckPeerExpire off
+        
+        ''];
     # locations."/auth" = {
     #   # proxyPass = "https://localhost:8443/ upgrade=websocket";
     #   extraConfig = ''
