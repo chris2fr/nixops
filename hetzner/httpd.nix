@@ -563,8 +563,10 @@ in
       </If>
     ''];
     locations."/auth" = {
-      proxyPass = " https://localhost:8443/ upgrade=websocket";
+      # proxyPass = "https://localhost:8443/ upgrade=websocket";
       extraConfig = ''
+
+        ProxyPass https://localhost:8443/ upgrade=websocket
 
         SSLProxyEngine on
         SSLProxyVerify none 
