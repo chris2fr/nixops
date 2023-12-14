@@ -579,7 +579,8 @@ in
         ProxyAddHeaders On
       '';
     };
-    locations."/blog/static".proxyPass = false;
+    locations."/blog/static".proxyPass = null;
+    locations."/blog/media".proxyPass = null;
     locations."/blog" = {
       alias =  "/var/www/ghostio/";
       extraConfig = ''
