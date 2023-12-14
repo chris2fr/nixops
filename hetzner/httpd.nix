@@ -579,10 +579,11 @@ in
         ProxyAddHeaders On
       '';
     };
+    locations."/blog/static".proxyPass = false;
     locations."/blog" = {
       alias =  "/var/www/ghostio/";
       extraConfig = ''
-      Require all granted
+      # Require all granted
 
       # ProxyPass /.well-known !
       # ProxyPass /static !
