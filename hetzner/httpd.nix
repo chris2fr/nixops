@@ -76,14 +76,14 @@ in
     <Location />
     Require all granted
     </Location>
-    <If "%{HTTPS} == 'on'">
-    # HTTPS-specific configuration here
-     ProxyPass / http://[::1]:8843/
-    </If>
-    <If "%{HTTPS} != 'on'">
-    # HTTPS-specific configuration here
-     ProxyPass / http://[::1]:8088/
-    </If>
+    # <If "%{HTTPS} == 'on'">
+    # # HTTPS-specific configuration here
+    #  ProxyPass / http://[::1]:8843/
+    # </If>
+    # <If "%{HTTPS} != 'on'">
+    # # HTTPS-specific configuration here
+    #  ProxyPass / http://[::1]:8088/
+    # </If>
 
 #    ProxyPass /.well-known !
 #    ProxyPass /static !
