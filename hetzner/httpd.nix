@@ -56,24 +56,41 @@ in
   services.httpd.virtualHosts."gvois.in" = {
     # listenAddresses = ["*" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::1]" "[2a01:4f8:241:4faa::2]" "[2a01:4f8:241:4faa::3]" "[2a01:4f8:241:4faa::4]" "[2a01:4f8:241:4faa::5]"];
     enableACME = true;
-    forceSSL = true;
+    #forceSSL = true;
     globalRedirect = "https://www.gvois.in/";
   };
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     enableACME = true;
-    forceSSL = true;
+    # forceSSL = true;
+    listen = [
+      {
+        port=443;
+        ssl=true;
+      }
+      {
+        port=80;
+      }
+    ];
     documentRoot =  "/var/www/";
     extraConfig = ''
     <Location />
     Require all granted
     </Location>
+    <If "%{HTTPS} == 'on'">
+    # HTTPS-specific configuration here
+     ProxyPass / http://[::1]:8843/
+    </If>
+    <If "%{HTTPS} != 'on'">
+    # HTTPS-specific configuration here
+     ProxyPass / http://[::1]:8088/
+    </If>
 
-    ProxyPass /.well-known !
+#    ProxyPass /.well-known !
 #    ProxyPass /static !
 #    ProxyPass /media !
 #    ProxyPass /favicon.ico !
 
-    ProxyPass / http://[::1]:8080/
+   
     ProxyPreserveHost On
     CacheDisable /
     '';
