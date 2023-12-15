@@ -204,11 +204,14 @@ in
         $config['oauth_scope'] = "openid dovecotprofile";
         $config['oauth_auth_parameters'] = [];
         $config['oauth_identity_fields'] = ['email'];
-        $config['session_domain'] = 'mail.lesgrandsvoisins.com';
         $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
         $config['session_samesite'] = "Lax";
         $config['support_url'] = 'https://www.lesgrandsvoisins.com';
+        $config['product_name'] = 'Roundcube Webmail des GV';
+        $config['session_debug'] = true;
      '';
+#             $config['session_domain'] = 'mail.lesgrandsvoisins.com';
+
   };
   services.nginx.virtualHosts."mail.lesgrandsvoisins.com" = {
     forceSSL = false;
