@@ -208,8 +208,10 @@ in
         $config['session_samesite'] = "Lax";
         $config['support_url'] = 'https://www.lesgrandsvoisins.com';
         $config['product_name'] = 'Roundcube Webmail des GV';
-        $config['session_debug'] = true;
+
+        $config['login_password_maxlen'] = 4096;
      '';
+     #         $config['session_debug'] = true;
 #             $config['session_domain'] = 'mail.lesgrandsvoisins.com';
 
   };
