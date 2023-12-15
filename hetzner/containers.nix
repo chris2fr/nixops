@@ -157,11 +157,11 @@ in
   #     };
   # };
 
-  containers.roundcube = {
-    autoStart = true;
-    privateNetwork = true;
+  # containers.roundcube = {
+  #   autoStart = true;
+  #   privateNetwork = true;
 
-  };
+  # };
 
   containers.wagtail = {
     
