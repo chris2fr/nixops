@@ -205,7 +205,7 @@ in
         $config['oauth_identity_fields'] = ['email'];
      '';
   };
-  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+  services.nginx.virtualHosts."mail.lesgrandsvoisins.com" = {
     forceSSL = false;
     enableACME = false;
     locations."/".extraConfig = ''
