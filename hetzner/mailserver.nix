@@ -222,6 +222,25 @@ in
       '';
   };
 
+  services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+    enableACME = true;
+    extraConfig = ''
+        ProxyPreserveHost On
+        ProxyVia On
+        ProxyAddHeaders On
+        RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
+        RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
+        CacheDisable /
+        DocumentRoot ${pkgs.roundcube}
+        Index index.php
+        <Location .*\.php(/|$)>
+            ProxyPass unix:/run/phpfpm/roundcube.sock|https://hetzner005.lesgrandsvoisins.com/
+        </Location>
+      '';
+  };
+
   services.dovecot2.extraConfig = ''
     auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
 
