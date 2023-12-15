@@ -254,7 +254,7 @@ in
         # RequestHeader set X-Forwarded-Port "443"
         CacheDisable /
         DocumentRoot ${pkgs.roundcube}
-        ProxyPass /index.php unix:/run/phpfpm/roundcubedesgv.sock|https://hetzner005.lesgrandsvoisins.com/
+        ProxyPass /index.php unix:/run/phpfpm/roundcubedesgv.sock|http://hetzner005.lesgrandsvoisins.com/
       '';
   };
 
