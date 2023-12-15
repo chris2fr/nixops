@@ -194,29 +194,29 @@ in
         $config['smtp_server'] = "tls://${config.mailserver.fqdn}";
         $config['smtp_user'] = "%u";
         $config['smtp_pass'] = "%p";
-        # $config['oauth_provider'] = 'generic';
-        # $config['oauth_provider_name'] = 'authentik';
-        # $config['oauth_client_id'] = 'q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3';
-        # $config['oauth_client_secret'] = '${oauthPassword}';
-        # $config['oauth_auth_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/authorize/';
-        # $config['oauth_token_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/token/';
-        # $config['oauth_identity_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/userinfo/';
-        # $config['oauth_scope'] = "email openid dovecotprofile";
-        # $config['oauth_auth_parameters'] = [];
-        # $config['oauth_identity_fields'] = ['email'];
+        $config['oauth_provider'] = 'generic';
+        $config['oauth_provider_name'] = 'authentik';
+        $config['oauth_client_id'] = 'q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3';
+        $config['oauth_client_secret'] = '${oauthPassword}';
+        $config['oauth_auth_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/authorize/';
+        $config['oauth_token_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/token/';
+        $config['oauth_identity_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/userinfo/';
+        $config['oauth_scope'] = "email openid dovecotprofile";
+        $config['oauth_auth_parameters'] = [];
+        $config['oauth_identity_fields'] = ['email'];
      '';
   };
   services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".forceSSL = false;
   services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".enableACME = false;
 
-  # services.dovecot2.extraConfig = ''
-  #   auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
+  services.dovecot2.extraConfig = ''
+    auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
 
-  #   passdb {
-  #     driver = oauth2
-  #     mechanisms = xoauth2 oauthbearer
-  #     args = /usr/local/config/dovecot-oauth2.conf.ext
-  #   }
-  #   '';
+    passdb {
+      driver = oauth2
+      mechanisms = xoauth2 oauthbearer
+      args = /usr/local/config/dovecot-oauth2.conf.ext
+    }
+    '';
 
 }
