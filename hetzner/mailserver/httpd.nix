@@ -23,9 +23,6 @@ let
     domainName = import /etc/nixos/mailserver/vars/domain-name-mail.nix;
 in
 {
-  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite" "proxy_fcgi" "http2"
-    { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
-     ];
   services.phpfpm.pools."roundcubedesgv" = {
     user = "roundcube";
     settings = {
