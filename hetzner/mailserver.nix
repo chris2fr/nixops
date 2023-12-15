@@ -11,7 +11,6 @@ let
   mailServerDomainAliases = [ 
     "lesgrandsvoisins.com"
     "mail.lesgrandsvoisins.com"
-
   ];
 
 
