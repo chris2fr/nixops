@@ -25,7 +25,7 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   users.users.mannchri.extraGroups = [ "wwwrun" ];
   services.httpd.enable = true;
-  # services.httpd.enablePHP = false;
+  services.httpd.enablePHP = false;
   services.httpd.extraConfig = ''
   KeepAlive On
   MaxKeepAliveRequests 100
