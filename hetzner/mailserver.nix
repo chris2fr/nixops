@@ -186,6 +186,7 @@ in
      # this is the url of the vhost, not necessarily the same as the fqdn of
      # the mailserver
      hostName = "mail.lesgrandsvoisins.com";
+     dicts = with pkgs.aspellDicts; [ en fr de ]
 
      extraConfig = ''
         # starttls needed for authentication, so the fqdn required to match
@@ -203,6 +204,10 @@ in
         $config['oauth_scope'] = "openid dovecotprofile";
         $config['oauth_auth_parameters'] = [];
         $config['oauth_identity_fields'] = ['email'];
+        $config['session_domain'] = ['mail.lesgrandsvoisins.com'];
+        $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
+        $config['session_samesite'] = "Lax";
+        $config['support_url'] = 'https://www.lesgrandsvoisins.com';
      '';
   };
   services.nginx.virtualHosts."mail.lesgrandsvoisins.com" = {
