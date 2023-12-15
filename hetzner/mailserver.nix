@@ -215,16 +215,10 @@ in
     passdb {
       driver = oauth2
       mechanisms = xoauth2 oauthbearer
+      args = tokeninfo_url=https://auth.lesgrandsvoisins.com/application/o/userinfo/?access_token= introspection_url=https://q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3:'${oauthPassword}'@auth.lesgrandsvoisins.com/application/o/introspect/ introspection_mode=post force_introspection=yes active_attribute=active active_value=true username_attribute=email tls_ca_cert_file=/etc/ssl/certs/ca-certificates.crt
     }
 
-    tokeninfo_url = https://auth.lesgrandsvoisins.com/application/o/userinfo/?access_token=
-    introspection_url = https://q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3:'${oauthPassword}'@auth.lesgrandsvoisins.com/application/o/introspect/
-    introspection_mode = post
-    force_introspection = yes
-    active_attribute = active
-    active_value = true
-    username_attribute = email
-    tls_ca_cert_file = /etc/ssl/certs/ca-certificates.crt
+
    '';
    #     
 
