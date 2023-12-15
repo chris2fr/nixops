@@ -264,7 +264,7 @@ in
         </Directory>
         CacheDisable /
         DocumentRoot ${pkgs.roundcube}
-        ProxyPassMatch "^/(.*\.php(/.*)?)$" "unix:/run/phpfpm/roundcubedesgv.sock|fcgi://localhost${pkgs.roundcube}"
+        ProxyPassMatch "^/(.*\.php(/.*)?).*$" "unix:/run/phpfpm/roundcubedesgv.sock|fcgi://localhost${pkgs.roundcube}"
       '';
   };
 
