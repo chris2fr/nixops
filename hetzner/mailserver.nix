@@ -252,6 +252,16 @@ in
         # RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
         # RequestHeader set X-Forwarded-Proto "https"
         # RequestHeader set X-Forwarded-Port "443"
+        <Directory />
+            Options FollowSymLinks
+            AllowOverride None
+        </Directory>
+        <Directory ${pkgs.roundcube}>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride None
+            Order allow,deny
+            allow from all
+        </Directory>
         CacheDisable /
         DocumentRoot ${pkgs.roundcube}
         ProxyPassMatch "^/(.*\.php(/.*)?)$" "unix:/run/phpfpm/roundcubedesgv.sock|fcgi://localhost${pkgs.roundcube}"
