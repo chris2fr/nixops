@@ -185,7 +185,7 @@ in
 
      # this is the url of the vhost, not necessarily the same as the fqdn of
      # the mailserver
-     hostName = "hetzner005.lesgrandsvoisins.com";
+     hostName = "mail.lesgrandsvoisins.com";
 
      extraConfig = ''
         # starttls needed for authentication, so the fqdn required to match
