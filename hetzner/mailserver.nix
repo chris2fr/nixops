@@ -237,6 +237,8 @@ in
       "php_admin_value[error_log]" = "stderr";
       "php_admin_flag[log_errors]" = true;
       "catch_workers_output" = true;
+      "session_samesite" = "Lax";
+      "support_url" = "https://auth.lesgrandsvoisins.com";
     };
      phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
