@@ -222,6 +222,8 @@ in
       '';
   };
 
+  services.httpd.enablePHP = true;
+
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     enableACME = true;
      forceSSL = true;
@@ -236,9 +238,9 @@ in
         CacheDisable /
         DocumentRoot ${pkgs.roundcube}
         DirectoryIndex index.php
-        <Location .*\.php(/|$)>
-            ProxyPass unix:/run/phpfpm/roundcube.sock|https://hetzner005.lesgrandsvoisins.com/
-        </Location>
+        # <Location .*\.php(/|$)>
+        #     ProxyPass unix:/run/phpfpm/roundcube.sock|https://hetzner005.lesgrandsvoisins.com/
+        # </Location>
       '';
   };
 
