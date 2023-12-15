@@ -204,19 +204,19 @@ in
   #       $config['oauth_scope'] = "email openid dovecotprofile";
   #       $config['oauth_auth_parameters'] = [];
   #       $config['oauth_identity_fields'] = ['email'];
-  #    '';
-  # };
-  # services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".forceSSL = false;
-  # services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".enableACME = false;
+     '';
+  };
+  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".forceSSL = false;
+  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".enableACME = false;
 
-  # services.dovecot2.extraConfig = ''
-  #   auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
+  services.dovecot2.extraConfig = ''
+    auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
 
-  #   passdb {
-  #     driver = oauth2
-  #     mechanisms = xoauth2 oauthbearer
-  #     args = /usr/local/config/dovecot-oauth2.conf.ext
-  #   }
-  #   '';
+    passdb {
+      driver = oauth2
+      mechanisms = xoauth2 oauthbearer
+      args = /usr/local/config/dovecot-oauth2.conf.ext
+    }
+    '';
 
 }
