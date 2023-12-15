@@ -206,8 +206,19 @@ in
   #       $config['oauth_identity_fields'] = ['email'];
      '';
   };
-  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".forceSSL = false;
-  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".enableACME = false;
+  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+    forceSSL = false;
+    enableACME = false;
+    locations."/".extraConfig = ''
+        # proxy_pass http://authentik;
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade_keepalive;
+      '';
+  }
 
   services.dovecot2.extraConfig = ''
     auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
