@@ -224,6 +224,7 @@ in
 
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     enableACME = true;
+     forceSSL = true;
     extraConfig = ''
         ProxyPreserveHost On
         ProxyVia On
