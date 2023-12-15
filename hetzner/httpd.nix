@@ -48,7 +48,7 @@ in
   # Listen [2a01:4f8:241:4faa::]:443
   # Listen 116.202.236.241:443
   '';
-  services.httpd.adminAddr = "contact@gvois.in";
+  services.httpd.adminAddr = "chris@lesgrandsvoisins.com";
   services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite" "proxy_fcgi" "http2"
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
