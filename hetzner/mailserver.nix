@@ -210,6 +210,13 @@ in
   services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".enableACME = false;
 
   services.dovecot2.extraConfig = ''
+    auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
+
+    passdb {
+      driver = oauth2
+      mechanisms = xoauth2 oauthbearer
+    }
+
     tokeninfo_url = https://auth.lesgrandsvoisins.com/application/o/userinfo/?access_token=
     introspection_url = https://q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3:'${oauthPassword}'@auth.lesgrandsvoisins.com/application/o/introspect/
     introspection_mode = post
