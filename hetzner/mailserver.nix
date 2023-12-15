@@ -218,7 +218,7 @@ in
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade_keepalive;
       '';
-  }
+  };
 
   services.dovecot2.extraConfig = ''
     auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
