@@ -203,7 +203,7 @@ in
         $config['oauth_identity_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/userinfo/';
         $config['oauth_scope'] = "openid dovecotprofile";
         $config['oauth_auth_parameters'] = [];
-        $config['oauth_identity_fields'] = ['dovecotprofile.email'];
+        $config['oauth_identity_fields'] = ['email'];
      '';
   };
   services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
