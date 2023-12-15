@@ -261,10 +261,11 @@ in
             AllowOverride None
             Order allow,deny
             allow from all
+            DirectoryIndex index.php
         </Directory>
         CacheDisable /
         DocumentRoot ${pkgs.roundcube}
-        ProxyPassMatch "^/(.*\.php(/.*)?).*$" "unix:/run/phpfpm/roundcubedesgv.sock|fcgi://localhost${pkgs.roundcube}"
+        ProxyPassMatch "^/(.*\.php(/.*)?)\?|#" "unix:/run/phpfpm/roundcubedesgv.sock|fcgi://localhost${pkgs.roundcube}"
       '';
   };
 
