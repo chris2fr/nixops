@@ -59,18 +59,21 @@ in
     #forceSSL = true;
     globalRedirect = "https://www.gvois.in/";
   };
-#   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
-#     enableACME = true;
-#     # forceSSL = true;
-#     listen = [
-#       {
-#         port=443;
-#         ssl=true;
-#       }
-#       {
-#         port=80;
-#       }
-#     ];
+  services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+    enableACME = true;
+    forceSSL = true;
+    extraConfig = ''
+    CacheDisable /
+    ProxyPass /  http://127.0.0.1:8888/
+        ProxyPreserveHost On
+        ProxyVia On
+        ProxyAddHeaders On
+        RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
+        RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
+        
+    '';
+
+  };
 #     documentRoot =  "/var/www/";
 #     extraConfig = ''
 #     <Location />
