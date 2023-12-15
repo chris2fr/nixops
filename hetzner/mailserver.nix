@@ -234,7 +234,7 @@ in
         RequestHeader set X-Forwarded-Port "443"
         CacheDisable /
         DocumentRoot ${pkgs.roundcube}
-        Index index.php
+        DirectoryIndex index.php
         <Location .*\.php(/|$)>
             ProxyPass unix:/run/phpfpm/roundcube.sock|https://hetzner005.lesgrandsvoisins.com/
         </Location>
