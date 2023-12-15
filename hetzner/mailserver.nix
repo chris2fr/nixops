@@ -257,7 +257,7 @@ in
             AllowOverride None
         </Directory>
         <Directory ${pkgs.roundcube}>
-            Options -Indexes FollowSymLinks MultiViews
+            Options -Indexes +FollowSymLinks +MultiViews
             AllowOverride None
             Order allow,deny
             allow from all
