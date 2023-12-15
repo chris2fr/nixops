@@ -223,53 +223,7 @@ in
 
   # services.httpd.enablePHP = true;
 
-  services.phpfpm.pools."roundcubedesgv" = {
-    user = "roundcube";
-    settings = {
-      "listen.owner" = config.services.httpd.user;
-      "pm" = "dynamic";
-      "pm.max_children" = 32;
-      "pm.max_requests" = 500;
-      "pm.start_servers" = 2;
-      "pm.min_spare_servers" = 2;
-      "pm.max_spare_servers" = 5;
-      "php_admin_value[error_log]" = "stderr";
-      "php_admin_flag[log_errors]" = true;
-      "catch_workers_output" = true;
-      "session_samesite" = "Lax";
-      "support_url" = "https://auth.lesgrandsvoisins.com";
-    };
-     phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
-  };
-
-  services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
-    enableACME = true;
-    forceSSL = true;
-    extraConfig = ''
-        # ProxyPreserveHost On
-        # ProxyVia On
-        # ProxyAddHeaders On
-        # RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
-        # RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
-        # RequestHeader set X-Forwarded-Proto "https"
-        # RequestHeader set X-Forwarded-Port "443"
-        DirectoryIndex /index.php index.php
-        <Directory />
-            Options FollowSymLinks
-            AllowOverride None
-        </Directory>
-        <Directory ${pkgs.roundcube}>
-            Options -Indexes +FollowSymLinks +MultiViews
-            AllowOverride None
-            Order allow,deny
-            allow from all
-            DirectoryIndex /index.php index.php
-        </Directory>
-        CacheDisable /
-        DocumentRoot ${pkgs.roundcube}
-        ProxyPassMatch ^/(.*\.php(/.*)?)$  unix:/run/phpfpm/roundcubedesgv.sock|fcgi://hetzner005.lesgrandsvoisins.com${pkgs.roundcube}
-      '';
-  };
+  
 
   services.dovecot2.extraConfig = ''
     auth_mechanisms = $auth_mechanisms oauthbearer xoauth2

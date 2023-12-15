@@ -23,10 +23,28 @@ let
     domainName = import /etc/nixos/mailserver/vars/domain-name-mail.nix;
 in
 {
+  services.phpfpm.pools."roundcubedesgv" = {
+    user = "roundcube";
+    settings = {
+      "listen.owner" = config.services.httpd.user;
+      "pm" = "dynamic";
+      "pm.max_children" = 32;
+      "pm.max_requests" = 500;
+      "pm.start_servers" = 2;
+      "pm.min_spare_servers" = 2;
+      "pm.max_spare_servers" = 5;
+      "php_admin_value[error_log]" = "stderr";
+      "php_admin_flag[log_errors]" = true;
+      "catch_workers_output" = true;
+      "support_url" = "https://auth.lesgrandsvoisins.com";
+    };
+     phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
+  };
   services.httpd.virtualHosts."${domainName}" = {
     enableACME = true;
     forceSSL = true;
-    documentRoot =  "/var/www/SOGo";
+    # documentRoot =  "/var/www/SOGo";
+
     extraConfig = ''
     Alias /SOGo.woa/WebServerResources/js/theme.js /var/www/SOGo/WebServerResources/theme.js
     Alias /.woa/WebServerResources/ /var/www/SOGo/WebServerResources/
@@ -71,7 +89,30 @@ in
       # RewriteRule SOGo/(.*)$ $1 [P]
       # Header edit Location ^https://%{custom_host}e/SOGo/(.*) http://%{custom_host}e/$1
     </Proxy>
-    '';
+
+        # ProxyPreserveHost On
+        # ProxyVia On
+        # ProxyAddHeaders On
+        # RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
+        # RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
+        # RequestHeader set X-Forwarded-Proto "https"
+        # RequestHeader set X-Forwarded-Port "443"
+       
+        <Directory />
+            Options FollowSymLinks
+            AllowOverride None
+        </Directory>
+        <Directory ${pkgs.roundcube}>
+            Options -Indexes +FollowSymLinks +MultiViews
+            AllowOverride None
+            Order allow,deny
+            allow from all
+            DirectoryIndex /index.php index.php
+        </Directory>
+        # CacheDisable /
+        DocumentRoot ${pkgs.roundcube}
+        ProxyPassMatch ^/(.*\.php(/.*)?)$  unix:/run/phpfpm/roundcubedesgv.sock|fcgi://hetzner005.lesgrandsvoisins.com${pkgs.roundcube}
+      '';
   };
   services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
     enableACME = true;
