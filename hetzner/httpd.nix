@@ -65,12 +65,14 @@ in
     extraConfig = ''
     CacheDisable /
     ProxyPass /  http://127.0.0.1:8888/
+    ProxyPassReverse /  http://127.0.0.1:8888/
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
         RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
         RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
-        
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
     '';
 
   };
