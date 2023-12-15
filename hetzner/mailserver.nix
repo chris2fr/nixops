@@ -195,7 +195,7 @@ in
        $config['smtp_pass'] = "%p";
      '';
   };
-  services.nginx."hetzner005.lesgrandsvoisins.com".forceSSL = false;
-  services.nginx."hetzner005.lesgrandsvoisins.com".enableACME = false;
+  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".forceSSL = false;
+  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com".enableACME = false;
 
 }
