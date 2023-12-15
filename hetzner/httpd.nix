@@ -479,6 +479,7 @@ in
         # Redirect to the specific path based on the header value
         RewriteRule ^(.*)$ /auth/%2/%1 [R,L]
       </Location>
+      RedirectMatch ^/$ /redirect
       
 
 
