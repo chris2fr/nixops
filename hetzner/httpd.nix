@@ -59,42 +59,42 @@ in
     #forceSSL = true;
     globalRedirect = "https://www.gvois.in/";
   };
-  services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
-    enableACME = true;
-    # forceSSL = true;
-    listen = [
-      {
-        port=443;
-        ssl=true;
-      }
-      {
-        port=80;
-      }
-    ];
-    documentRoot =  "/var/www/";
-    extraConfig = ''
-    <Location />
-    Require all granted
-    </Location>
-    # <If "%{HTTPS} == 'on'">
-    # # HTTPS-specific configuration here
-    #  ProxyPass / http://[::1]:8843/
-    # </If>
-    # <If "%{HTTPS} != 'on'">
-    # # HTTPS-specific configuration here
-    #  ProxyPass / http://[::1]:8088/
-    # </If>
+#   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+#     enableACME = true;
+#     # forceSSL = true;
+#     listen = [
+#       {
+#         port=443;
+#         ssl=true;
+#       }
+#       {
+#         port=80;
+#       }
+#     ];
+#     documentRoot =  "/var/www/";
+#     extraConfig = ''
+#     <Location />
+#     Require all granted
+#     </Location>
+#     # <If "%{HTTPS} == 'on'">
+#     # # HTTPS-specific configuration here
+#     #  ProxyPass / http://[::1]:8843/
+#     # </If>
+#     # <If "%{HTTPS} != 'on'">
+#     # # HTTPS-specific configuration here
+#     #  ProxyPass / http://[::1]:8088/
+#     # </If>
 
-#    ProxyPass /.well-known !
-#    ProxyPass /static !
-#    ProxyPass /media !
-#    ProxyPass /favicon.ico !
+# #    ProxyPass /.well-known !
+# #    ProxyPass /static !
+# #    ProxyPass /media !
+# #    ProxyPass /favicon.ico !
 
    
-    ProxyPreserveHost On
-    CacheDisable /
-    '';
-  };
+#     ProxyPreserveHost On
+#     CacheDisable /
+#     '';
+#   };
   services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
     serverAliases = ["app.lesgrandsvoisins.com"];
     enableACME = true;
