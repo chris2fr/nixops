@@ -49,7 +49,7 @@ in
   # Listen 116.202.236.241:443
   '';
   services.httpd.adminAddr = "contact@gvois.in";
-  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite" "fcgi" "http2"
+  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite" "proxy_fcgi" "http2"
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
