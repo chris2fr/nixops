@@ -216,8 +216,10 @@ in
 
   };
   services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
-    forceSSL = false;
+    forceSSL = true;
     enableACME = false;
+    sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+    sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
     locations."/".extraConfig = ''
         # proxy_pass http://authentik;
         proxy_http_version 1.1;
