@@ -244,7 +244,6 @@ in
     auth_policy_server_timeout_msecs = 5000
 
     ssl_ca = </etc/ssl/certs/ca-certificates.crt
-    ssl_client_ca = </etc/ssl/certs/ca-certificates.crt
     ssl_client_cert = </var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem
     ssl_client_key = </var/lib/acme/mail.lesgrandsvoisins.com/key.pem
 
@@ -255,5 +254,7 @@ in
     }
     '';
   };
+  #     ssl_client_ca = </etc/ssl/certs/ca-certificates.crt
+
 
 }
