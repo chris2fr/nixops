@@ -144,7 +144,7 @@ in
   # Open ports in the firewall.
   networking = {
     firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" ];
-    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
+    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 10443 ];
     # interfaces."eno1".ipv6 = {
 
     # }
