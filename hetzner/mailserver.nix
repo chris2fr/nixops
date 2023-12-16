@@ -200,7 +200,7 @@ in
         $config['oauth_auth_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/authorize/';
         $config['oauth_token_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/token/';
         $config['oauth_identity_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/userinfo/';
-        $config['oauth_scope'] = "openid dovecotprofile";
+        $config['oauth_scope'] = "openid dovecotprofile email";
         $config['oauth_auth_parameters'] = [];
         $config['oauth_identity_fields'] = ['email_desgv'];
         $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
