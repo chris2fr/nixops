@@ -193,44 +193,45 @@ in
         $config['smtp_server'] = "tls://mail.lesgrandsvoisins.com";
         $config['smtp_user'] = "%u";
         $config['smtp_pass'] = "%p";
-        $config['oauth_provider'] = 'generic';
-        $config['oauth_provider_name'] = 'authentik';
-        $config['oauth_client_id'] = 'q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3';
-        $config['oauth_client_secret'] = '${oauthPassword}';
-        $config['oauth_auth_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/authorize/';
-        $config['oauth_token_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/token/';
-        $config['oauth_identity_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/userinfo/';
-        $config['oauth_scope'] = "openid dovecotprofile email";
-        $config['oauth_auth_parameters'] = [];
-        $config['oauth_identity_fields'] = ['email'];
-        $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
-        $config['session_samesite'] = "Lax";
-        $config['support_url'] = 'https://www.lesgrandsvoisins.com';
-        $config['product_name'] = 'Roundcube Webmail des GV';
-        $config['session_debug'] = true;
-        $config['session_domain'] = 'mail.lesgrandsvoisins.com';
-        $config['login_password_maxlen'] = 4096;
+        # $config['oauth_provider'] = 'generic';
+        # $config['oauth_provider_name'] = 'authentik';
+        # $config['oauth_client_id'] = 'q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3';
+        # $config['oauth_client_secret'] = '${oauthPassword}';
+        # $config['oauth_auth_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/authorize/';
+        # $config['oauth_token_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/token/';
+        # $config['oauth_identity_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/userinfo/';
+        # $config['oauth_scope'] = "openid dovecotprofile email";
+        # $config['oauth_auth_parameters'] = [];
+        # $config['oauth_identity_fields'] = ['email'];
+        # $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
+        # $config['session_samesite'] = "Lax";
+        # $config['support_url'] = 'https://www.lesgrandsvoisins.com';
+        # $config['product_name'] = 'Roundcube Webmail des GV';
+        # $config['session_debug'] = true;
+        # $config['session_domain'] = 'mail.lesgrandsvoisins.com';
+        # $config['login_password_maxlen'] = 4096;
      '';
      #         
 #             
 
   };
-  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
-    listen = [{ addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
-    sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-    sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-    http2 = true;
-    addSSL = true;
-    locations."/".extraConfig = ''
-        grpc_pass grpc://localhost:8080;
-        grpc_set_header Host $host:$server_port;
-        grpc_set_header X-Forwarded-Proto "https";
-        grpc_set_header X-Forwarded-Port "443";
-    '';
-  };
+  # services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+  #   listen = [{ addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
+  #   sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+  #   sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+  #   http2 = true;
+  #   addSSL = true;
+  #   locations."/".extraConfig = ''
+  #       grpc_pass grpc://localhost:8080;
+  #       grpc_set_header Host $host:$server_port;
+  #       grpc_set_header X-Forwarded-Proto "https";
+  #       grpc_set_header X-Forwarded-Port "443";
+  #   '';
+  # };
   services.nginx.virtualHosts."mail.lesgrandsvoisins.com" = {
-    listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8888; } { addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
-    forceSSL = true;
+    # listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8888; } { addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
+    # forceSSL = true;
+    addSSL = true;
     enableACME = false;
     sslCertificateKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
     sslCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
