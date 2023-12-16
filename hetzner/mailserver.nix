@@ -243,13 +243,13 @@ in
     auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
     auth_policy_server_timeout_msecs = 5000
 
+    ssl_ca = </etc/ssl/certs/ca-certificates.crt
+
     passdb {
       driver = oauth2
       mechanisms = oauthbearer xoauth2
       args = /usr/local/config/dovecot-oauth2.conf.ext
     }
-    default_internal_user = "dovecot2"
-    default_internal_group = "dovecot2"
     '';
   };
 
