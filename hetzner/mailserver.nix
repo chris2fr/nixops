@@ -236,7 +236,10 @@ in
 
   
 
-  services.dovecot2.extraConfig = ''
+  services.dovecot2 = {
+    sslServerCert = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
+    extraConfig = ''
     auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
     auth_policy_server_timeout_msecs = 5000
 
@@ -247,5 +250,6 @@ in
     }
     default_internal_user = dovecot2
     '';
+  };
 
 }
