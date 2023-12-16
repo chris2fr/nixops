@@ -244,6 +244,8 @@ in
       mechanisms = oauthbearer xoauth2
       args = /usr/local/config/dovecot-oauth2.conf.ext
     }
+    ssl_cert = </var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem
+    ssl_key = </var/lib/acme/mail.lesgrandsvoisins.com/key.pem
     '';
 
 }
