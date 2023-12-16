@@ -248,7 +248,8 @@ in
       mechanisms = oauthbearer xoauth2
       args = /usr/local/config/dovecot-oauth2.conf.ext
     }
-    default_internal_user = dovecot2
+    default_internal_user = "dovecot2"
+    default_internal_group = "dovecot2"
     '';
   };
 
