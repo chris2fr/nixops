@@ -190,7 +190,7 @@ in
      extraConfig = ''
         # starttls needed for authentication, so the fqdn required to match
         # the certificate
-        $config['smtp_server'] = "tls://${config.mailserver.fqdn}";
+        $config['smtp_server'] = "tls://mail.lesgrandsvoisins.com";
         $config['smtp_user'] = "%u";
         $config['smtp_pass'] = "%p";
         $config['oauth_provider'] = 'generic';
@@ -208,7 +208,7 @@ in
         $config['support_url'] = 'https://www.lesgrandsvoisins.com';
         $config['product_name'] = 'Roundcube Webmail des GV';
         $config['session_debug'] = true;
-        $config['session_domain'] = 'hetzner005.lesgrandsvoisins.com';
+        $config['session_domain'] = 'mail.lesgrandsvoisins.com';
         $config['login_password_maxlen'] = 4096;
      '';
      #         
