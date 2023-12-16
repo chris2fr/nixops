@@ -216,13 +216,11 @@ in
 
   };
   services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
-    listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8888; } { addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
-    forceSSL = true;
-    enableACME = false;
+    listen = [{ addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
     sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
     sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
     locations."/".extraConfig = ''
-        grpc_pass grpc://localhost:8080;
+        grpc_pass grpc://hetzner005.lesgrandsvoisins.com:8080;
         grpc_set_header Host $host:$server_port;
     '';
   };
