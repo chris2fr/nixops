@@ -176,18 +176,18 @@ in
     defaults.webroot = "/var/www";
   };
 
-  services.zitadel = {
-    enable = true;
-    masterKeyFile = "/etc/nixos/.secrets.zitadel";
-    settings = {
-      TLS.KeyPath = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-      TLS.CertPath = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-      ExternalDomain = "hetzner005.lesgrandsvosins.com";
-      ExternalSecure = true;
-      ExternalPort = 8443;
-    };
-  };
-  users.users.zitadel.extraGroups = ["wwwrun"];
+  # services.zitadel = {
+  #   enable = true;
+  #   masterKeyFile = "/etc/nixos/.secrets.zitadel";
+  #   settings = {
+  #     TLS.KeyPath = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+  #     TLS.CertPath = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+  #     ExternalDomain = "hetzner005.lesgrandsvosins.com";
+  #     ExternalSecure = true;
+  #     ExternalPort = 8443;
+  #   };
+  # };
+  # users.users.zitadel.extraGroups = ["wwwrun"];
 
 
 }
