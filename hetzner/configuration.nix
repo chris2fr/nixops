@@ -187,6 +187,7 @@ in
       ExternalPort = 8443;
     };
   };
+  users.users.zitadel.extraGroups = ["wwwrun"];
 
 
 }
