@@ -215,7 +215,7 @@ in
 #             
 
   };
-  services.nginx.virtualHosts."mail.lesgrandsvoisins.com" = {
+  services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     forceSSL = false;
     enableACME = false;
     locations."/".extraConfig = ''
@@ -226,7 +226,7 @@ in
         proxy_set_header Host $host;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade_keepalive;
-        proxy_redirect unix:/run/phpfpm/roundcube.sock https://mail.lesgrandsvoisins.com;
+        proxy_redirect unix:/run/phpfpm/roundcube.sock https://hetzner005.lesgrandsvoisins.com;
         chunked_transfer_encoding off;
       '';
   };
