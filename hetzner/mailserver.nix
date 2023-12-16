@@ -124,7 +124,7 @@ in
     maxproc = 1;
   };
   services.postfix.config = {
-    "smtpd_relay_restrictions" = "permit_sasl_authenticated, reject";
+    "smtpd_relay_restrictions" = lib.mkForce "permit_sasl_authenticated, reject";
     "smtpd_sasl_type" = "dovecot";
     "smtpd_sasl_path" = "private/auth";
     "smtpd_sasl_auth_enable" = "yes";
