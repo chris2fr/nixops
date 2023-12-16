@@ -176,6 +176,15 @@ in
     defaults.webroot = "/var/www";
   };
 
+
+  services.cockroachdb = {
+     enable = true;
+     http.port = 9080;
+     locality = "country=fr";
+     insecure = true;
+  };
+
+
   # services.zitadel = {
   #   enable = true;
   #   masterKeyFile = "/etc/nixos/.secrets.zitadel";
