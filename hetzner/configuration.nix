@@ -176,7 +176,7 @@ in
     defaults.webroot = "/var/www";
   };
 
-
+  nixpkgs.config.allowUnfree = true;
   services.cockroachdb = {
      enable = true;
      http.port = 9090;
