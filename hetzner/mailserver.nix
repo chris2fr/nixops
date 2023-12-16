@@ -231,7 +231,7 @@ in
   services.nginx.virtualHosts."mail.lesgrandsvoisins.com" = {
     # listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8888; } { addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
     # forceSSL = true;
-    addSSL = true;
+    # addSSL = true;
     enableACME = false;
     sslCertificateKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
     sslCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
