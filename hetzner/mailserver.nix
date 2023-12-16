@@ -236,6 +236,7 @@ in
 
   services.dovecot2.extraConfig = ''
     auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
+    auth_policy_server_timeout_msecs = 5000
 
     passdb {
       driver = oauth2
