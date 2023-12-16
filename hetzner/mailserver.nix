@@ -224,6 +224,8 @@ in
     locations."/".extraConfig = ''
         grpc_pass grpc://localhost:8080;
         grpc_set_header Host $host:$server_port;
+        grpc_set_header X-Forwarded-Proto "https";
+        grpc_set_header RequestHeader set X-Forwarded-Port "443";
     '';
   };
   services.nginx.virtualHosts."mail.lesgrandsvoisins.com" = {
