@@ -176,6 +176,18 @@ in
     defaults.webroot = "/var/www";
   };
 
+  services.zitadel = {
+    enable = true;
+    TLS.KeyPath = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+    TLS.CertPath = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+    masterKeyFile = "/etc/nixos/.secrets.zitadel";
+    settings = {
+      ExternalDomain = "hetzner005.lesgrandsvosins.com";
+      ExternalSecure = true;
+      ExternalPort = 8443;
+    };
+  }
+
 
 }
 
