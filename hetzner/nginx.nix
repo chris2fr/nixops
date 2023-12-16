@@ -11,7 +11,8 @@ in
     #   ];
     defaultSSLListenPort = 8443;
     defaultHTTPListenPort = 8888;
-    defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
+    defaultListenAddresses = [ "0.0.0.0" "[::]"];
+    #defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
     #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
     upstreams."authentik".extraConfig = ''
         server 10.245.101.35:9000;
@@ -37,7 +38,7 @@ in
       #   {addr = "0.0.0.0"; port=8888; ssl=false;}
       #   {addr = "127.0.0.1"; port=8888; ssl=false;}
       # ];
-      listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; ssl=true; } ];
+      listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8888; } { addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
       #listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; ssl=true; } { addr="[2a01:4f8:241:4faa::100]" ; port=443; ssl=true;} ];
       sslTrustedCertificate = /var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem;
       sslCertificateKey = /var/lib/acme/auth.lesgrandsvoisins.com/key.pem;

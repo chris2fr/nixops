@@ -216,6 +216,7 @@ in
 
   };
   services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+    listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8888; } { addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
     forceSSL = true;
     enableACME = false;
     sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
