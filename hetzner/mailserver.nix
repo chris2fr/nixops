@@ -241,7 +241,7 @@ in
 
     passdb {
       driver = oauth2
-      mechanisms = xoauth2 oauthbearer
+      mechanisms = xoauth2
       args = /usr/local/config/dovecot-oauth2.conf.ext
     }
     '';
