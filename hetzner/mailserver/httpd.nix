@@ -116,7 +116,7 @@ in
         # CacheDisable /
         DocumentRoot ${pkgs.roundcube}
         # ProxyPassMatch ^/(.*\.php(/.*)?)$  unix:/run/phpfpm/roundcubedesgv.sock|fcgi://hetzner005.lesgrandsvoisins.com${pkgs.roundcube}
-        ProxyPass / https://hetzner005.lesgrandsvoisins.com:8443/
+        ProxyPass / https://mail.lesgrandsvoisins.com:8443/
       '';
   };
   services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
