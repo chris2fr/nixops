@@ -97,8 +97,8 @@ in
         ProxyPreserveHost On
         ProxyVia On
         ProxyAddHeaders On
-        # RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
-        # RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
+        RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
+        RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
        
@@ -115,7 +115,8 @@ in
         </Directory>
         # CacheDisable /
         DocumentRoot ${pkgs.roundcube}
-        ProxyPassMatch ^/(.*\.php(/.*)?)$  unix:/run/phpfpm/roundcubedesgv.sock|fcgi://hetzner005.lesgrandsvoisins.com${pkgs.roundcube}
+        # ProxyPassMatch ^/(.*\.php(/.*)?)$  unix:/run/phpfpm/roundcubedesgv.sock|fcgi://hetzner005.lesgrandsvoisins.com${pkgs.roundcube}
+        ProxyPass / https://hetzner005.lesgrandsvoisins.com:8443/
       '';
   };
   services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
