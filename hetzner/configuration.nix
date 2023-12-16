@@ -176,13 +176,13 @@ in
     defaults.webroot = "/var/www";
   };
 
-  nixpkgs.config.allowUnfree = true;
-  services.cockroachdb = {
-     enable = true;
-     http.port = 9090;
-     locality = "country=fr";
-     insecure = true;
-  };
+  # nixpkgs.config.allowUnfree = true;
+  # services.cockroachdb = {
+  #    enable = true;
+  #    http.port = 9090;
+  #    locality = "country=fr";
+  #    insecure = true;
+  # };
 
 
   # services.zitadel = {
