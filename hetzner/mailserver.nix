@@ -124,12 +124,12 @@ in
     maxproc = 1;
   };
    
-  services.postfix.config = {
-    "smtpd_relay_restrictions" = lib.mkForce "permit_sasl_authenticated, reject";
-    "smtpd_sasl_type" = lib.mkForce "dovecot";
-    "smtpd_sasl_path" = lib.mkForce "private/auth";
-    "smtpd_sasl_auth_enable" = lib.mkForce "yes";
-  };
+  # services.postfix.config = {
+  #   "smtpd_relay_restrictions" = lib.mkForce "permit_sasl_authenticated, reject";
+  #   "smtpd_sasl_type" = lib.mkForce "dovecot";
+  #   "smtpd_sasl_path" = lib.mkForce "private/auth";
+  #   "smtpd_sasl_auth_enable" = lib.mkForce "yes";
+  # };
 
 #services.postfix.networks = [
 #  "localhost"
