@@ -110,7 +110,7 @@ in
         </Directory>
         # CacheDisable /
         DocumentRoot ${pkgs.roundcube}
-        ProxyPassMatch ^/(.*\.php(/.*)?)$  unix:/run/phpfpm/roundcubedesgv.sock|fcgi://hetzner005.lesgrandsvoisins.com${pkgs.roundcube}
+        ProxyPassMatch ^/(.*\.php(/.*)?)$  unix:/run/phpfpm/roundcubedesgv.sock|fcgi://mail.lesgrandsvoisins.com${pkgs.roundcube}
       '';
   };
   services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
