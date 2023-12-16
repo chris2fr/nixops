@@ -179,7 +179,7 @@ in
 
   services.cockroachdb = {
      enable = true;
-     http.port = 9080;
+     http.port = 9090;
      locality = "country=fr";
      insecure = true;
   };
