@@ -186,7 +186,7 @@ in
       ExternalSecure = true;
       ExternalPort = 8443;
     };
-  }
+  };
 
 
 }
