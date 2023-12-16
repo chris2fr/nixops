@@ -243,8 +243,6 @@ in
       driver = oauth2
       mechanisms = xoauth2 oauthbearer
       args = /usr/local/config/dovecot-oauth2.conf.ext
-      timeout_msecs = 5000
-      debug = yes
     }
     '';
 
