@@ -208,7 +208,7 @@ in
         $config['support_url'] = 'https://www.lesgrandsvoisins.com';
         $config['product_name'] = 'Roundcube Webmail des GV';
         $config['session_debug'] = true;
-        $config['session_domain'] = 'mail.lesgrandsvoisins.com';
+        $config['session_domain'] = 'hetzner005.lesgrandsvoisins.com';
         $config['login_password_maxlen'] = 4096;
      '';
      #         
