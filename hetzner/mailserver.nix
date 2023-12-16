@@ -252,24 +252,24 @@ in
 
   
 
-  services.dovecot2 = {
-    sslServerCert = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
-    sslServerKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
-    extraConfig = ''
-    auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
-    auth_policy_server_timeout_msecs = 5000
+  # services.dovecot2 = {
+  #   sslServerCert = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
+  #   sslServerKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
+  #   extraConfig = ''
+  #   auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
+  #   auth_policy_server_timeout_msecs = 5000
 
-    ssl_ca = </etc/ssl/certs/ca-certificates.crt
-    ssl_client_cert = </var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem
-    ssl_client_key = </var/lib/acme/mail.lesgrandsvoisins.com/key.pem
+  #   ssl_ca = </etc/ssl/certs/ca-certificates.crt
+  #   ssl_client_cert = </var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem
+  #   ssl_client_key = </var/lib/acme/mail.lesgrandsvoisins.com/key.pem
 
-    passdb {
-      driver = oauth2
-      mechanisms = oauthbearer xoauth2
-      args = /usr/local/config/dovecot-oauth2.conf.ext
-    }
-    '';
-  };
+  #   passdb {
+  #     driver = oauth2
+  #     mechanisms = oauthbearer xoauth2
+  #     args = /usr/local/config/dovecot-oauth2.conf.ext
+  #   }
+  #   '';
+  # };
   #     ssl_client_ca = </etc/ssl/certs/ca-certificates.crt
   security.acme.certs."mail.lesgrandsvoisins.com".group = lib.mkForce "wwwrun";
   users.users.nginx.extraGroups = ["wwwrun"];

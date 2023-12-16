@@ -88,19 +88,14 @@ in
       # RewriteRule SOGo/(.*)$ $1 [P]
       # Header edit Location ^https://%{custom_host}e/SOGo/(.*) http://%{custom_host}e/$1
     </Proxy>
-    '';
-  };
-  services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
-    enableACME = true;
-    forceSSL = true;
-    extraConfig = ''
-        ProxyPreserveHost On
-        ProxyVia On
-        ProxyAddHeaders On
-        RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
-        RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
+
+        # ProxyPreserveHost On
+        # ProxyVia On
+        # ProxyAddHeaders On
+        # RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
+        # RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
+        # RequestHeader set X-Forwarded-Proto "https"
+        # RequestHeader set X-Forwarded-Port "443"
        
         <Directory />
             Options FollowSymLinks
@@ -115,8 +110,8 @@ in
         </Directory>
         # CacheDisable /
         DocumentRoot ${pkgs.roundcube}
-        # ProxyPassMatch ^/(.*\.php(/.*)?)$  unix:/run/phpfpm/roundcubedesgv.sock|fcgi://hetzner005.lesgrandsvoisins.com${pkgs.roundcube}
-        ProxyPass / https://mail.lesgrandsvoisins.com:8443/
+        ProxyPassMatch ^/(.*\.php(/.*)?)$  unix:/run/phpfpm/roundcubedesgv.sock|fcgi://hetzner005.lesgrandsvoisins.com${pkgs.roundcube}
+        # ProxyPass / https://mail.lesgrandsvoisins.com:8443/
       '';
   };
   services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
