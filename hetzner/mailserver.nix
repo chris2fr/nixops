@@ -161,9 +161,10 @@ in
     ensureUsers = [
       {
         name = "sogo";
-        ensurePermissions = {
-          "DATABASE \"sogo\"" = "ALL PRIVILEGES";
-        };
+        ensureDBOwnership = true;
+        # ensurePermissions = {
+        #   "DATABASE \"sogo\"" = "ALL PRIVILEGES";
+        # };
       }
     ];
   };
