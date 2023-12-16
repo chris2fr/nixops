@@ -230,6 +230,7 @@ in
         chunked_transfer_encoding off;
       '';
   };
+  users.users.dovecot2.extraGroups = ["wwwrun"];
 
   # services.httpd.enablePHP = true;
 
@@ -244,8 +245,6 @@ in
       mechanisms = oauthbearer xoauth2
       args = /usr/local/config/dovecot-oauth2.conf.ext
     }
-    ssl_cert = </var/lib/acme/mail.lesgrandsvoisins.com/cert.pem
-    ssl_key = </var/lib/acme/mail.lesgrandsvoisins.com/key.pem
     '';
 
 }

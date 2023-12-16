@@ -67,6 +67,7 @@ in
 #    python311Packages.pyproject-api
 #    python311Packages.pyproject-hooks
      pwgen
+     busybox
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
