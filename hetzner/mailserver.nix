@@ -222,7 +222,7 @@ in
     sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
     sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
     locations."/".extraConfig = ''
-        grpc_pass grpc://zitadel-external-tls:8080;
+        grpc_pass grpc://localhost:8080;
         grpc_set_header Host $host:$server_port;
     '';
   };
