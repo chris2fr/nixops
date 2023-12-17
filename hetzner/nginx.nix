@@ -417,8 +417,8 @@ in
         # '';
       };
       locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
+      locations."/static" = { proxyPass = "http://10.245.101.15:8898"; };
+      locations."/media" = { proxyPass = "http://10.245.101.15:8999";; };
     };
 
 
