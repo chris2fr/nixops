@@ -41,6 +41,8 @@ in
     upstreams."wagtail".extraConfig = ''
         server unix:/var/lib/wagtail/wagtail-lesgv.sock;
     '';
+    upstreams."wagtailstatic".server = "10.245.101.15:8898";
+    upstreams."wagtailmedia".server = "10.245.101.15:889";
 
     virtualHosts."interetpublilc.org" = {
       enableACME = true;
@@ -417,8 +419,8 @@ in
         # '';
       };
       locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
-      locations."/static/" = { proxyPass = "http://10.245.101.15:8898/"; };
-      locations."/media/" = { proxyPass = "http://10.245.101.15:8899/"; };
+      locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
+      locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
     };
 
 
