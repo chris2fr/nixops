@@ -211,10 +211,7 @@ in
         };
         websecure = {
           address = ":10443/tcp";
-          http.tls = {
-            # certResolver = "leresolver";
-            domains = [ {main = "hetzner005.lesgrandsvoisins.com";} ];
-          };
+          http.tls = true;
         };
        
         # websecure = {
