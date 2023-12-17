@@ -224,7 +224,7 @@ in
       #   kind = "Rule";
       #   services = [{name="api@internal";kind="TraefikService";}];
       # }];
-      http.middlewares.prefix-strip.stripprefixregex.regex = "/[^/]+";
+      # http.middlewares.prefix-strip.stripprefixregex.regex = "/[^/]+";
       http = {
         # services = {
         #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
