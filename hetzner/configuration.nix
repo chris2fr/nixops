@@ -202,6 +202,11 @@ in
     enable = true;
     staticConfigOptions = {
       api = true;
+      # providers = {
+      #   file = {
+      #     directory = "/var/lib/acme/";
+      #   }
+      # };
       entryPoints = {
         web = {
           address = ":10080/tcp";
@@ -212,7 +217,7 @@ in
         };
         websecure = {
           address = ":10443/tcp";
-          tls = true;
+          http.tls = true;
         };
        
         # websecure = {
