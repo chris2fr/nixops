@@ -374,6 +374,20 @@ in
         # tcp_nodelay on;    
      };
 
+     virtualHosts."maelanc.com" = {
+        enableACME=true;
+        forceSSL=true;
+        globalRedirect = "https://www.maelanc.com:8443";
+     };
+     virtualHosts."www.maelanc.com" = {
+      locations."/" = {
+        proxyPass = "http://10.245.101.15:8080";
+      };
+      locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
+      locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
+      locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
+     };
+
      
     virtualHosts."wagtail.resdigita.com" = {
       root =  "/var/www/wagtail/";
