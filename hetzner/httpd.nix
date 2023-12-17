@@ -53,11 +53,11 @@ in
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
-  services.httpd.virtualHosts."gvois.in" = {
+  services.httpd.virtualHosts."resdigita.com" = {
     # listenAddresses = ["*" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::1]" "[2a01:4f8:241:4faa::2]" "[2a01:4f8:241:4faa::3]" "[2a01:4f8:241:4faa::4]" "[2a01:4f8:241:4faa::5]"];
     enableACME = true;
     #forceSSL = true;
-    globalRedirect = "https://www.gvois.in/";
+    globalRedirect = "https://www.resdigita.com/";
   };
 
 #     documentRoot =  "/var/www/";
@@ -128,12 +128,12 @@ in
 #       RewriteRule ^/SOGo(.*)$ https://mail.lesgrandsvoisins.com$1
 #     '';
 #   };
-  services.httpd.virtualHosts."www.gvois.in" = {
+  services.httpd.virtualHosts."www.resdigita.com" = {
     serverAliases = [
-      "keycloak.gvois.in"
-      "discourse.gvois.in"
-      "meet.gvois.in"
-      "jswiki.gvois.in"
+      "keycloak.resdigita.com"
+      "discourse.resdigita.com"
+      "meet.resdigita.com"
+      "jswiki.resdigita.com"
       ];
     enableACME = true;
     forceSSL = true;
@@ -249,12 +249,12 @@ in
         </If>
     '';
   };
-  services.httpd.virtualHosts."resdigita.com" = {
-    serverAliases = ["resdigita.desgv.com" "resdigita.org"];
-    documentRoot =  "/var/www/resdigitacom/";
-    forceSSL = true;
-    enableACME = true;
-  };
+  # services.httpd.virtualHosts."resdigita.com" = {
+  #   serverAliases = ["resdigita.desgv.com" "resdigita.org"];
+  #   documentRoot =  "/var/www/resdigitacom/";
+  #   forceSSL = true;
+  #   enableACME = true;
+  # };
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
@@ -634,13 +634,13 @@ in
   #   '';
   #   };
   };
-  # services.httpd.virtualHosts."blog.gvois.in" = {
+  # services.httpd.virtualHosts."blog.resdigita.com" = {
   #   serverAliases = [
-  #     "ghost.gvois.in"
+  #     "ghost.resdigita.com"
   #     "blog.lesgrandsvoisins.com"
   #   ];
   services.httpd.virtualHosts."blog.lesgrandsvoisins.com" = {
-    serverAliases = ["blog.gvois.in"];
+    serverAliases = ["blog.resdigita.com"];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/ghostio/";
@@ -667,7 +667,7 @@ in
     </If>
     '';
   };
-#  services.httpd.virtualHosts."odoo.gvois.in" = {
+#  services.httpd.virtualHosts."odoo.resdigita.com" = {
 #    enableACME = true;
 #    forceSSL = true;
 #    documentRoot =  "/var/www/";
@@ -693,7 +693,7 @@ in
 #    enableACME = true;
 #    forceSSL = true;
 ##    documentRoot =  "/var/www/wagtail/";
-#    globalRedirect = "https://www.gvois.in/resdigita";
+#    globalRedirect = "https://www.resdigita.com/resdigita";
 ##    extraConfig = ''
 ##    <Location />
 ##    Require all granted
@@ -714,7 +714,7 @@ in
 #    enableACME = true;
 #    forceSSL = true;
 ##    documentRoot =  "/var/www/wagtail/";
-#    globalRedirect = "https://www.gvois.in/resdigita";
+#    globalRedirect = "https://www.resdigita.com/resdigita";
 ##    extraConfig = ''
 ##    <Location />
 ##    Require all granted
@@ -732,13 +732,13 @@ in
 ##
 #  };
 
-  services.httpd.virtualHosts."odoo1.gvois.in" = {
+  services.httpd.virtualHosts."odoo1.resdigita.com" = {
     serverAliases = [
-      "actentioncom.gvois.in"
-      "gvoisorg.gvois.in"
-      "manngvoisorg.gvois.in"
-      "manndigital.gvois.in"
-      "mannfr.gvois.in"
+      "actentioncom.resdigita.com"
+      "gvoisorg.resdigita.com"
+      "manngvoisorg.resdigita.com"
+      "manndigital.resdigita.com"
+      "mannfr.resdigita.com"
     ];
     documentRoot = "/var/www/sites/";
     enableACME = true;
@@ -757,9 +757,9 @@ in
     '';
   };
 
-  services.httpd.virtualHosts."odoo3.gvois.in" = {
+  services.httpd.virtualHosts."odoo3.resdigita.com" = {
     serverAliases = [
-      "lgvcoop.gvois.in"
+      "lgvcoop.resdigita.com"
     ];
     documentRoot = "/var/www/sites/";
     enableACME = true;
@@ -778,13 +778,13 @@ in
     '';
   };
 
-  services.httpd.virtualHosts."ghostio.gvois.in" = {
+  services.httpd.virtualHosts."ghostio.resdigita.com" = {
     serverAliases = [
-      "coopgvcom.gvois.in"
-      "coopgvorg.gvois.in"
-      "lesgrandsvoisinsfr.gvois.in"
-      "bloglesgrandsvoisinscom.gvois.in"
-      "ghostgvoisorg.gvois.in"
+      "coopgvcom.resdigita.com"
+      "coopgvorg.resdigita.com"
+      "lesgrandsvoisinsfr.resdigita.com"
+      "bloglesgrandsvoisinscom.resdigita.com"
+      "ghostgvoisorg.resdigita.com"
       ];
     documentRoot =  "/var/www/ghostio/";
     enableACME = true;
@@ -808,7 +808,7 @@ in
     CacheDisable /
     '';
   };
-  services.httpd.virtualHosts."tel.gvois.in" = {
+  services.httpd.virtualHosts."tel.resdigita.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/sites/meet";
@@ -821,7 +821,7 @@ in
        ## adjust the following to your configuration
        RequestHeader set "x-webobjects-server-port" "443"
        RequestHeader set "x-webobjects-server-name" "tel.lgv.coop"
-       RequestHeader set "x-webobjects-server-url" "https://tel.gvois.in"
+       RequestHeader set "x-webobjects-server-url" "https://tel.resdigita.com"
       ## When using proxy-side autentication, you need to uncomment and
       ## adjust the following line:
         RequestHeader unset "x-webobjects-remote-user"
@@ -836,50 +836,50 @@ in
       </Proxy>
     '';
   };
-  services.httpd.virtualHosts."wagtail.gvois.in" = {
+  services.httpd.virtualHosts."wagtail.resdigita.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/wagtail";
     serverAliases = [
-      "manncoach.gvois.in"
+      "manncoach.resdigita.com"
       "maelanc.com"
-      "resdigitacom.gvois.in"
-      "distractivescom.gvois.in"
-      "whowhatetccom.gvois.in"
-      "voisandcom.gvois.in"
-      "coopgvcom.gvois.in"
-      "voisandorg.gvois.in"
-      "lesgvcom.gvois.in"
-      "popuposcom.gvois.in"
-      "grandsvoisinscom.gvois.in"
-      "forumgrandsvoisinscom.gvois.in"
-      "baldridgegvoisorg.gvois.in"
-      "discourselesgvcom.gvois.in"
-      "iriviorg.gvois.in"
-      "ooolesgrandsvoisinscom.gvois.in"
-      "hyperattentioncom.gvois.in"
-      "forumgdvoisinscom.gvois.in"
-      "forumgrandsvoisinscom.gvois.in"
-      "agoodvillagecom.gvois.in"
-      "lgvcoop.gvois.in"
-      "configmagiccom.gvois.in"
-      "caplancitycom.gvois.in"
-      "quiquoietccom.gvois.in"
-      "lesartsvoisinscom.gvois.in"
-      "maelanccom.gvois.in"
-      "manncity.gvois.in"
-      "focusplexcom.gvois.in"
-      "gvoisorg.gvois.in"
-      "vlgorg.gvois.in"
-      "oldlesgrandsvoisinscom.gvois.in"
-      "cooptellgv.gvois.in"
-      "howwownowcom.gvois.in"
-      "aaalesgrandsvoisinscom.gvois.in"
-      "oldmanndigital.gvois.in"
-      "resolvactivecom.gvois.in"
-      "gvcity.gvois.in"
-      "toutdouxlissecom.gvois.in"
-      "iciwowcom.gvois.in"
+      "resdigitacom.resdigita.com"
+      "distractivescom.resdigita.com"
+      "whowhatetccom.resdigita.com"
+      "voisandcom.resdigita.com"
+      "coopgvcom.resdigita.com"
+      "voisandorg.resdigita.com"
+      "lesgvcom.resdigita.com"
+      "popuposcom.resdigita.com"
+      "grandsvoisinscom.resdigita.com"
+      "forumgrandsvoisinscom.resdigita.com"
+      "baldridgegvoisorg.resdigita.com"
+      "discourselesgvcom.resdigita.com"
+      "iriviorg.resdigita.com"
+      "ooolesgrandsvoisinscom.resdigita.com"
+      "hyperattentioncom.resdigita.com"
+      "forumgdvoisinscom.resdigita.com"
+      "forumgrandsvoisinscom.resdigita.com"
+      "agoodvillagecom.resdigita.com"
+      "lgvcoop.resdigita.com"
+      "configmagiccom.resdigita.com"
+      "caplancitycom.resdigita.com"
+      "quiquoietccom.resdigita.com"
+      "lesartsvoisinscom.resdigita.com"
+      "maelanccom.resdigita.com"
+      "manncity.resdigita.com"
+      "focusplexcom.resdigita.com"
+      "gvoisorg.resdigita.com"
+      "vlgorg.resdigita.com"
+      "oldlesgrandsvoisinscom.resdigita.com"
+      "cooptellgv.resdigita.com"
+      "howwownowcom.resdigita.com"
+      "aaalesgrandsvoisinscom.resdigita.com"
+      "oldmanndigital.resdigita.com"
+      "resolvactivecom.resdigita.com"
+      "gvcity.resdigita.com"
+      "toutdouxlissecom.resdigita.com"
+      "iciwowcom.resdigita.com"
       ];
       extraConfig = ''
           <Location />
@@ -916,18 +916,18 @@ in
   };
 
 
-  services.httpd.virtualHosts."odoo4.gvois.in" = {
+  services.httpd.virtualHosts."odoo4.resdigita.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www/wagtail";
     serverAliases = [
-      "voisandcom.gvois.in"
-      "voisandorg.gvois.in"
-      "lesgvcom.gvois.in"
-      "villagevoisincom.gvois.in"
-      "baldridgegvoisorg.gvois.in"
-      "ooolesgrandsvoisinscom.gvois.in"
-      "lesgrandsvoisinscom.gvois.in"
+      "voisandcom.resdigita.com"
+      "voisandorg.resdigita.com"
+      "lesgvcom.resdigita.com"
+      "villagevoisincom.resdigita.com"
+      "baldridgegvoisorg.resdigita.com"
+      "ooolesgrandsvoisinscom.resdigita.com"
+      "lesgrandsvoisinscom.resdigita.com"
     ];
     extraConfig = ''
       Alias "/html/" "/var/www/sites/goodv.org/"
@@ -943,12 +943,12 @@ in
     '';
   };
 
-services.httpd.virtualHosts."odoo2.gvois.in" = {
+services.httpd.virtualHosts."odoo2.resdigita.com" = {
     enableACME = true;
     forceSSL = true;
     documentRoot = "/var/www";
     serverAliases = [
-      "ooolgvcoop.gvois.in"
+      "ooolgvcoop.resdigita.com"
     ];
   extraConfig = ''
       Alias "/html/" "/var/www/sites/goodv.org/"
