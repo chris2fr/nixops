@@ -64,7 +64,9 @@ in
     };
 
     virtualHosts."odoo4.resdigita.com" = {
-      enableACME = true;
+      #enableACME = true; 
+      sslCertificate = "/var/lib/acme/odoo4.resdigita.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/odoo4.resdigita.com/key.pem";
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://10.245.101.173:8069";
@@ -76,7 +78,9 @@ in
         
 
     virtualHosts."odoo3.resdigita.com" = {
-      enableACME = true;
+      #enableACME = true; 
+      sslCertificate = "/var/lib/acme/odoo3.resdigita.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/odoo3.resdigita.com/key.pem";
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://10.245.101.128:8069";
@@ -87,7 +91,9 @@ in
     };
 
     virtualHosts."odoo2.resdigita.com" = {
-      enableACME = true;
+      # enableACME = true;      
+      sslCertificate = "/var/lib/acme/odoo2.resdigita.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/odoo2.resdigita.com/key.pem";
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://10.245.101.82:8069";
@@ -97,9 +103,10 @@ in
       };
     };
 
-    virtualHosts."odoo.resdigita.com" = {
-      serverAliases = ["odoo1.resdigita.com"];
-      enableACME = true;
+    virtualHosts."odoo1.resdigita.com" = {
+      #enableACME = true;
+      sslCertificate = "/var/lib/acme/odoo1.resdigita.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/odoo1.resdigita.com/key.pem";
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://10.245.101.158:8069";
