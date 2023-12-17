@@ -52,7 +52,7 @@ in
       serverName = "interetpublilc.org www.interetpublilc.org";
       root = "/var/www/wagtail";
       locations."/" = {
-        proxyPass = "http://localhost:8000"
+        proxyPass = "http://localhost:8000";
       };
       locations."/static" = {
         proxyPass = null;
