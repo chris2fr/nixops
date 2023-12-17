@@ -1,25 +1,5 @@
 { config, pkgs, lib, ... }:
 let 
-    wagtailExtraConfig = ''
-        CacheDisable /
-        <Location />
-          Require all granted
-        </Location>
-        ProxyPass /.well-known !
-        ProxyPass /static !
-        ProxyPass /media !
-        ProxyPass /favicon.ico !
-        CacheDisable /
-        ProxyPass /  http://127.0.0.1:8000/
-        # ProxyPassReverse /  http://127.0.0.1:8000/
-        ProxyPreserveHost On
-        ProxyVia On
-        ProxyAddHeaders On
-        RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
-        RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
-        # RequestHeader set X-Forwarded-Proto "https"
-        # RequestHeader set X-Forwarded-Port "443"
-    '';
 in
 { 
   # users.users.wwwrun.isSystemUser = true;
@@ -167,7 +147,20 @@ in
       sslTrustedCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://guichet.lesgrandsvoisins.com";
+        proxyPass = "http://[::1]:9991/";
+        # proxyPass = "https://guichet.lesgrandsvoisins.com";
+      };
+      locations."/favicon.ico" = {
+        proxyPass = null;
+      };
+      locations."/static" = {
+        proxyPass = null;
+      };
+      locations."/media" = {
+        proxyPass = null;
+      };
+      locations."/.well-known" = {
+        proxyPass = null;
       };
     };
 
