@@ -22,9 +22,10 @@ let
     '';
 in
 { 
+  users.users.wwwrun.isSystemUser = true;
   services.nginx = {
     user = "wwwrun";
-    group = "wwwrun";
+    # group = "wwwrun";
     enable = true;
     # defaultListen = [
     #     {addr = "[2a01:4f8:241:4faa::100]"; port=443; ssl=true;}
