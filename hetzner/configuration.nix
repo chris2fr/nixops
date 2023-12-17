@@ -215,7 +215,8 @@ in
         # };
         websecure = {
           address = ":10443";
-          http.tls.domains=[{main="hetzner005.lesgrandsvoisins.com";}];
+          # http.tls = true;
+          # http.tls.domains=[{main="hetzner005.lesgrandsvoisins.com";}];
         };
        
         # websecure = {
@@ -271,20 +272,20 @@ in
             rule = "Host(`hetzner005.lesgrandsvoisins.com`)";
             # entryPoints = [ "websecure" ];
             service = "www";
-            tls = {domains=[{main="hetzner005.lesgrandsvoisins.com";}];};
+            tls = true;
           };
         };
       };  
       tls = {
-        certificates = [{
-          certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-          keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-          # stores = "hetzner005.lesgrandsvoisins.com";
-        }];
-        # stores.default.defaultCertificate = {
+        # certificates = [{
         #   certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
         #   keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-        # };
+        #   # stores = "hetzner005.lesgrandsvoisins.com";
+        # }];
+        stores.default.defaultCertificate = {
+          certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+          keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+        };
       };
     };
   };
