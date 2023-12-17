@@ -33,7 +33,7 @@ in
       sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
       # sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-      listen = {port = 8443; ssl=true;};
+      listen = [{port = 8443; ssl=true;}];
       locations."/" = {
         proxyPass = "https://www.lesgrandsvoisins.com";
         extraConfig = ''
