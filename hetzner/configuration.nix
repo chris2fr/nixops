@@ -230,6 +230,7 @@ in
         #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
         #   spark.loadBalancer.servers = [ { url = "http://169.254.1.17:9737/"; } ];
         # };
+        providerName = "dav";
         services = {
           dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
         };
