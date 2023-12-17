@@ -65,6 +65,9 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://10.245.101.158:8069";
+        extraConfig = ''
+          proxy_set_header Host $host:$server_port;
+        '';
       };
     };
 
