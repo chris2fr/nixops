@@ -145,8 +145,8 @@ in
       forceSSL = true;
       root =  "/var/www/wagtail/";
       locations."/" = {
-        # proxyPass = "http://10.245.101.15:8080";
-        proxyPass = "unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/";
+        proxyPass = "http://10.245.101.15:8080";
+        # proxyPass = "unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/";
         extraConfig = ''
           proxy_set_header Host $host:$server_port;
         '';
