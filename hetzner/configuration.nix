@@ -212,6 +212,7 @@ in
         };
         websecure = {
           address = ":10443/tcp";
+          tls = true;
         };
        
         # websecure = {
