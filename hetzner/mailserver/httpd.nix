@@ -40,7 +40,7 @@ in
      phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
   services.httpd.virtualHosts."${domainName}" = {
-     listen = {port = 8443; ssl=true;};
+     listen = [{port = 8443; ssl=true;}];
     sslServerCert = "/var/lib/acme/${domainName}/fullchain.pem";
     sslServerChain = "/var/lib/acme/${domainName}/fullchain.pem";
     sslServerKey = "/var/lib/acme/${domainName}/key.pem";
@@ -118,7 +118,7 @@ in
       '';
   };
   services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
-     listen = {port = 8443; ssl=true;};
+     listen = [{port = 8443; ssl=true;}];
     sslServerCert = "/var/lib/acme/app.lesgrandsvoisins.com/fullchain.pem";
     sslServerChain = "/var/lib/acme/app.lesgrandsvoisins.com/fullchain.pem";
     sslServerKey = "/var/lib/acme/app.lesgrandsvoisins.com/key.pem";
