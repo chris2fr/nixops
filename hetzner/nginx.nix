@@ -416,9 +416,9 @@ in
         #   proxy_set_header Host $host:$server_port;
         # '';
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = "http://10.245.101.15:8898/"; };
-      locations."/media" = { proxyPass = "http://10.245.101.15:8899/"; };
+      locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
+      locations."/static/" = { proxyPass = "http://10.245.101.15:8898/"; };
+      locations."/media/" = { proxyPass = "http://10.245.101.15:8899/"; };
     };
 
 
