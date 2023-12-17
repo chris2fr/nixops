@@ -201,6 +201,7 @@ in
   services.traefik = {
     enable = true;
     staticConfigOptions = {
+      api = true;
       entryPoints = {
         web = {
           address = ":10080/tcp";
@@ -230,8 +231,8 @@ in
       providers = {
         http = {
           tls = {
-            cert = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-            key = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+            cert = default;
+            key = default;
           };
         };
       };
