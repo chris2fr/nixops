@@ -29,7 +29,7 @@ in
     virtualHosts."hetzner005.lesgrandsvoisins.com" = {
       sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-      proxyPass = "https://dav.lesgrandsvoisins.com";
+      locations."/".proxyPass = "https://dav.lesgrandsvoisins.com";
     };
 
     virtualHosts."auth.lesgrandsvoisins.com" = {
