@@ -23,17 +23,20 @@ let
 in
 { 
   # users.users.wwwrun.isSystemUser = true;
-  # users.users.nginx.group = "wwwrun";
+  users.users.nginx.group = "wwwrun";
   # users.users.nginx.isSystemUser = true;
   services.nginx = {
     # user = "wwwrun";
-    # group = "wwwrun";
+    group = "wwwrun";
     enable = true;
     # defaultListen = [
     #     {addr = "[2a01:4f8:241:4faa::100]"; port=443; ssl=true;}
     #     {addr = "[::]"; port=8443; ssl=true;}
     #     {addr = "0.0.0.0"; port=8888; ssl=false;}
     #   ];
+    extraConfig = ''
+    proxy_headers_hash_max_size 4096;
+    '';
     defaultSSLListenPort = 8443;
     defaultHTTPListenPort = 8888;
     # defaultListenAddresses = [ "0.0.0.0" "[::]"];
