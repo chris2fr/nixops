@@ -209,8 +209,13 @@ in
         #      certResolver = "leresolver";
         #      domains = [{main = "hetzner005.lesgrandsvoisins.com"}];
         #   };
-        #};
+        # };
       };
+      routes = [{
+        match = "(PathPrefix(`/dashboard`)";
+        kind = "Rule";
+        services = [{name="api@internal";kind="TraefikService";}];
+      }];
     };
   };
 
