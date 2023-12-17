@@ -23,7 +23,7 @@ let
 in
 { 
   users.users.wwwrun.isSystemUser = true;
-  users.users.wwwrun.group = "wwwrun";
+  users.users.nginx.group = "wwwrun";
   services.nginx = {
     user = "wwwrun";
     group = "wwwrun";
