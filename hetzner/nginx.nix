@@ -27,14 +27,25 @@ in
         }
     '';
 
-    virtualHosts."www.lesgrandsvoisins.com" = {
-      serverName = "www.lesgrandsvoisins.com";
-      sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.com/key.pem";
-      sslTrustedCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
+    virtualHosts."blog.lesgrandsvoisins.com" = {
+      serverName = "blog.lesgrandsvoisins.com";
+      sslCertificate = "/var/lib/acme/blog.lesgrandsvoisins.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/blog.lesgrandsvoisins.com/key.pem";
+      sslTrustedCertificate = "/var/lib/acme/blog.lesgrandsvoisins.com/fullchain.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://www.lesgrandsvoisins.com";
+        proxyPass = "https://blog.lesgrandsvoisins.com";
+      };
+    };
+
+    virtualHosts."dav.lesgrandsvoisins.com" = {
+      serverName = "dav.lesgrandsvoisins.com";
+      sslCertificate = "/var/lib/acme/dav.lesgrandsvoisins.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/dav.lesgrandsvoisins.com/key.pem";
+      sslTrustedCertificate = "/var/lib/acme/dav.lesgrandsvoisins.com/fullchain.pem";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "https://dav.lesgrandsvoisins.com";
       };
     };
 
