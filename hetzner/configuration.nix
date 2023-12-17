@@ -227,6 +227,15 @@ in
         #   };
 
       };
+      providers = {
+        http = {
+          tls = {
+            cert = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+            key = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+          };
+        };
+      };
+
       forwardedHeaders.insecure = true;
       # providers = {
       #   http = {
