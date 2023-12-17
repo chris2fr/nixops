@@ -42,7 +42,7 @@ in
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_pass_request_headers      on;
           # proxy_redirect default;
-          # proxy_redirect ~^(https?://[^:]+):\d+(?<relpath>/.+)$ https://dav.lesgrandsvoisins.com$relpath;
+          # proxy_redirect ~^(https?://[^:]+):\d+(?<relpath>/.+)$ https://www.lesgrandsvoisins.com$relpath;
 
         '';
       };
