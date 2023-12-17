@@ -208,6 +208,7 @@ in
              to = "websecure";
              shceme = "https";
           };
+        };
         websecure = {
           address = ":10443/tcp";
           http.tls = {
@@ -228,7 +229,6 @@ in
         #     to = "websecure";
         #     scheme = "https";
         #   };
-        };
 
       };
     dynamicConfigOptions = {
