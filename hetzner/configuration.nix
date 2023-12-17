@@ -270,19 +270,19 @@ in
           };
         };
       };  
-      # tls = {
-      #   certificates = [{
-      #     certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-      #     keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-      #     stores = "hetzner005.lesgrandsvoisins.com";
-      #   }];
+      tls = {
+        certificates = [{
+          certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+          keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+          # stores = "hetzner005.lesgrandsvoisins.com";
+        }];
       #   stores = [{
       #     "hetzner005.lesgrandsvoisins.com".defaultCertificate = {
       #       certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       #       keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
       #     };
       #   }];
-      # };
+      };
     };
   };
 }
