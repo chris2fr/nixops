@@ -374,12 +374,10 @@ in
         # tcp_nodelay on;    
      };
 
-     virtualHosts."maelanc.com" = {
-        enableACME=true;
-        forceSSL=true;
-        globalRedirect = "https://www.maelanc.com:8443";
-     };
+
      virtualHosts."www.maelanc.com" = {
+      enableACME=true;
+      forceSSL=true;
       locations."/" = {
         proxyPass = "http://10.245.101.15:8080";
       };
