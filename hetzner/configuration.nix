@@ -202,8 +202,14 @@ in
     enable = true;
     staticConfigOptions = {
       entrypoints = {
-        web.address = 10080;
-        websecure.address = 10443;
+        http.address = ":10080";
+        # websecure = {
+        #   address = 10443;
+        #   http.tls = {
+        #      certResolver = "leresolver";
+        #      domains = [{main = "hetzner005.lesgrandsvoisins.com"}];
+        #   };
+        #};
       };
     };
   };
