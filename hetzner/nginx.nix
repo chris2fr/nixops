@@ -15,9 +15,9 @@ in
     #     {addr = "[::]"; port=8443; ssl=true;}
     #     {addr = "0.0.0.0"; port=8888; ssl=false;}
     #   ];
-    config = ''
-       # proxy_headers_hash_max_size 4096;
-    '';
+    # config = ''
+    #    # proxy_headers_hash_max_size 4096;
+    # '';
     defaultSSLListenPort = 8443;
     defaultHTTPListenPort = 8888;
     # defaultListenAddresses = [ "0.0.0.0" "[::]"];
