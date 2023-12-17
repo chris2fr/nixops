@@ -24,6 +24,7 @@ in
 { 
   users.users.wwwrun.isSystemUser = true;
   users.users.nginx.group = "wwwrun";
+  users.users.nginx.isSystemUser = true;
   services.nginx = {
     user = "wwwrun";
     group = "wwwrun";
