@@ -201,7 +201,7 @@ in
   services.traefik = {
     enable = true;
     staticConfigOptions = {
-      entrypoints = {
+      entryPoints = {
         http.address = ":10080";
         # websecure = {
         #   address = 10443;
@@ -214,7 +214,7 @@ in
         #     to = "websecure";
         #     scheme = "https";
         #   };
-        # };
+        };
         websecure.address = ":10443";
         electrs.address = ":50002";
       };
