@@ -255,6 +255,11 @@ in
     forceSSL = true;
     enableACME = true;
   };
+  services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
+    documentRoot =  "/var/www/resdigitacom/";
+    forceSSL = true;
+    enableACME = true;
+  };
   # services.httpd.virtualHosts."avmeet.com" = {
   #   enableACME = true;
   #   forceSSL = true;
