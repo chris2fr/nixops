@@ -95,7 +95,7 @@ in
     };
 
     virtualHosts."odoo.resdigita.com" = {
-      serverAliases = ["odoo1.resdigita.com"]
+      serverAliases = ["odoo1.resdigita.com"];
       enableACME = true;
       forceSSL = true;
       locations."/" = {
