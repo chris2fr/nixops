@@ -144,7 +144,7 @@ in
   # Open ports in the firewall.
   networking = {
     firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" ];
-    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 10443 ];
+    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 10080 10443 ];
     # interfaces."eno1".ipv6 = {
 
     # }
@@ -197,7 +197,16 @@ in
   #   };
   # };
   # users.users.zitadel.extraGroups = ["wwwrun"];
-
+  
+  services.traefik = {
+    enable = true;
+    staticConfigOptions = {
+      entrypoints = {
+        web.address = 10080;
+        web.secure = 10443;
+      };
+    };
+  };
 
 }
 
