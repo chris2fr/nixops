@@ -273,9 +273,9 @@ in
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     documentRoot =  "/var/www/resdigitacom/";
      listen = [{port = 8443; ssl=true;}];
-    sslServerCert = "/var/lib/acme/hetzner005.resdigita.com/fullchain.pem";
-    sslServerChain = "/var/lib/acme/hetzner005.resdigita.com/fullchain.pem";
-    sslServerKey = "/var/lib/acme/hetzner005.resdigita.com/key.pem";
+    sslServerCert = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
 
   };
   # services.httpd.virtualHosts."avmeet.com" = {
