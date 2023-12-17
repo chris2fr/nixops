@@ -263,14 +263,14 @@ in
     #     #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
     #     #   spark.loadBalancer.servers = [ { url = "http://169.254.1.17:9737/"; } ];
     #     # };
-        # services = {
-        #   dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
-        # };
+        services = {
+          www.loadBalancer.servers = [ { url = "https://www.lesgrandsvoisins.com/"; } ];
+        };
         routers = {
           myrouter = {
             rule = "Host(`hetzner005.lesgrandsvoisins.com`)";
             # entryPoints = [ "websecure" ];
-            # service = "dav";
+            service = "www";
             tls = {domains=[{main="hetzner005.lesgrandsvoisins.com";}];};
           };
         };
