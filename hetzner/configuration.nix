@@ -210,11 +210,11 @@ in
         #      domains = [{main = "hetzner005.lesgrandsvoisins.com"}];
         #   };
         # };
-        http.redirections.entrypoint = {
-            to = "websecure";
-            scheme = "https";
-          };
-        };
+        # http.redirections.entrypoint = {
+        #     to = "websecure";
+        #     scheme = "https";
+        #   };
+        # };
         websecure.address = ":10443";
         electrs.address = ":50002";
       };
