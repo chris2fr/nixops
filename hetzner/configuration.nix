@@ -202,11 +202,9 @@ in
     enable = true;
     staticConfigOptions = {
       api = true;
-      # providers = {
-      #   file = {
-      #     directory = "/var/lib/acme/";
-      #   }
-      # };
+      providers = {
+        file = true;
+      };
       entryPoints = {
         web = {
           address = ":10080/tcp";
