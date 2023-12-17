@@ -49,13 +49,25 @@ in
 
     virtualHosts."interetpublilc.org" = {
       enableACME = true;
-      serverName = "interetpublilc.org www.interetpublilc.org";
+      serverName = "www.interetpublic.org";
+      serverAliases = ["interetpublic.org"];
       root = "/var/www/wagtail";
       locations."/" = {
         proxyPass = "http://localhost:8000";
       };
       locations."/static" = {
         proxyPass = null;
+      };
+    };
+
+    virtualHosts."guichet.lesgrandsvoisins.com" = {
+      serverName = "guichet.lesgrandsvoisins.com";
+      sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
+      sslTrustedCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "https://guichet.lesgrandsvoisins.com";
       };
     };
 
