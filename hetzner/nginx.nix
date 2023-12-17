@@ -15,9 +15,9 @@ in
     #     {addr = "[::]"; port=8443; ssl=true;}
     #     {addr = "0.0.0.0"; port=8888; ssl=false;}
     #   ];
-    # extraConfig = ''
-    # proxy_headers_hash_max_size 4096;
-    # '';
+    config = ''
+       # proxy_headers_hash_max_size 4096;
+    '';
     defaultSSLListenPort = 8443;
     defaultHTTPListenPort = 8888;
     # defaultListenAddresses = [ "0.0.0.0" "[::]"];
@@ -51,24 +51,73 @@ in
     };
 
     virtualHosts."hdoc.lesgrandsvoisins.com" = {
+      serverAliases = [
+        "hedgedoc.lesgrandsvoisins.com"
+        "hdoc.lesgv.com"
+        "hedgedoc.lesgv.com"
+      ];
       sslCertificate = "/var/lib/acme/hdoc.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hdoc.lesgrandsvoisins.com/key.pem";
+      proxyPass = "http://localhost:3000/";
+      forceSSL = true;
     };
 
-    virtualHosts."www.lesgrandsvoisins.com" = {
-      #enableACME = true; 
-      sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.com/key.pem";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://10.245.101.15:8080";
-        # extraConfig = ''
-        #   proxy_set_header Host $host:$server_port;
-        # '';
-      };
-    };
+    # virtualHosts."www.lesgrandsvoisins.com" = {
+    #   #enableACME = true; 
+    #   sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
+    #   sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.com/key.pem";
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "http://10.245.101.15:8080";
+    #     # extraConfig = ''
+    #     #   proxy_set_header Host $host:$server_port;
+    #     # '';
+    #   };
+    # };
 
     virtualHosts."wagtail.resdigita.com" = {
+      root =  "/var/www/wagtail/";
+      serverAliases = [
+        "manncoach.resdigita.com"
+        "maelanc.com"
+        "resdigitacom.resdigita.com"
+        "distractivescom.resdigita.com"
+        "whowhatetccom.resdigita.com"
+        "voisandcom.resdigita.com"
+        "coopgvcom.resdigita.com"
+        "voisandorg.resdigita.com"
+        "lesgvcom.resdigita.com"
+        "popuposcom.resdigita.com"
+        "grandsvoisinscom.resdigita.com"
+        "forumgrandsvoisinscom.resdigita.com"
+        "baldridgegvoisorg.resdigita.com"
+        "discourselesgvcom.resdigita.com"
+        "iriviorg.resdigita.com"
+        "ooolesgrandsvoisinscom.resdigita.com"
+        "hyperattentioncom.resdigita.com"
+        "forumgdvoisinscom.resdigita.com"
+        "forumgrandsvoisinscom.resdigita.com"
+        "agoodvillagecom.resdigita.com"
+        "lgvcoop.resdigita.com"
+        "configmagiccom.resdigita.com"
+        "caplancitycom.resdigita.com"
+        "quiquoietccom.resdigita.com"
+        "lesartsvoisinscom.resdigita.com"
+        "maelanccom.resdigita.com"
+        "manncity.resdigita.com"
+        "focusplexcom.resdigita.com"
+        "gvoisorg.resdigita.com"
+        "vlgorg.resdigita.com"
+        "oldlesgrandsvoisinscom.resdigita.com"
+        "cooptellgv.resdigita.com"
+        "howwownowcom.resdigita.com"
+        "aaalesgrandsvoisinscom.resdigita.com"
+        "oldmanndigital.resdigita.com"
+        "resolvactivecom.resdigita.com"
+        "gvcity.resdigita.com"
+        "toutdouxlissecom.resdigita.com"
+        "iciwowcom.resdigita.com"
+      ];
       #enableACME = true; 
       sslCertificate = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/wagtail.resdigita.com/key.pem";
@@ -79,10 +128,46 @@ in
           proxy_set_header Host $host:$server_port;
         '';
       };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+    };
+
+    virtualHosts."gvoisin.resdigita.com" = {
+    serverAliases = [
+      "keycloak.resdigita.com"
+      "discourse.resdigita.com"
+      "meet.resdigita.com"
+      "jswiki.resdigita.com"
+      ];
+      sslCertificate = "/var/lib/acme/gvoisin.resdigita.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/gvoisin.resdigita.com/key.pem";
+      forceSSL = true;
+      root =  "/var/www/wagtail/";
+      locations."/" = {
+        # proxyPass = "http://10.245.101.15:8080";
+        proxyPass = "unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/";
+        extraConfig = ''
+          proxy_set_header Host $host:$server_port;
+        '';
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      # locations."/.well-known" = { proxyPass = null; };
     };
 
     virtualHosts."odoo4.resdigita.com" = {
       #enableACME = true; 
+      serverAliases = [
+        "voisandcom.resdigita.com"
+        "voisandorg.resdigita.com"
+        "lesgvcom.resdigita.com"
+        "villagevoisincom.resdigita.com"
+        "baldridgegvoisorg.resdigita.com"
+        "ooolesgrandsvoisinscom.resdigita.com"
+        "lesgrandsvoisinscom.resdigita.com"
+      ];
       sslCertificate = "/var/lib/acme/odoo4.resdigita.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/odoo4.resdigita.com/key.pem";
       forceSSL = true;
@@ -92,10 +177,17 @@ in
           proxy_set_header Host $host:$server_port;
         '';
       };
+      locations."/html/" = {
+        root = "/var/www/wagtail/";
+        proxyPass = null;
+      };
     };
         
 
     virtualHosts."odoo3.resdigita.com" = {
+      serverAliases = [
+        "lgvcoop.resdigita.com"
+      ];
       #enableACME = true; 
       sslCertificate = "/var/lib/acme/odoo3.resdigita.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/odoo3.resdigita.com/key.pem";
@@ -105,6 +197,10 @@ in
         extraConfig = ''
           proxy_set_header Host $host:$server_port;
         '';
+      };
+      locations."/html/" = {
+        root = "/var/www/sites/goodv.org/";
+        proxyPass = null;
       };
     };
 
@@ -122,6 +218,13 @@ in
     };
 
     virtualHosts."odoo1.resdigita.com" = {
+      serverAliases = [
+        "actentioncom.resdigita.com"
+        "gvoisorg.resdigita.com"
+        "manngvoisorg.resdigita.com"
+        "manndigital.resdigita.com"
+        "mannfr.resdigita.com"
+      ];
       #enableACME = true;
       sslCertificate = "/var/lib/acme/odoo1.resdigita.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/odoo1.resdigita.com/key.pem";
@@ -141,6 +244,7 @@ in
     };
 
     virtualHosts."guichet.lesgrandsvoisins.com" = {
+      serverAliases = ["app.lesgrandsvoisins.com"];
       serverName = "guichet.lesgrandsvoisins.com";
       sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
@@ -151,39 +255,74 @@ in
         proxyPass = "http://[::1]:9991/";
         # proxyPass = "https://guichet.lesgrandsvoisins.com";
       };
-      locations."/favicon.ico" = {
-        proxyPass = null;
-      };
-      locations."/static" = {
-        proxyPass = null;
-      };
-      locations."/media" = {
-        proxyPass = null;
-      };
-      locations."/.well-known" = {
-        proxyPass = null;
-      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      # locations."/.well-known" = { proxyPass = null; };
     };
 
-    # virtualHosts."www.lesgrandsvoisins.com" = {
-    #   serverName = "www.lesgrandsvoisins.com";
-    #   sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
-    #   sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.com/key.pem";
-    #   sslTrustedCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
-    #   forceSSL = true;
-    #   locations."/" = {
-    #     proxyPass = "https://www.lesgrandsvoisins.com";
-    #   };
-    # };
+    virtualHosts."www.lesgrandsvoisins.fr" = {
+     serverAliases = ["desgv.com" "www.lesgrandsvoisins.fr"  "francemali.org"
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com"];
+      sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.fr/key.pem";
+      sslTrustedCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8000/";
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      extraConfig = ''
+      if ($host = 'desgv.com') {
+          return 301 $scheme://www.$host$request_uri;
+      }
+      if ($host = 'francemali.com') {
+          return 301 $scheme://www.$host$request_uri;
+      }
+      if ($host = 'lesgv.com') {
+          return 301 $scheme://www.$host$request_uri;
+      }
+      if ($host = 'francemali.com') {
+          return 301 $scheme://www.$host$request_uri;
+      }
+      if ($host = 'lesgrandsvoisins.fr') {
+          return 301 $scheme://www.$host$request_uri;
+      }
+      '';
+    };
+
+    virtualHosts."www.lesgrandsvoisins.com" = {
+      serverName = "www.lesgrandsvoisins.com";
+      serverAliases = ["lesgrandsvoisins.com" ];
+      # sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
+      # sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.com/key.pem";
+      # sslTrustedCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
+      sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
+      sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
+      sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
+      forceSSL = true;
+      
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8000/";
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      # locations."/.well-known" = { proxyPass = null; };
+    };
 
     virtualHosts."blog.lesgrandsvoisins.com" = {
+      root = "/var/www/ghostio/";
       serverName = "blog.lesgrandsvoisins.com";
+      serverAliases = ["blog.resdigita.com"];
       sslCertificate = "/var/lib/acme/blog.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/blog.lesgrandsvoisins.com/key.pem";
       sslTrustedCertificate = "/var/lib/acme/blog.lesgrandsvoisins.com/fullchain.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://blog.lesgrandsvoisins.com";
+        proxyPass = "http://localhost:2368/";
       };
     };
 
@@ -195,6 +334,28 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "https://dav.lesgrandsvoisins.com";
+      };
+    };
+
+    virtualHosts."mail.lesgrandsvoisins.com" = {
+      serverName = "mail.lesgrandsvoisins.com";
+      sslCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
+      sslTrustedCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "https://mail.lesgrandsvoisins.com";
+      };
+    };
+
+    virtualHosts."secret.lesgrandsvoisins.com" = {
+      serverName = "secret.lesgrandsvoisins.com";
+      sslCertificate = "/var/lib/acme/secret.lesgrandsvoisins.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/secret.lesgrandsvoisins.com/key.pem";
+      sslTrustedCertificate = "/var/lib/acme/secret.lesgrandsvoisins.com/fullchain.pem";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "https://secret.lesgrandsvoisins.com";
       };
     };
 
