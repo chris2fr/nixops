@@ -281,12 +281,12 @@ in
           keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
           # stores = "hetzner005.lesgrandsvoisins.com";
         }];
-        stores = [{
-          default.defaultCertificate = {
-            certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-            keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-          };
-        }];
+        # stores = [{
+        #   default.defaultCertificate = {
+        #     certFile = "var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+        #     keyFile = "var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+        #   };
+        # }];
       };
     };
   };
