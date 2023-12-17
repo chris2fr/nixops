@@ -1,5 +1,10 @@
 { config, pkgs, lib, ... }:
 let 
+nginxLocationWagtailExtraConfig = ''
+    proxy_set_header $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_redirect off;
+'';
 in
 { 
   # users.users.wwwrun.isSystemUser = true;
@@ -54,6 +59,7 @@ in
       root = "/var/www/wagtail";
       locations."/" = {
         proxyPass = "http://localhost:8000";
+        extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/static" = {
         proxyPass = null;
@@ -100,9 +106,7 @@ in
       locations."/" = {
         #proxyPass = "http://10.245.101.15:8080";
         proxyPass = "https://wagtail";
-        extraConfig = ''
-          proxy_set_header Host $host:$server_port;
-        '';
+        extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
@@ -126,9 +130,7 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://10.245.101.173:8069";
-        extraConfig = ''
-          proxy_set_header Host $host:$server_port;
-        '';
+        extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/html/" = {
         root = "/var/www/wagtail/";
@@ -223,6 +225,7 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8000/";
+        extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
@@ -257,9 +260,9 @@ in
       sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
       forceSSL = true;
-      
       locations."/" = {
         proxyPass = "http://127.0.0.1:8000/";
+        extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
       locations."/favicon.ico" = { proxyPass = null; };
@@ -381,6 +384,7 @@ in
       forceSSL=true;
       locations."/" = {
         proxyPass = "http://10.245.101.15:8080";
+        extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
       locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
@@ -429,6 +433,7 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://10.245.101.15:8080";
+        extraConfig = nginxLocationWagtailExtraConfig;
         # extraConfig = ''
         #   proxy_set_header Host $host:$server_port;
         # '';
