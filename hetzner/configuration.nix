@@ -206,7 +206,7 @@ in
           address = ":10080/tcp";
           http.redirections.entryPoint = {
              to = "websecure";
-             shceme = "https";
+             scheme = "https";
           };
         };
         websecure = {
