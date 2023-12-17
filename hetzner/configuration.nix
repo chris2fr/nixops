@@ -210,14 +210,45 @@ in
         #      domains = [{main = "hetzner005.lesgrandsvoisins.com"}];
         #   };
         # };
+        http.redirections.entrypoint = {
+            to = "websecure";
+            scheme = "https";
+          };
+        };
+        websecure.address = ":10443";
+        electrs.address = ":50002";
       };
-      routes = [{
-        match = "(PathPrefix(`/dashboard`)";
-        kind = "Rule";
-        services = [{name="api@internal";kind="TraefikService";}];
-      }];
+    dynamicConfigOptions = {
+      # routes = [{
+      #   match = "(PathPrefix(`/dashboard`)";
+      #   kind = "Rule";
+      #   services = [{name="api@internal";kind="TraefikService";}];
+      # }];
+      http.middlewares.prefix-strip.stripprefixregex.regex = "/[^/]+";
+      http = {
+        # services = {
+        #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
+        #   spark.loadBalancer.servers = [ { url = "http://169.254.1.17:9737/"; } ];
+        # };
+        services = {
+          dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
+        };
+        routers = {
+          rtl = {
+            rule = "PathPrefix(``,`/`)";
+            entryPoints = [ "websecure" ];
+            service = "dav";
+            tls = true;
+          };
+        };
+      };
+      tls = {
+        certificates = [{
+          certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+          keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+        }];
+      };
     };
   };
-
 }
 
