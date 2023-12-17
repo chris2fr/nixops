@@ -202,20 +202,20 @@ in
     enable = true;
     staticConfigOptions = {
       api = true;
-      providers = {
-        file = true;
-      };
+      # providers = {
+      #   file = true;
+      # };
       entryPoints = {
         web = {
           address = ":10080/tcp";
-          http.redirections.entryPoint = {
+          http.redirections.entrypoint = {
              to = "websecure";
              scheme = "https";
           };
         };
         websecure = {
           address = ":10443/tcp";
-          http.tls = true;
+          http.tls = {domains=[{main="hetzner005.lesgrandsvoisins.com";}];};
         };
        
         # websecure = {
