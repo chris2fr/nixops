@@ -35,8 +35,8 @@ in
       # listenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
       forceSSL = true;
       # listen = [{addr="0.0.0.0";port = 8443; ssl=true;} {addr="[::]";port = 8443; ssl=true;}{addr="116.202.236.241";port = 8443; ssl=true;} {addr="[::1]";port = 8443; ssl=true;}];
-      # locations."/" = {
-      #   proxyPass = "https://www.lesgrandsvoisins.com";
+      locations."/" = {
+        proxyPass = "https://www.lesgrandsvoisins.com";
       #   extraConfig = ''
       #     # proxy_redirect off;
       #     proxy_set_header Host $host:$server_port;
@@ -48,7 +48,7 @@ in
       #     # proxy_redirect ~^(https?://[^:]+):\d+(?<relpath>/.+)$ https://www.lesgrandsvoisins.com$relpath;
 
       #   '';
-      # };
+      };
     };
     recommendedProxySettings = true;
 
