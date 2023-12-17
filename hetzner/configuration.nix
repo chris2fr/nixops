@@ -203,7 +203,7 @@ in
     staticConfigOptions = {
       entrypoints = {
         web.address = 10080;
-        web.secure = 10443;
+        websecure.address = 10443;
       };
     };
   };
