@@ -41,8 +41,10 @@ in
     upstreams."wagtail".extraConfig = ''
         server unix:/var/lib/wagtail/wagtail-lesgv.sock;
     '';
-    upstreams."wagtailstatic".server = "10.245.101.15:8898";
-    upstreams."wagtailmedia".server = "10.245.101.15:889";
+    upstreams."wagtailstatic".servers = {
+      "10.245.101.15:8898" = {};
+    };
+    upstreams."wagtailmedia".servers = {"10.245.101.15:889" = {};};
 
     virtualHosts."interetpublilc.org" = {
       enableACME = true;
