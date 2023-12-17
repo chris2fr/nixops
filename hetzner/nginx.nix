@@ -66,6 +66,19 @@ in
       };
     };
 
+    virtualHosts."www.lesgrandsvoisins.com" = {
+      #enableACME = true; 
+      sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.com/key.pem";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://10.245.101.15:8080";
+        extraConfig = ''
+          proxy_set_header Host $host:$server_port;
+        '';
+      };
+    };
+
     virtualHosts."wagtail.resdigita.com" = {
       #enableACME = true; 
       sslCertificate = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
