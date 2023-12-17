@@ -231,6 +231,15 @@ in
 
       };
       forwardedHeaders.insecure = true;
+      # providers = {
+      #   http = {
+      #     endpoint = "https://dav.lesgrandsvoisins.com";
+      #     tls = {
+      #       cert = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+      #       key = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+      #     }
+      #   }
+      # }
     };
     dynamicConfigOptions = {
     #   # routes = [{
@@ -247,21 +256,26 @@ in
     #     services = {
     #       dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
     #     };
-    #     routers = {
-    #       rtl = {
-    #         rule = "PathPrefix(``,`/`)";
-    #         entryPoints = [ "websecure" ];
-    #         service = "dav";
-    #         tls = true;
-    #       };
-    #     };
-    #   };
-        tls = {
-          certificates = [{
+        routers = {
+          myrouter = {
+            entryPoints = [ "websecure" ];
+            service = "dav";
+            tls = true;
+          };
+        };
+      };  
+      tls = {
+        certificates = [{
+          certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+          keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+          stores = "hetzner005.lesgrandsvoisins.com";
+        }];
+        stores = [{
+          "hetzner005.lesgrandsvoisins.com".defaultCertificate = {
             certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
             keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-          }];
-        };
+          };
+        }];
       };
     };
   };
