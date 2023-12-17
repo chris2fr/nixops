@@ -266,9 +266,9 @@ in
     serverAliases = ["www.resdigita.com" "resdigita.org" "resdigita.desgv.com" "doc.resdigita.com"];
     documentRoot =  "/var/www/resdigitacom/";
     listen = [{port = 8443; ssl=true;}];
-    sslServerCert = "/var/lib/acme/resdigita.lesgrandsvoisins.com/fullchain.pem";
-    sslServerChain = "/var/lib/acme/resdigita.lesgrandsvoisins.com/fullchain.pem";
-    sslServerKey = "/var/lib/acme/resdigita.lesgrandsvoisins.com/key.pem";
+    sslServerCert = "/var/lib/acme/resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/resdigita.com/key.pem";
   };
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     documentRoot =  "/var/www/resdigitacom/";
