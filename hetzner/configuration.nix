@@ -198,96 +198,94 @@ in
   # };
   # users.users.zitadel.extraGroups = ["wwwrun"];
   
-  services.traefik = {
-    enable = true;
-    staticConfigOptions = {
-      api = true;
-      # providers = {
-      #   file = true;
-      # };
-      entryPoints = {
-        # web = {
-        #   address = ":10080/tcp";
-        #   http.redirections.entrypoint = {
-        #      to = "websecure";
-        #      scheme = "https";
-        #   };
-        # };
-        websecure = {
-          address = ":10443";
-          # http.tls = true;
-          # http.tls.domains=[{main="hetzner005.lesgrandsvoisins.com";}];
-        };
+  # services.traefik = {
+  #   enable = true;
+  #   staticConfigOptions = {
+  #     api = true;
+
+  #     entryPoints = {
+  #       # web = {
+  #       #   address = ":10080/tcp";
+  #       #   http.redirections.entrypoint = {
+  #       #      to = "websecure";
+  #       #      scheme = "https";
+  #       #   };
+  #       # };
+  #       websecure = {
+  #         address = ":10443";
+  #         # http.tls = true;
+  #         # http.tls.domains=[{main="hetzner005.lesgrandsvoisins.com";}];
+  #       };
        
-        # websecure = {
-        #   address = 10443;
-        #   http.tls = {
-        #      certResolver = "leresolver";
-        #      domains = [{main = "hetzner005.lesgrandsvoisins.com"}];
-        #   };
-        # };
-        # http.redirections.entrypoint = {
-        #     to = "websecure";
-        #     scheme = "https";
-        #   };
+  #       # websecure = {
+  #       #   address = 10443;
+  #       #   http.tls = {
+  #       #      certResolver = "leresolver";
+  #       #      domains = [{main = "hetzner005.lesgrandsvoisins.com"}];
+  #       #   };
+  #       # };
+  #       # http.redirections.entrypoint = {
+  #       #     to = "websecure";
+  #       #     scheme = "https";
+  #       #   };
 
-      };
-      # providers = {
-      #   http = {
-      #     tls = {
-      #       cert = default;
-      #       key = default;
-      #     };
-      #   };
-      # };
+  #     };
+  #     # providers = {
+  #     #   http = {
+  #     #     tls = {
+  #     #       cert = default;
+  #     #       key = default;
+  #     #     };
+  #     #   };
+  #     # };
 
-      # forwardedHeaders.insecure = true;
-      # providers = {
-      #   http = {
-      #     endpoint = "https://dav.lesgrandsvoisins.com";
-      #     tls = {
-      #       cert = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-      #       key = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-      #     }
-      #   }
-      # }
-    };
-    dynamicConfigOptions = {
-    #   # routes = [{
-    #   #   match = "(PathPrefix(`/dashboard`)";
-    #   #   kind = "Rule";
-    #   #   services = [{name="api@internal";kind="TraefikService";}];
-    #   # }];
-    #   # http.middlewares.prefix-strip.stripprefixregex.regex = "/[^/]+";
-      http = {
-    #     # services = {
-    #     #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
-    #     #   spark.loadBalancer.servers = [ { url = "http://169.254.1.17:9737/"; } ];
-    #     # };
-        services = {
-          www.loadBalancer.servers = [ { url = "https://www.lesgrandsvoisins.com/"; } ];
-        };
-        routers = {
-          myrouter = {
-            rule = "Host(`hetzner005.lesgrandsvoisins.com`)";
-            # entryPoints = [ "websecure" ];
-            service = "www";
-            tls = true;
-          };
-        };
-      };  
-      tls = {
-        # certificates = [{
-        #   certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-        #   keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-        #   # stores = "hetzner005.lesgrandsvoisins.com";
-        # }];
-        stores.default.defaultCertificate = {
-          certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-          keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-        };
-      };
-    };
-  };
+  #     # forwardedHeaders.insecure = true;
+  #     # providers = {
+  #     #   http = {
+  #     #     endpoint = "https://dav.lesgrandsvoisins.com";
+  #     #     tls = {
+  #     #       cert = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+  #     #       key = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+  #     #     }
+  #     #   }
+  #     # }
+  #   };
+  #   dynamicConfigOptions = {
+  #   #   # routes = [{
+  #   #   #   match = "(PathPrefix(`/dashboard`)";
+  #   #   #   kind = "Rule";
+  #   #   #   services = [{name="api@internal";kind="TraefikService";}];
+  #   #   # }];
+  #   #   # http.middlewares.prefix-strip.stripprefixregex.regex = "/[^/]+";
+  #     http = {
+  #   #     # services = {
+  #   #     #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
+  #   #     #   spark.loadBalancer.servers = [ { url = "http://169.254.1.17:9737/"; } ];
+  #   #     # };
+  #       services = {
+  #         www.loadBalancer.servers = [ { url = "https://www.lesgrandsvoisins.com/"; } ];
+  #       };
+  #       routers = {
+  #         myrouter = {
+  #           rule = "Host(`hetzner005.lesgrandsvoisins.com`)";
+  #           # entryPoints = [ "websecure" ];
+  #           service = "www";
+  #           tls = true;
+  #         };
+  #       };
+  #     };  
+  #     tls = {
+  #       # certificates = [{
+  #       #   certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+  #       #   keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+  #       #   # stores = "hetzner005.lesgrandsvoisins.com";
+  #       # }];
+  #       stores.default.defaultCertificate = {
+  #         certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+  #         keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+  #       };
+  #     };
+  #   };
+  # };
 }
 

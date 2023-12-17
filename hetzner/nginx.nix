@@ -33,7 +33,7 @@ in
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
       # sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       locations."/" = {
-        proxyPass = "https://dav.lesgrandsvoisins.com";
+        proxyPass = "https://www.lesgrandsvoisins.com";
         extraConfig = ''
           # proxy_redirect off;
           proxy_set_header Host $host:$server_port;
