@@ -206,16 +206,16 @@ in
       #   file = true;
       # };
       entryPoints = {
-        web = {
-          address = ":10080/tcp";
-          http.redirections.entrypoint = {
-             to = "websecure";
-             scheme = "https";
-          };
-        };
+        # web = {
+        #   address = ":10080/tcp";
+        #   http.redirections.entrypoint = {
+        #      to = "websecure";
+        #      scheme = "https";
+        #   };
+        # };
         websecure = {
-          address = ":10443/tcp";
-          http.tls = {domains=[{main="hetzner005.lesgrandsvoisins.com";}];};
+          address = ":10443";
+          http.tls.domains=[{main="hetzner005.lesgrandsvoisins.com";}];
         };
        
         # websecure = {
@@ -263,13 +263,14 @@ in
     #     #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
     #     #   spark.loadBalancer.servers = [ { url = "http://169.254.1.17:9737/"; } ];
     #     # };
-        services = {
-          dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
-        };
+        # services = {
+        #   dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
+        # };
         routers = {
           myrouter = {
-            entryPoints = [ "websecure" ];
-            service = "dav";
+            rule = "Host(`hetzner005.lesgrandsvoisins.com`)";
+            # entryPoints = [ "websecure" ];
+            # service = "dav";
             tls = {domains=[{main="hetzner005.lesgrandsvoisins.com";}];};
           };
         };
