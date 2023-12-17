@@ -72,7 +72,7 @@ in
       sslCertificateKey = "/var/lib/acme/wagtail.resdigita.com/key.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.245.101.15:8000";
+        proxyPass = "http://10.245.101.15:8080";
         extraConfig = ''
           proxy_set_header Host $host:$server_port;
         '';
