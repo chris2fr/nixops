@@ -223,6 +223,7 @@ in
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
+      root = "/var/www/wagtail";
       extraConfig = ''
       if ($host = 'desgv.com') {
           return 301 $scheme://www.$host$request_uri;
