@@ -10,6 +10,9 @@ in
     # user = "wwwrun";
     group = "wwwrun";
     enable = true;
+    # httpConfig = ''
+    #   server_names_hash_max_size 4096;
+    # '';
     # defaultListen = [
     #     {addr = "[2a01:4f8:241:4faa::100]"; port=443; ssl=true;}
     #     {addr = "[::]"; port=8443; ssl=true;}
@@ -78,9 +81,7 @@ in
     #   };
     # };
 
-    httpConfig = ''
-    server_names_hash_max_size 4096;
-    '';
+
     virtualHosts."gvoisin.resdigita.com" = {
     serverAliases = [
       "keycloak.resdigita.com"
@@ -376,22 +377,15 @@ in
         "resdigitacom.resdigita.com"
         "distractivescom.resdigita.com"
         "whowhatetccom.resdigita.com"
-        "voisandcom.resdigita.com"
         "coopgvcom.resdigita.com"
-        "voisandorg.resdigita.com"
-        "lesgvcom.resdigita.com"
         "popuposcom.resdigita.com"
         "grandsvoisinscom.resdigita.com"
         "forumgrandsvoisinscom.resdigita.com"
-        "baldridgegvoisorg.resdigita.com"
         "discourselesgvcom.resdigita.com"
         "iriviorg.resdigita.com"
-        "ooolesgrandsvoisinscom.resdigita.com"
         "hyperattentioncom.resdigita.com"
         "forumgdvoisinscom.resdigita.com"
-        "forumgrandsvoisinscom.resdigita.com"
         "agoodvillagecom.resdigita.com"
-        "lgvcoop.resdigita.com"
         "configmagiccom.resdigita.com"
         "caplancitycom.resdigita.com"
         "quiquoietccom.resdigita.com"
@@ -399,7 +393,6 @@ in
         "maelanccom.resdigita.com"
         "manncity.resdigita.com"
         "focusplexcom.resdigita.com"
-        "gvoisorg.resdigita.com"
         "vlgorg.resdigita.com"
         "oldlesgrandsvoisinscom.resdigita.com"
         "cooptellgv.resdigita.com"
