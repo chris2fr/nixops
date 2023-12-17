@@ -22,12 +22,12 @@ let
     '';
 in
 { 
-  users.users.wwwrun.isSystemUser = true;
-  users.users.nginx.group = "wwwrun";
-  users.users.nginx.isSystemUser = true;
+  # users.users.wwwrun.isSystemUser = true;
+  # users.users.nginx.group = "wwwrun";
+  # users.users.nginx.isSystemUser = true;
   services.nginx = {
-    user = "wwwrun";
-    group = "wwwrun";
+    # user = "wwwrun";
+    # group = "wwwrun";
     enable = true;
     # defaultListen = [
     #     {addr = "[2a01:4f8:241:4faa::100]"; port=443; ssl=true;}
