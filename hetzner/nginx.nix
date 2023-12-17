@@ -28,7 +28,6 @@ in
     '';
     virtualHosts."hetzner005.lesgrandsvoisins.com" = {
       # addSSL = true;
-      reuseport = true;
       serverName = "hetzner005.lesgrandsvoisins.com";
       sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
