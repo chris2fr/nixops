@@ -68,6 +68,12 @@ in
       };
     };
 
+    virtualHosts."doc.resdigita.com" = {
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/resdigitacom";
+    };
+
     virtualHosts."guichet.lesgrandsvoisins.com" = {
       serverName = "guichet.lesgrandsvoisins.com";
       sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
