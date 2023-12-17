@@ -60,7 +60,7 @@ in
       };
     };
 
-    virtualHosts."odoo.lesgrandsvoisins.com" = {
+    virtualHosts."odoo.resdigita.com" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {

@@ -250,7 +250,7 @@ in
     '';
   };
   services.httpd.virtualHosts."resdigita.com" = {
-    serverAliases = ["www.resdigita.com" "resdigita.org" "resdigita.desgv.com"];
+    serverAliases = ["www.resdigita.com" "resdigita.org" "resdigita.desgv.com" "doc.resdigita.com"];
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
