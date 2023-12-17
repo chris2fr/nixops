@@ -228,16 +228,16 @@ in
         #   };
 
       };
-      providers = {
-        http = {
-          tls = {
-            cert = default;
-            key = default;
-          };
-        };
-      };
+      # providers = {
+      #   http = {
+      #     tls = {
+      #       cert = default;
+      #       key = default;
+      #     };
+      #   };
+      # };
 
-      forwardedHeaders.insecure = true;
+      # forwardedHeaders.insecure = true;
       # providers = {
       #   http = {
       #     endpoint = "https://dav.lesgrandsvoisins.com";
@@ -260,30 +260,30 @@ in
     #     #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
     #     #   spark.loadBalancer.servers = [ { url = "http://169.254.1.17:9737/"; } ];
     #     # };
-    #     services = {
-    #       dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
-    #     };
+        services = {
+          dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
+        };
         routers = {
           myrouter = {
             entryPoints = [ "websecure" ];
             service = "dav";
-            tls = true;
+            tls = {passthrough = true;};
           };
         };
       };  
-      tls = {
-        certificates = [{
-          certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-          keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-          stores = "hetzner005.lesgrandsvoisins.com";
-        }];
-        stores = [{
-          "hetzner005.lesgrandsvoisins.com".defaultCertificate = {
-            certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-            keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-          };
-        }];
-      };
+      # tls = {
+      #   certificates = [{
+      #     certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+      #     keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+      #     stores = "hetzner005.lesgrandsvoisins.com";
+      #   }];
+      #   stores = [{
+      #     "hetzner005.lesgrandsvoisins.com".defaultCertificate = {
+      #       certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+      #       keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+      #     };
+      #   }];
+      # };
     };
   };
 }
