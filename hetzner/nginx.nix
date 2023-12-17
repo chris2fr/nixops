@@ -60,7 +60,42 @@ in
       };
     };
 
+    virtualHosts."odoo4.resdigita.com" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://10.245.101.173:8069";
+        extraConfig = ''
+          proxy_set_header Host $host:$server_port;
+        '';
+      };
+    };
+        
+
+    virtualHosts."odoo3.resdigita.com" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://10.245.101.128:8069";
+        extraConfig = ''
+          proxy_set_header Host $host:$server_port;
+        '';
+      };
+    };
+
+    virtualHosts."odoo2.resdigita.com" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://10.245.101.82:8069";
+        extraConfig = ''
+          proxy_set_header Host $host:$server_port;
+        '';
+      };
+    };
+
     virtualHosts."odoo.resdigita.com" = {
+      serverAliases = ["odoo1.resdigita.com"]
       enableACME = true;
       forceSSL = true;
       locations."/" = {
