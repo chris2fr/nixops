@@ -411,7 +411,10 @@ in
       sslCertificateKey = "/var/lib/acme/wagtail.resdigita.com/key.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://wagtail.resdigita.com:8080";
+        proxyPass = "http://10.245.101.15:8080";
+        # extraConfig = ''
+        #   proxy_set_header Host $host:$server_port;
+        # '';
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
