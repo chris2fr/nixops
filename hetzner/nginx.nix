@@ -28,7 +28,7 @@ in
     '';
     virtualHosts."hetzner005.lesgrandsvoisins.com:8443" = {
       addSSL = true;
-      sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+      sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
       locations."/".proxyPass = "https://dav.lesgrandsvoisins.com";
     };
