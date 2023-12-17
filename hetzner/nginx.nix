@@ -49,7 +49,7 @@ in
       #     # proxy_redirect ~^(https?://[^:]+):\d+(?<relpath>/.+)$ https://www.lesgrandsvoisins.com$relpath;
 
       #   '';
-      };
+      # };
     };
     recommendedProxySettings = true;
 
