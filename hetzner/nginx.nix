@@ -30,7 +30,7 @@ in
       addSSL = true;
       sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-      sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+      # sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       locations."/" = {
         proxyPass = "https://dav.lesgrandsvoisins.com";
         extraConfig = ''
@@ -59,7 +59,7 @@ in
       # listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8888; } { addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
       default = true;
       #listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; ssl=true; } { addr="[2a01:4f8:241:4faa::100]" ; port=443; ssl=true;} ];
-      sslTrustedCertificate = "/var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem";
+      # sslTrustedCertificate = "/var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/auth.lesgrandsvoisins.com/key.pem";
       # sslCertificateChainFile = /var/lib/acme/auth.lesgrandsvoisins.com/chain.pem;
       sslCertificate = "/var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem";
