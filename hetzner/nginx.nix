@@ -60,6 +60,14 @@ in
       };
     };
 
+    virtualHosts."odoo.lesgrandsvoisins.com" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://10.245.101.158:8069";
+      };
+    };
+
     virtualHosts."guichet.lesgrandsvoisins.com" = {
       serverName = "guichet.lesgrandsvoisins.com";
       sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
