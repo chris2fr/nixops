@@ -54,6 +54,7 @@ in
 
     virtualHosts."interetpublilc.org" = {
       enableACME = true;
+      forceSSL = true;
       serverName = "www.interetpublic.org";
       serverAliases = ["interetpublic.org"];
       root = "/var/www/wagtail";
@@ -62,6 +63,19 @@ in
       };
       locations."/static" = {
         proxyPass = null;
+      };
+    };
+
+    virtualHosts."wagtail.resdigita.com" = {
+      #enableACME = true; 
+      sslCertificate = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/wagtail.resdigita.com/key.pem";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://10.245.101.15:8000";
+        extraConfig = ''
+          proxy_set_header Host $host:$server_port;
+        '';
       };
     };
 
