@@ -1,5 +1,25 @@
 { config, pkgs, lib, ... }:
 let 
+    wagtailExtraConfig = ''
+        CacheDisable /
+        <Location />
+          Require all granted
+        </Location>
+        ProxyPass /.well-known !
+        ProxyPass /static !
+        ProxyPass /media !
+        ProxyPass /favicon.ico !
+        CacheDisable /
+        ProxyPass /  http://127.0.0.1:8000/
+        # ProxyPassReverse /  http://127.0.0.1:8000/
+        ProxyPreserveHost On
+        ProxyVia On
+        ProxyAddHeaders On
+        RequestHeader set X-Original-URL "expr=%{THE_REQUEST}"
+        RequestHeader edit* X-Original-URL ^[A-Z]+\s|\sHTTP/1\.\d$ ""
+        # RequestHeader set X-Forwarded-Proto "https"
+        # RequestHeader set X-Forwarded-Port "443"
+    '';
 in
 { 
   services.nginx = {
@@ -26,6 +46,18 @@ in
             default upgrade;
         }
     '';
+
+    virtualHosts."interetpublilc.org" = {
+      enableACME = true;
+      serverName = "interetpublilc.org www.interetpublilc.org";
+      root = "/var/www/wagtail";
+      locations."/" = {
+        proxyPass = "http://localhost:8000"
+      };
+      locations."/static" = {
+        proxyPass = null;
+      };
+    };
 
     virtualHosts."www.lesgrandsvoisins.com" = {
       serverName = "www.lesgrandsvoisins.com";
