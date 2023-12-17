@@ -202,7 +202,21 @@ in
     enable = true;
     staticConfigOptions = {
       entryPoints = {
-        http.address = ":10080";
+        web = {
+          address = ":10080/tcp";
+          http.redirections.entryPoint = {
+             to = "websecure";
+             shceme = "https";
+          };
+        websecure = {
+          address = ":10443/tcp";
+          http.tls = {
+            certResolver = "leresolver";
+            domains = [ {main = "hetzner005.lesgrandsvoisins.com";} ];
+          };
+        };
+        forwardedHeaders.insecure = true;
+
         # websecure = {
         #   address = 10443;
         #   http.tls = {
@@ -215,39 +229,38 @@ in
         #     scheme = "https";
         #   };
         };
-        websecure.address = ":10443";
-        electrs.address = ":50002";
+
       };
     dynamicConfigOptions = {
-      # routes = [{
-      #   match = "(PathPrefix(`/dashboard`)";
-      #   kind = "Rule";
-      #   services = [{name="api@internal";kind="TraefikService";}];
-      # }];
-      # http.middlewares.prefix-strip.stripprefixregex.regex = "/[^/]+";
+    #   # routes = [{
+    #   #   match = "(PathPrefix(`/dashboard`)";
+    #   #   kind = "Rule";
+    #   #   services = [{name="api@internal";kind="TraefikService";}];
+    #   # }];
+    #   # http.middlewares.prefix-strip.stripprefixregex.regex = "/[^/]+";
       http = {
-        # services = {
-        #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
-        #   spark.loadBalancer.servers = [ { url = "http://169.254.1.17:9737/"; } ];
-        # };
-        providerName = "dav";
-        services = {
-          dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
+    #     # services = {
+    #     #   rtl.loadBalancer.servers = [ { url = "http://169.254.1.29:3000/"; } ];
+    #     #   spark.loadBalancer.servers = [ { url = "http://169.254.1.17:9737/"; } ];
+    #     # };
+    #     services = {
+    #       dav = [ { url = "https://dav.lesgrandsvoisins.com/"; } ];
+    #     };
+    #     routers = {
+    #       rtl = {
+    #         rule = "PathPrefix(``,`/`)";
+    #         entryPoints = [ "websecure" ];
+    #         service = "dav";
+    #         tls = true;
+    #       };
+    #     };
+    #   };
+        tls = {
+          certificates = [{
+            certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+            keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+          }];
         };
-        routers = {
-          rtl = {
-            rule = "PathPrefix(``,`/`)";
-            entryPoints = [ "websecure" ];
-            service = "dav";
-            tls = true;
-          };
-        };
-      };
-      tls = {
-        certificates = [{
-          certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-          keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-        }];
       };
     };
   };
