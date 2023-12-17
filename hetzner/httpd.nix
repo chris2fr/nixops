@@ -53,12 +53,12 @@ in
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
-  services.httpd.virtualHosts."resdigita.com" = {
-    # listenAddresses = ["*" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::1]" "[2a01:4f8:241:4faa::2]" "[2a01:4f8:241:4faa::3]" "[2a01:4f8:241:4faa::4]" "[2a01:4f8:241:4faa::5]"];
-    enableACME = true;
-    #forceSSL = true;
-    globalRedirect = "https://www.resdigita.com/";
-  };
+  # services.httpd.virtualHosts."resdigita.com" = {
+  #   # listenAddresses = ["*" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::1]" "[2a01:4f8:241:4faa::2]" "[2a01:4f8:241:4faa::3]" "[2a01:4f8:241:4faa::4]" "[2a01:4f8:241:4faa::5]"];
+  #   enableACME = true;
+  #   #forceSSL = true;
+  #   globalRedirect = "https://www.resdigita.com/";
+  # };
 
 #     documentRoot =  "/var/www/";
 #     extraConfig = ''
@@ -128,7 +128,7 @@ in
 #       RewriteRule ^/SOGo(.*)$ https://mail.lesgrandsvoisins.com$1
 #     '';
 #   };
-  services.httpd.virtualHosts."www.resdigita.com" = {
+  services.httpd.virtualHosts."gvoisin.resdigita.com" = {
     serverAliases = [
       "keycloak.resdigita.com"
       "discourse.resdigita.com"
@@ -249,12 +249,12 @@ in
         </If>
     '';
   };
-  # services.httpd.virtualHosts."resdigita.com" = {
-  #   serverAliases = ["resdigita.desgv.com" "resdigita.org"];
-  #   documentRoot =  "/var/www/resdigitacom/";
-  #   forceSSL = true;
-  #   enableACME = true;
-  # };
+  services.httpd.virtualHosts."resdigita.com" = {
+    serverAliases = ["www.resdigita.com" "resdigita.org"];
+    documentRoot =  "/var/www/resdigitacom/";
+    forceSSL = true;
+    enableACME = true;
+  };
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
