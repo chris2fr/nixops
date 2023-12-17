@@ -58,7 +58,7 @@ in
       ];
       sslCertificate = "/var/lib/acme/hdoc.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hdoc.lesgrandsvoisins.com/key.pem";
-      proxyPass = "http://localhost:3000/";
+      locations."/".proxyPass = "http://localhost:3000/";
       forceSSL = true;
     };
 
