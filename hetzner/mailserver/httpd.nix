@@ -40,8 +40,11 @@ in
      phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
   services.httpd.virtualHosts."${domainName}" = {
-    enableACME = true;
-    forceSSL = true;
+     listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/${domainName}/fullchain.pem";
+    sslServerChain = "/var/lib/acme/${domainName}/fullchain.pem";
+    sslServerKey = "/var/lib/acme/${domainName}/key.pem";
+
     # documentRoot =  "/var/www/SOGo";
 
     extraConfig = ''
@@ -115,8 +118,11 @@ in
       '';
   };
   services.httpd.virtualHosts."app.lesgrandsvoisins.com" = {
-    enableACME = true;
-    forceSSL = true;
+     listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/app.lesgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/app.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/app.lesgrandsvoisins.com/key.pem";
+
     documentRoot =  "/var/www/";
     extraConfig = ''
       RewriteEngine On

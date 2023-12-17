@@ -21,8 +21,8 @@ in
     # config = ''
     #    # proxy_headers_hash_max_size 4096;
     # '';
-    defaultSSLListenPort = 8443;
-    defaultHTTPListenPort = 8888;
+    # defaultSSLListenPort = 8443;
+    # defaultHTTPListenPort = 8888;
     # defaultListenAddresses = [ "0.0.0.0" "[::]"];
     defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
     #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
@@ -288,20 +288,20 @@ in
       sslTrustedCertificate = "/var/lib/acme/dav.lesgrandsvoisins.com/fullchain.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://dav.lesgrandsvoisins.com";
+        proxyPass = "https://dav.lesgrandsvoisins.com:8443";
       };
     };
 
-    virtualHosts."mail.lesgrandsvoisins.com" = {
-      serverName = "mail.lesgrandsvoisins.com";
-      sslCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
-      sslTrustedCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "https://mail.lesgrandsvoisins.com";
-      };
-    };
+    # virtualHosts."mail.lesgrandsvoisins.com" = {
+    #   serverName = "mail.lesgrandsvoisins.com";
+    #   sslCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
+    #   sslCertificateKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
+    #   sslTrustedCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "https://mail.lesgrandsvoisins.com";
+    #   };
+    # };
 
     virtualHosts."secret.lesgrandsvoisins.com" = {
       serverName = "secret.lesgrandsvoisins.com";
@@ -310,7 +310,7 @@ in
       sslTrustedCertificate = "/var/lib/acme/secret.lesgrandsvoisins.com/fullchain.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://secret.lesgrandsvoisins.com";
+        proxyPass = "https://secret.lesgrandsvoisins.com:8443";
       };
     };
 
@@ -320,23 +320,24 @@ in
       sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
       sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+      root = "/var/www/resdigitacom";
       # listenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
       forceSSL = true;
       # listen = [{addr="0.0.0.0";port = 8443; ssl=true;} {addr="[::]";port = 8443; ssl=true;}{addr="116.202.236.241";port = 8443; ssl=true;} {addr="[::1]";port = 8443; ssl=true;}];
-      locations."/" = {
-        proxyPass = "https://hetzner005.lesgrandsvoisins.com";
-      #   extraConfig = ''
-      #     # proxy_redirect off;
-      #     proxy_set_header Host $host:$server_port;
-      #     # proxy_set_header Host $http_host;
-      #     proxy_set_header X-Real-IP $remote_addr;
-      #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      #     proxy_pass_request_headers      on;
-      #     # proxy_redirect default;
-      #     # proxy_redirect ~^(https?://[^:]+):\d+(?<relpath>/.+)$ https://www.lesgrandsvoisins.com$relpath;
+      # locations."/" = {
+      #   proxyPass = "https://hetzner005.lesgrandsvoisins.com";
+      # #   extraConfig = ''
+      # #     # proxy_redirect off;
+      # #     proxy_set_header Host $host:$server_port;
+      # #     # proxy_set_header Host $http_host;
+      # #     proxy_set_header X-Real-IP $remote_addr;
+      # #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      # #     proxy_pass_request_headers      on;
+      # #     # proxy_redirect default;
+      # #     # proxy_redirect ~^(https?://[^:]+):\d+(?<relpath>/.+)$ https://www.lesgrandsvoisins.com$relpath;
 
-      #   '';
-      };
+      # #   '';
+      # };
     };
     recommendedProxySettings = true;
 

@@ -86,8 +86,10 @@ in
 #   };
   services.httpd.virtualHosts."guichet.lesgrandsvoisins.com" = {
     serverAliases = ["app.lesgrandsvoisins.com"];
-    enableACME = true;
-    forceSSL = true;
+    listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
     documentRoot =  "/var/www/guichet";
     extraConfig = ''
     <Location />
@@ -135,8 +137,11 @@ in
       "meet.resdigita.com"
       "jswiki.resdigita.com"
       ];
-    enableACME = true;
-    forceSSL = true;
+    listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/gvoisin.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/gvoisin.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/gvoisin.resdigita.com/key.pem";
+
     documentRoot =  "/var/www/wagtail/";
     extraConfig = ''
     <Location />
@@ -159,8 +164,11 @@ in
       "hdoc.lesgv.com"
       "hedgedoc.lesgv.com"
     ];
-    enableACME = true;
-    forceSSL = true;
+    listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/hdoc.lesgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/hdoc.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/hdoc.lesgrandsvoisins.com/key.pem";
+
     extraConfig = ''
         #ProxyPass /  http://10.245.101.35:3000/
         ProxyPass /  http://localhost:3000/
@@ -179,8 +187,13 @@ in
   services.httpd.virtualHosts."auth.lesgrandsvoisins.com" = {
     # serverAliases = [
     # ];
-    enableACME = true;
-    forceSSL = true;
+    # enableACME = true;
+    # forceSSL = true;
+        listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/auth.lesgrandsvoisins.com/key.pem";
+
     extraConfig = ''
         # RewriteEngine On
         #     RewriteCond %{HTTP:Connection} Upgrade [NC]
@@ -217,48 +230,53 @@ in
         # </LimitExcept>
     '';
   };
-  services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
-    serverAliases = [
-      "auth.lesgv.com"
-    ];
-    enableACME = true;
-    forceSSL = true;
-    extraConfig = ''
-        #ProxyPass /  http://10.245.101.35:9000/
-        #ProxyPass /  http://10.245.101.35:9000/ 
-        #ProxyPass /  https://localhost:8443/ upgrade=websocket keepalive=on
-        ProxyPass /  https://localhost:8443/ upgrade=websocket
-        #ProxyPass /  https://10.245.101.35:9443/
-         #ProxySet keepalive=On 
+  # services.httpd.virtualHosts."authentik.lesgrandsvoisins.com" = {
+  #   serverAliases = [
+  #     "auth.lesgv.com"
+  #   ];
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   extraConfig = ''
+  #       #ProxyPass /  http://10.245.101.35:9000/
+  #       #ProxyPass /  http://10.245.101.35:9000/ 
+  #       #ProxyPass /  https://localhost:8443/ upgrade=websocket keepalive=on
+  #       ProxyPass /  https://localhost:8443/ upgrade=websocket
+  #       #ProxyPass /  https://10.245.101.35:9443/
+  #        #ProxySet keepalive=On 
 
-        SSLProxyEngine on
-        SSLProxyVerify none 
-        SSLProxyCheckPeerCN off
-        SSLProxyCheckPeerName off
-        SSLProxyCheckPeerExpire off
+  #       SSLProxyEngine on
+  #       SSLProxyVerify none 
+  #       SSLProxyCheckPeerCN off
+  #       SSLProxyCheckPeerName off
+  #       SSLProxyCheckPeerExpire off
         
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
-        # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
-        # RequestHeader set Host $host
-        ProxyPreserveHost On
-        ProxyVia On
-        ProxyAddHeaders On
-        <If "%{HTTP_HOST} != 'auth.lesgrandsvoisins.com'">
-          RedirectMatch /(.*)$ https://auth.lesgrandsvoisins.com/$1
-        </If>
-    '';
-  };
+  #       RequestHeader set X-Forwarded-Proto "https"
+  #       RequestHeader set X-Forwarded-Port "443"
+  #       # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for
+  #       # RequestHeader set Host $host
+  #       ProxyPreserveHost On
+  #       ProxyVia On
+  #       ProxyAddHeaders On
+  #       <If "%{HTTP_HOST} != 'auth.lesgrandsvoisins.com'">
+  #         RedirectMatch /(.*)$ https://auth.lesgrandsvoisins.com/$1
+  #       </If>
+  #   '';
+  # };
   services.httpd.virtualHosts."resdigita.com" = {
     serverAliases = ["www.resdigita.com" "resdigita.org" "resdigita.desgv.com" "doc.resdigita.com"];
     documentRoot =  "/var/www/resdigitacom/";
-    forceSSL = true;
-    enableACME = true;
+    listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/resdigita.lesgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/resdigita.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/resdigita.lesgrandsvoisins.com/key.pem";
   };
   services.httpd.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
     documentRoot =  "/var/www/resdigitacom/";
-    forceSSL = true;
-    enableACME = true;
+     listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/hetzner005.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/hetzner005.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/hetzner005.resdigita.com/key.pem";
+
   };
   # services.httpd.virtualHosts."avmeet.com" = {
   #   enableACME = true;
@@ -317,8 +335,10 @@ in
   # };
 
   services.httpd.virtualHosts."secret.lesgrandsvoisins.com" = {
-    enableACME = true;
-    forceSSL = true;
+    listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/secret.lesgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/secret.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/secret.lesgrandsvoisins.com/key.pem";
     documentRoot = "/var/www/secret";
     extraConfig = ''
       Alias /static /var/www/wagtail/static
@@ -414,8 +434,10 @@ in
 
   services.httpd.virtualHosts."dav.lesgrandsvoisins.com" = {
     # serverAliases = ["dav.lesgrandsvoisins.com"];
-    enableACME = true;
-    forceSSL = true;
+    listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/dav.lesgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/dav.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/dav.lesgrandsvoisins.com/key.pem";
     documentRoot = "/var/www/dav";
     # extraConfig = ''
     # ProxyPass / http://10.245.101.35:8080/
@@ -524,8 +546,10 @@ in
      serverAliases = ["desgv.com" "www.lesgrandsvoisins.fr"  "francemali.org"
       "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com"];
     documentRoot = "/var/www/wagtail/";
-    enableACME = true;
-     forceSSL = true;
+    listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
+    sslServerChain = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
+    sslServerKey = "/var/lib/acme/www.lesgrandsvoisins.fr/key.pem";
          extraConfig = lib.strings.concatStrings [ wagtailExtraConfig ''
       <If "%{HTTP_HOST} == 'desgv.com'">
           RedirectMatch /(.*)$ https://www.desgv.com/$1
@@ -546,7 +570,11 @@ in
   services.httpd.virtualHosts."www.lesgrandsvoisins.com" = {
     documentRoot = "/var/www/wagtail/";
     serverAliases = ["lesgrandsvoisins.com" ];
-    forceSSL = true;
+    listen = {port = 8443; ssl=true;};
+    # sslServerCert = "/var/lib/acme/dav.lesgrandsvoisins.com/fullchain.pem";
+    # sslServerChain = "/var/lib/acme/dav.lesgrandsvoisins.com/fullchain.pem";
+    # sslServerKey = "/var/lib/acme/dav.lesgrandsvoisins.com/key.pem";
+    # forceSSL = true;
     # enableACME = true;
     # addSSL = true;
     sslServerKey = "/etc/ssl/lesgrandsvoisins.com.key";
@@ -641,8 +669,10 @@ in
   #   ];
   services.httpd.virtualHosts."blog.lesgrandsvoisins.com" = {
     serverAliases = ["blog.resdigita.com"];
-    enableACME = true;
-    forceSSL = true;
+    listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/blog.lesgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/blog.lesgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/blog.lesgrandsvoisins.com/key.pem";
     documentRoot =  "/var/www/ghostio/";
     extraConfig = ''
     <Location />
@@ -741,8 +771,10 @@ in
       "mannfr.resdigita.com"
     ];
     documentRoot = "/var/www/sites/";
-    enableACME = true;
-    forceSSL = true;
+    listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/odoo1.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/odoo1.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/odoo1.resdigita.com/key.pem";
     extraConfig = ''
       Alias "/html/" "/var/www/sites/goodv.org/"
       ProxyPreserveHost On
@@ -762,8 +794,11 @@ in
       "lgvcoop.resdigita.com"
     ];
     documentRoot = "/var/www/sites/";
-    enableACME = true;
-    forceSSL = true;
+     listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/odoo3.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/odoo3.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/odoo3.resdigita.com/key.pem";
+
     extraConfig = ''
       Alias "/html/" "/var/www/sites/goodv.org/"
       ProxyPreserveHost On
@@ -787,8 +822,11 @@ in
       "ghostgvoisorg.resdigita.com"
       ];
     documentRoot =  "/var/www/ghostio/";
-    enableACME = true;
-    forceSSL = true;
+     listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/ghostio.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/ghostio.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/ghostio.resdigita.com/key.pem";
+
     extraConfig = ''
     <Location />
     Require all granted
@@ -809,8 +847,11 @@ in
     '';
   };
   services.httpd.virtualHosts."tel.resdigita.com" = {
-    enableACME = true;
-    forceSSL = true;
+     listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/tel.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/tel.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/tel.resdigita.com/key.pem";
+
     documentRoot = "/var/www/sites/meet";
     extraConfig = ''
        ProxyRequests On
@@ -837,8 +878,11 @@ in
     '';
   };
   services.httpd.virtualHosts."wagtail.resdigita.com" = {
-    enableACME = true;
-    forceSSL = true;
+     listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/wagtail.resdigita.com/key.pem";
+
     documentRoot = "/var/www/wagtail";
     serverAliases = [
       "manncoach.resdigita.com"
@@ -917,8 +961,11 @@ in
 
 
   services.httpd.virtualHosts."odoo4.resdigita.com" = {
-    enableACME = true;
-    forceSSL = true;
+     listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/odoo4.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/odoo4.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/odoo4.resdigita.com/key.pem";
+
     documentRoot = "/var/www/wagtail";
     serverAliases = [
       "voisandcom.resdigita.com"
@@ -944,8 +991,11 @@ in
   };
 
 services.httpd.virtualHosts."odoo2.resdigita.com" = {
-    enableACME = true;
-    forceSSL = true;
+     listen = {port = 8443; ssl=true;};
+    sslServerCert = "/var/lib/acme/odoo2.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/odoo2.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/odoo2.resdigita.com/key.pem";
+
     documentRoot = "/var/www";
     serverAliases = [
       "ooolgvcoop.resdigita.com"
