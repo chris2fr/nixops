@@ -211,7 +211,7 @@ in
     };
 
     virtualHosts."www.lesgrandsvoisins.fr" = {
-     serverAliases = ["desgv.com" "www.lesgrandsvoisins.fr"  "francemali.org"
+     serverAliases = ["desgv.com" "francemali.org"
       "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com"];
       sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.fr/key.pem";
