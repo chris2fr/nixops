@@ -272,7 +272,7 @@ in
           myrouter = {
             entryPoints = [ "websecure" ];
             service = "dav";
-            # tls = ;{passthrough = true;}
+            tls = {domains=[{main="hetzner005.lesgrandsvoisins.com";}];};
           };
         };
       };  
@@ -282,12 +282,12 @@ in
           keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
           # stores = "hetzner005.lesgrandsvoisins.com";
         }];
-      #   stores = [{
-      #     "hetzner005.lesgrandsvoisins.com".defaultCertificate = {
-      #       certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-      #       keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
-      #     };
-      #   }];
+        stores = [{
+          default.defaultCertificate = {
+            certFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
+            keyFile = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
+          };
+        }];
       };
     };
   };
