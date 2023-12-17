@@ -33,7 +33,7 @@ in
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
       # sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       locations."/" = {
-        # proxyPass = "https://dav.lesgrandsvoisins.com";
+        proxyPass = "https://dav.lesgrandsvoisins.com";
         extraConfig = ''
           # proxy_redirect off;
           proxy_set_header Host $host:$server_port;
@@ -41,8 +41,8 @@ in
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_pass_request_headers      on;
-          proxy_redirect default;
-          proxy_redirect ~^(https?://[^:]+):\d+(?<relpath>/.+)$ https://dav.lesgrandsvoisins.com$relpath;
+          # proxy_redirect default;
+          # proxy_redirect ~^(https?://[^:]+):\d+(?<relpath>/.+)$ https://dav.lesgrandsvoisins.com$relpath;
 
         '';
       };
