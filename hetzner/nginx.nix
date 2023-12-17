@@ -35,6 +35,9 @@ in
             default upgrade;
         }
     '';
+    upstreams."wagtail".extraConfig = ''
+        server unix:/var/lib/wagtail/wagtail-lesgv.sock;
+    '';
 
     virtualHosts."interetpublilc.org" = {
       enableACME = true;
@@ -75,64 +78,9 @@ in
     #   };
     # };
 
-    virtualHosts."wagtail.resdigita.com" = {
-      root =  "/var/www/wagtail/";
-      serverAliases = [
-        "manncoach.resdigita.com"
-        "maelanc.com"
-        "resdigitacom.resdigita.com"
-        "distractivescom.resdigita.com"
-        "whowhatetccom.resdigita.com"
-        "voisandcom.resdigita.com"
-        "coopgvcom.resdigita.com"
-        "voisandorg.resdigita.com"
-        "lesgvcom.resdigita.com"
-        "popuposcom.resdigita.com"
-        "grandsvoisinscom.resdigita.com"
-        "forumgrandsvoisinscom.resdigita.com"
-        "baldridgegvoisorg.resdigita.com"
-        "discourselesgvcom.resdigita.com"
-        "iriviorg.resdigita.com"
-        "ooolesgrandsvoisinscom.resdigita.com"
-        "hyperattentioncom.resdigita.com"
-        "forumgdvoisinscom.resdigita.com"
-        "forumgrandsvoisinscom.resdigita.com"
-        "agoodvillagecom.resdigita.com"
-        "lgvcoop.resdigita.com"
-        "configmagiccom.resdigita.com"
-        "caplancitycom.resdigita.com"
-        "quiquoietccom.resdigita.com"
-        "lesartsvoisinscom.resdigita.com"
-        "maelanccom.resdigita.com"
-        "manncity.resdigita.com"
-        "focusplexcom.resdigita.com"
-        "gvoisorg.resdigita.com"
-        "vlgorg.resdigita.com"
-        "oldlesgrandsvoisinscom.resdigita.com"
-        "cooptellgv.resdigita.com"
-        "howwownowcom.resdigita.com"
-        "aaalesgrandsvoisinscom.resdigita.com"
-        "oldmanndigital.resdigita.com"
-        "resolvactivecom.resdigita.com"
-        "gvcity.resdigita.com"
-        "toutdouxlissecom.resdigita.com"
-        "iciwowcom.resdigita.com"
-      ];
-      #enableACME = true; 
-      sslCertificate = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/wagtail.resdigita.com/key.pem";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://10.245.101.15:8080";
-        extraConfig = ''
-          proxy_set_header Host $host:$server_port;
-        '';
-      };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
-    };
-
+    httpConfig = ''
+    server_names_hash_max_size 4096;
+    '';
     virtualHosts."gvoisin.resdigita.com" = {
     serverAliases = [
       "keycloak.resdigita.com"
@@ -145,8 +93,8 @@ in
       forceSSL = true;
       root =  "/var/www/wagtail/";
       locations."/" = {
-        proxyPass = "http://10.245.101.15:8080";
-        # proxyPass = "unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/";
+        #proxyPass = "http://10.245.101.15:8080";
+        proxyPass = "https://wagtail";
         extraConfig = ''
           proxy_set_header Host $host:$server_port;
         '';
@@ -418,6 +366,69 @@ in
         # proxy_buffering off;
         # tcp_nodelay on;    
      };
+
+     
+    virtualHosts."wagtail.resdigita.com" = {
+      root =  "/var/www/wagtail/";
+      serverAliases = [
+        "manncoach.resdigita.com"
+        "maelanc.com"
+        "resdigitacom.resdigita.com"
+        "distractivescom.resdigita.com"
+        "whowhatetccom.resdigita.com"
+        "voisandcom.resdigita.com"
+        "coopgvcom.resdigita.com"
+        "voisandorg.resdigita.com"
+        "lesgvcom.resdigita.com"
+        "popuposcom.resdigita.com"
+        "grandsvoisinscom.resdigita.com"
+        "forumgrandsvoisinscom.resdigita.com"
+        "baldridgegvoisorg.resdigita.com"
+        "discourselesgvcom.resdigita.com"
+        "iriviorg.resdigita.com"
+        "ooolesgrandsvoisinscom.resdigita.com"
+        "hyperattentioncom.resdigita.com"
+        "forumgdvoisinscom.resdigita.com"
+        "forumgrandsvoisinscom.resdigita.com"
+        "agoodvillagecom.resdigita.com"
+        "lgvcoop.resdigita.com"
+        "configmagiccom.resdigita.com"
+        "caplancitycom.resdigita.com"
+        "quiquoietccom.resdigita.com"
+        "lesartsvoisinscom.resdigita.com"
+        "maelanccom.resdigita.com"
+        "manncity.resdigita.com"
+        "focusplexcom.resdigita.com"
+        "gvoisorg.resdigita.com"
+        "vlgorg.resdigita.com"
+        "oldlesgrandsvoisinscom.resdigita.com"
+        "cooptellgv.resdigita.com"
+        "howwownowcom.resdigita.com"
+        "aaalesgrandsvoisinscom.resdigita.com"
+        "oldmanndigital.resdigita.com"
+        "resolvactivecom.resdigita.com"
+        "gvcity.resdigita.com"
+        "toutdouxlissecom.resdigita.com"
+        "iciwowcom.resdigita.com"
+      ];
+      #enableACME = true; 
+      sslCertificate = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/wagtail.resdigita.com/key.pem";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://10.245.101.15:8080";
+        extraConfig = ''
+          proxy_set_header Host $host:$server_port;
+        '';
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+    };
+
+
   };
+
+  
 
 }
