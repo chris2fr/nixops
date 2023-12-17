@@ -24,6 +24,7 @@ in
 { 
   # users.users.wwwrun.isSystemUser = true;
   users.users.nginx.group = "wwwrun";
+
   # users.users.nginx.isSystemUser = true;
   services.nginx = {
     # user = "wwwrun";
@@ -81,9 +82,9 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://10.245.101.15:8080";
-        extraConfig = ''
-          proxy_set_header Host $host:$server_port;
-        '';
+        # extraConfig = ''
+        #   proxy_set_header Host $host:$server_port;
+        # '';
       };
     };
 
