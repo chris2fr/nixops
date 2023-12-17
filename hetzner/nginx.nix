@@ -42,9 +42,9 @@ in
         server unix:/var/lib/wagtail/wagtail-lesgv.sock;
     '';
     upstreams."wagtailstatic".servers = {
-      "10.245.101.15:8898" = {};
+      "10.245.101.15:8888" = {};
     };
-    upstreams."wagtailmedia".servers = {"10.245.101.15:889" = {};};
+    upstreams."wagtailmedia".servers = {"10.245.101.15:8889" = {};};
 
     virtualHosts."interetpublilc.org" = {
       enableACME = true;
