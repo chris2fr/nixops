@@ -32,9 +32,9 @@ in
       sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
       sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
-      listenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
+      # listenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
       forceSSL = true;
-      listen = [{addr="0.0.0.0";port = 8443; ssl=true;} {addr="[::]";port = 8443; ssl=true;}{addr="116.202.236.241";port = 8443; ssl=true;} {addr="[::1]";port = 8443; ssl=true;}];
+      # listen = [{addr="0.0.0.0";port = 8443; ssl=true;} {addr="[::]";port = 8443; ssl=true;}{addr="116.202.236.241";port = 8443; ssl=true;} {addr="[::1]";port = 8443; ssl=true;}];
       # locations."/" = {
       #   proxyPass = "https://www.lesgrandsvoisins.com";
       #   extraConfig = ''
@@ -53,7 +53,7 @@ in
     recommendedProxySettings = true;
 
     virtualHosts."auth.lesgrandsvoisins.com" = {
-       listenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
+      # listenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
       # listen = [
       #   {addr = "[2a01:4f8:241:4faa::100]"; port=443; ssl=true;}
       #   {addr = "[::]"; port=8443; ssl=true;}
