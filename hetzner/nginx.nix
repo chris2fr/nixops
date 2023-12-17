@@ -26,6 +26,18 @@ in
             default upgrade;
         }
     '';
+
+    virtualHosts."www.lesgrandsvoisins.com" = {
+      serverName = "www.lesgrandsvoisins.com";
+      sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.com/key.pem";
+      sslTrustedCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "https://www.lesgrandsvoisins.com";
+      };
+    };
+
     virtualHosts."hetzner005.lesgrandsvoisins.com" = {
       # addSSL = true;
       serverName = "hetzner005.lesgrandsvoisins.com";
@@ -36,7 +48,7 @@ in
       forceSSL = true;
       # listen = [{addr="0.0.0.0";port = 8443; ssl=true;} {addr="[::]";port = 8443; ssl=true;}{addr="116.202.236.241";port = 8443; ssl=true;} {addr="[::1]";port = 8443; ssl=true;}];
       locations."/" = {
-        proxyPass = "https://www.lesgrandsvoisins.com";
+        proxyPass = "https://hetzner005.lesgrandsvoisins.com";
       #   extraConfig = ''
       #     # proxy_redirect off;
       #     proxy_set_header Host $host:$server_port;
