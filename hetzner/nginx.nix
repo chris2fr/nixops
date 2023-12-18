@@ -192,6 +192,7 @@ in
     };
 
     virtualHosts."doc.resdigita.com" = {
+      serverAliases = ["doc.lesgrandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/resdigitacom";
