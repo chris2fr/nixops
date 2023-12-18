@@ -189,9 +189,7 @@ in
      hostName = "mail.lesgrandsvoisins.com";
     #  dicts =  [ en fr de ];
 
-    locations."/SOGo/" = {
-      proxyPass = "https://mail.lesgrandsvoisins.com:8443";
-    };
+
 
      extraConfig = ''
         # starttls needed for authentication, so the fqdn required to match
@@ -241,6 +239,9 @@ in
     enableACME = false;
     sslCertificateKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
     sslCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
+    locations."/SOGo/" = {
+      proxyPass = "https://mail.lesgrandsvoisins.com:8443";
+    };
     # locations."/".extraConfig = ''
     #     # proxy_pass http://authentik;
     #     proxy_http_version 1.1;
