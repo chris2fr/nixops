@@ -285,19 +285,21 @@ in
       '';
     };
     virtualHosts."www.desgrandsvoisins.org" = {
-      serverAliases = ["www.lesgrandsvoisins.com" "lesgrandsvoisins.com" "desgrandsvoisins.org"  "desgrandsvoisins.com"];
+      serverAliases = ["desgrandsvoisins.org"  "desgrandsvoisins.com"];
       globalRedirect = "https://www.desgrandsvoisins.com";
        enableACME = true;
        forceSSL = true;
     };
-    virtualHosts."www.desgrandsvoisins.com" = {      
-      enableACME = true;
-      # sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
-      # sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.com/key.pem";
-      # sslTrustedCertificate = "/var/lib/acme/www.lesgrandsvoisins.com/fullchain.pem";
+    virtualHosts."www.lesgrandsvoisins.com" = {   
+      serverAliases = ["lesgrandsvoisins.com"];
       sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
+      globalRedirect = "https://www.desgrandsvoisins.com";
+      forceSSL = true;
+    };
+    virtualHosts."www.desgrandsvoisins.com" = {      
+      enableACME = true;
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8000/";
