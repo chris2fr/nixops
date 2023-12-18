@@ -285,7 +285,7 @@ in
       '';
     };
     virtualHosts."www.desgrandsvoisins.org" = {
-      serverAliases = ["www.lesgrandsvoisins.com" "lesgrandsvoisins.com" "desgrandsvoisins.org"];
+      serverAliases = ["www.lesgrandsvoisins.com" "lesgrandsvoisins.com" "desgrandsvoisins.org"  "desgrandsvoisins.com"];
       globalRedirect = "https://www.desgrandsvoisins.com";
        enableACME = true;
        forceSSL = true;
