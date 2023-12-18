@@ -11,6 +11,8 @@ let
   mailServerDomainAliases = [ 
     "lesgrandsvoisins.com"
     "mail.lesgrandsvoisins.com"
+    "mail.resdigita.com"
+    "resdigita.com"
   ];
 in
 {
