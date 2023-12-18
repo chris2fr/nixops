@@ -192,7 +192,7 @@ in
     };
 
     virtualHosts."doc.resdigita.com" = {
-      serverAliases = ["resdigita.com"];
+      serverAliases = ["resdigita.com" "resdigita.org" "www.resdigita.org"];
        globalRedirect = "https://doc.lesgrandsvoisins.com";
       enableACME = true;
       forceSSL = true;
