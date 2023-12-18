@@ -189,6 +189,10 @@ in
      hostName = "mail.lesgrandsvoisins.com";
     #  dicts =  [ en fr de ];
 
+    locations."/SOGo/" = {
+      proxyPass = "https://mail.lesgrandsvoisins.com:8443";
+    };
+
      extraConfig = ''
         # starttls needed for authentication, so the fqdn required to match
         # the certificate
