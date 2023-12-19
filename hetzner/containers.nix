@@ -213,6 +213,7 @@ in
           sqlite
           nodePackages.vercel
           flyctl
+          docker
       ];
     };
   };
