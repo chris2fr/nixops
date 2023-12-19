@@ -343,6 +343,13 @@ in
       globalRedirect = "dav.desgrandsvoisins.com";
     };
 
+    virtualHosts."list.desgrandsvoisins.org" = {
+      serverAliases = ["list.desgrandsvoisins.com"];
+      enableACME = true;
+      forceSSL = true;
+      globalRedirect = "list.lesgrandsvoisins.com";
+    };
+
     virtualHosts."dav.desgrandsvoisins.com" = {
       enableACME = true;
       forceSSL = true;
