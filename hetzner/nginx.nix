@@ -1,8 +1,14 @@
 { config, pkgs, lib, ... }:
 let 
 nginxLocationWagtailExtraConfig = ''
+    # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    # proxy_redirect off;
+    proxy_http_version 1.1;
+    proxy_set_header X-Forwarded-Proto $scheme;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade_keepalive;
 '';
 in
 { 
@@ -286,7 +292,7 @@ in
     };
     virtualHosts."www.desgrandsvoisins.org" = {
       serverAliases = ["desgrandsvoisins.org"  "desgrandsvoisins.com"];
-      globalRedirect = "https://www.desgrandsvoisins.com";
+      globalRedirect = "https://www.desgrandsvoisins.com/";
        enableACME = true;
        forceSSL = true;
     };
@@ -295,7 +301,7 @@ in
       sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
-      globalRedirect = "https://www.desgrandsvoisins.com";
+      globalRedirect = "https://www.desgrandsvoisins.com/";
       forceSSL = true;
     };
     virtualHosts."www.desgrandsvoisins.com" = {      
