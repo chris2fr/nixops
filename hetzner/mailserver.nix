@@ -13,6 +13,8 @@ let
     "mail.lesgrandsvoisins.com"
     "mail.resdigita.com"
     "resdigita.com"
+    "desgrandsvoisins.com"
+    "mail.desgrandsvoisins.com"
   ];
 in
 {
