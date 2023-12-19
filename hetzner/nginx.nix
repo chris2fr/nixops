@@ -339,9 +339,17 @@ in
     virtualHosts."dav.desgrandsvoisins.org" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = ["dav.lesgrandsvoisins.com"];
       globalRedirect = "dav.desgrandsvoisins.com";
     };
+
+    virtualHosts."dav.lesgrandsvoisins.com" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "https://dav.desgrandsvoisins.com:8443/";
+      };
+    };
+
 
     virtualHosts."list.desgrandsvoisins.org" = {
       serverAliases = ["list.desgrandsvoisins.com"];
@@ -373,15 +381,22 @@ in
     virtualHosts."secret.desgrandsvoisins.org" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = ["secret.lesgrandsvoisins.com"];
       globalRedirect = "secret.desgrandsvoisins.com";
+    };
+
+    virtualHosts."secret.lesgrandsvoisins.com" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "https://secret.lesgrandsvoisins.com:8443/";
+      };
     };
 
     virtualHosts."secret.desgrandsvoisins.com" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://secret.lesgrandsvoisins.com:8443/";
+        proxyPass = "https://secret.desgrandsvoisins.com:8443/";
       };
     };
 

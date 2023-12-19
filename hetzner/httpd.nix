@@ -343,8 +343,106 @@ in
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
       DavLockDB /tmp/DavLockSecret
-      #OIDCProviderMetadataURL https://auth.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+      OIDCProviderMetadataURL https://auth.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+      OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
+      OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+      OIDCRedirectURI https://secret.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
+      OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+      <LocationMatch "^/(auth|pass|ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json$">
+        Satisfy Any
+        Allow from all
+      </LocationMatch>
+      <Location "/auth">
+        AuthType openid-connect
+        Require valid-user
+      </Location>
+      <Location "/redirect">
+        AuthType openid-connect
+        Require valid-user
+        RewriteEngine On
+        # Check for the presence of the OIDC_CLAIM_email header
+        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
+        # Redirect to the specific path based on the header value
+        RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
+      </Location>
+      <LocationMatch "^/auth/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+        AuthType openid-connect 
+        # Should already be inherited
+        # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
+        Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        </LimitExcept>
+      </LocationMatch>
+      <LocationMatch "^/auth/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+        AuthType openid-connect 
+        # Should already be inherited
+        # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
+        Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        </LimitExcept>
+      </LocationMatch>
+      <LocationMatch "^/pass/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+        AuthType Basic
+        AuthBasicProvider ldap
+        AuthName "DAV par LDAP"
+        AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+        AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+        Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+          Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        </LimitExcept>
+      </LocationMatch>
+      <LocationMatch "^/pass/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+        AuthType Basic
+        AuthBasicProvider ldap
+        AuthName "DAV par LDAP"
+        AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+        AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+        Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
+          Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        </LimitExcept>
+      </LocationMatch>
+      <LocationMatch ^/$>
+          Redirect /redirect
+      </LocationMatch>
+
+      AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)/dav/(.*)" "/var/www/secret/dav/$2/$3"
+      AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)(.*)" "/var/www/secret/keeweb$3"
+
+      Alias /auth/dav /var/www/secret/dav
+      Alias /pass/dav /var/www/secret/dav
+
+      <Directory "/var/www">
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+      </Directory>
+
+      <Directory "/var/www/secret/dav">
+        Dav On
+        DavDepthInfinity On
+      </Directory>
+
+    '';
+  };
+
+  services.httpd.virtualHosts."secret.desgrandsvoisins.com" = {
+    listen = [{port = 8443; ssl=true;}];
+    sslServerCert = "/var/lib/acme/secret.desgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/secret.desgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/secret.desgrandsvoisins.com/key.pem";
+    documentRoot = "/var/www/secret";
+    extraConfig = ''
+      Alias /static /var/www/wagtail/static
+      Alias /media /var/www/wagtail/media
+      DavLockDB /tmp/DavLockSecret
       OIDCProviderMetadataURL https://auth.desgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+      # OIDCProviderMetadataURL https://auth.desgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
       OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
       OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
       OIDCRedirectURI https://secret.desgrandsvoisins.com/auth/redirect_uri_from_oauth2
@@ -431,6 +529,8 @@ in
 
     '';
   };
+
+
 
   services.httpd.virtualHosts."dav.desgrandsvoisins.com" = {
     # serverAliases = ["dav.lesgrandsvoisins.com"];
