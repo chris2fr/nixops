@@ -223,7 +223,7 @@ in
 
     virtualHosts."doc.resdigita.com" = {
       serverAliases = ["resdigita.com" "resdigita.org" "www.resdigita.org" "doc.desgrandsvoisins.org"  "doc.lesgrandsvoisins.com"];
-       globalRedirect = "https://doc.desgrandsvoisins.com";
+       globalRedirect = "doc.desgrandsvoisins.com";
       enableACME = true;
       forceSSL = true;
       root = "/var/www/resdigitacom";
@@ -237,7 +237,7 @@ in
 
     virtualHosts."guichet.desgrandsvoisins.org" = {
       serverAliases = ["app.lesgrandsvoisins.com" "guichet.lesgrandsvoisins.com"];
-      globalRedirect = "https://guichet.desgrandsvoisins.com";
+      globalRedirect = "guichet.desgrandsvoisins.com";
     };
     virtualHosts."guichet.desgrandsvoisins.com" = {
       enableACME = true;      
@@ -292,7 +292,7 @@ in
     };
     virtualHosts."www.desgrandsvoisins.org" = {
       serverAliases = ["desgrandsvoisins.org"  "desgrandsvoisins.com"];
-      globalRedirect = "https://www.desgrandsvoisins.com/";
+      globalRedirect = "www.desgrandsvoisins.com/";
        enableACME = true;
        forceSSL = true;
     };
@@ -301,7 +301,7 @@ in
       sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
-      globalRedirect = "https://www.desgrandsvoisins.com/";
+      globalRedirect = "www.desgrandsvoisins.com/";
       forceSSL = true;
     };
     virtualHosts."www.desgrandsvoisins.com" = {      
@@ -322,7 +322,7 @@ in
       enableACME = true;
       forceSSL = true;
       serverAliases = ["blog.resdigita.com" "blog.lesgrandsvoisins.com"];
-      globalRedirect = "https://blog.desgrandsvoisins.com";
+      globalRedirect = "blog.desgrandsvoisins.com";
     };
 
     virtualHosts."blog.desgrandsvoisins.com" = {
@@ -338,7 +338,7 @@ in
       enableACME = true;
       forceSSL = true;
       serverAliases = ["dav.lesgrandsvoisins.com"];
-      globalRedirect = "https://dav.desgrandsvoisins.com";
+      globalRedirect = "dav.desgrandsvoisins.com";
     };
 
     virtualHosts."dav.desgrandsvoisins.com" = {
@@ -365,7 +365,7 @@ in
       enableACME = true;
       forceSSL = true;
       serverAliases = ["secret.lesgrandsvoisins.com"];
-      globalRedirect = "https://secret.desgrandsvoisins.com";
+      globalRedirect = "secret.desgrandsvoisins.com";
     };
 
     virtualHosts."secret.desgrandsvoisins.com" = {
