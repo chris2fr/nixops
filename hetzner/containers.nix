@@ -170,6 +170,14 @@ in
          isNormalUser = true;
          createHome = true;
          useDefaultShell = true;
+         extraGroups = ["docker"];
+      };
+      virtualisation.docker = {
+        enable = true;
+        rootless = {
+          enable = true;
+          setSocketVariable = true;
+        };
       };
       networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
       nix.settings.experimental-features = "nix-command flakes";
@@ -198,24 +206,26 @@ in
           '';
           }
         )
-          curl
-          wget
-          lynx
-          dig    
-          tmux
-          bat
-          cowsay
-          git
-          lzlib
-          killall
-          pwgen
-          gettext
-          sqlite
-          nodePackages.vercel
-          flyctl
-          docker
+        curl
+        wget
+        lynx
+        dig    
+        tmux
+        bat
+        cowsay
+        git
+        lzlib
+        killall
+        pwgen
+        gettext
+        sqlite
+        nodePackages.vercel
+        flyctl
+        docker
+        busybox
       ];
     };
+    
   };
 
   containers.wagtail = {
@@ -241,54 +251,54 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "23.11";
-        environment.systemPackages = with pkgs; [
-          ((vim_configurable.override {  }).customize{
-            name = "vim";
-            vimrcConfig.customRC = ''
-              " your custom vimrc
-              set mouse=a
-              set nocompatible
-              colo torte
-              syntax on
-              set tabstop     =2
-              set softtabstop =2
-              set shiftwidth  =2
-              set expandtab
-              set autoindent
-              set smartindent
-              " ...
-            '';
-            }
-          )
-            python311
-            python311Packages.pillow
-            python311Packages.gunicorn
-            python311Packages.pip
-            libjpeg
-            zlib
-            libtiff
-            freetype
-            python311Packages.venvShellHook
-            curl
-            wget
-            lynx
-            dig    
-            python311Packages.pylibjpeg-libjpeg
-            git
-            tmux
-            bat
-            cowsay
-            lzlib
-            killall
-            pwgen
-            python311Packages.pypdf2
-            python311Packages.python-ldap
-            python311Packages.pq
-            python311Packages.aiosasl
-            python311Packages.psycopg2
-            gettext
-            sqlite
-            postgresql_14
+      environment.systemPackages = with pkgs; [
+        ((vim_configurable.override {  }).customize{
+          name = "vim";
+          vimrcConfig.customRC = ''
+            " your custom vimrc
+            set mouse=a
+            set nocompatible
+            colo torte
+            syntax on
+            set tabstop     =2
+            set softtabstop =2
+            set shiftwidth  =2
+            set expandtab
+            set autoindent
+            set smartindent
+            " ...
+          '';
+          }
+        )
+        python311
+        python311Packages.pillow
+        python311Packages.gunicorn
+        python311Packages.pip
+        libjpeg
+        zlib
+        libtiff
+        freetype
+        python311Packages.venvShellHook
+        curl
+        wget
+        lynx
+        dig    
+        python311Packages.pylibjpeg-libjpeg
+        git
+        tmux
+        bat
+        cowsay
+        lzlib
+        killall
+        pwgen
+        python311Packages.pypdf2
+        python311Packages.python-ldap
+        python311Packages.pq
+        python311Packages.aiosasl
+        python311Packages.psycopg2
+        gettext
+        sqlite
+        postgresql_14
         ];
 
       # networking = {
