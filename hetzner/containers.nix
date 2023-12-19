@@ -166,8 +166,13 @@ in
   containers.crabfit = {
     autoStart = true;
     config = { config, pkgs, ... }: {
-    networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
-    nix.settings.experimental-features = "nix-command flakes";
+      users.users.crabfit = {
+         isNormalUser = true;
+         createHome = true;
+         useDefaultShell = true;
+      };
+      networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
+      nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "23.11";
       environment.sessionVariables = rec {
