@@ -14,9 +14,6 @@ in
     # user = "wwwrun";
     group = "wwwrun";
     enable = true;
-    appendHttpConfig = ''
-      server_names_hash_max_size 4096;
-    '';
     # defaultListen = [
     #     {addr = "[2a01:4f8:241:4faa::100]"; port=443; ssl=true;}
     #     {addr = "[::]"; port=8443; ssl=true;}
@@ -32,6 +29,8 @@ in
     #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
     appendHttpConfig = ''
       proxy_headers_hash_max_size 4096;
+      server_names_hash_max_size 4096;
+      proxy_headers_hash_bucket_size 256;
     '';
     upstreams."authentik".extraConfig = ''
         server 10.245.101.35:9000;
