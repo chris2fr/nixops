@@ -176,11 +176,22 @@ in
   systemd.services.crabfitfront = {
     enable = true;
     wantedBy = ["default.target"];
-    script = "/home/guichet/guichet/guichet";
-    description = "Guichet, Self-Service LDAP account admin";
+    script = "${pkgs.yarn}/bin/yarn run start -p 3080";
+    description = "Crab.fit front-end NextJS";
     serviceConfig = {
-      WorkingDirectory = "/home/guichet/guichet";
-      User = "guichet";
+      WorkingDirectory = "/home/crabfit/crab.fit/frontend/";
+      User = "crabfit";
+      Group = "users";
+    };
+  };
+  systemd.services.crabfitback = {
+    enable = true;
+    wantedBy = ["default.target"];
+    script = "/home/crabfit/crab.fit/api/target/release/crabfit-api";
+    description = "Crab.fit back in Rust avec Postgres";
+    serviceConfig = {
+      WorkingDirectory = "/home/crabfit/crab.fit/api/target/release/";
+      User = "crabfit";
       Group = "users";
     };
   };
