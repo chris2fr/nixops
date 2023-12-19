@@ -80,13 +80,13 @@ in
         "hdoc.desgrandsvoisins.org"
       ];
       enableACME = true;
-      locations."/".proxyPass = "http://localhost:3000/";
+      locations."/".proxyPass = "http://localhost:3333/";
       forceSSL = true;
     };
 
     virtualHosts."hdoc.desgrandsvoisins.com" = {
       enableACME = true;
-      locations."/".proxyPass = "http://localhost:3000/";
+      locations."/".proxyPass = "http://localhost:3333/";
       forceSSL = true;
     };
 
