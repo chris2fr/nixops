@@ -24,6 +24,28 @@
       Group = "users";
     };
   };
+  systemd.services.crabfitfront = {
+    enable = true;
+    wantedBy = ["default.target"];
+    script = "${pkgs.yarn}/bin/yarn run start -p 3080";
+    description = "Crab.fit front-end NextJS";
+    serviceConfig = {
+      WorkingDirectory = "/home/crabfit/crab.fit/frontend/";
+      User = "crabfit";
+      Group = "users";
+    };
+  };
+  systemd.services.crabfitback = {
+    enable = true;
+    wantedBy = ["default.target"];
+    script = "/home/crabfit/crab.fit/api/target/release/crabfit-api";
+    description = "Crab.fit back in Rust avec Postgres";
+    serviceConfig = {
+      WorkingDirectory = "/home/crabfit/crab.fit/api/target/release/";
+      User = "crabfit";
+      Group = "users";
+    };
+  };
   systemd.timers."guichet-wwwrun-fix-perms" = {
   wantedBy = [ "timers.target" ];
     timerConfig = {
