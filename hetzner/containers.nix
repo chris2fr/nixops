@@ -200,6 +200,7 @@ in
           tmux
           bat
           cowsay
+          git
           lzlib
           killall
           pwgen
