@@ -30,9 +30,9 @@ in
     # defaultListenAddresses = [ "0.0.0.0" "[::]"];
     defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
     #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
-    # appendConfig = ''
-    #   proxy_headers_hash_max_size 4096;
-    # '';
+    appendHttpConfig = ''
+      proxy_headers_hash_max_size 4096;
+    '';
     upstreams."authentik".extraConfig = ''
         server 10.245.101.35:9000;
         # Improve performance by keeping some connections alive.
