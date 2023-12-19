@@ -352,13 +352,6 @@ in
       };
     };
 
-    virtualHosts."apicrabfit.resdigita.com" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:3000/";
-      };
-    };
 
     virtualHosts."dav.desgrandsvoisins.org" = {
       enableACME = true;
