@@ -72,6 +72,11 @@ in
     openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     extraGroups = [ "wheel" ];
   };
+  users.users.crabfit = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    extraGroups = [ "docker" ];
+  };
   users.users.fossil = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
