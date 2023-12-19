@@ -11,6 +11,7 @@ services.postgresql = {
       "wagtail"
       "previous"
       "fairemain"
+      "crabfit"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
