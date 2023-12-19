@@ -53,7 +53,7 @@ in
     };
     upstreams."wagtailmedia".servers = {"10.245.101.15:8889" = {};};
 
-    virtualHosts."interetpublilc.org" = {
+    virtualHosts."interetpublic.org" = {
       enableACME = true;
       forceSSL = true;
       serverAliases = ["www.interetpublic.org"];
