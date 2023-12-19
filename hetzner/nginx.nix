@@ -158,6 +158,14 @@ in
         proxyPass = null;
       };
     };
+
+    virtualHosts."crabfit.resdigita.com" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:3080/";
+      };
+    };
         
 
     virtualHosts."odoo3.resdigita.com" = {
