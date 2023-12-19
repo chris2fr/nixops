@@ -24,6 +24,10 @@ services.postgresql = {
         #   "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
         # };
       }
+      {
+        name = "crabfit";
+        ensureDBOwnership = true;
+      }
     ]; 
 #    authentication = ''
 #      local all all trust
