@@ -30,6 +30,9 @@ in
   #   openssl
   #  ];
   # Use the systemd-boot EFI boot loader.
+  environment.systemPackages = with pkgs; [
+    yarn
+  ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -81,6 +84,14 @@ in
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
   };
+
+  # home-manager.users.crabfit = {
+  #   home.packages = with pkgs; [ 
+  #     yarn
+  #   ];
+  #   home.stateVersion = "23.11";
+  #   programs.home-manager.enable = true;
+  # };
 
   home-manager.users.fossil = {pkgs, ...}: {
     home.packages = with pkgs; [ 
@@ -162,6 +173,17 @@ in
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
   system.copySystemConfiguration = true;
+  systemd.services.crabfitfront = {
+    enable = true;
+    wantedBy = ["default.target"];
+    script = "/home/guichet/guichet/guichet";
+    description = "Guichet, Self-Service LDAP account admin";
+    serviceConfig = {
+      WorkingDirectory = "/home/guichet/guichet";
+      User = "guichet";
+      Group = "users";
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
