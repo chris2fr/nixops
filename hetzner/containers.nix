@@ -165,6 +165,7 @@ in
 
   containers.crabfit = {
     autoStart = true;
+    privateNetwork = true;
     config = { config, pkgs, ... }: {
       users.users.crabfit = {
          isNormalUser = true;
