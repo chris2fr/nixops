@@ -166,6 +166,14 @@ in
         proxyPass = "http://localhost:3080/";
       };
     };
+
+    virtualHosts."apicrabfit.resdigita.com" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:3000/";
+      };
+    };
         
 
     virtualHosts."odoo3.resdigita.com" = {
