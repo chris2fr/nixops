@@ -30,6 +30,9 @@ in
     # defaultListenAddresses = [ "0.0.0.0" "[::]"];
     defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
     #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
+    appendConfig = ''
+      proxy_headers_hash_max_size 4096;
+    '';
     upstreams."authentik".extraConfig = ''
         server 10.245.101.35:9000;
         # Improve performance by keeping some connections alive.
@@ -53,8 +56,7 @@ in
     virtualHosts."interetpublilc.org" = {
       enableACME = true;
       forceSSL = true;
-      serverName = "www.interetpublic.org";
-      serverAliases = ["interetpublic.org"];
+      serverAliases = ["www.interetpublic.org"];
       root = "/var/www/wagtail";
       locations."/" = {
         proxyPass = "http://localhost:8000";
@@ -234,7 +236,6 @@ in
     };
     virtualHosts."guichet.desgrandsvoisins.com" = {
       enableACME = true;      
-      serverName = "guichet.lesgrandsvoisins.com";
       # sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
       # sslCertificateKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
       # sslTrustedCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
@@ -315,7 +316,6 @@ in
       root = "/var/www/ghostio/";
       enableACME = true;
       forceSSL = true;
-      serverName = "blog.lesgrandsvoisins.com";
       serverAliases = ["blog.resdigita.com" "blog.lesgrandsvoisins.com"];
       globalRedirect = "https://blog.desgrandsvoisins.com";
     };
@@ -373,7 +373,6 @@ in
 
     virtualHosts."hetzner005.lesgrandsvoisins.com" = {
       # addSSL = true;
-      serverName = "hetzner005.lesgrandsvoisins.com";
       sslCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
       sslTrustedCertificate = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/fullchain.pem";
