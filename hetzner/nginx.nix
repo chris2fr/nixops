@@ -233,11 +233,11 @@ in
       globalRedirect = "https://guichet.desgrandsvoisins.com";
     };
     virtualHosts."guichet.desgrandsvoisins.com" = {
-      
+      enableACME = true;      
       serverName = "guichet.lesgrandsvoisins.com";
-      sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
-      sslTrustedCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
+      # sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
+      # sslCertificateKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
+      # sslTrustedCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
       forceSSL = true;
       root = "/var/www/guichet";
       locations."/" = {
