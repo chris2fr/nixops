@@ -432,6 +432,90 @@ in
     '';
   };
 
+  services.httpd.virtualHosts."dav.desgrandsvoisins.com" = {
+    # serverAliases = ["dav.lesgrandsvoisins.com"];
+    listen = [{port = 8443; ssl=true;}];
+    sslServerCert = "/var/lib/acme/dav.desgrandsvoisins.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/dav.desgrandsvoisins.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/dav.desgrandsvoisins.com/key.pem";
+    documentRoot = "/var/www/dav";
+        extraConfig = lib.strings.concatStrings [ ''
+      Alias /static /var/www/wagtail/static
+      Alias /media /var/www/wagtail/media
+    ''
+    # wagtailExtraConfig
+    ''
+      DavLockDB /tmp/DesGVDavLock
+
+        OIDCProviderMetadataURL https://auth.desgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+        OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
+        OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+        OIDCRedirectURI https://dav.desgrandsvoisins.com/auth/redirect_uri_from_oauth2
+        OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+
+        RedirectMatch ^/?$ /redirect
+
+        <Location "/auth">
+          AuthType openid-connect
+          Require valid-user
+        </Location>
+
+        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+          AuthType openid-connect
+          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+            
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPOFIND CONNECT>
+             Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+          </LimitExcept>
+        </LocationMatch>
+
+      <Location "/redirect">
+        AuthType openid-connect
+        Require valid-user
+        RewriteEngine On
+        # Check for the presence of the OIDC_CLAIM_email header
+        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
+        # Redirect to the specific path based on the header value
+        RewriteRule ^(.*)$ /auth/%2/%1 [R,L]
+      </Location>
+      RedirectMatch ^/$ /redirect
+      
+
+
+
+        Alias /ldap /var/www/dav/data
+        Alias /auth /var/www/dav/data
+        Alias /pass /var/www/dav/data
+        Alias /login /var/www/dav/data
+
+        <LocationMatch "^/(ldap|pass|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+          AuthType Basic
+          AuthBasicProvider ldap
+          AuthName "DAV par LDAP"
+          AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+          AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+          AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
+          #Require valid-user
+          Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+          
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
+            Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+          </LimitExcept>
+        </LocationMatch>
+
+        <Directory "/var/www">
+          Options Indexes FollowSymLinks
+          AllowOverride None
+          Require all granted
+        </Directory>
+
+      <Directory "/var/www/dav/data">
+        Dav On
+        DavDepthInfinity On
+      </Directory>
+      ''];
+  };
+
   services.httpd.virtualHosts."dav.lesgrandsvoisins.com" = {
     # serverAliases = ["dav.lesgrandsvoisins.com"];
     listen = [{port = 8443; ssl=true;}];
@@ -459,10 +543,10 @@ in
     ''
       DavLockDB /tmp/DavLock
 
-        OIDCProviderMetadataURL https://auth.desgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://auth.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
         OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
         OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-        OIDCRedirectURI https://dav.desgrandsvoisins.com/auth/redirect_uri_from_oauth2
+        OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
         RedirectMatch ^/?$ /redirect

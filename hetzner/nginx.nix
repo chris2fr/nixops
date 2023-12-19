@@ -354,7 +354,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://dav.lesgrandsvoisins.com:8443/";
+        proxyPass = "https://dav.desgrandsvoisins.com:8443/";
       };
     };
 
