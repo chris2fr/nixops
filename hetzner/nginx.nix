@@ -64,7 +64,7 @@ in
       serverAliases = ["www.interetpublic.org"];
       root = "/var/www/wagtail";
       locations."/" = {
-        proxyPass = "http://localhost:8000";
+        proxyPass = "http://localhost:8000/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/static" = {
@@ -123,7 +123,7 @@ in
       root =  "/var/www/wagtail/";
       locations."/" = {
         #proxyPass = "http://10.245.101.15:8080";
-        proxyPass = "https://wagtail";
+        proxyPass = "https://wagtail/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -150,7 +150,7 @@ in
       enableACME=true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.245.101.173:8069";
+        proxyPass = "http://10.245.101.173:8069/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/html/" = {
@@ -171,7 +171,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.245.101.128:8069";
+        proxyPass = "http://10.245.101.128:8069/";
         extraConfig = ''
           proxy_set_header Host $host:$server_port;
         '';
@@ -192,7 +192,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.245.101.82:8069";
+        proxyPass = "http://10.245.101.82:8069/";
         extraConfig = ''
           proxy_set_header Host $host:$server_port;
         '';
@@ -214,7 +214,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.245.101.158:8069";
+        proxyPass = "http://10.245.101.158:8069/";
         extraConfig = ''
           proxy_set_header Host $host:$server_port;
         '';
@@ -310,7 +310,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000";
+        proxyPass = "http://127.0.0.1:8000/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -332,7 +332,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:2368";
+        proxyPass = "http://localhost:2368/";
       };
     };
 
@@ -354,7 +354,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://dav.lesgrandsvoisins.com:8443";
+        proxyPass = "https://dav.lesgrandsvoisins.com:8443/";
       };
     };
 
@@ -381,7 +381,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://secret.lesgrandsvoisins.com:8443";
+        proxyPass = "https://secret.lesgrandsvoisins.com:8443/";
       };
     };
 
@@ -452,7 +452,7 @@ in
       enableACME=true;
       forceSSL=true;
       locations."/" = {
-        proxyPass = "http://10.245.101.15:8080";
+        proxyPass = "http://10.245.101.15:8080/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
@@ -501,7 +501,7 @@ in
       # sslCertificateKey = "/var/lib/acme/wagtail.resdigita.com/key.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.245.101.15:8080";
+        proxyPass = "http://10.245.101.15:8080/";
         extraConfig = nginxLocationWagtailExtraConfig;
         # extraConfig = ''
         #   proxy_set_header Host $host:$server_port;
