@@ -238,7 +238,7 @@ in
     virtualHosts."guichet.desgrandsvoisins.org" = {
       serverAliases = ["app.lesgrandsvoisins.com" "guichet.lesgrandsvoisins.com"];
       globalRedirect = "guichet.desgrandsvoisins.com";
-            enableACME = true; 
+      enableACME = true; 
       forceSSL = true;    
     };
     virtualHosts."guichet.desgrandsvoisins.com" = {
@@ -247,7 +247,6 @@ in
       # sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
       # sslCertificateKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
       # sslTrustedCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
-      forceSSL = true;
       root = "/var/www/guichet";
       locations."/" = {
         proxyPass = "http://[::1]:9991/";
@@ -311,7 +310,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8000";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -333,7 +332,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:2368/";
+        proxyPass = "http://localhost:2368";
       };
     };
 
