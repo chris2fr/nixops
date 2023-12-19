@@ -238,9 +238,12 @@ in
     virtualHosts."guichet.desgrandsvoisins.org" = {
       serverAliases = ["app.lesgrandsvoisins.com" "guichet.lesgrandsvoisins.com"];
       globalRedirect = "guichet.desgrandsvoisins.com";
+            enableACME = true; 
+      forceSSL = true;    
     };
     virtualHosts."guichet.desgrandsvoisins.com" = {
-      enableACME = true;      
+      enableACME = true; 
+      forceSSL = true;     
       # sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
       # sslCertificateKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
       # sslTrustedCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
