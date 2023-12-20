@@ -3,12 +3,12 @@ let
 in
 { 
   services.nginx.virtualHosts = {
-      "desgrandsvoisins.org" = {
+      "hdoc.desgrandsvoisins.org" = {
         serverAliases = [
           "hedgedoc.lesgrandsvoisins.com"
           "hdoc.lesgv.com"
           "hedgedoc.lesgv.com"
-          "hdoc.desgrandsvoisins.org"
+          "hdoc.desgrandsvoisins.com"
           "hdoc.resdigita.com"
           "hdoc.desgv.com"
           "hedgedoc.desgv.com"
