@@ -61,10 +61,10 @@ in
     enable = true;
     fqdn = domainName;
     domains = mailServerDomainAliases;
-    forwards = {
-      "postmaster@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-      "dmarc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    };
+    # forwards = {
+    #   "postmaster@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+    #   "dmarc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+    # };
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
@@ -189,14 +189,10 @@ in
 
   services.roundcube = {
      enable = true;
-
      # this is the url of the vhost, not necessarily the same as the fqdn of
      # the mailserver
      hostName = "mail.lesgrandsvoisins.com";
     #  dicts =  [ en fr de ];
-
-
-
      extraConfig = ''
         # starttls needed for authentication, so the fqdn required to match
         # the certificate
@@ -287,5 +283,4 @@ in
   #     ssl_client_ca = </etc/ssl/certs/ca-certificates.crt
   security.acme.certs."mail.lesgrandsvoisins.com".group = lib.mkForce "wwwrun";
   users.users.nginx.extraGroups = ["wwwrun"];
-
 }
