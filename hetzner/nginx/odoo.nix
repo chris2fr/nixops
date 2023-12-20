@@ -72,9 +72,9 @@ in
           "ooolesgrandsvoisinscom.resdigita.com"
           "lesgrandsvoisinscom.resdigita.com"
           "odoo4.desgv.com"
-           "odoo4.lesgv.com"
-            "odoo4.desgrandsvoisins.org"
-            "odoo4.desgrandsvoisins.com"
+          "odoo4.lesgv.com"
+          "odoo4.desgrandsvoisins.org"
+          "odoo4.desgrandsvoisins.com"
         ];
         enableACME=true;
         forceSSL = true;
