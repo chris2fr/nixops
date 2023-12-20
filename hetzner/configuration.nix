@@ -187,7 +187,7 @@ in
   systemd.services.crabfitback = {
     enable = true;
     wantedBy = ["default.target"];
-    script = "/home/crabfit/crab.fit/api/target/release/crabfit-api";
+    script = "/home/crabfit/crab.fit/api/launch-crabfit-api.sh";
     description = "Crab.fit back in Rust avec Postgres";
     serviceConfig = {
       WorkingDirectory = "/home/crabfit/crab.fit/api/target/release/";
