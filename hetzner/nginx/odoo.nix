@@ -80,7 +80,7 @@ in
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://10.245.101.173:8069/";
-          extraConfig = nginxLocationWagtailExtraConfig;
+          # extraConfig = nginxLocationWagtailExtraConfig;
         };
         locations."/html/" = {
           root = "/var/www/wagtail/";
