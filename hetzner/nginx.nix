@@ -52,7 +52,7 @@ in
       };
       "wagtail".extraConfig = ''
         # server unix:/var/lib/wagtail/wagtail-lesgv.sock;
-        server https://localhost:8000;
+        server localhost:8000;
       '';
       "wagtailstatic".servers = {
         "10.245.101.15:8888" = {};
