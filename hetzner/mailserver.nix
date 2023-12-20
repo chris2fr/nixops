@@ -209,14 +209,16 @@ in
         # $config['oauth_scope'] = "openid dovecotprofile email";
         # $config['oauth_auth_parameters'] = [];
         # $config['oauth_identity_fields'] = ['email'];
-        # $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
-        # $config['session_samesite'] = "Lax";
-        # $config['support_url'] = 'https://www.lesgrandsvoisins.com';
-        # $config['product_name'] = 'Roundcube Webmail des GV';
-        # $config['session_debug'] = true;
-        # $config['session_domain'] = 'mail.lesgrandsvoisins.com';
-        # $config['login_password_maxlen'] = 4096;
+        $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
+        $config['session_samesite'] = "Lax";
+        $config['support_url'] = 'https://www.lesgrandsvoisins.com';
+        $config['product_name'] = 'Roundcube Webmail des GV';
+        $config['session_debug'] = true;
+        $config['session_domain'] = 'mail.lesgrandsvoisins.com';
+        $config['login_password_maxlen'] = 4096;
+        services.roundcube.maxAttachmentSize = 75;
      '';
+     dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
      #         
 #             
 
@@ -234,28 +236,31 @@ in
   #       grpc_set_header X-Forwarded-Port "443";
   #   '';
   # };
-  services.nginx.virtualHosts."mail.lesgrandsvoisins.com" = {
-    # listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8888; } { addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
-    # forceSSL = true;
-    # addSSL = true;
-    enableACME = false;
-    sslCertificateKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
-    sslCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
-    locations."/SOGo/" = {
-      proxyPass = "https://mail.lesgrandsvoisins.com:8443";
-    };
-    # locations."/".extraConfig = ''
-    #     # proxy_pass http://authentik;
-    #     proxy_http_version 1.1;
-    #     proxy_set_header X-Forwarded-Proto $scheme;
-    #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    #     proxy_set_header Host $host;
-    #     proxy_set_header Upgrade $http_upgrade;
-    #     proxy_set_header Connection $connection_upgrade_keepalive;
-    #     proxy_redirect unix:/run/phpfpm/roundcube.sock https://hetzner005.lesgrandsvoisins.com;
-    #     chunked_transfer_encoding off;
-    #   '';
-  };
+  # services.nginx.virtualHosts."mail.lesgrandsvoisins.com" = {
+  #   # listen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8888; } { addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
+  #   forceSSL = true;
+  #   # addSSL = true;
+  #   enableACME = true;
+  #   # sslCertificateKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
+  #   # sslCertificate = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
+  #   locations."/SOGo/" = {
+  #     proxyPass = "https://mail.lesgrandsvoisins.com:8443";
+  #   };
+  #   locations."/" = {
+  #     proxyPass = "https://mail.lesgrandsvoisins.com:8443";
+  #   };
+  #   # locations."/".extraConfig = ''
+  #   #     # proxy_pass http://authentik;
+  #   #     proxy_http_version 1.1;
+  #   #     proxy_set_header X-Forwarded-Proto $scheme;
+  #   #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  #   #     proxy_set_header Host $host;
+  #   #     proxy_set_header Upgrade $http_upgrade;
+  #   #     proxy_set_header Connection $connection_upgrade_keepalive;
+  #   #     proxy_redirect unix:/run/phpfpm/roundcube.sock https://hetzner005.lesgrandsvoisins.com;
+  #   #     chunked_transfer_encoding off;
+  #   #   '';
+  # };
   users.users.dovecot2.extraGroups = ["wwwrun"];
 
   # services.httpd.enablePHP = true;
@@ -281,6 +286,6 @@ in
   #   '';
   # };
   #     ssl_client_ca = </etc/ssl/certs/ca-certificates.crt
-  security.acme.certs."mail.lesgrandsvoisins.com".group = lib.mkForce "wwwrun";
+  # security.acme.certs."mail.lesgrandsvoisins.com".group = lib.mkForce "wwwrun";
   users.users.nginx.extraGroups = ["wwwrun"];
 }
