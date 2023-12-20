@@ -23,7 +23,6 @@ in
     ./nginx/wagtail.nix
     ./nginx/webdav.nix
   ];
-
   users.users.nginx.group = "wwwrun";
   services.nginx = {
     group = "wwwrun";
