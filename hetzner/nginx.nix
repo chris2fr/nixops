@@ -109,7 +109,7 @@ in
       serverAliases = ["meet.resdigita.com" "meet.desgv.com" "meet.desgrandsvoisins.org"];
       root =  "/var/www/wagtail/";
       locations."/" = {
-        proxyPass = "https://wagtail/";
+        proxyPass = "http://127.0.0.1:8000/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -136,7 +136,7 @@ in
       root =  "/var/www/wagtail/";
       locations."/" = {
         #proxyPass = "http://10.245.101.15:8080";
-        proxyPass = "https://wagtail/";
+        proxyPass = "http://127.0.0.1:8000/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
