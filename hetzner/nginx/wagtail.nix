@@ -43,7 +43,7 @@ in
         locations."/media" = { proxyPass = null; };
         locations."/.well-known" = { proxyPass = null; };
       };
-      "meet.desgrandsvoisins.com" {
+      "meet.desgrandsvoisins.com" = {
         serverAliases = [
           "meet.desgv.com" 
           "meet.desgrandsvoisins.org"
