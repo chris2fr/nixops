@@ -289,11 +289,11 @@ in
   users.users.nginx.extraGroups = ["wwwrun"];
 
     services.phpfpm.pools."roundcube" = {
-    user = "wwwrun";
-    group = "wwwrun";
+    # user = "wwwrun";
+    # group = "wwwrun";
     settings = {
       "listen.owner" = lib.mkForce "wwwrun";
     };
-     phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
+    #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
 }
