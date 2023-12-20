@@ -103,10 +103,10 @@ in
     #   };
     # };
 
-    virtualHosts."meet.desgrandsvoisins.com" = {
+    virtualHosts."meet.resdigita.com" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = ["meet.resdigita.com" "meet.desgv.com" "meet.desgrandsvoisins.org"];
+      serverAliases = ["meet.desgv.com" "meet.desgrandsvoisins.com" "meet.desgrandsvoisins.org"];
       root =  "/var/www/wagtail/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8000/";
