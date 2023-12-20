@@ -13,15 +13,15 @@ nginxLocationWagtailExtraConfig = ''
 in
 { 
   imports = [
-    "./nginx/authentik.nix"
-    "./nginx/crabfit.nix"
-    "./nginx/ghostio.nix"
-    "./nginx/guichet.nix"
-    "./nginx/hedgedoc.nix"
-    "./nginx/odoo.nix"
-    "./nginx/static.nix"
-    "./nginx/wagtail.nix"
-    "./nginx/webdav.nix"
+    ./nginx/authentik.nix
+    ./nginx/crabfit.nix
+    ./nginx/ghostio.nix
+    ./nginx/guichet.nix
+    ./nginx/hedgedoc.nix
+    ./nginx/odoo.nix
+    ./nginx/static.nix
+    ./nginx/wagtail.nix
+    ./nginx/webdav.nix
   ];
 
   users.users.nginx.group = "wwwrun";
