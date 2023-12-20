@@ -103,12 +103,24 @@ in
     #   };
     # };
 
+    virtualHosts."meet.desgrandsvoisins.com" = {
+      enableACME = true;
+      forceSSL = true;
+      serverAliases = ["meet.lesgrandsvoisins.com" "meet.resdigita.com" "meet.desgv.com" "meet.lesgv.com" "meet.desgrandsvoisins.org"];
+      root =  "/var/www/wagtail/";
+      locations."/" = {
+        proxyPass = "https://wagtail/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+    };
 
     virtualHosts."gvoisin.resdigita.com" = {
     serverAliases = [
       "keycloak.resdigita.com"
       "discourse.resdigita.com"
-      "meet.resdigita.com"
       "jswiki.resdigita.com"
       "gvoisin.desgrandsvoisins.org"
        "gvoisin.desgrandsvoisins.com"
