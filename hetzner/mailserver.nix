@@ -287,4 +287,13 @@ in
   #     ssl_client_ca = </etc/ssl/certs/ca-certificates.crt
   # security.acme.certs."mail.lesgrandsvoisins.com".group = lib.mkForce "wwwrun";
   users.users.nginx.extraGroups = ["wwwrun"];
+
+    services.phpfpm.pools."roundcube" = {
+    user = "wwwrun";
+    group = "wwwrun";
+    settings = {
+      "listen.owner" = "wwwrun";
+    };
+     phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
+  };
 }
