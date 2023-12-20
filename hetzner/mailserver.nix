@@ -61,7 +61,7 @@ in
     enable = true;
     fqdn = domainName;
     domains = mailServerDomainAliases;
-    extraVirtualAliases = {
+    forwards = {
       "postmaster@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
       "dmarc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
     };
