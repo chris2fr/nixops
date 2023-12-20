@@ -289,8 +289,6 @@ in
   users.users.nginx.extraGroups = ["wwwrun"];
 
     services.phpfpm.pools."roundcube" = {
-    user = lib.mkForce "wwwrun";
-    group = lib.mkForce "wwwrun";
     settings = {
       "listen.owner" = lib.mkForce "wwwrun";
       "listen.group" = lib.mkForce "wwwrun";
