@@ -34,7 +34,13 @@ in
       proxy_headers_hash_max_size 4096;
       server_names_hash_max_size 4096;
       proxy_headers_hash_bucket_size 256;
+      # Upgrade WebSocket if requested, otherwise use keepalive
+      map $http_upgrade $connection_upgrade_keepalive {
+          default upgrade;
+      }
     '';
+    # commonHttpConfig = ''
+    # '';
     recommendedProxySettings = true;
     upstreams = {
       "authentik" = {
@@ -42,12 +48,6 @@ in
           server 10.245.101.35:9000;
           # Improve performance by keeping some connections alive.
           keepalive 10;   
-        '';
-        commonHttpConfig = ''
-          # Upgrade WebSocket if requested, otherwise use keepalive
-          map $http_upgrade $connection_upgrade_keepalive {
-              default upgrade;
-          }
         '';
       };
       "wagtail".extraConfig = ''
