@@ -115,6 +115,7 @@ in
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
     };
 
     virtualHosts."gvoisin.resdigita.com" = {
@@ -141,7 +142,7 @@ in
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
-      # locations."/.well-known" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
     };
 
     virtualHosts."odoo4.resdigita.com" = {
@@ -283,7 +284,7 @@ in
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
-      # locations."/.well-known" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
     };
 
     virtualHosts."www.lesgrandsvoisins.fr" = {
@@ -345,7 +346,7 @@ in
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
-      # locations."/.well-known" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
     };
     virtualHosts."blog.desgrandsvoisins.org" = {
       root = "/var/www/ghostio/";
