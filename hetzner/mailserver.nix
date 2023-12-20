@@ -292,7 +292,7 @@ in
     user = "wwwrun";
     group = "wwwrun";
     settings = {
-      "listen.owner" = "wwwrun";
+      "listen.owner" = lib.mkForce "wwwrun";
     };
      phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
