@@ -61,6 +61,10 @@ in
     enable = true;
     fqdn = domainName;
     domains = mailServerDomainAliases;
+    extraVirtualAliases = {
+      "postmaster@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+      "dmarc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+    };
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
