@@ -4,17 +4,18 @@ in
 { 
   services.nginx.virtualHosts = {
       "hdoc.desgrandsvoisins.org" = {
+        enableACME = true;
+        forceSSL = true;
         serverAliases = [
-          "hedgedoc.lesgrandsvoisins.com"
-          "hdoc.lesgv.com"
-          "hedgedoc.lesgv.com"
           "hdoc.desgrandsvoisins.com"
-          "hdoc.resdigita.com"
           "hdoc.desgv.com"
-          "hedgedoc.desgv.com"
-          "hdoc.desgrandsvoisins.com"
-          "hedgedoc.desgrandsvoisins.com"
           "hdoc.lesgrandsvoisins.com"
+          "hdoc.lesgv.com"
+          "hdoc.resdigita.com"
+          "hedgedoc.desgrandsvoisins.com"
+          "hedgedoc.desgv.com"
+          "hedgedoc.lesgrandsvoisins.com"
+          "hedgedoc.lesgv.com"
         ];
         globalRedirect = "hedgedoc.resdigita.com";
       };
