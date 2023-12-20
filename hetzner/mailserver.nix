@@ -203,9 +203,9 @@ in
         # $config['oauth_provider_name'] = 'authentik';
         # $config['oauth_client_id'] = 'q3nTVQdV2ctY8GeNKvPuHokNa5RxT0VhZbVFCyY3';
         # $config['oauth_client_secret'] = '${oauthPassword}';
-        # $config['oauth_auth_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/authorize/';
-        # $config['oauth_token_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/token/';
-        # $config['oauth_identity_uri'] = 'https://auth.lesgrandsvoisins.com/application/o/userinfo/';
+        # $config['oauth_auth_uri'] = 'https://authentik.resdigita.com/application/o/authorize/';
+        # $config['oauth_token_uri'] = 'https://authentik.resdigita.com/application/o/token/';
+        # $config['oauth_identity_uri'] = 'https://authentik.resdigita.com/application/o/userinfo/';
         # $config['oauth_scope'] = "openid dovecotprofile email";
         # $config['oauth_auth_parameters'] = [];
         # $config['oauth_identity_fields'] = ['email'];

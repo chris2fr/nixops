@@ -188,7 +188,7 @@ in
     # ];
     # enableACME = true;
     # forceSSL = true;
-        listen = [{port = 8443; ssl=true;}];
+    listen = [{port = 8443; ssl=true;}];
     sslServerCert = "/var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem";
     sslServerChain = "/var/lib/acme/auth.lesgrandsvoisins.com/fullchain.pem";
     sslServerKey = "/var/lib/acme/auth.lesgrandsvoisins.com/key.pem";
@@ -343,7 +343,7 @@ in
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
       DavLockDB /tmp/DavLockSecret
-      OIDCProviderMetadataURL https://auth.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+      OIDCProviderMetadataURL https://authentik.resdigita.com/application/o/dav/.well-known/openid-configuration
       OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
       OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
       OIDCRedirectURI https://secret.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
@@ -441,8 +441,7 @@ in
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
       DavLockDB /tmp/DavLockSecret
-      OIDCProviderMetadataURL https://auth.desgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
-      # OIDCProviderMetadataURL https://auth.desgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+      OIDCProviderMetadataURL https://authentik.resdigita.com/application/o/dav/.well-known/openid-configuration
       OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
       OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
       OIDCRedirectURI https://secret.desgrandsvoisins.com/auth/redirect_uri_from_oauth2
@@ -547,7 +546,7 @@ in
     ''
       DavLockDB /tmp/DesGVDavLock
 
-        OIDCProviderMetadataURL https://auth.desgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://authentik.resdigita.com/application/o/dav/.well-known/openid-configuration
         OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
         OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
         OIDCRedirectURI https://dav.desgrandsvoisins.com/auth/redirect_uri_from_oauth2
@@ -643,7 +642,7 @@ in
     ''
       DavLockDB /tmp/DavLock
 
-        OIDCProviderMetadataURL https://auth.lesgrandsvoisins.com/application/o/dav/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://authentik.resdigita.com/application/o/dav/.well-known/openid-configuration
         OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
         OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
         OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
