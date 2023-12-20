@@ -28,7 +28,7 @@ in
       "interetpublic.org" = {
         enableACME = true;
         forceSSL = true;
-        globalRedirect = "www.interetpublic.com"
+        globalRedirect = "www.interetpublic.com";
       };
       "meet.resdigita.com" = {
         enableACME = true;
@@ -162,7 +162,7 @@ in
       };
       "www.desgrandsvoisins.org" = {
         serverAliases = ["desgrandsvoisins.org"  "desgrandsvoisins.com"];
-        globalRedirect = "www.desgrandsvoisins.com/";
+        globalRedirect = "www.desgrandsvoisins.com";
          enableACME = true;
          forceSSL = true;
       };
@@ -171,7 +171,7 @@ in
         sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
         sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
         sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
-        globalRedirect = "www.desgrandsvoisins.com/";
+        globalRedirect = "www.desgrandsvoisins.com";
         forceSSL = true;
       };
        "www.maelanc.com" = {
