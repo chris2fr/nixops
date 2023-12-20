@@ -216,9 +216,9 @@ in
         $config['session_debug'] = true;
         $config['session_domain'] = 'mail.lesgrandsvoisins.com';
         $config['login_password_maxlen'] = 4096;
-        services.roundcube.maxAttachmentSize = 75;
      '';
      dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
+     maxAttachmentSize = 75;
      #         
 #             
 
