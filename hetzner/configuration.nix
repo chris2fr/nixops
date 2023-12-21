@@ -8,7 +8,7 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 in
 {
-  nix.  experimental-features = "nix-command flakes";
+  nix.settings.experimental-features = "nix-command flakes";
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -135,7 +135,7 @@ in
   };
 
   services.openssh.enable = true;
-  services.openssh.  PermitRootLogin = "prohibit-password";
+  services.openssh.settings.PermitRootLogin = "prohibit-password";
   # networking.firewall.enable = false;
 
   # List packages installed in system profile. To search, run:
@@ -250,8 +250,8 @@ in
     # };
     # test.enable = true;
     # test.secrets.manual = true;
-    # test.  theme = "grey";
-    # test.  server.disable_healthcheck = true;
+    # test.settings.theme = "grey";
+    # test.settings.server.disable_healthcheck = true;
     # test.settingsFiles = [ "/mnt/test/authelia" "/mnt/test-authelia.conf" ];
   # };
 
