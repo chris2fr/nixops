@@ -32,6 +32,7 @@ in
   # Use the systemd-boot EFI boot loader.
   environment.systemPackages = with pkgs; [
     yarn
+    
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -214,18 +215,26 @@ in
     defaults.webroot = "/var/www";
   };
 
-  services.authelia.instances = {
-    main = {
-      enable = true;
-      secrets.storageEncryptionKeyFile = "/etc/authelia/storage.key ";
-      secrets.jwtSecretFile = "/etc/authelia/jwt.key";
-      settings = {
-        theme = "light";
-        default_2fa_method = "totp";
-        log.level = "debug";
-        server.disable_healthcheck = true;
-      };
-    };
+  services.keycloak = {
+    enable = true;
+    settings.https-port = 10443;
+    settings.https-port = 10080;
+    settings.proxy = "passthough";
+    hostname = "keycloak.resdigita.com";
+  };
+
+  # services.authelia.instances = {
+  #   main = {
+  #     enable = true;
+  #     secrets.storageEncryptionKeyFile = "/etc/authelia/storage.key ";
+  #     secrets.jwtSecretFile = "/etc/authelia/jwt.key";
+  #     settings = {
+  #       theme = "light";
+  #       default_2fa_method = "totp";
+  #       log.level = "debug";
+  #       server.disable_healthcheck = true;
+  #     };
+  #   };
     # preprod = {
     #   enable = false;
     #   secrets.storageEncryptionKeyFile = "/mnt/pre-prod/authelia/storageEncryptionKeyFile";
@@ -241,7 +250,7 @@ in
     # test.settings.theme = "grey";
     # test.settings.server.disable_healthcheck = true;
     # test.settingsFiles = [ "/mnt/test/authelia" "/mnt/test-authelia.conf" ];
-  };
+  # };
 
   # nixpkgs.config.allowUnfree = true;
   # services.cockroachdb = {
