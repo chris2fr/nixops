@@ -8,7 +8,7 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 in
 {
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.  experimental-features = "nix-command flakes";
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -135,7 +135,7 @@ in
   };
 
   services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
+  services.openssh.  PermitRootLogin = "prohibit-password";
   # networking.firewall.enable = false;
 
   # List packages installed in system profile. To search, run:
@@ -217,10 +217,13 @@ in
 
   services.keycloak = {
     enable = true;
-    settings.https-port = 10443;
-    settings.http-port = 10080;
-    settings.proxy = "passthough";
-    hostname = "keycloak.resdigita.com";
+    settings = {
+      https-port = 10443;
+      http-port = 10080;
+      proxy = "passthough";
+      hostname = "keycloak.resdigita.com";
+    };
+
   };
 
   # services.authelia.instances = {
@@ -247,8 +250,8 @@ in
     # };
     # test.enable = true;
     # test.secrets.manual = true;
-    # test.settings.theme = "grey";
-    # test.settings.server.disable_healthcheck = true;
+    # test.  theme = "grey";
+    # test.  server.disable_healthcheck = true;
     # test.settingsFiles = [ "/mnt/test/authelia" "/mnt/test-authelia.conf" ];
   # };
 
