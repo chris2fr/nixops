@@ -90,8 +90,8 @@ in
       #        =gid=%{ldap:gidNumber}
       # '';
       dovecot = {
-        userFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
-        passFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
+        userFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
+        passFilter = "(|(cn=%u)(uid=%u)(mail=%u)(carLicense=%u))";
       };
     };
 
