@@ -1,5 +1,10 @@
 { config, pkgs, lib, ... }:
 let 
+  extraProxyHeaders = ''
+    proxy_redirect off;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    '';
 in
 { 
   services.nginx.virtualHosts = {
@@ -14,6 +19,7 @@ in
         forceSSL = true;
         locations."/" = {
           proxyPass = "https://dav.resdigita.com:8443/";
+          extraConfig = extraProxyHeaders;
         };
       };
       "secret.desgrandsvoisins.org" = {
@@ -27,6 +33,7 @@ in
         forceSSL = true;
         locations."/" = {
           proxyPass = "https://secret.resdigita.com:8443/";
+          extraConfig = extraProxyHeaders;
         };
       };
   };
