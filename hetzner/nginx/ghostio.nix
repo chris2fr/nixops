@@ -3,14 +3,14 @@ let
 in
 { 
   services.nginx.virtualHosts = {
-      "blog.desgrandsvoisins.org" = {
+      "blog.lesgrandsvoisins.org" = {
         root = "/var/www/ghostio/";
         enableACME = true;
         forceSSL = true;
-        serverAliases = ["blog.resdigita.com" "blog.lesgrandsvoisins.com"];
-        globalRedirect = "blog.desgrandsvoisins.com";
+        serverAliases = ["blog.resdigita.com" "blog.desgrandsvoisins.com"];
+        globalRedirect = "blog.lesgrandsvoisins.com";
       };
-      "blog.desgrandsvoisins.com" = {
+      "blog.lesgrandsvoisins.com" = {
         root = "/var/www/ghostio/";
         enableACME = true;
         forceSSL = true;

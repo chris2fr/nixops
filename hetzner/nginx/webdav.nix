@@ -4,41 +4,29 @@ in
 { 
   services.nginx.virtualHosts = {
       "dav.desgrandsvoisins.org" = {
+        serverAliases = ["dav.lesgrandsvoisins.com" "dav.desgrandsvoisins.com"];
         enableACME = true;
         forceSSL = true;
-        globalRedirect = "dav.desgrandsvoisins.com";
+        globalRedirect = "dav.resdigita.com";
       };
-      "dav.lesgrandsvoisins.com" = {
+      "dav.resdigita.com" = {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "https://dav.lesgrandsvoisins.com:8443/";
-        };
-      };
-      "dav.desgrandsvoisins.com" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "https://dav.desgrandsvoisins.com:8443/";
+          proxyPass = "https://dav.resdigita.com:8443/";
         };
       };
       "secret.desgrandsvoisins.org" = {
         enableACME = true;
         forceSSL = true;
-        globalRedirect = "secret.desgrandsvoisins.com";
+        serverAliases = ["secret.lesgrandsvoisins.com" "secret.desgrandsvoisins.com"];
+        globalRedirect = "secret.resdigita.com";
       };
-      "secret.lesgrandsvoisins.com" = {
+      "secret.resdigita.com" = {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "https://secret.lesgrandsvoisins.com:8443/";
-        };
-      };
-      "secret.desgrandsvoisins.com" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "https://secret.desgrandsvoisins.com:8443/";
+          proxyPass = "https://secret.resdigita.com:8443/";
         };
       };
   };
