@@ -218,7 +218,7 @@ in
   services.keycloak = {
     enable = true;
     settings.https-port = 10443;
-    settings.https-port = 10080;
+    settings.http-port = 10080;
     settings.proxy = "passthough";
     hostname = "keycloak.resdigita.com";
   };
