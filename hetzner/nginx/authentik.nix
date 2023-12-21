@@ -22,7 +22,7 @@ in
           proxy_set_header Upgrade $http_upgrade;
           proxy_set_header Connection $connection_upgrade_keepalive;
           '';
-        }
+        };
       };
       "authentik.resdigita.com" = {
         enableACME = true;
