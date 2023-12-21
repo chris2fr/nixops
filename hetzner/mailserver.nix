@@ -89,10 +89,10 @@ in
       #        =uid=%{ldap:uidNumber}, \
       #        =gid=%{ldap:gidNumber}
       # '';
-      dovecot = {
-        userFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
-        passFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
-      };
+      # dovecot = {
+      #   userFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
+      #   passFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
+      # };
     };
 
     fullTextSearch = {
