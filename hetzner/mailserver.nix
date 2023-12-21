@@ -58,7 +58,7 @@ in
     fqdn = domainName;
     domains = mailServerDomainAliases;
     certificateScheme = "acme";
-    certificateFile = "/var/lib/acme/${domainName}/cert.pem";
+    certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
     certificateDirectory = "/var/lib/acme/${domainName}/";
     keyFile =  "/var/lib/acme/${domainName}/key.pem";    
     ldap = {
@@ -72,7 +72,7 @@ in
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
-      tlsCAFile = "/var/lib/acme/${domainName}/cert.pem";
+      tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       startTls = false;
       postfix = {
         mailAttribute = "mail";
@@ -89,10 +89,10 @@ in
       #        =uid=%{ldap:uidNumber}, \
       #        =gid=%{ldap:gidNumber}
       # '';
-      # dovecot = {
-      #   userFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
-      #   passFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
-      # };
+      dovecot = {
+        userFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
+        passFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
+      };
     };
 
     fullTextSearch = {
