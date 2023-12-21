@@ -9,6 +9,21 @@ in
         forceSSL = true;
         globalRedirect = "authentik.resdigita.com";
       };
+      "keycloak.resdigita.com" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "https://keycloak.resdigita.com:10443/";
+          extraConfig = ''
+          proxy_http_version 1.1;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $host;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade_keepalive;
+          '';
+        }
+      };
       "authentik.resdigita.com" = {
         enableACME = true;
         forceSSL = true;

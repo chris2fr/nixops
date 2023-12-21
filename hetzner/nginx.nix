@@ -64,6 +64,7 @@ in
         forceSSL = true;
         globalRedirect = "list.lesgrandsvoisins.com";
       };
+
     };
   };
 }

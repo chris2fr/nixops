@@ -222,7 +222,10 @@ in
       http-port = 10080;
       proxy = "passthrough";
       hostname = "keycloak.resdigita.com";
+
     };
+    sslCertificate = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
+    sslCertificateKey = "/var/lib/acme/keeweb.resdigita.com/key.pem";
     database.passwordFile = "/etc/nixos/.secret.keycloakdata";
   };
 
