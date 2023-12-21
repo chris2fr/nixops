@@ -224,8 +224,8 @@ in
       hostname = "keycloak.resdigita.com";
 
     };
-    sslCertificate = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
-    sslCertificateKey = "/var/lib/acme/keeweb.resdigita.com/key.pem";
+    sslCertificate = "/var/lib/acme/keycloak.resdigita.com/fullchain.pem";
+    sslCertificateKey = "/var/lib/acme/keycloak.resdigita.com/key.pem";
     database.passwordFile = "/etc/nixos/.secret.keycloakdata";
   };
 
