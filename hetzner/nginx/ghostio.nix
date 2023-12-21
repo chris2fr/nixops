@@ -3,21 +3,20 @@ let
 in
 { 
   services.nginx.virtualHosts = {
-      "blog.lesgrandsvoisins.org" = {
-        root = "/var/www/ghostio/";
-        enableACME = true;
-        forceSSL = true;
-        serverAliases = ["blog.resdigita.com" "blog.desgrandsvoisins.com"];
-        globalRedirect = "blog.lesgrandsvoisins.com";
+    "blog.desgrandsvoisins.org" = {
+      root = "/var/www/ghostio/";
+      enableACME = true;
+      forceSSL = true;
+      serverAliases = ["blog.resdigita.com" "blog.desgrandsvoisins.com"];
+      globalRedirect = "blog.lesgrandsvoisins.com";
+    };
+    "blog.lesgrandsvoisins.com" = {
+      root = "/var/www/ghostio/";
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:2368/";
       };
-      "blog.lesgrandsvoisins.com" = {
-        root = "/var/www/ghostio/";
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://localhost:2368/";
-        };
-      };
-
+    };
   };
 }
