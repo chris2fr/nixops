@@ -220,7 +220,7 @@ in
     settings = {
       https-port = 10443;
       http-port = 10080;
-      proxy = "passthough";
+      proxy = "passthrough";
       hostname = "keycloak.resdigita.com";
     };
     database.passwordFile = "/etc/nixos/.secret.keycloakdata";
