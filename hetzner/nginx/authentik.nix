@@ -15,11 +15,11 @@ in
         locations."/" = {
           proxyPass = "https://keycloak.resdigita.com:10443";
           extraConfig = ''
-        # proxy_set_header Host $http_host;
+        proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Host $http_host;
+        proxy_set_header X-Forwarded-Host $host;
         proxy_set_header X-Forwarded-Proto $scheme;
         add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
         add_header Access-Control-Allow-Credentials true;
