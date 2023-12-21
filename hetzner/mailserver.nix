@@ -35,12 +35,14 @@ in
     openldap
     pwgen
   ];
-
-  # users.users."web2ldap" = {
-  #   isNormalUser = true;
-  # };
-
-  
+  users.users.nginx.extraGroups = ["wwwrun"];
+    services.phpfpm.pools."roundcube" = {
+    settings = {
+      "listen.owner" = lib.mkForce "wwwrun";
+      "listen.group" = lib.mkForce "wwwrun";
+    };
+    #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
+  };
   services.memcached = {
     enable = true;
     # maxMemory = 256;
@@ -49,32 +51,12 @@ in
     # listen = "[::1]";
     # user = "sogo";
   };
-
-  # services.roundcube = {
-  #   hostName = "${domainName}";
-  #   enable = true;
-  #   dicts = with pkgs.aspellDicts; [ en fr de ];
-  # }
-
 # SOGoMemcachedHost = "/var/run/memcached.sock";
 ###################################################################################################################################
   mailserver = {
     enable = true;
     fqdn = domainName;
     domains = mailServerDomainAliases;
-    # forwards = {
-    #   "postmaster@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    #   "dmarc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
-    # };
-
-    # Use Let's Encrypt certificates. Note that this needs to set up a stripped
-    # down nginx and opens port 80.
-    # certificateScheme = "acme-nginx";
-    # certificateDomains = ("mail.resdigita.com" "gvoisin.com" );
-    # certificateFile = "/var/certs/cert-mail.resdigita.com.pem";
-    # certificateScheme = "acme";
-    # certificateDirectory = "/var/certs/";
-    # keyFile = "/var/certs/key-mail.resdigita.com.pem";
     certificateScheme = "acme";
     certificateFile = "/var/lib/acme/${domainName}/cert.pem";
     certificateDirectory = "/var/lib/acme/${domainName}/";
@@ -91,27 +73,28 @@ in
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
       tlsCAFile = "/var/lib/acme/${domainName}/cert.pem";
+      startTls = true;
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "cn";
-      #  filter = "(cn=%s)";
+        #  filter = "(cn=%s)";
       };
-      startTls = false;
-#      dovecot = {
-#         userFilter = "(cn=%s)";
-#         passFilter = "(cn=%s)";
-#      };
+      # postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
+      # postfix.filter = "";
+      # dovecot.userAttrs = ''
+      #   =mail=%{ldap:cn}
+      # '';
+      # dovecot.userAttrs = ''
+      #   =home=%{ldap:homeDirectory}, \
+      #        =uid=%{ldap:uidNumber}, \
+      #        =gid=%{ldap:gidNumber}
+      # '';
+      dovecot = {
+        userFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
+        passFilter = "(|(cn=%s)(uid=%s)(mail=%s))";
+      };
     };
-    # ldap.postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
-    # ldap.postfix.filter = "";
-    # ldap.dovecot.userAttrs = ''
-    #   =mail=%{ldap:cn}
-    # '';
-    # ldap.dovecot.userAttrs = ''
-    #   =home=%{ldap:homeDirectory}, \
-    #        =uid=%{ldap:uidNumber}, \
-    #        =gid=%{ldap:gidNumber}
-    # '';
+
     fullTextSearch = {
       enable = true;
       # index new email as they arrive
@@ -120,8 +103,21 @@ in
       indexAttachments = false;
       enforced = "body";
     };
+    # forwards = {
+    #   "postmaster@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+    #   "dmarc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
+    # };
+
+    # Use Let's Encrypt certificates. Note that this needs to set up a stripped
+    # down nginx and opens port 80.
+    # certificateScheme = "acme-nginx";
+    # certificateDomains = ("mail.resdigita.com" "gvoisin.com" );
+    # certificateFile = "/var/certs/cert-mail.resdigita.com.pem";
+    # certificateScheme = "acme";
+    # certificateDirectory = "/var/certs/";
+    # keyFile = "/var/certs/key-mail.resdigita.com.pem";
   };
-#############################################
+  #############################################
   services.postfix.config.maillog_file = "/var/log/postfix.log";
   # /run/current-system/sw/bin/postlog
   services.postfix.masterConfig.postlog = {
@@ -132,25 +128,6 @@ in
     chroot = false;
     maxproc = 1;
   };
-   
-  # services.postfix.config = {
-  #   "smtpd_relay_restrictions" = lib.mkForce "permit_sasl_authenticated, reject";
-  #   "smtpd_sasl_type" = lib.mkForce "dovecot";
-  #   "smtpd_sasl_path" = lib.mkForce "private/auth";
-  #   "smtpd_sasl_auth_enable" = lib.mkForce "yes";
-  # };
-
-#services.postfix.networks = [
-#  "localhost"
-#  "127.0.0.1"
-#  "[::1]"
-#  "mail.resdigita.com"
-#  "mail.lesgrandsvoisins.com"
-#  "ooo.lesgrandsvoisins.com"
-#  "51.159.223.7"
-#  "2001:bc8:1201:900:46a8:42ff:fe22:e5b6"
-#  ];
-
 ###################################################################################################################################
   services.postgresql = {
     enable = true;
@@ -166,14 +143,10 @@ in
       max_connections = 150;
       shared_buffers = "60MB";
     };
-    # # ensureDBOwnership = true;
     ensureUsers = [
       {
         name = "sogo";
         ensureDBOwnership = true;
-        # ensurePermissions = {
-        #   "DATABASE \"sogo\"" = "ALL PRIVILEGES";
-        # };
       }
     ];
   };
@@ -220,9 +193,25 @@ in
      '';
      dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
      maxAttachmentSize = 75;
-     #              
-
   };
+  users.users.dovecot2.extraGroups = ["wwwrun"];
+  # services.postfix.config = {
+  #   "smtpd_relay_restrictions" = lib.mkForce "permit_sasl_authenticated, reject";
+  #   "smtpd_sasl_type" = lib.mkForce "dovecot";
+  #   "smtpd_sasl_path" = lib.mkForce "private/auth";
+  #   "smtpd_sasl_auth_enable" = lib.mkForce "yes";
+  # };
+
+  #services.postfix.networks = [
+  #  "localhost"
+  #  "127.0.0.1"
+  #  "[::1]"
+  #  "mail.resdigita.com"
+  #  "mail.lesgrandsvoisins.com"
+  #  "ooo.lesgrandsvoisins.com"
+  #  "51.159.223.7"
+  #  "2001:bc8:1201:900:46a8:42ff:fe22:e5b6"
+  #  ];
   # services.nginx.virtualHosts."hetzner005.lesgrandsvoisins.com" = {
   #   listen = [{ addr = "[::]"; port=8443; ssl=true; }  { addr = "0.0.0.0"; port=8443; ssl=true; } ];
   #   sslCertificateKey = "/var/lib/acme/hetzner005.lesgrandsvoisins.com/key.pem";
@@ -261,23 +250,16 @@ in
   #   #     chunked_transfer_encoding off;
   #   #   '';
   # };
-  users.users.dovecot2.extraGroups = ["wwwrun"];
-
   # services.httpd.enablePHP = true;
-
-  
-
   # services.dovecot2 = {
   #   sslServerCert = "/var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem";
   #   sslServerKey = "/var/lib/acme/mail.lesgrandsvoisins.com/key.pem";
   #   extraConfig = ''
   #   auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
   #   auth_policy_server_timeout_msecs = 5000
-
   #   ssl_ca = </etc/ssl/certs/ca-certificates.crt
   #   ssl_client_cert = </var/lib/acme/mail.lesgrandsvoisins.com/fullchain.pem
   #   ssl_client_key = </var/lib/acme/mail.lesgrandsvoisins.com/key.pem
-
   #   passdb {
   #     driver = oauth2
   #     mechanisms = oauthbearer xoauth2
@@ -287,13 +269,9 @@ in
   # };
   #     ssl_client_ca = </etc/ssl/certs/ca-certificates.crt
   # security.acme.certs."mail.lesgrandsvoisins.com".group = lib.mkForce "wwwrun";
-  users.users.nginx.extraGroups = ["wwwrun"];
-
-    services.phpfpm.pools."roundcube" = {
-    settings = {
-      "listen.owner" = lib.mkForce "wwwrun";
-      "listen.group" = lib.mkForce "wwwrun";
-    };
-    #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
-  };
+  # users.users."web2ldap" = {
+  #   isNormalUser = true;
+  # };
 }
+
+

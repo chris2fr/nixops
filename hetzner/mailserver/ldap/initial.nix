@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }:
-
 let 
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
   alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
