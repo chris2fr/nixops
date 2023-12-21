@@ -223,7 +223,7 @@ in
       proxy = "passthough";
       hostname = "keycloak.resdigita.com";
     };
-    database.passwordFile = /etc/nixos/.secret.keycloakdata;
+    database.passwordFile = "/etc/nixos/.secret.keycloakdata";
   };
 
   # services.authelia.instances = {
