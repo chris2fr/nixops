@@ -30,10 +30,11 @@ in
           objectClass: organizationalUnit
           ou: invitations
 
-          dn: cn=alice@resdigita.org,ou=users,dc=resdigita,dc=org
+          dn: cn=alice,ou=users,dc=resdigita,dc=org
           objectClass: inetOrgPerson
-          cn: alice@resdigita.org
+          cn: alice
           givenName: alice
+          uid=alice@resdigita.org
           sn: Foo
           uid: alice
           mail: alice@resdigita.org

@@ -15,6 +15,7 @@ let
     "resdigita.com"
     "desgrandsvoisins.com"
     "mail.desgrandsvoisins.com"
+    "mail.resdigita.org"
   ];
 in
 {
@@ -85,7 +86,7 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
-        "ldap:///"
+        "ldaps://mail.lesgrandsvoisins.com/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
