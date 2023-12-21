@@ -226,23 +226,22 @@ in
         server.disable_healthcheck = true;
       };
     };
-    preprod = {
-      enable = false;
-      secrets.storageEncryptionKeyFile = "/mnt/pre-prod/authelia/storageEncryptionKeyFile";
-      secrets.jwtSecretFile = "/mnt/pre-prod/jwtSecretFile";
-      settings = {
-        theme = "dark";
-        default_2fa_method = "webauthn";
-        server.host = "0.0.0.0";
-      };
-    };
-    test.enable = true;
-    test.secrets.manual = true;
-    test.settings.theme = "grey";
-    test.settings.server.disable_healthcheck = true;
-    test.settingsFiles = [ "/mnt/test/authelia" "/mnt/test-authelia.conf" ];
-    };
-  }
+    # preprod = {
+    #   enable = false;
+    #   secrets.storageEncryptionKeyFile = "/mnt/pre-prod/authelia/storageEncryptionKeyFile";
+    #   secrets.jwtSecretFile = "/mnt/pre-prod/jwtSecretFile";
+    #   settings = {
+    #     theme = "dark";
+    #     default_2fa_method = "webauthn";
+    #     server.host = "0.0.0.0";
+    #   };
+    # };
+    # test.enable = true;
+    # test.secrets.manual = true;
+    # test.settings.theme = "grey";
+    # test.settings.server.disable_healthcheck = true;
+    # test.settingsFiles = [ "/mnt/test/authelia" "/mnt/test-authelia.conf" ];
+  };
 
   # nixpkgs.config.allowUnfree = true;
   # services.cockroachdb = {
