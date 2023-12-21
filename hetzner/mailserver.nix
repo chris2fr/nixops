@@ -76,7 +76,7 @@ in
       startTls = false;
       postfix = {
         mailAttribute = "mail";
-        uidAttribute = "cn";
+        uidAttribute = "mail";
         #  filter = "(cn=%s)";
       };
       # postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
@@ -89,10 +89,10 @@ in
       #        =uid=%{ldap:uidNumber}, \
       #        =gid=%{ldap:gidNumber}
       # '';
-      dovecot = {
-        userFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
-        passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
-      };
+      # dovecot = {
+      #   userFilter = "(mail=%u)";
+      #   passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
+      # };
     };
 
     fullTextSearch = {
