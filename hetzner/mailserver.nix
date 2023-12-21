@@ -68,12 +68,12 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
-        "ldap://mail.lesgrandsvoisins.com/"
+        "ldap:///"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
       tlsCAFile = "/var/lib/acme/${domainName}/cert.pem";
-      startTls = true;
+      startTls = false;
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "cn";
