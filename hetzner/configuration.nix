@@ -217,6 +217,8 @@ in
   services.authelia.instances = {
     main = {
       enable = true;
+      secrets.storageEncryptionKeyFile = "/etc/authelia/storage.key ";
+      secrets.jwtSecretFile = "/etc/authelia/jwt.key";
       settings = {
         theme = "light";
         default_2fa_method = "totp";
