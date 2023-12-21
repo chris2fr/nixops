@@ -21,6 +21,11 @@ in
           proxyPass = "https://dav.resdigita.com:8443/";
           extraConfig = extraProxyHeaders;
         };
+        extraConfig = ''
+        location = / {
+            return 302 /redirect;
+        }
+        '';
       };
       "secret.desgrandsvoisins.org" = {
         enableACME = true;
@@ -35,6 +40,11 @@ in
           proxyPass = "https://keeweb.resdigita.com:8443/";
           extraConfig = extraProxyHeaders;
         };
+        extraConfig = ''
+        location = / {
+            return 302 /redirect;
+        }
+        '';
       };
   };
 }
