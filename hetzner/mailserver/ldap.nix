@@ -14,9 +14,9 @@ in
     urlList = [ "ldap:/// ldaps:///" ];
     settings = {
       attrs = {
-       # olcTLSReqCert = "allow" ;
-# TLS_CACERTDIR /home/myuser/cacertss
-# LDAPTLS_CACERT /home/myuser/cacertss
+        # olcTLSReqCert = "allow" ;
+        # TLS_CACERTDIR /home/myuser/cacertss
+        # LDAPTLS_CACERT /home/myuser/cacertss
         olcLogLevel = "conns config";
         /* settings for acme ssl */
         olcTLSCACertificateFile = "/var/lib/acme/${domainName}/full.pem";
@@ -36,25 +36,20 @@ in
           "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
           "${pkgs.openldap}/etc/schema/nis.ldif"
         ];
-
         "olcDatabase={1}mdb".attrs = {
           objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
-
           olcDbIndex = [
             "displayName,description eq,sub"
             "uid,ou,c eq"
             "carLicense,labeledURI,telephoneNumber,mobile,homePhone,title,street,l,st,postalCode eq"
             "objectClass,cn,sn,givenName,mail eq"
           ];
-
           olcDatabase = "{1}mdb";
           olcDbDirectory = "/var/lib/openldap/data";
           olcSuffix = "${ldapBaseDCDN}";
-
           /* your admin account, do not use writeText on a production system */
           olcRootDN = "cn=admin,${ldapBaseDCDN}";
           olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
-
           olcAccess = [
             /* custom access rules for userPassword attributes */
             /* allow read on anything else */

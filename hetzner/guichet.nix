@@ -21,7 +21,7 @@
     serviceConfig = {
       WorkingDirectory = "/home/guichet/guichet";
       User = "guichet";
-      Group = "users";
+      Group = "wwwdata";
     };
   };
 
