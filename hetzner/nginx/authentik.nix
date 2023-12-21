@@ -13,14 +13,16 @@ in
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "https://keycloak.resdigita.com:10443/";
+          proxyPass = "https://keycloak.resdigita.com:10443";
           extraConfig = ''
-          proxy_http_version 1.1;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header Host $host;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection $connection_upgrade_keepalive;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $http_host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+        add_header Access-Control-Allow-Credentials true;
           '';
         };
       };
