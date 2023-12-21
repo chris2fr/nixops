@@ -52,11 +52,11 @@ in
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
-  services.httpd.virtualHosts."secret.resdigita.com" = {
+  services.httpd.virtualHosts."keeweb.resdigita.com" = {
     listen = [{port = 8443; ssl=true;}];
-    sslServerCert = "/var/lib/acme/secret.resdigita.com/fullchain.pem";
-    sslServerChain = "/var/lib/acme/secret.resdigita.com/fullchain.pem";
-    sslServerKey = "/var/lib/acme/secret.resdigita.com/key.pem";
+    sslServerCert = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/keeweb.resdigita.com/key.pem";
     documentRoot = "/var/www/secret";
     extraConfig = ''
       Alias /static /var/www/wagtail/static
@@ -65,7 +65,7 @@ in
       OIDCProviderMetadataURL https://authentik.resdigita.com/application/o/dav/.well-known/openid-configuration
       OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
       OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
-      OIDCRedirectURI https://secret.resdigita.com/auth/redirect_uri_from_oauth2
+      OIDCRedirectURI https://keeweb.resdigita.com/auth/redirect_uri_from_oauth2
       OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
       <LocationMatch "^/(auth|pass|ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json$">
         Satisfy Any
