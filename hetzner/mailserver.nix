@@ -68,7 +68,7 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
-        "ldaps://mail.lesgrandsvoisins.com/"
+        "ldap://mail.lesgrandsvoisins.com/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
