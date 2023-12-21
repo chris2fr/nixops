@@ -91,7 +91,7 @@ in
       # '';
       dovecot = {
         userFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
-        # passFilter = "(|(cn=%u)(uid=%u)(mail=%u)(carLicense=%u))";
+        passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
       };
     };
 
