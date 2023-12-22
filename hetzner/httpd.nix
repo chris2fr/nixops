@@ -88,18 +88,18 @@ in
         AuthType openid-connect 
         # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-        Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+           Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LimitExcept>
       </LocationMatch>
       <LocationMatch "^/auth/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
         AuthType openid-connect 
         # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-        Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-           Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+           Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
         </LimitExcept>
       </LocationMatch>
       <LocationMatch "^/pass/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
@@ -179,10 +179,10 @@ in
 
         <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
           AuthType openid-connect
-          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+          Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
             
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPOFIND CONNECT>
-             Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+             Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
           </LimitExcept>
         </LocationMatch>
 
