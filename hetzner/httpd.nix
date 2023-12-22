@@ -80,7 +80,7 @@ in
         Require valid-user
         RewriteEngine On
         # Check for the presence of the OIDC_CLAIM_email header
-        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
+        RewriteCond %{env:OIDC_CLAIM_email} ^([^@]+)@(.+)$
         # Redirect to the specific path based on the header value
         RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
       </Location>
@@ -191,7 +191,7 @@ in
         Require valid-user
         RewriteEngine On
         # Check for the presence of the OIDC_CLAIM_email header
-        RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
+        RewriteCond %{env:OIDC_CLAIM_email} ^([^@]+)@(.+)$
         # Redirect to the specific path based on the header value
         RewriteRule ^(.*)$ /auth/%2/%1 [R,L]
       </Location>
