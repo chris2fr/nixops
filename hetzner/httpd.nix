@@ -62,9 +62,9 @@ in
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
       DavLockDB /tmp/DavLockSecret
-      OIDCProviderMetadataURL https://authentik.resdigita.com/application/o/dav/.well-known/openid-configuration
-      OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
-      OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+      OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+      OIDCClientID keepassweb
+      OIDCClientSecret Sd592JRYiOe0A1oJmGEj6pE2b4C8ddEP
       OIDCRedirectURI https://keeweb.resdigita.com/auth/redirect_uri_from_oauth2
       OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
       <LocationMatch "^/(auth|pass|ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json$">
@@ -164,9 +164,9 @@ in
     ''
       DavLockDB /tmp/DesGVDavLock
 
-        OIDCProviderMetadataURL https://authentik.resdigita.com/application/o/dav/.well-known/openid-configuration
-        OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
-        OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+        OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+        OIDCClientID webdav
+        OIDCClientSecret gcGtQzMZbchAUfDCJBYoluH8FhpEMMzc
         OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
         OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
