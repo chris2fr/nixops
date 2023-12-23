@@ -89,7 +89,7 @@ in
           proxy_http_version 1.1;   
           client_max_body_size 0;
           access_log      /var/log/nginx/seahub.access.log seafileformat;
-          error_log       /var/log/nginx/seahub.error.log;
+          # error_log       /var/log/nginx/seahub.error.log;
          '';
       };
       locations."/seafhttp" = {
@@ -103,7 +103,7 @@ in
         proxy_connect_timeout  36000s;
         proxy_read_timeout  36000s;
         proxy_request_buffering off;
-        access_log      /var/log/nginx/seafhttp.access.log seafileformat;
+        # access_log      /var/log/nginx/seafhttp.access.log seafileformat;
         error_log       /var/log/nginx/seafhttp.error.log;
         '';
       };
@@ -111,7 +111,7 @@ in
           proxyPass = "http://127.0.0.1:8083/ping";
           recommendedProxySettings = false;
           extraConfig = ''
-          access_log      /var/log/nginx/notification.access.log seafileformat;
+          # access_log      /var/log/nginx/notification.access.log seafileformat;
           error_log       /var/log/nginx/notification.error.log;
           '';
       };
@@ -122,7 +122,7 @@ in
           proxy_http_version 1.1;
           proxy_set_header Upgrade $http_upgrade;
           proxy_set_header Connection "upgrade";
-          access_log      /var/log/nginx/notification.access.log seafileformat;
+          # access_log      /var/log/nginx/notification.access.log seafileformat;
           error_log       /var/log/nginx/notification.error.log;
           '';
       };
@@ -139,7 +139,7 @@ in
           proxy_read_timeout  1200s;
           client_max_body_size 0;
 
-          access_log      /var/log/nginx/seafdav.access.log seafileformat;
+          # access_log      /var/log/nginx/seafdav.access.log seafileformat;
           error_log       /var/log/nginx/seafdav.error.log;
           '';
       };
