@@ -37,7 +37,7 @@ in
           default upgrade;
       }
     '';
-    appendconfig = ''
+    appendConfig = ''
           log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
     '';
     # commonHttpConfig = ''
