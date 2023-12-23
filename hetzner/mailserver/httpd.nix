@@ -127,7 +127,7 @@ in
     documentRoot =  "/var/www/";
     extraConfig = ''
       RewriteEngine On
-      RewriteRule ^(.*)$ https://guichet.lesgrandsvoisins.com$1
+      RewriteRule ^(.*)$ https://guichet.resdigita.com$1
     '';
   };
 
