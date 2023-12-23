@@ -27,8 +27,8 @@ in
   services = {
     seafile = {
       enable = true;
-      # adminEmail = "chris@mann.fr";
-      # initialAdminPassword = "Ahs3sae1";
+      adminEmail = "chris@mann.fr";
+      initialAdminPassword = "Ahs3sae1";
       # seafileSettings = {
       #   # https://manual.seafile.com/config/seafile-conf/
       #   fileserver.port = 8082;
