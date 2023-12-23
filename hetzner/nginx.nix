@@ -71,9 +71,9 @@ in
     virtualHosts."seafile.resdigita.com" = {
       enableACME = true;
       forceSSL = true;
-      extraConfig = ''
-      log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
-      '';
+      # extraConfig = ''
+      # log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
+      # '';
       
       locations."/" = {
          proxyPass = "http://localhost:18000/";
@@ -88,8 +88,8 @@ in
           proxy_set_header Connection "";
           proxy_http_version 1.1;   
           client_max_body_size 0;
-          access_log      /var/log/nginx/seahub.access.log seafileformat;
-          # error_log       /var/log/nginx/seahub.error.log;
+          # access_log      /var/log/nginx/seahub.access.log seafileformat;
+          error_log       /var/log/nginx/seahub.error.log;
          '';
       };
       locations."/seafhttp" = {
