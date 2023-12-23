@@ -23,131 +23,101 @@ in
     ./nginx/webdav.nix
   ];
   users.users.nginx.group = "wwwrun";
-  services.nginx = {
-    group = "wwwrun";
-    enable = true;
-    defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
-    #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
-    appendHttpConfig = ''
-      proxy_headers_hash_max_size 4096;
-      server_names_hash_max_size 4096;
-      proxy_headers_hash_bucket_size 256;
-      # Upgrade WebSocket if requested, otherwise use keepalive
-      map $http_upgrade $connection_upgrade_keepalive {
-          default upgrade;
-      }
-    '';
-    # appendConfig = ''
-    #       log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
-    # '';
-    # commonHttpConfig = ''
-    # '';
-    recommendedProxySettings = true;
-    upstreams = {
-      "authentik" = {
-        extraConfig = ''
-          server 10.245.101.35:9000;
-          # Improve performance by keeping some connections alive.
-          keepalive 10;   
-        '';
+  services = {
+    seafile = {
+      enable = true;
+      adminEmail = "chris@mann.fr";
+      initialAdminPassword = "Ahs3sae1";
+      seafileSettings = {
+        # https://manual.seafile.com/config/seafile-conf/
+        fileserver.port = 8082;
+        fileserver.host = "0.0.0.0"
       };
-      "wagtail".extraConfig = ''
-        # server unix:/var/lib/wagtail/wagtail-lesgv.sock;
-        server localhost:8000;
-      '';
-      "wagtailstatic".servers = {
-        "10.245.101.15:8888" = {};
-      };
-      "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
-    };
-    virtualHosts = {
-      "list.desgrandsvoisins.org" = {
-        serverAliases = ["list.desgrandsvoisins.com"];
-        enableACME = true;
-        forceSSL = true;
-        globalRedirect = "list.lesgrandsvoisins.com";
-      };
-    };
-    virtualHosts."drive.resdigita.com" = {
-      enableACME = true;
-      forceSSL = true;
-      # extraConfig = ''
-      # log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
-      # '';
-      
-      locations."/" = {
-         proxyPass = "http://localhost:10080/";
-         #recommendedProxySettings = false;
-        #  extraConfig = ''
-        #   proxy_read_timeout 310s;
-        #   proxy_set_header Host $host;
-        #   proxy_set_header Forwarded "for=$remote_addr;proto=$scheme";
-        #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        #   proxy_set_header X-Forwarded-Proto $scheme;
-        #   proxy_set_header X-Real-IP $remote_addr;
-        #   proxy_set_header Connection "";
-        #   proxy_http_version 1.1;   
-        #   client_max_body_size 0;
-        #   # access_log      /var/log/nginx/seahub.access.log seafileformat;
-        #   error_log       /var/log/nginx/seahub.error.log;
-        #  '';
-      };
-      # locations."/seafhttp" = {
-      #   proxyPass = "http://127.0.0.1:18082";
-      #   recommendedProxySettings = false;
-      #   extraConfig = ''
-        
-      #   rewrite ^/seafhttp(.*)$ $1 break;
-      #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      #   client_max_body_size 0;
-      #   proxy_connect_timeout  36000s;
-      #   proxy_read_timeout  36000s;
-      #   proxy_request_buffering off;
-      #   # access_log      /var/log/nginx/seafhttp.access.log seafileformat;
-      #   error_log       /var/log/nginx/seafhttp.error.log;
-      #   '';
-      # };
-      # locations."/notification/ping" = {
-      #     proxyPass = "http://127.0.0.1:18083/ping";
-      #     recommendedProxySettings = false;
-      #     extraConfig = ''
-      #     # access_log      /var/log/nginx/notification.access.log seafileformat;
-      #     error_log       /var/log/nginx/notification.error.log;
-      #     '';
-      # };
-      # locations."/notification" = {
-      #     proxyPass = "http://127.0.0.1:18083";
-      #     recommendedProxySettings = false;
-      #     extraConfig = ''
-      #     proxy_http_version 1.1;
-      #     proxy_set_header Upgrade $http_upgrade;
-      #     proxy_set_header Connection "upgrade";
-      #     # access_log      /var/log/nginx/notification.access.log seafileformat;
-      #     error_log       /var/log/nginx/notification.error.log;
-      #     '';
-      # };
-      # locations."/seafdav" = {
-      #     proxyPass = "http://127.0.0.1:18080";
-      #     recommendedProxySettings = false;
-      #     extraConfig = ''
-          
-      #     proxy_set_header   Host $host;
-      #     proxy_set_header   X-Real-IP $remote_addr;
-      #     proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-      #     proxy_set_header   X-Forwarded-Host $server_name;
-      #     proxy_set_header   X-Forwarded-Proto $scheme;
-      #     proxy_read_timeout  1200s;
-      #     client_max_body_size 0;
+      seahubExtraConf = {
+        # https://manual.seafile.com/config/seahub_settings_py/
+        "ENABLE_OAUTH" = true;
 
-      #     # access_log      /var/log/nginx/seafdav.access.log seafileformat;
-      #     error_log       /var/log/nginx/seafdav.error.log;
-      #     '';
-      # };
-      # locations."/media" = {
-      #   proxyPass = "http://localhost:10080";
-      # };
-      locations."/.well-known" = {
-        proxyPass = null;
+        # If create new user when he/she logs in Seafile for the first time, defalut `true`.
+        "OAUTH_CREATE_UNKNOWN_USER" = true;
+
+        # If active new user when he/she logs in Seafile for the first time, defalut `true`.
+        "OAUTH_ACTIVATE_USER_AFTER_CREATION" = true;
+
+        # Usually OAuth works through SSL layer. If your server is not parametrized to allow HTTPS, some method will raise an "oauthlib.oauth2.rfc6749.errors.InsecureTransportError". Set this to `true` to avoid this error.
+        "OAUTH_ENABLE_INSECURE_TRANSPORT" = true;
+
+        # Client id/secret generated by authorization server when you register your client application.
+        "OAUTH_CLIENT_ID" = "seafile";
+        "OAUTH_CLIENT_SECRET" = "6lVxm1puda5wFT4QmaKPmpksbbf7aOpQ";
+
+        # Callback url when user authentication succeeded. Note, the redirect url you input when you register your client application MUST be exactly the same as this value.
+        "OAUTH_REDIRECT_URL" = "https://seafile.resdigita.com/oauth/callback/";
+
+        # The following should NOT be changed if you are using Github as OAuth provider.
+        "OAUTH_PROVIDER_DOMAIN" = "keycloak.resdigita.com:10443";
+        "OAUTH_AUTHORIZATION_URL" = "https://keycloak.resdigita.com:10443/realms/master/protocol/openid-connect/auth";
+        "OAUTH_TOKEN_URL" = "https://keycloak.resdigita.com:10443/realms/master/protocol/openid-connect/token";
+        "OAUTH_USER_INFO_URL" = "https://keycloak.resdigita.com:10443/realms/master/protocol/openid-connect/userinfo";
+        "OAUTH_SCOPE" = ["email" "openid"];
+        "OAUTH_ATTRIBUTE_MAP" = {
+            "id" = [true  "email"];  # Please keep the "email" option unchanged to be compatible with the login of users of version 11.0 and earlier.
+            "name" =  [false  "name"];
+            "email" = [false  "email"];
+            "uid" = [true  "uid"];   # Since 11.0 version  Seafile use "uid" as the external unique identifier of the user.
+                                    # Different OAuth systems have different attributes, which may be: "uid" or "username", etc.
+                                    # If there is no "uid" attribute, do not configure this option and keep the "email" option unchanged,
+                                    # to be compatible with the login of users of version 11.0 and earlier.
+        };
+      };
+      ccnetSettings = {
+        # https://manual.seafile.com/config/ccnet-conf/
+        General.SERVICE_URL = "https://seafile.resdigita.com";
+      };
+    };
+    nginx = {
+      group = "wwwrun";
+      enable = true;
+      defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
+      #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
+      appendHttpConfig = ''
+        proxy_headers_hash_max_size 4096;
+        server_names_hash_max_size 4096;
+        proxy_headers_hash_bucket_size 256;
+        # Upgrade WebSocket if requested, otherwise use keepalive
+        map $http_upgrade $connection_upgrade_keepalive {
+            default upgrade;
+        }
+      '';
+      # appendConfig = ''
+      #       log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
+      # '';
+      # commonHttpConfig = ''
+      # '';
+      recommendedProxySettings = true;
+      upstreams = {
+        "authentik" = {
+          extraConfig = ''
+            server 10.245.101.35:9000;
+            # Improve performance by keeping some connections alive.
+            keepalive 10;   
+          '';
+        };
+        "wagtail".extraConfig = ''
+          # server unix:/var/lib/wagtail/wagtail-lesgv.sock;
+          server localhost:8000;
+        '';
+        "wagtailstatic".servers = {
+          "10.245.101.15:8888" = {};
+        };
+        "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
+      };
+      virtualHosts = {
+        "list.desgrandsvoisins.org" = {
+          serverAliases = ["list.desgrandsvoisins.com"];
+          enableACME = true;
+          forceSSL = true;
+          globalRedirect = "list.lesgrandsvoisins.com";
+        };
       };
     };
   };
