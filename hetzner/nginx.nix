@@ -88,7 +88,7 @@ in
          '';
       };
       locations."/seafhttp" = {
-        proxy_pass = "http://127.0.0.1:8082";
+        proxyPass = "http://127.0.0.1:8082";
         extraConfig = ''
         
         rewrite ^/seafhttp(.*)$ $1 break;
@@ -102,14 +102,14 @@ in
         '';
       };
       locations."/notification/ping" = {
-          proxy_pass = "http://127.0.0.1:8083/ping";
+          proxyPass = "http://127.0.0.1:8083/ping";
           extraConfig = ''
           access_log      /var/log/nginx/notification.access.log seafileformat;
           error_log       /var/log/nginx/notification.error.log;
           '';
       };
       locations."/notification" = {
-          proxy_pass = "http://127.0.0.1:8083";
+          proxyPass = "http://127.0.0.1:8083";
           extraConfig = ''
           proxy_http_version 1.1;
           proxy_set_header Upgrade $http_upgrade;
@@ -119,7 +119,7 @@ in
           '';
       };
       locations."/seafdav" = {
-          proxy_pass = "http://127.0.0.1:8080";
+          proxyPass = "http://127.0.0.1:8080";
           extraConfig = ''
           
           proxy_set_header   Host $host;
@@ -133,6 +133,9 @@ in
           access_log      /var/log/nginx/seafdav.access.log seafileformat;
           error_log       /var/log/nginx/seafdav.error.log;
           '';
+      };
+      locations."/media" = {
+        proxyPass = "http://localhost:10080";
       };
     };
   };
