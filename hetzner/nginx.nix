@@ -68,7 +68,7 @@ in
         globalRedirect = "list.lesgrandsvoisins.com";
       };
     };
-    virtualHosts."seafile.resdigita.com" = {
+    virtualHosts."drive.resdigita.com" = {
       enableACME = true;
       forceSSL = true;
       # extraConfig = ''
