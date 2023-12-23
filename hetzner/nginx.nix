@@ -37,9 +37,9 @@ in
           default upgrade;
       }
     '';
-    appendConfig = ''
-          log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
-    '';
+    # appendConfig = ''
+    #       log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
+    # '';
     # commonHttpConfig = ''
     # '';
     recommendedProxySettings = true;
@@ -71,6 +71,9 @@ in
     virtualHosts."seafile.resdigita.com" = {
       enableACME = true;
       forceSSL = true;
+      extraConfig = ''
+      log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
+      '';
       
       locations."/" = {
          proxyPass = "http://localhost:18000/";
