@@ -71,10 +71,10 @@ in
     virtualHosts."seafile.resdigita.com" = {
       enableACME = true;
       forceSSL = true;
-      recommendedProxySettings = false;
+      
       locations."/" = {
          proxyPass = "http://localhost:18000/";
-         
+         recommendedProxySettings = false;
          extraConfig = ''
           proxy_read_timeout 310s;
           proxy_set_header Host $host;
@@ -91,6 +91,7 @@ in
       };
       locations."/seafhttp" = {
         proxyPass = "http://127.0.0.1:8082";
+        recommendedProxySettings = false;
         extraConfig = ''
         
         rewrite ^/seafhttp(.*)$ $1 break;
@@ -105,6 +106,7 @@ in
       };
       locations."/notification/ping" = {
           proxyPass = "http://127.0.0.1:8083/ping";
+          recommendedProxySettings = false;
           extraConfig = ''
           access_log      /var/log/nginx/notification.access.log seafileformat;
           error_log       /var/log/nginx/notification.error.log;
@@ -112,6 +114,7 @@ in
       };
       locations."/notification" = {
           proxyPass = "http://127.0.0.1:8083";
+          recommendedProxySettings = false;
           extraConfig = ''
           proxy_http_version 1.1;
           proxy_set_header Upgrade $http_upgrade;
@@ -122,6 +125,7 @@ in
       };
       locations."/seafdav" = {
           proxyPass = "http://127.0.0.1:8080";
+          recommendedProxySettings = false;
           extraConfig = ''
           
           proxy_set_header   Host $host;
