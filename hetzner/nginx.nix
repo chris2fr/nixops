@@ -74,7 +74,7 @@ in
       
       locations."/" = {
          proxyPass = "http://localhost:18000/";
-         recommendedProxySettings = false;
+         #recommendedProxySettings = false;
          extraConfig = ''
           proxy_read_timeout 310s;
           proxy_set_header Host $host;
@@ -83,7 +83,7 @@ in
           proxy_set_header X-Forwarded-Proto $scheme;
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header Connection "";
-          proxy_http_version 1.1;        proxy_http_version 1.1;
+          proxy_http_version 1.1;   
           client_max_body_size 0;
           access_log      /var/log/nginx/seahub.access.log seafileformat;
           error_log       /var/log/nginx/seahub.error.log;
