@@ -69,10 +69,10 @@ in
       #                               # to be compatible with the login of users of version 11.0 and earlier.
       #   }
       # '';
-      # ccnetSettings = {
-      #   # https://manual.seafile.com/config/ccnet-conf/
-      #   General.SERVICE_URL = "https://seafile.resdigita.com";
-      # };
+      ccnetSettings = {
+        # https://manual.seafile.com/config/ccnet-conf/
+        General.SERVICE_URL = "https://seafile.resdigita.com";
+      };
     };
     nginx = {
       group = "wwwrun";
@@ -112,6 +112,11 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
+        "seafile.resdigita.com" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/".proxyPass = "http://localhost:8082";
+        };
         "list.desgrandsvoisins.org" = {
           serverAliases = ["list.desgrandsvoisins.com"];
           enableACME = true;
