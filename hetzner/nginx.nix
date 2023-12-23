@@ -75,7 +75,7 @@ in
          proxyPass = "http://localhost:18000/";
          extraConfig = ''
           proxy_read_timeout 310s;
-          proxy_set_header Host $http_host;
+          proxy_set_header Host $host;
           proxy_set_header Forwarded "for=$remote_addr;proto=$scheme";
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;
