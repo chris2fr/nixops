@@ -93,7 +93,7 @@ in
          '';
       };
       locations."/seafhttp" = {
-        proxyPass = "http://127.0.0.1:8082";
+        proxyPass = "http://127.0.0.1:18082";
         recommendedProxySettings = false;
         extraConfig = ''
         
@@ -108,7 +108,7 @@ in
         '';
       };
       locations."/notification/ping" = {
-          proxyPass = "http://127.0.0.1:8083/ping";
+          proxyPass = "http://127.0.0.1:18083/ping";
           recommendedProxySettings = false;
           extraConfig = ''
           # access_log      /var/log/nginx/notification.access.log seafileformat;
@@ -116,7 +116,7 @@ in
           '';
       };
       locations."/notification" = {
-          proxyPass = "http://127.0.0.1:8083";
+          proxyPass = "http://127.0.0.1:18083";
           recommendedProxySettings = false;
           extraConfig = ''
           proxy_http_version 1.1;
@@ -127,7 +127,7 @@ in
           '';
       };
       locations."/seafdav" = {
-          proxyPass = "http://127.0.0.1:8080";
+          proxyPass = "http://127.0.0.1:18080";
           recommendedProxySettings = false;
           extraConfig = ''
           
