@@ -15,7 +15,7 @@ in
         # sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
         # sslCertificateKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
         # sslTrustedCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
-        root = "/home/guichet/guichet";
+        root = "/var/www/guichet";
         locations."/" = {
           proxyPass = "http://[::1]:9991/";
           # proxyPass = "https://guichet.lesgrandsvoisins.com";
