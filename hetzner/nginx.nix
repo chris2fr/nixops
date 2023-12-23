@@ -71,8 +71,10 @@ in
     virtualHosts."seafile.resdigita.com" = {
       enableACME = true;
       forceSSL = true;
+      recommendedProxySettings = false;
       locations."/" = {
          proxyPass = "http://localhost:18000/";
+         
          extraConfig = ''
           proxy_read_timeout 310s;
           proxy_set_header Host $host;
