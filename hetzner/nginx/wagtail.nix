@@ -54,7 +54,6 @@ in
     };
     "gvoisin.resdigita.com" = {
       serverAliases = [
-        "keycloak.resdigita.com"
         "discourse.resdigita.com"
         "jswiki.resdigita.com"
         "gvoisin.desgrandsvoisins.org"
@@ -168,7 +167,6 @@ in
     };
 
     "lesgrandsvoisins.com" = {   
-      serverAliases = ["lesgrandsvoisins.com"];
       sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
