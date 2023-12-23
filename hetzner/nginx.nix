@@ -37,6 +37,9 @@ in
           default upgrade;
       }
     '';
+    appendconfig = ''
+          log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
+    '';
     # commonHttpConfig = ''
     # '';
     recommendedProxySettings = true;
@@ -69,8 +72,67 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-         proxyPass = "http://localhost:8880/"
+         proxyPass = "http://localhost:18000/";
+         extraConfig = ''
+          proxy_read_timeout 310s;
+          proxy_set_header Host $http_host;
+          proxy_set_header Forwarded "for=$remote_addr;proto=$scheme";
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header Connection "";
+          proxy_http_version 1.1;        proxy_http_version 1.1;
+          client_max_body_size 0;
+          access_log      /var/log/nginx/seahub.access.log seafileformat;
+          error_log       /var/log/nginx/seahub.error.log;
+         '';
       };
+      locations."/seafhttp" = {
+        proxy_pass = "http://127.0.0.1:8082";
+        extraConfig = ''
+        
+        rewrite ^/seafhttp(.*)$ $1 break;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        client_max_body_size 0;
+        proxy_connect_timeout  36000s;
+        proxy_read_timeout  36000s;
+        proxy_request_buffering off;
+        access_log      /var/log/nginx/seafhttp.access.log seafileformat;
+        error_log       /var/log/nginx/seafhttp.error.log;
+        '';
+    };
+    locations."/notification/ping" = {
+        proxy_pass = "http://127.0.0.1:8083/ping";
+        extraConfig = ''
+        access_log      /var/log/nginx/notification.access.log seafileformat;
+        error_log       /var/log/nginx/notification.error.log;
+        '';
+    };
+    locations."/notification" = {
+        proxy_pass = "http://127.0.0.1:8083";
+        extraConfig = ''
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        access_log      /var/log/nginx/notification.access.log seafileformat;
+        error_log       /var/log/nginx/notification.error.log;
+        '';
+    };
+    locations."/seafdav" = {
+        proxy_pass = "http://127.0.0.1:8080";
+        extraConfig = ''
+        
+        proxy_set_header   Host $host;
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Host $server_name;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout  1200s;
+        client_max_body_size 0;
+
+        access_log      /var/log/nginx/seafdav.access.log seafileformat;
+        error_log       /var/log/nginx/seafdav.error.log;
+        '';
     };
   };
 }
