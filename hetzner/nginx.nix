@@ -143,6 +143,9 @@ in
       locations."/media" = {
         proxyPass = "http://localhost:10080";
       };
+      locations."/.well-known" = {
+        proxyPass = null;
+      };
     };
   };
 }
