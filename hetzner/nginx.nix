@@ -64,7 +64,13 @@ in
         forceSSL = true;
         globalRedirect = "list.lesgrandsvoisins.com";
       };
-
+    };
+    virtualHosts."seafile.resdigita.com" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+         proxyPass = "http://localhost:8880/"
+      };
     };
   };
 }
