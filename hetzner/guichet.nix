@@ -37,6 +37,7 @@
     script = ''
       set -eu
       ${pkgs.coreutils}/bin/chown -R wwwrun:users /var/www/{secret,dav} 
+      ${pkgs.coreutils}/bin/chown -R guichet:wwwrun /home/guichet/guichet/static
       ${pkgs.coreutils}/bin/chmod -R g+w /var/www/{secret,dav}
     '';
     serviceConfig = {
