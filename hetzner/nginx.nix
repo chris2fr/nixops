@@ -31,7 +31,7 @@ in
       seafileSettings = {
         # https://manual.seafile.com/config/seafile-conf/
         fileserver.port = 8082;
-        fileserver.host = "0.0.0.0"
+        fileserver.host = "0.0.0.0";
       };
       seahubExtraConf = {
         # https://manual.seafile.com/config/seahub_settings_py/
