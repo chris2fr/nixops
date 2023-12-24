@@ -57,12 +57,13 @@ in
     sslServerCert = "/var/lib/acme/filebrowser.resdigita.com/fullchain.pem";
     sslServerChain = "/var/lib/acme/filebrowser.resdigita.com/fullchain.pem";
     sslServerKey = "/var/lib/acme/filebrowser.resdigita.com/key.pem";
+    documentRoot = "/var/www/wagtail";
     extraConfig = ''
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
       OIDCClientSecret UMU0I51HADokJraIaBSjpI89zhnGjuhv
       OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
-      OIDCCryptoPassphrase Joaffffasdffasdre354661382aA6Xamp2ni
+      # OIDCCryptoPassphrase Joaffffasdffasdre354661382aA6Xamp2ni
       <Location "/">
         AuthType openid-connect
         Require valid-user
