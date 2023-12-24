@@ -11,6 +11,8 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 113272;
+    "fs.inotify.max_user_instances" = 256;
+    "fs.inotify.max_queued_events" = 32768;
   };
   imports =
     [ # Include the results of the hardware scan.
