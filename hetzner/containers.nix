@@ -319,7 +319,7 @@ in
             # '';
             ccnetSettings = {
               # https://manual.seafile.com/config/ccnet-conf/
-              General.SERVICE_URL = "http://192.168.100.11";
+              General.SERVICE_URL = "http://192.168.100.11:8082";
             };
         };
       };
