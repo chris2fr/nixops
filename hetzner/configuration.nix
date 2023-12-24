@@ -9,6 +9,9 @@ let
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 113272;
+  };
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
