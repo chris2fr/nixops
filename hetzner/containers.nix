@@ -265,6 +265,9 @@ in
         wget curl
         mariadb
         seafile-server
+        seafile-shared
+        python311Packages.seaserv
+        seahub
         ];
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
