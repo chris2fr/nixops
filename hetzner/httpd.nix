@@ -68,7 +68,7 @@ in
         AuthType openid-connect
         Require valid-user
         ProxyPass "http://filebrowser.resdigita.com:8334/"
-        RequestHeader set FileBrowserUser "chuck"        
+        RequestHeader set FileBrowserUser "admin"        
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
         RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
