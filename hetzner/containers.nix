@@ -270,7 +270,9 @@ in
         # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
         useHostResolvConf = lib.mkForce false;
       };
-    
+      users.users.seafile = {
+        isNormalUser = true;
+      };
       services = {
         resolved.enable = true;
         nginx = {
