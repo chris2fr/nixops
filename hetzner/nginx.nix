@@ -62,11 +62,16 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
-        "seafile.resdigita.com" = {
+        # "seafile.resdigita.com" = {
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   locations."/".proxyPass = "http://localhost:8082";
+        # };
+        "filestash.resdigita.com" = {
           enableACME = true;
           forceSSL = true;
-          locations."/".proxyPass = "http://localhost:8082";
-        };
+          locations."/".proxyPass = "http://localhost:8334";
+        };        
         "list.desgrandsvoisins.org" = {
           serverAliases = ["list.desgrandsvoisins.com"];
           enableACME = true;
