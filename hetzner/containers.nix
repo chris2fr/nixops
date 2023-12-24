@@ -257,19 +257,24 @@ in
           }
         )
         nginx
+        lynx
         ];
       system.stateVersion = "23.11";
-          networking = {
-      firewall = {
-        enable = true;
-        allowedTCPPorts = [ 80 ];
+      nix.settings.experimental-features = "nix-command flakes";
+      networking = {
+        firewall = {
+          enable = true;
+          allowedTCPPorts = [ 80 ];
+        };
+        # Use systemd-resolved inside the container
+        # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+        useHostResolvConf = lib.mkForce false;
       };
-      # Use systemd-resolved inside the container
-      # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-      useHostResolvConf = lib.mkForce false;
-    };
     
-    services.resolved.enable = true;
+      services = {
+        resolved.enable = true;
+        nginx.enable = true;
+      };
     };
   };
 
