@@ -273,7 +273,10 @@ in
     
       services = {
         resolved.enable = true;
-        nginx.enable = true;
+        nginx = {
+          enable = true;
+          statusPage = true;
+        };
       };
     };
   };
