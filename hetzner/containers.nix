@@ -262,6 +262,7 @@ in
         python311Packages.setuptools
         python311Packages.pip memcached libmemcached pwgen sqlite
         wget curl
+        MariaDB
         ];
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
@@ -279,6 +280,20 @@ in
       };
       services = {
         resolved.enable = true;
+        mysql = {
+          enable = true;
+          package = pkgs.mariadb;
+          ensureUsers = [
+            {
+              name = "seafile";
+              ensurePermissions = {
+                "seafile.*" = "ALL PRIVILEGES";
+              };
+            }
+          ];
+          ensureDatabases = ["seafile"];
+          initialDatabases = [{name = "seafile";}];
+        };
         nginx = {
           enable = true;
           virtualHosts."192.168.100.11" = {
