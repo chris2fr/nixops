@@ -314,6 +314,7 @@ in
                 access_log      /var/log/nginx/seafhttp.access.log; # seafileformat;
                 error_log       /var/log/nginx/seafhttp.error.log;
              '';
+            };
           };
         };
         seafile = {
