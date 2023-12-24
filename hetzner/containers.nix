@@ -261,6 +261,7 @@ in
         python311
         python311Packages.setuptools
         python311Packages.pip memcached libmemcached pwgen sqlite
+        wget curl
         ];
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
