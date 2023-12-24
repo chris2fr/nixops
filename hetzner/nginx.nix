@@ -75,7 +75,7 @@ in
         "filebrowser.resdigita.com" = {
           enableACME = true;
           forceSSL = true;
-          locations."/".proxyPass = "http://localhost:8443";
+          locations."/".proxyPass = "https://filebrowser.resdigita.com:8443";
           # locations."/".proxyPass = "http://localhost:8334";
         }; 
         "list.desgrandsvoisins.org" = {
