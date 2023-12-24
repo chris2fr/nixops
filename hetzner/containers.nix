@@ -35,6 +35,7 @@ in
         curl
         lynx
         docker-compose
+        docker
         glib
         gotools
         libraw
@@ -43,7 +44,10 @@ in
         vips
         util-linux
       ];
-      
+      users.users.filestash = {
+        isNormalUser = true;
+        extraGroups = ["docker"];
+      };
     };
   };
   containers.wagtail = {
