@@ -273,6 +273,47 @@ in
     
       services = {
         resolved.enable = true;
+        nginx = {
+          enabled = true;
+          virtualHosts."192.168.100.11" = {
+            locations."/media" = {
+               root = "/opt/seafile/seafile-server-latest/seahub";
+            };
+            locations."/" = {
+             proxyPass = "http://192.168.100.11:8000";
+             extraConfig = ''
+               proxy_set_header   Host $host;
+               proxy_set_header   X-Real-IP $remote_addr;
+               proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+               proxy_set_header   X-Forwarded-Host $server_name;
+               proxy_read_timeout  1200s;
+
+               # used for view/edit office file via Office Online Server
+               client_max_body_size 0;
+
+               access_log      /var/log/nginx/seahub.access.log; # seafileformat;
+               error_log       /var/log/nginx/seahub.error.log;
+             '';
+            };
+            locations."/seafhttp" = {
+             proxyPass = "http://192.168.100.11:8082";
+             extraConfig = ''
+               rewrite ^/seafhttp(.*)$ $1 break;
+                proxy_pass http://127.0.0.1:8082;
+                client_max_body_size 0;
+                proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                proxy_connect_timeout  36000s;
+                proxy_read_timeout  36000s;
+                proxy_send_timeout  36000s;
+
+                send_timeout  36000s;
+
+                access_log      /var/log/nginx/seafhttp.access.log; # seafileformat;
+                error_log       /var/log/nginx/seafhttp.error.log;
+             '';
+          };
+        };
         seafile = {
             enable = true;
             adminEmail = "chris@mann.fr";
@@ -280,7 +321,7 @@ in
             seafileSettings = {
               # https://manual.seafile.com/config/seafile-conf/
               fileserver.port = 8082;
-              fileserver.host = "0.0.0.0";
+              fileserver.host = "192.168.100.11";
             };
             # seahubExtraConf = ''
             #   ENABLE_OAUTH = True
