@@ -276,7 +276,7 @@ in
       services = {
         resolved.enable = true;
         nginx = {
-          enabled = true;
+          enable = true;
           virtualHosts."192.168.100.11" = {
             locations."/media" = {
                root = "/opt/seafile/seafile-server-latest/seahub";
