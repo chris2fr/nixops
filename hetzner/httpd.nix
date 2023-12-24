@@ -62,13 +62,22 @@ in
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
       OIDCClientSecret UMU0I51HADokJraIaBSjpI89zhnGjuhv
-      OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
+      OIDCRedirectURI https://filebrowser.resdigita.com:8443/redirect_uri_from_oauth2
       OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
       <Location "/">
         AuthType openid-connect
         Require valid-user
         ProxyPass "http://localhost:8334/"
-        RequestHeader set X-FileBrowser-User "chuck"
+        RequestHeader set X-FileBrowser-User "chuck"        
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
+        RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
+        RequestHeader set Host $host
+        #RequestHeader set Upgrade $http_upgrade
+        #RequestHeader set Connection $connection_upgrade_keepalive
+        ProxyPreserveHost On
+        ProxyVia On
+        ProxyAddHeaders On
         # RequestHeader set X-FileBrowser-User %{env:OIDC_CLAIM_username}
       </Location>
     '';
