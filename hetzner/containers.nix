@@ -38,7 +38,7 @@ in
         glib
         gotools
         libraw
-        python
+        python311
         stdenv
         vips
         util-linux
