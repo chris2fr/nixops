@@ -50,7 +50,7 @@ in
           allowedTCPPorts = [ 80 443 8334 ];
         };
         # Use systemd-resolved inside the container
-        # useHostResolvConf = lib.mkForce false;
+        useHostResolvConf = lib.mkForce false;
       };
       users.users.filestash = {
         isNormalUser = true;
