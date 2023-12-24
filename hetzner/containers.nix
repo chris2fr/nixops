@@ -47,7 +47,7 @@ in
       networking = {
         firewall = {
           enable = false;
-          allowedTCPPorts = [ 80 443 ];
+          allowedTCPPorts = [ 80 443 8334 ];
         };
         # Use systemd-resolved inside the container
         # useHostResolvConf = lib.mkForce false;
@@ -57,7 +57,6 @@ in
         extraGroups = ["docker"];
       };
       services = {
-        docker.enable = true;
         resolved.enable = true;
       };
     };
