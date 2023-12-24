@@ -32,7 +32,7 @@ in
   # Use the systemd-boot EFI boot loader.
   environment.systemPackages = with pkgs; [
     yarn
-    
+    filebrowser
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
