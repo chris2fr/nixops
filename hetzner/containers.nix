@@ -44,9 +44,21 @@ in
         vips
         util-linux
       ];
+      networking = {
+        firewall = {
+          enable = false;
+          allowedTCPPorts = [ 80 443 ];
+        };
+        # Use systemd-resolved inside the container
+        # useHostResolvConf = lib.mkForce false;
+      };
       users.users.filestash = {
         isNormalUser = true;
         extraGroups = ["docker"];
+      };
+      services = {
+        docker.enable = true;
+        resolved.enable = true;
       };
     };
   };
