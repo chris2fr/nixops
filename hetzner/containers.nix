@@ -6,10 +6,10 @@ in
   containers.filestash = {
     autoStart = true;
     privateNetwork = true;
-    hostAddress = "192.168.100.10";
-    localAddress = "192.168.100.11";
-    hostAddress6 = "fc00::1";
-    localAddress6 = "fc00::2";
+    hostAddress = "192.168.101.10";
+    localAddress = "192.168.101.11";
+    hostAddress6 = "fd00::1";
+    localAddress6 = "fd00::2";
     config = { config, pkgs, lib, ...  }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
@@ -44,9 +44,11 @@ in
         vips
         util-linux
       ];
+      system.stateVersion = "23.11";
+      nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
-          enable = false;
+          enable = true;
           allowedTCPPorts = [ 80 443 8334 ];
         };
         # Use systemd-resolved inside the container
