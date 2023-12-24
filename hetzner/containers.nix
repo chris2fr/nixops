@@ -264,6 +264,7 @@ in
         python311Packages.pip memcached libmemcached pwgen sqlite
         wget curl
         mariadb
+        seafile-server
         ];
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
