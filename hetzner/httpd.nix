@@ -68,7 +68,7 @@ in
         AuthType openid-connect
         Require valid-user
         ProxyPass "http://localhost:8334/"
-        RequestHeader set X-FileBrowser-User %{env:OIDC_CLAIM_username}  
+        # RequestHeader set X-FileBrowser-User %{env:OIDC_CLAIM_username}
       </Location>
     '';
   };
