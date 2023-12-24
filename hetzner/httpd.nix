@@ -19,7 +19,7 @@ let
     # RequestHeader set X-Forwarded-Proto "https"
     # RequestHeader set X-Forwarded-Port "443"
   '';
-  fileBrowserSecret = = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.filebrowser));
+  fileBrowserSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.filebrowser));
 in
 { 
   nix.settings.experimental-features = "nix-command flakes";
