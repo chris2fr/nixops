@@ -34,6 +34,10 @@ in
     yarn
     filebrowser
   ];
+  users.users.filebrowser = {
+    isNormalUser = true;
+    extraGroups = ["wwwrun"];
+  };
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

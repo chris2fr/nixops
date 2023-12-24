@@ -52,6 +52,26 @@ in
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
+  services.httpd.virtualHosts."filebrowser.resdigita.com" = {
+    listen = [{port = 8443; ssl=true;}];
+    sslServerCert = "/var/lib/acme/filebrowser.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/filebrowser.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/filebrowser.resdigita.com/key.pem";
+    extraConfig = ''
+      OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+      OIDCClientID filebrowser
+      OIDCClientSecret UMU0I51HADokJraIaBSjpI89zhnGjuhv
+      OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
+      OIDCCryptoPassphrase Joaffffasdffasdre354661382aA6Xamp2ni
+      <Location "/">
+        AuthType openid-connect
+        Require valid-user
+        ProxyPass "http://localhost:8334/"
+        RequestHeader set X-FileBrowser-User %{env:OIDC_CLAIM_sub}  
+      </Location>
+    '';
+  };
+  
   services.httpd.virtualHosts."keeweb.resdigita.com" = {
     listen = [{port = 8443; ssl=true;}];
     sslServerCert = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";

@@ -67,11 +67,16 @@ in
         #   forceSSL = true;
         #   locations."/".proxyPass = "http://localhost:8082";
         # };
-        "filestash.resdigita.com" = {
+        # "filestash.resdigita.com" = {
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   locations."/".proxyPass = "http://localhost:8334";
+        # }; 
+        "filebrowser.resdigita.com" = {
           enableACME = true;
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:8334";
-        };        
+        }; 
         "list.desgrandsvoisins.org" = {
           serverAliases = ["list.desgrandsvoisins.com"];
           enableACME = true;
