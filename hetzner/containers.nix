@@ -277,11 +277,11 @@ in
             enable = true;
             adminEmail = "chris@mann.fr";
             initialAdminPassword = "Ahs3sae1";
-            # seafileSettings = {
-            #   # https://manual.seafile.com/config/seafile-conf/
-            #   fileserver.port = 8082;
-            #   fileserver.host = "0.0.0.0";
-            # };
+            seafileSettings = {
+              # https://manual.seafile.com/config/seafile-conf/
+              fileserver.port = 8082;
+              fileserver.host = "0.0.0.0";
+            };
             # seahubExtraConf = ''
             #   ENABLE_OAUTH = True
 
