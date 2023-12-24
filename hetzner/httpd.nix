@@ -63,11 +63,11 @@ in
       OIDCClientID filebrowser
       OIDCClientSecret UMU0I51HADokJraIaBSjpI89zhnGjuhv
       OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
-      # OIDCCryptoPassphrase Joaffffasdffasdre354661382aA6Xamp2ni
+      OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
       <Location "/">
         AuthType openid-connect
         Require valid-user
-        ProxyPass "http://localhost:8334/"
+        # ProxyPass "http://localhost:8334/"
         # RequestHeader set X-FileBrowser-User %{env:OIDC_CLAIM_username}
       </Location>
     '';
