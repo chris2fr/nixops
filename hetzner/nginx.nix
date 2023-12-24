@@ -9,7 +9,6 @@ nginxLocationWagtailExtraConfig = ''
     # proxy_set_header Upgrade $http_upgrade;
     # proxy_set_header Connection $connection_upgrade_keepalive;
 '';
-seafilePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.seafile));
 in
 { 
   imports = [
