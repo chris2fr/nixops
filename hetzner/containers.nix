@@ -232,6 +232,10 @@ in
   containers.test = {
     autoStart = true;
     privateNetwork = true;
+    hostAddress = "192.168.100.10";
+    localAddress = "192.168.100.11";
+    hostAddress6 = "fc00::1";
+    localAddress6 = "fc00::2";
     config = { config, pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
@@ -254,6 +258,18 @@ in
         )
         nginx
         ];
+      system.stateVersion = "23.11";
+          networking = {
+      firewall = {
+        enable = true;
+        allowedTCPPorts = [ 80 ];
+      };
+      # Use systemd-resolved inside the container
+      # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+      useHostResolvConf = mkForce false;
+    };
+    
+    services.resolved.enable = true;
     };
   };
 
