@@ -75,11 +75,11 @@ in
         RequestHeader set Host $host
         #RequestHeader set Upgrade $http_upgrade
         #RequestHeader set Connection $connection_upgrade_keepalive
-        ProxyPreserveHost On
-        ProxyVia On
-        ProxyAddHeaders On
         # RequestHeader set X-FileBrowser-User %{env:OIDC_CLAIM_username}
       </Location>
+      ProxyPreserveHost On
+      ProxyVia On
+      ProxyAddHeaders On
     '';
   };
   
