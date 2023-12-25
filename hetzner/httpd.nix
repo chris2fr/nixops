@@ -77,6 +77,7 @@ in
         RequestHeader set Host $host
       </Location>
     '';
+  };
   services.httpd.virtualHosts."filebrowser.resdigita.com" = {
     listen = [{port = 8443; ssl=true;}];
     sslServerCert = "/var/lib/acme/filebrowser.resdigita.com/fullchain.pem";
