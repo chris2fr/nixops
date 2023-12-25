@@ -76,7 +76,7 @@ in
       <Location "/">
         AuthType openid-connect
         Require valid-user
-        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/chris/filebrowser.sock|http://127.0.0.1
+        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://127.0.0.1
         # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
         RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
         RequestHeader set X-Forwarded-Proto "https"
