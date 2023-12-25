@@ -26,7 +26,7 @@
   };
   security.sudo.extraConfig = ''
     Cmnd_Alias FILEBROWSER_CMDS = /run/current-system/sw/bin/systemctl --user start filebrowser, /run/current-system/sw/bin/systemctl --user stop filebrowser, /run/current-system/sw/bin/systemctl --user status filebrowser, /run/current-system/sw/bin/systemctl --restart start filebrowser
-    unprivileged_user ALL=(ALL) NOPASSWD: FILEBROWSER_CMDS
+    filebrowser ALL=(ALL) NOPASSWD: FILEBROWSER_CMDS
   '';
   systemd.user.services."filebrowser@" = {
     enable = true;
