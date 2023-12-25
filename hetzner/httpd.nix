@@ -20,6 +20,7 @@ let
     # RequestHeader set X-Forwarded-Port "443"
   '';
   fileBrowserSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.filebrowser));
+  chrisSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.chris));
 in
 { 
   nix.settings.experimental-features = "nix-command flakes";
@@ -64,8 +65,8 @@ in
       # ProxyVia On
       ProxyAddHeaders On
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
-      OIDCClientID filebrowser
-      OIDCClientSecret ${fileBrowserSecret}
+      OIDCClientID chris
+      OIDCClientSecret ${chrisSecret}
       OIDCRedirectURI https://chris.resdigita.com/redirect_uri_from_oauth2
       OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
       <Location "/">
