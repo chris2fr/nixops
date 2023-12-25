@@ -28,7 +28,7 @@
     enable = true;
     wantedBy = ["default.target"];
     script = "/run/current-system/sw/bin/filebrowser";
-    description = "File Browser, un interface web à un système de fichiers pour %u on $i";
+    description = "File Browser, un interface web à un système de fichiers pour %u on %i";
     serviceConfig = {
       WorkingDirectory = "/tmp";
       # User = "%u";
