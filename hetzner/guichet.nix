@@ -40,7 +40,7 @@
       filebrowser_database = "%i";
     };
     serviceConfig = {
-      WorkingDirectory = "/var/www/dav/";
+      WorkingDirectory = "/var/www/dav/data/%i";
       # User = "%u";
       # Group = "wwwrun";
     };
