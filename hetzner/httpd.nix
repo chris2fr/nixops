@@ -94,7 +94,7 @@ in
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
       OIDCClientSecret ${fileBrowserSecret}
-      OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
+      OIDCRedirectURI https://filebrowser.resdigita.com/subfolder/redirect_uri_from_oauth2
       OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
       # <LocationMatch "^/u/redirect$">
       #   AuthType openid-connect
@@ -104,7 +104,7 @@ in
       #   # RewriteRule ^(.*)$ /u/%{env:OIDC_CLAIM_username}/ [R,L]
       # </LocationMatch>      
       # <LocationMatch "/u/(?<username>[^/]+)/">
-      <Location "/">
+      <Location "/subfolder">
         AuthType openid-connect
         Require valid-user
         ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://127.0.0.1/
@@ -115,16 +115,16 @@ in
         RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
         RequestHeader set Host $host
       </Location>
-      <LocationMatch "^/u/(?<username>[^/]+)">
-        AuthType openid-connect
-        Require valid-user      
-        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://127.0.0.1/
-        RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
-        RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
-        RequestHeader set Host $host
-      </LocationMatch>
+      # <LocationMatch "^/u/(?<username>[^/]+)">
+      #   AuthType openid-connect
+      #   Require valid-user      
+      #   ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://127.0.0.1/
+      #   RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
+      #   RequestHeader set X-Forwarded-Proto "https"
+      #   RequestHeader set X-Forwarded-Port "443"
+      #   RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
+      #   RequestHeader set Host $host
+      # </LocationMatch>
       # </LocationMatch>
       # <LocationMatch ^/(u/)?$>
       #     Redirect /u/redirect
