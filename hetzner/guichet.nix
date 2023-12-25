@@ -24,14 +24,14 @@
       Group = "wwwrun";
     };
   };
-  systemd.services.filebrowser = {
+  systemd.services."filebrowser@" = {
     enable = true;
     wantedBy = ["default.target"];
     script = "/run/current-system/sw/bin/filebrowser";
-    description = "File Browser, un interface web à un système de fichiers";
+    description = "File Browser, un interface web à un système de fichiers pour %i";
     serviceConfig = {
-      WorkingDirectory = "/home/filebrowser";
-      User = "filebrowser";
+      WorkingDirectory = "/home/%i";
+      User = "%i";
       Group = "wwwrun";
     };
   };
