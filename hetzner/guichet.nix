@@ -28,11 +28,11 @@
     enable = true;
     wantedBy = ["default.target"];
     script = "/run/current-system/sw/bin/filebrowser";
-    description = "File Browser, un interface web à un système de fichiers pour %u";
+    description = "File Browser, un interface web à un système de fichiers pour %i";
     serviceConfig = {
-      WorkingDirectory = "/home/%u";
-      User = "%u";
-      Group = "wwwrun";
+      WorkingDirectory = "/tmp";
+      # User = "%u";
+      # Group = "wwwrun";
     };
   };
   systemd.timers."guichet-wwwrun-fix-perms" = {
