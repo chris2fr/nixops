@@ -84,6 +84,17 @@ in
         RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
         RequestHeader set Host $host
       </Location>
+      <Location /u/chris>
+        AuthType openid-connect
+        Require valid-user
+        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/chris.sock|http://127.0.0.1/
+        # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
+        RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
+        RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
+        RequestHeader set Host $host
+      </Location>
       # </LocationMatch>
       # <LocationMatch ^/(u/)?$>
       #     Redirect /u/redirect
