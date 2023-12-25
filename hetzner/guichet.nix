@@ -33,7 +33,7 @@
     wantedBy = ["default.target"];
     scriptArgs = "%u %i";
     # preStart = "mkdir -p /opt/filebrowser/dbs/%u/%i; touch /opt/filebrowser/dbs/%u/%i/temoin.txt";
-    script = "/opt/filebrowser/dbs/filebrowser.sh $$filebrowser_user $$filebrowser_database";
+    script = "/opt/filebrowser/dbs/filebrowser.sh ${filebrowser_user} ${filebrowser_database}";
     description = "File Browser, un interface web à un système de fichiers pour %u on %i";
     environment = {
       filebrowser_user = "%u";
