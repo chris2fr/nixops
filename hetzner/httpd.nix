@@ -75,7 +75,8 @@ in
       <LocationMatch "/u/(?<username>[^/]+)/">
         # AuthType openid-connect
         # Require valid-user
-        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
+        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/chris/filebrowser.sock|http://filebrowser.resdigita.com/u/chris/
+        # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
         RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
