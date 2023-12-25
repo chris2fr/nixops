@@ -74,7 +74,6 @@ in
         RequestHeader set X-Forwarded-Port "443"
         RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
         RequestHeader set Host $host
-        OIDCRedirectURI https://filebrowser.resdigita.com/u/%{env:MATCH_USERNAME}/redirect_uri_from_oauth2
       </LocationMatch>
       # <Location "/">
         # AuthType openid-connect
