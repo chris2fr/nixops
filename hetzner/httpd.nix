@@ -60,6 +60,9 @@ in
     sslServerKey = "/var/lib/acme/chris.resdigita.com/key.pem";
     documentRoot = "/var/www/wagtail";
     extraConfig = ''
+      ProxyPreserveHost On
+      ProxyVia On
+      ProxyAddHeaders On
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
       OIDCClientSecret ${fileBrowserSecret}
@@ -131,9 +134,7 @@ in
       #   #RequestHeader set Upgrade $http_upgrade
       #   #RequestHeader set Connection $connection_upgrade_keepalive
       # </Location>
-      ProxyPreserveHost On
-      ProxyVia On
-      ProxyAddHeaders On
+
     '';
   };
   
