@@ -75,10 +75,20 @@ in
         # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
         # RequestHeader set Host $host
       </LocationMatch>
+      <LocationMatch ^/(u/)?$>
+          Redirect /u/redirect
+      </LocationMatch>
+      <Location "/u/redirect">
+        AuthType openid-connect
+        Require valid-user
+        RewriteEngine On
+        # Redirect to the specific path based on the header value
+        RewriteRule ^(.*)$ /u/%{env:OIDC_CLAIM_username}/ [R,L]
+      </Location>
       <Location "/u">
         AuthType openid-connect
         Require valid-user
-        
+
         # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://filebrowser.resdigita.com/
         # ProxyPass "http://filebrowser.resdigita.com:8334/"
         # RequestHeader set FileBrowserUser "admin"   
