@@ -33,13 +33,13 @@
     wantedBy = ["default.target"];
     scriptArgs = "%u %i";
     # preStart = "mkdir -p /opt/filebrowser/dbs/%u/%i; touch /opt/filebrowser/dbs/%u/%i/temoin.txt";
-    script = "/opt/filebrowser/dbs/filebrowser.sh";
+    script = "/opt/filebrowser/dbs/filebrowser.sh ";
     description = "File Browser, un interface web à un système de fichiers pour %u on %i";
-    serviceConfig = {
-      # WorkingDirectory = " /opt/filebrowser/dbs/%u/%i";
-      # User = "%u";
-      # Group = "wwwrun";
-    };
+    # serviceConfig = {
+    #   WorkingDirectory = " /opt/filebrowser/dbs/";
+    #   User = "%u";
+    #   Group = "wwwrun";
+    # };
   };
   systemd.timers."guichet-wwwrun-fix-perms" = {
   wantedBy = [ "timers.target" ];
