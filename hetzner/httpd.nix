@@ -65,6 +65,13 @@ in
       OIDCClientSecret ${fileBrowserSecret}
       OIDCRedirectURI https://filebrowser.resdigita.com/u/redirect_uri_from_oauth2
       OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
+      <LocationMatch "^/u/redirect$">
+        AuthType openid-connect
+        Require valid-user
+        RewriteEngine On
+        # Redirect to the specific path based on the header value
+        RewriteRule ^(.*)$ /u/%{env:OIDC_CLAIM_username}/ [R,L]
+      </LocationMatch>      
       <LocationMatch "/u/(?<username>[^/]+)/">
         # AuthType openid-connect
         # Require valid-user
@@ -78,13 +85,7 @@ in
       <LocationMatch ^/(u/)?$>
           Redirect /u/redirect
       </LocationMatch>
-      <Location "/u/redirect">
-        AuthType openid-connect
-        Require valid-user
-        RewriteEngine On
-        # Redirect to the specific path based on the header value
-        RewriteRule ^(.*)$ /u/%{env:OIDC_CLAIM_username}/ [R,L]
-      </Location>
+
       <Location "/u">
         AuthType openid-connect
         Require valid-user
