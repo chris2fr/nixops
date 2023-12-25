@@ -61,7 +61,7 @@ in
     documentRoot = "/var/www/wagtail";
     extraConfig = ''
       ProxyPreserveHost On
-      ProxyVia On
+      # ProxyVia On
       ProxyAddHeaders On
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
@@ -89,7 +89,7 @@ in
     documentRoot = "/var/www/wagtail";
     extraConfig = ''
       ProxyPreserveHost On
-      ProxyVia On
+      # ProxyVia On
       ProxyAddHeaders On
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
@@ -134,7 +134,6 @@ in
       #   #RequestHeader set Upgrade $http_upgrade
       #   #RequestHeader set Connection $connection_upgrade_keepalive
       # </Location>
-
     '';
   };
   
