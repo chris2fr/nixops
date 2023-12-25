@@ -85,6 +85,18 @@ in
             
           };
         }; 
+        "chris.resdigita.com" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "https://chris.resdigita.com:8443";
+            # locations."/".proxyPass = "http://localhost:8334";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            '';
+          };
+        };
         "list.desgrandsvoisins.org" = {
           serverAliases = ["list.desgrandsvoisins.com"];
           enableACME = true;

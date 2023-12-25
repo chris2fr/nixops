@@ -53,6 +53,30 @@ in
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
+  services.httpd.virtualHosts."chris.resdigita.com" = {
+    listen = [{port = 8443; ssl=true;}];
+    sslServerCert = "/var/lib/acme/chris.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/chris.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/chris.resdigita.com/key.pem";
+    documentRoot = "/var/www/wagtail";
+    extraConfig = ''
+      OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+      OIDCClientID filebrowser
+      OIDCClientSecret ${fileBrowserSecret}
+      OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
+      OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
+      <Location "/">
+        AuthType openid-connect
+        Require valid-user
+        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://127.0.0.1/
+        # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
+        RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
+        RequestHeader set X-Forwarded-Proto "https"
+        RequestHeader set X-Forwarded-Port "443"
+        RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
+        RequestHeader set Host $host
+      </Location>
+    '';
   services.httpd.virtualHosts."filebrowser.resdigita.com" = {
     listen = [{port = 8443; ssl=true;}];
     sslServerCert = "/var/lib/acme/filebrowser.resdigita.com/fullchain.pem";
@@ -60,6 +84,9 @@ in
     sslServerKey = "/var/lib/acme/filebrowser.resdigita.com/key.pem";
     documentRoot = "/var/www/wagtail";
     extraConfig = ''
+      ProxyPreserveHost On
+      ProxyVia On
+      ProxyAddHeaders On
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
       OIDCClientSecret ${fileBrowserSecret}
@@ -77,17 +104,6 @@ in
         AuthType openid-connect
         Require valid-user
         ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://127.0.0.1/
-        # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
-        RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
-        RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
-        RequestHeader set Host $host
-      </Location>
-      <Location /u/chris>
-        AuthType openid-connect
-        Require valid-user
-        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/chris.sock|http://127.0.0.1/u/chris/
         # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
         RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
         RequestHeader set X-Forwarded-Proto "https"
