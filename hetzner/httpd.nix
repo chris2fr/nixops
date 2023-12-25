@@ -68,7 +68,9 @@ in
       <Location "/">
         AuthType openid-connect
         Require valid-user
-        ProxyPass "http://filebrowser.resdigita.com:8334/"
+        
+        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://filebrowser.resdigita.com/
+        # ProxyPass "http://filebrowser.resdigita.com:8334/"
         # RequestHeader set FileBrowserUser "admin"   
         RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
         # RequestHeader set FileBrowserUser "admin"        
