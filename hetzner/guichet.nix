@@ -31,10 +31,11 @@
   systemd.user.services."filebrowser@" = {
     enable = true;
     wantedBy = ["default.target"];
-    script = "mkdir -p /opt/filebrowser/dbs/u${u}/i${i}; cd /opt/filebrowser/dbs/u${u}/i${i}; /run/current-system/sw/bin/filebrowser --socket=/opt/filebrowser/dbs/u${u}/i${i}/filebrowser.sock";
+    preStart = "mkdir -p /opt/filebrowser/dbs/%u/%i";
+    script = "filebrowser --socket=filebrowser.sock";
     description = "File Browser, un interface web à un système de fichiers pour %u on %i";
     serviceConfig = {
-      WorkingDirectory = "/opt/filebrowser/dbs/";
+      WorkingDirectory = " /opt/filebrowser/dbs/%u/%i";
       # User = "%u";
       # Group = "wwwrun";
     };
