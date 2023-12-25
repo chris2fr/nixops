@@ -69,24 +69,30 @@ in
         AuthType openid-connect
         Require valid-user
         ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/u/%{env:MATCH_USERNAME}/
-      </LocationMatch>
-      <Location "/">
-        AuthType openid-connect
-        Require valid-user
-        
-        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://filebrowser.resdigita.com/
-        # ProxyPass "http://filebrowser.resdigita.com:8334/"
-        # RequestHeader set FileBrowserUser "admin"   
         RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
-        # RequestHeader set FileBrowserUser "admin"        
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
         RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
         RequestHeader set Host $host
-        #RequestHeader set Upgrade $http_upgrade
-        #RequestHeader set Connection $connection_upgrade_keepalive
+        OIDCRedirectURI https://filebrowser.resdigita.com/u/%{env:MATCH_USERNAME}/redirect_uri_from_oauth2
+      </LocationMatch>
+      # <Location "/">
+        # AuthType openid-connect
+        # Require valid-user
+        
+        # # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://filebrowser.resdigita.com/
+        # # ProxyPass "http://filebrowser.resdigita.com:8334/"
+        # # RequestHeader set FileBrowserUser "admin"   
+        # RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
+        # # RequestHeader set FileBrowserUser "admin"        
+        # RequestHeader set X-Forwarded-Proto "https"
+        # RequestHeader set X-Forwarded-Port "443"
+        # RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
+        # RequestHeader set Host $host
+        # #RequestHeader set Upgrade $http_upgrade
+        # #RequestHeader set Connection $connection_upgrade_keepalive
         # 
-      </Location>
+      # </Location>
       ProxyPreserveHost On
       ProxyVia On
       ProxyAddHeaders On
