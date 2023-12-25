@@ -68,9 +68,9 @@ in
       <LocationMatch "^/u/redirect$">
         AuthType openid-connect
         Require valid-user
-        RewriteEngine On
+        # RewriteEngine On
         # Redirect to the specific path based on the header value
-        RewriteRule ^(.*)$ /u/%{env:OIDC_CLAIM_username}/ [R,L]
+        # RewriteRule ^(.*)$ /u/%{env:OIDC_CLAIM_username}/ [R,L]
       </LocationMatch>      
       <LocationMatch "/u/(?<username>[^/]+)/">
         # AuthType openid-connect
@@ -83,9 +83,9 @@ in
         RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
         RequestHeader set Host $host
       </LocationMatch>
-      <LocationMatch ^/(u/)?$>
-          Redirect /u/redirect
-      </LocationMatch>
+      # <LocationMatch ^/(u/)?$>
+      #     Redirect /u/redirect
+      # </LocationMatch>
 
       <Location "/u">
         AuthType openid-connect
