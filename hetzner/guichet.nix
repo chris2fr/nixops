@@ -24,7 +24,7 @@
       Group = "wwwrun";
     };
   };
-  systemd.services."filebrowser@" = {
+  systemd.user.services."filebrowser@" = {
     enable = true;
     wantedBy = ["default.target"];
     script = "/run/current-system/sw/bin/filebrowser";
