@@ -65,6 +65,11 @@ in
       OIDCClientSecret ${fileBrowserSecret}
       OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
       OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
+      <LocationMatch "/u/(?<username>[^/]+)/">
+        AuthType openid-connect
+        Require valid-user
+        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/u/%{env:MATCH_USERNAME}/
+      </LocationMatch>
       <Location "/">
         AuthType openid-connect
         Require valid-user
