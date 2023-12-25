@@ -63,47 +63,46 @@ in
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
       OIDCClientSecret ${fileBrowserSecret}
-      OIDCRedirectURI https://filebrowser.resdigita.com/u/redirect_uri_from_oauth2
+      OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
       OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
-      <LocationMatch "^/u/redirect$">
+      # <LocationMatch "^/u/redirect$">
+      #   AuthType openid-connect
+      #   Require valid-user
+      #   # RewriteEngine On
+      #   # Redirect to the specific path based on the header value
+      #   # RewriteRule ^(.*)$ /u/%{env:OIDC_CLAIM_username}/ [R,L]
+      # </LocationMatch>      
+      # <LocationMatch "/u/(?<username>[^/]+)/">
+      <Location "/">
         AuthType openid-connect
         Require valid-user
-        # RewriteEngine On
-        # Redirect to the specific path based on the header value
-        # RewriteRule ^(.*)$ /u/%{env:OIDC_CLAIM_username}/ [R,L]
-      </LocationMatch>      
-      <LocationMatch "/u/(?<username>[^/]+)/">
-        # AuthType openid-connect
-        # Require valid-user
-        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/chris/filebrowser.sock|https://filebrowser.resdigita.com:8443/u/chris/
+        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/chris/filebrowser.sock|http://127.0.0.1
         # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
         RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
         RequestHeader set X-Forwarded-Proto "https"
         RequestHeader set X-Forwarded-Port "443"
         RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
         RequestHeader set Host $host
-      </LocationMatch>
+      </Location>
+      # </LocationMatch>
       # <LocationMatch ^/(u/)?$>
       #     Redirect /u/redirect
       # </LocationMatch>
-
-      <Location "/u">
-        AuthType openid-connect
-        Require valid-user
-
-        # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://filebrowser.resdigita.com/
-        # ProxyPass "http://filebrowser.resdigita.com:8334/"
-        # RequestHeader set FileBrowserUser "admin"   
-        RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
-        # RequestHeader set FileBrowserUser "admin"        
-        RequestHeader set X-Forwarded-Proto "https"
-        RequestHeader set X-Forwarded-Port "443"
-        RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
-        RequestHeader set Host $host
-        #RequestHeader set Upgrade $http_upgrade
-        #RequestHeader set Connection $connection_upgrade_keepalive
-        
-      </Location>
+      # <Location "/u">
+      #   AuthType openid-connect
+      #   Require valid-user
+      #   # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://filebrowser.resdigita.com/
+      #   # ProxyPass "http://filebrowser.resdigita.com:8334/"
+      #   # RequestHeader set FileBrowserUser "admin"   
+      #   RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
+      #   # RequestHeader set FileBrowserUser "admin"        
+      #   RequestHeader set X-Forwarded-Proto "https"
+      #   RequestHeader set X-Forwarded-Port "443"
+      #   RequestHeader set X-Forwarded-For "$proxy_add_x_forwarded_for"
+      #   RequestHeader set Host $host
+      #   #RequestHeader set Upgrade $http_upgrade
+      #   #RequestHeader set Connection $connection_upgrade_keepalive
+      # </Location>
       ProxyPreserveHost On
       ProxyVia On
       ProxyAddHeaders On
