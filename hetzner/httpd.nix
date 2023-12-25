@@ -63,7 +63,7 @@ in
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
       OIDCClientSecret ${fileBrowserSecret}
-      OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
+      OIDCRedirectURI https://filebrowser.resdigita.com/u/redirect_uri_from_oauth2
       OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
       <LocationMatch "/u/(?<username>[^/]+)/">
         # AuthType openid-connect
