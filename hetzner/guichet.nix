@@ -31,8 +31,8 @@
   systemd.user.services."filebrowser@" = {
     enable = true;
     wantedBy = ["default.target"];
-    preStart = "mkdir -p /opt/filebrowser/dbs/%u/%i";
-    script = "filebrowser --socket=filebrowser.sock";
+    preStart = "mkdir -p /opt/filebrowser/dbs/%u/%i; touch /opt/filebrowser/dbs/%u/%i/temoin.txt";
+    script = "filebrowser --socket=./filebrowser.sock";
     description = "File Browser, un interface web à un système de fichiers pour %u on %i";
     serviceConfig = {
       WorkingDirectory = " /opt/filebrowser/dbs/%u/%i";
