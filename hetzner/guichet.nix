@@ -31,7 +31,7 @@
   systemd.user.services."filebrowser@" = {
     enable = true;
     wantedBy = ["default.target"];
-    script = "mkdir -p /opt/filebrowser/dbs/%u/%i; cd /opt/filebrowser/dbs/%u/%i; /run/current-system/sw/bin/filebrowser --socket=/opt/filebrowser/dbs/%u/%i/filebrowser.sock";
+    script = "mkdir -p /opt/filebrowser/dbs/%%u/%%i; cd /opt/filebrowser/dbs/%%u/%%i; /run/current-system/sw/bin/filebrowser --socket=/opt/filebrowser/dbs/%%u/%%i/filebrowser.sock";
     description = "File Browser, un interface web à un système de fichiers pour %u on %i";
     serviceConfig = {
       WorkingDirectory = "/opt/filebrowser/dbs/";
