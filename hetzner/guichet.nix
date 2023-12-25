@@ -39,11 +39,11 @@
       filebrowser_user = "%u";
       filebrowser_database = "%i";
     };
-    # serviceConfig = {
-    #   WorkingDirectory = " /opt/filebrowser/dbs/";
-    #   User = "%u";
-    #   Group = "wwwrun";
-    # };
+    serviceConfig = {
+      WorkingDirectory = "/var/www/dav/";
+      # User = "%u";
+      # Group = "wwwrun";
+    };
   };
   systemd.timers."guichet-wwwrun-fix-perms" = {
   wantedBy = [ "timers.target" ];
