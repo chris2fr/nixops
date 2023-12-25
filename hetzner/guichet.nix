@@ -24,7 +24,17 @@
       Group = "wwwrun";
     };
   };
-
+  systemd.services.filebrowser = {
+    enable = true;
+    wantedBy = ["default.target"];
+    script = "/run/current-system/sw/bin/filebrowser";
+    description = "File Browser, un interface web à un système de fichiers";
+    serviceConfig = {
+      WorkingDirectory = "/home/filebrowser";
+      User = "filebrowser";
+      Group = "wwwrun";
+    };
+  };
   systemd.timers."guichet-wwwrun-fix-perms" = {
   wantedBy = [ "timers.target" ];
     timerConfig = {
