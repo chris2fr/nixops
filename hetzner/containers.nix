@@ -46,6 +46,7 @@ in
         stdenv
         util-linux
         busybox
+        seafile-server
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
