@@ -42,6 +42,7 @@ in
   users.users.filebrowser = {
     isNormalUser = true;
     extraGroups = ["wwwrun"];
+
   };
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -119,6 +120,14 @@ in
     home.stateVersion = "23.11";
     programs.home-manager.enable = true;
   };
+  home-manager.users.filebrowser = {pkgs, ...}: {
+    home.packages = with pkgs; [ 
+      filebrowser
+    ];
+    home.stateVersion = "23.11";
+    programs.home-manager.enable = true;
+
+  };
 
   home-manager.users.mannchri = {pkgs, ...}: {
     home.packages = [ pkgs.atool pkgs.httpie ];
@@ -195,12 +204,12 @@ in
         filebrowser_user = "filebrowser";
         filebrowser_database = "%i";
         FB_BASEURL="";
-        UMASK="0022";
       };
       serviceConfig = {
         WorkingDirectory = "/var/www/dav/data/%i";
         User = "filebrowser";
         Group = "wwwrun";
+        UMask = "0002";
       };
     };
     crabfitfront = {
