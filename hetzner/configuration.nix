@@ -195,7 +195,7 @@ in
         filebrowser_user = "filebrowser";
         filebrowser_database = "%i";
         FB_BASEURL="";
-        UMASK=0022;
+        UMASK="0022";
       };
       serviceConfig = {
         WorkingDirectory = "/var/www/dav/data/%i";
