@@ -3,7 +3,7 @@ let
   # seafilePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.seafile));
 in
 {
-  containers.filestash = {
+  containers.docker = {
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.101.10";
@@ -36,33 +36,89 @@ in
         lynx
         docker-compose
         docker
-        glib
-        gotools
-        libraw
-        python311
         stdenv
-        vips
         util-linux
+        busybox
       ];
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
           enable = true;
-          allowedTCPPorts = [ 80 443 8334 ];
+          allowedTCPPorts = [ 80 443 ];
         };
         # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
       };
-      users.users.filestash = {
+      users.users.docker = {
         isNormalUser = true;
-        extraGroups = ["docker"];
       };
       services = {
         resolved.enable = true;
       };
     };
-  };
+  };    
+
+  # containers.filestash = {
+  #   autoStart = true;
+  #   privateNetwork = true;
+  #   hostAddress = "192.168.101.10";
+  #   localAddress = "192.168.101.11";
+  #   hostAddress6 = "fd00::1";
+  #   localAddress6 = "fd00::2";
+  #   config = { config, pkgs, lib, ...  }: {
+  #     environment.systemPackages = with pkgs; [
+  #       ((vim_configurable.override {  }).customize{
+  #         name = "vim";
+  #         vimrcConfig.customRC = ''
+  #           " your custom vimrc
+  #           set mouse=a
+  #           set nocompatible
+  #           colo torte
+  #           syntax on
+  #           set tabstop     =2
+  #           set softtabstop =2
+  #           set shiftwidth  =2
+  #           set expandtab
+  #           set autoindent
+  #           set smartindent
+  #           " ...
+  #         '';
+  #         }
+  #       )
+  #       wget
+  #       vim
+  #       curl
+  #       lynx
+  #       docker-compose
+  #       docker
+  #       glib
+  #       gotools
+  #       libraw
+  #       python311
+  #       stdenv
+  #       vips
+  #       util-linux
+  #     ];
+  #     system.stateVersion = "23.11";
+  #     nix.settings.experimental-features = "nix-command flakes";
+  #     networking = {
+  #       firewall = {
+  #         enable = true;
+  #         allowedTCPPorts = [ 80 443 8334 ];
+  #       };
+  #       # Use systemd-resolved inside the container
+  #       useHostResolvConf = lib.mkForce false;
+  #     };
+  #     users.users.filestash = {
+  #       isNormalUser = true;
+  #       extraGroups = ["docker"];
+  #     };
+  #     services = {
+  #       resolved.enable = true;
+  #     };
+  #   };
+  # };
   containers.wagtail = {
     autoStart = true;
     # privateNetwork = true;
