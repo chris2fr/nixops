@@ -11,6 +11,8 @@ in
     enableIPv6 = true;
   };
   containers.docker = {
+    virtualisation.docker.enable = true;
+
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.101.10";
