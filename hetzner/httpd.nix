@@ -95,7 +95,7 @@ in
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID filebrowser
       OIDCClientSecret ${fileBrowserSecret}
-      OIDCRedirectURI https://filebrowser.resdigita.com/subfolder/redirect_uri_from_oauth2
+      OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
       OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
       # <LocationMatch "^/u/redirect$">
       #   AuthType openid-connect
@@ -105,11 +105,10 @@ in
       #   # RewriteRule ^(.*)$ /u/%{env:OIDC_CLAIM_username}/ [R,L]
       # </LocationMatch>      
       # <LocationMatch "/u/(?<username>[^/]+)/">
-      <Location "/subfolder">
+      <Location "/">
         AuthType openid-connect
         Require valid-user
-        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://127.0.0.1/
-        ProxyPassReverse unix:/opt/filebrowser/dbs/filebrowser/filebrowser/filebrowser.sock|http://127.0.0.1/
+        ProxyPass unix:/opt/filebrowser/dbs/filebrowser/multi-user/filebrowser.sock|http://127.0.0.1/
         # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
         RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
         RequestHeader set X-Forwarded-Proto "https"
