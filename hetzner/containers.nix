@@ -65,6 +65,12 @@ in
       };
       services = {
         resolved.enable = true;
+        seafile = {
+          enable = true;
+          adminEmail = "chris@mann.fr";
+          initialAdminPassword = "aes3xaiThe7Ungi0iDe0aehongideik";
+          
+        };
       };
     };
   };    
