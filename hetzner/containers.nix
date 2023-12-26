@@ -3,6 +3,13 @@ let
   # seafilePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.seafile));
 in
 {
+  networking.nat = {
+    enable = true;
+    internalInterfaces = ["ve-+"];
+    externalInterface = "eno1";
+    # Lazy IPv6 connectivity for the container
+    enableIPv6 = true;
+  };
   containers.docker = {
     autoStart = true;
     privateNetwork = true;
