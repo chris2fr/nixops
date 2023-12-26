@@ -109,7 +109,7 @@ in
     after = [ "acme-${domainName}.service" ];
     serviceConfig = {
       RemainAfterExit = false;
-    }
+    };
   };
   users.groups.wwwrun.members = [ "openldap" ];
 }
