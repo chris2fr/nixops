@@ -69,7 +69,7 @@ in
           enable = true;
           adminEmail = "chris@mann.fr";
           initialAdminPassword = "aes3xaiThe7Ungi0iDe0aehongideik";
-          
+          ccnetSettings.General.SERVICE_URL = "https://seafile.resdigita.com";
         };
       };
     };
