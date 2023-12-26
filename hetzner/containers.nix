@@ -11,8 +11,6 @@ in
     enableIPv6 = true;
   };
   containers.docker = {
-    virtualisation.docker.enable = true;
-
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.101.10";
@@ -49,6 +47,7 @@ in
         util-linux
         busybox
       ];
+      virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
