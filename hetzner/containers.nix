@@ -43,10 +43,10 @@ in
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
-        firewall = {
-          enable = true;
-          allowedTCPPorts = [ 80 443 ];
-        };
+        # firewall = {
+        #   enable = true;
+        #   allowedTCPPorts = [ 80 443 ];
+        # };
         # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
       };
