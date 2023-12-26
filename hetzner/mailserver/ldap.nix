@@ -107,6 +107,9 @@ in
   systemd.services.openldap = {
     wants = [ "acme-${domainName}.service" ];
     after = [ "acme-${domainName}.service" ];
+    serviceConfig = {
+      RemainAfterExit = false;
+    }
   };
   users.groups.wwwrun.members = [ "openldap" ];
 }
