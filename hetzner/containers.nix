@@ -38,6 +38,9 @@ in
           }
         )
         wget
+        git
+        python311
+        python311Packages.pip
         vim
         curl
         lynx
