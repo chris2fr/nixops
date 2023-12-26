@@ -43,7 +43,7 @@ in
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
-        filewall.enable = false;
+        firewall.enable = false;
         # firewall = {
         #   enable = true;
         #   allowedTCPPorts = [ 80 443 ];
