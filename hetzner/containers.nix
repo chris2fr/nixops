@@ -10,7 +10,7 @@ in
     # Lazy IPv6 connectivity for the container
     enableIPv6 = true;
   };
-  containers.docker = {
+  containers.seafile = {
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.101.10";
@@ -59,8 +59,9 @@ in
         # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
       };
-      users.users.docker = {
+      users.users.seafile = {
         isNormalUser = true;
+        extraGroups = ["docker"];
       };
       services = {
         resolved.enable = true;
