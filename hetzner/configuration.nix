@@ -194,7 +194,8 @@ in
       environment = {
         filebrowser_user = "filebrowser";
         filebrowser_database = "%i";
-        FB_BASEURL="/subfolder";
+        FB_BASEURL="";
+        UMASK=0022;
       };
       serviceConfig = {
         WorkingDirectory = "/var/www/dav/data/%i";
