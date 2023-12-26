@@ -54,7 +54,7 @@ in
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
-  services.httpd.virtualHosts."chris.resdigita.com" = {
+  services.httpd.virtualHosts."n" = {
     listen = [{port = 8443; ssl=true;}];
     sslServerCert = "/var/lib/acme/chris.resdigita.com/fullchain.pem";
     sslServerChain = "/var/lib/acme/chris.resdigita.com/fullchain.pem";

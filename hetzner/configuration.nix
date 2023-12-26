@@ -183,29 +183,48 @@ in
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
   system.copySystemConfiguration = true;
-  systemd.services.crabfitfront = {
-    enable = true;
-    wantedBy = ["default.target"];
-    script = "${pkgs.yarn}/bin/yarn run start -p 3080";
-    description = "Crab.fit front-end NextJS";
-    serviceConfig = {
-      WorkingDirectory = "/home/crabfit/crab.fit/frontend/";
-      User = "crabfit";
-      Group = "users";
+  systemd.services = {
+    "filebrowser@" = {
+      enable = true;
+      wantedBy = ["default.target"];
+      scriptArgs = "filebrowser %i";
+      # preStart = "mkdir -p /opt/filebrowser/dbs/%u/%i; touch /opt/filebrowser/dbs/%u/%i/temoin.txt";
+      script = "/opt/filebrowser/dbs/filebrowser.sh $filebrowser_user $filebrowser_database";
+      description = "File Browser, un interface web à un système de fichiers pour %u on %i";
+      environment = {
+        filebrowser_user = "filebrowser";
+        filebrowser_database = "%i";
+        FB_BASEURL="/subfolder";
+      };
+      serviceConfig = {
+        WorkingDirectory = "/var/www/dav/data/%i";
+        User = "filebrowser";
+        Group = "wwwrun";
+      };
+    };
+    crabfitfront = {
+      enable = true;
+      wantedBy = ["default.target"];
+      script = "${pkgs.yarn}/bin/yarn run start -p 3080";
+      description = "Crab.fit front-end NextJS";
+      serviceConfig = {
+        WorkingDirectory = "/home/crabfit/crab.fit/frontend/";
+        User = "crabfit";
+        Group = "users";
+      };
+    };
+    crabfitback = {
+      enable = true;
+      wantedBy = ["default.target"];
+      script = "/home/crabfit/crab.fit/api/launch-crabfit-api.sh";
+      description = "Crab.fit back in Rust avec Postgres";
+      serviceConfig = {
+        WorkingDirectory = "/home/crabfit/crab.fit/api/target/release/";
+        User = "crabfit";
+        Group = "users";
+      };
     };
   };
-  systemd.services.crabfitback = {
-    enable = true;
-    wantedBy = ["default.target"];
-    script = "/home/crabfit/crab.fit/api/launch-crabfit-api.sh";
-    description = "Crab.fit back in Rust avec Postgres";
-    serviceConfig = {
-      WorkingDirectory = "/home/crabfit/crab.fit/api/target/release/";
-      User = "crabfit";
-      Group = "users";
-    };
-  };
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
