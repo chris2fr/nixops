@@ -86,6 +86,7 @@ in
         python311Packages.markdown 
         python311Packages.bleach 
         python311Packages.python-ldap
+        python311Packages.django_4
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
