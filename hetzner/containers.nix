@@ -39,7 +39,8 @@ in
         )
         wget
         git
-        python311
+        #python311
+        python311Full
         python311Packages.pip
         vim
         curl
