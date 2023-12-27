@@ -2,7 +2,7 @@
 let
   # seafilePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.seafile));
   my-python-packages = ps: with ps; [
-    pip mysqlclient django django-statici18n django-webpack-loader django-picklefield django-formtools django-simple-captcha djangorestframework pysaml2 python-dateutil pyjwt pycryptodome requests requests-oauthlib future gunicorn mysqlclient qrcode  pillow  chardet  cffi   openpyxl  markdown  bleach  python-ldap django_4
+    pip mysqlclient django django-statici18n django-webpack-loader django-picklefield django-formtools django-simple-captcha djangorestframework pysaml2 python-dateutil pyjwt pycryptodome requests requests-oauthlib future gunicorn mysqlclient qrcode  pillow  chardet  cffi   openpyxl  markdown  bleach  python-ldap cmake
   ];
 in
 {
