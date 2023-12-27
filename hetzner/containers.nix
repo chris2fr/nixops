@@ -2,7 +2,35 @@
 let
   # seafilePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.seafile));
   my-python-packages = ps: with ps; [
-    pip mysqlclient django django-statici18n django-webpack-loader django-picklefield django-formtools django-simple-captcha djangorestframework pysaml2 python-dateutil pyjwt pycryptodome requests requests-oauthlib future gunicorn mysqlclient qrcode  pillow  chardet  cffi   openpyxl  markdown  bleach  python-ldap cmake
+    bleach
+    cffi
+    chardet
+    django
+    django-formtools
+    django-picklefield
+    django-simple-captcha
+    django-statici18n
+    django-webpack-loader
+    djangorestframework
+    future
+    gunicorn
+    markdown
+    mysqlclient
+    mysqlclient
+    openpyxl
+    pillow
+    pip
+    pycryptodome
+    pyjwt
+    pysaml2
+    python-dateutil
+    python-ldap
+    qrcode
+    requests
+    requests-oauthlib
+    setuptools
+    simplejson
+    python3-gnutls
   ];
 in
 {
@@ -40,58 +68,91 @@ in
           '';
           }
         )
-        wget
-        git
-        #python311
-        #python311Full
-        # python311Packages.pip
-        vim
-        curl
-        lynx
-        docker-compose
-        docker
-        stdenv
-        util-linux
-        busybox
-        seafile-server
-        mariadb
-        # python311Packages.mysqlclient
-        libmysqlclient
-        mariadb-embedded
-        gcc
-        libgcc
-        openldap
+        (python311.withPackages my-python-packages)
+        # python311Packages.bleach 
+        # python311Packages.captcha 
+        # python311Packages.cffi 
+        # python311Packages.chardet 
         # python311Packages.devtools
-        openssl
-        cyrus_sasl
-        # python311Packages.ldap3
         # python311Packages.django
+        # python311Packages.django_4
+        # python311Packages.django-formtools
+        # python311Packages.django-picklefield
+        # python311Packages.django-simple-captcha
         # python311Packages.django-statici18n
         # python311Packages.django-webpack-loader
-        # python311Packages.django-picklefield
-        # python311Packages.django-formtools
-        # python311Packages.django-simple-captcha
         # python311Packages.djangorestframework
-        # python311Packages.pysaml2
-        # python311Packages.python-dateutil
-        # python311Packages.pyjwt
-        # python311Packages.pycryptodome
-        # python311Packages.requests
-        # python311Packages.requests-oauthlib
         # python311Packages.future
         # python311Packages.gunicorn
-        # python311Packages.mysqlclient
-        # python311Packages.qrcode 
-        # python311Packages.pillow 
-        # python311Packages.chardet 
-        # python311Packages.cffi 
-        # python311Packages.captcha 
-        # python311Packages.openpyxl 
+        # python311Packages.ldap3
         # python311Packages.markdown 
-        # python311Packages.bleach 
+        # python311Packages.mysqlclient
+        # python311Packages.mysqlclient
+        # python311Packages.openpyxl 
+        # python311Packages.pillow 
+        # python311Packages.pip
+        # python311Packages.pycryptodome
+        # python311Packages.pyjwt
+        # python311Packages.pysaml2
+        # python311Packages.python-dateutil
         # python311Packages.python-ldap
-        # python311Packages.django_4
-        (python311.withPackages my-python-packages)
+        # python311Packages.qrcode 
+        # python311Packages.requests
+        # python311Packages.requests-oauthlib
+        #python311
+        #python311Full
+        autoconf
+        automake 
+        busybox
+        ceph-client
+        cmake
+        curl
+        cyrus_sasl
+        docker
+        docker-compose
+        flex 
+        fuse
+        gcc
+        git
+        glib
+        intltool
+        jansson
+        libarchive
+        libevent
+        libgcc
+        libglibutil
+        libmysqlclient
+        libtool
+        libuuid
+        lynx
+        mariadb
+        mariadb-embedded
+        openldap
+        openssh
+        openssl
+        openssl
+        re2c
+        seafile-server
+        sqlite
+        stdenv
+        util-linux
+        vala
+        vim
+        wget
+        libxml2
+        telnet
+        netcat
+        unzip
+        libffi
+        pcre
+        libz
+        xz
+        nginx
+        pkg-config
+        poppler_utils
+        libmemcached
+        sudo
+        libjwt
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
