@@ -61,7 +61,8 @@ in
         python311Packages.devtools
         openssl
         cyrus_sasl
-        
+        python311Packages.ldap3
+        luajitPackages.lualdap
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
