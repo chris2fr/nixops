@@ -1,6 +1,9 @@
 { config, pkgs, lib, ... }:
 let
   # seafilePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.seafile));
+  my-python-packages = ps: with ps; [
+    pip mysqlclient django django-statici18n django-webpack-loader django-picklefield django-formtools django-simple-captcha djangorestframework pysaml2 python-dateutil pyjwt pycryptodome requests requests-oauthlib future gunicorn mysqlclient qrcode  pillow  chardet  cffi  captcha  openpyxl  markdown  bleach  python-ldap django_4
+  ];
 in
 {
   networking.nat = {
@@ -88,7 +91,7 @@ in
         # python311Packages.bleach 
         # python311Packages.python-ldap
         # python311Packages.django_4
-        (python311.withPackages pip mysqlclient django django-statici18n django-webpack-loader django-picklefield django-formtools django-simple-captcha djangorestframework pysaml2 python-dateutil pyjwt pycryptodome requests requests-oauthlib future gunicorn mysqlclient qrcode  pillow  chardet  cffi  captcha  openpyxl  markdown  bleach  python-ldap django_4)
+        (python311.withPackages my-python-packages)
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
