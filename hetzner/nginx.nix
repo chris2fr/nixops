@@ -72,6 +72,12 @@ in
         #   forceSSL = true;
         #   locations."/".proxyPass = "http://localhost:8334";
         # }; 
+        "resdigita.com" = {
+          serverAliases = ["www.resdigita.com"];
+          enableACME = true;
+          forceSSL = true;
+          globalRedirect = "doc.resdigita.com";
+        };
         "filebrowser.resdigita.com" = {
           enableACME = true;
           forceSSL = true;
