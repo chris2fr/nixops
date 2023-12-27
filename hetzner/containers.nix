@@ -54,6 +54,7 @@ in
         python311Packages.mysqlclient
         libmysqlclient
         mariadb-embedded
+        python311Packages.python-ldap
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
