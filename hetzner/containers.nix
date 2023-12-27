@@ -76,7 +76,10 @@ in
           initialAdminPassword = "aes3xaiThe7Ungi0iDe0aehongideik";
           ccnetSettings.General.SERVICE_URL = "https://seafile.resdigita.com";
         };
-        mysql.enable = true;
+        mysql = {
+          enable = true;
+          package = pkgs.mariadb;
+        };
       };
     };
   };    
