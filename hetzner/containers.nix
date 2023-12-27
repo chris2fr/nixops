@@ -54,15 +54,38 @@ in
         python311Packages.mysqlclient
         libmysqlclient
         mariadb-embedded
-        python311Packages.python-ldap
         gcc
         libgcc
         openldap
         python311Packages.devtools
         openssl
         cyrus_sasl
-        python311Packages.ldap3
-        luajitPackages.lualdap
+        # python311Packages.ldap3
+        python311Packages.django
+        python311Packages.django-statici18n
+        python311Packages.django-webpack-loader
+        python311Packages.django-picklefield
+        python311Packages.django-formtools
+        python311Packages.django-simple-captcha
+        python311Packages.djangorestframework
+        python311Packages.pysaml2
+        python311Packages.python-dateutil
+        python311Packages.pyjwt
+        python311Packages.pycryptodome
+        python311Packages.requests
+        python311Packages.requests-oauthlib
+        python311Packages.future
+        python311Packages.gunicorn
+        python311Packages.mysqlclient
+        python311Packages.qrcode 
+        python311Packages.pillow 
+        python311Packages.chardet 
+        python311Packages.cffi 
+        python311Packages.captcha 
+        python311Packages.openpyxl 
+        python311Packages.markdown 
+        python311Packages.bleach 
+        python311Packages.python-ldap
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
