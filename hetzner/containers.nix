@@ -53,6 +53,7 @@ in
         mariadb
         python311Packages.mysqlclient
         libmysqlclient
+        mariadb-embedded
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
