@@ -58,6 +58,10 @@ in
         gcc
         libgcc
         openldap
+        python311Packages.devtools
+        openssl
+        cyrus_sasl
+        
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
