@@ -56,6 +56,8 @@ in
         mariadb-embedded
         python311Packages.python-ldap
         gcc
+        libgcc
+        openldap
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
