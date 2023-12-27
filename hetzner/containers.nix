@@ -50,6 +50,7 @@ in
         util-linux
         busybox
         seafile-server
+        mariadb
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
@@ -75,6 +76,7 @@ in
           initialAdminPassword = "aes3xaiThe7Ungi0iDe0aehongideik";
           ccnetSettings.General.SERVICE_URL = "https://seafile.resdigita.com";
         };
+        mysql.enable = true;
       };
     };
   };    
