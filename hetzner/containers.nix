@@ -40,8 +40,8 @@ in
         wget
         git
         #python311
-        python311Full
-        python311Packages.pip
+        #python311Full
+        # python311Packages.pip
         vim
         curl
         lynx
@@ -52,42 +52,43 @@ in
         busybox
         seafile-server
         mariadb
-        python311Packages.mysqlclient
+        # python311Packages.mysqlclient
         libmysqlclient
         mariadb-embedded
         gcc
         libgcc
         openldap
-        python311Packages.devtools
+        # python311Packages.devtools
         openssl
         cyrus_sasl
         # python311Packages.ldap3
-        python311Packages.django
-        python311Packages.django-statici18n
-        python311Packages.django-webpack-loader
-        python311Packages.django-picklefield
-        python311Packages.django-formtools
-        python311Packages.django-simple-captcha
-        python311Packages.djangorestframework
-        python311Packages.pysaml2
-        python311Packages.python-dateutil
-        python311Packages.pyjwt
-        python311Packages.pycryptodome
-        python311Packages.requests
-        python311Packages.requests-oauthlib
-        python311Packages.future
-        python311Packages.gunicorn
-        python311Packages.mysqlclient
-        python311Packages.qrcode 
-        python311Packages.pillow 
-        python311Packages.chardet 
-        python311Packages.cffi 
-        python311Packages.captcha 
-        python311Packages.openpyxl 
-        python311Packages.markdown 
-        python311Packages.bleach 
-        python311Packages.python-ldap
-        python311Packages.django_4
+        # python311Packages.django
+        # python311Packages.django-statici18n
+        # python311Packages.django-webpack-loader
+        # python311Packages.django-picklefield
+        # python311Packages.django-formtools
+        # python311Packages.django-simple-captcha
+        # python311Packages.djangorestframework
+        # python311Packages.pysaml2
+        # python311Packages.python-dateutil
+        # python311Packages.pyjwt
+        # python311Packages.pycryptodome
+        # python311Packages.requests
+        # python311Packages.requests-oauthlib
+        # python311Packages.future
+        # python311Packages.gunicorn
+        # python311Packages.mysqlclient
+        # python311Packages.qrcode 
+        # python311Packages.pillow 
+        # python311Packages.chardet 
+        # python311Packages.cffi 
+        # python311Packages.captcha 
+        # python311Packages.openpyxl 
+        # python311Packages.markdown 
+        # python311Packages.bleach 
+        # python311Packages.python-ldap
+        # python311Packages.django_4
+        (python311.withPackages pip mysqlclient django django-statici18n django-webpack-loader django-picklefield django-formtools django-simple-captcha djangorestframework pysaml2 python-dateutil pyjwt pycryptodome requests requests-oauthlib future gunicorn mysqlclient qrcode  pillow  chardet  cffi  captcha  openpyxl  markdown  bleach  python-ldap django_4)
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
