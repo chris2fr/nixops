@@ -140,7 +140,6 @@ in
         vim
         wget
         libxml2
-        telnet
         netcat
         unzip
         libffi
