@@ -32,13 +32,13 @@ in
         enableACME = true;
         forceSSL = true;
         serverAliases = ["secret.lesgrandsvoisins.com" "secret.desgrandsvoisins.com" "secret.resdigita.com"];
-        globalRedirect = "keeweb.resdigita.com";
+        globalRedirect = "keepass.resdigita.com";
       };
-      "keeweb.resdigita.com" = {
+      "keepass.resdigita.com" = {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "https://keeweb.resdigita.com:8443/";
+          proxyPass = "https://keepass.resdigita.com:8443/";
           extraConfig = extraProxyHeaders;
         };
         extraConfig = ''

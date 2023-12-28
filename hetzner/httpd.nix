@@ -147,11 +147,11 @@ in
     '';
   };
   
-  services.httpd.virtualHosts."keeweb.resdigita.com" = {
+  services.httpd.virtualHosts."keepass.resdigita.com" = {
     listen = [{port = 8443; ssl=true;}];
-    sslServerCert = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
-    sslServerChain = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
-    sslServerKey = "/var/lib/acme/keeweb.resdigita.com/key.pem";
+    sslServerCert = "/var/lib/acme/keepass.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/keepass.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/keepass.resdigita.com/key.pem";
     documentRoot = "/var/www/secret";
     extraConfig = ''
       Alias /static /var/www/wagtail/static
@@ -160,9 +160,9 @@ in
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID keepassweb
       OIDCClientSecret Sd592JRYiOe0A1oJmGEj6pE2b4C8ddEP
-      OIDCRedirectURI https://keeweb.resdigita.com/auth/redirect_uri_from_oauth2
+      OIDCRedirectURI https://keepass.resdigita.com/auth/redirect_uri_from_oauth2
       OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
-      <LocationMatch "^/(auth|pass|ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json$">
+      <LocationMatch "^/(auth|pass|ldap|login)/(?<username>[^/]+)/manifest.json$">
         Satisfy Any
         Allow from all
       </LocationMatch>
@@ -175,58 +175,64 @@ in
         Require valid-user
         RewriteEngine On
         # Check for the presence of the OIDC_CLAIM_email header
-        RewriteCond %{env:OIDC_CLAIM_email} ^([^@]+)@(.+)$
+        # RewriteCond %{env:OIDC_CLAIM_email} ^([^@]+)@(.+)$
         # Redirect to the specific path based on the header value
-        RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
+        # RewriteRule ^(.*)$ /auth/web/%2/%1 [R,L]
+        RewriteCond %{env:OIDC_CLAIM_username} ^(.+)$
+        RewriteRule ^(.*)$ /auth/web/%1 [R,L]
       </Location>
-      <LocationMatch "^/auth/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+      <LocationMatch "^/auth/web/(?<username>[^/]+)">
         AuthType openid-connect 
         # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-        Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        Require claim email:%{env:OIDC_CLAIM_username}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-           Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+          
+           Require claim useername:%{env:OIDC_CLAIM_username}
         </LimitExcept>
       </LocationMatch>
-      <LocationMatch "^/auth/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+      # <LocationMatch "^/auth/dav/(?<username>[^/]+).*">
+      # Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+      <LocationMatch "^/auth/dav/(?<username>[^/]+)">
         AuthType openid-connect 
         # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-        Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+        Require claim email:%{env:OIDC_CLAIM_username}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-           Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+           Require claim email:%{env:OIDC_CLAIM_username}
         </LimitExcept>
       </LocationMatch>
-      <LocationMatch "^/pass/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+      <LocationMatch "^/pass/web/(?<username>[^/]+)">
         AuthType Basic
         AuthBasicProvider ldap
         AuthName "DAV par LDAP"
         AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
         AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
-        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
-        Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
+        Require valid-user
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-          Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+          Require valid-user
         </LimitExcept>
       </LocationMatch>
-      <LocationMatch "^/pass/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+      <LocationMatch "^/pass/dav/(?<username>[^/]+)">
         AuthType Basic
         AuthBasicProvider ldap
         AuthName "DAV par LDAP"
         AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
         AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
-        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
-        Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
+        # Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        Require valid-user
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
-          Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        Require valid-user
         </LimitExcept>
       </LocationMatch>
       <LocationMatch ^/$>
           Redirect /redirect
       </LocationMatch>
 
-      AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)/dav/(.*)" "/var/www/secret/dav/$2/$3"
-      AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)(.*)" "/var/www/secret/keeweb$3"
+      AliasMatch "^/(auth|pass)/web/([^/]+/[^/]+)/dav/(.*)" "/var/www/secret/dav/$2/$3"
+      AliasMatch "^/(auth|pass)/web/([^/]+/[^/]+)(.*)" "/var/www/secret/keepass$3"
 
       Alias /auth/dav /var/www/secret/dav
       Alias /pass/dav /var/www/secret/dav
@@ -272,12 +278,12 @@ in
           Require valid-user
         </Location>
 
-        <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+        <LocationMatch "^/auth/(?<username>[^/]+)">
           AuthType openid-connect
-          Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+          Require claim email:%{env:OIDC_CLAIM_username}
             
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPOFIND CONNECT>
-             Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+             Require claim email:%{env:OIDC_CLAIM_username}
           </LimitExcept>
         </LocationMatch>
 
@@ -300,18 +306,19 @@ in
         Alias /pass /var/www/dav/data
         Alias /login /var/www/dav/data
 
-        <LocationMatch "^/(ldap|pass|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+        <LocationMatch "^/pass/(?<username>[^/]+)">
           AuthType Basic
           AuthBasicProvider ldap
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
           AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
-          AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
-          #Require valid-user
-          Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+          AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
+          Require valid-user
+          #Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
           
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
-            Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+            #Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+            Require valid-user
           </LimitExcept>
         </LocationMatch>
 
@@ -705,7 +712,7 @@ in
   #     OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
   #     OIDCRedirectURI https://secret.desgrandsvoisins.com/auth/redirect_uri_from_oauth2
   #     OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
-  #     <LocationMatch "^/(auth|pass|ldap|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)/manifest.json$">
+  #     <LocationMatch "^/(auth|pass|ldap|login)/(?<username>[^/]+)/manifest.json$">
   #       Satisfy Any
   #       Allow from all
   #     </LocationMatch>
@@ -720,9 +727,9 @@ in
   #       # Check for the presence of the OIDC_CLAIM_email header
   #       RewriteCond %{env:OIDC_CLAIM_sub} ^([^@]+)@(.+)$
   #       # Redirect to the specific path based on the header value
-  #       RewriteRule ^(.*)$ /auth/keeweb/%2/%1 [R,L]
+  #       RewriteRule ^(.*)$ /auth/web/%2/%1 [R,L]
   #     </Location>
-  #     <LocationMatch "^/auth/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+  #     <LocationMatch "^/auth/web/(?<username>[^/]+)">
   #       AuthType openid-connect 
   #       # Should already be inherited
   #       # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
@@ -731,7 +738,7 @@ in
   #          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
   #       </LimitExcept>
   #     </LocationMatch>
-  #     <LocationMatch "^/auth/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+  #     <LocationMatch "^/auth/dav/(?<username>[^/]+)">
   #       AuthType openid-connect 
   #       # Should already be inherited
   #       # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
@@ -740,7 +747,7 @@ in
   #          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
   #       </LimitExcept>
   #     </LocationMatch>
-  #     <LocationMatch "^/pass/keeweb/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+  #     <LocationMatch "^/pass/web/(?<username>[^/]+)">
   #       AuthType Basic
   #       AuthBasicProvider ldap
   #       AuthName "DAV par LDAP"
@@ -752,7 +759,7 @@ in
   #         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
   #       </LimitExcept>
   #     </LocationMatch>
-  #     <LocationMatch "^/pass/dav/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+  #     <LocationMatch "^/pass/dav/(?<username>[^/]+)">
   #       AuthType Basic
   #       AuthBasicProvider ldap
   #       AuthName "DAV par LDAP"
@@ -768,8 +775,8 @@ in
   #         Redirect /redirect
   #     </LocationMatch>
 
-  #     AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)/dav/(.*)" "/var/www/secret/dav/$2/$3"
-  #     AliasMatch "^/(auth|pass)/keeweb/([^/]+/[^/]+)(.*)" "/var/www/secret/keeweb$3"
+  #     AliasMatch "^/(auth|pass)/web/([^/]+/[^/]+)/dav/(.*)" "/var/www/secret/dav/$2/$3"
+  #     AliasMatch "^/(auth|pass)/web/([^/]+/[^/]+)(.*)" "/var/www/secret/keepass$3"
 
   #     Alias /auth/dav /var/www/secret/dav
   #     Alias /pass/dav /var/www/secret/dav
@@ -831,7 +838,7 @@ in
   #         Require valid-user
   #       </Location>
 
-  #       <LocationMatch "^/auth/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+).*">
+  #       <LocationMatch "^/auth/(?<username>[^/]+)">
   #         AuthType openid-connect
   #         Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
             
@@ -859,7 +866,7 @@ in
   #       Alias /pass /var/www/dav/data
   #       Alias /login /var/www/dav/data
 
-  #       <LocationMatch "^/(ldap|pass|login)/(?<usernamedomain>[^/]+)/(?<usernameuser>[^/]+)">
+  #       <LocationMatch "^/(ldap|pass|login)/(?<username>[^/]+)">
   #         AuthType Basic
   #         AuthBasicProvider ldap
   #         AuthName "DAV par LDAP"
