@@ -72,6 +72,11 @@ in
         #   forceSSL = true;
         #   locations."/".proxyPass = "http://localhost:8334";
         # }; 
+        "keeweb.lesgrandsvoisins.com" = {
+          serverAliases = ["keeweb.resdigita.com"];
+          enableACME = true; forceSSL = true; 
+          globalRedirect = "https://keepass.resdigita.com";
+        };
         "resdigita.com" = {
           serverAliases = ["www.resdigita.com"];
           enableACME = true;

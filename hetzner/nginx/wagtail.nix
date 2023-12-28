@@ -76,6 +76,7 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    
     "wagtail.resdigita.com" = {
       root =  "/var/www/wagtail/";
       serverAliases = [
