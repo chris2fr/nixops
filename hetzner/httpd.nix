@@ -185,21 +185,20 @@ in
         AuthType openid-connect 
         # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-        Require claim username:%{env:OIDC_CLAIM_username}
+        Require claim username:%{env:MATCH_USERNAME}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-          
-           Require claim useername:%{env:OIDC_CLAIM_username}
+           Require claim useername:%{env:MATCH_USERNAME}
         </LimitExcept>
       </LocationMatch>
       # <LocationMatch "^/auth/dav/(?<username>[^/]+).*">
-      # Require claim email:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+      # Require claim email:%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN}
       <LocationMatch "^/auth/dav/(?<username>[^/]+)">
         AuthType openid-connect 
         # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-        Require claim username:%{env:OIDC_CLAIM_username}
+        Require claim username:%{env:MATCH_USERNAME}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-           Require claim username:%{env:OIDC_CLAIM_username}
+           Require claim username:%{env:MATCH_USERNAME}
         </LimitExcept>
       </LocationMatch>
       <LocationMatch "^/pass/web/(?<username>[^/]+)">
@@ -221,7 +220,7 @@ in
         AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
         AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
         AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
-        # Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+        # Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
         Require valid-user
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
         Require valid-user
@@ -280,31 +279,26 @@ in
 
         <LocationMatch "^/auth/(?<username>[^/]+)">
           AuthType openid-connect
-          Require claim username:%{env:OIDC_CLAIM_username}
+          Require claim username:%{env:MATCH_USERNAME}
             
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPOFIND CONNECT>
-             Require claim username:%{env:OIDC_CLAIM_username}
+             Require claim username:%{env:MATCH_USERNAME}
           </LimitExcept>
         </LocationMatch>
 
-      <Location "/redirect">
-        AuthType openid-connect
-        Require valid-user
-        RewriteEngine On
-        # Check for the presence of the OIDC_CLAIM_email header
-        RewriteCond %{env:OIDC_CLAIM_email} ^([^@]+)@(.+)$
-        # Redirect to the specific path based on the header value
-        RewriteRule ^(.*)$ /auth/%2/%1 [R,L]
-      </Location>
-      RedirectMatch ^/$ /redirect
-      
-
-
-
-        Alias /ldap /var/www/dav/data
+        <Location "/redirect">
+          AuthType openid-connect
+          Require valid-user
+          RewriteEngine On
+          # Check for the presence of the OIDC_CLAIM_email header
+          RewriteCond %{env:MATCH_USERNAME} ^(.+)$
+          # Redirect to the specific path based on the header value
+          RewriteRule ^(.*)$ /auth/%1 [R,L]
+        </Location>
+        RedirectMatch ^/$ /redirect
+     
         Alias /auth /var/www/dav/data
         Alias /pass /var/www/dav/data
-        Alias /login /var/www/dav/data
 
         <LocationMatch "^/pass/(?<username>[^/]+)">
           AuthType Basic
@@ -314,10 +308,10 @@ in
           AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
           AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
           Require valid-user
-          #Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+          #Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
           
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
-            #Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+            #Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
             Require valid-user
           </LimitExcept>
         </LocationMatch>
@@ -733,18 +727,18 @@ in
   #       AuthType openid-connect 
   #       # Should already be inherited
   #       # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-  #       Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+  #       Require claim sub:%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN}
   #       <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-  #          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+  #          Require claim sub:%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN}
   #       </LimitExcept>
   #     </LocationMatch>
   #     <LocationMatch "^/auth/dav/(?<username>[^/]+)">
   #       AuthType openid-connect 
   #       # Should already be inherited
   #       # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-  #       Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+  #       Require claim sub:%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN}
   #       <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-  #          Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+  #          Require claim sub:%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN}
   #       </LimitExcept>
   #     </LocationMatch>
   #     <LocationMatch "^/pass/web/(?<username>[^/]+)">
@@ -754,9 +748,9 @@ in
   #       AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
   #       AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
   #       AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
-  #       Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+  #       Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
   #       <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-  #         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+  #         Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
   #       </LimitExcept>
   #     </LocationMatch>
   #     <LocationMatch "^/pass/dav/(?<username>[^/]+)">
@@ -766,9 +760,9 @@ in
   #       AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
   #       AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
   #       AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
-  #       Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+  #       Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
   #       <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
-  #         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+  #         Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
   #       </LimitExcept>
   #     </LocationMatch>
   #     <LocationMatch ^/$>
@@ -840,10 +834,10 @@ in
 
   #       <LocationMatch "^/auth/(?<username>[^/]+)">
   #         AuthType openid-connect
-  #         Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+  #         Require claim sub:%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN}
             
   #         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPOFIND CONNECT>
-  #            Require claim sub:%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN}
+  #            Require claim sub:%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN}
   #         </LimitExcept>
   #       </LocationMatch>
 
@@ -874,10 +868,10 @@ in
   #         AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
   #         AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
   #         #Require valid-user
-  #         Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+  #         Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
           
   #         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
-  #           Require ldap-dn cn=%{env:MATCH_USERNAMEUSER}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+  #           Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
   #         </LimitExcept>
   #       </LocationMatch>
 
