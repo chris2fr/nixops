@@ -185,7 +185,7 @@ in
         AuthType openid-connect 
         # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-        Require claim email:%{env:OIDC_CLAIM_username}
+        Require claim username:%{env:OIDC_CLAIM_username}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
           
            Require claim useername:%{env:OIDC_CLAIM_username}
@@ -197,9 +197,9 @@ in
         AuthType openid-connect 
         # Should already be inherited
         # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-        Require claim email:%{env:OIDC_CLAIM_username}
+        Require claim username:%{env:OIDC_CLAIM_username}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-           Require claim email:%{env:OIDC_CLAIM_username}
+           Require claim username:%{env:OIDC_CLAIM_username}
         </LimitExcept>
       </LocationMatch>
       <LocationMatch "^/pass/web/(?<username>[^/]+)">
@@ -280,10 +280,10 @@ in
 
         <LocationMatch "^/auth/(?<username>[^/]+)">
           AuthType openid-connect
-          Require claim email:%{env:OIDC_CLAIM_username}
+          Require claim username:%{env:OIDC_CLAIM_username}
             
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPOFIND CONNECT>
-             Require claim email:%{env:OIDC_CLAIM_username}
+             Require claim username:%{env:OIDC_CLAIM_username}
           </LimitExcept>
         </LocationMatch>
 
