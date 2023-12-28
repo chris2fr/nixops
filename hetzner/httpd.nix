@@ -291,7 +291,7 @@ in
           Require valid-user
           RewriteEngine On
           # Check for the presence of the OIDC_CLAIM_email header
-          RewriteCond %{env:MATCH_USERNAME} ^(.+)$
+          RewriteCond %{env:OIDC_CLAIM_email} ^(.+)$
           # Redirect to the specific path based on the header value
           RewriteRule ^(.*)$ /auth/%1 [R,L]
         </Location>

@@ -54,6 +54,7 @@ in
     };
     "gvoisin.resdigita.com" = {
       serverAliases = [
+        "meet.lesgrandsvoisins.com"
         "discourse.resdigita.com"
         "jswiki.resdigita.com"
         "gvoisin.desgrandsvoisins.org"
