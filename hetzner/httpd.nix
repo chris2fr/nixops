@@ -231,7 +231,7 @@ in
       </LocationMatch>
 
       AliasMatch "^/(auth|pass)/web/([^/]+)/dav/(.*)" "/var/www/secret/dav/$2/$3"
-      AliasMatch "^/(auth|pass)/web/([^/]+)(.*)" "/var/www/secret/keepass$3"
+      AliasMatch "^/(auth|pass)/web/([^/]+)(.*)" "/var/www/secret/keeweb$3"
 
       Alias /auth/dav /var/www/secret/dav
       Alias /pass/dav /var/www/secret/dav
