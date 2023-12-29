@@ -46,10 +46,9 @@ in
   services = {
     postfix.virtual = ''
       testalias@resdigita.com chris@lesgrandsvoisins.com
+      axel.leroux@resdigita.com  axel.leroux@lesgrandsvoisins.com 
     '';
-    postfix.transport = ''
-      testalias@resdigita.com transport:nexthop
-    '';
+    
     memcached = {
       enable = true;
       # maxMemory = 256;
