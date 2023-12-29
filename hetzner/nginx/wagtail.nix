@@ -63,7 +63,6 @@ in
          "gvoisin.desgv.com"
          "gvoisin.lesgv.com"
          "syprete.com"
-         "www.syprete.com"
       ];
       enableACME = true;
       forceSSL = true;
