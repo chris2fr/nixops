@@ -49,7 +49,7 @@ in
       axel.leroux@resdigita.com  axel.leroux@lesgrandsvoisins.com
       alex.leroux@resdigita.com  axel.leroux@lesgrandsvoisins.com 
       alex.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.com
-      axel.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.comù
+      axel.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.com
       alex.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
       axel.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
     '';
