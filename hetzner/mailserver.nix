@@ -47,6 +47,9 @@ in
     postfix.virtual = ''
       testalias@resdigita.com chris@lesgrandsvoisins.com
     '';
+    postfix.transport = ''
+      testalias@resdigita.com transport:nexthop
+    '';
     memcached = {
       enable = true;
       # maxMemory = 256;
