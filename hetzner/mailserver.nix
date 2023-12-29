@@ -69,7 +69,12 @@ in
     certificateScheme = "acme";
     certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
     certificateDirectory = "/var/lib/acme/${domainName}/";
-    keyFile =  "/var/lib/acme/${domainName}/key.pem";    
+    keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
+    loginAccounts = {
+      "chris@lesgrandsvoisins.com" = {
+          aliases = [ "testalias@resdigita.com" ];
+      };
+    };   
     ldap = {
       enable = true;
       bind = {
