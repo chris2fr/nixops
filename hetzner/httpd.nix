@@ -415,7 +415,7 @@ in
   #   # listenAddresses = ["*" "[2a01:4f8:241:4faa::]" "[2a01:4f8:241:4faa::1]" "[2a01:4f8:241:4faa::2]" "[2a01:4f8:241:4faa::3]" "[2a01:4f8:241:4faa::4]" "[2a01:4f8:241:4faa::5]"];
   #   enableACME = true;
   #   #forceSSL = true;
-  #   globalRedirect = "https://www.resdigita.com/";
+  #   globalRedirect = "www.resdigita.com/";
   # };
 
 #     documentRoot =  "/var/www/";
@@ -639,7 +639,7 @@ in
   # services.httpd.virtualHosts."avmeet.com" = {
   #   enableACME = true;
   #   forceSSL = true;
-  #   globalRedirect = "https://www.avmeet.com";
+  #   globalRedirect = "www.avmeet.com";
   # };
   # services.httpd.virtualHosts."davpass.desgv.com" = {
   #   enableACME = true;
@@ -1083,7 +1083,7 @@ in
 # #    enableACME = true;
 # #    forceSSL = true;
 # ##    documentRoot =  "/var/www/wagtail/";
-# #    globalRedirect = "https://www.resdigita.com/resdigita";
+# #    globalRedirect = "www.resdigita.com/resdigita";
 # ##    extraConfig = ''
 # ##    <Location />
 # ##    Require all granted
@@ -1104,7 +1104,7 @@ in
 # #    enableACME = true;
 # #    forceSSL = true;
 # ##    documentRoot =  "/var/www/wagtail/";
-# #    globalRedirect = "https://www.resdigita.com/resdigita";
+# #    globalRedirect = "www.resdigita.com/resdigita";
 # ##    extraConfig = ''
 # ##    <Location />
 # ##    Require all granted

@@ -74,12 +74,12 @@ in
         # }; 
         "mail.resdigita.com" = {
           enableACME = true; forceSSL = true; 
-          globalRedirect = "https://mail.lesgrandsvoisins.com"; 
+          globalRedirect = "mail.lesgrandsvoisins.com"; 
         };
         "keeweb.lesgrandsvoisins.com" = {
           serverAliases = ["keeweb.resdigita.com"];
           enableACME = true; forceSSL = true; 
-          globalRedirect = "https://keepass.resdigita.com";
+          globalRedirect = "keepass.resdigita.com";
         };
         "resdigita.com" = {
           serverAliases = ["www.resdigita.com"];
