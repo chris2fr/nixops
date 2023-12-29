@@ -45,7 +45,7 @@ in
   };
   services = {
     postfix.virtual = ''
-      testalias@resdigita.com: chris@lesgrandsvoisins.com
+      testalias@resdigita.com chris@lesgrandsvoisins.com
     '';
     memcached = {
       enable = true;
