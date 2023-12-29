@@ -43,14 +43,20 @@ in
     };
     #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
-  services.memcached = {
-    enable = true;
-    # maxMemory = 256;
-    # enableUnixSocket = true;
-    # port = 11211;
-    # listen = "[::1]";
-    # user = "sogo";
+  services. = {
+    postfix.extraAliases = ''
+      testalias@resdigita.com: chris@lesgrandsvoisins.com
+    '';
+    memcached = {
+      enable = true;
+      # maxMemory = 256;
+      # enableUnixSocket = true;
+      # port = 11211;
+      # listen = "[::1]";
+      # user = "sogo";
+    };
   };
+
 # SOGoMemcachedHost = "/var/run/memcached.sock";
 ###################################################################################################################################
   mailserver = {
