@@ -62,6 +62,7 @@ in
 
 # SOGoMemcachedHost = "/var/run/memcached.sock";
 ###################################################################################################################################
+services.postfix.submissionsOptions.smtpd_sender_login_maps = "hash:/opt/postfix/vaccounts";
   mailserver = {
     enable = true;
     fqdn = domainName;
@@ -70,11 +71,11 @@ in
     certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
     certificateDirectory = "/var/lib/acme/${domainName}/";
     keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
-    loginAccounts = {
-      "chris@lesgrandsvoisins.com" = {
-          aliases = [ "testalias@resdigita.com" ];
-      };
-    };   
+    # loginAccounts = {
+    #   "chris@lesgrandsvoisins.com" = {
+    #       aliases = [ "testalias@resdigita.com" ];
+    #   };
+    # };   
     ldap = {
       enable = true;
       bind = {
