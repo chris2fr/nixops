@@ -43,7 +43,7 @@ in
     };
     #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
-  services. = {
+  services = {
     postfix.extraAliases = ''
       testalias@resdigita.com: chris@lesgrandsvoisins.com
     '';
