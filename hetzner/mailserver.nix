@@ -44,7 +44,7 @@ in
     #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
   services = {
-    postfix.extraAliases = ''
+    postfix.virtual = ''
       testalias@resdigita.com: chris@lesgrandsvoisins.com
     '';
     memcached = {
