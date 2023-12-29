@@ -61,7 +61,6 @@ in
 
 # SOGoMemcachedHost = "/var/run/memcached.sock";
 ###################################################################################################################################
-services.postfix.submissionsOptions.smtpd_sender_login_maps = "hash:/opt/postfix/vaccounts";
   mailserver = {
     enable = true;
     fqdn = domainName;
