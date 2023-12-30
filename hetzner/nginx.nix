@@ -133,7 +133,7 @@ in
         "homepage-dashboard.resdigita.com" = {
           enableACME = true;
           forceSSL = true;
-          proxyPass = "http://localhost:8882/";
+          locations."/".proxyPass = "http://localhost:8882/";
         };
       };
     };
