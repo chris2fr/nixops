@@ -21,7 +21,7 @@ in
     ./mailserver.nix
     ./guichet.nix
     ./postgresql.nix
-#    ./users.nix
+    # ./users.nix
     ./wagtail.nix
     ./common.nix # Des configurations communes pratiques
     ./servers.nix # I am migrating other services here
@@ -42,35 +42,37 @@ in
   users.users.filebrowser = {
     isNormalUser = true;
     extraGroups = ["wwwrun"];
-
   };
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
   # Networking
-  networking.hostName = "hetzner005"; # Define your hostname.
-  #networking.hostName = "mail.lesgrandsvoisins.com"; # Define your hostname
-#  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-#  networking.useDHCP = true;
-  networking.enableIPv6 = true;
-  networking.interfaces.eno1.ipv6.addresses = [
-    {
-      address = "2a01:4f8:241:4faa::";
-      prefixLength = 96;
-    }
-  ];
-  networking.defaultGateway6 = {
-    address = "fe80::1";
-    interface = "eno1";
+  networking = {
+    hostName = "hetzner005"; # Define your hostname.
+    # hostName = "mail.lesgrandsvoisins.com"; # Define your hostname
+    # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    # useDHCP = true;
+    enableIPv6 = true;
+    interfaces.eno1.ipv6.addresses = [
+      {
+        address = "2a01:4f8:241:4faa::";
+        prefixLength = 96;
+      }
+    ];
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "eno1";
+    };
+    # firewall.enable = false;
+    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" ];
+    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 10080 10443 ];
+    # interfaces."eno1".ipv6 = {
+
+    # }
   };
-
-
-
-
-
   # Set your time zone.
   time.timeZone = "Europe/Paris";
-
   # Select internationalisation properties.
   i18n.defaultLocale = "fr_FR.UTF-8";
   # console = {
@@ -78,24 +80,23 @@ in
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
-
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.mannchri = {
-    isNormalUser = true;
-    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    extraGroups = [ "wheel" ];
-  };
-  users.users.crabfit = {
-    isNormalUser = true;
-    openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    extraGroups = [ "docker" ];
-  };
-  users.users.fossil = {
+  users.users = {
+    mannchri = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+      extraGroups = [ "wheel" ];
+    };
+    crabfit = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+      extraGroups = [ "docker" ];
+    };
+    fossil = {
+        isNormalUser = true;
+        openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    };
   };
-
   # home-manager.users.crabfit = {
   #   home.packages = with pkgs; [ 
   #     yarn
@@ -103,59 +104,53 @@ in
   #   home.stateVersion = "23.11";
   #   programs.home-manager.enable = true;
   # };
-
-  home-manager.users.fossil = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      fossil
-    ];
-    home.stateVersion = "23.11";
-    programs.home-manager.enable = true;
-  };
-  home-manager.users.guichet = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      go
-      gnumake
-      python311
-    ];
-    home.stateVersion = "23.11";
-    programs.home-manager.enable = true;
-  };
-  home-manager.users.filebrowser = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      filebrowser
-    ];
-    home.stateVersion = "23.11";
-    programs.home-manager.enable = true;
-
-  };
-
-  home-manager.users.mannchri = {pkgs, ...}: {
-    home.packages = [ pkgs.atool pkgs.httpie ];
-    home.stateVersion = "23.11";
-    programs.home-manager.enable = true;
-    programs.vim = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [ vim-airline ];
-      settings = { ignorecase = true; tabstop = 2; };
-      extraConfig = ''
-        set mouse=a
-        set nocompatible
-        colo torte
-        syntax on
-        set tabstop     =2
-        set softtabstop =2
-        set shiftwidth  =2
-        set expandtab
-        set autoindent
-        set smartindent
-      '';
+  home-manager.users = {
+    fossil = {pkgs, ...}: {
+      home.packages = with pkgs; [ 
+        fossil
+      ];
+      home.stateVersion = "23.11";
+      programs.home-manager.enable = true;
+    };
+    guichet = {pkgs, ...}: {
+      home.packages = with pkgs; [ 
+        go
+        gnumake
+        python311
+      ];
+      home.stateVersion = "23.11";
+      programs.home-manager.enable = true;
+    };
+    filebrowser = {pkgs, ...}: {
+      home.packages = with pkgs; [ 
+        filebrowser
+      ];
+      home.stateVersion = "23.11";
+      programs.home-manager.enable = true;
+    };
+    mannchri = {pkgs, ...}: {
+      home.packages = [ pkgs.atool pkgs.httpie ];
+      home.stateVersion = "23.11";
+      programs.home-manager.enable = true;
+      programs.vim = {
+        enable = true;
+        plugins = with pkgs.vimPlugins; [ vim-airline ];
+        settings = { ignorecase = true; tabstop = 2; };
+        extraConfig = ''
+          set mouse=a
+          set nocompatible
+          colo torte
+          syntax on
+          set tabstop     =2
+          set softtabstop =2
+          set shiftwidth  =2
+          set expandtab
+          set autoindent
+          set smartindent
+        '';
+      };
     };
   };
-
-  services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
-  # networking.firewall.enable = false;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   # environment.systemPackages = with pkgs; [
@@ -175,19 +170,9 @@ in
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  networking = {
-    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" ];
-    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 10080 10443 ];
-    # interfaces."eno1".ipv6 = {
-
-    # }
-  };
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
@@ -242,7 +227,6 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
   environment.sessionVariables = rec {
     EDITOR="vim";
     WAGTAIL_ENV = "production";
@@ -252,20 +236,25 @@ in
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www";
   };
-
-  services.keycloak = {
-    enable = true;
-    settings = {
-      https-port = 10443;
-      http-port = 10080;
-      proxy = "passthrough";
-      hostname = "keycloak.resdigita.com:10443";
+  services= {
+    openssh.= {
+      enable = true;
+      settings.PermitRootLogin = "prohibit-password";
     };
-    sslCertificate = "/var/lib/acme/keycloak.resdigita.com/fullchain.pem";
-    sslCertificateKey = "/var/lib/acme/keycloak.resdigita.com/key.pem";
-    database.passwordFile = "/etc/nixos/.secret.keycloakdata";
+    keycloak = {
+      enable = true;
+      settings = {
+        https-port = 10443;
+        http-port = 10080;
+        proxy = "passthrough";
+        hostname = "keycloak.resdigita.com:10443";
+      };
+      sslCertificate = "/var/lib/acme/keycloak.resdigita.com/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/keycloak.resdigita.com/key.pem";
+      database.passwordFile = "/etc/nixos/.secret.keycloakdata";
+      themes = [  (callPackage ./keycloaktheme/derivation.nix {})];
+    };
   };
-
   # services.authelia.instances = {
   #   main = {
   #     enable = true;
