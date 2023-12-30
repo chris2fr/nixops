@@ -252,7 +252,7 @@ in
       sslCertificate = "/var/lib/acme/keycloak.resdigita.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/keycloak.resdigita.com/key.pem";
       database.passwordFile = "/etc/nixos/.secret.keycloakdata";
-      themes = [  (pkgs.callPackage ./keycloaktheme/derivation.nix {})];
+      themes = {lesgv = (pkgs.callPackage "./keycloaktheme/derivation.nix" {});};
     };
   };
   # services.authelia.instances = {
