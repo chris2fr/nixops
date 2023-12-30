@@ -130,6 +130,11 @@ in
           forceSSL = true;
           globalRedirect = "list.lesgrandsvoisins.com";
         };
+        "homepage-dashboard.resdigita.com" = {
+          enableACME = true;
+          forceSSL = true;
+          proxyPass = "http://localhost:8882/";
+        };
       };
     };
   };
