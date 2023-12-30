@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
-  for i in account admin email login welcome static static/css static/js static/images static/fonts static/fonts/fengardoneue static/fonts/lack
+  for i in account admin email login welcome 
   do
   echo $i
   mkdir -p $out/$i
