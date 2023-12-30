@@ -237,7 +237,7 @@ in
     defaults.webroot = "/var/www";
   };
   services= {
-    openssh.= {
+    openssh = {
       enable = true;
       settings.PermitRootLogin = "prohibit-password";
     };
