@@ -237,6 +237,11 @@ in
     defaults.webroot = "/var/www";
   };
   services= {
+    homepage-dashboard = {
+      enable = true;
+      listenPort = 8882;
+      openFirewall = true;
+    };
     openssh = {
       enable = true;
       settings.PermitRootLogin = "prohibit-password";
@@ -252,7 +257,7 @@ in
       sslCertificate = "/var/lib/acme/keycloak.resdigita.com/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/keycloak.resdigita.com/key.pem";
       database.passwordFile = "/etc/nixos/.secret.keycloakdata";
-      themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+      # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
     };
   };
   # services.authelia.instances = {
