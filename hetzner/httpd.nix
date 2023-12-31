@@ -181,7 +181,7 @@ in
     sslServerChain = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
     sslServerKey = "/var/lib/acme/keeweb.resdigita.com/key.pem";
     
-    documentRoot = "/var/www/keeweb";
+    documentRoot = "/var/www";
     extraConfig = ''
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
