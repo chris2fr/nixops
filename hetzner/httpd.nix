@@ -197,7 +197,7 @@ in
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID keeweb
       OIDCClientSecret ${keewebSecret}
-      OIDCRedirectURI https://keeweb.resdigita.com:8443/redirect_uri_from_oauth2
+      OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
       OIDCCryptoPassphrase ${keewebSecretPassphrase}
       
       <Location "/">
