@@ -235,12 +235,14 @@ in
         Options +Indexes +FollowSymLinks
         AllowOverride None
         Require all granted
+        DirectoryIndex index.html
       </Directory>
 
       <Directory "/var/www">
-        Options Indexes FollowSymLinks
+        Options -Indexes -FollowSymLinks
         AllowOverride None
         Require all granted
+        DirectoryIndex index.html
       </Directory>
 
       <Directory "/var/www/secret/dav">
