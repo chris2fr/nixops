@@ -177,11 +177,13 @@ in
 
   services.httpd.virtualHosts."keeweb.resdigita.com" = {
     listen = [{port = 8443; ssl=true;}];
+
     sslServerCert = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
     sslServerChain = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
     sslServerKey = "/var/lib/acme/keeweb.resdigita.com/key.pem";
     
     documentRoot = "/var/www";
+    
     extraConfig = ''
       Alias /static /var/www/wagtail/static
       Alias /media /var/www/wagtail/media
@@ -229,6 +231,17 @@ in
         Options +Indexes +FollowSymLinks
         AllowOverride None
         Require all granted
+      </Directory>
+
+      <Directory "/var/www">
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+      </Directory>
+
+      <Directory "/var/www/secret/dav">
+        Dav On
+        DavDepthInfinity On
       </Directory>
     '';
   };
