@@ -37,6 +37,7 @@ in
       "keepass.resdigita.com" = {
         enableACME = true;
         forceSSL = true;
+        serverAliases = ["keeweb.resdigita.com"];
         locations."/" = {
           proxyPass = "https://keepass.resdigita.com:8443/";
           extraConfig = extraProxyHeaders;

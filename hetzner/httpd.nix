@@ -174,6 +174,60 @@ in
       # </Location>
     '';
   };
+
+  services.httpd.virtualHosts."keeweb.resdigita.com" = {
+    sslServerCert = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
+    sslServerChain = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
+    sslServerKey = "/var/lib/acme/keeweb.resdigita.com/key.pem";
+    listen = [{port = 8443; ssl=true;}];
+    documentRoot = "/var/www/keeweb";
+    extraConfig = ''
+      Alias /static /var/www/wagtail/static
+      Alias /media /var/www/wagtail/media
+
+      DavLockDB /tmp/DavLockKeeWeb
+
+      OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+      OIDCClientID keepassweb
+      OIDCClientSecret Sd592JRYiOe0A1oJmGEj6pE2b4C8ddEP
+      OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
+      OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+      
+      <LocationMatch "^/(?<username>[^/]+)/manifest.json$">
+        Satisfy Any
+        Allow from all
+      </LocationMatch>
+      <Location "/">
+        AuthType openid-connect
+        Require valid-user
+      </Location>
+      <Location "/redirect">
+        AuthType openid-connect
+        Require valid-user
+        RewriteEngine On
+        RewriteCond %{env:OIDC_CLAIM_username} ^(.+)$
+        RewriteRule ^(.*)$ /auth/web/%1 [R,L]
+      </Location>
+      <LocationMatch "^/(?<username>[^/]+)">
+        AuthType openid-connect 
+        Require claim username:%{env:MATCH_USERNAME}
+      </LocationMatch>
+      <LocationMatch ^/$>
+          Redirect /redirect
+      </LocationMatch>
+
+      # User access to own password files
+      AliasMatch "^/([^/]+)/dav/(.*)" "/var/keepass/dav/$2/$3"
+      # User acces to web application
+      AliasMatch "^/([^/]+)(.*)" "/var/www/keeweb$3"
+
+      <Directory "/var/keepass">
+        Options -Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+      </Directory>
+    '';
+  };
   
   services.httpd.virtualHosts."keepass.resdigita.com" = {
     listen = [{port = 8443; ssl=true;}];

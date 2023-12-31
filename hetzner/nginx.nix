@@ -77,7 +77,6 @@ in
           globalRedirect = "mail.lesgrandsvoisins.com"; 
         };
         "keeweb.lesgrandsvoisins.com" = {
-          serverAliases = ["keeweb.resdigita.com"];
           enableACME = true; forceSSL = true; 
           globalRedirect = "keepass.resdigita.com";
         };
