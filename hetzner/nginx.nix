@@ -124,7 +124,8 @@ in
           };
         };        
         "list.desgrandsvoisins.org" = {
-          serverAliases = ["list.desgrandsvoisins.com" "listmonk.lesgrandsvoisins.com"];
+          serverAliases = ["list.desgrandsvoisins.com"];
+          # serverAliases = ["list.desgrandsvoisins.com" "listmonk.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
           globalRedirect = "list.lesgrandsvoisins.com";

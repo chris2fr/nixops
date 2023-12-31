@@ -222,7 +222,7 @@ in
       AliasMatch "^/([^/]+)(.*)" "/var/www/keeweb$3"
 
       <Directory "/var/keepass">
-        Options -Indexes FollowSymLinks
+        Options -Indexes +FollowSymLinks
         AllowOverride None
         Require all granted
       </Directory>
