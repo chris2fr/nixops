@@ -188,10 +188,10 @@ in
       DavLockDB /tmp/DavLockKeeWeb
 
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
-      OIDCClientID keepassweb
-      OIDCClientSecret Sd592JRYiOe0A1oJmGEj6pE2b4C8ddEP
+      OIDCClientID keeweb
+      OIDCClientSecret 6sNi28FRi98TmzoNjCvIa4ujfzKtx69G
       OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
-      OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+      OIDCCryptoPassphrase JoWT5Mz1sggewtwerDIzsgI3MT2GH82aA6Xamp2ni
       
       <LocationMatch "^/(?<username>[^/]+)/manifest.json$">
         Satisfy Any
@@ -206,7 +206,7 @@ in
         Require valid-user
         RewriteEngine On
         RewriteCond %{env:OIDC_CLAIM_username} ^(.+)$
-        RewriteRule ^(.*)$ /auth/web/%1 [R,L]
+        RewriteRule ^(.*)$ /%1 [R,L]
       </Location>
       <LocationMatch "^/(?<username>[^/]+)">
         AuthType openid-connect 
