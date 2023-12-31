@@ -200,14 +200,14 @@ in
       OIDCRedirectURI https://keeweb.resdigita.com:8443/redirect_uri_from_oauth2
       OIDCCryptoPassphrase ${keewebSecretPassphrase}
       
-      <LocationMatch "^/(?<username>[^/]+)/manifest.json$">
-        Satisfy Any
-        Allow from all
-      </LocationMatch>
       <Location "/">
         AuthType openid-connect
         Require valid-user
       </Location>
+      <LocationMatch "^/(?<username>[^/]+)/manifest.json$">
+        Satisfy Any
+        Allow from all
+      </LocationMatch>
       <Location "/redirect">
         AuthType openid-connect
         Require valid-user
@@ -215,7 +215,7 @@ in
         RewriteCond %{env:OIDC_CLAIM_username} ^(.+)$
         RewriteRule ^(.*)$ /%1 [R,L]
       </Location>
-      <LocationMatch "^/(?<username>[^/]+)">
+      <LocationMatch "^/(?<username>[^/]+)/">
         AuthType openid-connect 
         Require claim username:%{env:MATCH_USERNAME}
         <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
