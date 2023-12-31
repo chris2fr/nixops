@@ -227,9 +227,9 @@ in
       </LocationMatch>
 
       # User access to own password files
-      AliasMatch "^/([^/]+)/dav/(.*)" "/var/keepass/dav/$2/$3"
+      AliasMatch "^/([^/]+)/dav/(.*)" "/var/keepass/dav/$1/$2"
       # User acces to web application
-      AliasMatch "^/([^/]+)/(.+)$" "/var/www/keeweb/$3"
+      AliasMatch "^/([^/]+)/(.+)$" "/var/www/keeweb/$2"
 
       <Directory "/var/keepass">
         Options +Indexes +FollowSymLinks
