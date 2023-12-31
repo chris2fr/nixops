@@ -130,9 +130,7 @@ in
     };
     "www.lesgrandsvoisins.fr" = {
      serverAliases = ["desgv.com" "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com"
-      "lesgv.org"
-      "www.lesgv.org"];
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com" "ghost.resdigita.com"  "mail.resdigita.com" "listmonk.resdigita.com" "lesgv.org" "www.lesgv.org"];
       enableACME = true;
       # sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
       # sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.fr/key.pem";

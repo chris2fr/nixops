@@ -85,7 +85,7 @@ in
           serverAliases = ["www.resdigita.com"];
           enableACME = true;
           forceSSL = true;
-          globalRedirect = "doc.resdigita.com";
+          globalRedirect = "quartz.resdigita.com";
         };
         "filebrowser.resdigita.com" = {
           enableACME = true;
@@ -125,7 +125,7 @@ in
           };
         };        
         "list.desgrandsvoisins.org" = {
-          serverAliases = ["list.desgrandsvoisins.com"];
+          serverAliases = ["list.desgrandsvoisins.com" "listmonk.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
           globalRedirect = "list.lesgrandsvoisins.com";
