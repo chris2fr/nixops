@@ -20,6 +20,10 @@ let
     # RequestHeader set X-Forwarded-Port "443"
   '';
   fileBrowserSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.filebrowser));
+  keewebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb));
+  keewebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb.passphrase));
+  keepasswebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb.passphrase));
+  keepasswebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb));
   chrisSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.chris));
 in
 { 
@@ -192,9 +196,9 @@ in
 
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID keeweb
-      OIDCClientSecret 6sNi28FRi98TmzoNjCvIa4ujfzKtx69G
+      OIDCClientSecret ${keewebSecret}
       OIDCRedirectURI https://keeweb.resdigita.com:8443/redirect_uri_from_oauth2
-      OIDCCryptoPassphrase JoWT5Mz1sggewtwerDIzsgI3MT2GH82aA6Xamp2ni
+      OIDCCryptoPassphrase ${keewebSecretPassphrase}
       
       <LocationMatch "^/(?<username>[^/]+)/manifest.json$">
         Satisfy Any
@@ -258,9 +262,9 @@ in
       DavLockDB /tmp/DavLockSecret
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID keepassweb
-      OIDCClientSecret Sd592JRYiOe0A1oJmGEj6pE2b4C8ddEP
+      OIDCClientSecret  ${keepasswebSecret}
       OIDCRedirectURI https://keepass.resdigita.com/auth/redirect_uri_from_oauth2
-      OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+      OIDCCryptoPassphrase ${keepasswebSecretPassphrase}
       <LocationMatch "^/(auth|pass|ldap|login)/(?<username>[^/]+)/manifest.json$">
         Satisfy Any
         Allow from all
