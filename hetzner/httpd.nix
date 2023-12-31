@@ -211,6 +211,9 @@ in
       <LocationMatch "^/(?<username>[^/]+)">
         AuthType openid-connect 
         Require claim username:%{env:MATCH_USERNAME}
+        <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
+           Require claim useername:%{env:MATCH_USERNAME}
+        </LimitExcept>
       </LocationMatch>
       <LocationMatch ^/$>
           Redirect /redirect
@@ -222,7 +225,7 @@ in
       AliasMatch "^/([^/]+)(.*)" "/var/www/keeweb$3"
 
       <Directory "/var/keepass">
-        Options -Indexes +FollowSymLinks
+        Options +Indexes +FollowSymLinks
         AllowOverride None
         Require all granted
       </Directory>
