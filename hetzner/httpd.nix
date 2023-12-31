@@ -176,10 +176,11 @@ in
   };
 
   services.httpd.virtualHosts."keeweb.resdigita.com" = {
+    listen = [{port = 8443; ssl=true;}];
     sslServerCert = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
     sslServerChain = "/var/lib/acme/keeweb.resdigita.com/fullchain.pem";
     sslServerKey = "/var/lib/acme/keeweb.resdigita.com/key.pem";
-    listen = [{port = 8443; ssl=true;}];
+    
     documentRoot = "/var/www/keeweb";
     extraConfig = ''
       Alias /static /var/www/wagtail/static
@@ -190,7 +191,7 @@ in
       OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
       OIDCClientID keeweb
       OIDCClientSecret 6sNi28FRi98TmzoNjCvIa4ujfzKtx69G
-      OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
+      OIDCRedirectURI https://keeweb.resdigita.com:8443/redirect_uri_from_oauth2
       OIDCCryptoPassphrase JoWT5Mz1sggewtwerDIzsgI3MT2GH82aA6Xamp2ni
       
       <LocationMatch "^/(?<username>[^/]+)/manifest.json$">
