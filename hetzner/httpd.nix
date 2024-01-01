@@ -236,9 +236,10 @@ in
         
         <LocationMatch "^/redirect$">
           AuthType openid-connect
-          Require valid-user
           RewriteEngine on
-          RewriteRule "(.*)" /%{env:OIDC_CLAIM_username}/index.html
+          Require valid-user
+          RewriteCond %{env:OIDC_CLAIM_username} ^(.+)$
+          RewriteRule ^(.*)$ /%1/index.html [R,L]
         </LocationMatch>
         <Location "/">
           AuthType openid-connect
