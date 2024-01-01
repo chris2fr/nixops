@@ -205,7 +205,7 @@ in
         OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase ${keewebSecretPassphrase}
         
-        <LocationMatch "^/redirect%">
+        <LocationMatch "^/redirect$">
           AuthType openid-connect
           Require valid-user
           Redirect /%{env:OIDC_CLAIM_username}/index.html
