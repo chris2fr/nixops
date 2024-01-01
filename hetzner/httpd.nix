@@ -58,7 +58,9 @@ in
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
-    "maruftuyel.resdigita.com" = {
+   
+  services.httpd.virtualHosts = {
+     "maruftuyel.resdigita.com" = {
       listen = [{port = 8443; ssl=true;}];
       sslServerCert = "/var/lib/acme/maruftuyel.resdigita.com/fullchain.pem";
       sslServerChain = "/var/lib/acme/maruftuyel.resdigita.com/fullchain.pem";
@@ -86,7 +88,6 @@ in
         </Location>
       '';
     };
-  services.httpd.virtualHosts = {
     "axel.resdigita.com" = {
       listen = [{port = 8443; ssl=true;}];
       sslServerCert = "/var/lib/acme/axel.resdigita.com/fullchain.pem";
