@@ -237,7 +237,8 @@ in
         <LocationMatch "^/redirect$">
           AuthType openid-connect
           Require valid-user
-          Redirect /%{env:OIDC_CLAIM_username}/index.html
+          RewriteEngine on
+          RewriteRule "(.*)" /%{env:OIDC_CLAIM_username}/index.html
         </LocationMatch>
         <Location "/">
           AuthType openid-connect
@@ -397,7 +398,7 @@ in
       ''
       # wagtailExtraConfig
       ''
-        DavLockDB /tmp/DesGVDavLock
+          DavLockDB /tmp/DesGVDavLock
 
           OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
           OIDCClientID webdav
