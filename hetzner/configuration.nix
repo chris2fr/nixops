@@ -290,7 +290,7 @@ in
           default_backend servers
 
         backend servers
-          server server1 localhost:8000 maxconn 64
+          server server1 127.0.0.1:8000 maxconn 64
       '';
     };
   };
