@@ -305,11 +305,10 @@ in
           default_backend homepage-dashboard
 
         listen https-in
+          mode tcp
           bind :9443
-          http-request redirect scheme https unless { ssl_fc }
-          # bind :9443 ssl crt-list /var/lib/acme/certlist.txt
-          # http-request redirect scheme https unless { ssl_fc }
-          default_backend https-homepage-dashboard
+          redirect location https://homepage-dashboard.resdigita.com unless secure
+          default_backend homepage-dashboard
 
         # frontend wagtail
         #   bind www.lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
