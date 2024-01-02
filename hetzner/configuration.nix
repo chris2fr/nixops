@@ -311,7 +311,7 @@ in
           redirect location https://%[env(HOSTNAME)]:9443 unless server_ssl
           # use_backend homepage-dashboard if server_ssl
           option             forwardfor
-          default_backend homepage-dashboard
+          default_backend https-homepage-dashboard
 
         # frontend wagtail
         #   bind www.lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
