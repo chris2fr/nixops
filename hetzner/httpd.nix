@@ -236,8 +236,8 @@ in
         
         <LocationMatch "^/redirect$">
           AuthType openid-connect
-          RewriteEngine on
           Require valid-user
+          RewriteEngine on
           RewriteCond %{env:OIDC_CLAIM_username} ^(.+)$
           RewriteRule ^(.*)$ /%1/index.html [R,L]
         </LocationMatch>
@@ -271,10 +271,13 @@ in
         </Directory>
 
         <Directory "/var/www">
-          Options +Indexes -FollowSymLinks
+          # Options +Indexes +FollowSymLinks
+          # AllowOverride None
+          # Require all granted
+          # DirectoryIndex index.html
+          Options Indexes FollowSymLinks
           AllowOverride None
           Require all granted
-          DirectoryIndex index.html
         </Directory>
 
         <Directory "/var/www/secret/dav">
