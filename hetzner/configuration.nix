@@ -300,12 +300,12 @@ in
           errorfile 503 /var/log/haproxy/errors/503.http
           errorfile 504 /var/log/haproxy/errors/504.http
 
-        frontend http-in
+        lsiten http-in
           bind :9080
-          default_backend servers
+          default_backend homepage-dashboard
 
-        frontend https-in
-          bind *:9443 ssl crt-list /var/lib/acme/certlist.txt
+        listen https-in
+          bind :9443 ssl crt-list /var/lib/acme/certlist.txt
           http-request redirect scheme https unless { ssl_fc }
           default_backend homepage-dashboard
 
@@ -314,9 +314,6 @@ in
         #   bind lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
         #   http-request redirect scheme https unless { ssl_fc }
         #   default_backend wagtail
-
-        backend servers
-          server server1 127.0.0.1:8882 maxconn 64
 
         backend homepage-dashboard
           server server1 127.0.0.1:8882 maxconn 64
