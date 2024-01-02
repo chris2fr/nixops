@@ -309,11 +309,11 @@ in
           http-request redirect scheme https unless { ssl_fc }
           default_backend homepage-dashboard
 
-        frontend wagtail
-          bind www.lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
-          bind lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
-          http-request redirect scheme https unless { ssl_fc }
-          default_backend wagtail
+        # frontend wagtail
+        #   bind www.lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
+        #   bind lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
+        #   http-request redirect scheme https unless { ssl_fc }
+        #   default_backend wagtail
 
         backend servers
           server server1 127.0.0.1:8882 maxconn 64
