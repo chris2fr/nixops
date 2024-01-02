@@ -308,7 +308,7 @@ in
           mode tcp
           bind :9443
           # redirect location https://homepage-dashboard.resdigita.com unless secure
-          redirect location https://%[env(HOSTNAME)]:9443 unless secure
+          redirect location https://%[env(HOSTNAME)]:9443 unless {req_ssl_hello_type 1}
           default_backend homepage-dashboard
 
         # frontend wagtail
