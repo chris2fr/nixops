@@ -286,7 +286,7 @@ in
 
         defaults
           log     global
-          mode    http
+          mode    tcp
           option  httplog
           option  dontlognull
           timeout connect 10s
@@ -305,9 +305,10 @@ in
           default_backend homepage-dashboard
 
         listen https-in
-          bind :9443 ssl crt-list /var/lib/acme/certlist.txt
-          http-request redirect scheme https unless { ssl_fc }
-          default_backend homepage-dashboard
+          bind :9443
+          # bind :9443 ssl crt-list /var/lib/acme/certlist.txt
+          # http-request redirect scheme https unless { ssl_fc }
+          default_backend https-homepage-dashboard
 
         # frontend wagtail
         #   bind www.lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
@@ -317,6 +318,9 @@ in
 
         backend homepage-dashboard
           server server1 127.0.0.1:8882 maxconn 64
+
+        backend https-homepage-dashboard
+          server server1 homepage-dashboard.resdigita.com:443 maxconn 64
 
         backend wagtail
           server gunicorn www.lesgrandsvoisins.com:443 maxconn 64
