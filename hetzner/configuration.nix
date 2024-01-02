@@ -307,8 +307,10 @@ in
         listen https-in
           mode tcp
           bind :9443
+          acl nothttps scheme_str http
           # redirect location https://homepage-dashboard.resdigita.com unless secure
-          redirect location https://%[env(HOSTNAME)]:9443 unless server_ssl
+          # redirect location https://%[env(HOSTNAME)]:9443 if scheme str "http"
+          redirect scheme https if nothttps
           # use_backend homepage-dashboard if server_ssl
           option             forwardfor
           default_backend https-homepage-dashboard
