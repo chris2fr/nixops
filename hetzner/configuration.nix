@@ -286,7 +286,7 @@ in
           timeout server 50000ms
 
         frontend http-in
-          bien *:9080
+          bind *:9080
           default_backend servers
 
         backend servers
