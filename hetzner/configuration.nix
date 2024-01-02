@@ -295,7 +295,7 @@ in
           default_backend servers
 
         frontend https-in
-          bind *:9443 ssl crt /var/lib/acme/homepage-dashboard.resdigita/full.pem
+          bind *:9443 ssl crt /var/lib/acme/homepage-dashboard.resdigita.com/full.pem
           default_backend sslservers
 
         backend servers
