@@ -307,7 +307,8 @@ in
         listen https-in
           mode tcp
           bind :9443
-          redirect location https://homepage-dashboard.resdigita.com unless secure
+          # redirect location https://homepage-dashboard.resdigita.com unless secure
+          redirect location https://%[env(HOSTNAME)]:9443 unless secure
           default_backend homepage-dashboard
 
         # frontend wagtail
