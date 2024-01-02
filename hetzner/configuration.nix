@@ -294,16 +294,27 @@ in
           bind *:9080
           default_backend servers
 
-        frontend https-in
-          bind *:9443 ssl crt /var/lib/acme/homepage-dashboard.resdigita.com/full.pem
+        frontend homepage-dashboard.resdigita.com
+          bind homepage-dashboard.resdigita.com:9443 ssl crt /var/lib/acme/homepage-dashboard.resdigita.com/full.pem
           http-request redirect scheme https unless { ssl_fc }
-          default_backend sslservers
+          default_backend homepage-dashboard
+
+        frontend wagtail
+          bind www.lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
+          bind lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
+          http-request redirect scheme https unless { ssl_fc }
+          default_backend wagtail
 
         backend servers
           server server1 127.0.0.1:8882 maxconn 64
 
-        backend sslservers
+        backend homepage-dashboard
           server server1 127.0.0.1:8882 maxconn 64
+
+        backend wagtail
+          server gunicorn www.lesgrandsvoisins.com:443 maxconn 64
+
+
 
         resolvers dnsresolve
           parse-resolv-conf
