@@ -301,11 +301,11 @@ in
           errorfile 504 /var/log/haproxy/errors/504.http
 
         frontend http-in
-          bind *:9080
+          bind :9080
           default_backend servers
 
         frontend https-in
-          bind *:9443 ssl crt-list /var/lib/acme/certlist.txt
+          bind :9443 ssl crt-list /var/lib/acme/certlist.txt
           http-request redirect scheme https unless { ssl_fc }
           default_backend homepage-dashboard
 
