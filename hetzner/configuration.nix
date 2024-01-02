@@ -40,9 +40,14 @@ in
     filebrowser
     cacert
   ];
-  users.users.filebrowser = {
-    isNormalUser = true;
-    extraGroups = ["wwwrun"];
+  users.users = {
+    filebrowser = {
+      isNormalUser = true;
+      extraGroups = ["wwwrun"];
+    };
+    haproxy = {
+      extraGroups = ["wwwrun" "acme"];
+    };
   };
   boot.loader = {
     systemd-boot.enable = true;
