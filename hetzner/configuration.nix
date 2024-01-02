@@ -292,14 +292,13 @@ in
         frontend https-in
           bind *:9443
           default_backend sslservers
+          crt /var/lib/acme/homepage-dashboard.resdigita.com
 
         backend servers
           server server1 127.0.0.1:8882 maxconn 64
 
         backend sslservers
-          ssl-reuse
           server server1 127.0.0.1:8882 maxconn 64
-
 
       '';
     };
