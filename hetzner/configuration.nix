@@ -38,6 +38,7 @@ in
   environment.systemPackages = with pkgs; [
     yarn
     filebrowser
+    cacert
   ];
   users.users.filebrowser = {
     isNormalUser = true;
@@ -66,7 +67,7 @@ in
     };
     # firewall.enable = false;
     firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" ];
-    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 10080 10443 ];
+    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9080 9443 10080 10443 ];
     # interfaces."eno1".ipv6 = {
 
     # }
@@ -219,6 +220,18 @@ in
         Group = "users";
       };
     };
+    # haproxy-config = {
+    #   enable = true;
+    #   description = "HA Proxy Service";
+    #   documentation = "https://www.resdigita.com";
+    #   wantedBy = [ "multi-user.target" ];
+    #   requires = [ "network-online.target" ];
+    #   after = [ "network-online.target" "nginx.service"  "httpd.service" ];
+    #   path = [
+    #     pkgs.coreutils
+    #     pkgs.cacert
+    #   ];
+    # };
   };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -258,6 +271,27 @@ in
       sslCertificateKey = "/var/lib/acme/keycloak.resdigita.com/key.pem";
       database.passwordFile = "/etc/nixos/.secret.keycloakdata";
       # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+    };
+    haproxy = {
+      enable = true;
+      config = ''
+        global
+          daemon
+          maxconn 1000
+
+        defaults
+          mode http
+          timeout connect 5000ms
+          timeout client 50000ms
+          timeout server 50000ms
+
+        frontend http-in
+          bien *:9080
+          default_backend servers
+
+        backend servers
+          server server1 localhost:8000 maxconn 64
+      '';
     };
   };
   # services.authelia.instances = {

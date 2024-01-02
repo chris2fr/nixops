@@ -15,7 +15,6 @@ in
     ./common.nix # Des configurations communes pratiques
     <home-manager/nixos>
   ];
-
 #  virtualisation.docker.enable = true;
 #  users.extraGroups.docker.members = [ "mannchri" ];
 #  pkgs.dockerTools.pullImage = {
@@ -24,73 +23,72 @@ in
 #    imageDigest = "sha256:c34a8feb5978888ebe5ff86884524b30759469c91761a560cdfe968f6637f051";
 #    sha256 = "";
 #  };
-
-  users.users.fossil = rec {
+  users.users = {
+    fossil = rec {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-  };
-  users.users.mannchri = rec {
+    };
+    users.users.mannchri = rec {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
       extraGroups = [ "wheel" "networkmanager" ];
-  };
-  home-manager.users.fossil = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      fossil
-    ];
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-  };
-  home-manager.users.mannchri = {pkgs, ...}: {
-    home.packages = [ pkgs.atool pkgs.httpie ];
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
-    programs.vim = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [ vim-airline ];
-      settings = { ignorecase = true; tabstop = 2; };
-      extraConfig = ''
-        set mouse=a
-        set nocompatible
-        colo torte
-        syntax on
-        set tabstop     =2
-        set softtabstop =2
-        set shiftwidth  =2
-        set expandtab
-        set autoindent
-        set smartindent
-      '';
     };
   };
-
-  services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "no";
+  home-manager.users = {
+    fossil = {pkgs, ...}: {
+      home.packages = with pkgs; [ 
+        fossil
+      ];
+      home.stateVersion = "23.05";
+      programs.home-manager.enable = true;
+    };
+    mannchri = {pkgs, ...}: {
+      home.packages = [ pkgs.atool pkgs.httpie ];
+      home.stateVersion = "23.05";
+      programs.home-manager.enable = true;
+      programs.vim = {
+        enable = true;
+        plugins = with pkgs.vimPlugins; [ vim-airline ];
+        settings = { ignorecase = true; tabstop = 2; };
+        extraConfig = ''
+          set mouse=a
+          set nocompatible
+          colo torte
+          syntax on
+          set tabstop     =2
+          set softtabstop =2
+          set shiftwidth  =2
+          set expandtab
+          set autoindent
+          set smartindent
+        '';
+      };
+    };
+  };
+  services = {
+    openssh = {
+      enable = true;
+      settings.PermitRootLogin = "no";
+    };
+  };
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
-  
-  networking.firewall.allowedTCPPorts = [ 80 443 636 ];
-  # Networking
-  networking.hostName = "vpsfreecz001"; # Define your hostname.
-  networking.enableIPv6 = true;
-  # networking.firewall.package
-  networking.nftables.enable = true;
-  
-
-
+  networking = {
+    firewall.allowedTCPPorts = [ 80 443 636 ];
+    hostName = "vpsfreecz001"; # Define your hostname.
+    enableIPv6 = true;
+    # firewall.package
+    nftables.enable = true;
+  };
   systemd.extraConfig = ''
     DefaultTimeoutStartSec=600s
   '';
-
   time.timeZone = "Europe/Paris";
-
   system.stateVersion = "23.05";
-
   environment.sessionVariables = rec {
     EDITOR="vim";
     WAGTAIL_ENV = "production";
   };
-
   security.acme = {
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";

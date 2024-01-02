@@ -245,6 +245,7 @@ in
           AuthType openid-connect
           Require valid-user
         </Location>
+
         <LocationMatch "^/(?<username>[^/]+)/manifest.json$">
           Satisfy Any
           Allow from all
@@ -260,8 +261,6 @@ in
         <LocationMatch ^/$>
             Redirect /redirect
         </LocationMatch>
-
-
 
         <Directory "/var/keepass">
           Options +Indexes +FollowSymLinks
