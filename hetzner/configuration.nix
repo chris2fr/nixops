@@ -292,18 +292,18 @@ in
 
         frontend http-in
           bind *:9080
-          bind *:9443 ssl crt /var/lib/acme/homepage-dashboard.resdigita.com/full.pem
           default_backend servers
 
-        # frontend https-in
-        #   bind *:9443 ssl crt /var/lib/acme/homepage-dashboard.resdigita.com/full.pem
-        #   default_backend sslservers
+        frontend https-in
+          bind *:9443 ssl crt /var/lib/acme/homepage-dashboard.resdigita.com/full.pem
+          http-request redirect scheme https unless { ssl_fc }
+          default_backend sslservers
 
         backend servers
           server server1 127.0.0.1:8882 maxconn 64
 
-        # backend sslservers
-        #   server server1 127.0.0.1:8882 maxconn 64
+        backend sslservers
+          server server1 127.0.0.1:8882 maxconn 64
 
       '';
     };
