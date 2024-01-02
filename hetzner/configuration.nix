@@ -306,6 +306,7 @@ in
 
         listen https-in
           bind :9443
+          http-request redirect scheme https unless { ssl_fc }
           # bind :9443 ssl crt-list /var/lib/acme/certlist.txt
           # http-request redirect scheme https unless { ssl_fc }
           default_backend https-homepage-dashboard
