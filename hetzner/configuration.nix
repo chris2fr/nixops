@@ -306,10 +306,11 @@ in
           server server1 127.0.0.1:8882 maxconn 64
 
         resolvers dnsresolve
-          nameserver googledns1ipv6 2001:4860:4860::8888
-          nameserver googledns2ipv6 2001:4860:4860::8844
-          nameserver googledns1ipv4 8.8.8.8
-          nameserver googledns2ipv4 8.8.4.4
+          parse-resolv-conf
+          # nameserver googledns1ipv6 [2001:4860:4860::8888]:53
+          # nameserver googledns2ipv6 [2001:4860:4860::8844]:53
+          # nameserver googledns1ipv4 8.8.8.8:53
+          # nameserver googledns2ipv4 8.8.4.4:53
 
       '';
     };
