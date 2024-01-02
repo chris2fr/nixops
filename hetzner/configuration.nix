@@ -285,17 +285,27 @@ in
           maxconn 1000
 
         defaults
-          mode http
-          timeout connect 5000ms
-          timeout client 50000ms
-          timeout server 50000ms
+          log     global
+          mode    http
+          option  httplog
+          option  dontlognull
+          timeout connect 10s
+          timeout client  60s
+          timeout server  60s
+          errorfile 400 /etc/haproxy/errors/400.http
+          errorfile 403 /etc/haproxy/errors/403.http
+          errorfile 408 /etc/haproxy/errors/408.http
+          errorfile 500 /etc/haproxy/errors/500.http
+          errorfile 502 /etc/haproxy/errors/502.http
+          errorfile 503 /etc/haproxy/errors/503.http
+          errorfile 504 /etc/haproxy/errors/504.http
 
         frontend http-in
           bind *:9080
           default_backend servers
 
-        frontend homepage-dashboard.resdigita.com
-          bind homepage-dashboard.resdigita.com:9443 ssl crt /var/lib/acme/homepage-dashboard.resdigita.com/full.pem
+        frontend https-in
+          bind *:9443 ssl crt-list /var/lib/acme/certlist.txt
           http-request redirect scheme https unless { ssl_fc }
           default_backend homepage-dashboard
 
