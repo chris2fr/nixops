@@ -305,7 +305,8 @@ in
           default_backend servers
 
         frontend https-in
-          bind *:9443 ssl verify required crt-list /var/lib/acme/certlist.txt
+          bind www.lesgrandsvoisins.com:9443 ssl verify required crt-list /var/lib/acme/certlist.txt
+          bind homepage-dashboard.resdigita.com:9443 ssl verify required crt-list /var/lib/acme/certlist.txt
           http-request redirect scheme https unless { ssl_fc }
           default_backend homepage-dashboard
 
