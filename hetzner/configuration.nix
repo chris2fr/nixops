@@ -300,7 +300,7 @@ in
           errorfile 503 /var/log/haproxy/errors/503.http
           errorfile 504 /var/log/haproxy/errors/504.http
 
-        lsiten http-in
+        listen http-in
           bind :9080
           default_backend homepage-dashboard
 
