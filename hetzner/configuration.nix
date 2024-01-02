@@ -289,8 +289,18 @@ in
           bind *:9080
           default_backend servers
 
+        frontend https-in
+          bind *:9443
+          default_backend sslservers
+
         backend servers
-          server server1 127.0.0.1:8000 maxconn 64
+          server server1 127.0.0.1:8882 maxconn 64
+
+        backend sslservers
+          ssl-reuse
+          server server1 127.0.0.1:8882 maxconn 64
+
+
       '';
     };
   };
