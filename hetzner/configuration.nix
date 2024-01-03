@@ -311,8 +311,8 @@ in
           http-request set-header X-Forwarded-Proto https if { ssl_fc }
           http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
           http-request redirect scheme https unless { ssl_fc }
-          # use_backend %[req.hdr(Host),lower]
-          default_backend nginx
+          use_backend %[req.hdr(Host),lower]
+          default_backend homepage-dashboard
           
           # # acl nothttps scheme_str http
           # # redirect location https://homepage-dashboard.resdigita.com unless secure
@@ -343,6 +343,9 @@ in
         #   bind lesgrandsvoisins.com:9443 ssl crt /var/lib/acme/www.lesgrandsvoisins.com/full.pem
         #   http-request redirect scheme https unless { ssl_fc }
         #   default_backend wagtail
+
+        backend hedgedoc.resdigita.com
+          server server1 hedgedoc.resdigita.com:443 maxconn 64
 
         backend homepage-dashboard
           server server1 127.0.0.1:8882 maxconn 64
