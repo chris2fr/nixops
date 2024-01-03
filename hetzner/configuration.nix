@@ -306,8 +306,11 @@ in
 
         listen https-in
           mode tcp
-          bind :9443 ssl cert-file /var/lib/acme/certificates.txt
-          redirect scheme https unless {ssl_fc}
+          bind :9443 ssl crt-file /var/lib/acme/crt-file.txt
+          # redirect scheme https 
+          http-request set-header X-Forwarded-Proto https if { ssl_fc }
+          http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
+          http-request redirect scheme https unless { ssl_fc }
           use_backend %[req.hdr(Host),lower]
 
           
