@@ -304,16 +304,23 @@ in
           bind :9080
           default_backend homepage-dashboard
 
-        listen https-in
+        listen tcp-in
           mode tcp
           bind :9443
-          acl sslv req.ssl_ver gt 1
+          
           # acl nothttps scheme_str http
           # redirect location https://homepage-dashboard.resdigita.com unless secure
           # redirect location https://%[env(HOSTNAME)]:9443 if scheme str "http"
-          redirect scheme https if !sslv 
+          # acl sslv req.ssl_ver gt 2
+          # redirect scheme https if !sslv 
+          redirect scheme https if !{ req.ssl_hello_type gt 0 }
           # use_backend homepage-dashboard if server_ssl
           option             forwardfor
+          acl ACL_www.lesgrandsvoisins.com hdr(host) -i www.lesgrandsvoisins.com lesgrandsvoisins.com
+          use_backend wagtail if ACL_www.lesgrandsvoisins.com
+          acl quartz.resdigita.com hdr(host) -i quartz.resdigita.com
+          use_backend quartz.resdigita.com if ACL_quartz.resdigita.com
+
           default_backend https-homepage-dashboard
 
         # frontend wagtail
@@ -331,6 +338,8 @@ in
         backend wagtail
           server gunicorn www.lesgrandsvoisins.com:443 maxconn 64
 
+        backend quartz.resdigita.com
+          server quartz quartz.resdigita.com:443 maxconn 64
 
 
         resolvers dnsresolve
