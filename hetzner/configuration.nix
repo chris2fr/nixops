@@ -304,16 +304,19 @@ in
           bind :9080
           default_backend homepage-dashboard
 
-        listen tcp-in
+        listen https-in
           mode tcp
-          bind :9443
+          bind :9443 ssl cert-file /var/lib/acme/certificates.txt
+          redirect scheme https unless {ssl_fc}
+          use_backend %[req.hdr(Host),lower]
+
           
           # acl nothttps scheme_str http
           # redirect location https://homepage-dashboard.resdigita.com unless secure
           # redirect location https://%[env(HOSTNAME)]:9443 if scheme str "http"
           # acl sslv req.ssl_ver gt 2
           # redirect scheme https if !sslv 
-          redirect scheme https if !{ req.ssl_hello_type gt 0 }
+          # redirect scheme https if !{ req.ssl_hello_type gt 0 }
           # use_backend homepage-dashboard if server_ssl
           option             forwardfor
           acl ACL_nginx hdr(host) -i www.lesgrandsvoisins.com lesgrandsvoisins.com quartz.resdigita.com hedgedoc.resdigita.com crabfit.resdigita.com
