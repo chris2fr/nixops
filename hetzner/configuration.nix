@@ -316,16 +316,19 @@ in
           redirect scheme https if !{ req.ssl_hello_type gt 0 }
           # use_backend homepage-dashboard if server_ssl
           option             forwardfor
-          acl ACL_nginx -i www.lesgrandsvoisins.com lesgrandsvoisins.com quartz.resdigita.com hedgedoc.resdigita.com crabfit.resdigita.com
-          acl ACL_httpd -i dav.resdigita.com keepass.resdigita.com keeweb.resdigita.com
+          acl ACL_nginx hdr(host) -i www.lesgrandsvoisins.com lesgrandsvoisins.com quartz.resdigita.com hedgedoc.resdigita.com crabfit.resdigita.com
+          acl ACL_httpd hdr(host) -i dav.resdigita.com keepass.resdigita.com keeweb.resdigita.com
 
-          use_backend wagtail if ACL_www.lesgrandsvoisins.com
-          acl ACL_quartz.resdigita.com hdr(host) -i quartz.resdigita.com
-          use_backend quartz.resdigita.com if ACL_quartz.resdigita.com
-          acl ACL_hedgedoc.resdigita.com hdr(host) -i hedgedoc.resdigita.com
-          use_backend hedgedoc.resdigita.com if ACL_hedgedoc.resdigita.com
-          acl ACL_crabfit.resdigita.com hdr(host) -i crabfit.resdigita.com
-          use_backend crabfit.resdigita.com if ACL_crabfit.resdigita.com
+          use_backend nginx if ACL_nginx
+          use_backend httpd if ACL_httpd
+
+          # use_backend wagtail if ACL_www.lesgrandsvoisins.com
+          # acl ACL_quartz.resdigita.com hdr(host) -i quartz.resdigita.com
+          # use_backend quartz.resdigita.com if ACL_quartz.resdigita.com
+          # acl ACL_hedgedoc.resdigita.com hdr(host) -i hedgedoc.resdigita.com
+          # use_backend hedgedoc.resdigita.com if ACL_hedgedoc.resdigita.com
+          # acl ACL_crabfit.resdigita.com hdr(host) -i crabfit.resdigita.com
+          # use_backend crabfit.resdigita.com if ACL_crabfit.resdigita.com
 
           default_backend https-homepage-dashboard
 
