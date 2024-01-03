@@ -318,7 +318,7 @@ in
           option             forwardfor
           acl ACL_www.lesgrandsvoisins.com hdr(host) -i www.lesgrandsvoisins.com lesgrandsvoisins.com
           use_backend wagtail if ACL_www.lesgrandsvoisins.com
-          acl quartz.resdigita.com hdr(host) -i quartz.resdigita.com
+          acl ACL_quartz.resdigita.com hdr(host) -i quartz.resdigita.com
           use_backend quartz.resdigita.com if ACL_quartz.resdigita.com
 
           default_backend https-homepage-dashboard
