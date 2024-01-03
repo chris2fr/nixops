@@ -306,7 +306,7 @@ in
 
         listen https-in
           mode tcp
-          bind :9443 ssl crt-file /var/lib/acme/crt-file.txt
+          bind :9443 ssl ca-file /var/lib/acme/ca-file.txt
           # redirect scheme https 
           http-request set-header X-Forwarded-Proto https if { ssl_fc }
           http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
