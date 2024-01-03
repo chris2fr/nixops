@@ -286,7 +286,7 @@ in
 
         defaults
           log     global
-          mode    tcp
+          mode    http
           option  httplog
           option  dontlognull
           timeout connect 10s
@@ -305,7 +305,7 @@ in
           default_backend homepage-dashboard
 
         listen https-in
-          mode tcp
+          mode http
           bind :9443 ssl crt-list /var/lib/acme/crt-list.txt
           # redirect scheme https 
           http-request set-header X-Forwarded-Proto https if { ssl_fc }
