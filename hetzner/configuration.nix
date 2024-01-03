@@ -345,7 +345,7 @@ in
         #   default_backend wagtail
 
         backend hedgedoc.resdigita.com
-          server server1 hedgedoc.resdigita.com:443 maxconn 64
+          server server1 127.0.0.1:3333 maxconn 64
 
         backend homepage-dashboard
           server server1 127.0.0.1:8882 maxconn 64
