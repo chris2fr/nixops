@@ -302,7 +302,7 @@ in
 
         listen http-in
           bind :9080
-          default_backend homepage-dashboard
+          default_backend homepage-dashboard.resdigita.com
 
         listen https-in
           mode http
@@ -312,7 +312,7 @@ in
           http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
           http-request redirect scheme https unless { ssl_fc }
           use_backend %[req.hdr(Host),lower]
-          default_backend homepage-dashboard
+          default_backend homepage-dashboard.resdigita.com
           
           # # acl nothttps scheme_str http
           # # redirect location https://homepage-dashboard.resdigita.com unless secure
@@ -347,7 +347,8 @@ in
         backend hedgedoc.resdigita.com
           server server1 127.0.0.1:3333 maxconn 64
 
-        backend homepage-dashboard
+        # Still in debug mode. Put in cache mode please.
+        backend homepage-dashboard.resdigita.com
           server server1 127.0.0.1:8882 maxconn 64
 
         backend https-homepage-dashboard
@@ -358,6 +359,9 @@ in
 
         backend httpd
           server server1 127.0.0.1:8443 maxconn 64
+
+        backend mail.lesgrandsvoisins.com
+          server server1 /run/phpfpm/roundcube.sock
 
 
         resolvers dnsresolve
