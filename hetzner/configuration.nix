@@ -312,8 +312,8 @@ in
           http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
           http-request redirect scheme https unless { ssl_fc }
           use_backend %[req.hdr(Host),lower]
-          default_backend homepage-dashboard.resdigita.com
-          # default_backend mail.lesgransvoisins.com
+          # default_backend homepage-dashboard.resdigita.com
+          default_backend mail.lesgrandsvoisins.com
           
           # # acl nothttps scheme_str http
           # # redirect location https://homepage-dashboard.resdigita.com unless secure
