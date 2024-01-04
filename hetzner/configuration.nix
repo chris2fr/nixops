@@ -362,6 +362,14 @@ in
 
         backend mail.lesgrandsvoisins.com
           server server1 /run/phpfpm/roundcube.sock
+         
+        backend keepass.resdigita.com
+          mode tcp
+          server server1 keepass.resdigita.com:8443
+
+        backend keeweb.resdigita.com
+          mode tcp
+          server server1 keeweb.resdigita.com:8443
 
 
         resolvers dnsresolve
