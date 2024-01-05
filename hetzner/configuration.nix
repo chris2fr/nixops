@@ -270,7 +270,7 @@ in
         https-port = 10443;
         http-port = 10080;
         # proxy = "passthrough";
-        proxy = "edge";
+        proxy = "reencrypt";
         hostname = "keycloak.resdigita.com";
       };
       sslCertificate = "/var/lib/acme/keycloak.resdigita.com/fullchain.pem";
