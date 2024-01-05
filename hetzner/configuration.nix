@@ -402,7 +402,7 @@ in
           server server1 [::1]:9991
 
         backend dav.resdigita.com:9443
-          server server1 dav.resdigita.com:8443
+          server server1 127.0.0.1:8443
 
         backend wagtail.resdigita.com:9443
           server server1 wagtail.resdigita.com:8443
