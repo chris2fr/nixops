@@ -314,7 +314,7 @@ in
           acl ACL_resdigita.com hdr(host) -i resdigita.com:9443
           http-request redirect location https://quartz.resdigita.com:9443 if ACL_resdigita.com
           use_backend %[req.hdr(Host),lower]
-          default_backend homepage-dashboard.resdigita.com
+          default_backend homepage-dashboard.resdigita.com:9443
           # default_backend mail.lesgrandsvoisins.com
           
           # # acl nothttps scheme_str http
