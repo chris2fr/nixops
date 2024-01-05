@@ -311,8 +311,8 @@ in
           http-request set-header X-Forwarded-Proto https if { ssl_fc }
           http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
           http-request redirect scheme https unless { ssl_fc }
-
-          http-request redirect location https://quartz.resdigita.com if hdr(host) -i resdigita.com
+          acl ACL_resdigita.com hdr(host) -i resdigita.com
+          http-request redirect location https://quartz.resdigita.com if ACL_resdigita.com
           use_backend %[req.hdr(Host),lower]
           default_backend homepage-dashboard.resdigita.com
           # default_backend mail.lesgrandsvoisins.com
