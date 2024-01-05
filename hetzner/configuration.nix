@@ -269,7 +269,8 @@ in
       settings = {
         https-port = 10443;
         http-port = 10080;
-        proxy = "passthrough";
+        # proxy = "passthrough";
+        proxy = "edge";
         hostname = "keycloak.resdigita.com";
       };
       sslCertificate = "/var/lib/acme/keycloak.resdigita.com/fullchain.pem";
