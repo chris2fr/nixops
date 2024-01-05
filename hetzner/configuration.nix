@@ -376,7 +376,6 @@ in
           server server1 127.0.0.1:2368
 
         backend keepass.resdigita.com:9443
-          mode tcp
           server server1 keepass.resdigita.com:8443
 
         backend odoo1.resdigita.com:9443
@@ -398,30 +397,24 @@ in
           server server1 [::1]:9991
 
         backend dav.resdigita.com:9443
-          mode tcp
           server server1 dav.resdigita.com:8443
 
         backend wagtail.resdigita.com:9443
-          mode tcp
           server server1 wagtail.resdigita.com:8443
 
         backend keeweb.resdigita.com:9443
-          mode tcp
           server server1 keeweb.resdigita.com:8443
 
         backend filebrowser.resdigita.com:9443
           server server1 filebrowser.resdigita.com:8443
 
         backend chris.resdigita.com:9443
-          mode tcp
           server server1 chris.resdigita.com:8443
 
         backend axel.resdigita.com:9443
-          mode tcp
           server server1 axel.resdigita.com:8443
 
         backend maruftuyel.resdigita.com:9443
-          mode tcp
           server server1 maruftuyel.resdigita.com:8443
 
         backend mail.resdigita.com:9443
