@@ -70,7 +70,7 @@ in
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
-        OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID chris
         OIDCClientSecret ${chrisSecret}
         OIDCRedirectURI https://maruftuyel.resdigita.com/redirect_uri_from_oauth2
@@ -98,7 +98,7 @@ in
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
-        OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID chris
         OIDCClientSecret ${chrisSecret}
         OIDCRedirectURI https://axel.resdigita.com/redirect_uri_from_oauth2
@@ -126,7 +126,7 @@ in
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
-        OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID chris
         OIDCClientSecret ${chrisSecret}
         OIDCRedirectURI https://chris.resdigita.com/redirect_uri_from_oauth2
@@ -154,7 +154,7 @@ in
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
-        OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID filebrowser
         OIDCClientSecret ${fileBrowserSecret}
         OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
@@ -227,7 +227,7 @@ in
 
         DavLockDB /tmp/DavLockKeeWeb
 
-        OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID keeweb
         OIDCClientSecret ${keewebSecret}
         OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
@@ -294,7 +294,7 @@ in
         Alias /static /var/www/wagtail/static
         Alias /media /var/www/wagtail/media
         DavLockDB /tmp/DavLockSecret
-        OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID keepassweb
         OIDCClientSecret  ${keepasswebSecret}
         OIDCRedirectURI https://keepass.resdigita.com/auth/redirect_uri_from_oauth2
@@ -401,7 +401,7 @@ in
       ''
           DavLockDB /tmp/DesGVDavLock
 
-          OIDCProviderMetadataURL https://keycloak.resdigita.com:10443/realms/master/.well-known/openid-configuration
+          OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
           OIDCClientID webdav
           OIDCClientSecret gcGtQzMZbchAUfDCJBYoluH8FhpEMMzc
           OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
