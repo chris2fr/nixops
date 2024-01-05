@@ -289,6 +289,7 @@ in
           mode    http
           option  httplog
           option  dontlognull
+          option  forwardfor
           timeout connect 10s
           timeout client  60s
           timeout server  60s
@@ -307,6 +308,7 @@ in
         listen https-in
           mode http
           bind :9443 ssl crt-list /var/lib/acme/crt-list.txt
+          option forwardfor
           # redirect scheme https 
           http-request set-header X-Forwarded-Proto https if { ssl_fc }
           http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
@@ -354,6 +356,7 @@ in
           server server1 127.0.0.1:3080 maxconn 64
 
         backend authentik.resdigita.com:9443
+          option forwardfor
           server server1 10.245.101.35:9000 maxconn 64
 
         # Still in debug mode. Put in cache mode please.
@@ -370,9 +373,11 @@ in
           server server1 127.0.0.1:8443 maxconn 64
 
         backend mail.lesgrandsvoisins.com:9443
+          option forwardfor
           server server1 /run/phpfpm/roundcube.sock
          
         backend blog.lesgrandsvoisins.com:9443
+          option forwardfor
           server server1 127.0.0.1:2368
 
         backend keepass.resdigita.com:9443
