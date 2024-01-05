@@ -392,7 +392,6 @@ in
           server server1 10.245.101.173:8069
         
         backend quartz.resdigita.com:9443
-          mode tcp
           server server1 quartz.resdigita.com:443
 
         backend guichet.resdigita.com:9443
@@ -411,7 +410,6 @@ in
           server server1 keeweb.resdigita.com:8443
 
         backend filebrowser.resdigita.com:9443
-          mode tcp
           server server1 filebrowser.resdigita.com:8443
 
         backend chris.resdigita.com:9443
