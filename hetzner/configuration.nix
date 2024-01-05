@@ -347,20 +347,20 @@ in
         #   http-request redirect scheme https unless { ssl_fc }
         #   default_backend wagtail
 
-        backend hedgedoc.resdigita.com
+        backend hedgedoc.resdigita.com:9443
           server server1 127.0.0.1:3333 maxconn 64
 
         backend crabfit.resdigita.com:9443
           server server1 127.0.0.1:3080 maxconn 64
 
-        backend authentik.resdigita.com
+        backend authentik.resdigita.com:9443
           server server1 10.245.101.35:9000 maxconn 64
 
         # Still in debug mode. Put in cache mode please.
-        backend homepage-dashboard.resdigita.com
+        backend homepage-dashboard.resdigita.com:9443
           server server1 127.0.0.1:8882 maxconn 64
 
-        backend https-homepage-dashboard
+        backend https-homepage-dashboard:9443
           server server1 homepage-dashboard.resdigita.com:443 maxconn 64
 
         backend nginx
@@ -369,64 +369,64 @@ in
         backend httpd
           server server1 127.0.0.1:8443 maxconn 64
 
-        backend mail.lesgrandsvoisins.com
+        backend mail.lesgrandsvoisins.com:9443
           server server1 /run/phpfpm/roundcube.sock
          
-        backend blog.lesgrandsvoisins.com
+        backend blog.lesgrandsvoisins.com:9443
           server server1 127.0.0.1:2368
 
-        backend keepass.resdigita.com
+        backend keepass.resdigita.com:9443
           mode tcp
           server server1 keepass.resdigita.com:8443
 
-        backend odoo1.resdigita.com
+        backend odoo1.resdigita.com:9443
           server server1 10.245.101.158:8069
         
-        backend odoo2.resdigita.com
+        backend odoo2.resdigita.com:9443
           server server1 10.245.101.82:8069
 
-        backend odoo3.resdigita.com
+        backend odoo3.resdigita.com:9443
           server server1 10.245.101.128:8069
 
-        backend odoo4.resdigita.com
+        backend odoo4.resdigita.com:9443
           server server1 10.245.101.173:8069
         
-        backend quartz.resdigita.com
+        backend quartz.resdigita.com:9443
           mode tcp
           server server1 quartz.resdigita.com:443
 
-        backend guichet.resdigita.com
+        backend guichet.resdigita.com:9443
           server server1 [::1]:9991
 
-        backend dav.resdigita.com
+        backend dav.resdigita.com:9443
           mode tcp
           server server1 dav.resdigita.com:8443
 
-        backend wagtail.resdigita.com
+        backend wagtail.resdigita.com:9443
           mode tcp
           server server1 wagtail.resdigita.com:8443
 
-        backend keeweb.resdigita.com
+        backend keeweb.resdigita.com:9443
           mode tcp
           server server1 keeweb.resdigita.com:8443
 
-        backend filebrowser.resdigita.com
+        backend filebrowser.resdigita.com:9443
           mode tcp
           server server1 filebrowser.resdigita.com:8443
 
-        backend chris.resdigita.com
+        backend chris.resdigita.com:9443
           mode tcp
           server server1 chris.resdigita.com:8443
 
-        backend axel.resdigita.com
+        backend axel.resdigita.com:9443
           mode tcp
           server server1 axel.resdigita.com:8443
 
-        backend maruftuyel.resdigita.com
+        backend maruftuyel.resdigita.com:9443
           mode tcp
           server server1 maruftuyel.resdigita.com:8443
 
-        backend mail.resdigita.com
+        backend mail.resdigita.com:9443
           server server1 /run/phpfpm/roundcube.sock
 
         resolvers dnsresolve
