@@ -348,6 +348,12 @@ in
         backend hedgedoc.resdigita.com
           server server1 127.0.0.1:3333 maxconn 64
 
+        backend crabfit.resdigita.com
+          server server1 127.0.0.1:3080 maxconn 64
+
+        backend authentik.resdigita.com
+          server server1 10.245.101.35:9000 maxconn 64
+
         # Still in debug mode. Put in cache mode please.
         backend homepage-dashboard.resdigita.com
           server server1 127.0.0.1:8882 maxconn 64
@@ -364,14 +370,65 @@ in
         backend mail.lesgrandsvoisins.com
           server server1 /run/phpfpm/roundcube.sock
          
+        backend blog.lesgrandsvoisins.com
+          server server1 127.0.0.1:2368
+
         backend keepass.resdigita.com
           mode tcp
           server server1 keepass.resdigita.com:8443
+
+        backend odoo1.resdigita.com
+          server server1 10.245.101.158:8069
+        
+        backend odoo2.resdigita.com
+          server server1 10.245.101.82:8069
+
+        backend odoo3.resdigita.com
+          server server1 10.245.101.128:8069
+
+        backend odoo4.resdigita.com
+          server server1 10.245.101.173:8069
+        
+        backend quartz.resdigita.com
+          mode tcp
+          server server1 quartz.resdigita.com:443
+
+        backend guichet.resdigita.com
+          server server1 [::1]:9991
+
+        backend dav.resdigita.com
+          mode tcp
+          server server1 dav.resdigita.com:8443
+
+        backend wagtail.resdigita.com
+          mode tcp
+          server server1 wagtail.resdigita.com:8443
 
         backend keeweb.resdigita.com
           mode tcp
           server server1 keeweb.resdigita.com:8443
 
+        backend resdigita.com
+          redirect https://www.resdigita.com
+
+        backend filebrowser.resdigita.com
+          mode tcp
+          server server1 filebrowser.resdigita.com:8443
+
+        backend chris.resdigita.com
+          mode tcp
+          server server1 chris.resdigita.com:8443
+
+        backend axel.resdigita.com
+          mode tcp
+          server server1 axel.resdigita.com:8443
+
+        backend maruftuyel.resdigita.com
+          mode tcp
+          server server1 maruftuyel.resdigita.com:8443
+
+        backend mail.resdigita.com
+          server server1 /run/phpfpm/roundcube.sock
 
         resolvers dnsresolve
           parse-resolv-conf

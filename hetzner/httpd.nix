@@ -208,7 +208,6 @@ in
         # </Location>
       '';
     };
-
     "keeweb.resdigita.com" = {
       listen = [{port = 8443; ssl=true;}];
 
@@ -284,8 +283,7 @@ in
           DavDepthInfinity On
         </Directory>
       '';
-    };
-    
+    };   
     "keepass.resdigita.com" = {
       listen = [{port = 8443; ssl=true;}];
       sslServerCert = "/var/lib/acme/keepass.resdigita.com/fullchain.pem";
@@ -519,33 +517,33 @@ in
             <Location />
             Require all granted
             </Location>
-  #        SSLProxyEngine on
-  #        RewriteEngine on
-  #
-  #        RequestHeader set X-Forwarded-Proto "https"
-  #        RequestHeader set X-Forwarded-Port "443"
-  #
-  #        <Location /static/>
-  #        ProxyPass http://10.245.101.35:8888/
-  #        # ProxyPassReverse http://10.245.101.35:8888/
-  #        ProxyPreserveHost On
-  #        </Location>
-  #
-  #        <Location /media/>
-  #        ProxyPass http://10.245.101.35:8889/
-  #        # ProxyPassReverse http://10.245.101.35:8889/
-  #        ProxyPreserveHost On
-  #        </Location>
+            # SSLProxyEngine on
+            # RewriteEngine on
 
-      ProxyPass /.well-known !
-      ProxyPass /static !
-      ProxyPass /media !
-      ProxyPass /favicon.ico !
-          ProxyPass /  unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-          ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
-          # ProxyPassReverse / http://10.245.101.35:8080/
-          ProxyPreserveHost On
-          CacheDisable /
+            # RequestHeader set X-Forwarded-Proto "https"
+            # RequestHeader set X-Forwarded-Port "443"
+
+            # <Location /static/>
+            # ProxyPass http://10.245.101.35:8888/
+            # # ProxyPassReverse http://10.245.101.35:8888/
+            # ProxyPreserveHost On
+            # </Location>
+
+            # <Location /media/>
+            # ProxyPass http://10.245.101.35:8889/
+            # # ProxyPassReverse http://10.245.101.35:8889/
+            # ProxyPreserveHost On
+            # </Location>
+
+            ProxyPass /.well-known !
+            ProxyPass /static !
+            ProxyPass /media !
+            ProxyPass /favicon.ico !
+            ProxyPass /  unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+            ProxyPassReverse / unix:/var/lib/wagtail/wagtail-lesgv.sock|http://127.0.0.1/
+            # ProxyPassReverse / http://10.245.101.35:8080/
+            ProxyPreserveHost On
+            CacheDisable /
         '';
     };
     
