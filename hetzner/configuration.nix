@@ -350,7 +350,7 @@ in
         backend hedgedoc.resdigita.com
           server server1 127.0.0.1:3333 maxconn 64
 
-        backend crabfit.resdigita.com
+        backend crabfit.resdigita.com:9443
           server server1 127.0.0.1:3080 maxconn 64
 
         backend authentik.resdigita.com
