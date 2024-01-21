@@ -28,7 +28,8 @@ in
     "interetpublic.org" = {
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "www.interetpublic.com";
+      # globalRedirect = "www.interetpublic.com";
+      locations."/".return = "301 https://www.interetpublic.org";
     };
     "meet.resdigita.com" = {
       enableACME = true;
