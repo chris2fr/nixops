@@ -84,7 +84,7 @@ in
           serverAliases = ["www.resdigita.com"];
           enableACME = true;
           forceSSL = true;
-          globalRedirect = "homepage-dashboard.resdigita.com";
+          # globalRedirect = "homepage-dashboard.resdigita.com";
           locations."/".return = "302 https://homepage-dashboard.resdigita.com";
         };
         "filebrowser.resdigita.com" = {
