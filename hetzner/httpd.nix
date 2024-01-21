@@ -250,7 +250,7 @@ in
           Allow from all
         </LocationMatch>
 
-        <LocationMatch "^/(?<username>[^/]+)/">
+        <LocationMatch "^/(?<username>[^/]+)/.*">
           AuthType openid-connect 
           Require claim username:%{env:MATCH_USERNAME}
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
@@ -278,7 +278,7 @@ in
           Require all granted
         </Directory>
 
-        <Directory "/var/www/secret/dav">
+        <Directory "/var/keepass/dav">
           Dav On
           DavDepthInfinity On
         </Directory>
