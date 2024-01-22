@@ -278,13 +278,13 @@ in
           Require all granted
         </Directory>
 
-        <Directory "/var/keepass/dav">
-          Dav On
-          DavDepthInfinity On
-          Options Indexes FollowSymLinks
-          AllowOverride None
-          Require all granted
-        </Directory>
+        # <Directory "/var/keepass/dav">
+        #   Dav On
+        #   DavDepthInfinity On
+        #   # Options Indexes FollowSymLinks
+        #   # AllowOverride None
+        #   Require all granted
+        # </Directory>
       '';
     };   
     "keepass.resdigita.com" = {
