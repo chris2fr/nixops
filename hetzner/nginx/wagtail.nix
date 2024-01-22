@@ -113,6 +113,8 @@ in
         "gvcity.resdigita.com"
         "toutdouxlissecom.resdigita.com"
         "iciwowcom.resdigita.com"
+        "www.lesartsvoisins.com"
+        "lesartsvoisins.com"
       ];
       enableACME = true; 
       # sslCertificate = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
