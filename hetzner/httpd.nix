@@ -360,7 +360,7 @@ in
           AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
           AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
           AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
-          # Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+          # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
           Require valid-user
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
           Require valid-user
