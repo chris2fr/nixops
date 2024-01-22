@@ -115,6 +115,10 @@ in
         "iciwowcom.resdigita.com"
         "www.lesartsvoisins.com"
         "lesartsvoisins.com"
+        "publicinter.org"
+        "www.publicinter.org"
+        "publicinter.net"
+        "www.publicinter.net"
       ];
       enableACME = true; 
       # sslCertificate = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
