@@ -370,11 +370,17 @@ in
             Redirect /redirect
         </LocationMatch>
 
-        AliasMatch "^/(auth|pass)/web/([^/]+)/dav/(.*)" "/var/www/secret/dav/$2/$3"
+        AliasMatch "^/(auth|pass)/web/([^/]+)/dav/(.*)" "/var/keepass/dav/$2/$3"
         AliasMatch "^/(auth|pass)/web/([^/]+)(.*)" "/var/www/secret/keeweb$3"
 
-        Alias /auth/dav /var/www/secret/dav
-        Alias /pass/dav /var/www/secret/dav
+        Alias /auth/dav /var/keepass/dav
+        Alias /pass/dav /var/keepass/dav
+
+        # AliasMatch "^/(auth|pass)/web/([^/]+)/dav/(.*)" "/var/www/secret/dav/$2/$3"
+        # AliasMatch "^/(auth|pass)/web/([^/]+)(.*)" "/var/www/secret/keeweb$3"
+
+        # Alias /auth/dav /var/www/secret/dav
+        # Alias /pass/dav /var/www/secret/dav
 
         <Directory "/var/www">
           Options Indexes FollowSymLinks
@@ -382,7 +388,7 @@ in
           Require all granted
         </Directory>
 
-        <Directory "/var/www/secret/dav">
+        <Directory "/var/keepass/dav">
           Dav On
           DavDepthInfinity On
         </Directory>
