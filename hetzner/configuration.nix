@@ -281,7 +281,7 @@ in
           #   clientid = "vikunja";
           #   clientsecret = keycloakVikunja;
           # }];
-        };
+        #};
       };
     };
 
