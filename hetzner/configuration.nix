@@ -238,7 +238,7 @@ in
         #   clientsecret = "<vikunja secret>";
         # };
       };
-    }
+    };
     # haproxy-config = {
     #   enable = true;
     #   description = "HA Proxy Service";
