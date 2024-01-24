@@ -225,6 +225,20 @@ in
         Group = "users";
       };
     };
+    vikunja = {
+      enable = true;
+      frontendScheme = "https";
+      frontendHostname = "vikunja.resdigita.com";
+      settings = {
+        # openid = {
+        #   enabled = true;
+        #   authurl = "https://keycloak.mydomain.com/realms/<relam-name>";
+        #   logouturl = "https://keycloak.mydomain.com/realms/<relam-name>/protocol/openid-connect/logout";
+        #   clientid = "<vikunja-id>";
+        #   clientsecret = "<vikunja secret>";
+        # };
+      };
+    }
     # haproxy-config = {
     #   enable = true;
     #   description = "HA Proxy Service";

@@ -148,6 +148,10 @@ in
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:8882/";
         };
+        "vikunja.resdigita.com" = {
+          enableACME = true;
+          forceSSL = true;
+        };
       };
     };
   };
