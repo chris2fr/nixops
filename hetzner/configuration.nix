@@ -6,6 +6,7 @@
 let
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
   keycloakVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
+  emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.vikunja));
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 in
 {
@@ -262,6 +263,13 @@ in
       frontendHostname = "vikunja.resdigita.com";
       # database.type = "postgres";
       settings = {
+        mailer = {
+          enabled = true;
+          host = "mail.lesgrandsvoisins.com";
+          authtype = "login";
+          username = "vikunja@lesgrandsvoisins.com";
+          password = emailVikunja;
+        };
         auth = {
           local.enabled = false;
           openid.enabled = true;
