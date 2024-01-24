@@ -261,7 +261,7 @@ in
       frontendScheme = "https";
       frontendHostname = "vikunja.resdigita.com";
       settings = {
-        # openid = {
+        auth = {
         openid.enabled = true;
         openid.redirecturl = "https://vikunja.resdigita.com/auth/openid/";
         openid.providers = [{
@@ -271,7 +271,7 @@ in
             clientid = "vikunja";
             clientsecret = keycloakVikunja;
           }];
-        # };
+        };
       };
     };
 
