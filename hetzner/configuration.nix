@@ -267,7 +267,7 @@ in
           providers = [{
             name = "Keycloak.ResDigita.com";
             authurl = "https://keycloak.resdigita.com/realms/master";
-            logouturl = "https://keycloak.resdigita.com/realms/manster/protocol/openid-connect/logout";
+            logouturl = "https://keycloak.resdigita.com/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
             clientsecret = keycloakVikunja;
           }];
