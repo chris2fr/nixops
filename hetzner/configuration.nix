@@ -260,18 +260,8 @@ in
       enable = true;
       frontendScheme = "https";
       frontendHostname = "vikunja.resdigita.com";
+      database.type = "postgresql";
       settings = {
-        # auth = ''
-        #   openid:
-        #     enabled: true
-        #     redirecturl: https://vikunja.resdigita.com/auth/openid/
-        #     providers:
-        #     - name: ResDigita
-        #       authurl: https://keycloak.resdigita.com:10443/realms/master
-        #       logouturl: https://keycloak.resdigita.com:10443/realms/master/protocol/openid-connect/logout
-        #       clientid: vikunja
-        #       clientsecret: ${keycloakVikunja}
-        # '';
         auth = {
           local.enabled = false;
           openid.enabled = true;
