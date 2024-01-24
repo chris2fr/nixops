@@ -266,7 +266,7 @@ in
           redirecturl = "https://vikunja.resdigita.com/auth/openid/";
           providers = [{
             name = "Keycloak.ResDigita.com";
-            authurl = "https://keycloak.mydomain.com/realms/master";
+            authurl = "https://keycloak.resdigita.com/realms/master";
             logouturl = "https://keycloak.resdigita.com/realms/manster/protocol/openid-connect/logout";
             clientid = "vikunja";
             clientsecret = keycloakVikunja;
