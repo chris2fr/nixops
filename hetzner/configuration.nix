@@ -273,6 +273,7 @@ in
         #       clientsecret: ${keycloakVikunja}
         # '';
         auth = {
+          local.enabled = false;
           openid.enabled = true;
           openid.redirecturl = "https://vikunja.resdigita.com/auth/openid/";
           openid.providers = [{
