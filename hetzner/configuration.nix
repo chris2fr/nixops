@@ -260,7 +260,7 @@ in
       enable = true;
       frontendScheme = "https";
       frontendHostname = "vikunja.resdigita.com";
-      database.type = "postgres";
+      # database.type = "postgres";
       settings = {
         auth = {
           local.enabled = false;
