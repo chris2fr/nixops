@@ -5,6 +5,7 @@
 { config, pkgs, lib, ... }:
 let
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
+  keycloakVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 in
 {
@@ -260,13 +261,17 @@ in
       frontendScheme = "https";
       frontendHostname = "vikunja.resdigita.com";
       settings = {
-        # openid = {
-        #   enabled = true;
-        #   authurl = "https://keycloak.mydomain.com/realms/<relam-name>";
-        #   logouturl = "https://keycloak.mydomain.com/realms/<relam-name>/protocol/openid-connect/logout";
-        #   clientid = "<vikunja-id>";
-        #   clientsecret = "<vikunja secret>";
-        # };
+        openid = {
+          enabled = true;
+          redirecturl = "https://vikunja.resdigita.com/auth/openid/";
+          providers = [{
+            name = "Keycloak.ResDigita.com";
+            authurl = "https://keycloak.mydomain.com/realms/master";
+            logouturl = "https://keycloak.resdigita.com/realms/manster/protocol/openid-connect/logout";
+            clientid = "vikunja";
+            clientsecret = keycloakVikunja;
+          }];
+        };
       };
     };
 
