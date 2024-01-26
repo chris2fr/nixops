@@ -270,6 +270,16 @@ in
           username = "vikunja@lesgrandsvoisins.com";
           password = emailVikunja;
         };
+        defaultsettings = {
+          week_start = 1;
+          language = "fr";
+          timezone = "Europe/Paris";
+          discoverable_by_email = true;
+          discoverable_by_name = true;
+        };
+        service = {
+          timezone = "Europe/Paris";
+        };
         auth = {
           local.enabled = false;
           openid.enabled = true;
