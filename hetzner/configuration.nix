@@ -272,7 +272,7 @@ in
         };
         defaultsettings = {
           week_start = 1;
-          language = "fr";
+          language = "fr-FR";
           timezone = "Europe/Paris";
           discoverable_by_email = true;
           discoverable_by_name = true;
