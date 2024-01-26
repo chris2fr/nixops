@@ -78,7 +78,7 @@ in
             ''{4}to *
                 by dn.exact="cn=sogo@resdigita.org,ou=users,${ldapBaseDCDN}" manage
                 by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,${ldapBaseDCDN}" manage
-                by dn.exact="cn=chris@gmail.com,ou=users,${ldapBaseDCDN}" manage
+                by dn.exact="cn=chris@mann.fr,ou=users,${ldapBaseDCDN}" manage
                 by self write
                 by anonymous auth''
             /* custom access rules for userPassword attributes */
