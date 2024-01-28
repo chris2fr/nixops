@@ -277,7 +277,7 @@ in
       settings = {
         auth.type = "http_x_remote_user";
         # logging.level = "debug";
-        web.type = "none";
+        # web.type = "none";
         # server = {
         #   ssl = true;
         #   certificate = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
