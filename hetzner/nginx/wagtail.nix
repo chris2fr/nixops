@@ -78,8 +78,31 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    
+
     "wagtail.resdigita.com" = {
+      serverAliases = [
+        "www.lesartsvoisins.com"
+        "lesartsvoisins.com"
+        "publicinter.org"
+        "www.publicinter.org"
+        "publicinter.net"
+        "www.publicinter.net"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/wagtail/";
+      locations."/" = {
+        #proxyPass = "http://10.245.101.15:8080";
+        proxyPass = "http://127.0.0.1:8000/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    
+    "apostrophecms.resdigita.com" = {
       root =  "/var/www/wagtail/";
       serverAliases = [
         "manncoach.resdigita.com"
@@ -113,12 +136,6 @@ in
         "gvcity.resdigita.com"
         "toutdouxlissecom.resdigita.com"
         "iciwowcom.resdigita.com"
-        "www.lesartsvoisins.com"
-        "lesartsvoisins.com"
-        "publicinter.org"
-        "www.publicinter.org"
-        "publicinter.net"
-        "www.publicinter.net"
       ];
       enableACME = true; 
       # sslCertificate = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
@@ -203,7 +220,7 @@ in
       enableACME=true;
       forceSSL=true;
       locations."/" = {
-        proxyPass = "http://10.245.101.15:8080/";
+        proxyPass = "http://10.245.101.15:8000/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
@@ -219,7 +236,7 @@ in
       enableACME=true;
       forceSSL=true;
       locations."/" = {
-        proxyPass = "http://10.245.101.15:8080/";
+        proxyPass = "http://10.245.101.15:8000/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
