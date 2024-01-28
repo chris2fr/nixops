@@ -404,7 +404,7 @@ in
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
         OIDCClientSecret 7qd4nt7OgylV9eDtNtvoixeNI1YYEJJZ
-        OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
+        OIDCRedirectURI https://radicale.resdigita.com/keycloak-radicale-openid
         OIDCCryptoPassphrase jksdjflskfjslkfjSAFSAFDSADF
         <Location "/">
           AuthType openid-connect
