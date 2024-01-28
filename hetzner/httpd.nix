@@ -402,7 +402,7 @@ in
       sslServerChain = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
       sslServerKey = "/var/lib/acme/radicale.resdigita.com/key.pem";
       extraConfig = ''
-        RedirectMatch ^/$ /auth/
+        RedirectMatch ^/$ https://radicale.resdigita.com/auth/
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
         OIDCClientSecret 7qd4nt7OgylV9eDtNtvoixeNI1YYEJJZ
