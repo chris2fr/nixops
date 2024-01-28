@@ -402,10 +402,10 @@ in
       sslServerKey = "/var/lib/acme/radicale.resdigita.com/key.pem";
       extraConfig = ''
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
-        OIDCClientID webdav
-        OIDCClientSecret gcGtQzMZbchAUfDCJBYoluH8FhpEMMzc
+        OIDCClientID radical
+        OIDCClientSecret 7qd4nt7OgylV9eDtNtvoixeNI1YYEJJZ
         OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
-        OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+        OIDCCryptoPassphrase jksdjflskfjslkfjSAFSAFDSADF
         <Location "/">
           AuthType openid-connect
           Require valid-user
