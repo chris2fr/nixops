@@ -54,7 +54,7 @@ in
   # Listen 116.202.236.241:443
   '';
   services.httpd.adminAddr = "chris@lesgrandsvoisins.com";
-  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite" "proxy_fcgi" "http2"
+  services.httpd.extraModules = [ "proxy" "proxy_http" "dav" "ldap" "authnz_ldap" "alias" "ssl" "rewrite" "proxy_fcgi" "http2" "proxy_uwsgi"
     { name = "auth_openidc"; path = "/usr/local/lib/modules/mod_auth_openidc.so"; }
      ];
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" "users" "ghost" "ghostio" "guichet" ];
@@ -415,8 +415,9 @@ in
           Require valid-user
           RequestHeader    set X-Script-Name /auth
           RequestHeader    set X-Remote-User expr=%{env:OIDC_CLAIM_username}
-          ProxyPass        http://localhost:5232/ retry=0
-          ProxyPassReverse http://localhost:5232/
+          # ProxyPass        http://localhost:5232/ retry=0
+          # ProxyPassReverse http://localhost:5232/
+          ProxyPass uwsgi://localhost:5232/
        </Location>
       #  <LocationMatch "/pass/(?<username>[^/]+)">
       #       AuthType Basic
