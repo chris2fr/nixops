@@ -76,6 +76,18 @@ in
           enableACME = true; forceSSL = true; 
           globalRedirect = "mail.lesgrandsvoisins.com"; 
         };
+        "readicale.resdigita.com" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/" = {
+            proxyPass = "https://radicale.resdigita.com:8443";
+            # locations."/".proxyPass = "http://localhost:8334";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            '';
+          };
+        };
         "keeweb.lesgrandsvoisins.com" = {
           enableACME = true; forceSSL = true; 
           globalRedirect = "keepass.resdigita.com";

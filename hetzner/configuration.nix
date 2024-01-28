@@ -257,6 +257,10 @@ in
     defaults.webroot = "/var/www";
   };
   services= {
+    radicale = {
+      enable = true;
+      type = "http_x_remote_user";
+    };
     vikunja = {
       enable = true;
       frontendScheme = "https";

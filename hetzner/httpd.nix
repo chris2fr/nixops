@@ -395,6 +395,26 @@ in
 
       '';
     };
+    "radicale.resdigita.com" = {
+      listen = [{port = 8443; ssl=true;}];
+      sslServerCert = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
+      sslServerChain = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
+      sslServerKey = "/var/lib/acme/radicale.resdigita.com/key.pem";
+      extraConfig = ''
+        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
+        OIDCClientID webdav
+        OIDCClientSecret gcGtQzMZbchAUfDCJBYoluH8FhpEMMzc
+        OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
+        OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+        <Location "/">
+          AuthType openid-connect
+          Require valid-user
+          RequestHeader set REMOTE_USER %{env:OIDC_CLAIM_username}
+          RequestHeader set HTTP_X_REMOTE_USER %{env:OIDC_CLAIM_username}
+       </Location>
+      '';
+    };
+
     "dav.resdigita.com" = {
       # serverAliases = ["dav.lesgrandsvoisins.com"];
       listen = [{port = 8443; ssl=true;}];
@@ -402,7 +422,7 @@ in
       sslServerChain = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
       sslServerKey = "/var/lib/acme/dav.resdigita.com/key.pem";
       documentRoot = "/var/www/dav";
-          extraConfig = lib.strings.concatStrings [ ''
+      extraConfig = lib.strings.concatStrings [ ''
         Alias /static /var/www/wagtail/static
         Alias /media /var/www/wagtail/media
       ''
