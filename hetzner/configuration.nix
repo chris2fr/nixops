@@ -260,7 +260,7 @@ in
     radicale = {
       enable = true;
       settings = {
-        auth.type = "remote_user";
+        auth.type = "http_x_remote_user";
         logging.level = "debug";
         # server = {
         #   ssl = true;
