@@ -411,6 +411,7 @@ in
           Require valid-user
           RequestHeader set REMOTE_USER %{env:OIDC_CLAIM_username}
           RequestHeader set HTTP_X_REMOTE_USER %{env:OIDC_CLAIM_username}
+          ProxyPass http://localhost:5232/
        </Location>
       '';
     };

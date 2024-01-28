@@ -259,7 +259,7 @@ in
   services= {
     radicale = {
       enable = true;
-      type = "http_x_remote_user";
+      settings.auth.type = "http_x_remote_user";
     };
     vikunja = {
       enable = true;
