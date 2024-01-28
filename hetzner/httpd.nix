@@ -411,7 +411,7 @@ in
           Require valid-user
           RequestHeader    set X-Script-Name /radicale
           RequestHeader    set X-Remote-User expr=%{env:OIDC_CLAIM_username}
-          ProxyPass http://localhost:5232/
+          ProxyPass https://localhost:5232/
        </Location>
       '';
     };

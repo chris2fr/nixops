@@ -259,7 +259,15 @@ in
   services= {
     radicale = {
       enable = true;
-      settings.auth.type = "http_x_remote_user";
+      settings = {
+        auth.type = "http_x_remote_user";
+        server = {
+          ssl = true;
+          certificate = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
+          key = "/var/lib/acme/dav.resdigita.com/key.pem";
+          certificate_authority = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
+        };
+      };
     };
     vikunja = {
       enable = true;
