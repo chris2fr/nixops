@@ -104,10 +104,10 @@ in
         isNormalUser = true;
         openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     };
-    radicale = {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    };
+    # radicale = {
+    #   isNormalUser = true;
+    #   openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    # };
   };
   # home-manager.users.crabfit = {
   #   home.packages = with pkgs; [ 
@@ -124,14 +124,14 @@ in
       home.stateVersion = "23.11";
       programs.home-manager.enable = true;
     };
-    radicale = {pkgs, ...}: {
-      home.packages = with pkgs; [ 
-        python311
-        python311Packages.gunicorn
-      ];
-      home.stateVersion = "23.11";
-      programs.home-manager.enable = true;
-    };
+    # radicale = {pkgs, ...}: {
+    #   home.packages = with pkgs; [ 
+    #     python311
+    #     python311Packages.gunicorn
+    #   ];
+    #   home.stateVersion = "23.11";
+    #   programs.home-manager.enable = true;
+    # };
     guichet = {pkgs, ...}: {
       home.packages = with pkgs; [ 
         go
@@ -272,7 +272,7 @@ in
     xandikos = {
       enable = true;
       port = 5280;
-      
+
     };
     radicale = {
       enable = true;
