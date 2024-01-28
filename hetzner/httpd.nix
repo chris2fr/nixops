@@ -23,6 +23,8 @@ let
   keewebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb));
   keewebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb.passphrase));
   keepasswebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb.passphrase));
+  httpd-radicale-oidcclientsecret = builtins.readFile /etc/nixos/.secrets.httpd.radicale.oidcclientsecret;
+
   keepasswebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb));
   chrisSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.chris));
 in
@@ -408,7 +410,7 @@ in
         RedirectMatch ^/$ https://radicale.resdigita.com/auth/index.html
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
-        OIDCClientSecret ${deployment.keys.httpd-radicale-oidcclientsecret}
+        OIDCClientSecret ${httpd-radicale-oidcclientsecret}
         # OIDCClientSecret 7qd4nt7OgylV9eDtNtvoixeNI1YYEJJZ
         OIDCRedirectURI https://radicale.resdigita.com/auth/keycloak-radicale-openid
         OIDCCryptoPassphrase jksdjflskfjslkfjSAFSAFDSADF
