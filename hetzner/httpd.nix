@@ -401,17 +401,52 @@ in
       sslServerChain = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
       sslServerKey = "/var/lib/acme/radicale.resdigita.com/key.pem";
       extraConfig = ''
+        RedirectMatch ^/$ /auth/
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
         OIDCClientSecret 7qd4nt7OgylV9eDtNtvoixeNI1YYEJJZ
         OIDCRedirectURI https://radicale.resdigita.com/keycloak-radicale-openid
         OIDCCryptoPassphrase jksdjflskfjslkfjSAFSAFDSADF
-        <Location "/">
+        RewriteEngine On
+        RewriteRule ^/auth$ /auth/ [R,L]
+        RewriteRule ^/pass$ /pass/ [R,L]
+        <Location "/auth/">
           AuthType openid-connect
           Require valid-user
           RequestHeader    set X-Script-Name /radicale
           RequestHeader    set X-Remote-User expr=%{env:OIDC_CLAIM_username}
-          ProxyPass http://localhost:5232/
+          ProxyPass        http://localhost:5232/ retry=0
+          ProxyPassReverse http://localhost:5232/
+       </Location>
+      #  <LocationMatch "/pass/(?<username>[^/]+)">
+      #       AuthType Basic
+      #       AuthBasicProvider ldap
+      #       AuthName "Radicale CalDAV et CardDAV par LDAP"
+      #       AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+      #       AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+      #       AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
+      #       #Require valid-user
+      #       Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
+
+      #     RequestHeader    set X-Script-Name /radicale
+      #     RequestHeader    set X-Remote-User expr=%{env:MATCH_USERNAME}
+      #     ProxyPass        http://localhost:5232/ retry=0
+      #     ProxyPassReverse http://localhost:5232/
+      #  </LocationMatch>
+       <Location "/pass/">
+            AuthType Basic
+            AuthBasicProvider ldap
+            AuthName "Radicale CalDAV et CardDAV par LDAP"
+            AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+            AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
+            AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
+            Require valid-user
+            #Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
+
+          RequestHeader    set X-Script-Name /radicale
+          RequestHeader    set X-Remote-User expr=%{env:AUTHENTICATE_uid}
+          ProxyPass        http://localhost:5232/ retry=0
+          ProxyPassReverse http://localhost:5232/
        </Location>
       '';
     };
@@ -474,12 +509,12 @@ in
             AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
             AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
             AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
-            Require valid-user
-            #Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
+            # Require valid-user
+            Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
             
             <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
-              #Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
-              Require valid-user
+              Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
+              # Require valid-user
             </LimitExcept>
           </LocationMatch>
 
