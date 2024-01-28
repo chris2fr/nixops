@@ -42,15 +42,6 @@ in
     filebrowser
     cacert
   ];
-  users.users = {
-    filebrowser = {
-      isNormalUser = true;
-      extraGroups = ["wwwrun"];
-    };
-    haproxy = {
-      extraGroups = ["wwwrun" "acme"];
-    };
-  };
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
@@ -90,6 +81,13 @@ in
   # };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
+    filebrowser = {
+      isNormalUser = true;
+      extraGroups = ["wwwrun"];
+    };
+    haproxy = {
+      extraGroups = ["wwwrun" "acme"];
+    };
     mannchri = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
@@ -272,7 +270,7 @@ in
     xandikos = {
       enable = true;
       port = 5280;
-
+      
     };
     radicale = {
       enable = true;

@@ -83,7 +83,8 @@ in
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
-            proxyPass = "https://xandikos.resdigita.com:5280";
+            # proxyPass = "https://xandikos.resdigita.com:5280";
+            proxyPass = "http://localhost:5280";
             # locations."/".proxyPass = "http://localhost:8334";
             extraConfig = ''
               proxy_set_header X-Forwarded-Proto $scheme;
