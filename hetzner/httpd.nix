@@ -24,6 +24,8 @@ let
   keewebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keeweb.passphrase));
   keepasswebSecretPassphrase = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb.passphrase));
   httpd-radicale-oidcclientsecret = builtins.readFile /etc/nixos/.secrets.httpd.radicale.oidcclientsecret;
+  httpd-dav-oidcclientsecret = builtins.readFile /etc/nixos/.secrets.httpd.dav.oidcclientsecret;
+           
 
   keepasswebSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keepassweb));
   chrisSecret = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.chris));
@@ -411,7 +413,6 @@ in
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
         OIDCClientSecret ${httpd-radicale-oidcclientsecret}
-        # OIDCClientSecret 7qd4nt7OgylV9eDtNtvoixeNI1YYEJJZ
         OIDCRedirectURI https://radicale.resdigita.com/auth/keycloak-radicale-openid
         OIDCCryptoPassphrase jksdjflskfjslkfjSAFSAFDSADF
         OIDCRemoteUserClaim username
@@ -485,7 +486,7 @@ in
 
           OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
           OIDCClientID webdav
-          OIDCClientSecret gcGtQzMZbchAUfDCJBYoluH8FhpEMMzc
+          OIDCClientSecret ${httpd-dav-oidcclientsecret}
           OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
           OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
@@ -922,7 +923,7 @@ in
     #     DavLockDB /tmp/DavLockSecret
     #     OIDCProviderMetadataURL https://authentik.resdigita.com/application/o/dav/.well-known/openid-configuration
     #     OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
-    #     OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+    #     OIDCClientSecret 
     #     OIDCRedirectURI https://secret.desgrandsvoisins.com/auth/redirect_uri_from_oauth2
     #     OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
     #     <LocationMatch "^/(auth|pass|ldap|login)/(?<username>[^/]+)/manifest.json$">
@@ -1040,7 +1041,7 @@ in
 
     #       OIDCProviderMetadataURL https://authentik.resdigita.com/application/o/dav/.well-known/openid-configuration
     #       OIDCClientID V7p2o3hX6Im6crzdExLI1lb81zMJEjDO3mO3rNBk
-    #       OIDCClientSecret Qgi9BFz7UOzwsJUAtN5Pa28sUL4oyrbkv2gvpsELMUgksPoLReS2eu9aHqJezyyoquJV02IX0UFPB8cvIB8uC9OW42MC4q8qswVeuM6aOUSvEXas1lQKnwAxad5sWrXc
+    #       OIDCClientSecret 
     #       OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
     #       OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
