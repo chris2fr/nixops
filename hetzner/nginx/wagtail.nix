@@ -89,13 +89,12 @@ in
         "www.publicinter.net"
       ];
       enableACME = true;
-      forceSSL = true;
-      root =  "/var/www/wagtail/";
+       forceSSL = true;
       locations."/" = {
-        #proxyPass = "http://10.245.101.15:8080";
         proxyPass = "http://127.0.0.1:8000/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
+      root = "/var/www/wagtail";
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
@@ -218,15 +217,17 @@ in
     };
     "www.maelanc.com" = {
       enableACME=true;
-      forceSSL=true;
+       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.245.101.15:8000/";
+        proxyPass = "http://127.0.0.1:8000/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
-      locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
-      locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
-     };  
+      root = "/var/www/wagtail";
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
      "mann.fr" = {   
        enableACME=true;
        forceSSL=true;
@@ -234,14 +235,16 @@ in
      };   
      "www.mann.fr" = {
       enableACME=true;
-      forceSSL=true;
+       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.245.101.15:8000/";
+        proxyPass = "http://127.0.0.1:8000/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-      locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
-      locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
-      locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
-     };  
+      root = "/var/www/wagtail";
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
   };
 }
