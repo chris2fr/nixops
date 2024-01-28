@@ -398,11 +398,14 @@ in
     };
     "radicale.resdigita.com" = {
       listen = [{port = 8443; ssl=true;}];
+      documentRoot = "/var/www/radicale";
+
       sslServerCert = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
       sslServerChain = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
       sslServerKey = "/var/lib/acme/radicale.resdigita.com/key.pem";
       extraConfig = ''
-        RedirectMatch ^/$ https://radicale.resdigita.com/auth/
+        Alias /auth /var/www/radicale
+        RedirectMatch ^/$ https://radicale.resdigita.com/auth/index.html
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
         OIDCClientSecret 7qd4nt7OgylV9eDtNtvoixeNI1YYEJJZ
@@ -412,6 +415,11 @@ in
         RewriteEngine On
         RewriteRule ^/auth$ /auth/ [R,L]
         RewriteRule ^/pass$ /pass/ [R,L]
+        <Location "/auth/index.html">
+          ProxyPass !
+          AuthType openid-connect
+          Require valid-user
+        </Location>
         <Location "/auth/">
           AuthType openid-connect
           Require valid-user
