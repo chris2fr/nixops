@@ -270,13 +270,14 @@ in
     xandikos = {
       enable = true;
       port = 5280;
-      
+
     };
     radicale = {
       enable = true;
       settings = {
         auth.type = "http_x_remote_user";
-        logging.level = "debug";
+        # logging.level = "debug";
+        web.type = "none";
         # server = {
         #   ssl = true;
         #   certificate = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
