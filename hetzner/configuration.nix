@@ -260,7 +260,8 @@ in
     radicale = {
       enable = true;
       settings = {
-        auth.type = "http_x_remote_user";
+        auth.type = "remote_user";
+        logging.level = "debug";
         # server = {
         #   ssl = true;
         #   certificate = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
