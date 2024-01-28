@@ -209,6 +209,22 @@ in
       locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
       locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
       locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
+     };  
+     "mann.fr" = {   
+       enableACME=true;
+       forceSSL=true;
+       globalRedirect = "www.mann.fr";
      };   
+     "www.mann.fr" = {
+      enableACME=true;
+      forceSSL=true;
+      locations."/" = {
+        proxyPass = "http://10.245.101.15:8080/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = http://10.245.101.15:8898/favicon.ico; };
+      locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
+      locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
+     };  
   };
 }
