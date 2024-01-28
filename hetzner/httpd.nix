@@ -154,6 +154,7 @@ in
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
+        ProxyRequests Off
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID filebrowser
         OIDCClientSecret ${fileBrowserSecret}
@@ -418,6 +419,7 @@ in
           RequestHeader    set X-Remote-User expr=%{env:OIDC_CLAIM_username}
           ProxyPass        http://localhost:5232/ retry=0
           ProxyPassReverse http://localhost:5232/
+          ProxyAddHeaders On
           # ProxyPass uwsgi://localhost:5232/
        </Location>
       #  <LocationMatch "/pass/(?<username>[^/]+)">
@@ -448,6 +450,7 @@ in
 
           RequestHeader    set X-Script-Name /pass
           RequestHeader    set X-Remote-User expr=%{env:AUTHENTICATE_uid}
+          ProxyAddHeaders On
           ProxyPass        http://localhost:5232/ retry=0
           ProxyPassReverse http://localhost:5232/
        </Location>
