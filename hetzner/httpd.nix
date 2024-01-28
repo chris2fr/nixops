@@ -441,6 +441,7 @@ in
             AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
             AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
             AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
+            AuthLDAPRemoteUserAttribute uid
             Require valid-user
             #Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
 

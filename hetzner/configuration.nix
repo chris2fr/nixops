@@ -126,7 +126,8 @@ in
     };
     radicale = {pkgs, ...}: {
       home.packages = with pkgs; [ 
-        
+        python311
+        python311Packages.gunicorn
       ];
       home.stateVersion = "23.11";
       programs.home-manager.enable = true;
