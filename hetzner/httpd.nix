@@ -415,10 +415,10 @@ in
           AuthType openid-connect
           Require valid-user
           RequestHeader    set X-Script-Name /auth
-          # RequestHeader    set X-Remote-User expr=%{env:OIDC_CLAIM_username}
-          # ProxyPass        http://localhost:5232/ retry=0
-          # ProxyPassReverse http://localhost:5232/
-          ProxyPass uwsgi://localhost:5232/
+          RequestHeader    set X-Remote-User expr=%{env:OIDC_CLAIM_username}
+          ProxyPass        http://localhost:5232/ retry=0
+          ProxyPassReverse http://localhost:5232/
+          # ProxyPass uwsgi://localhost:5232/
        </Location>
       #  <LocationMatch "/pass/(?<username>[^/]+)">
       #       AuthType Basic

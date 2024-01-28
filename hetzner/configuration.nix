@@ -269,19 +269,24 @@ in
     defaults.webroot = "/var/www";
   };
   services= {
-    # radicale = {
-    #   enable = true;
-    #   settings = {
-    #     auth.type = "http_x_remote_user";
-    #     logging.level = "debug";
-    #     # server = {
-    #     #   ssl = true;
-    #     #   certificate = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
-    #     #   key = "/var/lib/acme/dav.resdigita.com/key.pem";
-    #     #   certificate_authority = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
-    #     # };
-    #   };
-    # };
+    xandikos = {
+      enable = true;
+      port = 5280;
+      
+    };
+    radicale = {
+      enable = true;
+      settings = {
+        auth.type = "http_x_remote_user";
+        logging.level = "debug";
+        # server = {
+        #   ssl = true;
+        #   certificate = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
+        #   key = "/var/lib/acme/dav.resdigita.com/key.pem";
+        #   certificate_authority = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
+        # };
+      };
+    };
     vikunja = {
       enable = true;
       frontendScheme = "https";
