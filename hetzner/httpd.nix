@@ -407,28 +407,7 @@ in
       sslServerCert = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
       sslServerChain = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
       sslServerKey = "/var/lib/acme/radicale.resdigita.com/key.pem";
-      rights = {
-        root = {
-          user = ".+";
-          collection = "";
-          permissions = "R";
-        };
-        principal = {
-          user = ".+";
-          collection = "{user}";
-          permissions = "RW";
-        };
-        calendars = {
-          user = ".+";
-          collection = "{user}/[^/]+";
-          permissions = "rw";
-        };
-        shared = {
-          user = ".*";
-          collection = "(shared|resdigita|interetpublic|lesgrandsvoisins)/[^/]*";
-          permissions = "RW";
-        };
-      };
+
 
 
       extraConfig = ''

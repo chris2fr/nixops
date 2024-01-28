@@ -285,6 +285,28 @@ in
         #   certificate_authority = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
         # };
       };
+      rights = {
+        root = {
+          user = ".+";
+          collection = "";
+          permissions = "R";
+        };
+        principal = {
+          user = ".+";
+          collection = "{user}";
+          permissions = "RW";
+        };
+        calendars = {
+          user = ".+";
+          collection = "{user}/[^/]+";
+          permissions = "rw";
+        };
+        shared = {
+          user = ".*";
+          collection = "(shared|resdigita|interetpublic|lesgrandsvoisins)/[^/]*";
+          permissions = "RW";
+        };
+      };
     };
     vikunja = {
       enable = true;
