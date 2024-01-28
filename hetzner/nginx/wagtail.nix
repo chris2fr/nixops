@@ -184,7 +184,7 @@ in
       globalRedirect = "www.lesgrandsvoisins.com";
     };   
     "www.lesgrandsvoisins.com" = {      
-      serverAliases = ["lesgrandsvoisins.com"];
+      # serverAliases = ["lesgrandsvoisins.com"];
       sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";

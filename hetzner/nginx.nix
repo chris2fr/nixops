@@ -72,10 +72,10 @@ in
         #   forceSSL = true;
         #   locations."/".proxyPass = "http://localhost:8334";
         # }; 
-        "mail.resdigita.com" = {
-          enableACME = true; forceSSL = true; 
-          globalRedirect = "mail.lesgrandsvoisins.com"; 
-        };
+        # "mail.resdigita.com" = {
+        #   enableACME = true; forceSSL = true; 
+        #   globalRedirect = "mail.lesgrandsvoisins.com"; 
+        # };
         "radicale.resdigita.com" = {
           enableACME = true; 
           forceSSL = true; 
