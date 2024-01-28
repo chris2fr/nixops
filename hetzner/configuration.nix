@@ -104,6 +104,10 @@ in
         isNormalUser = true;
         openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     };
+    radicale = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    };
   };
   # home-manager.users.crabfit = {
   #   home.packages = with pkgs; [ 
@@ -116,6 +120,13 @@ in
     fossil = {pkgs, ...}: {
       home.packages = with pkgs; [ 
         fossil
+      ];
+      home.stateVersion = "23.11";
+      programs.home-manager.enable = true;
+    };
+    radicale = {pkgs, ...}: {
+      home.packages = with pkgs; [ 
+        
       ];
       home.stateVersion = "23.11";
       programs.home-manager.enable = true;
