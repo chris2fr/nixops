@@ -408,7 +408,8 @@ in
         RedirectMatch ^/$ https://radicale.resdigita.com/auth/index.html
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
-        OIDCClientSecret 7qd4nt7OgylV9eDtNtvoixeNI1YYEJJZ
+        OIDCClientSecret ${deployment.keys.httpd-radicale-oidcclientsecret}
+        # OIDCClientSecret 7qd4nt7OgylV9eDtNtvoixeNI1YYEJJZ
         OIDCRedirectURI https://radicale.resdigita.com/auth/keycloak-radicale-openid
         OIDCCryptoPassphrase jksdjflskfjslkfjSAFSAFDSADF
         OIDCRemoteUserClaim username
