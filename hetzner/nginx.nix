@@ -76,7 +76,7 @@ in
           enableACME = true; forceSSL = true; 
           globalRedirect = "mail.lesgrandsvoisins.com"; 
         };
-        "readicale.resdigita.com" = {
+        "radicale.resdigita.com" = {
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
