@@ -87,6 +87,12 @@ in
         "www.publicinter.org"
         "publicinter.net"
         "www.publicinter.net"
+        "www.coopgv.com"
+        "coopgv.com"
+        "www.coopgv.org"
+        "coopgv.org"
+        "www.gvcoop.com"
+        "gvcoop.com"     
       ];
       enableACME = true;
        forceSSL = true;
