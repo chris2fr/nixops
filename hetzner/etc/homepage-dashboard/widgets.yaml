@@ -1,0 +1,31 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/widgets
+
+- logo:
+    icon: https://www.lesgrandsvoisins.com/media/images/gv.original.svg
+
+#- resources:
+#    cpu: true
+#    memory: true
+#    disk: /
+#
+#- datetime:
+#    timeZone: Europe/Paris
+#    format:
+#      year: numeric
+#      month: 2-digit
+#      day: 2-digit
+#      hourCycle: h23
+#      hour: 2-digit
+#      minute: 2-digit
+#      timeZoneName: shortGeneric
+#
+#- search:
+#    provider: custom
+#    url: https://quartz.resdigita.com/config/services/email?q=
+#    target: _blank
+#
+- greeting:
+    text_size: l
+    text: Homepage-Dashboard.resdigita.com. Ce tableau de bord fournit des liens vers toutes les ressources de ResDigita des GV.

@@ -1,0 +1,11 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/settings
+
+title: Tableau de bord ResDigita des GV !
+useEqualHeights: true
+language: fr
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey

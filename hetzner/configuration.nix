@@ -267,6 +267,10 @@ in
     defaults.webroot = "/var/www";
   };
   services= {
+    ethercalc = {
+      enable = true;
+      port = 8123;
+    };
     xandikos = {
       enable = true;
       port = 5280;
