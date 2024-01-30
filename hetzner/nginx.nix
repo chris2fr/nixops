@@ -79,6 +79,20 @@ in
         #   enableACME = true; forceSSL = true; 
         #   globalRedirect = "mail.lesgrandsvoisins.com"; 
         # };
+        "uptime-kuma.resdigita.com" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/" = {
+            # proxyPass = "https://xandikos.resdigita.com:5280";
+            proxyPass = "http://localhost:3001";
+            # locations."/".proxyPass = "http://localhost:8334";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
         "xandikos.resdigita.com" = {
           enableACME = true; 
           forceSSL = true; 

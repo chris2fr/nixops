@@ -25,10 +25,14 @@
       href: https://filebrowser.resdigita.com/files/
       icon: https://www.gitbook.com/cdn-cgi/image/width=36,dpr=2,height=36,fit=contain,format=auto/https%3A%2F%2F3149836655-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-M8KDxOujDoPpJyJJ5_i%252Favatar-1590579241040.png%3Fgeneration%3D1590579241552005%26alt%3Dmedia
       description: Un espace pour ses fichiers et pour les partager.
-  - KeeWeb pour la geston des mots de passe:
+  - KeeWeb pour la gestion des mots de passe:
       href: https://keeweb.resdigita.com/
       description: Ce dispostif enregistre les bases de mots de passe dans un dossier secret, permet la syncronisation en plus de l'accès web.
       icon: https://keeweb.info/img/logo.png
+  - Radicale pour les calendriers partagés:
+      href: https://radicale.resdigita.com
+      icon: https://quintagroup.com/cms/python/images/radicale.png/@@images/2bdd655d-2aca-468b-bdd0-81a69ea25658.png
+      description: Mettez votre nom d'utisateur sans mot de passe dans l'écran de modification web. 
 - Ressasie de login GV:
   - Guichet du profil et du mot de passe:
       href: https://guichet.resdigita.com/user
@@ -47,6 +51,10 @@
       href: https://crabfit.resdigita.com/
       icon: https://crab.fit/_next/static/media/logo.b29ef579.svg
       description: Indiquer d'abord votre nom, puis choisir les moments où vous êtes possiblement disponibles et c'est tout.
+  - EtherCalc pour un tableur collaboratif:
+      href: https://ethercalc.resdigita.com
+      icon: https://ethercalc.resdigita.com/static/img/davy/gfx/home-logo2.png
+      description: Créer des tableurs pouvant être modifiés en temps réel par plusieurs personnes.
 - Sites webs publics:
   - LesGrandsVoisins.fr est notre portail:
      href: https://www.lesgrandsvoisins.com/
@@ -74,3 +82,7 @@
       description: Le serveur de listes de diffusion des GV.
       noticon: https://listmonk.app/static/images/logo.svg
       icon: https://listmonk.app/static/images/favicon.png
+- Beta:
+  - Xandikos pour un calendrier public partagé:
+    href: https://xandikos.resdigita.com
+    description: Un calendrier public

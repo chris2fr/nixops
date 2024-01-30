@@ -267,6 +267,9 @@ in
     defaults.webroot = "/var/www";
   };
   services= {
+    uptime-kuma = {
+      enable = true;
+    };
     ethercalc = {
       enable = true;
       port = 8123;
@@ -274,7 +277,6 @@ in
     xandikos = {
       enable = true;
       port = 5280;
-
     };
     radicale = {
       enable = true;
@@ -349,7 +351,6 @@ in
         };
       };
     };
-
     homepage-dashboard = {
       enable = true;
       listenPort = 8882;
