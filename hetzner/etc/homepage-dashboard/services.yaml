@@ -86,3 +86,7 @@
   - Xandikos pour un calendrier public partagé:
     href: https://xandikos.resdigita.com
     description: Un calendrier public
+  - Uptime-Kuma pour le statut des services:
+    href: https://uptime-kuma.resdigita.com
+    descritpion: Uptime-Kuma donne une vision d'ensemble sur tous les services des Grands Voisins.
+    icon: https://uptime.kuma.pet/img/icon.svg

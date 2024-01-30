@@ -407,9 +407,6 @@ in
       sslServerCert = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
       sslServerChain = "/var/lib/acme/radicale.resdigita.com/fullchain.pem";
       sslServerKey = "/var/lib/acme/radicale.resdigita.com/key.pem";
-
-
-
       extraConfig = ''
         Alias /auth /var/www/radicale
         RedirectMatch ^/$ https://radicale.resdigita.com/auth/
