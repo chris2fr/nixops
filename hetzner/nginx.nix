@@ -84,12 +84,19 @@ in
           forceSSL = true; 
           locations."/" = {
             # proxyPass = "https://xandikos.resdigita.com:5280";
-            proxyPass = "http://localhost:3001";
+            # proxyPass = "http://localhost:3001";
             # locations."/".proxyPass = "http://localhost:8334";
             extraConfig = ''
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_redirect off;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   Host $host;
+            proxy_pass         http://localhost:3001/;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+            # proxy_set_header X-Forwarded-Proto $scheme;
+            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            # proxy_redirect off;
             '';
           };
         };
