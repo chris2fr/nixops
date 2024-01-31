@@ -55,6 +55,10 @@
       href: https://ethercalc.resdigita.com
       icon: https://ethercalc.resdigita.com/static/img/davy/gfx/home-logo2.png
       description: Créer des tableurs pouvant être modifiés en temps réel par plusieurs personnes.
+  - VaultWarden pour les maux des mots de passe compatible BitWarden:
+      href: https://vaultwarden.resdigita.com
+      description: VaultWarden est un système de gestion de mots de passe. Tout client BitWarden (Linux, MacOS, Windows, iOS, Android, FDroid) fonctionne à condition d'utiliser le serveur auto-hébergé https://vaultwarden.resdigita.com. 
+      icon: https://vaultwarden.resdigita.com/images/apple-touch-icon.png
 - Sites webs publics:
   - LesGrandsVoisins.fr est notre portail:
      href: https://www.lesgrandsvoisins.com/
