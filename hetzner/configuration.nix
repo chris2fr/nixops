@@ -269,15 +269,9 @@ in
   services= {
     vaultwarden = {
       enable = true;
-
     };
     uptime-kuma = {
       enable = true;
-      extraOptions = [ "--autocreate"
-        "--defaults"
-        "--current-user-principal user"
-        "--dump-dav-xml"
-      ];
     };
     ethercalc = {
       enable = true;
@@ -286,6 +280,11 @@ in
     xandikos = {
       enable = true;
       port = 5280;
+      extraOptions = [ "--autocreate"
+        "--defaults"
+        "--current-user-principal user"
+        "--dump-dav-xml"
+      ];
     };
     radicale = {
       enable = true;
