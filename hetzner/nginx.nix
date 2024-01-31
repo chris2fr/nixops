@@ -27,6 +27,10 @@ in
     nginx = {
       group = "wwwrun";
       enable = true;
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
       defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
       #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
       appendHttpConfig = ''
@@ -79,6 +83,14 @@ in
         #   enableACME = true; forceSSL = true; 
         #   globalRedirect = "mail.lesgrandsvoisins.com"; 
         # };
+        "vaultwarden.resdigita.com" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/" = {
+            proxyPass = "http://localhost:8222";
+            proxyWebsockets = true;
+          };
+        };
         "uptime-kuma.resdigita.com" = {
           enableACME = true; 
           forceSSL = true; 

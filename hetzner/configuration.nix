@@ -267,9 +267,10 @@ in
     defaults.webroot = "/var/www";
   };
   services= {
-    # vaultwarden = {
-    #   enable = true;
-    # };
+    vaultwarden = {
+      enable = true;
+      
+    };
     uptime-kuma = {
       enable = true;
     };
