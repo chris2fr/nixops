@@ -282,8 +282,6 @@ in
       port = 5280;
       extraOptions = [ "--autocreate"
         "--defaults"
-        "--current-user-principal user"
-        "--dump-dav-xml"
       ];
     };
     radicale = {
