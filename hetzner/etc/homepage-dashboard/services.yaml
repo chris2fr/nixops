@@ -59,6 +59,10 @@
       href: https://vaultwarden.resdigita.com
       description: VaultWarden est un système de gestion de mots de passe. Tout client BitWarden (Linux, MacOS, Windows, iOS, Android, FDroid) fonctionne à condition d'utiliser le serveur auto-hébergé https://vaultwarden.resdigita.com. 
       icon: https://vaultwarden.resdigita.com/images/apple-touch-icon.png
+  - Uptime-Kuma pour les statuts des sites essentiels:
+      href: https://uptime-kuma.resdigita.com/status/gv
+      description: Uptime-Kuma vérifie le statut de nos services. Cette page montre l'état de certains services essentiels. 
+      icon: https://uptime.kuma.pet/img/icon.svg
 - Sites webs publics:
   - LesGrandsVoisins.fr est notre portail:
      href: https://www.lesgrandsvoisins.com/
@@ -86,11 +90,11 @@
       description: Le serveur de listes de diffusion des GV.
       noticon: https://listmonk.app/static/images/logo.svg
       icon: https://listmonk.app/static/images/favicon.png
-- Beta:
-  - Xandikos pour un calendrier public partagé:
-      href: https://xandikos.resdigita.com
-      description: Un calendrier public
   - Uptime-Kuma pour le statut des services:
       href: https://uptime-kuma.resdigita.com
       description: Uptime-Kuma donne une vision d'ensemble sur tous les services des Grands Voisins.
       icon: https://uptime.kuma.pet/img/icon.svg
+- Beta:
+  - Xandikos pour un calendrier public partagé:
+      href: https://xandikos.resdigita.com
+      description: Un calendrier public

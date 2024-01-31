@@ -269,10 +269,15 @@ in
   services= {
     vaultwarden = {
       enable = true;
-      
+
     };
     uptime-kuma = {
       enable = true;
+      extraOptions = [ "--autocreate"
+        "--defaults"
+        "--current-user-principal user"
+        "--dump-dav-xml"
+      ];
     };
     ethercalc = {
       enable = true;
