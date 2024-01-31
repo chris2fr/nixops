@@ -353,9 +353,11 @@ in
           AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
           AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
           AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
-          Require valid-user
+          # Require valid-user
+          Require ldap-attribute uid=%{env:MATCH_USERNAME}
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-            Require valid-user
+            # Require valid-user
+            Require ldap-attribute uid=%{env:MATCH_USERNAME}
           </LimitExcept>
         </LocationMatch>
         <LocationMatch "^/pass/dav/(?<username>[^/]+)">
@@ -366,9 +368,11 @@ in
           AuthLDAPBindPassword hxSXbHgnrwnIvu7XVsWE
           AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?uid"
           # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
-          Require valid-user
+          # Require valid-user
+          Require ldap-attribute uid=%{env:MATCH_USERNAME}
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
-          Require valid-user
+            # Require valid-user
+            Require ldap-attribute uid=%{env:MATCH_USERNAME}
           </LimitExcept>
         </LocationMatch>
         <LocationMatch ^/$>
