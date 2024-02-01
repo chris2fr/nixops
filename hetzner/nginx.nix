@@ -225,7 +225,7 @@ in
           globalRedirect = "list.lesgrandsvoisins.com";
         };
         "homepage-dashboard.resdigita.com" = {
-          serverAliases = ["hoempage-dashboard.gv.coop"];
+          serverAliases = ["homepage-dashboard.gv.coop"];
           enableACME = true;
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:8882/";
