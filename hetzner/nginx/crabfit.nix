@@ -4,6 +4,7 @@ in
 { 
   services.nginx.virtualHosts = {
     "crabfit.resdigita.com" = {
+      serverAliases = ["crabfit.gv.coop"];
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -11,7 +12,6 @@ in
       };
     };
     "crabfit.desgv.com" = {
-      serverAliases = ["crabfit.gv.coop"];
       enableACME = true;
       forceSSL = true;
       serverAliases = ["crabfit.desgrandsvoisins.com"];
