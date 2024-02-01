@@ -16,11 +16,16 @@ in
           "hedgedoc.desgv.com"
           "hedgedoc.lesgrandsvoisins.com"
           "hedgedoc.lesgv.com"
-          "hedgedoc.gv.coop"
+          
         ];
         globalRedirect = "hedgedoc.resdigita.com";
       };
       "hedgedoc.resdigita.com" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/".proxyPass = "http://localhost:3333/";
+      };
+       "hedgedoc.gv.coop" = {
         enableACME = true;
         forceSSL = true;
         locations."/".proxyPass = "http://localhost:3333/";
