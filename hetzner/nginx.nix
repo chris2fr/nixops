@@ -83,6 +83,7 @@ in
         #   globalRedirect = "mail.lesgrandsvoisins.com"; 
         # };
         "vaultwarden.resdigita.com" = {
+          serverAliases = ¨["vaultwarden.gv.coop" "bitwarden.gv.coop"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -91,6 +92,7 @@ in
           };
         };
         "uptime-kuma.resdigita.com" = {
+          serverAliases = ¨["uptime-kuma.gv.coop"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -112,6 +114,7 @@ in
           };
         };
         "xandikos.resdigita.com" = {
+          serverAliases = ¨["xandikos.gv.coop"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -126,6 +129,7 @@ in
           };
         };
         "ethercalc.resdigita.com" = {
+          serverAliases = ¨["ethercalc.gv.coop"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -139,6 +143,7 @@ in
           };
         };
         "radicale.resdigita.com" = {
+          serverAliases = ¨["radicale.gv.coop"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -163,6 +168,7 @@ in
           locations."/".return = "302 https://homepage-dashboard.resdigita.com";
         };
         "filebrowser.resdigita.com" = {
+          serverAliases = ¨["filebrowser.gv.coop"];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -212,18 +218,20 @@ in
           };
         };   
         "list.desgrandsvoisins.org" = {
-          serverAliases = ["list.desgrandsvoisins.com"];
+          serverAliases = ["list.desgrandsvoisins.com" "listmonk.gv.coop"];
           # serverAliases = ["list.desgrandsvoisins.com" "listmonk.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
           globalRedirect = "list.lesgrandsvoisins.com";
         };
         "homepage-dashboard.resdigita.com" = {
+          serverAliases = ¨["hoempage-dashboard.gv.coop"];
           enableACME = true;
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:8882/";
         };
         "vikunja.resdigita.com" = {
+          serverAliases = ¨["vikunja.gv.coop"];
           enableACME = true;
           forceSSL = true;
         };

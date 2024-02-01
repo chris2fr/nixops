@@ -107,6 +107,11 @@ in
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
+      extraConfig = ''
+      if ($host = 'gv.coop') {
+          return 301 $scheme://www.$host$request_uri;
+      }
+      ''
     };
     
     "apostrophecms.resdigita.com" = {
