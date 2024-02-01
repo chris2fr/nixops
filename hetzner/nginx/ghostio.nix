@@ -11,6 +11,7 @@ in
       globalRedirect = "blog.lesgrandsvoisins.com";
     };
     "blog.lesgrandsvoisins.com" = {
+      serverAliases = ["guichet.gv.coop"];
       root = "/var/www/ghostio/";
       enableACME = true;
       forceSSL = true;

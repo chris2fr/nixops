@@ -11,6 +11,7 @@ in
       };
     };
     "crabfit.desgv.com" = {
+      serverAliases = ["crabfit.gv.coop"];
       enableACME = true;
       forceSSL = true;
       serverAliases = ["crabfit.desgrandsvoisins.com"];

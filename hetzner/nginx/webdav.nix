@@ -16,6 +16,7 @@ in
         globalRedirect = "dav.resdigita.com";
       };
       "dav.resdigita.com" = {
+        serverAliases = ["dav.gv.coop"];
         enableACME = true;
         forceSSL = true;
         locations."/" = {

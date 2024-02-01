@@ -95,6 +95,7 @@ in
         "gvcoop.com"  
         "gv.coop"
         "www.gv.coop"   
+        "wagtail.gv.coop"
       ];
       enableACME = true;
        forceSSL = true;
