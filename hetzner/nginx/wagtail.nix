@@ -92,7 +92,9 @@ in
         "www.coopgv.org"
         "coopgv.org"
         "www.gvcoop.com"
-        "gvcoop.com"     
+        "gvcoop.com"  
+        "gv.coop"
+        "www.gv.coop"   
       ];
       enableACME = true;
        forceSSL = true;

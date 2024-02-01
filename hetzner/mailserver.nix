@@ -16,6 +16,8 @@ let
     "desgrandsvoisins.com"
     "mail.desgrandsvoisins.com"
     "mail.resdigita.org"
+    "gv.coop"
+    "mail.gv.coop"
   ];
 in
 {
