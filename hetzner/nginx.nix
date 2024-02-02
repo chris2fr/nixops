@@ -96,7 +96,7 @@ in
           };
         };
         "uptime-kuma.resdigita.com" = {
-          serverAliases = ["uptime-kuma.lesgv.org"];
+          serverAliases = ["uptime-kuma.lesgv.org" "uk.lesgv.org"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {

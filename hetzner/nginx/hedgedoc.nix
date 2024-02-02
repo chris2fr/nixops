@@ -21,7 +21,7 @@ in
       #   globalRedirect = "hedgedoc.resdigita.com";
       # };
       "hedgedoc.resdigita.com" = {
-        serverAliases = ["hedgedoc.lesgv.com"];
+        serverAliases = ["hedgedoc.lesgv.org"];
         enableACME = true;
         forceSSL = true;
         locations."/".proxyPass = "http://localhost:3333/";
