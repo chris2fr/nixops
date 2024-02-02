@@ -102,6 +102,7 @@ in
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
+        ProxyRequests Off
         OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
         OIDCClientID chris
         OIDCClientSecret ${chrisSecret}
