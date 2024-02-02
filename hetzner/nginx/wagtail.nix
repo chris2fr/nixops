@@ -95,8 +95,8 @@ in
         "www.gvcoop.com"
         "gvcoop.com"  
         "gv.coop"
-        "www.gv.coop"   
-        "wagtail.gv.coop"
+        # "www.gv.coop"   
+        # "wagtail.gv.coop"
         "wagtail.lesgv.org"
       ];
       enableACME = true;

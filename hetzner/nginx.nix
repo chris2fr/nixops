@@ -83,7 +83,11 @@ in
         #   globalRedirect = "mail.lesgrandsvoisins.com"; 
         # };
         "vaultwarden.resdigita.com" = {
-          serverAliases = ["vaultwarden.gv.coop" "bitwarden.gv.coop"];
+          serverAliases = [
+            # "vaultwarden.gv.coop" 
+            # "bitwarden.gv.coop"
+            "vaultwarden.lesgv.org"
+            ];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -92,7 +96,7 @@ in
           };
         };
         "uptime-kuma.resdigita.com" = {
-          serverAliases = ["uptime-kuma.gv.coop"];
+          serverAliases = ["uptime-kuma.lesgv.org"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -114,7 +118,7 @@ in
           };
         };
         "xandikos.resdigita.com" = {
-          serverAliases = ["xandikos.gv.coop"];
+          serverAliases = ["xandikos.lesgv.org"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -129,7 +133,7 @@ in
           };
         };
         "ethercalc.resdigita.com" = {
-          serverAliases = ["ethercalc.gv.coop"];
+          serverAliases = ["ethercalc.lesgv.org"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -143,7 +147,7 @@ in
           };
         };
         "radicale.resdigita.com" = {
-          serverAliases = ["radicale.gv.coop"
+          serverAliases = ["radicale.lesgv.org"
           "radicale.lesgv.org"];
           enableACME = true; 
           forceSSL = true; 
@@ -169,7 +173,9 @@ in
           locations."/".return = "302 https://homepage-dashboard.resdigita.com";
         };
         "filebrowser.resdigita.com" = {
-          serverAliases = ["filebrowser.gv.coop" "filebrowser.lesgv.org"];
+          serverAliases = [
+            # "filebrowser.gv.coop" 
+            "filebrowser.lesgv.org"];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -222,20 +228,26 @@ in
           };
         };   
         "list.desgrandsvoisins.org" = {
-          serverAliases = ["list.desgrandsvoisins.com" "listmonk.gv.coop" "listmonk.lesgv.org"];
+          serverAliases = ["list.desgrandsvoisins.com" 
+          # "listmonk.gv.coop" 
+          "listmonk.lesgv.org"];
           # serverAliases = ["list.desgrandsvoisins.com" "listmonk.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
           globalRedirect = "list.lesgrandsvoisins.com";
         };
         "homepage-dashboard.resdigita.com" = {
-          serverAliases = ["homepage-dashboard.gv.coop" "homepage-dashboard.lesgv.org" "hd.lesgv.org"];
+          serverAliases = [
+            # "homepage-dashboard.gv.coop" 
+            "homepage-dashboard.lesgv.org" "hd.lesgv.org"];
           enableACME = true;
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:8882/";
         };
         "vikunja.resdigita.com" = {
-          serverAliases = ["vikunja.gv.coop" "vikunja.lesgv.org"];
+          serverAliases = [
+            # "vikunja.gv.coop" 
+            "vikunja.lesgv.org"];
           enableACME = true;
           forceSSL = true;
         };

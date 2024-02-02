@@ -11,7 +11,9 @@ in
       root = "/var/www/resdigitacom";
     };
     "quartz.resdigita.com" = {
-      serverAliases = ["quartz.gv.coop" "quartz.lesgv.org"];
+      serverAliases = [
+        # "quartz.gv.coop" 
+        "quartz.lesgv.org"];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/resdigitacom";
