@@ -109,8 +109,8 @@ in
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
           AuthType openid-connect
-          # Require valid-user
-          Require user axel.leroux
+          Require valid-user
+          # Require user axel.leroux
           ProxyPass unix:/opt/filebrowser/dbs/filebrowser/axel.leroux/filebrowser.sock|http://127.0.0.1/
           # ProxyPass unix:/opt/filebrowser/dbs/filebrowser/%{env:MATCH_USERNAME}/filebrowser.sock|http://filebrowser.resdigita.com/
           RequestHeader set FileBrowserUser %{env:OIDC_CLAIM_username}s  
