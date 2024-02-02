@@ -10,10 +10,10 @@ in
           "manngvoisorg.resdigita.com"
           "manndigital.resdigita.com"
           "mannfr.resdigita.com"
-          "odoo1.desgv.com"
-           "odoo1.lesgv.com"
-            "odoo1.desgrandsvoisins.org"
-            "odoo1.desgrandsvoisins.com"
+         # "odoo1.desgv.com"
+          # "odoo1.lesgv.com"
+          #  "odoo1.desgrandsvoisins.org"
+          #  "odoo1.desgrandsvoisins.com"
             #"odoo1.gv.coop"
             "odoo1.lesgv.org"
         ];
@@ -28,10 +28,10 @@ in
       };
       "odoo2.resdigita.com" = {
         serverAliases = [
-          "odoo2.desgv.com"
-           "odoo2.lesgv.com"
-            "odoo2.desgrandsvoisins.org"
-            "odoo2.desgrandsvoisins.com"
+         # "odoo2.desgv.com"
+         #  "odoo2.lesgv.com"
+         #   "odoo2.desgrandsvoisins.org"
+         #   "odoo2.desgrandsvoisins.com"
             #"odoo2.gv.coop"
             "odoo2.lesgv.org"
         ];
@@ -47,10 +47,10 @@ in
       "odoo3.resdigita.com" = {
         serverAliases = [
           "lgvcoop.resdigita.com"
-          "odoo3.desgv.com"
-           "odoo3.lesgv.com"
-            "odoo3.desgrandsvoisins.org"
-            "odoo3.desgrandsvoisins.com"
+         # "odoo3.desgv.com"
+          # "odoo3.lesgv.com"
+          #  "odoo3.desgrandsvoisins.org"
+          #  "odoo3.desgrandsvoisins.com"
             #"odoo3.gv.coop"
             "odoo3.lesgv.org"
         ];
@@ -70,17 +70,17 @@ in
       "odoo4.resdigita.com" = {
         #enableACME = true; 
         serverAliases = [
-          "voisandcom.resdigita.com"
-          "voisandorg.resdigita.com"
+         # "voisandcom.resdigita.com"
+         # "voisandorg.resdigita.com"
           "lesgvcom.resdigita.com"
           "villagevoisincom.resdigita.com"
           "baldridgegvoisorg.resdigita.com"
           "ooolesgrandsvoisinscom.resdigita.com"
           "lesgrandsvoisinscom.resdigita.com"
-          "odoo4.desgv.com"
-          "odoo4.lesgv.com"
-          "odoo4.desgrandsvoisins.org"
-          "odoo4.desgrandsvoisins.com"
+         # "odoo4.desgv.com"
+         # "odoo4.lesgv.com"
+         # "odoo4.desgrandsvoisins.org"
+          #"odoo4.desgrandsvoisins.com"
           #"odoo4.gv.coop"
           "odoo4.lesgv.org"
         ];
