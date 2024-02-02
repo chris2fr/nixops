@@ -73,7 +73,7 @@ in
          # "voisandcom.resdigita.com"
          # "voisandorg.resdigita.com"
           "lesgvcom.resdigita.com"
-          "villagevoisincom.resdigita.com"
+          # "villagevoisincom.resdigita.com"
           "baldridgegvoisorg.resdigita.com"
           "ooolesgrandsvoisinscom.resdigita.com"
           "lesgrandsvoisinscom.resdigita.com"
