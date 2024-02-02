@@ -4,13 +4,13 @@ in
 { 
   services.nginx.virtualHosts = {
       "guichet.desgrandsvoisins.org" = {
-        serverAliases = ["app.lesgrandsvoisins.com" "guichet.lesgrandsvoisins.com" "guichet.desgrandsvoisins.com"];
+        serverAliases = ["app.lesgrandsvoisins.com" "guichet.lesgrandsvoisins.com" "guichet.desgrandsvoisins.com" ];
         globalRedirect = "guichet.resdigita.com";
         enableACME = true; 
         forceSSL = true;    
       };
       "guichet.resdigita.com" = {
-        serverAliases = ["guichet.gv.coop"];
+        serverAliases = ["guichet.gv.coop" "guichet.lesgv.org"];
         enableACME = true; 
         forceSSL = true;     
         # sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";

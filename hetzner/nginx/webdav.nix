@@ -10,7 +10,7 @@ in
 { 
   services.nginx.virtualHosts = {
       "dav.desgrandsvoisins.org" = {
-        serverAliases = ["dav.lesgrandsvoisins.com" "dav.desgrandsvoisins.com"];
+        serverAliases = ["dav.lesgrandsvoisins.com" "dav.desgrandsvoisins.com" "webdav.lesgv.org"];
         enableACME = true;
         forceSSL = true;
         globalRedirect = "dav.resdigita.com";
@@ -32,7 +32,7 @@ in
       "secret.desgrandsvoisins.org" = {
         enableACME = true;
         forceSSL = true;
-        serverAliases = ["secret.lesgrandsvoisins.com" "secret.desgrandsvoisins.com" "secret.resdigita.com"];
+        serverAliases = ["secret.lesgrandsvoisins.com" "secret.desgrandsvoisins.com" "secret.resdigita.com" "keepass.lesgv.org"];
         globalRedirect = "keepass.resdigita.com";
       };
       "keepass.resdigita.com" = {

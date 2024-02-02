@@ -14,7 +14,8 @@ in
            "odoo1.lesgv.com"
             "odoo1.desgrandsvoisins.org"
             "odoo1.desgrandsvoisins.com"
-            "odoo1.gv.coop"
+            #"odoo1.gv.coop"
+            "odoo1.lesgv.org"
         ];
         enableACME = true;
         forceSSL = true;
@@ -31,7 +32,8 @@ in
            "odoo2.lesgv.com"
             "odoo2.desgrandsvoisins.org"
             "odoo2.desgrandsvoisins.com"
-            "odoo2.gv.coop"
+            #"odoo2.gv.coop"
+            "odoo2.lesgv.org"
         ];
         enableACME = true;
         forceSSL = true;
@@ -49,7 +51,8 @@ in
            "odoo3.lesgv.com"
             "odoo3.desgrandsvoisins.org"
             "odoo3.desgrandsvoisins.com"
-            "odoo3.gv.coop"
+            #"odoo3.gv.coop"
+            "odoo3.lesgv.org"
         ];
         enableACME = true;
         forceSSL = true;
@@ -78,7 +81,8 @@ in
           "odoo4.lesgv.com"
           "odoo4.desgrandsvoisins.org"
           "odoo4.desgrandsvoisins.com"
-          "odoo4.gv.coop"
+          #"odoo4.gv.coop"
+          "odoo4.lesgv.org"
         ];
         enableACME=true;
         forceSSL = true;

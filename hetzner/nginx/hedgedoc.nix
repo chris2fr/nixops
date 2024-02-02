@@ -16,7 +16,7 @@ in
           "hedgedoc.desgv.com"
           "hedgedoc.lesgrandsvoisins.com"
           "hedgedoc.lesgv.com"
-          
+          "hedgedoc.lesgv.org"
         ];
         globalRedirect = "hedgedoc.resdigita.com";
       };

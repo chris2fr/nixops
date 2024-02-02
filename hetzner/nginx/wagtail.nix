@@ -32,6 +32,7 @@ in
       locations."/".return = "301 https://www.interetpublic.org";
     };
     "meet.resdigita.com" = {
+      serverAliases = ["meet.lesgv.org"];
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/wagtail/";
@@ -96,6 +97,7 @@ in
         "gv.coop"
         "www.gv.coop"   
         "wagtail.gv.coop"
+        "wagtail.lesgv.org"
       ];
       enableACME = true;
        forceSSL = true;
@@ -149,6 +151,7 @@ in
         "gvcity.resdigita.com"
         "toutdouxlissecom.resdigita.com"
         "iciwowcom.resdigita.com"
+        "apostrophecms.lesgv.org"
       ];
       enableACME = true; 
       # sslCertificate = "/var/lib/acme/wagtail.resdigita.com/fullchain.pem";
