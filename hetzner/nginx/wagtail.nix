@@ -94,8 +94,8 @@ in
         "coopgv.org"
         "www.gvcoop.com"
         "gvcoop.com"  
-        # "gv.coop"
-        # "www.gv.coop"   
+        "gv.coop"
+        "www.gv.coop"  
         # "wagtail.gv.coop"
         "wagtail.lesgv.org"
       ];
