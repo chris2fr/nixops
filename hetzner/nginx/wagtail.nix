@@ -189,6 +189,9 @@ in
       if ($host = 'desgv.com') {
           return 301 $scheme://www.$host$request_uri;
       }
+      if ($host = 'maelanc.com') {
+          return 301 $scheme://www.$host$request_uri;
+      }
       if ($host = 'francemali.com') {
           return 301 $scheme://www.$host$request_uri;
       }
