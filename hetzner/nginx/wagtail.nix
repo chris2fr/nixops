@@ -168,6 +168,7 @@ in
       locations."/static/" = { proxyPass = "http://wagtailstatic/"; };
       locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
     };
+
     "www.lesgrandsvoisins.fr" = {
      serverAliases = ["desgv.com" "francemali.org"
       "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com" "ghost.resdigita.com"  "mail.resdigita.com" "listmonk.resdigita.com" "lesgv.org" "www.lesgv.org"];
@@ -194,7 +195,7 @@ in
       if ($host = 'lesgv.com') {
           return 301 $scheme://www.$host$request_uri;
       }
-      if ($host = 'francemali.com') {
+      if ($host = 'francemali.org') {
           return 301 $scheme://www.$host$request_uri;
       }
       if ($host = 'lesgrandsvoisins.fr') {
