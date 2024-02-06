@@ -30,13 +30,27 @@
   # '';
   
   systemd.timers."guichet-wwwrun-fix-perms" = {
-  wantedBy = [ "timers.target" ];
+    wantedBy = [ "timers.target" ];
     timerConfig = {
       OnUnitActiveSec = "5m";
       Unit = "guichet-wwwrun-fix-perms.service";
     };
   };
-
+  systemd.timers."restart-email" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+    OnUnitActiveSec = "45m";
+    Unit = "restart-email.service";
+  };
+  systemd.services."restart-email" = {
+    script = ''
+      set -eu
+      ${pkgs.coreutils}/bin/systemctl restart guichet openldap postfix dovecot2
+    '';
+    serviceConfig = {
+      User = "root";
+    };
+  };
   systemd.services."guichet-wwwrun-fix-perms" = {
     script = ''
       set -eu
