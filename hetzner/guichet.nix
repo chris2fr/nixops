@@ -39,8 +39,9 @@
   systemd.timers."restart-email" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-    OnUnitActiveSec = "45m";
-    Unit = "restart-email.service";
+      OnUnitActiveSec = "45m";
+      Unit = "restart-email.service";
+    };
   };
   systemd.services."restart-email" = {
     script = ''
