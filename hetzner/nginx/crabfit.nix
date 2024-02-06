@@ -5,7 +5,7 @@ in
   services.nginx.virtualHosts = {
     "crabfit.resdigita.com" = {
       serverAliases = [
-        # "crabfit.gv.coop" 
+        "crabfit.gv.coop" 
         "crabfit.lesgv.org"];
       enableACME = true;
       forceSSL = true;

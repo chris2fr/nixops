@@ -12,7 +12,7 @@ in
     };
     "quartz.resdigita.com" = {
       serverAliases = [
-        # "quartz.gv.coop" 
+        "quartz.gv.coop" 
         "quartz.lesgv.org"];
       enableACME = true;
       forceSSL = true;

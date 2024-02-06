@@ -84,8 +84,8 @@ in
         # };
         "vaultwarden.resdigita.com" = {
           serverAliases = [
-            # "vaultwarden.gv.coop" 
-            # "bitwarden.gv.coop"
+            "vaultwarden.gv.coop" 
+            "bitwarden.gv.coop"
             "vaultwarden.lesgv.org"
             ];
           enableACME = true; 
@@ -174,7 +174,7 @@ in
         };
         "filebrowser.resdigita.com" = {
           serverAliases = [
-            # "filebrowser.gv.coop" 
+            "filebrowser.gv.coop" 
             "filebrowser.lesgv.org"];
           enableACME = true;
           forceSSL = true;
@@ -229,7 +229,7 @@ in
         };   
         "list.desgrandsvoisins.org" = {
           serverAliases = ["list.desgrandsvoisins.com" 
-          # "listmonk.gv.coop" 
+          "listmonk.gv.coop" 
           "listmonk.lesgv.org"];
           # serverAliases = ["list.desgrandsvoisins.com" "listmonk.lesgrandsvoisins.com"];
           enableACME = true;
@@ -238,7 +238,7 @@ in
         };
         "homepage-dashboard.resdigita.com" = {
           serverAliases = [
-            # "homepage-dashboard.gv.coop" 
+            "homepage-dashboard.gv.coop" 
             "homepage-dashboard.lesgv.org" "hd.lesgv.org"];
           enableACME = true;
           forceSSL = true;
@@ -246,7 +246,7 @@ in
         };
         "vikunja.resdigita.com" = {
           serverAliases = [
-            # "vikunja.gv.coop" 
+            "vikunja.gv.coop" 
             "vikunja.lesgv.org"];
           enableACME = true;
           forceSSL = true;
