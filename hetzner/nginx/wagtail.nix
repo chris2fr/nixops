@@ -170,7 +170,7 @@ in
 
     "www.lesgrandsvoisins.fr" = {
      serverAliases = ["desgv.com" "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com" "ghost.resdigita.com"  "mail.resdigita.com" "listmonk.resdigita.com" "lesgv.org" "www.lesgv.org" "maelanc.com" "www.maelanc.com"];
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com" "ghost.resdigita.com"  "mail.resdigita.com" "listmonk.resdigita.com" "lesgv.org" "www.lesgv.org"];
       enableACME = true;
       # sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
       # sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.fr/key.pem";
@@ -235,19 +235,25 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    # "www.maelanc.com" = {
-    #   enableACME=true;
-    #    forceSSL = true;
-    #   locations."/" = {
-    #     proxyPass = "http://127.0.0.1:8000/";
-    #     extraConfig = nginxLocationWagtailExtraConfig;
-    #   };
-    #   root = "/var/www/wagtail";
-    #   locations."/favicon.ico" = { proxyPass = null; };
-    #   locations."/static" = { proxyPass = null; };
-    #   locations."/media" = { proxyPass = null; };
-    #   locations."/.well-known" = { proxyPass = null; };
-    # };
+    "www.maelanc.com" = {
+      serverAliases = ["maelanc.com"];
+      enableACME = true;
+       forceSSL = true;
+       extraConfig = ''
+      if ($host = 'maelanc.com') {
+          return 301 $scheme://www.$host$request_uri;
+      }
+      '';
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8000/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      root = "/var/www/wagtail";
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
      "mann.fr" = {   
        enableACME=true;
        forceSSL=true;
