@@ -566,7 +566,6 @@ in
       documentRoot = "/var/www/wagtail";
       serverAliases = [
         "manncoach.resdigita.com"
-        "maelanc.com"
         "resdigitacom.resdigita.com"
         "distractivescom.resdigita.com"
         "whowhatetccom.resdigita.com"
