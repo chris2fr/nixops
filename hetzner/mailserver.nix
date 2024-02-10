@@ -76,6 +76,7 @@ in
     certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
     certificateDirectory = "/var/lib/acme/${domainName}/";
     keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
+    messageSizeLimit = 209715200;
     # loginAccounts = {
     #   "chris@lesgrandsvoisins.com" = {
     #       aliases = [ "testalias@resdigita.com" ];
