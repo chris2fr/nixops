@@ -19,6 +19,11 @@ in
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
       extraGroups = [ "wheel" "networkmanager" ];
     };
+    backmann = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+      description = "Chris Mann's Backup User (non-admin)";
+    };
   };
   home-manager.users.fossil = {pkgs, ...}: {
     home.packages = with pkgs; [ 
