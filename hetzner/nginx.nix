@@ -251,8 +251,8 @@ in
           extraConfig = ''
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
             '';
-            proxy_redirect off;
         };
         "vikunja.resdigita.com" = {
           serverAliases = [
