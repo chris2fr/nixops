@@ -147,9 +147,11 @@ in
         timers.kopia = {
           description = "Kopia backup schedule";
           timerConfig = {
-            Unit = "kopia";
+            Unit = "kopia.service";
             OnUnitActiveSec = "1h";
+            OnBootSec = "15min";
           };
+          wantedBy = ["timers.target"];
         };
         services = {
           kopia = {
