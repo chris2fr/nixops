@@ -161,14 +161,14 @@ in
             serviceConfig = {
               WorkingDirectory = "/home/silverbullet/quartz/";
               Environment = "PATH=/run/wrappers/bin:/home/silverbullet/.nix-profile/bin:/nix/profile/bin:/home/silverbullet/.local/state/nix/profile/bin:/etc/profiles/per-user/silverbullet/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin;";
-              Restart = "always";
-              RestartSec = "10s";
+              Restart = "no";
               User = "silverbullet";
               Group = "users";
             };
             script = ''
               /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.kopia.silverbullet))}
               /run/current-system/sw/bin/kopia snapshot create /home/silverbullet/quartz/
+              return 0
             '';
           };
           silverbullet = {
