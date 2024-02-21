@@ -66,7 +66,7 @@ in
         isReadOnly = false;
       }; 
       "/var/lib/acme/silverbullet.resdigita.com" = {
-        hostPath = "/var/lib/burp/etc/silverbullet.resdigita.com";
+        hostPath = "/var/lib/burp/silverbullet.resdigita.com";
         isReadOnly = true;
       }; 
     };
