@@ -99,7 +99,7 @@ in
         killall
         pwgen
         gettext
-        deno
+        # deno
       ];
       networking = {
         firewall.allowedTCPPorts = [ 3000 22 25 80 443 143 587 993 995 636 8443 9443 ];
@@ -111,6 +111,16 @@ in
       users.users = {
         mannchri.isNormalUser = true;
         silverbullet.isNormalUser = true;
+      };
+      imports = [
+        <home-manager/nixos>
+      ];
+      home-manager.users.silverbullet = {pkgs, ...}: {
+        home.packages = with pkgs; [ 
+          deno
+        ];
+        home.stateVersion = "23.11";
+        programs.home-manager.enable = true;
       };
       services.resolved.enable = true;
     };
