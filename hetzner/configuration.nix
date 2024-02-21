@@ -90,6 +90,10 @@ in
     haproxy = {
       extraGroups = ["wwwrun" "acme"];
     };
+    backmann = {
+      extraGroups = ["acme"];
+    };
+
     mannchri = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
