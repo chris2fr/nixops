@@ -144,15 +144,24 @@ in
         # };
       };
       systemd = {
-        user.services.kopia = {
-          description = "Kopia Snapshot of Silverbullet";
-          script = ''
-            /run/current-system/sw/bin/kopia repository connect from-config --token `cat /home/silverbullet/.secret.kopia`
-            /run/current-system/sw/bin/kopia snapshot create /home/silverbullet/quartz/
-          '';
-          wants = ["network-online.target"];
-          after = ["network-online.target"];
-          
+        user = {
+          services.kopia = {
+            description = "Kopia Snapshot of Silverbullet";
+            script = ''
+              /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile /home/silverbullet/.secret.kopia))}
+              /run/current-system/sw/bin/kopia snapshot create /home/silverbullet/quartz/
+            '';
+            wants = ["network-online.target"];
+            after = ["network-online.target"];
+          };
+          timers.kopia = {
+            Unit.Description = "Kopia backup schedule";
+            Timer = {
+              Unit = "kopia";
+              OnUnitActiveSec = "1h";
+            };
+          };
+          };
         };
         services.silverbullet = {
           description = "SilverBullet.Resdigita.com";
