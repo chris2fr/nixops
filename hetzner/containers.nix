@@ -99,6 +99,7 @@ in
         killall
         pwgen
         gettext
+        deno
       ];
       networking = {
         firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
@@ -107,7 +108,10 @@ in
         # nameservers = ["8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844"];
         # nameservers = ["8.8.8.8" "8.8.4.4"];
       };
-      users.users.mannchri.isNormalUser = true;
+      users.users = {
+        mannchri.isNormalUser = true;
+        silverbullet.isNormalUser = true
+      };
       services.resolved.enable = true;
     };
   };
