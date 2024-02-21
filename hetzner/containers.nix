@@ -69,6 +69,7 @@ in
       networking = {
         firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
         useHostResolvConf = true;
+        nameservers = ["8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844"];
       };
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
