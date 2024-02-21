@@ -99,7 +99,7 @@ in
         killall
         pwgen
         gettext
-        deno
+        # deno
       ];
       networking = {
         firewall.allowedTCPPorts = [ 3000 22 25 80 443 143 587 993 995 636 8443 9443 ];
