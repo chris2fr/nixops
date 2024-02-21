@@ -53,7 +53,7 @@ in
   containers.silverbullet = {
     autoStart = true;
     privateNetwork = true;
-    hostBridge = "br2";
+    # hostBridge = "br2";
     hostAddress = "192.168.102.1";
     localAddress = "192.168.102.2";
     hostAddress6 = "fc00::2:1";
