@@ -42,6 +42,7 @@ in
     filebrowser
     cacert
     burp
+    openssl
   ];
   boot.loader = {
     systemd-boot.enable = true;
