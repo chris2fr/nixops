@@ -132,7 +132,7 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/silverbullet/.nix-profile/bin/";
           Environment = "PATH=/home/silverbullet/.deno/bin:/run/wrappers/bin:/home/silverbullet/.nix-profile/bin:/nix/profile/bin:/home/silverbullet/.local/state/nix/profile/bin:/etc/profiles/per-user/silverbullet/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin;";
-          ExecStart = ''/home/silverbullet/.deno/bin/silverbullet -L 192.168.102.2 /home/silverbullet/quartz/resdigita'';
+          ExecStart = ''/home/silverbullet/.deno/bin/silverbullet -L 192.168.102.2 /home/silverbullet/quartz/'';
           Restart = "always";
           RestartSec = "10s";
           User = "silverbullet";
