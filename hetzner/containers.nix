@@ -101,6 +101,7 @@ in
         pwgen
         gettext
         home-manager
+        backintime
         # deno
       ];
       networking = {
@@ -124,7 +125,18 @@ in
         home.stateVersion = "23.11";
         programs.home-manager.enable = true;
       };
-      services.resolved.enable = true;
+      services = {
+        resolved.enable = true;
+        # bourgbackup = {
+        #   enable = true;
+        #   jobs = {
+        #      paths = "/home/silverbullet/quartz/";
+        #      exclude = [ "/home/silverbullet/quartz/.git" ];
+        #      repo = "/mnt/host/silverbullet";
+        #      startAt = "daily";
+        #   };
+        # };
+      };
       systemd.services.silverbullet = {
         description = "SilverBullet.Resdigita.com";
         after = [ "network.target" ];
