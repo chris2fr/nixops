@@ -155,7 +155,7 @@ in
             after = ["network-online.target"];
           };
           timers.kopia = {
-            Unit.Description = "Kopia backup schedule";
+            description = "Kopia backup schedule";
             timerConfig = {
               Unit = "kopia";
               OnUnitActiveSec = "1h";
