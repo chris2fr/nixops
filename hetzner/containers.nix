@@ -70,7 +70,6 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "23.11";
-      imports = [ (import "${home-manager}/nixos") ];
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
@@ -116,7 +115,7 @@ in
         silverbullet.isNormalUser = true;
       };
       imports = [
-        <home-manager/nixos>
+         (import "${home-manager}/nixos")
       ];
       home-manager.users.silverbullet = {pkgs, ...}: {
         home.packages = with pkgs; [ 
