@@ -161,7 +161,6 @@ in
               OnUnitActiveSec = "1h";
             };
           };
-          };
         };
         services.silverbullet = {
           description = "SilverBullet.Resdigita.com";
