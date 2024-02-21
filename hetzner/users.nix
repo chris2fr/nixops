@@ -23,6 +23,7 @@ in
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
       description = "Chris Mann's Backup User (non-admin)";
+      extraGroups = ["acme"];
     };
   };
   home-manager.users.fossil = {pkgs, ...}: {
