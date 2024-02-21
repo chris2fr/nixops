@@ -41,7 +41,7 @@ in
     yarn
     filebrowser
     cacert
-    burp
+    # burp
     openssl
   ];
   boot.loader = {

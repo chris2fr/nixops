@@ -65,10 +65,10 @@ in
         hostPath = "/var/lib/silverbullet/back";
         isReadOnly = false;
       }; 
-      "/var/lib/burp/etc/silverbullet.resdigita.com" = {
-        hostPath = "/var/lib/acme/silverbullet.resdigita.com";
-        isReadOnly = true;
-      }; 
+      # "/var/lib/burp/etc/silverbullet.resdigita.com" = {
+      #   hostPath = "/var/lib/acme/silverbullet.resdigita.com";
+      #   isReadOnly = true;
+      # }; 
     };
     config = { config, pkgs, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
@@ -105,7 +105,7 @@ in
         pwgen
         gettext
         home-manager
-        burp
+        # burp
         # backintime
         # deno
       ];
