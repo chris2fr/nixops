@@ -63,6 +63,7 @@ in
     bindMounts = {
       "/var/lib/silverbullet/back" = {
         hostPath = "/var/lib/silverbullet/back";
+        isReadOnly = false;
       }; 
     };
     config = { config, pkgs, ... }: {
