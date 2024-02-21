@@ -110,7 +110,7 @@ in
       };
       users.users = {
         mannchri.isNormalUser = true;
-        silverbullet.isNormalUser = true
+        silverbullet.isNormalUser = true;
       };
       services.resolved.enable = true;
     };
