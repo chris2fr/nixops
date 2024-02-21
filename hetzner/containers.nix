@@ -60,8 +60,6 @@ in
     localAddress6 = "fc00::2:2";
     config = { config, pkgs, ... }: {
       networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
-      users.users.wagtail.uid = 1003;
-      # users.groups.users.gid = 1003;
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "23.11";
