@@ -156,7 +156,7 @@ in
           };
           timers.kopia = {
             Unit.Description = "Kopia backup schedule";
-            Timer = {
+            timerConfig = {
               Unit = "kopia";
               OnUnitActiveSec = "1h";
             };
