@@ -150,8 +150,8 @@ in
             /run/current-system/sw/bin/kopia repository connect from-config --token `cat /home/silverbullet/.secret.kopia`
             /run/current-system/sw/bin/kopia snapshot create /home/silverbullet/quartz/
           '';
-          wants = "network-online.target";
-          after = "network-online.target";
+          wants = ["network-online.target"];
+          after = ["network-online.target"];
           
         };
         services.silverbullet = {
