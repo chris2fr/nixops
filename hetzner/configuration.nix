@@ -66,7 +66,7 @@ in
       interface = "eno1";
     };
     # firewall.enable = false;
-    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" ];
+    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet"];
     firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9080 9443 10080 10443 ];
     # interfaces."eno1".ipv6 = {
 
