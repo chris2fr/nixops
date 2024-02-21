@@ -148,7 +148,7 @@ in
           services.kopia = {
             description = "Kopia Snapshot of Silverbullet";
             script = ''
-              /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile /home/silverbullet/.secret.kopia))}
+              /run/current-system/sw/bin/kopia repository connect from-config --token ${(lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.kopia.silverbullet))}
               /run/current-system/sw/bin/kopia snapshot create /home/silverbullet/quartz/
             '';
             wants = ["network-online.target"];
