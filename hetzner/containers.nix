@@ -53,17 +53,19 @@ in
   containers.silverbullet = {
     autoStart = true;
     privateNetwork = true;
+    macvlans = ["eth2"];
     # hostBridge = "br2";
     hostAddress = "192.168.102.1";
     localAddress = "192.168.102.2";
     hostAddress6 = "fc00::2:1";
     localAddress6 = "fc00::2:2";
-      bindMounts = {
-      "/etc/resolv.conf" = {
-        hostPath = "/etc/resolv.conf";
-        isReadOnly = true;
-      }; 
-    };
+    # bindMounts = {
+    #   "/etc/resolv.conf" = {
+    #     hostPath = "/etc/resolv.conf";
+    #     isReadOnly = true;
+    #   }; 
+    # };
+    networking.useHostResolvConf = true;
     config = { config, pkgs, ... }: {
       networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
       nix.settings.experimental-features = "nix-command flakes";
