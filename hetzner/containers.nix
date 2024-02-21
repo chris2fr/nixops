@@ -70,6 +70,7 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "23.11";
+      imports = [ (import "${home-manager}/nixos") ];
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
