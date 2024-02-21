@@ -131,7 +131,7 @@ in
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/silverbullet/.nix-profile/bin/";
-          # ExecStart = ''/home/wagtail/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access.log --chdir /home/wagtail/wagtail-lesgv --workers 3 --bind unix:/var/lib/wagtail/wagtail-lesgv.sock lesgv.wsgi:application'';
+          Environment = "PATH=/home/silverbullet/.deno/bin:/run/wrappers/bin:/home/silverbullet/.nix-profile/bin:/nix/profile/bin:/home/silverbullet/.local/state/nix/profile/bin:/etc/profiles/per-user/silverbullet/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin;";
           ExecStart = ''/home/silverbullet/.deno/bin/silverbullet -L 192.168.102.2 /home/silverbullet/quartz/resdigita'';
           Restart = "always";
           RestartSec = "10s";
