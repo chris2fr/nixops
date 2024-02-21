@@ -99,6 +99,7 @@ in
         killall
         pwgen
         gettext
+        home-manager
         # deno
       ];
       networking = {
