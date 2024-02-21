@@ -41,7 +41,7 @@ in
     # Lazy IPv6 connectivity for the container
     enableIPv6 = true;
   };
-  networking.interfaces.br2 = {
+  networking.interfaces.vlan2 = {
     virtual = true;
     ipv4.addresses = [
 	    { address="192.168.102.1"; prefixLength=24; } 
@@ -53,7 +53,7 @@ in
   containers.silverbullet = {
     autoStart = true;
     privateNetwork = true;
-    macvlans = ["eth2"];
+    macvlans = ["vlan2"];
     # hostBridge = "br2";
     hostAddress = "192.168.102.1";
     localAddress = "192.168.102.2";
