@@ -66,7 +66,10 @@ in
     #   }; 
     # };
     config = { config, pkgs, ... }: {
-      networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
+      networking = {
+        firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
+        useHostResolvConf = true;
+      };
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "23.11";
