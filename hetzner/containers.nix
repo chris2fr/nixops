@@ -101,7 +101,8 @@ in
         pwgen
         gettext
         home-manager
-        backintime
+        burp
+        # backintime
         # deno
       ];
       networking = {

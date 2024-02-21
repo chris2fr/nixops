@@ -41,6 +41,7 @@ in
     yarn
     filebrowser
     cacert
+    burp
   ];
   boot.loader = {
     systemd-boot.enable = true;
