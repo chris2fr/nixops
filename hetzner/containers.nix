@@ -65,7 +65,6 @@ in
     #     isReadOnly = true;
     #   }; 
     # };
-    networking.useHostResolvConf = true;
     config = { config, pkgs, ... }: {
       networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
       nix.settings.experimental-features = "nix-command flakes";
