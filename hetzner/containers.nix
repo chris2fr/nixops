@@ -125,6 +125,23 @@ in
         programs.home-manager.enable = true;
       };
       services.resolved.enable = true;
+      systemd.services.silverbullet = {
+        description = "SilverBullet.Resdigita.com";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/silverbullet/";
+          # ExecStart = ''/home/wagtail/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access.log --chdir /home/wagtail/wagtail-lesgv --workers 3 --bind unix:/var/lib/wagtail/wagtail-lesgv.sock lesgv.wsgi:application'';
+          ExecStart = ''/home/silverbullet/.deno/bin/silverbullet /home/silverbullet/quartz/resdigita'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "silverbullet";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
     };
   };
   containers.wagtail = {
