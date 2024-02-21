@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   # seafilePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.seafile));
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
   my-python-packages = ps: with ps; [
     bleach
     cffi
