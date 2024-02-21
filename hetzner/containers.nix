@@ -60,12 +60,11 @@ in
     localAddress = "192.168.102.2";
     hostAddress6 = "fc00::2:1";
     localAddress6 = "fc00::2:2";
-    # bindMounts = {
-    #   "/etc/resolv.conf" = {
-    #     hostPath = "/etc/resolv.conf";
-    #     isReadOnly = true;
-    #   }; 
-    # };
+    bindMounts = {
+      "/var/lib/silverbullet/back" = {
+        hostPath = "/var/lib/silverbullet/back";
+      }; 
+    };
     config = { config, pkgs, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
