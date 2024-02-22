@@ -75,7 +75,7 @@ in
           forceSSL = true; 
           enableACME = true; 
           serverAliases = ["ghh.resdigita.com"];
-          redirect = "https://ghh.resdigita.com:11443";
+          globalRedirect = "https://ghh.resdigita.com:11443";
           # locations."/" = {
           #   proxyPass = "https://192.168.103.2";
           #   extraConfig = ''
