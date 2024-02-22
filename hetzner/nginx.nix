@@ -68,6 +68,18 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
+        "wordpress.resdigita.com" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/" = {
+            proxyPass = "http://192.168.103.2";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
         # "seafile.resdigita.com" = {
         #   enableACME = true;
         #   forceSSL = true;

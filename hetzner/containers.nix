@@ -117,6 +117,7 @@ in
       networking = {
         hostName = "wordpress"; 
         firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 ];
+        useHostResolvConf = lib.mkForce false;
       };
       system = {
         copySystemConfiguration = true;
@@ -131,12 +132,12 @@ in
         defaults.email = "contact@lesgrandsvoisins.com";
         defaults.webroot = "/var/www";
       };
-      ## Adding Linux Containers
-      virtualisation = {
-        lxd.enable = true;
-        lxc.enable = true;
-        lxc.lxcfs.enable = true;
-      };
+      # ## Adding Linux Containers
+      # virtualisation = {
+      #   lxd.enable = true;
+      #   lxc.enable = true;
+      #   lxc.lxcfs.enable = true;
+      # };
       time.timeZone = "Europe/Paris";
       i18n.defaultLocale = "fr_FR.UTF-8";
       users.users.mannchri = {
@@ -218,8 +219,8 @@ in
             # serverAliases = [
             #   "ghh.villagevoisin.com"
             # ];
-            enableACME = true;
-            forceSSL = true;
+            # enableACME = true;
+            # forceSSL = true;
             documentRoot = "/var/www/ghh";
             extraConfig = ''
               <Directory /var/www/ghh>
