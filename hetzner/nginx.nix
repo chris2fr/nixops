@@ -23,7 +23,7 @@ in
     ./nginx/webdav.nix
   ];
   networking = {
-    extrahosts = "192.168.103.2 ghh.resdigita.com";
+    extraHosts = "192.168.103.2 ghh.resdigita.com";
   };
   users.users.nginx.group = "wwwrun";
   services = {
