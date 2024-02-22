@@ -76,7 +76,7 @@ in
           serverAliases = ["ghh.resdigita.com"];
           forceSSL = true; 
           locations."/" = {
-            proxyPass = "http://ghh.resdigita.com";
+            proxyPass = "https://ghh.resdigita.com";
             extraConfig = ''
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
