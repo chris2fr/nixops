@@ -209,34 +209,33 @@ in
             extraConfig = ''
             '';
           };
+          phpOptions = ''
+            upload_max_filesize = 128M
+            post_max_size = 256M
+            max_execution_time = 300
+          '';
+          virtualHosts."wordpress.resdigita.com" = {
+            # serverAliases = [
+            #   "ghh.villagevoisin.com"
+            # ];
+            enableACME = true;
+            forceSSL = true;
+            documentRoot = "/var/www/ghh";
+            extraConfig = ''
+              <Directory /var/www/ghh>
+                DirectoryIndex index.php
+                Require all granted
+                AllowOverride FileInfo
+                FallbackResource /index.php
+              </Directory>
+              '';
+          };
+        };
+        mysql = {
+          package = pkgs.mariadb;
+          enable = true;
         };
       };
-    };
-  };
-
-  services.httpd.phpOptions = ''
-    upload_max_filesize = 128M
-    post_max_size = 256M
-    max_execution_time = 300
-  '';
-  services.httpd.virtualHosts."vpsfreecz003.lesgrandsvoisins.com" = {
-    serverAliases = [
-      "ghh.villagevoisin.com"
-    ];
-    enableACME = true;
-    forceSSL = true;
-    documentRoot = "/var/www/ghh";
-    extraConfig = ''
-      <Directory /var/www/ghh>
-        DirectoryIndex index.php
-        Require all granted
-        AllowOverride FileInfo
-        FallbackResource /index.php
-      </Directory>
-      '';
-  };
-  services.mysql.package = pkgs.mariadb;
-  services.mysql.enable = true;
     };
   };
   containers.silverbullet = {
