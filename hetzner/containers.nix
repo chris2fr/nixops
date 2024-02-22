@@ -62,7 +62,7 @@ in
     hostAddress6 = "fc00::3:1";
     localAddress6 = "fc00::3:2"; 
     config = { config, pkgs, lib, ... }: {
-      imports = [ (import "${home-manager2305}/nixos") ];
+      imports = [ (import "${home-manager}/nixos") ];
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
@@ -120,7 +120,7 @@ in
       };
       system = {
         copySystemConfiguration = true;
-        stateVersion = "23.05";
+        stateVersion = "23.11";
       };
       environment.sessionVariables = rec {
         EDITOR="vim";
