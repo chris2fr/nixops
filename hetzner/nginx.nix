@@ -22,6 +22,9 @@ in
     ./nginx/wagtail.nix
     ./nginx/webdav.nix
   ];
+  networking = {
+    extrahosts = "192.168.103.2 ghh.resdigita.com";
+  };
   users.users.nginx.group = "wwwrun";
   services = {
     nginx = {
@@ -73,10 +76,12 @@ in
           serverAliases = ["ghh.resdigita.com"];
           forceSSL = true; 
           locations."/" = {
-            proxyPass = "http://192.168.103.2";
+            proxyPass = "http://ghh.resdigita.com";
             extraConfig = ''
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header   X-Real-IP $remote_addr;
+              proxy_set_header   Host $host;
               proxy_redirect off;
             '';
           };

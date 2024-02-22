@@ -71,6 +71,7 @@ in
     # interfaces."eno1".ipv6 = {
 
     # }
+    
   };
   # Set your time zone.
   time.timeZone = "Europe/Paris";
