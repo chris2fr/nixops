@@ -71,21 +71,20 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
-        "wordpress.resdigita.com" = {
-          forceSSL = true; 
-          enableACME = true; 
-          serverAliases = ["ghh.resdigita.com"];
-          locations."/" = {
-            proxyPass = "http://192.168.103.2";
-            extraConfig = ''
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header   X-Real-IP $remote_addr;
-              proxy_set_header   Host $host;
-              proxy_redirect off;
-            '';
-          };
-        };
+        # "wordpress.resdigita.com" = {
+        #   forceSSL = true; 
+        #   enableACME = true; 
+        #   serverAliases = ["ghh.resdigita.com"];
+        #   locations."/" = {
+        #     proxyPass = "http://192.168.103.2";
+        #     extraConfig = ''
+        #       proxy_set_header X-Forwarded-Proto $scheme;
+        #       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #       proxy_set_header   X-Real-IP $remote_addr;
+        #       proxy_set_header   Host $host;
+        #     '';
+        #   };
+        # };
         # "seafile.resdigita.com" = {
         #   enableACME = true;
         #   forceSSL = true;

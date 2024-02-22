@@ -65,9 +65,18 @@ in
       address = "fe80::1";
       interface = "eno1";
     };
+    nat = {
+      forwardPorts = [
+      {
+        destination = "192.168.103.2:443";
+        proto = "tcp";
+        sourcePort = 11443;
+      }
+      ];
+    };
     # firewall.enable = false;
     firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet"];
-    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9080 9443 10080 10443 ];
+    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9080 9443 10080 10443 11443 ];
     # interfaces."eno1".ipv6 = {
 
     # }
