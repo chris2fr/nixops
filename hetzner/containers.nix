@@ -197,7 +197,7 @@ in
       services = {
         openssh = {
           enable = true;
-          settins.PermitRootLogin = "prohibit-password";
+          settings.PermitRootLogin = "prohibit-password";
         };
         httpd = {
           enable = true; 
