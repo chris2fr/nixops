@@ -229,10 +229,10 @@ in
             serverAliases = [
               "ghh.resdigita.com"
             ];
-            listen = [{port = 443; ssl=true;}];
-            sslServerCert = "/var/lib/acme/wordpress.resdigita.com/fullchain.pem";
-            sslServerChain = "/var/lib/acme/wordpress.resdigita.com/fullchain.pem";
-            sslServerKey = "/var/lib/acme/wordpress.resdigita.com/key.pem";
+            # listen = [{port = 443; ssl=true;}];
+            # sslServerCert = "/var/lib/acme/wordpress.resdigita.com/fullchain.pem";
+            # sslServerChain = "/var/lib/acme/wordpress.resdigita.com/fullchain.pem";
+            # sslServerKey = "/var/lib/acme/wordpress.resdigita.com/key.pem";
             # enableACME = true;
             # forceSSL = true;
             documentRoot = "/var/www/ghh";

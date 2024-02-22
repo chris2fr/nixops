@@ -72,17 +72,17 @@ in
       };
       virtualHosts = {
         "wordpress.resdigita.com" = {
+          forceSSL = true; 
           enableACME = true; 
           serverAliases = ["ghh.resdigita.com"];
-          forceSSL = true; 
           locations."/" = {
-            proxyPass = "https://ghh.resdigita.com";
+            proxyPass = "http://192.168.103.2";
             extraConfig = ''
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header   X-Real-IP $remote_addr;
               proxy_set_header   Host $host;
-              proxy_redirect off;
+              # proxy_redirect off;
             '';
           };
         };
