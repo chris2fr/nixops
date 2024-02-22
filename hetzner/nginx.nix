@@ -22,9 +22,9 @@ in
     ./nginx/wagtail.nix
     ./nginx/webdav.nix
   ];
-  networking = {
-    extraHosts = "192.168.103.2 ghh.resdigita.com";
-  };
+  # networking = {
+  #   extraHosts = "192.168.103.2 ghh.resdigita.com";
+  # };
   users.users.nginx.group = "wwwrun";
   services = {
     nginx = {
