@@ -217,9 +217,9 @@ in
             max_execution_time = 300
           '';
           virtualHosts."wordpress.resdigita.com" = {
-            # serverAliases = [
-            #   "ghh.villagevoisin.com"
-            # ];
+            serverAliases = [
+              "ghh.resdigita.com"
+            ];
             # enableACME = true;
             # forceSSL = true;
             documentRoot = "/var/www/ghh";
