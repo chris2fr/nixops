@@ -75,15 +75,16 @@ in
           forceSSL = true; 
           enableACME = true; 
           serverAliases = ["ghh.resdigita.com"];
-          locations."/" = {
-            proxyPass = "https://192.168.103.2";
-            extraConfig = ''
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header   X-Real-IP $remote_addr;
-              proxy_set_header   Host $host;
-            '';
-          };
+          redirect = "https://ghh.resdigita.com:11443";
+          # locations."/" = {
+          #   proxyPass = "https://192.168.103.2";
+          #   extraConfig = ''
+          #     proxy_set_header X-Forwarded-Proto $scheme;
+          #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          #     proxy_set_header   X-Real-IP $remote_addr;
+          #     proxy_set_header   Host $host;
+          #   '';
+          # };
         };
         # "seafile.resdigita.com" = {
         #   enableACME = true;
