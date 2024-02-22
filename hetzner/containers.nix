@@ -216,10 +216,11 @@ in
             post_max_size = 256M
             max_execution_time = 300
           '';
-          virtualHosts."*" = {
-            # serverAliases = [
-            #   "ghh.resdigita.com"
-            # ];
+          virtualHosts."wordpress.resdigita.com" = {
+            serverAliases = [
+              "ghh.resdigita.com"
+              "*"
+            ];
             # enableACME = true;
             # forceSSL = true;
             documentRoot = "/var/www/ghh";
