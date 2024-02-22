@@ -70,6 +70,7 @@ in
       virtualHosts = {
         "wordpress.resdigita.com" = {
           enableACME = true; 
+          serverAliases = ["ghh.resdigita.com"];
           forceSSL = true; 
           locations."/" = {
             proxyPass = "http://192.168.103.2";
