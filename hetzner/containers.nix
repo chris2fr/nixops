@@ -228,6 +228,7 @@ in
           virtualHosts."wordpress.resdigita.com" = {
             serverAliases = [
               "ghh.resdigita.com"
+              "*"
             ];
             # listen = [{port = 443; ssl=true;}];
             # sslServerCert = "/var/lib/acme/wordpress.resdigita.com/fullchain.pem";
