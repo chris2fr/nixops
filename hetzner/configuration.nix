@@ -279,6 +279,12 @@ in
     defaults.webroot = "/var/www";
   };
   services= {
+    # coredns = {
+    #   enable = true;
+    #   config = ''
+
+    #   '';
+    # };
     vaultwarden = {
       enable = true;
     };
