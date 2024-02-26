@@ -58,12 +58,12 @@ in
       serverAliases = [
         "meet.lesgrandsvoisins.com"
         "discourse.resdigita.com"
-        "jswiki.resdigita.com"
-        "gvoisin.desgrandsvoisins.org"
-         "gvoisin.desgrandsvoisins.com"
-         "gvoisin.lesgrandsvoisins.com"
-         "gvoisin.desgv.com"
-         "gvoisin.lesgv.com"
+        # "jswiki.resdigita.com"
+        # "gvoisin.desgrandsvoisins.org"
+        #  "gvoisin.desgrandsvoisins.com"
+        #  "gvoisin.lesgrandsvoisins.com"
+        #  "gvoisin.desgv.com"
+        #  "gvoisin.lesgv.com"
          "syprete.com"
       ];
       enableACME = true;
