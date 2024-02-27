@@ -27,7 +27,7 @@
   systemd.services.newguichet = {
     enable = true;
     wantedBy = ["default.target"];
-    script = "/home/guichet/newguichet/guichet";
+    script = "/home/guichet/newguichet/guichet serve";
     description = "Guichet, Self-Service LDAP account admin";
     serviceConfig = {
       WorkingDirectory = "/home/guichet/newguichet";
