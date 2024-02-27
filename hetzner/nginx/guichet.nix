@@ -26,6 +26,22 @@ in
         locations."/media" = { proxyPass = null; };
         locations."/.well-known" = { proxyPass = null; };
       };
-
+      "newguichet.resdigita.com" = {
+        serverAliases = ["guichet.gv.coop" "guichet.lesgv.org"];
+        enableACME = true; 
+        forceSSL = true;     
+        # sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
+        # sslCertificateKey = "/var/lib/acme/guichet.lesgrandsvoisins.com/key.pem";
+        # sslTrustedCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";
+        root = "/var/www/guichet";
+        locations."/" = {
+          proxyPass = "http://[::1]:9992/";
+          # proxyPass = "https://guichet.lesgrandsvoisins.com";
+        };
+        locations."/favicon.ico" = { proxyPass = null; };
+        locations."/static" = { proxyPass = null; };
+        locations."/media" = { proxyPass = null; };
+        locations."/.well-known" = { proxyPass = null; };
+      };
   };
 }

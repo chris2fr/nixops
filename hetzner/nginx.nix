@@ -72,6 +72,7 @@ in
       };
       virtualHosts = {
         "pocketbase.resdigita.com" = {
+          serverAliases = ["pocket.resdigita.com"];
           forceSSL = true; 
           enableACME = true; 
           locations."/" = {
