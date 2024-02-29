@@ -127,6 +127,13 @@ in
   #   programs.home-manager.enable = true;
   # };
   home-manager.users = {
+    guichet = {pkgs, ...}: {
+      home.packages = with pkgs; [ 
+        nodejs_20
+      ];
+      home.stateVersion = "23.11";
+      programs.home-manager.enable = true;
+    };
     fossil = {pkgs, ...}: {
       home.packages = with pkgs; [ 
         fossil
