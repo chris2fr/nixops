@@ -27,10 +27,10 @@
   systemd.services.newguichet = {
     enable = true;
     wantedBy = ["default.target"];
-    script = "/home/guichet/newguichet/guichet serve";
+    script = "/home/guichet/newguichet/backend/guichet serve --publicDir ../frontend/build";
     description = "Guichet, Self-Service LDAP account admin";
     serviceConfig = {
-      WorkingDirectory = "/home/guichet/newguichet";
+      WorkingDirectory = "/home/guichet/newguichet/backend";
       User = "guichet";
       Group = "wwwrun";
     };
