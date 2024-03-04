@@ -5,7 +5,6 @@ let
     "mail.resdigita.org" 
     "www.lesgv.com" 
     "lesgv.org" 
-    "www.lesgv.org" 
     "lesgv.com"
     "gvoisin.com" 
     "www.gvoisin.com"

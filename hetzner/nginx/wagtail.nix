@@ -13,6 +13,11 @@ nginxLocationWagtailExtraConfig = ''
 in
 { 
   services.nginx.virtualHosts = {
+    "www.lesgv.org" = {
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/lesgv";
+     };
     "www.interetpublic.org" = {
       enableACME = true;
       forceSSL = true;
@@ -170,7 +175,7 @@ in
 
     "www.lesgrandsvoisins.fr" = {
      serverAliases = ["desgv.com" "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com" "ghost.resdigita.com"  "mail.resdigita.com" "listmonk.resdigita.com" "lesgv.org" "www.lesgv.org"];
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  "www.lesgv.com" "lesgv.com" "ghost.resdigita.com"  "mail.resdigita.com" "listmonk.resdigita.com" "lesgv.org" ];
       enableACME = true;
       # sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
       # sslCertificateKey = "/var/lib/acme/www.lesgrandsvoisins.fr/key.pem";
@@ -195,6 +200,9 @@ in
           return 301 $scheme://www.$host$request_uri;
       }
       if ($host = 'lesgv.com') {
+          return 301 $scheme://www.$host$request_uri;
+      }
+      if ($host = 'lesgv.org') {
           return 301 $scheme://www.$host$request_uri;
       }
       if ($host = 'francemali.org') {
