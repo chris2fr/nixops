@@ -16,14 +16,14 @@ in
     "www.interetpublic.org" = {
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/wagtail";
-      locations."/" = {
-        proxyPass = "http://localhost:8000/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      locations."/static" = {
-        proxyPass = null;
-      };
+      root = "/var/www/interetpublic";
+      # locations."/" = {
+      #   proxyPass = "http://localhost:8000/";
+      #   extraConfig = nginxLocationWagtailExtraConfig;
+      # };
+      # locations."/static" = {
+      #   proxyPass = null;
+      # };
     };
     "interetpublic.org" = {
       enableACME = true;

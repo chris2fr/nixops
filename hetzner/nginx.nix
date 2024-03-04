@@ -71,6 +71,8 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
+        "www.interetpublic.org" = {
+        };
         "pocketbase.resdigita.com" = {
           serverAliases = ["pocket.resdigita.com"];
           forceSSL = true; 
