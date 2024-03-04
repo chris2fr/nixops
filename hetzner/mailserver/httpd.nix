@@ -16,7 +16,6 @@ let
     "gvoisins.com"
     "www.gvoisins.com"
     "mail.resdigita.com"
-    "lesgv.org"
     "www.lesgv.org"
     ];
     domainNameForEmail = import ./vars/domain-name.nix;
