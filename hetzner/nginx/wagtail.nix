@@ -26,7 +26,7 @@ in
       extraConfig = ''
         if ($host != "www.interet-public.org") {
           return 301 $scheme://www.interet-public.org$request_uri;
-        };
+        }
       '';
     };
     "interetpublic.org" = {
