@@ -18,17 +18,16 @@ in
       forceSSL = true;
       root = "/var/www/lesgv";
      };
-    "www.interetpublic.org" = {
+    "www.interet-public.org" = {
       enableACME = true;
       forceSSL = true;
       root = "/var/www/interetpublic";
-      # locations."/" = {
-      #   proxyPass = "http://localhost:8000/";
-      #   extraConfig = nginxLocationWagtailExtraConfig;
-      # };
-      # locations."/static" = {
-      #   proxyPass = null;
-      # };
+      serverAliases = ["interet-public.org" "interetpublic.org" "www.interetpublic.org"];
+      extraConfig = ''
+        if ($host != "www.interet-public.org") {
+          return 301 $scheme://www.interet-public.org$request_uri;
+        };
+      '';
     };
     "interetpublic.org" = {
       enableACME = true;
