@@ -201,8 +201,13 @@ in
       if ($host = 'francemali.com') {
           return 301 $scheme://www.$host$request_uri;
       }
-      if ($host  ~  /lesgv.org|lesgv.com|www.lesgv.com|www.lesgv.org|gv.coop|www.gv.coop|coopgv.com|coopgv.org|www.coopgv.com|www.coopgv.org/ ) {
-          # return 301 $scheme://les.$host$request_uri;
+      # if ($host  ~  /lesgv.org|lesgv.com|www.lesgv.com|www.lesgv.org|gv.coop|www.gv.coop|coopgv.com|coopgv.org|www.coopgv.com|www.coopgv.org/ ) {
+      #     # return 301 $scheme://les.$host$request_uri;
+      #     return 301 
+      if ($host = 'lesgv.org') {
+          return 301 $scheme://les.gv.coop$request_uri;
+      }
+      if ($host = 'lesgv.org') {
           return 301 $scheme://les.gv.coop$request_uri;
       }
       if ($host = 'francemali.org') {
