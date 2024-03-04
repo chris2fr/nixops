@@ -204,7 +204,7 @@ in
       if () {
           return 301 $scheme://www.$host$request_uri;
       }
-      if (($host = 'lesgv.org')|($host = 'lesgv.com')|($host = 'www.lesgv.com')|($host = 'www.lesgv.org')|($host = 'gv.coop')|($host = 'www.gv.coop' )|($host = 'coopgv.com' )|($host = 'coopgv.org' )|($host = 'www.coopgv.com' )|($host = 'www.coopgv.org' )) {
+      if ($host  ~*  "^lesgv.org|lesgv.com|www.lesgv.com|www.lesgv.org|gv.coop|www.gv.coop|coopgv.com|coopgv.org|www.coopgv.com|www.coopgv.org$" ) {
           # return 301 $scheme://les.$host$request_uri;
           return 301 $scheme://les.gv.coop$request_uri;
       }
