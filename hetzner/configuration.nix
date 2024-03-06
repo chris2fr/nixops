@@ -160,7 +160,11 @@ in
       programs.home-manager.enable = true;
     };
     mannchri = {pkgs, ...}: {
-      home.packages = [ pkgs.atool pkgs.httpie ];
+      home.packages = [ 
+        pkgs.atool 
+        pkgs.httpie 
+        pkgs.nodejs_20
+      ];
       home.stateVersion = "23.11";
       programs.home-manager.enable = true;
       programs.vim = {
