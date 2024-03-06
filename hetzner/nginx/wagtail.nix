@@ -16,7 +16,7 @@ in
     "les.gv.coop" = {
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/lesgv";
+      root = "/var/www/interetpublic";
      };
     "www.hopgv.com" = {
       enableACME = true;
