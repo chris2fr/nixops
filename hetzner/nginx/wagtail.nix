@@ -18,6 +18,17 @@ in
       forceSSL = true;
       root = "/var/www/lesgv";
      };
+    "www.hopgv.com" = {
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/interetpublic";
+      serverAliases = ["hopgv.com"];
+      extraConfig = ''
+        if ($host != "www.hopgv.com") {
+          return 301 $scheme://www.hopgv.com$request_uri;
+        }
+      '';
+    };
     "www.interet-public.org" = {
       enableACME = true;
       forceSSL = true;
@@ -174,7 +185,7 @@ in
 
     "www.lesgrandsvoisins.fr" = {
      serverAliases = ["desgv.com" "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr"  "hopgv.com" "www.hopgv.com"  
+      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" 
       "www.lesgv.com" "lesgv.com" "www.lesgv.org" "lesgv.org" "www.gv.coop" "gv.coop" "www.coopgv.com" "coopgv.com" "www.coopgv.org" "coopgv.org" 
       "ghost.resdigita.com"  "mail.resdigita.com" "listmonk.resdigita.com" "lesgv.org" ];
       enableACME = true;

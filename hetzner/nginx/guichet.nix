@@ -26,6 +26,9 @@ in
         locations."/media" = { proxyPass = null; };
         locations."/.well-known" = { proxyPass = null; };
       };
+      # "base.mann.fr" = {
+      #   root = "/home/guichet/";
+      # };
       "newguichet.resdigita.com" = {
         serverAliases = ["guichet.gv.coop" "guichet.lesgv.org"];
         enableACME = true; 

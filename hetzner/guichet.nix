@@ -35,6 +35,17 @@
       Group = "wwwrun";
     };
   };  
+  # systemd.services.mannbase = {
+  #   enable = true;
+  #   wantedBy = ["default.target"];
+  #   script = "/home/guichet/mannbase/pocketbase/pocketbase serve --publicDir ../mannbase/build";
+  #   description = "Guichet, Self-Service LDAP account admin";
+  #   serviceConfig = {
+  #     WorkingDirectory = "/home/guichet/mannbase/backend";
+  #     User = "guichet";
+  #     Group = "wwwrun";
+  #   };
+  # };    
   # security.sudo.extraConfig = ''
   #   Cmnd_Alias FILEBROWSER_CMDS = /run/current-system/sw/bin/systemctl --user start filebrowser, /run/current-system/sw/bin/systemctl --user stop filebrowser, /run/current-system/sw/bin/systemctl --user status filebrowser, /run/current-system/sw/bin/systemctl --restart start filebrowser
   #   filebrowser ALL=(ALL) NOPASSWD: FILEBROWSER_CMDS
