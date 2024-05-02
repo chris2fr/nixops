@@ -289,12 +289,12 @@ in
   services= {
     syncthing = {
       enable = true;
-      folders = {
-        "/var/local/syncthing" = {
-          id = "syncthing";
-          devices = ["mannchri"];
-        };
-      };
+#      folders = {
+#        "/var/local/syncthing" = {
+#          id = "syncthing";
+#          devices = ["mannchri"];
+#        };
+#      };
     };
     # coredns = {
     #   enable = true;
