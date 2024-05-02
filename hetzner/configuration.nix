@@ -287,6 +287,15 @@ in
     defaults.webroot = "/var/www";
   };
   services= {
+    syncthing = {
+      enable = true;
+      folders = {
+        "/var/local/syncthing" = {
+          id = "syncthing";
+          devices = ["mannchri"];
+        };
+      };
+    };
     # coredns = {
     #   enable = true;
     #   config = ''

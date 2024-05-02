@@ -71,6 +71,26 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
+        "syncthing.resdigita.com" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            extraConfig = ''
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   Host $host;
+            proxy_pass         http://localhost:8384/;
+            proxy_read_timeout 600s;
+            proxy_write_timeout 600s;
+            # proxy_http_version 1.1;
+            # proxy_set_header   Upgrade $http_upgrade;
+            # proxy_set_header   Connection "upgrade";
+            # proxy_set_header X-Forwarded-Proto $scheme;
+            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            # proxy_redirect off;
+            '';
+          };
+        };
         "pocketbase.resdigita.com" = {
           serverAliases = ["pocket.resdigita.com"];
           forceSSL = true; 
