@@ -466,6 +466,7 @@ in
         postgresql_14
         pipx
         gnumake
+        poetry
         ];
 
       # networking = {
