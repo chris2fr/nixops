@@ -12,6 +12,7 @@ services.postgresql = {
       "previous"
       "fairemain"
       "crabfit"
+      "lesgrandsvoisinsfacile"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
