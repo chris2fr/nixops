@@ -465,6 +465,7 @@ in
         sqlite
         postgresql_14
         pipx
+        gnumake
         ];
 
       # networking = {
