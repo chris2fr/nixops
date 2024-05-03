@@ -26,6 +26,10 @@ services.postgresql = {
         # };
       }
       {
+        name = "lesgrandsvoinsinsfacile";
+        ensureDBOwnership = true;
+      }
+      {
         name = "crabfit";
         ensureDBOwnership = true;
       }
