@@ -54,10 +54,10 @@ in
         proxyPass = "http://127.0.0.1:8080/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
-#      locations."/favicon.ico" = { proxyPass = null; };
-#      locations."/static" = { proxyPass = null; };
-#      locations."/media" = { proxyPass = null; };
-#      locations."/.well-known" = { proxyPass = null; };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
     };
     "meet.resdigita.com" = {
       serverAliases = ["meet.lesgv.org"];

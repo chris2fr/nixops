@@ -408,6 +408,10 @@ in
         hostPath = "/var/www/wagtail";
         isReadOnly = false; 
        }; 
+       "/var/www/sites-faciles" = { 
+        hostPath = "/var/www/sites-faciles";
+        isReadOnly = false; 
+       }; 
      };
     config = { config, pkgs, ... }: {
       networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
