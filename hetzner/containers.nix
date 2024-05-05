@@ -409,7 +409,7 @@ in
         isReadOnly = false; 
        }; 
        "/home/wagtail/sites-faciles/medias" = { 
-        hostPath = "/var/www/sites-faciles/media";
+        hostPath = "/var/www/sites-faciles/medias";
         isReadOnly = false; 
        }; 
       "/home/wagtail/sites-faciles/staticfiles" = { 
