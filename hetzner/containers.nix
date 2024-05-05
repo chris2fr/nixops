@@ -410,15 +410,15 @@ in
        }; 
        "/home/wagtail/sites-faciles/medias" = { 
         hostPath = "/var/www/sites-faciles/media";
-        isReadOnly = true; 
+        isReadOnly = false; 
        }; 
       "/home/wagtail/sites-faciles/staticfiles" = { 
         hostPath = "/var/www/sites-faciles/static";
-        isReadOnly = true; 
+        isReadOnly = false; 
        }; 
      };
     config = { config, pkgs, ... }: {
-      networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
+      networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ]; 
       users.users.wagtail.uid = 1003;
       # users.groups.users.gid = 1003;
       nix.settings.experimental-features = "nix-command flakes";
