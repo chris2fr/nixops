@@ -408,9 +408,13 @@ in
         hostPath = "/var/www/wagtail";
         isReadOnly = false; 
        }; 
-       "/var/www/sites-faciles" = { 
-        hostPath = "/var/www/sites-faciles";
-        isReadOnly = false; 
+       "/var/home/wagtail/sites-faciles/medias" = { 
+        hostPath = "/var/www/sites-faciles/media";
+        isReadOnly = true; 
+       }; 
+      "/var/home/wagtail/sites-faciles/staticfiles" = { 
+        hostPath = "/var/www/sites-faciles/static";
+        isReadOnly = true; 
        }; 
      };
     config = { config, pkgs, ... }: {
