@@ -76,13 +76,14 @@ in
     };
     # firewall.enable = false;
     firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet"];
-    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9080 9443 10080 10443 11443 ];
+    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995]
+    + [ 636 8443 9080 9443 10080 10443 11443 ]
     # Syncthing ports: 8384 for remote access to GUI
     # 22000 TCP and/or UDP for sync traffic
     # 21027/UDP for discovery
     # source: https://docs.syncthing.net/users/firewall.html
-    firewall.allowedTCPPorts = [ 8384 22000 ];
-    firewall.allowedUDPPorts = [ 22000 21027 ];
+    + [ 8384 22000 ]
+    + [ 22000 21027 ];
     # interfaces."eno1".ipv6 = {
 
     # }
