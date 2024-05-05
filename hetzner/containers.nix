@@ -408,11 +408,11 @@ in
         hostPath = "/var/www/wagtail";
         isReadOnly = false; 
        }; 
-       "/var/home/wagtail/sites-faciles/medias" = { 
+       "/var/home/sites-faciles/medias" = { 
         hostPath = "/var/www/sites-faciles/media";
         isReadOnly = true; 
        }; 
-      "/var/home/wagtail/sites-faciles/staticfiles" = { 
+      "/var/home/sites-faciles/staticfiles" = { 
         hostPath = "/var/www/sites-faciles/static";
         isReadOnly = true; 
        }; 
