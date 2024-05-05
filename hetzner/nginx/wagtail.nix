@@ -49,7 +49,7 @@ in
     "facile.lesgrandsvoisins.com" = {
       enableACME = true;
       forceSSL = true;
-      root =  "/var/www/wagtail/";
+      root =  "/var/www/sites-faciles/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8080/";
         extraConfig = nginxLocationWagtailExtraConfig;
