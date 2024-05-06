@@ -302,6 +302,9 @@ in
       enable = true;
       settings.gui.insecureSkipHostcheck = true;
       # guiAddress = "syncthing.resdigita.com";
+      guiAddress = "0.0.0.0:8384";
+      systemService = true;
+      openDefaultPorts = true;
       group = "wwwrun";
       cert = "/var/lib/acme/syncthing.resdigita.com/fullchain.pem";
       key = "/var/lib/acme/syncthing.resdigita.com/key.pem";
