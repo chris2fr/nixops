@@ -59,10 +59,14 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "francemali.lesgrandsvoisins.com" = {
+    "www.francemali.org" = {
       enableACME = true;
+      serverAliases = ["francemali.org"];
       forceSSL = true;
       root =  "/var/www/francemali/";
+      if ($host = 'francemali.org') {
+        return 301 $scheme://www.$host$request_uri;
+      }
       locations."/" = {
         proxyPass = "http://127.0.0.1:8888/";
         extraConfig = nginxLocationWagtailExtraConfig;
@@ -210,8 +214,8 @@ in
     };
 
     "www.lesgrandsvoisins.fr" = {
-     serverAliases = ["desgv.com" "francemali.org"
-      "www.francemali.org" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" 
+     serverAliases = ["desgv.com" "lesgrandsvoisins.com"
+      "francemali.lesgrandsvoisins.com" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" 
       "www.lesgv.com" "lesgv.com" "www.lesgv.org" "lesgv.org" "www.gv.coop" "gv.coop" "www.coopgv.com" "coopgv.com" "www.coopgv.org" "coopgv.org" 
       "ghost.resdigita.com"  "mail.resdigita.com" "listmonk.resdigita.com" "lesgv.org" ];
       enableACME = true;
@@ -258,9 +262,7 @@ in
       if ($host = 'www.gv.coop') {
           return 301 $scheme://les.gv.coop$request_uri;
       }
-      if ($host = 'francemali.org') {
-          return 301 $scheme://www.$host$request_uri;
-      }
+
       if ($host = 'lesgrandsvoisins.fr') {
           return 301 $scheme://www.$host$request_uri;
       }
