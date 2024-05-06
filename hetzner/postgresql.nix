@@ -13,6 +13,7 @@ services.postgresql = {
       "fairemain"
       "crabfit"
       "lesgrandsvoinsinsfacile"
+      "francemalifacile"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
@@ -28,6 +29,10 @@ services.postgresql = {
       }
       {
         name = "lesgrandsvoinsinsfacile";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "francemalifacile";
         ensureDBOwnership = true;
       }
       {
