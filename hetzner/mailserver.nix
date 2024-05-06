@@ -13,6 +13,7 @@ let
     "mail.lesgrandsvoisins.com"
     "mail.resdigita.com"
     "resdigita.com"
+    "francemali.org"
     "desgrandsvoisins.com"
     "mail.desgrandsvoisins.com"
     "mail.resdigita.org"
