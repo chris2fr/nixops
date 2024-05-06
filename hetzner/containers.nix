@@ -408,6 +408,14 @@ in
         hostPath = "/var/www/wagtail";
         isReadOnly = false; 
        }; 
+       "/home/wagtail/francemali/medias" = { 
+        hostPath = "/var/www/francemali/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/francemali/staticfiles" = { 
+        hostPath = "/var/www/francemali/static";
+        isReadOnly = false; 
+       };        
        "/home/wagtail/sites-faciles/medias" = { 
         hostPath = "/var/www/sites-faciles/medias";
         isReadOnly = false; 
