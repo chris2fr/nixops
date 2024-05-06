@@ -302,7 +302,7 @@ in
       enable = true;
       settings.options.insecureSkipHostcheck = true;
       guiAddress = "syncthing.resdigita.com";
-#      group = "wwwrun";
+      group = "wwwrun";
       cert = "/var/lib/acme/syncthing.resdigita.com/fullchain.pem";
       key = "/var/lib/acme/syncthing.resdigita.com/key.pem";
 #      folders = {
