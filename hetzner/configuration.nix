@@ -300,7 +300,7 @@ in
   services= {
     syncthing = {
       enable = true;
-      # settings.options.insecureSkipHostcheck = true;
+      settings.options.insecureSkipHostcheck.value = true;
       # guiAddress = "syncthing.resdigita.com";
       group = "wwwrun";
       cert = "/var/lib/acme/syncthing.resdigita.com/fullchain.pem";
