@@ -64,9 +64,11 @@ in
       serverAliases = ["francemali.org"];
       forceSSL = true;
       root =  "/var/www/francemali/";
-      if ($host = 'francemali.org') {
-        return 301 $scheme://www.$host$request_uri;
-      }
+      extraConfig = ''
+        if ($host = 'francemali.org') {
+          return 301 $scheme://www.$host$request_uri;
+        }
+        '';
       locations."/" = {
         proxyPass = "http://127.0.0.1:8888/";
         extraConfig = nginxLocationWagtailExtraConfig;
