@@ -59,6 +59,19 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "francemali.lesgrandsvoisins.com" = {
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/francemali/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8888/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "meet.resdigita.com" = {
       serverAliases = ["meet.lesgv.org"];
       enableACME = true;
