@@ -23,7 +23,8 @@ in
     ./mailserver.nix
     ./guichet.nix
     ./postgresql.nix
-    # ./users.nix
+    ./users.nix
+    ./systemd.nix
     ./wagtail.nix
     ./common.nix # Des configurations communes pratiques
     ./servers.nix # I am migrating other services here
@@ -103,36 +104,7 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users = {
-    appflowycloud = {
-      isNormalUser = true;
-    };
-    filebrowser = {
-      isNormalUser = true;
-      extraGroups = ["wwwrun"];
-    };
-    haproxy = {
-      extraGroups = ["wwwrun" "acme"];
-    };
-    mannchri = {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-      extraGroups = [ "wheel" ];
-    };
-    crabfit = {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-      extraGroups = [ "docker" ];
-    };
-    fossil = {
-        isNormalUser = true;
-        openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    };
-    # radicale = {
-    #   isNormalUser = true;
-    #   openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-    # };
-  };
+  
   # home-manager.users.crabfit = {
   #   home.packages = with pkgs; [ 
   #     yarn
@@ -226,61 +198,7 @@ in
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
   system.copySystemConfiguration = true;
-  systemd.services = {
-    "filebrowser@" = {
-      enable = true;
-      wantedBy = ["default.target"];
-      scriptArgs = "filebrowser %i";
-      # preStart = "mkdir -p /opt/filebrowser/dbs/%u/%i; touch /opt/filebrowser/dbs/%u/%i/temoin.txt";
-      script = "/opt/filebrowser/dbs/filebrowser.sh $filebrowser_user $filebrowser_database";
-      description = "File Browser, un interface web à un système de fichiers pour %u on %i";
-      environment = {
-        filebrowser_user = "filebrowser";
-        filebrowser_database = "%i";
-        FB_BASEURL="";
-      };
-      serviceConfig = {
-        WorkingDirectory = "/var/www/dav/data/%i";
-        User = "filebrowser";
-        Group = "wwwrun";
-        UMask = "0002";
-      };
-    };
-    crabfitfront = {
-      enable = true;
-      wantedBy = ["default.target"];
-      script = "${pkgs.yarn}/bin/yarn run start -p 3080";
-      description = "Crab.fit front-end NextJS";
-      serviceConfig = {
-        WorkingDirectory = "/home/crabfit/crab.fit/frontend/";
-        User = "crabfit";
-        Group = "users";
-      };
-    };
-    crabfitback = {
-      enable = true;
-      wantedBy = ["default.target"];
-      script = "/home/crabfit/crab.fit/api/launch-crabfit-api.sh";
-      description = "Crab.fit back in Rust avec Postgres";
-      serviceConfig = {
-        WorkingDirectory = "/home/crabfit/crab.fit/api/target/release/";
-        User = "crabfit";
-        Group = "users";
-      };
-    };
-    # haproxy-config = {
-    #   enable = true;
-    #   description = "HA Proxy Service";
-    #   documentation = "https://www.resdigita.com";
-    #   wantedBy = [ "multi-user.target" ];
-    #   requires = [ "network-online.target" ];
-    #   after = [ "network-online.target" "nginx.service"  "httpd.service" ];
-    #   path = [
-    #     pkgs.coreutils
-    #     pkgs.cacert
-    #   ];
-    # };
-  };
+  
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
@@ -300,20 +218,19 @@ in
   services= {
     syncthing = {
       enable = true;
-      settings.gui.insecureSkipHostcheck = true;
-      # guiAddress = "syncthing.resdigita.com";
-      guiAddress = "0.0.0.0:8384";
-      systemService = true;
       openDefaultPorts = true;
-      group = "wwwrun";
-      cert = "/var/lib/acme/syncthing.resdigita.com/fullchain.pem";
-      key = "/var/lib/acme/syncthing.resdigita.com/key.pem";
-#      folders = {
-#        "/var/local/syncthing" = {
-#          id = "syncthing";
-#          devices = ["mannchri"];
-#        };
-#      };
+      settings = {
+        devices = {
+          "mannchrilenovoslim7" = { id = "VJKOQSN-AC3YKXV-AV4N74C-MH7HZ4R-GBTAGOV-SETMPBT-GCKJC5M-G6XSVQLHERE"; };
+        };
+        folders = {
+          "LogSeqMann" = {         # Name of folder in Syncthing, also the Folder Id
+            path = "/home/myusername/Example";
+            devices = [ "mannchrilenovoslim7" ];
+            ignorePerms = false;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
+          };
+        };
+      };
     };
     # coredns = {
     #   enable = true;
