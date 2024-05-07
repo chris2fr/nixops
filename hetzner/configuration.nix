@@ -223,12 +223,17 @@ in
         devices = {
           "mannchrilenovoslim7" = { 
             id = "VJKOQSN-AC3YKXV-AV4N74C-MH7HZ4R-GBTAGOV-SETMPBT-GCKJC5M-G6XSVQL"; 
+            autoAcceptFolders = true;
+          };
+          "mannchriphone" = {
+            id = "SUJCVUC-XXVY326-42GP5IU-UO6RMEJ-2IHAXEL-KBA4YPU-BQFQMYN-YG66ZQZ";
+            autoAcceptFolders = true;
           };
         };
         folders = {
           "LogSeqMann" = {         # Name of folder in Syncthing, also the Folder Id
             path = "/var/lib/syncthing/LogSeqMann";
-            devices = [ "mannchrilenovoslim7" ];
+            devices = [ "mannchrilenovoslim7" "mannchriphone" ];
             ignorePerms = false;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
           };
         };
