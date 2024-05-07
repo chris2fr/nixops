@@ -221,11 +221,13 @@ in
       openDefaultPorts = true;
       settings = {
         devices = {
-          "mannchrilenovoslim7" = { id = "VJKOQSN-AC3YKXV-AV4N74C-MH7HZ4R-GBTAGOV-SETMPBT-GCKJC5M-G6XSVQLHERE"; };
+          "mannchrilenovoslim7" = { 
+            id = "VJKOQSN-AC3YKXV-AV4N74C-MH7HZ4R-GBTAGOV-SETMPBT-GCKJC5M-G6XSVQL"; 
+          };
         };
         folders = {
           "LogSeqMann" = {         # Name of folder in Syncthing, also the Folder Id
-            path = "/home/myusername/Example";
+            path = "/var/lib/syncthing/LogSeqMann";
             devices = [ "mannchrilenovoslim7" ];
             ignorePerms = false;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
           };
