@@ -219,6 +219,8 @@ in
     syncthing = {
       enable = true;
       openDefaultPorts = true;
+      overrideFolders = ture;
+      overrideDevices = true;
       settings = {
         devices = {
           "mannchrilenovoslim7" = { 
@@ -231,7 +233,10 @@ in
           };
         };
         folders = {
-          "LogSeqMann" = {         # Name of folder in Syncthing, also the Folder Id
+          "LogSeqMann" = {       
+            enable = true;
+            id = "LogSeqMann";
+            label = "LogSeqMann";
             path = "/var/lib/syncthing/LogSeqMann";
             devices = [ "mannchrilenovoslim7" "mannchriphone" ];
             ignorePerms = false;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
