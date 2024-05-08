@@ -219,7 +219,7 @@ in
     syncthing = {
       enable = true;
       openDefaultPorts = true;
-      overrideFolders = ture;
+      overrideFolders = true;
       overrideDevices = true;
       settings = {
         devices = {
