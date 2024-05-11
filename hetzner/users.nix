@@ -30,7 +30,7 @@ in
     };
     wagtail = {
       isNormalUser = true;
-    }
+    };
     # radicale = {
     #   isNormalUser = true;
     #   openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
