@@ -416,11 +416,11 @@ in
         hostPath = "/var/www/francemali/static";
         isReadOnly = false; 
        }; 
-       "/home/wagtail/wwww-fastoche/medias" = { 
+       "/home/wagtail/www-fastoche/medias" = { 
         hostPath = "/var/www/www-fastoche/medias";
         isReadOnly = false; 
        }; 
-      "/home/wagtail/wwww-fastoche/staticfiles" = { 
+      "/home/wagtail/www-fastoche/staticfiles" = { 
         hostPath = "/var/www/www-fastoche/static";
         isReadOnly = false; 
        }; 
