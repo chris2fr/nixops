@@ -417,11 +417,11 @@ in
         isReadOnly = false; 
        }; 
        "/home/wagtail/wwww-fastoche/medias" = { 
-        hostPath = "/var/www/wwww-fastoche/medias";
+        hostPath = "/var/www/www-fastoche/medias";
         isReadOnly = false; 
        }; 
       "/home/wagtail/wwww-fastoche/staticfiles" = { 
-        hostPath = "/var/www/wwww-fastoche/static";
+        hostPath = "/var/www/www-fastoche/static";
         isReadOnly = false; 
        }; 
        "/home/wagtail/wagtail-fastoche/medias" = { 
