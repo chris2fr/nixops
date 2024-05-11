@@ -415,7 +415,31 @@ in
       "/home/wagtail/francemali/staticfiles" = { 
         hostPath = "/var/www/francemali/static";
         isReadOnly = false; 
-       };        
+       }; 
+       "/home/wagtail/wwww-fastoche/medias" = { 
+        hostPath = "/var/www/wwww-fastoche/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/wwww-fastoche/staticfiles" = { 
+        hostPath = "/var/www/wwww-fastoche/static";
+        isReadOnly = false; 
+       }; 
+       "/home/wagtail/wagtail-fastoche/medias" = { 
+        hostPath = "/var/www/wagtail-fastoche/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/wagtail-fastoche/staticfiles" = { 
+        hostPath = "/var/www/wagtail-fastoche/static";
+        isReadOnly = false; 
+       }; 
+       "/home/wagtail/django-fastoche/media" = { 
+        hostPath = "/var/www/django-fastoche/media";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/django-fastoche/staticfiles" = { 
+        hostPath = "/var/www/django-fastoche/static";
+        isReadOnly = false; 
+       };
        "/home/wagtail/sites-faciles/medias" = { 
         hostPath = "/var/www/sites-faciles/medias";
         isReadOnly = false; 
@@ -531,7 +555,7 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/sites-faciles/";
           # ExecStart = ''/home/wagtail/sites-faciles/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/sites-faciles --workers 3 --bind unix:/var/lib/wagtail/sites-faciles.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/sites-faciles/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/sites-faciles-access.log --error-logfile /var/log/wagtail/sites-faciles-error.log --chdir /home/wagtail/sites-faciles --workers 12 --bind 0.0.0.0:8080 config.wsgi:application'';
+          ExecStart = ''/home/wagtail/sites-faciles/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/sites-faciles-access.log --error-logfile /var/log/wagtail/sites-faciles-error.log --chdir /home/wagtail/sites-faciles --workers 12 --bind 0.0.0.0:8080 wagtail_fastoche.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
@@ -548,7 +572,58 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/francemali/";
           # ExecStart = ''/home/wagtail/francemali/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/francemali --workers 3 --bind unix:/var/lib/wagtail/francemali.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/francemali/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/francemali-access.log --error-logfile /var/log/wagtail/francemali-error.log --chdir /home/wagtail/francemali --workers 12 --bind 0.0.0.0:8888 config.wsgi:application'';
+          ExecStart = ''/home/wagtail/francemali/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/francemali-access.log --error-logfile /var/log/wagtail/francemali-error.log --chdir /home/wagtail/francemali --workers 12 --bind 0.0.0.0:8888 wagtail_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.www-fastoche = {
+        description = "www.Fastoche.org Website based on Wagtail-Fastoche";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/www-fastoche/";
+          # ExecStart = ''/home/wagtail/www-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/www-fastoche --workers 3 --bind unix:/var/lib/wagtail/www-fastoche.sock facile.wsgi:application'';
+          ExecStart = ''/home/wagtail/www-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/www-fastoche-access.log --error-logfile /var/log/wagtail/www-fastoche-error.log --chdir /home/wagtail/www-fastoche --workers 12 --bind 0.0.0.0:8889 wagtail_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.wagtail-fastoche = {
+        description = "wagtail.fastoche.org Website based on Wagtail-Fastoche";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/wagtail-fastoche/";
+          # ExecStart = ''/home/wagtail/wagtail-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/wagtail-fastoche --workers 3 --bind unix:/var/lib/wagtail/wagtail-fastoche.sock facile.wsgi:application'';
+          ExecStart = ''/home/wagtail/wagtail-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-fastoche-access.log --error-logfile /var/log/wagtail/wagtail-fastoche-error.log --chdir /home/wagtail/wagtail-fastoche --workers 12 --bind 0.0.0.0:8890 wagtail_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.django-fastoche = {
+        description = "django.fastoche.org Website based on Django-Fastoche";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/django-fastoche/";
+          # ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/django-fastoche --workers 3 --bind unix:/var/lib/wagtail/django-fastoche.sock facile.wsgi:application'';
+          ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/django-fastoche-access.log --error-logfile /var/log/wagtail/django-fastoche-error.log --chdir /home/wagtail/django-fastoche --workers 12 --bind 0.0.0.0:8891 django_fastoche.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";

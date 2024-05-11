@@ -78,6 +78,56 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "www.fastoche.org" = {
+      enableACME = true;
+      serverAliases = ["fastoche.org"];
+      forceSSL = true;
+      root =  "/var/www/www-fastoche/";
+      extraConfig = ''
+        if ($host = 'fastoche.org') {
+          return 301 $scheme://www.$host$request_uri;
+        }
+        '';
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8889/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "wagtail.fastoche.org" = {
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/wagtail-fastoche/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8890/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "django.fastoche.org" = {
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/django-fastoche/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8891/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "web.fastoche.org" = {
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/web-fastoche/example/";
+    };
     "meet.resdigita.com" = {
       serverAliases = ["meet.lesgv.org"];
       enableACME = true;

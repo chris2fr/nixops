@@ -3,7 +3,7 @@
 let 
 in
 {
-  users.users.wagtail.isNormalUser = true;
+  
   home-manager.users.wagtail = {pkgs, ...}: {
     home.packages = with pkgs; [ 
       python311
