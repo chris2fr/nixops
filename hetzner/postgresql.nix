@@ -14,9 +14,9 @@ services.postgresql = {
       "crabfit"
       "lesgrandsvoinsinsfacile"
       "francemalifacile"
-      "wwwfastoche"
-      "wagtailfastoche"
-      "djangofastoche"
+      "wwwcfran"
+      "wagtailcfran"
+      "djangocfran"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
@@ -43,15 +43,15 @@ services.postgresql = {
         ensureDBOwnership = true;
       }
       {
-        name = "wwwfastoche";
+        name = "wwwcfran";
         ensureDBOwnership = true;
       }
       {
-        name = "wagtailfastoche";
+        name = "wagtailcfran";
         ensureDBOwnership = true;
       }
       {
-        name = "djangofastoche";
+        name = "djangocfran";
         ensureDBOwnership = true;
       }
     ]; 
