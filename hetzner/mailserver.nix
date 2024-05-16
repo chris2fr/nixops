@@ -10,15 +10,16 @@ let
   ldapBaseDCDN = import /etc/nixos/mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [ 
     "lesgrandsvoisins.com"
-    "mail.lesgrandsvoisins.com"
-    "mail.resdigita.com"
+    #"mail.lesgrandsvoisins.com"
+    #"mail.resdigita.com"
     "resdigita.com"
     "francemali.org"
-    "desgrandsvoisins.com"
-    "mail.desgrandsvoisins.com"
-    "mail.resdigita.org"
+    #"desgrandsvoisins.com"
+    #"mail.desgrandsvoisins.com"
+    #"mail.resdigita.org"
     "gv.coop"
-    "mail.gv.coop"
+    #"mail.gv.coop"
+    "lesgrandsvoisins.fr"
   ];
 in
 {

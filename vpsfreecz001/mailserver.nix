@@ -18,6 +18,7 @@ let
     "lesgv.org"
     "gvoisin.com"
     "gvoisin.org"
+    "lesgrandsvoisins.fr"
     ];
 in
 {
