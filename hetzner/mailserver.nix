@@ -55,6 +55,8 @@ in
       axel.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.com
       alex.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
       axel.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
+      bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
     '';
     
     memcached = {
