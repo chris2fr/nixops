@@ -18,17 +18,17 @@ in
       forceSSL = true;
       root = "/var/www/interetpublic";
      };
-    "www.hopgv.com" = {
-      enableACME = true;
-      forceSSL = true;
-      root = "/var/www/interetpublic";
-      serverAliases = ["hopgv.com"];
-      extraConfig = ''
-        if ($host != "www.hopgv.com") {
-          return 301 $scheme://www.hopgv.com$request_uri;
-        }
-      '';
-    };
+    # "www.hopgv.com" = {
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   root = "/var/www/interetpublic";
+    #   serverAliases = ["hopgv.com"];
+    #   extraConfig = ''
+    #     if ($host != "www.hopgv.com") {
+    #       return 301 $scheme://www.hopgv.com$request_uri;
+    #     }
+    #   '';
+    # };
     "www.interet-public.org" = {
       enableACME = true;
       forceSSL = true;
@@ -46,7 +46,17 @@ in
       # globalRedirect = "www.interetpublic.com";
       locations."/".return = "301 https://www.interetpublic.org";
     };
-    "facile.lesgrandsvoisins.com" = {
+    "hopgv.org" = {
+      serverAliases = [
+        "facile.lesgrandsvoisins.com"
+        "hopgv.com"
+        "www.hopgv.com"
+      ];
+      enableACME = true;
+      forceSSL = true;
+      globalRedirect = "www.hopgv.org";
+    };
+    "www.hopgv.org" = {
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/sites-faciles/";
