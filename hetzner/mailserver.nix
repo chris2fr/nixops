@@ -20,6 +20,10 @@ let
     "gv.coop"
     #"mail.gv.coop"
     "lesgrandsvoisins.fr"
+    "hopgv.com"
+    "hopgv.org"
+    "resdigita.org"
+    "cfran.org"
   ];
 in
 {
@@ -58,6 +62,13 @@ in
       axel.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
       bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
+      @lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      @lesgrandsvoisins.fr chris@lesgrandsvoisins.fr
+      @hopgv.com chris@lesgrandsvoisins.com
+      @hopgv.org chris@lesgrandsvoisins.com
+      @resdigita.com chris@lesgrandsvoisins.com
+      @resdigita.org chris@lesgrandsvoisins.com
+      @cfran.org chris@lesgrandsvoisins.com
     '';
     
     memcached = {
