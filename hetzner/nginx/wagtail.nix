@@ -276,7 +276,7 @@ in
     };
 
     "www.lesgrandsvoisins.fr" = {
-     serverAliases = ["desgv.com" "lesgrandsvoisins.com"
+     serverAliases = ["desgv.com" 
       "francemali.lesgrandsvoisins.com" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" 
       "www.lesgv.com" "lesgv.com" "www.lesgv.org" "lesgv.org" "www.gv.coop" "gv.coop" "www.coopgv.com" "coopgv.com" "www.coopgv.org" "coopgv.org" 
       "ghost.resdigita.com" "listmonk.resdigita.com" "lesgv.org" ];
