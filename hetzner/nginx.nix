@@ -138,10 +138,16 @@ in
         #   forceSSL = true;
         #   locations."/".proxyPass = "http://localhost:8334";
         # }; 
-        # "mail.resdigita.com" = {
-        #   enableACME = true; forceSSL = true; 
-        #   globalRedirect = "mail.lesgrandsvoisins.com"; 
-        # };
+        "mail.resdigita.com" = {
+          serverAliases = [
+            "mail.hopgv.org"
+            "mail.hopgv.com"
+            "mail.resdigita.org"
+            "mail.lesgrandsvoisins.fr"
+          ];
+          enableACME = true; forceSSL = true; 
+          globalRedirect = "mail.lesgrandsvoisins.com"; 
+        };
         "vaultwarden.resdigita.com" = {
           serverAliases = [
             "vaultwarden.gv.coop" 
