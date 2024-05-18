@@ -146,7 +146,7 @@ in
             "mail.lesgrandsvoisins.fr"
           ];
           enableACME = true; forceSSL = true; 
-          globalRedirect = "mail.lesgrandsvoisins.com"; 
+          locations."/".return = "302 https://mail.lesgrandsvoisins.com";
         };
         "vaultwarden.resdigita.com" = {
           serverAliases = [
