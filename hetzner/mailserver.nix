@@ -24,6 +24,8 @@ let
     "hopgv.org"
     "resdigita.org"
     "cfran.org"
+    "gvpublic.org"
+    "gvpublic.com"
   ];
 in
 {

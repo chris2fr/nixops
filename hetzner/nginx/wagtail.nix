@@ -51,6 +51,10 @@ in
         "facile.lesgrandsvoisins.com"
         "hopgv.com"
         "www.hopgv.com"
+        "gvpublic.com"
+        "gvpublic.org"
+        "www.gvpublic.org"
+        "www.gvpublic.com"
       ];
       enableACME = true;
       forceSSL = true;
