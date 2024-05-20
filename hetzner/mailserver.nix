@@ -72,7 +72,7 @@ in
       @hopgv.com chris@lesgrandsvoisins.com
       @hopgv.org chris@lesgrandsvoisins.com
       @gvois.com chris@lesgrandsvoisins.com
-      @fastoche.org chris@lesgrandsvoisins.com
+      chris@fastoche.org chris@lesgrandsvoisins.com
       @gvois.org chris@lesgrandsvoisins.com
       @resdigita.com chris@lesgrandsvoisins.com
       @resdigita.org chris@lesgrandsvoisins.com
