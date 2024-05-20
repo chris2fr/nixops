@@ -51,18 +51,20 @@ in
         "facile.lesgrandsvoisins.com"
         "hopgv.com"
         "www.hopgv.com"
+        "www.hopgv.org"
         "gvpublic.com"
         "gvpublic.org"
         "gvois.com"
         "gvois.org"
+        "www.gvois.org"
         "www.gvpublic.org"
         "www.gvpublic.com"
       ];
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "www.hopgv.org";
+      globalRedirect = "www.gvois.com";
     };
-    "www.hopgv.org" = {
+    "www.gvois.com" = {
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/sites-faciles/";
