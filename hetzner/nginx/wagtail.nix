@@ -53,6 +53,8 @@ in
         "www.hopgv.com"
         "gvpublic.com"
         "gvpublic.org"
+        "gvois.com"
+        "gvois.org"
         "www.gvpublic.org"
         "www.gvpublic.com"
       ];

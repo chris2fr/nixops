@@ -22,6 +22,8 @@ let
     "lesgrandsvoisins.fr"
     "hopgv.com"
     "hopgv.org"
+    "gvois.com"
+    "gvois.org"
     "resdigita.org"
     "cfran.org"
     "gvpublic.org"
@@ -68,6 +70,8 @@ in
       @lesgrandsvoisins.fr chris@lesgrandsvoisins.fr
       @hopgv.com chris@lesgrandsvoisins.com
       @hopgv.org chris@lesgrandsvoisins.com
+      @gvois.com chris@lesgrandsvoisins.com
+      @gvois.org chris@lesgrandsvoisins.com
       @resdigita.com chris@lesgrandsvoisins.com
       @resdigita.org chris@lesgrandsvoisins.com
       @cfran.org chris@lesgrandsvoisins.com
