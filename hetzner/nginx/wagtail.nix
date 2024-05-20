@@ -50,7 +50,7 @@ in
       serverAliases = [
         "facile.lesgrandsvoisins.com"
         "hopgv.com"
-        "www.hopgv.com"
+        "www.gvois.com"
         "www.hopgv.org"
         "gvpublic.com"
         "gvpublic.org"
@@ -62,9 +62,9 @@ in
       ];
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "www.gvois.com";
+      globalRedirect = "www.hopgv.com";
     };
-    "www.gvois.com" = {
+    "www.hopgv.com" = {
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/sites-faciles/";
