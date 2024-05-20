@@ -59,12 +59,14 @@ in
         "www.gvois.org"
         "www.gvpublic.org"
         "www.gvpublic.com"
+        "fastoche.org"
+        "www.hopgv.com"
       ];
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "www.hopgv.com";
+      globalRedirect = "www.fastoche.org";
     };
-    "www.hopgv.com" = {
+    "www.fastoche.org" = {
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/sites-faciles/";
