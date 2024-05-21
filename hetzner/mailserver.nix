@@ -67,8 +67,8 @@ in
       axel.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
       bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
-      @lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      @lesgrandsvoisins.fr chris@lesgrandsvoisins.fr
+      bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.fr
       @hopgv.com chris@lesgrandsvoisins.com
       @hopgv.org chris@lesgrandsvoisins.com
       @gvois.com chris@lesgrandsvoisins.com
