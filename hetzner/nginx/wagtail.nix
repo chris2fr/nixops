@@ -118,9 +118,10 @@ in
       locations."/.well-known" = { proxyPass = null; };
     };
     "wagtail.cfran.org" = {
+      serverAliases = ["wagtail.fastoche.org"];
       enableACME = true;
       forceSSL = true;
-      root =  "/var/www/wagtail-cfran/";
+      root =  "/var/www/wagtail-fastoche/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8890/";
         extraConfig = nginxLocationWagtailExtraConfig;
