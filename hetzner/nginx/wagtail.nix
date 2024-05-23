@@ -111,9 +111,28 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.cfran.org" = {
+    "www.fastoche.org" = {
       enableACME = true;
-      serverAliases = ["cfran.org"];
+      serverAliases = ["fastoche.org"];
+      forceSSL = true;
+      root =  "/var/www/www-fastoche/";
+      extraConfig = ''
+        if ($host = 'fastoche.org') {
+          return 301 $scheme://www.$host$request_uri;
+        }
+        '';
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8893/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "web.fastoche.org" = {
+      enableACME = true;
+      serverAliases = ["cfran.org" "www.cfran.org"];
       forceSSL = true;
       root =  "/var/www/web-fastoche/";
       extraConfig = ''
@@ -130,8 +149,8 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "wagtail.cfran.org" = {
-      serverAliases = ["wagtail.fastoche.org"];
+    "wagtail.fastoche.org" = {
+      serverAliases = ["wagtail.cfran.org"];
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/wagtail-fastoche/";

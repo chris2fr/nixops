@@ -18,6 +18,7 @@ services.postgresql = {
       "wagtailcfran"
       "djangocfran"
       "resdigitafastoche"
+      "wwwfastoche"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
@@ -37,6 +38,10 @@ services.postgresql = {
       }
       {
         name = "resdigitafastoche";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "wwwfastoche";
         ensureDBOwnership = true;
       }
       {

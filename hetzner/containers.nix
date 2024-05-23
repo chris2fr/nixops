@@ -432,6 +432,14 @@ in
         hostPath = "/var/www/resdigita-fastoche/static";
         isReadOnly = false; 
        }; 
+       "/home/wagtail/www-fastoche/medias" = { 
+        hostPath = "/var/www/www-fastoche/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/www-fastoche/staticfiles" = { 
+        hostPath = "/var/www/www-fastoche/static";
+        isReadOnly = false; 
+       }; 
        "/home/wagtail/wagtail-fastoche/medias" = { 
         hostPath = "/var/www/wagtail-fastoche/medias";
         isReadOnly = false; 
@@ -644,6 +652,22 @@ in
           StartLimitInterval = "1min";
         };
       };
+      systemd.services.www-fastoche = {
+        description = "wagtail.fastoche.org Website based on www-fastoche";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/www-fastoche/";
+          ExecStart = ''/home/wagtail/www-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/www-fastoche-access.log --error-logfile /var/log/wagtail/www-fastoche-error.log --chdir /home/wagtail/www-fastoche --workers 12 --bind 0.0.0.0:8893 wagtail_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
       systemd.services.django-fastoche = {
         description = "django.cfran.org Website based on django-fastoche";
         after = [ "network.target" ];
@@ -651,7 +675,7 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/django-fastoche/";
           # ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/django-fastoche --workers 3 --bind unix:/var/lib/wagtail/django-fastoche.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/django-fastoche-access.log --error-logfile /var/log/wagtail/django-fastoche-error.log --chdir /home/wagtail/django-fastoche --workers 12 --bind 0.0.0.0:8891 django_cfran.config.wsgi:application'';
+          ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --access-logfile /var/log/wagtail/django-fastoche-access.log --error-logfile /var/log/wagtail/django-fastoche-error.log --chdir /home/wagtail/django-fastoche --workers 12 --bind 0.0.0.0:8891 django_fastoche.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
