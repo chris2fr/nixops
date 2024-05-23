@@ -416,12 +416,20 @@ in
         hostPath = "/var/www/francemali/static";
         isReadOnly = false; 
        }; 
-       "/home/wagtail/www-cfran/medias" = { 
-        hostPath = "/var/www/www-cfran/medias";
+       "/home/wagtail/web-fastoche/medias" = { 
+        hostPath = "/var/www/web-fastoche/medias";
         isReadOnly = false; 
        }; 
-      "/home/wagtail/www-cfran/staticfiles" = { 
-        hostPath = "/var/www/www-cfran/static";
+      "/home/wagtail/web-fastoche/staticfiles" = { 
+        hostPath = "/var/www/web-fastoche/static";
+        isReadOnly = false; 
+       }; 
+       "/home/wagtail/resdigita-fastoche/medias" = { 
+        hostPath = "/var/www/resdigita-fastoche/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/resdigita-fastoche/staticfiles" = { 
+        hostPath = "/var/www/resdigita-fastoche/static";
         isReadOnly = false; 
        }; 
        "/home/wagtail/wagtail-fastoche/medias" = { 
@@ -432,12 +440,12 @@ in
         hostPath = "/var/www/wagtail-fastoche/static";
         isReadOnly = false; 
        }; 
-       "/home/wagtail/django-cfran/media" = { 
-        hostPath = "/var/www/django-cfran/media";
+       "/home/wagtail/django-fastoche/media" = { 
+        hostPath = "/var/www/django-fastoche/media";
         isReadOnly = false; 
        }; 
-      "/home/wagtail/django-cfran/staticfiles" = { 
-        hostPath = "/var/www/django-cfran/static";
+      "/home/wagtail/django-fastoche/staticfiles" = { 
+        hostPath = "/var/www/django-fastoche/static";
         isReadOnly = false; 
        };
        "/home/wagtail/sites-faciles/medias" = { 
@@ -446,6 +454,10 @@ in
        }; 
       "/home/wagtail/sites-faciles/staticfiles" = { 
         hostPath = "/var/www/sites-faciles/static";
+        isReadOnly = false; 
+       }; 
+       "/home/wagtail/fabrique-fastoche" = { 
+        hostPath = "/var/www/fabrique-fastoche";
         isReadOnly = false; 
        }; 
      };
@@ -582,14 +594,14 @@ in
           StartLimitInterval = "1min";
         };
       };
-      systemd.services.www-cfran = {
+      systemd.services.web-fastoche = {
         description = "www.cfran.org Website based on Wagtail-cfran";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
-          WorkingDirectory = "/home/wagtail/www-cfran/";
-          # ExecStart = ''/home/wagtail/www-cfran/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/www-cfran --workers 3 --bind unix:/var/lib/wagtail/www-cfran.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/www-cfran/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/www-cfran-access.log --error-logfile /var/log/wagtail/www-cfran-error.log --chdir /home/wagtail/www-cfran --workers 12 --bind 0.0.0.0:8889 wagtail_cfran.config.wsgi:application'';
+          WorkingDirectory = "/home/wagtail/web-fastoche/";
+          # ExecStart = ''/home/wagtail/web-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/web-fastoche --workers 3 --bind unix:/var/lib/wagtail/web-fastoche.sock facile.wsgi:application'';
+          ExecStart = ''/home/wagtail/web-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/web-fastoche-access.log --error-logfile /var/log/wagtail/web-fastoche-error.log --chdir /home/wagtail/web-fastoche --workers 12 --bind 0.0.0.0:8889 wagtail_cfran.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
@@ -616,14 +628,30 @@ in
           StartLimitInterval = "1min";
         };
       };
-      systemd.services.django-cfran = {
-        description = "django.cfran.org Website based on Django-cfran";
+      systemd.services.resdigita-fastoche = {
+        description = "wagtail.fastoche.org Website based on resdigita-fastoche";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
-          WorkingDirectory = "/home/wagtail/django-cfran/";
-          # ExecStart = ''/home/wagtail/django-cfran/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/django-cfran --workers 3 --bind unix:/var/lib/wagtail/django-cfran.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/django-cfran/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/django-cfran-access.log --error-logfile /var/log/wagtail/django-cfran-error.log --chdir /home/wagtail/django-cfran --workers 12 --bind 0.0.0.0:8891 django_cfran.config.wsgi:application'';
+          WorkingDirectory = "/home/wagtail/resdigita-fastoche/";
+          ExecStart = ''/home/wagtail/resdigita-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/resdigita-fastoche-access.log --error-logfile /var/log/wagtail/resdigita-fastoche-error.log --chdir /home/wagtail/resdigita-fastoche --workers 12 --bind 0.0.0.0:8892 wagtail_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.django-fastoche = {
+        description = "django.cfran.org Website based on django-fastoche";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/django-fastoche/";
+          # ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/django-fastoche --workers 3 --bind unix:/var/lib/wagtail/django-fastoche.sock facile.wsgi:application'';
+          ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/django-fastoche-access.log --error-logfile /var/log/wagtail/django-fastoche-error.log --chdir /home/wagtail/django-fastoche --workers 12 --bind 0.0.0.0:8891 django_cfran.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";

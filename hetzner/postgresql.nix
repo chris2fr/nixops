@@ -35,6 +35,10 @@ services.postgresql = {
         ensureDBOwnership = true;
       }
       {
+        name = "resdigitafastoche";
+        ensureDBOwnership = true;
+      }
+      {
         name = "francemalifacile";
         ensureDBOwnership = true;
       }

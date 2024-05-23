@@ -64,9 +64,9 @@ in
       ];
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "www.fastoche.org";
+      globalRedirect = "gv.fastoche.org";
     };
-    "www.fastoche.org" = {
+    "gv.fastoche.org" = {
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/sites-faciles/";
@@ -76,7 +76,20 @@ in
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "resdigita.fastoche.org" = {
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/resdigita-fastoche/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8892/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.francemali.org" = {
@@ -95,14 +108,14 @@ in
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.cfran.org" = {
       enableACME = true;
       serverAliases = ["cfran.org"];
       forceSSL = true;
-      root =  "/var/www/www-cfran/";
+      root =  "/var/www/web-fastoche/";
       extraConfig = ''
         if ($host = 'cfran.org') {
           return 301 $scheme://www.$host$request_uri;
@@ -114,7 +127,7 @@ in
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
     "wagtail.cfran.org" = {
@@ -128,13 +141,13 @@ in
       };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
-      locations."/media" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "django.cfran.org" = {
+    "django.fastoche.org" = {
       enableACME = true;
       forceSSL = true;
-      root =  "/var/www/django-cfran/";
+      root =  "/var/www/django-fastoche/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8891/";
         extraConfig = nginxLocationWagtailExtraConfig;
@@ -144,10 +157,19 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "web.cfran.org" = {
+    "fabrique.fastoche.org" = {
       enableACME = true;
       forceSSL = true;
-      root =  "/var/www/web-cfran/example/";
+      root =  "/var/www/fabrique-fastoche/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8891/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/example" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
     };
     "meet.resdigita.com" = {
       serverAliases = ["meet.lesgv.org"];
