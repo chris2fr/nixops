@@ -17,6 +17,7 @@ services.postgresql = {
       "wwwcfran"
       "wagtailcfran"
       "djangocfran"
+      "resdigitafastoche"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
