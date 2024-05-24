@@ -61,12 +61,16 @@ in
         "www.gvpublic.com"
         "fastoche.org"
         "www.hopgv.com"
+        "gv.fastoche.org"
+        "gv.village.ong"
+        "gv.villagengo.com"
+        "gv.villagengo.org"
       ];
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "gv.fastoche.org";
+      globalRedirect = "gv.village.ngo";
     };
-    "gv.fastoche.org" = {
+    "gv.village.ngo" = {
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/sites-faciles/";
@@ -79,7 +83,8 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "resdigita.fastoche.org" = {
+    "resdigita.village.ngo" = {
+      serverAliases = ["resdigita.fastoche.org"];
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/resdigita-fastoche/";
@@ -111,14 +116,19 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.fastoche.org" = {
+    "www.village.ngo" = {
       enableACME = true;
-      serverAliases = ["fastoche.org"];
+      serverAliases = ["fastoche.org" 
+        "www.fastoche.org"
+        "www.village.ong"
+        "www.villagengo.org"
+        "www.villagengo.com"
+        ];
       forceSSL = true;
       root =  "/var/www/www-fastoche/";
       extraConfig = ''
-        if ($host = 'fastoche.org') {
-          return 301 $scheme://www.$host$request_uri;
+        if ($host != 'www.village.ngo') {
+          return 301 $scheme://www.village.ngo$request_uri;
         }
         '';
       locations."/" = {
@@ -130,14 +140,14 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "web.fastoche.org" = {
+    "web.cfran.org" = {
       enableACME = true;
-      serverAliases = ["cfran.org" "www.cfran.org"];
+      serverAliases = ["cfran.org" "www.cfran.org" "web.fastoche.org"];
       forceSSL = true;
       root =  "/var/www/web-fastoche/";
       extraConfig = ''
-        if ($host = 'cfran.org') {
-          return 301 $scheme://www.$host$request_uri;
+        if ($host != 'web.cfran.org') {
+          return 301 $scheme://web.cfran.org$request_uri;
         }
         '';
       locations."/" = {
@@ -149,8 +159,8 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "wagtail.fastoche.org" = {
-      serverAliases = ["wagtail.cfran.org"];
+    "wagtail.cfran.org" = {
+      serverAliases = [ "wagtail.fastoche.org"];
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/wagtail-fastoche/";
@@ -158,13 +168,24 @@ in
         proxyPass = "http://127.0.0.1:8890/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
+      extraConfig = ''
+        if ($host != 'wagtail.cfran.org') {
+          return 301 $scheme://wagtail.cfran.org$request_uri;
+        }
+      '';
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "django.fastoche.org" = {
+    "django.cfran.org" = {
       enableACME = true;
+      serverAliases = [ "django.fastoche.org"];
+      extraConfig = ''
+        if ($host != 'django.cfran.org') {
+          return 301 $scheme://django.cfran.org$request_uri;
+        }
+      '';
       forceSSL = true;
       root =  "/var/www/django-fastoche/";
       locations."/" = {
@@ -176,9 +197,15 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "fabrique.fastoche.org" = {
+    "fabrique.cfran.org" = {
       enableACME = true;
       forceSSL = true;
+      serverAliases = [ "fabrique.fastoche.org"];
+      extraConfig = ''
+        if ($host != 'fabrique.cfran.org') {
+          return 301 $scheme://fabrique.cfran.org$request_uri;
+        }
+      '';
       root =  "/var/www/fabrique-fastoche/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8891/";
@@ -191,7 +218,7 @@ in
       locations."/.well-known" = { proxyPass = null; };
     };
     "meet.resdigita.com" = {
-      serverAliases = ["meet.lesgv.org"];
+      serverAliases = ["meet.lesgv.org" "meet.village.ngo" "meet.village.ong" "meet.villagengo.com" "meet.villagengo.org"];
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/wagtail/";
