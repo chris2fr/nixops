@@ -68,14 +68,14 @@ in
       ];
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "gv.village.ngo";
+      globalRedirect = "www.village.ngo";
     };
     "gv.village.ngo" = {
       enableACME = true;
       forceSSL = true;
-      root =  "/var/www/sites-faciles/";
+      root =  "/var/www/www-fastoche/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8080/";
+        proxyPass = "http://127.0.0.1:8893/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -130,14 +130,14 @@ in
         "villagengo.com"
         ];
       forceSSL = true;
-      root =  "/var/www/www-fastoche/";
+      root =  "/var/www/sites-faciles/";
       extraConfig = ''
         if ($host != 'www.village.ngo') {
           return 301 $scheme://www.village.ngo$request_uri;
         }
         '';
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8893/";
+        proxyPass = "http://127.0.0.1:8080/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
