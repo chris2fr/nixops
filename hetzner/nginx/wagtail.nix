@@ -118,11 +118,16 @@ in
     };
     "www.village.ngo" = {
       enableACME = true;
-      serverAliases = ["fastoche.org" 
+      serverAliases = [
         "www.fastoche.org"
         "www.village.ong"
         "www.villagengo.org"
         "www.villagengo.com"
+        "fastoche.org"
+        "village.ngo"
+        "village.ong"
+        "villagengo.org"
+        "villagengo.com"
         ];
       forceSSL = true;
       root =  "/var/www/www-fastoche/";
