@@ -119,13 +119,9 @@ in
     "www.village.ngo" = {
       enableACME = true;
       serverAliases = [
-        "www.fastoche.org"
-        "www.village.ong"
         "www.villagengo.org"
         "www.villagengo.com"
-        "fastoche.org"
         "village.ngo"
-        "village.ong"
         "villagengo.org"
         "villagengo.com"
         ];
@@ -133,6 +129,29 @@ in
       root =  "/var/www/villagengo/";
       extraConfig = ''
         if ($host != 'www.village.ngo') {
+          return 301 $scheme://www.village.ngo$request_uri;
+        }
+        '';
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8895/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "www.village.ong" = {
+      enableACME = true;
+      serverAliases = [
+        "www.fastoche.org"
+        "fastoche.org"
+        "village.ong"
+        ];
+      forceSSL = true;
+      root =  "/var/www/villagengo/";
+      extraConfig = ''
+        if ($host != 'www.village.ong') {
           return 301 $scheme://www.village.ngo$request_uri;
         }
         '';
