@@ -130,14 +130,14 @@ in
         "villagengo.com"
         ];
       forceSSL = true;
-      root =  "/var/www/sites-faciles/";
+      root =  "/var/www/villagengo/";
       extraConfig = ''
         if ($host != 'www.village.ngo') {
           return 301 $scheme://www.village.ngo$request_uri;
         }
         '';
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8080/";
+        proxyPass = "http://127.0.0.1:8895/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };

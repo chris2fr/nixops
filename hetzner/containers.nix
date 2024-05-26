@@ -448,6 +448,10 @@ in
         hostPath = "/var/www/wagtail-fastoche/static";
         isReadOnly = false; 
        }; 
+       "/home/wagtail/villagengo/media" = { 
+        hostPath = "/var/www/django-fastoche/media";
+        isReadOnly = false; 
+       }; 
        "/home/wagtail/django-fastoche/media" = { 
         hostPath = "/var/www/django-fastoche/media";
         isReadOnly = false; 
@@ -676,6 +680,22 @@ in
           WorkingDirectory = "/home/wagtail/django-fastoche/";
           # ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/django-fastoche --workers 3 --bind unix:/var/lib/wagtail/django-fastoche.sock facile.wsgi:application'';
           ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --access-logfile /var/log/wagtail/django-fastoche-access.log --error-logfile /var/log/wagtail/django-fastoche-error.log --chdir /home/wagtail/django-fastoche --workers 12 --bind 0.0.0.0:8891 django_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.villagengo = {
+        description = "www.village.ngo";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/villagengo/";
+          ExecStart = ''/home/wagtail/villagengo/venv/bin/gunicorn --access-logfile /var/log/wagtail/villagengo-access.log --error-logfile /var/log/wagtail/villagengo-error.log --chdir /home/wagtail/villagengo --workers 12 --bind 0.0.0.0:8895 wagtail_cefran.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
