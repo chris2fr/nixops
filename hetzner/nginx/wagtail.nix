@@ -152,7 +152,7 @@ in
       root =  "/var/www/villagengo/";
       extraConfig = ''
         if ($host != 'www.village.ong') {
-          return 301 $scheme://www.village.ngo$request_uri;
+          return 301 $scheme://www.village.ong$request_uri;
         }
         '';
       locations."/" = {
