@@ -432,6 +432,14 @@ in
         hostPath = "/var/www/resdigita-fastoche/static";
         isReadOnly = false; 
        }; 
+       "/home/wagtail/villagengo/medias" = { 
+        hostPath = "/var/www/villagengo/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/villagengo/staticfiles" = { 
+        hostPath = "/var/www/villagengo/static";
+        isReadOnly = false; 
+       }; 
        "/home/wagtail/www-fastoche/medias" = { 
         hostPath = "/var/www/www-fastoche/medias";
         isReadOnly = false; 
@@ -446,10 +454,6 @@ in
        }; 
       "/home/wagtail/wagtail-fastoche/staticfiles" = { 
         hostPath = "/var/www/wagtail-fastoche/static";
-        isReadOnly = false; 
-       }; 
-       "/home/wagtail/villagengo/media" = { 
-        hostPath = "/var/www/django-fastoche/media";
         isReadOnly = false; 
        }; 
        "/home/wagtail/django-fastoche/media" = { 
