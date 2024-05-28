@@ -722,7 +722,7 @@ in
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/village/";
-          ExecStart = ''/home/wagtail/village/venv/bin/gunicorn --access-logfile /var/log/wagtail/village-access.log --error-logfile /var/log/wagtail/village-error.log --chdir /home/wagtail/village --workers 12 --bind 0.0.0.0:8896 wagtail_cefran.config.wsgi:application'';
+          ExecStart = ''/home/wagtail/village/venv/bin/gunicorn --access-logfile /var/log/wagtail/village-access.log --error-logfile /var/log/wagtail/village-error.log --chdir /home/wagtail/village --workers 12 --bind 0.0.0.0:8896 wagtail_village.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
