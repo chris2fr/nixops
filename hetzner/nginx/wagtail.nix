@@ -126,14 +126,14 @@ in
         "villagengo.com"
         ];
       forceSSL = true;
-      root =  "/var/www/villagengo/";
+      root =  "/var/www/village/";
       extraConfig = ''
         if ($host != 'www.village.ngo') {
           return 301 $scheme://www.village.ngo$request_uri;
         }
         '';
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8895/";
+        proxyPass = "http://127.0.0.1:8896/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -149,14 +149,14 @@ in
         "village.ong"
         ];
       forceSSL = true;
-      root =  "/var/www/villagengo/";
+      root =  "/var/www/village/";
       extraConfig = ''
         if ($host != 'www.village.ong') {
           return 301 $scheme://www.village.ong$request_uri;
         }
         '';
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8895/";
+        proxyPass = "http://127.0.0.1:8896/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };

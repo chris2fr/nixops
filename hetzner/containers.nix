@@ -432,6 +432,14 @@ in
         hostPath = "/var/www/resdigita-fastoche/static";
         isReadOnly = false; 
        }; 
+       "/home/wagtail/village/medias" = { 
+        hostPath = "/var/www/village/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/village/staticfiles" = { 
+        hostPath = "/var/www/village/static";
+        isReadOnly = false; 
+       }; 
        "/home/wagtail/villagengo/medias" = { 
         hostPath = "/var/www/villagengo/medias";
         isReadOnly = false; 
@@ -439,8 +447,7 @@ in
       "/home/wagtail/villagengo/staticfiles" = { 
         hostPath = "/var/www/villagengo/static";
         isReadOnly = false; 
-       }; 
-       "/home/wagtail/www-fastoche/medias" = { 
+       };        "/home/wagtail/www-fastoche/medias" = { 
         hostPath = "/var/www/www-fastoche/medias";
         isReadOnly = false; 
        }; 
@@ -700,6 +707,22 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/villagengo/";
           ExecStart = ''/home/wagtail/villagengo/venv/bin/gunicorn --access-logfile /var/log/wagtail/villagengo-access.log --error-logfile /var/log/wagtail/villagengo-error.log --chdir /home/wagtail/villagengo --workers 12 --bind 0.0.0.0:8895 wagtail_cefran.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.village = {
+        description = "www.village.ngo";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/village/";
+          ExecStart = ''/home/wagtail/village/venv/bin/gunicorn --access-logfile /var/log/wagtail/village-access.log --error-logfile /var/log/wagtail/village-error.log --chdir /home/wagtail/village --workers 12 --bind 0.0.0.0:8896 wagtail_cefran.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
