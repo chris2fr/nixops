@@ -240,16 +240,16 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "fabrique.village.ngo" = {
+    "designsystem.village.ngo" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [ "fabrique.fastoche.org" "fabrique.cfran.org" "fabrique.village.ong" "fabrique.villagengo.com" "fabrique.villagengo.org"];
+      serverAliases = [ "designsystem.fastoche.org" "designsystem.cfran.org" "designsystem.village.ong" "designsystem.villagengo.com" "designsystem.villagengo.org"];
       # extraConfig = ''
-      #   if ($host != 'fabrique.cfran.org') {
-      #     return 301 $scheme://fabrique.cfran.org$request_uri;
+      #   if ($host != 'designsystem.cfran.org') {
+      #     return 301 $scheme://designsystem.cfran.org$request_uri;
       #   }
       # '';
-      root =  "/var/www/fabrique-village/";
+      root =  "/var/www/designsystem-village/";
       # locations."/" = {
       #   proxyPass = "http://127.0.0.1:8891/";
       #   extraConfig = nginxLocationWagtailExtraConfig;

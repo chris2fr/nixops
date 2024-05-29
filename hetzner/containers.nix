@@ -496,16 +496,16 @@ in
         hostPath = "/var/www/sites-faciles/static";
         isReadOnly = false; 
        }; 
-       "/home/wagtail/fabrique-fastoche" = { 
-        hostPath = "/var/www/fabrique-fastoche";
+       "/home/wagtail/designsystem-fastoche" = { 
+        hostPath = "/var/www/designsystem-fastoche";
         isReadOnly = false; 
        }; 
-       "/home/wagtail/fabrique-village/example" = { 
-        hostPath = "/var/www/fabrique-village/example";
+       "/home/wagtail/designsystem-village/example" = { 
+        hostPath = "/var/www/designsystem-village/example";
         isReadOnly = false; 
        }; 
-       "/home/wagtail/fabrique-village/dist" = { 
-        hostPath = "/var/www/fabrique-village/dist";
+       "/home/wagtail/designsystem-village/dist" = { 
+        hostPath = "/var/www/designsystem-village/dist";
         isReadOnly = false; 
        }; 
      };
