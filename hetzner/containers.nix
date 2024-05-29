@@ -500,7 +500,7 @@ in
         hostPath = "/var/www/fabrique-fastoche";
         isReadOnly = false; 
        }; 
-       "/home/wagtail/fabrique-village" = { 
+       "/home/wagtail/fabrique-village/example" = { 
         hostPath = "/var/www/fabrique-village";
         isReadOnly = false; 
        }; 
@@ -722,14 +722,14 @@ in
           StartLimitInterval = "1min";
         };
       };
-      systemd.services.django-fastoche = {
-        description = "django.cfran.org Website based on django-fastoche";
+      systemd.services.django-village = {
+        description = "django.cfran.org Website based on django-village";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
-          WorkingDirectory = "/home/wagtail/django-fastoche/";
-          # ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/django-fastoche --workers 3 --bind unix:/var/lib/wagtail/django-fastoche.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/django-fastoche/venv/bin/gunicorn --access-logfile /var/log/wagtail/django-fastoche-access.log --error-logfile /var/log/wagtail/django-fastoche-error.log --chdir /home/wagtail/django-fastoche --workers 12 --bind 0.0.0.0:8891 django_fastoche.config.wsgi:application'';
+          WorkingDirectory = "/home/wagtail/django-village/";
+          # ExecStart = ''/home/wagtail/django-village/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/django-village --workers 3 --bind unix:/var/lib/wagtail/django-village.sock facile.wsgi:application'';
+          ExecStart = ''/home/wagtail/django-village/venv/bin/gunicorn --access-logfile /var/log/wagtail/django-village-access.log --error-logfile /var/log/wagtail/django-village-error.log --chdir /home/wagtail/django-village --workers 12 --bind 0.0.0.0:8891 django_village.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";

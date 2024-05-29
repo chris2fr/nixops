@@ -249,7 +249,7 @@ in
       #     return 301 $scheme://fabrique.cfran.org$request_uri;
       #   }
       # '';
-      root =  "/var/www/fabrique-village/example/";
+      root =  "/var/www/fabrique-village/";
       # locations."/" = {
       #   proxyPass = "http://127.0.0.1:8891/";
       #   extraConfig = nginxLocationWagtailExtraConfig;
