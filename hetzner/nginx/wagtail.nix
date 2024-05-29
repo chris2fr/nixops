@@ -230,7 +230,7 @@ in
       #   }
       # '';
       forceSSL = true;
-      root =  "/var/www/django-fastoche/";
+      root =  "/var/www/django-village/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8891/";
         extraConfig = nginxLocationWagtailExtraConfig;
