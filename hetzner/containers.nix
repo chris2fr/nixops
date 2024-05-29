@@ -480,12 +480,12 @@ in
         hostPath = "/var/www/django-fastoche/static";
         isReadOnly = false; 
        };
-       "/home/wagtail/django-django/media" = { 
-        hostPath = "/var/www/django-django/media";
+       "/home/wagtail/django-village/media" = { 
+        hostPath = "/var/www/django-village/media";
         isReadOnly = false; 
        }; 
-      "/home/wagtail/django-django/staticfiles" = { 
-        hostPath = "/var/www/django-django/static";
+      "/home/wagtail/django-village/staticfiles" = { 
+        hostPath = "/var/www/django-village/static";
         isReadOnly = false; 
        };
        "/home/wagtail/sites-faciles/medias" = { 
