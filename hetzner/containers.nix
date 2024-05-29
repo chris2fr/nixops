@@ -501,7 +501,11 @@ in
         isReadOnly = false; 
        }; 
        "/home/wagtail/fabrique-village/example" = { 
-        hostPath = "/var/www/fabrique-village";
+        hostPath = "/var/www/fabrique-village/example";
+        isReadOnly = false; 
+       }; 
+       "/home/wagtail/fabrique-village/dist" = { 
+        hostPath = "/var/www/fabrique-village/dist";
         isReadOnly = false; 
        }; 
      };
