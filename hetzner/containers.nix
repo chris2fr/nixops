@@ -564,6 +564,7 @@ in
         gnumake
         poetry
         nodejs_21
+        yarn
         ];
 
       # networking = {
