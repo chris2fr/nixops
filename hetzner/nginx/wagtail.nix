@@ -183,17 +183,36 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "wagtail.cfran.org" = {
-      serverAliases = [ "wagtail.fastoche.org"];
+    "wagtail.village.ngo" = {
       enableACME = true;
       forceSSL = true;
-      root =  "/var/www/wagtail-fastoche/";
+      serverAliases = [ "wagtail.villagengo.org" "wagtail.villagengo.com"];
+      root =  "/var/www/wagtail-village/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8890/";
+        proxyPass = "http://127.0.0.1:8897/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      # extraConfig = ''
+      #   if ($host != 'wagtail.village.ngo') {
+      #     return 301 $scheme://wagtail.cfran.org$request_uri;
+      #   }
+      # '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "wagtail.village.ong" = {
+      serverAliases = [ "wagtail.fastoche.org" "wagtail.cfran.org" "wagtail.village.ong"];
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/wagtail-village/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8897/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       extraConfig = ''
-        if ($host != 'wagtail.cfran.org') {
+        if ($host != 'wagtail.village.ong') {
           return 301 $scheme://wagtail.cfran.org$request_uri;
         }
       '';
@@ -202,14 +221,14 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "django.cfran.org" = {
+    "django.village.ngo" = {
       enableACME = true;
-      serverAliases = [ "django.fastoche.org"];
-      extraConfig = ''
-        if ($host != 'django.cfran.org') {
-          return 301 $scheme://django.cfran.org$request_uri;
-        }
-      '';
+      serverAliases = [ "django.fastoche.org" "django.cfran.org" "django.village.ong" "django.villagengo.com" "django.villagengo.org"];
+      # extraConfig = ''
+      #   if ($host != 'django.cfran.org') {
+      #     return 301 $scheme://django.cfran.org$request_uri;
+      #   }
+      # '';
       forceSSL = true;
       root =  "/var/www/django-fastoche/";
       locations."/" = {
@@ -221,25 +240,25 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "fabrique.cfran.org" = {
+    "fabrique.village.ngo" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [ "fabrique.fastoche.org"];
-      extraConfig = ''
-        if ($host != 'fabrique.cfran.org') {
-          return 301 $scheme://fabrique.cfran.org$request_uri;
-        }
-      '';
-      root =  "/var/www/fabrique-fastoche/";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8891/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/example" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      serverAliases = [ "fabrique.fastoche.org" "fabrique.cfran.org" "fabrique.village.ong" "fabrique.villagengo.com" "fabrique.villagengo.org"];
+      # extraConfig = ''
+      #   if ($host != 'fabrique.cfran.org') {
+      #     return 301 $scheme://fabrique.cfran.org$request_uri;
+      #   }
+      # '';
+      root =  "/var/www/fabrique-village/example/";
+      # locations."/" = {
+      #   proxyPass = "http://127.0.0.1:8891/";
+      #   extraConfig = nginxLocationWagtailExtraConfig;
+      # };
+      # locations."/favicon.ico" = { proxyPass = null; };
+      # locations."/static" = { proxyPass = null; };
+      # locations."/example" = { proxyPass = null; };
+      # locations."/medias" = { proxyPass = null; };
+      # locations."/.well-known" = { proxyPass = null; };
     };
     "meet.resdigita.com" = {
       serverAliases = ["meet.lesgv.org" "meet.village.ngo" "meet.village.ong" "meet.villagengo.com" "meet.villagengo.org"];

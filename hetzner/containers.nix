@@ -447,12 +447,21 @@ in
       "/home/wagtail/villagengo/staticfiles" = { 
         hostPath = "/var/www/villagengo/static";
         isReadOnly = false; 
-       };        "/home/wagtail/www-fastoche/medias" = { 
+       };        
+       "/home/wagtail/www-fastoche/medias" = { 
         hostPath = "/var/www/www-fastoche/medias";
         isReadOnly = false; 
        }; 
       "/home/wagtail/www-fastoche/staticfiles" = { 
         hostPath = "/var/www/www-fastoche/static";
+        isReadOnly = false; 
+       }; 
+       "/home/wagtail/wagtail-village/medias" = { 
+        hostPath = "/var/www/wagtail-village/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/wagtail-village/staticfiles" = { 
+        hostPath = "/var/www/wagtail-village/static";
         isReadOnly = false; 
        }; 
        "/home/wagtail/wagtail-fastoche/medias" = { 
@@ -471,6 +480,14 @@ in
         hostPath = "/var/www/django-fastoche/static";
         isReadOnly = false; 
        };
+       "/home/wagtail/django-django/media" = { 
+        hostPath = "/var/www/django-django/media";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/django-django/staticfiles" = { 
+        hostPath = "/var/www/django-django/static";
+        isReadOnly = false; 
+       };
        "/home/wagtail/sites-faciles/medias" = { 
         hostPath = "/var/www/sites-faciles/medias";
         isReadOnly = false; 
@@ -481,6 +498,10 @@ in
        }; 
        "/home/wagtail/fabrique-fastoche" = { 
         hostPath = "/var/www/fabrique-fastoche";
+        isReadOnly = false; 
+       }; 
+       "/home/wagtail/fabrique-village" = { 
+        hostPath = "/var/www/fabrique-village";
         isReadOnly = false; 
        }; 
      };
@@ -542,6 +563,7 @@ in
         pipx
         gnumake
         poetry
+        nodejs_21
         ];
 
       # networking = {
@@ -642,6 +664,23 @@ in
           WorkingDirectory = "/home/wagtail/wagtail-fastoche/";
           # ExecStart = ''/home/wagtail/wagtail-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/wagtail-fastoche --workers 3 --bind unix:/var/lib/wagtail/wagtail-fastoche.sock facile.wsgi:application'';
           ExecStart = ''/home/wagtail/wagtail-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-fastoche-access.log --error-logfile /var/log/wagtail/wagtail-fastoche-error.log --chdir /home/wagtail/wagtail-fastoche --workers 12 --bind 0.0.0.0:8890 wagtail_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.wagtail-village = {
+        description = "wagtail.village.org Website based on Wagtail-village";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/wagtail-village/";
+          # ExecStart = ''/home/wagtail/wagtail-village/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/wagtail-village --workers 3 --bind unix:/var/lib/wagtail/wagtail-village.sock facile.wsgi:application'';
+          ExecStart = ''/home/wagtail/wagtail-village/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-village-access.log --error-logfile /var/log/wagtail/wagtail-village-error.log --chdir /home/wagtail/wagtail-village --workers 12 --bind 0.0.0.0:8897 wagtail_village.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
