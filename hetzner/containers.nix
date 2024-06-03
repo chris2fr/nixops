@@ -456,6 +456,14 @@ in
         hostPath = "/var/www/www-fastoche/static";
         isReadOnly = false; 
        }; 
+       "/home/wagtail/resdigitaorg/medias" = { 
+        hostPath = "/var/www/resdigitaorg/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/resdigitaorg/staticfiles" = { 
+        hostPath = "/var/www/resdigitaorg/static";
+        isReadOnly = false; 
+       }; 
        "/home/wagtail/wagtail-village/medias" = { 
         hostPath = "/var/www/wagtail-village/medias";
         isReadOnly = false; 
@@ -686,6 +694,23 @@ in
           WorkingDirectory = "/home/wagtail/wagtail-village/";
           # ExecStart = ''/home/wagtail/wagtail-village/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/wagtail-village --workers 3 --bind unix:/var/lib/wagtail/wagtail-village.sock facile.wsgi:application'';
           ExecStart = ''/home/wagtail/wagtail-village/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/wagtail-village-access.log --error-logfile /var/log/wagtail/wagtail-village-error.log --chdir /home/wagtail/wagtail-village --workers 12 --bind 0.0.0.0:8897 wagtail_village.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.resdigitaorg = {
+        description = "www.resdigita.org Website based on wagtail-village";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/resdigitaorg/";
+          # ExecStart = ''/home/wagtail/resdigitaorg/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/resdigitaorg --workers 3 --bind unix:/var/lib/wagtail/resdigitaorg.sock facile.wsgi:application'';
+          ExecStart = ''/home/wagtail/resdigitaorg/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/resdigitaorg-access.log --error-logfile /var/log/wagtail/resdigitaorg-error.log --chdir /home/wagtail/resdigitaorg --workers 12 --bind 0.0.0.0:8899 wagtail_village.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";

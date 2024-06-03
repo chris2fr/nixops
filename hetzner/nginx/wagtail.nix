@@ -202,6 +202,25 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "www.resdigita.org" = {
+      enableACME = true;
+      forceSSL = true;
+      serverAliases = [ "resdigita.org"];
+      root =  "/var/www/resdigitaorg/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8899/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      extraConfig = ''
+        if ($host != 'www.resdigita.org') {
+          return 301 $scheme://www.resdigita.org$request_uri;
+        }
+      '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "wagtail.village.ong" = {
       serverAliases = [ "wagtail.fastoche.org" "wagtail.cfran.org" "wagtail.village.ong"];
       enableACME = true;
