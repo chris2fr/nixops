@@ -233,13 +233,13 @@ in
           enableACME = true; forceSSL = true; 
           globalRedirect = "keepass.resdigita.com";
         };
-        "resdigita.com" = {
-          serverAliases = ["www.resdigita.com"];
-          enableACME = true;
-          forceSSL = true;
-          # globalRedirect = "homepage-dashboard.resdigita.com";
-          locations."/".return = "302 https://homepage-dashboard.resdigita.com";
-        };
+        # "resdigita.com" = {
+        #   serverAliases = ["www.resdigita.com"];
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   # globalRedirect = "homepage-dashboard.resdigita.com";
+        #   locations."/".return = "302 https://homepage-dashboard.resdigita.com";
+        # };
         "filebrowser.resdigita.com" = {
           serverAliases = [
             "filebrowser.gv.coop" 
