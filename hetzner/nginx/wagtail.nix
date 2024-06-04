@@ -205,7 +205,7 @@ in
     "www.resdigita.org" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [ "resdigita.org" "en.resdigita.com" "fr.resdigita.com" "en.resdgita.org" "fr.resdigita.org" ];
+      serverAliases = [ "resdigita.org" "en.resdigita.com" "fr.resdigita.com" "en.resdigita.org" "fr.resdigita.org" ];
       root =  "/var/www/resdigitaorg/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8899/";
