@@ -124,6 +124,8 @@ in
         "village.ngo"
         "villagengo.org"
         "villagengo.com"
+        "www.village.ong"
+        "village.ong"
         ];
       forceSSL = true;
       root =  "/var/www/village/";
@@ -141,29 +143,29 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.village.ong" = {
-      enableACME = true;
-      serverAliases = [
-        "www.fastoche.org"
-        "fastoche.org"
-        "village.ong"
-        ];
-      forceSSL = true;
-      root =  "/var/www/village/";
-      extraConfig = ''
-        if ($host != 'www.village.ong') {
-          return 301 $scheme://www.village.ong$request_uri;
-        }
-        '';
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8896/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
-    };
+    # "www.village.ong" = {
+    #   enableACME = true;
+    #   serverAliases = [
+    #     "www.fastoche.org"
+    #     "fastoche.org"
+    #     "village.ong"
+    #     ];
+    #   forceSSL = true;
+    #   root =  "/var/www/village/";
+    #   extraConfig = ''
+    #     if ($host != 'www.village.ong') {
+    #       return 301 $scheme://www.village.ong$request_uri;
+    #     }
+    #     '';
+    #   locations."/" = {
+    #     proxyPass = "http://127.0.0.1:8896/";
+    #     extraConfig = nginxLocationWagtailExtraConfig;
+    #   };
+    #   locations."/favicon.ico" = { proxyPass = null; };
+    #   locations."/static" = { proxyPass = null; };
+    #   locations."/medias" = { proxyPass = null; };
+    #   locations."/.well-known" = { proxyPass = null; };
+    # };
     "web.cfran.org" = {
       enableACME = true;
       serverAliases = ["cfran.org" "www.cfran.org" "web.fastoche.org"];
