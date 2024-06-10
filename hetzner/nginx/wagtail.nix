@@ -308,6 +308,8 @@ in
       serverAliases = [
         "meet.lesgrandsvoisins.com"
         "discourse.resdigita.com"
+        "meet.village.ngo"
+        "meet.village.ong"
         # "jswiki.resdigita.com"
         # "gvoisin.desgrandsvoisins.org"
         #  "gvoisin.desgrandsvoisins.com"
