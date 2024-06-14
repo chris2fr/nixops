@@ -224,7 +224,7 @@ in
       locations."/.well-known" = { proxyPass = null; };
     };
     "wagtail.village.ong" = {
-      serverAliases = [ "wagtail.fastoche.org" "wagtail.cfran.org" "wagtail.village.ong"];
+      serverAliases = [ "wagtail.fastoche.org" "wagtail.cfran.org"];
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/wagtail-village/";
