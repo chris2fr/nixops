@@ -263,10 +263,10 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "designsystem.village.ngo" = {
+    "fabrique.village.ngo" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [ "designsystem.fastoche.org" "designsystem.cfran.org" "designsystem.village.ong" "designsystem.villagengo.com" "designsystem.villagengo.org"];
+      serverAliases = [ "designsystem.fastoche.org" "designsystem.village.ngo" "designsystem.cfran.org" "designsystem.village.ong" "designsystem.villagengo.com" "designsystem.villagengo.org"];
       # extraConfig = ''
       #   if ($host != 'designsystem.cfran.org') {
       #     return 301 $scheme://designsystem.cfran.org$request_uri;
