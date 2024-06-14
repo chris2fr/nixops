@@ -68,7 +68,7 @@ in
       ];
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "www.village.ngo";
+      globalRedirect = "www.village.paris";
     };
     "gv.village.ngo" = {
       enableACME = true;
@@ -126,6 +126,8 @@ in
         "villagengo.com"
         "www.village.ong"
         "village.ong"
+        "villageparis.org"
+        "www.villageparis.org"
         ];
       forceSSL = true;
       root =  "/var/www/village/";

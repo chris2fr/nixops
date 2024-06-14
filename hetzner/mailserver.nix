@@ -29,6 +29,9 @@ let
     "gvpublic.org"
     "gvpublic.com"
     "fastoche.org"
+    "village.ngo"
+    "village.ong"
+    "villageparis.org"
   ];
 in
 {
