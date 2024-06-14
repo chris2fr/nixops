@@ -625,7 +625,7 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/sites-faciles/";
           # ExecStart = ''/home/wagtail/sites-faciles/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/sites-faciles --workers 3 --bind unix:/var/lib/wagtail/sites-faciles.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/sites-faciles/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/sites-faciles-access.log --error-logfile /var/log/wagtail/sites-faciles-error.log --chdir /home/wagtail/sites-faciles --workers 12 --bind 0.0.0.0:8080 wagtail_cfran.config.wsgi:application'';
+          ExecStart = ''/home/wagtail/sites-faciles/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/sites-faciles-access.log --error-logfile /var/log/wagtail/sites-faciles-error.log --chdir /home/wagtail/sites-faciles --workers 12 --bind 0.0.0.0:8080 wagtail_village.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
@@ -642,7 +642,7 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/francemali/";
           # ExecStart = ''/home/wagtail/francemali/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/francemali --workers 3 --bind unix:/var/lib/wagtail/francemali.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/francemali/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/francemali-access.log --error-logfile /var/log/wagtail/francemali-error.log --chdir /home/wagtail/francemali --workers 12 --bind 0.0.0.0:8888 wagtail_cfran.config.wsgi:application'';
+          ExecStart = ''/home/wagtail/francemali/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/francemali-access.log --error-logfile /var/log/wagtail/francemali-error.log --chdir /home/wagtail/francemali --workers 12 --bind 0.0.0.0:8888 wagtail_village.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
@@ -659,7 +659,7 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/web-fastoche/";
           # ExecStart = ''/home/wagtail/web-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/web-fastoche --workers 3 --bind unix:/var/lib/wagtail/web-fastoche.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/web-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/web-fastoche-access.log --error-logfile /var/log/wagtail/web-fastoche-error.log --chdir /home/wagtail/web-fastoche --workers 12 --bind 0.0.0.0:8889 wagtail_cfran.config.wsgi:application'';
+          ExecStart = ''/home/wagtail/web-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/web-fastoche-access.log --error-logfile /var/log/wagtail/web-fastoche-error.log --chdir /home/wagtail/web-fastoche --workers 12 --bind 0.0.0.0:8889 wagtail_village.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
