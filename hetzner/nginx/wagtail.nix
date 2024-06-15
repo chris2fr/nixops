@@ -124,6 +124,10 @@ in
         "ongovillage.com"
         "www.ongovillage.org"
         "ongovillage.org"
+        "www.ongvillage.org"
+        "ongvillage.org"
+        "www.ongvillage.com"
+        "ongvillage.com"
         ];
       forceSSL = true;
       root =  "/var/www/village/";
@@ -158,6 +162,10 @@ in
         "villagengo.com"
         "villageparis.org"
         "www.villageparis.org"
+        "ngovillage.com"
+        "www.ngovillage.com"
+        "ngvillage.org"
+        "www.ngvillage.org"
         ];
       forceSSL = true;
       root =  "/var/www/village/";
