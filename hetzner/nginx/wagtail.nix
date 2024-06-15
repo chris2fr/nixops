@@ -152,8 +152,6 @@ in
         "village.ngo"
         "villagengo.org"
         "villagengo.com"
-        "www.village.ong"
-        "village.ong"
         "villageparis.org"
         "www.villageparis.org"
         ];
