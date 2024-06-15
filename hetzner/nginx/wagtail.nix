@@ -162,11 +162,11 @@ in
         "villagengo.com"
         "villageparis.org"
         "www.villageparis.org"
-        "ngovillage.com"
-        "www.ngovillage.com"
+        "ngovillage.org"
+        "www.ngovillage.org"
         "ngvillage.org"
         "www.ngvillage.org"
-        ];
+      ];
       forceSSL = true;
       root =  "/var/www/village/";
       extraConfig = ''
