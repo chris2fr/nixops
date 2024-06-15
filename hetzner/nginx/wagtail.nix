@@ -120,6 +120,10 @@ in
       enableACME = true;
       serverAliases = [
         "village.ong"
+        "www.ongovillage.com"
+        "ongovillage.com"
+        "www.ongovillage.org"
+        "ongovillage.org"
         ];
       forceSSL = true;
       root =  "/var/www/village/";
