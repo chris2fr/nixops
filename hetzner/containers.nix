@@ -642,7 +642,7 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/francemali/";
           # ExecStart = ''/home/wagtail/francemali/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/francemali --workers 3 --bind unix:/var/lib/wagtail/francemali.sock facile.wsgi:application'';
-          ExecStart = ''/home/wagtail/francemali/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/francemali-access.log --error-logfile /var/log/wagtail/francemali-error.log --chdir /home/wagtail/francemali --workers 12 --bind 0.0.0.0:8888 wagtail_village.config.wsgi:application'';
+          ExecStart = ''/home/wagtail/francemali/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/francemali-access.log --error-logfile /var/log/wagtail/francemali-error.log --chdir /home/wagtail/francemali --workers 12 --bind 0.0.0.0:8888 wagtail_cfran.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
