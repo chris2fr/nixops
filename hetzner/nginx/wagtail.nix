@@ -132,7 +132,7 @@ in
       forceSSL = true;
       root =  "/var/www/village/";
       extraConfig = ''
-        return 301 $scheme://www.village.ngo$request_uri;
+        return 301 https://www.village.ngo;
       '';
         # if ($host != 'www.village.ong') {
         #   return 301 $scheme://www.village.ong$request_uri;
@@ -175,10 +175,10 @@ in
         if ($host != 'www.village.ngo') {
           return 301 $scheme://www.village.ngo$request_uri;
         }
-        location ~ /fr/(.*)$ {
-          rewrite ^ https://www.village.ong/fr/$1?$args permanent;
-        }
         '';
+        #         location ~ /fr/(.*)$ {
+        #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
+        # }
       locations."/" = {
         proxyPass = "http://127.0.0.1:8896/";
         extraConfig = nginxLocationWagtailExtraConfig;
