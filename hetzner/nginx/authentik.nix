@@ -29,7 +29,19 @@ in
       "keycloak.village.ngo" = {
         enableACME = true;
         forceSSL = true;
-        globalRedirect = "keycloak.village.ngo:12443";
+        root = "/var/www/keycloakvillagengo";
+        locations = {
+          "/realms/master/.well-known/openid-configuration" = {};
+          "/" = {
+            extraConfig = ''
+              if ($host != 'wagtail.village.ngo') {
+                return 302 $scheme://wagtail.cfran.org$request_uri;
+              }
+            '';
+          };
+        };
+
+        # globalRedirect = "keycloak.village.ngo:12443";
         # locations."/" = {
         #   proxyPass = "https://keycloak.village.ngo:12443";
         #   extraConfig = ''
