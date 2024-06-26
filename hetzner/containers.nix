@@ -858,7 +858,7 @@ in
           };
           mail = {
             outgoing = {
-              domaine = "village.ngo";
+              domain = "village.ngo";
               serverAddress = "mail.lesgrandsvoisins.com";
             };
           };
