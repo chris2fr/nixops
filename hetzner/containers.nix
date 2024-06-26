@@ -925,10 +925,9 @@ in
         firewall.enable = false;
         useHostResolvConf = lib.mkForce false;
       };
-      # systemd.tmpfiles.rules = [
-      #  "d /var/lib/acme/keycloak.village.ngo 0750 acme wwwrun"
-      #  "f /etc/nixos/.secret.keycloakdata 0660 root root"
-      # ];
+      systemd.tmpfiles.rules = [
+       "f /etc/.secret.keycloakdata 0660 root root"
+      ];
       # security.acme.acceptTerms = true;
       # users = {
       #   groups = {
@@ -952,20 +951,20 @@ in
       # };
       services = {
         resolved.enable = true;
-        # keycloak = {
-        #   enable = true;
-        #   settings = {
-        #     # https-port = 10443;
-        #     # http-port = 10080;
-        #     # proxy = "passthrough";
-        #     proxy = "reencrypt";
-        #     hostname = "keycloak.village.ngo";
-        #   };
-        #   sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
-        #   sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
-        #   database.passwordFile = "/etc/nixos/.secret.keycloakdata";
-        #   # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
-        # };
+        keycloak = {
+          enable = true;
+          settings = {
+            # https-port = 10443;
+            # http-port = 10080;
+            # proxy = "passthrough";
+            proxy = "reencrypt";
+            hostname = "keycloak.village.ngo";
+          };
+          sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
+          sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
+          database.passwordFile = "/etc/.secret.keycloakdata";
+          # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+        };
       };
     };
   };
