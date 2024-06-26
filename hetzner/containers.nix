@@ -803,6 +803,41 @@ in
       };
     };
   };
+  containers.discourse = {
+    autoStart = true;
+    privateNetwork = true;
+    hostAddress = "192.168.104.10";
+    localAddress = "192.168.104.11";
+    hostAddress6 = "fe00::1";
+    localAddress6 = "fe00::2";
+    config = { config, pkgs, lib, ...  }: {
+      environment.systemPackages = with pkgs; [
+        ((vim_configurable.override {  }).customize{
+          name = "vim";
+          vimrcConfig.customRC = ''
+            " your custom vimrc
+            set mouse=a
+            set nocompatible
+            colo torte
+            syntax on
+            set tabstop     =2
+            set softtabstop =2
+            set shiftwidth  =2
+            set expandtab
+            set autoindent
+            set smartindent
+            " ...
+          '';
+          }
+        )
+      ];
+    };
+    services = {
+      discourse = {
+        enable = true;
+      };
+    };
+  };
   containers.seafile = {
     autoStart = true;
     privateNetwork = true;
