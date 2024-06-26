@@ -952,21 +952,21 @@ in
       # };
       services = {
         resolved.enable = true;
-        keycloak = {
-          enable = true;
-          settings = {
-            https-port = 443;
-            http-port = 80;
-            # proxy = "passthrough";
-            proxy = "reencrypt";
-            hostname = "keycloak.village.ngo";
-          };
-          sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
-          sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
-          database.passwordFile = "/etc/.secret.keycloakdata";
-          # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
-        };
-      };
+      #   keycloak = {
+      #     enable = true;
+      #     settings = {
+      #       https-port = 443;
+      #       http-port = 80;
+      #       # proxy = "passthrough";
+      #       proxy = "reencrypt";
+      #       hostname = "keycloak.village.ngo";
+      #     };
+      #     sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
+      #     sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
+      #     database.passwordFile = "/etc/.secret.keycloakdata";
+      #     # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+      #   };
+      # };
     };
   };
   containers.seafile = {
