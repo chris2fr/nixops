@@ -334,7 +334,7 @@ in
           enableACME = true;
           forceSSL = true;
           locations."/" = {
-            proxyPass = "http://192.168.104.11";
+            proxyPass = "http://192.168.104.11/";
             extraConfig = ''
               proxy_set_header Host $host;
               proxy_http_version 1.1;
