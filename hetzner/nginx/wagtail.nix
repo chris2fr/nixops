@@ -587,14 +587,12 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-
     "paris14.village.ngo" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [];
-      root =  "/var/www/wagtail-village/";
+      root =  "/var/www/wagtail/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8897/";
+        proxyPass = "http://127.0.0.1:8896/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       # extraConfig = ''
