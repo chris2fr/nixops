@@ -831,6 +831,9 @@ in
           }
         )
       ];
+      virtualisation.docker.enable = true;
+      system.stateVersion = "23.11";
+      nix.settings.experimental-features = "nix-command flakes";
       services = {
         # postgres = {
         #   enable = true;
