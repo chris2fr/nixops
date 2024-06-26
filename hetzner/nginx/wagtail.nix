@@ -132,7 +132,7 @@ in
       forceSSL = true;
       root =  "/var/www/village/";
       extraConfig = ''
-        return 301 https://www.village.ngo;
+        return 301 https://www.village.ngo/fr/;
       '';
         # if ($host != 'www.village.ong') {
         #   return 301 $scheme://www.village.ong$request_uri;
@@ -141,18 +141,18 @@ in
         #   rewrite ^ https://www.village.ngo/en/$1?$args permanent;
         # }
         # '';
-      locations."/en/" = {
-        proxyPass = "http://127.0.0.1:8896/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8896/";
-        extraConfig = nginxLocationWagtailExtraConfig;
-      };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
+      # locations."/en/" = {
+      #   proxyPass = "http://127.0.0.1:8896/";
+      #   extraConfig = nginxLocationWagtailExtraConfig;
+      # };
+      # locations."/" = {
+      #   proxyPass = "http://127.0.0.1:8896/";
+      #   extraConfig = nginxLocationWagtailExtraConfig;
+      # };
+      # locations."/favicon.ico" = { proxyPass = null; };
+      # locations."/static" = { proxyPass = null; };
+      # locations."/medias" = { proxyPass = null; };
+      # locations."/.well-known" = { proxyPass = null; };
     };
     "www.village.ngo" = {
       enableACME = true;
@@ -585,6 +585,26 @@ in
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+
+    "paris14.village.ngo" = {
+      enableACME = true;
+      forceSSL = true;
+      serverAliases = [];
+      root =  "/var/www/wagtail-village/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8897/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      # extraConfig = ''
+      #   if ($host != 'wagtail.village.ngo') {
+      #     return 301 $scheme://wagtail.cfran.org$request_uri;
+      #   }
+      # '';
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
   };
