@@ -830,6 +830,7 @@ in
           '';
           }
         )
+        pkgs.postgresql_13
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
