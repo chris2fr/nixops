@@ -341,7 +341,7 @@ in
               proxy_set_header X-Real-IP $remote_addr;
               proxy_redirect off;
               proxy_set_header   Host $host;
-              proxy_pass         https://192.168.104.11:80/;
+              proxy_pass         http://192.168.104.11:80/;
               # proxy_set_header   Upgrade $http_upgrade;
               # proxy_set_header   Connection "upgrade";
           '';
