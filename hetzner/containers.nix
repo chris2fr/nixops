@@ -830,6 +830,7 @@ in
         )
         postgresql_13
         git
+        lynx
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
@@ -874,6 +875,8 @@ in
               authentication = "plain";
               username = "gv@village.ngo";
               passwordFile = "/etc/.secrets.gvvillagengo";
+              port = 587;
+
             };
           };
         };
