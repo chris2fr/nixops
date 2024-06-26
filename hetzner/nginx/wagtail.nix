@@ -590,7 +590,7 @@ in
     "paris14.village.ngo" = {
       enableACME = true;
       forceSSL = true;
-      root =  "/var/www/wagtail/";
+      root =  "/var/www/village/";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8896/";
         extraConfig = nginxLocationWagtailExtraConfig;
