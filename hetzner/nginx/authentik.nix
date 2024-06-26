@@ -33,6 +33,7 @@ in
         locations = {
           "/realms/master/.well-known/openid-configuration" = {
             try_files =  "$uri =404";
+            priority = 10;
           };
           "/" = {
             extraConfig = ''
@@ -40,6 +41,7 @@ in
                 return 302 $scheme://wagtail.cfran.org$request_uri;
               }
             '';
+            priority = 20;
           };
         };
 
