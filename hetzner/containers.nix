@@ -884,12 +884,12 @@ in
   };
 
   containers.keycloak = {
-    # bindMounts = {
-    #   "/var/lib/acme/keycloak.village.ngo/" = {
-    #     hostPath = "/var/lib/acme/keycloak.village.ngo/";
-    #     isReadOnly = true;
-    #   }; 
-    # };
+    bindMounts = {
+      "/var/lib/acme/keycloak.village.ngo/" = {
+        hostPath = "/var/lib/acme/keycloak.village.ngo/";
+        isReadOnly = true;
+      }; 
+    };
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.105.10";
