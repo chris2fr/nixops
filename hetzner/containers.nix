@@ -946,11 +946,10 @@ in
           };
           "acme" = {
             uid = 994;
-            gid = 993;
+            group = "acme";
           };
           "wwwrun" = {
             uid = 54;
-            gid = 54;
           };
         };
       };
