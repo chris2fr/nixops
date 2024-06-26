@@ -896,11 +896,11 @@ in
       }; 
     };
     autoStart = true;
-    privateNetwork = true;
-    hostAddress = "192.168.105.10";
-    localAddress = "192.168.105.11";
-    hostAddress6 = "fa01::1";
-    localAddress6 = "fa01::2";
+    # privateNetwork = true;
+    # hostAddress = "192.168.105.10";
+    # localAddress = "192.168.105.11";
+    # hostAddress6 = "fa01::1";
+    # localAddress6 = "fa01::2";
     config = { config, pkgs, lib, ...  }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
@@ -926,6 +926,7 @@ in
         openldap
       ];
       # virtualisation.docker.enable = true;
+      networking.firewall.allowedTCPPorts = [  443 587 12443 ]; 
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {

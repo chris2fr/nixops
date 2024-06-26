@@ -30,20 +30,6 @@ in
         enableACME = true;
         forceSSL = true;
         root = "/var/www/keycloakvillagengo";
-        locations = {
-          "/realms/master/.well-known/openid-configuration/" = {
-            try_files =  "$uri =404";
-            priority = 10;
-          };
-          "/" = {
-            extraConfig = ''
-              if ($host != 'wagtail.village.ngo') {
-                return 302 $scheme://wagtail.cfran.org$request_uri;
-              }
-            '';
-            priority = 20;
-          };
-        };
 
         # globalRedirect = "keycloak.village.ngo:12443";
         # locations."/" = {
