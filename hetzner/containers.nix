@@ -861,6 +861,7 @@ in
           enableACME = false;
           plugins = [
           config.services.discourse.package.plugins.discourse-openid-connect
+          config.services.discourse.package.plugins.discourse-oauth2-basic
           ];
           admin = {
             email = "chris@village.ngo";
