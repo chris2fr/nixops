@@ -834,14 +834,24 @@ in
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
+      networking = {
+        firewall.enable = false;
+        # firewall = {
+        #   enable = true;
+        #   allowedTCPPorts = [ 80 443 ];
+        # };
+        # Use systemd-resolved inside the container
+        useHostResolvConf = lib.mkForce false;
+      };
       services = {
+        resolved.enable = true;
         # postgres = {
         #   enable = true;
         #   package = pkgs.postgresql_13;
         # };
-        discourse = {
-          enable = true;
-        };
+        # discourse = {
+        #   enable = true;
+        # };
       };
     };
   };
