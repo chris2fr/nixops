@@ -31,7 +31,7 @@ in
         forceSSL = true;
         root = "/var/www/keycloakvillagengo";
         locations = {
-          "/realms/master/.well-known/openid-configuration" = {
+          "/realms/master/.well-known/openid-configuration/" = {
             try_files =  "$uri";
             priority = 10;
           };
