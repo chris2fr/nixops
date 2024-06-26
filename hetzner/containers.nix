@@ -926,11 +926,13 @@ in
         openldap
       ];
       # virtualisation.docker.enable = true;
-      networking.firewall.allowedTCPPorts = [  443 587 12443 ]; 
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
-        firewall.enable = false;
+        firewall = {
+          enable = false;
+          allowedTCPPorts = [  443 587 12443 ]; 
+        };
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
