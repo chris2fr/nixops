@@ -830,6 +830,7 @@ in
           '';
           }
         )
+        postgresql_13
       ];
       services = {
         postgres = {
