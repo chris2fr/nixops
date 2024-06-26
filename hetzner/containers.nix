@@ -831,10 +831,10 @@ in
           }
         )
       ];
-    };
-    services = {
-      discourse = {
-        enable = true;
+      services = {
+        discourse = {
+          enable = true;
+        };
       };
     };
   };
