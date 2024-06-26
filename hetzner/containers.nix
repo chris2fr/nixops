@@ -851,6 +851,9 @@ in
           enable = true;
           hostname = "discourse.village.ngo";
           enableACME = false;
+          admin = {
+            email = "chris@village.ngo";
+          };
         };
         postgresql = {
           enable = true;
