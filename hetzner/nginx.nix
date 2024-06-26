@@ -341,7 +341,7 @@ in
               proxy_set_header X-Real-IP $remote_addr;
               # proxy_redirect off;
               proxy_set_header   Host $host;
-              proxy_pass         https://192.168.104.11:443/;
+              proxy_pass         http://192.168.104.11:80/;
               # proxy_ssl_trusted_certificate /var/lib/acme/discourse.village.ngo/full.pem;
               # proxy_ssl_verify     off;
               # proxy_set_header   Upgrade $http_upgrade;
