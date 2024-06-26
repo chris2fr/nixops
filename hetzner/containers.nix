@@ -957,13 +957,13 @@ in
           initialAdminPassword = "kiJhKNwqcqCKU3cTERTbPbaagLowVRvzjNtt7SPWpYLUmwiK";
           database.passwordFile = "/etc/keys/.keycloak";
 
-      #     settings = {
+          settings = {
       #       https-port = 443;
       #       http-port = 80;
       #       # proxy = "passthrough";
       #       proxy = "reencrypt";
-      #       hostname = "keycloak.village.ngo";
-      #     };
+            hostname = "keycloak.village.ngo";
+          };
           sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
           sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
           
