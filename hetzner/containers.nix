@@ -871,6 +871,9 @@ in
             outgoing = {
               domain = "village.ngo";
               serverAddress = "mail.lesgrandsvoisins.com";
+              authentication = "plain";
+              username = "gv@village.ngo";
+              passwordFile = "/etc/.secrets.gvvillagengo";
             };
           };
         };
