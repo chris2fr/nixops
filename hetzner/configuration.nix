@@ -73,6 +73,16 @@ in
         proto = "tcp";
         sourcePort = 11443;
       }
+      {
+        destination = "192.168.105.11:12443";
+        proto = "tcp";
+        sourcePort = 12443;
+      }
+      {
+        destination = "192.168.105.11:12443";
+        proto = "udp";
+        sourcePort = 12443;
+      }
       ];
     };
     # firewall.enable = false;
@@ -87,6 +97,7 @@ in
     9080 9443 
     10080 10443 
     11443
+    12080 12443
     8384 22000 
     22000 21027 ];
     # interfaces."eno1".ipv6 = {
