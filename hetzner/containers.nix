@@ -844,10 +844,13 @@ in
         # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
       };
+      security.acme.acceptTerms = true;
       services = {
         resolved.enable = true;
         discourse = {
           enable = true;
+          hostname = "discourse.village.ngo";
+          enableACME = false;
         };
         postgresql = {
           enable = true;
