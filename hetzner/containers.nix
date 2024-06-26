@@ -830,7 +830,7 @@ in
           '';
           }
         )
-        pkgs.postgresql_13
+        postgresql_13
       ];
       virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
@@ -846,10 +846,10 @@ in
       };
       services = {
         resolved.enable = true;
-        # postgres = {
-        #   enable = true;
-        #   package = pkgs.postgresql_13;
-        # };
+        postgres = {
+          enable = true;
+          package = pkgs.postgresql_13;
+        };
         discourse = {
           enable = true;
         };

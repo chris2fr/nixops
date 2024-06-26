@@ -43,6 +43,7 @@ in
     cacert
     # burp
     openssl
+    postgresql_13
   ];
   boot.loader = {
     systemd-boot.enable = true;
