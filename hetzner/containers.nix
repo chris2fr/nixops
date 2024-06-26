@@ -856,7 +856,7 @@ in
           enable = true;
           hostname = "discourse.village.ngo";
           siteSettings = {
-            security.force_https = true;
+            security.forceHttps = true;
           };
           enableACME = false;
           admin = {
