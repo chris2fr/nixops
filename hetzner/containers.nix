@@ -966,7 +966,7 @@ in
       #     database.passwordFile = "/etc/.secret.keycloakdata";
       #     # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
       #   };
-      # };
+      };
     };
   };
   containers.seafile = {
