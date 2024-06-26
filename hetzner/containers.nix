@@ -883,92 +883,92 @@ in
     };
   };
 
-  containers.keycloak = {
-    # bindMounts = {
-    #   "/var/lib/acme/keycloak.village.ngo/" = {
-    #     hostPath = "/var/lib/acme/keycloak.village.ngo/";
-    #     isReadOnly = true;
-    #   }; 
-    # };
-    autoStart = true;
-    privateNetwork = true;
-    hostAddress = "192.168.105.10";
-    localAddress = "192.168.105.11";
-    hostAddress6 = "ff00::1";
-    localAddress6 = "ff00::2";
-    config = { config, pkgs, lib, ...  }: {
-      environment.systemPackages = with pkgs; [
-        ((vim_configurable.override {  }).customize{
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-          }
-        )
-        git
-      ];
-      # virtualisation.docker.enable = true;
-      system.stateVersion = "23.11";
-      nix.settings.experimental-features = "nix-command flakes";
-      networking = {
-        firewall.enable = false;
-        useHostResolvConf = lib.mkForce false;
-      };
-      # systemd.tmpfiles.rules = [
-      #  "d /var/lib/acme/keycloak.village.ngo 1750 acme wwwrun"
-      #  "f /etc/nixos/.secret.keycloakdata 0660 root root"
-      # ];
-      # security.acme.acceptTerms = true;
-      # users = {
-      #   groups = {
-      #     "acme".gid = 993;
-      #     "wwwrun".gid = 54;
-      #   };
-      #   users = {
-      #     "user" = {
-      #       createHome = true;
-      #       isNormalUser = true;
-      #     };
-      #     "acme" = {
-      #       uid = 994;
-      #       group = "acme";
-      #     };
-      #     "wwwrun" = {
-      #       uid = 54;
-      #       group = "wwwrun";
-      #     };
-      #   };
-      # };
-      services = {
-        resolved.enable = true;
-        # keycloak = {
-        #   enable = true;
-        #   settings = {
-        #     # https-port = 10443;
-        #     # http-port = 10080;
-        #     # proxy = "passthrough";
-        #     proxy = "reencrypt";
-        #     hostname = "keycloak.village.ngo";
-        #   };
-        #   sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
-        #   sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
-        #   database.passwordFile = "/etc/nixos/.secret.keycloakdata";
-        #   # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
-        # };
-      };
-    };
-  };
+  # containers.keycloak = {
+  #   # bindMounts = {
+  #   #   "/var/lib/acme/keycloak.village.ngo/" = {
+  #   #     hostPath = "/var/lib/acme/keycloak.village.ngo/";
+  #   #     isReadOnly = true;
+  #   #   }; 
+  #   # };
+  #   autoStart = true;
+  #   privateNetwork = true;
+  #   hostAddress = "192.168.105.10";
+  #   localAddress = "192.168.105.11";
+  #   hostAddress6 = "ff00::1";
+  #   localAddress6 = "ff00::2";
+  #   config = { config, pkgs, lib, ...  }: {
+  #     environment.systemPackages = with pkgs; [
+  #       ((vim_configurable.override {  }).customize{
+  #         name = "vim";
+  #         vimrcConfig.customRC = ''
+  #           " your custom vimrc
+  #           set mouse=a
+  #           set nocompatible
+  #           colo torte
+  #           syntax on
+  #           set tabstop     =2
+  #           set softtabstop =2
+  #           set shiftwidth  =2
+  #           set expandtab
+  #           set autoindent
+  #           set smartindent
+  #           " ...
+  #         '';
+  #         }
+  #       )
+  #       git
+  #     ];
+  #     # virtualisation.docker.enable = true;
+  #     system.stateVersion = "23.11";
+  #     nix.settings.experimental-features = "nix-command flakes";
+  #     networking = {
+  #       firewall.enable = false;
+  #       useHostResolvConf = lib.mkForce false;
+  #     };
+  #     # systemd.tmpfiles.rules = [
+  #     #  "d /var/lib/acme/keycloak.village.ngo 0750 acme wwwrun"
+  #     #  "f /etc/nixos/.secret.keycloakdata 0660 root root"
+  #     # ];
+  #     # security.acme.acceptTerms = true;
+  #     # users = {
+  #     #   groups = {
+  #     #     "acme".gid = 993;
+  #     #     "wwwrun".gid = 54;
+  #     #   };
+  #     #   users = {
+  #     #     "user" = {
+  #     #       createHome = true;
+  #     #       isNormalUser = true;
+  #     #     };
+  #     #     "acme" = {
+  #     #       uid = 994;
+  #     #       group = "acme";
+  #     #     };
+  #     #     "wwwrun" = {
+  #     #       uid = 54;
+  #     #       group = "wwwrun";
+  #     #     };
+  #     #   };
+  #     # };
+  #     services = {
+  #       resolved.enable = true;
+  #       # keycloak = {
+  #       #   enable = true;
+  #       #   settings = {
+  #       #     # https-port = 10443;
+  #       #     # http-port = 10080;
+  #       #     # proxy = "passthrough";
+  #       #     proxy = "reencrypt";
+  #       #     hostname = "keycloak.village.ngo";
+  #       #   };
+  #       #   sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
+  #       #   sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
+  #       #   database.passwordFile = "/etc/nixos/.secret.keycloakdata";
+  #       #   # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+  #       # };
+  #     };
+  #   };
+  # };
   containers.seafile = {
     autoStart = true;
     privateNetwork = true;
