@@ -78,11 +78,6 @@ in
         proto = "tcp";
         sourcePort = 12443;
       }
-      {
-        destination = "192.168.105.11:12443";
-        proto = "udp";
-        sourcePort = 12443;
-      }
       ];
     };
     # firewall.enable = false;
