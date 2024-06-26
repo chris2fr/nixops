@@ -340,7 +340,6 @@ in
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_redirect off;
-              proxy_set_header   X-Real-IP $remote_addr;
               proxy_set_header   Host $host;
               proxy_pass         http://192.168.104.11:80/;
               proxy_http_version 1.1;
