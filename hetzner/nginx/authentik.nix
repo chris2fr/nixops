@@ -29,7 +29,6 @@ in
       "keycloak.village.ngo" = {
         enableACME = true;
         forceSSL = true;
-        forceSSL = true;
         globalRedirect = "keycloak.village.ngo:12443";
         # locations."/" = {
         #   proxyPass = "https://keycloak.village.ngo:12443";
