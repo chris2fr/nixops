@@ -918,42 +918,38 @@ in
         )
         git
       ];
-      virtualisation.docker.enable = true;
+      # virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall.enable = false;
-        # firewall = {
-        #   enable = true;
-        #   allowedTCPPorts = [ 80 443 ];
-        # };
-        # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
       };
       # systemd.tmpfiles.rules = [
-      #  "d /var/lib/acme/keycloak.village.ngo 0750 acme wwwrun"
+      #  "d /var/lib/acme/keycloak.village.ngo 1750 acme wwwrun"
+      #  "f /etc/nixos/.secret.keycloakdata 0660 root root"
       # ];
       # security.acme.acceptTerms = true;
-      users = {
-        groups = {
-          "acme".gid = 993;
-          "wwwrun".gid = 54;
-        };
-        users = {
-          "user" = {
-            createHome = true;
-            isNormalUser = true;
-          };
-          "acme" = {
-            uid = 994;
-            group = "acme";
-          };
-          "wwwrun" = {
-            uid = 54;
-            group = "wwwrun";
-          };
-        };
-      };
+      # users = {
+      #   groups = {
+      #     "acme".gid = 993;
+      #     "wwwrun".gid = 54;
+      #   };
+      #   users = {
+      #     "user" = {
+      #       createHome = true;
+      #       isNormalUser = true;
+      #     };
+      #     "acme" = {
+      #       uid = 994;
+      #       group = "acme";
+      #     };
+      #     "wwwrun" = {
+      #       uid = 54;
+      #       group = "wwwrun";
+      #     };
+      #   };
+      # };
       services = {
         resolved.enable = true;
         # keycloak = {
