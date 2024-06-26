@@ -860,7 +860,7 @@ in
             security.forceHttps = true;
           };
           enableACME = false;
-          plugins = pkgs.discourseAllPlugins;
+          plugins = [pkgs.discourseAllPlugins];
           admin = {
             email = "chris@village.ngo";
             fullName = "Chris Mann";
