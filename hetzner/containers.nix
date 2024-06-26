@@ -203,7 +203,6 @@ in
           '';
         };
       };
-
       services = {
         resolved.enable = true;
         openssh = {
@@ -860,8 +859,9 @@ in
             security.forceHttps = true;
           };
           enableACME = false;
-          plugins = [pkgs.discourseAllPlugins 
-          config.services.discourse.package.plugins.discourse-openid-connect];
+          plugins = [
+          config.services.discourse.package.plugins.discourse-openid-connect
+          ];
           admin = {
             email = "chris@village.ngo";
             fullName = "Chris Mann";
@@ -878,6 +878,80 @@ in
         postgresql = {
           enable = true;
           package = pkgs.postgresql_13;
+        };
+      };
+    };
+  };
+
+  containers.discourse = {
+    bindMounts = {
+      "/var/lib/acme/keycloak.village.ngo/" = {
+        hostPath = "/var/lib/acme/keycloak.village.ngo/";
+        isReadOnly = true;
+      }; 
+    };
+    autoStart = true;
+    privateNetwork = true;
+    hostAddress = "192.168.105.10";
+    localAddress = "192.168.105.11";
+    hostAddress6 = "ff00::1";
+    localAddress6 = "ff00::2";
+    config = { config, pkgs, lib, ...  }: {
+      environment.systemPackages = with pkgs; [
+        ((vim_configurable.override {  }).customize{
+          name = "vim";
+          vimrcConfig.customRC = ''
+            " your custom vimrc
+            set mouse=a
+            set nocompatible
+            colo torte
+            syntax on
+            set tabstop     =2
+            set softtabstop =2
+            set shiftwidth  =2
+            set expandtab
+            set autoindent
+            set smartindent
+            " ...
+          '';
+          }
+        )
+        git
+      ];
+      virtualisation.docker.enable = true;
+      system.stateVersion = "23.11";
+      nix.settings.experimental-features = "nix-command flakes";
+      networking = {
+        firewall.enable = false;
+        # firewall = {
+        #   enable = true;
+        #   allowedTCPPorts = [ 80 443 ];
+        # };
+        # Use systemd-resolved inside the container
+        useHostResolvConf = lib.mkForce false;
+      };
+      security.acme.acceptTerms = true;
+      users.users = {
+        "user" = {
+          createHome = true;
+          isNormalUser = true
+        };
+      };
+      services = {
+        resolved.enable = true;
+        keycloak = {
+          enable = true;
+          settings = {
+            # https-port = 10443;
+            # http-port = 10080;
+            # proxy = "passthrough";
+            proxy = "reencrypt";
+            hostname = "keycloak.village.ngo";
+          };
+          sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
+          sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
+          database.passwordFile = "/etc/nixos/.secret.keycloakdata";
+          # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
         };
       };
     };
