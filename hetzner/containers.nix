@@ -859,6 +859,9 @@ in
           siteSettings = {
             security.forceHttps = true;
           };
+          plugins = with config.services.discourse.package.plugins; [
+            discourse-oauth
+          ];
           enableACME = false;
           admin = {
             email = "chris@village.ngo";
