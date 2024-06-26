@@ -832,6 +832,10 @@ in
         )
       ];
       services = {
+        postgres = {
+          enable = true;
+          package = pkgs.postgresql_13;
+        };
         discourse = {
           enable = true;
         };
