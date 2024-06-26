@@ -845,6 +845,11 @@ in
         useHostResolvConf = lib.mkForce false;
       };
       security.acme.acceptTerms = true;
+      users.users = {
+        "discourse" = {
+          createHome = true;
+        };
+      };
       services = {
         resolved.enable = true;
         discourse = {
@@ -855,6 +860,7 @@ in
             email = "chris@village.ngo";
             fullName = "Chris Mann";
             username = "chris";
+            passwordFile = "/etc/discourse/.admin"
           };
           mail = {
             outgoing = {
