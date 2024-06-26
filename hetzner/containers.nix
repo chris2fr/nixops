@@ -853,6 +853,12 @@ in
           enableACME = false;
           admin = {
             email = "chris@village.ngo";
+            fullName = "Chris Mann";
+          };
+          mail = {
+            outgoing = {
+              
+            };
           };
         };
         postgresql = {
