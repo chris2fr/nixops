@@ -807,6 +807,7 @@ in
         hostPath = "/var/lib/acme/discourse.village.ngo/";
         isReadOnly = true;
       }; 
+      # "/run/discourse/sockets/unicorn.sock"
     };
     autoStart = true;
     privateNetwork = true;
@@ -861,8 +862,8 @@ in
         discourse = {
           enable = true;
           hostname = "discourse.village.ngo";
-          sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
-          sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
+          # sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
+          # sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
           siteSettings = {
             security.forceHttps = true;
           };
