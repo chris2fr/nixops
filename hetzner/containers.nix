@@ -967,8 +967,8 @@ in
           settings = {
             https-port = 12443;
             http-port = 12080;
-            proxy = "passthrough";
-            # proxy = "reencrypt";
+            # proxy = "passthrough";
+            proxy = "reencrypt";
             hostname = "keycloak.village.ngo:12443";
           };
           sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
