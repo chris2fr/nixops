@@ -855,6 +855,9 @@ in
         discourse = {
           enable = true;
           hostname = "discourse.village.ngo";
+          siteSettings = {
+            security.force_https = true;
+          };
           enableACME = false;
           admin = {
             email = "chris@village.ngo";
@@ -867,9 +870,6 @@ in
               domain = "village.ngo";
               serverAddress = "mail.lesgrandsvoisins.com";
             };
-          };
-          siteSettings = {
-            security.force_https = true;
           };
         };
         postgresql = {
