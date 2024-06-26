@@ -952,23 +952,23 @@ in
       # };
       services = {
         resolved.enable = true;
-      #   keycloak = {
-      #     enable = true;
-      #     initialAdminPassword = "kiJhKNwqcqCKU3cTERTbPbaagLowVRvzjNtt7SPWpYLUmwiK";
-      #     database.passwordFile = "/etc/keys/.keycloak";
+        keycloak = {
+          enable = true;
+          initialAdminPassword = "kiJhKNwqcqCKU3cTERTbPbaagLowVRvzjNtt7SPWpYLUmwiK";
+          database.passwordFile = "/run/keys/.keycloak";
 
-      #     settings = {
-      # #       https-port = 443;
-      # #       http-port = 80;
-      # #       # proxy = "passthrough";
-      # #       proxy = "reencrypt";
-      #       hostname = "keycloak.village.ngo";
-      #     };
-      #     sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
-      #     sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
+          settings = {
+      #       https-port = 443;
+      #       http-port = 80;
+      #       # proxy = "passthrough";
+      #       proxy = "reencrypt";
+            hostname = "keycloak.village.ngo";
+          };
+          sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
+          sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
           
-      # #     # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
-      #   };
+      #     # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+        };
       };
     };
   };
