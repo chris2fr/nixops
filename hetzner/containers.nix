@@ -845,10 +845,10 @@ in
       };
       services = {
         resolved.enable = true;
-        # postgres = {
-        #   enable = true;
-        #   package = pkgs.postgresql_13;
-        # };
+        postgres = {
+          enable = true;
+          package = pkgs.postgresql_13;
+        };
         # discourse = {
         #   enable = true;
         # };
