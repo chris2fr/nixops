@@ -860,7 +860,7 @@ in
             email = "chris@village.ngo";
             fullName = "Chris Mann";
             username = "chris";
-            passwordFile = "/home/discourse/.secrets/.discourse/.admin";
+            passwordFile = "/etc/discourse/.admin";
           };
           mail = {
             outgoing = {
