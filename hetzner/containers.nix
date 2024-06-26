@@ -883,7 +883,7 @@ in
     };
   };
 
-  containers.discourse = {
+  containers.keycloak = {
     bindMounts = {
       "/var/lib/acme/keycloak.village.ngo/" = {
         hostPath = "/var/lib/acme/keycloak.village.ngo/";
