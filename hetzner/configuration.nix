@@ -520,10 +520,6 @@ in
 
       '';
     };
-    discourse = {
-      enable = true;
-      hostname = "discourse.village.ngo";
-    };
   };
   # services.authelia.instances = {
   #   main = {
