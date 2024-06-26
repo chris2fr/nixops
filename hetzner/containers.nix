@@ -896,7 +896,6 @@ in
     localAddress = "192.168.105.11";
     hostAddress6 = "fa01::1";
     localAddress6 = "fa01::2";
-    networking.firewall.enable = false;
     config = { config, pkgs, lib, ...  }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
