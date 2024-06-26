@@ -884,6 +884,9 @@ in
   };
 
   containers.keycloak = {
+    systemd.tmpfiles.rules = [
+       "d /var/lib/acme/keycloak.village.ngo 0750 acme wwwrun"
+    ];
     bindMounts = {
       "/var/lib/acme/keycloak.village.ngo/" = {
         hostPath = "/var/lib/acme/keycloak.village.ngo/";
@@ -935,6 +938,14 @@ in
         "user" = {
           createHome = true;
           isNormalUser = true;
+        };
+        "acme" = {
+          uid = 994;
+          gid = 993;
+        };
+        "wwwrun" = {
+          uid = 54;
+          gid = 54;
         };
       };
       services = {
