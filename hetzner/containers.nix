@@ -918,6 +918,7 @@ in
         )
         git
         lynx
+        openldap
       ];
       # virtualisation.docker.enable = true;
       system.stateVersion = "23.11";
@@ -964,7 +965,7 @@ in
             http-port = 12080;
             # proxy = "passthrough";
             proxy = "reencrypt";
-            hostname = "keycloak.village.ngo";
+            hostname = "keycloak.village.ngo:12443";
           };
           sslCertificate = "/var/lib/acme/keycloak.village.ngo/fullchain.pem";
           sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
