@@ -884,9 +884,6 @@ in
   };
 
   containers.keycloak = {
-    systemd.tmpfiles.rules = [
-       "d /var/lib/acme/keycloak.village.ngo 0750 acme wwwrun"
-    ];
     bindMounts = {
       "/var/lib/acme/keycloak.village.ngo/" = {
         hostPath = "/var/lib/acme/keycloak.village.ngo/";
@@ -933,6 +930,9 @@ in
         # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
       };
+      systemd.tmpfiles.rules = [
+       "d /var/lib/acme/keycloak.village.ngo 0750 acme wwwrun"
+      ];
       security.acme.acceptTerms = true;
       users.users = {
         "user" = {
