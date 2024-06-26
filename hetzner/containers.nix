@@ -955,8 +955,8 @@ in
         keycloak = {
           enable = true;
           settings = {
-            # https-port = 10443;
-            # http-port = 10080;
+            https-port = 443;
+            http-port = 80;
             # proxy = "passthrough";
             proxy = "reencrypt";
             hostname = "keycloak.village.ngo";
