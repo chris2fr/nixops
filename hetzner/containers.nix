@@ -39,7 +39,6 @@ let
 in
 {
   networking = {
-    
     nat = {
       enable = true;
       internalInterfaces = ["ve-+"];

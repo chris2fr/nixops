@@ -330,23 +330,23 @@ in
           enableACME = true;
           forceSSL = true;
         };
-        "keycloak.village.ngo" = {
-          enableACME = true;
-          forceSSL = true;
-          locations."/" = {
-            extraConfig = ''
-              proxy_http_version 1.1;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_redirect off;
-              proxy_set_header   Host $host;
-              proxy_pass         https://keycloak.village.ngo:12443/;
-              # proxy_set_header   Upgrade $http_upgrade;
-              # proxy_set_header   Connection "upgrade";
-          '';
-          };
-        };
+        # "keycloak.village.ngo" = {
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   locations."/" = {
+        #     extraConfig = ''
+        #       proxy_http_version 1.1;
+        #       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #       proxy_set_header X-Forwarded-Proto $scheme;
+        #       proxy_set_header X-Real-IP $remote_addr;
+        #       proxy_redirect off;
+        #       proxy_set_header   Host $host;
+        #       proxy_pass         https://keycloak.village.ngo:12443/;
+        #       # proxy_set_header   Upgrade $http_upgrade;
+        #       # proxy_set_header   Connection "upgrade";
+        #   '';
+        #   };
+        # };
       };
     };
   };
