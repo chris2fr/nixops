@@ -868,6 +868,9 @@ in
               serverAddress = "mail.lesgrandsvoisins.com";
             };
           };
+          siteSettings = {
+            security.force_https = true;
+          };
         };
         postgresql = {
           enable = true;
