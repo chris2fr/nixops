@@ -846,9 +846,9 @@ in
       };
       services = {
         resolved.enable = true;
-        discourse = {
-          enable = true;
-        };
+        # discourse = {
+        #   enable = true;
+        # };
       };
     };
   };
