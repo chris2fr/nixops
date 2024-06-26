@@ -330,7 +330,7 @@ in
           enableACME = true;
           forceSSL = true;
         };
-        "discourse.village.ngo" = {
+        "keycloak.village.ngo" = {
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -341,7 +341,7 @@ in
               proxy_set_header X-Real-IP $remote_addr;
               proxy_redirect off;
               proxy_set_header   Host $host;
-              proxy_pass         http://192.168.104.11:80/;
+              proxy_pass         http://192.168.105.11:443/;
               # proxy_set_header   Upgrade $http_upgrade;
               # proxy_set_header   Connection "upgrade";
           '';

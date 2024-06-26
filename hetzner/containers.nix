@@ -934,7 +934,7 @@ in
       users.users = {
         "user" = {
           createHome = true;
-          isNormalUser = true
+          isNormalUser = true;
         };
       };
       services = {
