@@ -802,6 +802,12 @@ in
     };
   };
   containers.discourse = {
+    bindMounts = {
+      "/var/lib/acme/discourse.village.ngo/" = {
+        hostPath = "/var/lib/acme/discourse.village.ngo/";
+        isReadOnly = true;
+      }; 
+    };
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.104.10";
@@ -855,6 +861,8 @@ in
         discourse = {
           enable = true;
           hostname = "discourse.village.ngo";
+          sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
+          sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
           siteSettings = {
             security.forceHttps = true;
           };
@@ -877,7 +885,6 @@ in
               username = "gv@village.ngo";
               passwordFile = "/etc/.secrets.gvvillagengo";
               port = 587;
-
             };
           };
         };

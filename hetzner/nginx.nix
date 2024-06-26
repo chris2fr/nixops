@@ -342,6 +342,8 @@ in
               proxy_redirect off;
               proxy_set_header   Host $host;
               proxy_pass         http://192.168.104.11:80/;
+              proxy_ssl_trusted_certificate /var/lib/acme/discourse.village.ngo/full.pem;
+              proxy_ssl_verify     off;
               # proxy_set_header   Upgrade $http_upgrade;
               # proxy_set_header   Connection "upgrade";
           '';
