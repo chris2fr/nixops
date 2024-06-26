@@ -860,7 +860,8 @@ in
             security.forceHttps = true;
           };
           enableACME = false;
-          plugins = [pkgs.discourseAllPlugins];
+          plugins = [pkgs.discourseAllPlugins 
+          config.services.discourse.package.plugins.discourse-openid-connect];
           admin = {
             email = "chris@village.ngo";
             fullName = "Chris Mann";
