@@ -854,10 +854,12 @@ in
           admin = {
             email = "chris@village.ngo";
             fullName = "Chris Mann";
+            username = "chris";
           };
           mail = {
             outgoing = {
-              
+              domaine = "village.ngo";
+              serverAddress = "mail.lesgrandsvoisins.com";
             };
           };
         };
