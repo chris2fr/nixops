@@ -965,7 +965,7 @@ in
       #     sslCertificateKey = "/var/lib/acme/keycloak.village.ngo/key.pem";
       #     database.passwordFile = "/etc/.secret.keycloakdata";
       #     # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
-      #   };
+      #  };
       };
     };
   };
