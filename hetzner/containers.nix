@@ -934,18 +934,24 @@ in
        "d /var/lib/acme/keycloak.village.ngo 0750 acme wwwrun"
       ];
       security.acme.acceptTerms = true;
-      users.users = {
-        "user" = {
-          createHome = true;
-          isNormalUser = true;
+      users = {
+        groups = {
+          "acme".gid = 993;
+          "wwwrun".gid = 54;
         };
-        "acme" = {
-          uid = 994;
-          gid = 993;
-        };
-        "wwwrun" = {
-          uid = 54;
-          gid = 54;
+        users = {
+          "user" = {
+            createHome = true;
+            isNormalUser = true;
+          };
+          "acme" = {
+            uid = 994;
+            gid = 993;
+          };
+          "wwwrun" = {
+            uid = 54;
+            gid = 54;
+          };
         };
       };
       services = {
