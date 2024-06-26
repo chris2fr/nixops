@@ -333,7 +333,7 @@ in
         "discourse.village.ngo" = {
           enableACME = true;
           forceSSL = true;
-          locations."/". = {
+          locations."/" = {
             proxyPass = 'http://192.168.104.11';
             extraConfig = ''
               proxy_set_header Host $http_host;
