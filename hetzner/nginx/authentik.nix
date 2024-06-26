@@ -32,7 +32,7 @@ in
         root = "/var/www/keycloakvillagengo";
         locations = {
           "/realms/master/.well-known/openid-configuration/" = {
-            try_files =  "$uri";
+            try_files =  "$uri =404";
             priority = 10;
           };
           "/" = {
