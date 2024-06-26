@@ -955,7 +955,10 @@ in
         keycloak = {
           enable = true;
           initialAdminPassword = "kiJhKNwqcqCKU3cTERTbPbaagLowVRvzjNtt7SPWpYLUmwiK";
-          database.passwordFile = "/run/keys/.keycloak";
+          database = {
+            passwordFile = "/run/keys/.keycloak";
+            useSSL = false;
+          };
 
           settings = {
             https-port = 12443;
