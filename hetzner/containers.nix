@@ -861,6 +861,7 @@ in
         groups = {
           "acme" = {
             gid = 993;
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
@@ -991,7 +992,7 @@ in
         groups = {
           "acme" = {
             gid = 993;
-            members ["acme"];
+            members = ["acme"];
           };
           "wwwrun" = {
             gid = 54;
