@@ -312,7 +312,8 @@ in
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:8882/";
         };        
-        "silverbullet.resdigita.com" = {
+        "silverbullet.village.ngo" = {
+          serverAliases = ["silverbullet.resdigita.com"];
           enableACME = true;
           forceSSL = true;
           #locations."/".proxyPass = "http://10.245.101.35:3000/";
