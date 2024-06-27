@@ -881,12 +881,12 @@ in
           };
           mail = {
             outgoing = {
-              domain = "village.ngo";
               serverAddress = "mail.lesgrandsvoisins.com";
-              authentication = "plain";
+              authentication = "login";
               username = "gv@village.ngo";
               passwordFile = "/etc/.secrets.gvvillagengo";
               port = 587;
+              forceTLS = true;
             };
           };
         };
