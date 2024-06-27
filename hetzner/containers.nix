@@ -860,6 +860,9 @@ in
       services = {
         resolved.enable = true;
         nginx.virtualHosts."discourse.village.ngo" = {
+          sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
+          sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
+          addSSL = true;
           locations."/" = {
             proxyPass = "http://unix:/var/discourse/shared/standalone/nginx.http.sock";
             extraConfig = ''
