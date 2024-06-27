@@ -922,9 +922,9 @@ in
               authentication = "plain";
               username = "gv@village.ngo";
               passwordFile = "/etc/.secrets.gvvillagengo";
-              port = 587;
-              forceTLS = true;
-              opensslVerifyMode = "none";
+              # port = 587;
+              # forceTLS = true;
+              # opensslVerifyMode = "none";
             };
           };
         };
@@ -989,8 +989,14 @@ in
       # security.acme.acceptTerms = true;
       users = {
         groups = {
-          "acme".gid = 993;
-          "wwwrun".gid = 54;
+          "acme" = {
+            gid = 993;
+            members ["acme"];
+          };
+          "wwwrun" = {
+            gid = 54;
+            members ["acme" "wwwrun"];
+          };
         };
         users = {
           "acme" = {
