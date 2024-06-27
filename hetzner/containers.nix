@@ -861,7 +861,7 @@ in
         resolved.enable = true;
         nginx.virtualHosts."discourse.village.ngo" = {
           locations."/" = {
-            ProxyPass = "http://unix:/var/discourse/shared/standalone/nginx.http.sock";
+            proxyPass = "http://unix:/var/discourse/shared/standalone/nginx.http.sock";
             extraConfig = ''
               proxy_set_header Host $http_host;
               proxy_http_version 1.1;
