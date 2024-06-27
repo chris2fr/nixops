@@ -859,8 +859,13 @@ in
       # };
       users = {
         groups = {
-          "acme".gid = 993;
-          "wwwrun".gid = 54;
+          "acme" = {
+            gid = 993;
+          };
+          "wwwrun" = {
+            gid = 54;
+            members = ["nginx" "discourse"];
+          };
         };
         users = {
           "acme" = {
@@ -870,7 +875,6 @@ in
           "wwwrun" = {
             uid = 54;
             group = "wwwrun";
-            members = ["nginx" "discourse"];
           };
         };
       };
