@@ -862,7 +862,6 @@ in
         nginx.virtualHosts."discourse.village.ngo" = {
           sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
           sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
-          addSSL = true;
           locations."/" = {
             proxyPass = "http://unix:/var/discourse/shared/standalone/nginx.http.sock";
             extraConfig = ''
@@ -871,6 +870,8 @@ in
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Real-IP $remote_addr;
+              proxy_ssl_trusted_certificate /var/lib/acme/discourse.village.ngo/full.pem;
+              proxy_ssl_verify     off;
             '';
           };
         };
