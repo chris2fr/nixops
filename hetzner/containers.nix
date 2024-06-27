@@ -859,41 +859,41 @@ in
       # };
       services = {
         resolved.enable = true;
-        # discourse = {
-        #   enable = true;
-        #   hostname = "discourse.village.ngo";
-        #   # sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
-        #   # sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
-        #   siteSettings = {
-        #     security.forceHttps = true;
-        #   };
-        #   enableACME = false;
-        #   # plugins = [ 
-        #   #   # config.services.discourse.package.plugins.discourse-openid-connect
-        #   #   # config.services.discourse.package.plugins.discourse-oauth2-basic
-        #   #   # config.services.discourse.package.plugins.discourse-saml
-        #   # ];
-        #   admin = {
-        #     email = "gv@village.ngo";
-        #     fullName = "Super Admin";
-        #     username = "admin";
-        #     passwordFile = "/etc/discourse/.admin";
-        #   };
-        #   mail = {
-        #     outgoing = {
-        #       serverAddress = "mail.lesgrandsvoisins.com";
-        #       authentication = "plain";
-        #       username = "gv@village.ngo";
-        #       passwordFile = "/etc/.secrets.gvvillagengo";
-        #       port = 587;
-        #       forceTLS = true;
-        #     };
-        #   };
-        # };
-        # postgresql = {
-        #   enable = true;
-        #   package = pkgs.postgresql_13;
-        # };
+        discourse = {
+          enable = true;
+          hostname = "discourse.village.ngo";
+          # sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
+          # sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
+          siteSettings = {
+            security.forceHttps = true;
+          };
+          enableACME = false;
+          # plugins = [ 
+          #   # config.services.discourse.package.plugins.discourse-openid-connect
+          #   # config.services.discourse.package.plugins.discourse-oauth2-basic
+          #   # config.services.discourse.package.plugins.discourse-saml
+          # ];
+          admin = {
+            email = "gv@village.ngo";
+            fullName = "Super Admin";
+            username = "admin";
+            passwordFile = "/etc/discourse/.admin";
+          };
+          mail = {
+            outgoing = {
+              serverAddress = "mail.lesgrandsvoisins.com";
+              authentication = "plain";
+              username = "gv@village.ngo";
+              passwordFile = "/etc/.secrets.gvvillagengo";
+              port = 587;
+              forceTLS = true;
+            };
+          };
+        };
+        postgresql = {
+          enable = true;
+          package = pkgs.postgresql_13;
+        };
       };
     };
   };
