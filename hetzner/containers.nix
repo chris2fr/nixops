@@ -859,11 +859,16 @@ in
       # };
       services = {
         resolved.enable = true;
+        nginx.virtualHosts."discourse.village.ngo" = {
+          locations."/" = {
+            
+          };
+        };
         discourse = {
           enable = true;
           hostname = "discourse.village.ngo";
-          # sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
-          # sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
+          sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
+          sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
           siteSettings = {
             security.forceHttps = true;
           };
