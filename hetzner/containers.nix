@@ -852,11 +852,11 @@ in
         useHostResolvConf = lib.mkForce false;
       };
       security.acme.acceptTerms = true;
-      users.users = {
-        "discourse" = {
-          createHome = true;
-        };
-      };
+      # users.users = {
+      #   "discourse" = {
+      #     createHome = true;
+      #   };
+      # };
       services = {
         resolved.enable = true;
         # discourse = {
