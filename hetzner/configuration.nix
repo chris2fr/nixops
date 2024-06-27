@@ -335,11 +335,11 @@ in
         auth = {
           local.enabled = false;
           openid.enabled = true;
-          openid.redirecturl = "https://vikunja.resdigita.com/auth/openid/";
+          openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
           openid.providers = [{
             name = "ResDigita";
-            authurl = "https://keycloak.resdigita.com/realms/master";
-            logouturl = "https://keycloak.resdigita.com/realms/master/protocol/openid-connect/logout";
+            authurl = "https://keycloak.village.ngo/realms/master";
+            logouturl = "https://keycloak.village.ngo/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
             clientsecret = keycloakVikunja;
           }];

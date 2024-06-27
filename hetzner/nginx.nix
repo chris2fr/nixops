@@ -323,8 +323,9 @@ in
               proxy_redirect off;
             '';
         };
-        "vikunja.resdigita.com" = {
+        "vikunja.village.ngo" = {
           serverAliases = [
+            "vikunja.resdigita.com"
             "vikunja.gv.coop" 
             "vikunja.lesgv.org"];
           enableACME = true;
