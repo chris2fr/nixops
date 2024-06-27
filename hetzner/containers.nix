@@ -892,11 +892,11 @@ in
             security.forceHttps = true;
           };
           enableACME = false;
-          # plugins = [ 
-          #   # config.services.discourse.package.plugins.discourse-openid-connect
-          #   # config.services.discourse.package.plugins.discourse-oauth2-basic
-          #   # config.services.discourse.package.plugins.discourse-saml
-          # ];
+          plugins = [ 
+            config.services.discourse.package.plugins.discourse-openid-connect
+            # config.services.discourse.package.plugins.discourse-oauth2-basic
+            # config.services.discourse.package.plugins.discourse-saml
+          ];
           admin = {
             email = "gv@village.ngo";
             fullName = "Super Admin";
