@@ -355,20 +355,20 @@ in
       enable = true;
       settings.PermitRootLogin = "prohibit-password";
     };
-    keycloak = {
-      enable = true;
-      settings = {
-        https-port = 10443;
-        http-port = 10080;
-        # proxy = "passthrough";
-        proxy = "reencrypt";
-        hostname = "keycloak.resdigita.com";
-      };
-      sslCertificate = "/var/lib/acme/keycloak.resdigita.com/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/keycloak.resdigita.com/key.pem";
-      database.passwordFile = "/etc/nixos/.secret.keycloakdata";
-      # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
-    };
+    # keycloak = {
+    #   enable = true;
+    #   settings = {
+    #     https-port = 10443;
+    #     http-port = 10080;
+    #     # proxy = "passthrough";
+    #     proxy = "reencrypt";
+    #     hostname = "keycloak.resdigita.com";
+    #   };
+    #   sslCertificate = "/var/lib/acme/keycloak.resdigita.com/fullchain.pem";
+    #   sslCertificateKey = "/var/lib/acme/keycloak.resdigita.com/key.pem";
+    #   database.passwordFile = "/etc/nixos/.secret.keycloakdata";
+    #   # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
+    # };
     haproxy = {
       enable = true;
       config = ''
