@@ -335,13 +335,13 @@ in
           forceSSL = true;
           locations."/" = {
             extraConfig = ''
-              proxy_http_version 1.1;
+              # proxy_http_version 1.1;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Real-IP $remote_addr;
               # proxy_redirect off;
-              proxy_set_header   Host $host;
-              proxy_pass         http://192.168.104.11:80/;
+              # proxy_set_header   Host $host;
+              proxy_pass         http://192.168.104.11;
               # proxy_ssl_trusted_certificate /var/lib/acme/discourse.village.ngo/full.pem;
               # proxy_ssl_verify     off;
               # proxy_set_header   Upgrade $http_upgrade;

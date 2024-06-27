@@ -874,9 +874,9 @@ in
             # config.services.discourse.package.plugins.discourse-saml
           ];
           admin = {
-            email = "chris@village.ngo";
-            fullName = "Chris Mann";
-            username = "chris";
+            email = "gv@village.ngo";
+            fullName = "Super Admin";
+            username = "admin";
             passwordFile = "/etc/discourse/.admin";
           };
           mail = {
