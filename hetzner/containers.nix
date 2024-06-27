@@ -861,7 +861,7 @@ in
         groups = {
           "wwwrun" = {
             gid = 54;
-            members = ["nginx" "discourse"]
+            members = ["nginx" "discourse"];
           };
         };
       };
