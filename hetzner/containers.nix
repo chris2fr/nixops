@@ -857,6 +857,14 @@ in
       #     createHome = true;
       #   };
       # };
+      users = {
+        groups = {
+          "wwwrun" = {
+            gid = 54;
+            members = ["nginx"]
+          };
+        };
+      };
       services = {
         resolved.enable = true;
         nginx.virtualHosts."discourse.village.ngo" = {
