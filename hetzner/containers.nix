@@ -871,7 +871,7 @@ in
           plugins = [
           config.services.discourse.package.plugins.discourse-openid-connect
           config.services.discourse.package.plugins.discourse-oauth2-basic
-          config.services.discourse.package.plugins.discourse-saml
+          # config.services.discourse.package.plugins.discourse-saml
           ];
           admin = {
             email = "chris@village.ngo";
