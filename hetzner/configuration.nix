@@ -312,7 +312,7 @@ in
     vikunja = {
       enable = true;
       frontendScheme = "https";
-      frontendHostname = "vikunja.resdigita.com";
+      frontendHostname = "vikunja.village.ngo";
       # database.type = "postgres";
       settings = {
         mailer = {
