@@ -337,7 +337,7 @@ in
           openid.enabled = true;
           openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
           openid.providers = [{
-            name = "ResDigita";
+            name = "VillageNgo";
             authurl = "https://keycloak.village.ngo/realms/master";
             logouturl = "https://keycloak.village.ngo/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
