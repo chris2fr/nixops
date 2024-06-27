@@ -996,7 +996,6 @@ in
           "wwwrun" = {
             uid = 54;
             group = "wwwrun";
-            members = ["nginx" "keycloak"];
           };
         };
       };
