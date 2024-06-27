@@ -342,7 +342,7 @@ in
           #       proxy_set_header   Host $host;
           #       proxy_redirect off;
           #   '';
-          };
+          # };
         };
         "discourse.village.ngo" = {
           enableACME = true;
