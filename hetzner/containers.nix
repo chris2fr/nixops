@@ -859,8 +859,17 @@ in
       # };
       users = {
         groups = {
+          "acme".gid = 993;
+          "wwwrun".gid = 54;
+        };
+        users = {
+          "acme" = {
+            uid = 994;
+            group = "acme";
+          };
           "wwwrun" = {
-            gid = 54;
+            uid = 54;
+            group = "wwwrun";
             members = ["nginx" "discourse"];
           };
         };
@@ -974,26 +983,23 @@ in
        "f /etc/.secret.keycloakdata 0660 root root"
       ];
       # security.acme.acceptTerms = true;
-      # users = {
-      #   groups = {
-      #     "acme".gid = 993;
-      #     "wwwrun".gid = 54;
-      #   };
-      #   users = {
-      #     "user" = {
-      #       createHome = true;
-      #       isNormalUser = true;
-      #     };
-      #     "acme" = {
-      #       uid = 994;
-      #       group = "acme";
-      #     };
-      #     "wwwrun" = {
-      #       uid = 54;
-      #       group = "wwwrun";
-      #     };
-      #   };
-      # };
+      users = {
+        groups = {
+          "acme".gid = 993;
+          "wwwrun".gid = 54;
+        };
+        users = {
+          "acme" = {
+            uid = 994;
+            group = "acme";
+          };
+          "wwwrun" = {
+            uid = 54;
+            group = "wwwrun";
+            members = ["nginx" "keycloak"];
+          };
+        };
+      };
       services = {
         resolved.enable = true;
         keycloak = {
