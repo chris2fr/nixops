@@ -882,7 +882,7 @@ in
           mail = {
             outgoing = {
               serverAddress = "mail.lesgrandsvoisins.com";
-              authentication = "login";
+              authentication = "plain";
               username = "gv@village.ngo";
               passwordFile = "/etc/.secrets.gvvillagengo";
               port = 587;
