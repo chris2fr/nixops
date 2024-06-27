@@ -923,7 +923,6 @@ in
               authentication = "plain";
               username = "gv@village.ngo";
               passwordFile = "/etc/.secrets.gvvillagengo";
-              notificationEmailAddress = "gv@village.ngo";
               # port = 587;
               # forceTLS = true;
               # opensslVerifyMode = "none";
