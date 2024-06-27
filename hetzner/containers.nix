@@ -861,7 +861,14 @@ in
         resolved.enable = true;
         nginx.virtualHosts."discourse.village.ngo" = {
           locations."/" = {
-            
+            ProxyPass = "http://unix:/var/discourse/shared/standalone/nginx.http.sock";
+            extraConfig = ''
+              proxy_set_header Host $http_host;
+              proxy_http_version 1.1;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Real-IP $remote_addr;
+            '';
           };
         };
         discourse = {
@@ -892,6 +899,7 @@ in
               passwordFile = "/etc/.secrets.gvvillagengo";
               port = 587;
               forceTLS = true;
+              opensslVerifyMode = "none";
             };
           };
         };
