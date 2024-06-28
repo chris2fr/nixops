@@ -127,6 +127,10 @@ in
         firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 ];
         useHostResolvConf = lib.mkForce false;
       };
+      networking.extraHosts = ''
+        116.202.236.241 lesgrandsvoisins.com blog.lesgrandsvoisins.com 
+        2a01:4f8:241:4faa:: lesgrandsvoisins.com blog.lesgrandsvoisins.com
+      '';
       system = {
         copySystemConfiguration = true;
         stateVersion = "23.11";
@@ -318,6 +322,10 @@ in
         # nameservers = ["8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844"];
         # nameservers = ["8.8.8.8" "8.8.4.4"];
       };
+      networking.extraHosts = ''
+        116.202.236.241 lesgrandsvoisins.com blog.lesgrandsvoisins.com 
+        2a01:4f8:241:4faa:: lesgrandsvoisins.com blog.lesgrandsvoisins.com
+      '';
       users.users = {
         mannchri.isNormalUser = true;
         silverbullet.isNormalUser = true;
@@ -585,6 +593,10 @@ in
         # Use systemd-resolved inside the container
         # useHostResolvConf = lib.mkForce false;
       #};
+      networking.extraHosts = ''
+        116.202.236.241 lesgrandsvoisins.com blog.lesgrandsvoisins.com 
+        2a01:4f8:241:4faa:: lesgrandsvoisins.com blog.lesgrandsvoisins.com
+      '';
         
       # services.resolved.enable = true;
 
@@ -851,6 +863,10 @@ in
         # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
       };
+      networking.extraHosts = ''
+        116.202.236.241 lesgrandsvoisins.com blog.lesgrandsvoisins.com 
+        2a01:4f8:241:4faa:: lesgrandsvoisins.com blog.lesgrandsvoisins.com
+      '';
       security.acme.acceptTerms = true;
       # users.users = {
       #   "discourse" = {
@@ -984,6 +1000,10 @@ in
         };
         useHostResolvConf = lib.mkForce false;
       };
+      networking.extraHosts = ''
+        116.202.236.241 lesgrandsvoisins.com blog.lesgrandsvoisins.com 
+        2a01:4f8:241:4faa:: lesgrandsvoisins.com blog.lesgrandsvoisins.com
+      '';
       systemd.tmpfiles.rules = [
        "f /etc/.secret.keycloakdata 0660 root root"
       ];
@@ -1156,6 +1176,10 @@ in
         # Use systemd-resolved inside the container
         useHostResolvConf = lib.mkForce false;
       };
+      networking.extraHosts = ''
+        116.202.236.241 lesgrandsvoisins.com blog.lesgrandsvoisins.com 
+        2a01:4f8:241:4faa:: lesgrandsvoisins.com blog.lesgrandsvoisins.com
+      '';
       users.users.seafile = {
         isNormalUser = true;
         extraGroups = ["docker"];
