@@ -221,6 +221,10 @@ in
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www";
   };
+  networking.extraHosts = ''
+    116.202.236.241 lesgrandsvoisins.com blog.lesgrandsvoisins.com 
+    2a01:4f8:241:4faa:: lesgrandsvoisins.com blog.lesgrandsvoisins.com
+  '';
   services= {
     syncthing = {
       enable = true;
