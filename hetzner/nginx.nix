@@ -331,6 +331,11 @@ in
             "vikunja.lesgv.org"];
           enableACME = true;
           forceSSL = true;
+          extraConfig = ''
+            if ($host != "vikunja.village.ngo") {
+              return 302 $scheme://vikunja.village.ngo$request_uri;
+            }
+        '';
           # locations."/" = {
           #   proxyPass = "http://localhost:3456/";
           #   extraConfig = ''
