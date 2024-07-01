@@ -26,8 +26,8 @@ in
         forceSSL = true;
         locations."/".proxyPass = "http://localhost:3333/";
         extraConfig = ''
-          if ($host != "vikunja.village.ngo") {
-            return 302 $scheme://vikunja.village.ngo$request_uri;
+          if ($host != "hedgedoc.village.ngo") {
+            return 302 $scheme://hedgedoc.village.ngo$request_uri;
           }
         '';
       };
