@@ -491,8 +491,8 @@ in
       ''
           DavLockDB /tmp/DesGVDavLock
 
-          OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
-          OIDCClientID webdav
+          OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
+          OIDCClientID dav
           OIDCClientSecret ${httpd-dav-oidcclientsecret}
           OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
           OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
