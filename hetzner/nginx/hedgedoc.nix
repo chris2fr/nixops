@@ -25,6 +25,11 @@ in
         enableACME = true;
         forceSSL = true;
         locations."/".proxyPass = "http://localhost:3333/";
+        extraConfig = ''
+          if ($host != "vikunja.village.ngo") {
+            return 302 $scheme://vikunja.village.ngo$request_uri;
+          }
+        '';
       };
        "hedgedoc.gv.coop" = {
         enableACME = true;
