@@ -334,6 +334,7 @@ in
           enableACME = true;
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:37358";
+          apiUrl = "https://ete.village.ngo";
         };
         "vikunja.village.ngo" = {
           serverAliases = [
