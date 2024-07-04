@@ -232,6 +232,9 @@ in
         allowed_hosts.allowed_host1 = "ete.village.ngo";
       };
     };
+    etesync-dav = {
+      enable = true;
+    };
     syncthing = {
       enable = true;
       openDefaultPorts = true;

@@ -330,6 +330,11 @@ in
           forceSSL = true;
           locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
+        "etedav.village.ngo" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/".proxyPass = "http://localhost:37358";
+        };
         "vikunja.village.ngo" = {
           serverAliases = [
             "vikunja.resdigita.com"
