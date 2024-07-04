@@ -33,6 +33,8 @@ in
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
+      recommendedProxySettings = true;
+
       defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
       #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
       appendHttpConfig = ''
@@ -52,7 +54,6 @@ in
       # '';
       # commonHttpConfig = ''
       # '';
-      recommendedProxySettings = true;
       upstreams = {
         "authentik" = {
           extraConfig = ''
@@ -323,6 +324,11 @@ in
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_redirect off;
             '';
+        };
+        "ete.village.ngo" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
         "vikunja.village.ngo" = {
           serverAliases = [
