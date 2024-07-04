@@ -232,13 +232,13 @@ in
         allowed_hosts.allowed_host1 = "ete.village.ngo";
       };
     };
-    etesync-dav = {
-      enable = true;
-      apiUrl = "https://ete.village.ngo";
-      # sslCertificate = "/var/lib/acme/ete.village.ngo/full.pem";
-      # sslCertificateKey = "/var/lib/acme/ete.village.ngo/key.pem";
-      host = "https://etedav.village.ngo";
-    };
+    # etesync-dav = {
+    #   enable = true;
+    #   apiUrl = "https://ete.village.ngo";
+    #   # sslCertificate = "/var/lib/acme/ete.village.ngo/full.pem";
+    #   # sslCertificateKey = "/var/lib/acme/ete.village.ngo/key.pem";
+    #   host = "https://etedav.village.ngo";
+    # };
     syncthing = {
       enable = true;
       openDefaultPorts = true;
