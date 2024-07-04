@@ -228,7 +228,7 @@ in
       user = "etebase-server";
       settings = {
         global.debug = false;
-        global.secret_file = "/etc/.secrets.etebase"; # mind permissions
+        global.secret_file = "/etc/nixos/.secrets.etebase"; # mind permissions
         allowed_hosts.allowed_host1 = "ete.village.ngo";
       };
     };
