@@ -221,7 +221,10 @@ in
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www";
   };
-  services= {
+  services= { 
+    etebase = {
+      enable = true;
+    };
     syncthing = {
       enable = true;
       openDefaultPorts = true;
