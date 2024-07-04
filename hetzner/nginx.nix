@@ -333,7 +333,7 @@ in
         "etedav.village.ngo" = {
           enableACME = true;
           forceSSL = true;
-          locations."/".proxyPass = "http://etedav.village.ngo:37358";
+          locations."/".proxyPass = "http://localhost:37358";
         };
         "vikunja.village.ngo" = {
           serverAliases = [
