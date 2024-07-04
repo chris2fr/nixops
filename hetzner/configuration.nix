@@ -224,7 +224,7 @@ in
   services = { 
     etebase-server = {
       enable = true;
-      unixSocket = "/var/lib/etebase-server/etebase-server.sock"; 
+      # unixSocket = "/var/lib/etebase-server/etebase-server.sock"; 
       user = "etebase-server";
       settings = {
         global.debug = false;

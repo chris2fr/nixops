@@ -328,7 +328,7 @@ in
         "ete.village.ngo" = {
           enableACME = true;
           forceSSL = true;
-          locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
+          # locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
         "vikunja.village.ngo" = {
           serverAliases = [
