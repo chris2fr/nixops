@@ -234,6 +234,10 @@ in
     };
     etesync-dav = {
       enable = true;
+      apiUrl = "https://ete.village.ngo";
+      sslCertificate = "/var/lib/acme/ete.village.ngo/full.pem";
+      sslCertificateKey = "/var/lib/acme/ete.village.ngo/key.pem";
+      host = "https://etedav.village.ngo:37358";
     };
     syncthing = {
       enable = true;
