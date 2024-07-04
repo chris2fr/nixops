@@ -74,9 +74,9 @@ in
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
-        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
-        OIDCClientID chris
-        OIDCClientSecret ${chrisSecret}
+        OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
+        OIDCClientID filebrowser
+        OIDCClientSecret ${fileBrowserSecret}
         OIDCRedirectURI https://maruftuyel.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
@@ -103,9 +103,9 @@ in
         # ProxyVia On
         ProxyAddHeaders On
         ProxyRequests Off
-        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
-        OIDCClientID chris
-        OIDCClientSecret ${chrisSecret}
+        OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
+        OIDCClientID filebrowser
+        OIDCClientSecret ${fileBrowserSecret}
         OIDCRedirectURI https://axel.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
@@ -132,9 +132,9 @@ in
         ProxyPreserveHost On
         # ProxyVia On
         ProxyAddHeaders On
-        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
-        OIDCClientID chris
-        OIDCClientSecret ${chrisSecret}
+        OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
+        OIDCClientID filebrowser
+        OIDCClientSecret ${fileBrowserSecret}
         OIDCRedirectURI https://chris.resdigita.com/redirect_uri_from_oauth2
         OIDCCryptoPassphrase UMU0I51HADokJraIaBSjpI89zhnGjuhv
         <Location "/">
@@ -161,7 +161,7 @@ in
         # ProxyVia On
         ProxyAddHeaders On
         ProxyRequests Off
-        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID filebrowser
         OIDCClientSecret ${fileBrowserSecret}
         OIDCRedirectURI https://filebrowser.resdigita.com/redirect_uri_from_oauth2
@@ -234,7 +234,7 @@ in
 
         DavLockDB /tmp/DavLockKeeWeb
 
-        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID keeweb
         OIDCClientSecret ${keewebSecret}
         OIDCRedirectURI https://keeweb.resdigita.com/redirect_uri_from_oauth2
@@ -304,7 +304,7 @@ in
         Alias /static /var/www/wagtail/static
         Alias /media /var/www/wagtail/media
         DavLockDB /tmp/DavLockSecret
-        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID keepassweb
         OIDCClientSecret  ${keepasswebSecret}
         OIDCRedirectURI https://keepass.resdigita.com/auth/redirect_uri_from_oauth2
@@ -416,7 +416,7 @@ in
       extraConfig = ''
         Alias /auth /var/www/radicale
         RedirectMatch ^/$ https://radicale.resdigita.com/auth/
-        OIDCProviderMetadataURL https://keycloak.resdigita.com/realms/master/.well-known/openid-configuration
+        OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
         OIDCClientID radicale
         OIDCClientSecret ${httpd-radicale-oidcclientsecret}
         OIDCRedirectURI https://radicale.resdigita.com/auth/keycloak-radicale-openid
@@ -718,7 +718,7 @@ in
     # };
     # "gvoisin.resdigita.com" = {
     #   serverAliases = [
-    #     "keycloak.resdigita.com"
+    #     "keycloak.village.ngo"
     #     "discourse.resdigita.com"
     #     "meet.resdigita.com"
     #     "jswiki.resdigita.com"
