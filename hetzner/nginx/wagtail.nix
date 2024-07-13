@@ -124,11 +124,11 @@ in
       forceSSL = true;
       root =  "/var/www/village/";
       extraConfig = ''
-        if ($host != 'www.village.ong') {
-          return 301 https://www.village.ong/fr/;
-        }
         location ~ /en/(.*)$ {
           rewrite ^ https://www.village.ngo/en/$1?$args permanent;
+        }
+        if ($host != 'www.village.ong') {
+          return 301 https://www.village.ong/fr/;
         }
       '';
       locations."/" = {
