@@ -120,20 +120,22 @@ in
       enableACME = true;
       serverAliases = [
         "village.ong"
-        "www.ongovillage.com"
-        "ongovillage.com"
-        "www.ongovillage.org"
-        "ongovillage.org"
-        "www.ongvillage.org"
-        "ongvillage.org"
-        "www.ongvillage.com"
-        "ongvillage.com"
         ];
       forceSSL = true;
       root =  "/var/www/village/";
       extraConfig = ''
-        return 301 https://www.village.ngo/fr/;
+      if ($host != 'www.village.ong') {
+        return 301 https://www.village.ong/fr/;
+      };
       '';
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8896/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
         # if ($host != 'www.village.ong') {
         #   return 301 $scheme://www.village.ong$request_uri;
         # }
@@ -167,7 +169,15 @@ in
         "ngovillage.org"
         "www.ngovillage.org"
         "ngvillage.org"
-        "www.ngvillage.org"
+        "www.ngvillage.org" 
+        "www.ongovillage.com"
+        "ongovillage.com"
+        "www.ongovillage.org"
+        "ongovillage.org"
+        "www.ongvillage.org"
+        "ongvillage.org"
+        "www.ongvillage.com"
+        "ongvillage.com"
       ];
       forceSSL = true;
       root =  "/var/www/village/";
