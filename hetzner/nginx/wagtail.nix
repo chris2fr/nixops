@@ -126,7 +126,7 @@ in
       extraConfig = ''
       if ($host != 'www.village.ong') {
         return 301 https://www.village.ong/fr/;
-      };
+      }
       '';
       locations."/" = {
         proxyPass = "http://127.0.0.1:8896/";
