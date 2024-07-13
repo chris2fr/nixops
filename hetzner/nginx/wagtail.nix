@@ -544,17 +544,19 @@ in
     };
 
     "lesgrandsvoisins.com" = {   
-      sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
-      sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
-      sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
+      # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
+      # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
+      # sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
+      enableACME = true;
       forceSSL = true;
       globalRedirect = "www.lesgrandsvoisins.com";
     };   
     "www.lesgrandsvoisins.com" = {      
       # serverAliases = ["lesgrandsvoisins.com"];
-      sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
-      sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
-      sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
+      # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
+      # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
+      # sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
+      enableACME = true;
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8000/";
