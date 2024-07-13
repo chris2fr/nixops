@@ -127,9 +127,9 @@ in
         location ~ /en/(.*)$ {
           rewrite ^ https://www.village.ngo/en/$1?$args permanent;
         }
-        if ($host != 'www.village.ong') {
-          return 301 https://www.village.ong/fr/;
-        }
+        # if ($host != 'www.village.ong') {
+        #   return 301 https://www.village.ong/fr/;
+        # }
       '';
       locations."/" = {
         proxyPass = "http://127.0.0.1:8896/";
@@ -188,9 +188,9 @@ in
         if ($host != 'www.village.ngo') {
           return 301 $scheme://www.village.ngo$request_uri;
         }
-        location ~ /fr/(.*)$ {
-          rewrite ^ https://www.village.ong/fr/$1?$args permanent;
-        }
+        # location ~ /fr/(.*)$ {
+        #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
+        # }
         '';
         #         location ~ /fr/(.*)$ {
         #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
