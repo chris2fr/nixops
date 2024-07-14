@@ -124,12 +124,12 @@ in
       forceSSL = true;
       root =  "/var/www/village/";
       extraConfig = ''
-        # location ~ /en/(.*)$ {
-        #   rewrite ^ https://www.village.ngo/en/$1?$args permanent;
-        # }
-        # if ($host != 'www.village.ong') {
-        #   return 301 https://www.village.ong/fr/;
-        # }
+        location ~ /en/(.*)$ {
+          rewrite ^ https://www.village.ngo/en/$1?$args permanent;
+        }
+        if ($host != 'www.village.ong') {
+          return 301 https://www.village.ong/fr/;
+        }
       '';
       locations."/" = {
         proxyPass = "http://127.0.0.1:8896/";
@@ -139,12 +139,12 @@ in
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
-        if ($host != 'www.village.ong') {
-          return 301 $scheme://www.village.ong$request_uri;
-        }
-        location ~ /en/(.*)$ {
-          rewrite ^ https://www.village.ngo/en/$1?$args permanent;
-        }
+        # if ($host != 'www.village.ong') {
+        #   return 301 $scheme://www.village.ong$request_uri;
+        # }
+        # location ~ /en/(.*)$ {
+        #   rewrite ^ https://www.village.ngo/en/$1?$args permanent;
+        # }
         # '';
       # locations."/en/" = {
       #   proxyPass = "http://127.0.0.1:8896/";
@@ -185,11 +185,11 @@ in
       forceSSL = true;
       root =  "/var/www/village/";
       extraConfig = ''
-        if ($host != 'www.village.ngo') {
-          return 301 $scheme://www.village.ngo$request_uri;
-        }
         location ~ /fr/(.*)$ {
           rewrite ^ https://www.village.ong/fr/$1?$args permanent;
+        }
+        if ($host != 'www.village.ngo') {
+          return 301 $scheme://www.village.ngo$request_uri;
         }
         '';
         #         location ~ /fr/(.*)$ {
