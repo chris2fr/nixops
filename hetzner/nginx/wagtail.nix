@@ -124,21 +124,21 @@ in
       forceSSL = true;
       root =  "/var/www/village/";
       extraConfig = ''
-        location ~ /en/(.*)$ {
-          rewrite ^ https://www.village.ngo/en/$1?$args permanent;
-        }
         if ($host != 'www.village.ong') {
           return 301 https://www.village.ong/fr/;
         }
       '';
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8896/";
-        extraConfig = nginxLocationWagtailExtraConfig;
+      locations = {
+        "/" = {
+          proxyPass = "http://127.0.0.1:8896/";
+          extraConfig = nginxLocationWagtailExtraConfig;
+        };
+        "/en/".return =  "301 http://www.village.ngo$request_uri";
+        "/favicon.ico" = { proxyPass = null; };
+        "/static" = { proxyPass = null; };
+        "/medias" = { proxyPass = null; };
+        "/.well-known" = { proxyPass = null; };
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
         # if ($host != 'www.village.ong') {
         #   return 301 $scheme://www.village.ong$request_uri;
         # }
@@ -185,9 +185,9 @@ in
       forceSSL = true;
       root =  "/var/www/village/";
       extraConfig = ''
-        location ~ /fr/(.*)$ {
-          rewrite ^ https://www.village.ong/fr/$1?$args permanent;
-        }
+        # location ~ /fr/(.*)$ {
+        #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
+        # }
         if ($host != 'www.village.ngo') {
           return 301 $scheme://www.village.ngo$request_uri;
         }
@@ -195,14 +195,17 @@ in
         #         location ~ /fr/(.*)$ {
         #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
         # }
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8896/";
-        extraConfig = nginxLocationWagtailExtraConfig;
+      locations = {
+        "/" = {
+          proxyPass = "http://127.0.0.1:8896/";
+          extraConfig = nginxLocationWagtailExtraConfig;
+        };
+        "/fr/".return =  "301 http://www.village.ong$request_uri";
+        "/favicon.ico" = { proxyPass = null; };
+        "/static" = { proxyPass = null; };
+        "/medias" = { proxyPass = null; };
+        "/.well-known" = { proxyPass = null; };
       };
-      locations."/favicon.ico" = { proxyPass = null; };
-      locations."/static" = { proxyPass = null; };
-      locations."/medias" = { proxyPass = null; };
-      locations."/.well-known" = { proxyPass = null; };
     };
     # "www.village.ong" = {
     #   enableACME = true;
