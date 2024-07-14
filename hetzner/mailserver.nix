@@ -80,6 +80,7 @@ in
       @resdigita.com chris@lesgrandsvoisins.com
       @resdigita.org chris@lesgrandsvoisins.com
       @cfran.org chris@lesgrandsvoisins.com
+      lesgdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
     '';
     
     memcached = {
