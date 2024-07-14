@@ -81,6 +81,10 @@ in
       @resdigita.org chris@lesgrandsvoisins.com
       @cfran.org chris@lesgrandsvoisins.com
       lesgdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      quiquoietc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      whowhatetc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
     '';
     
     memcached = {
