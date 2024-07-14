@@ -84,6 +84,7 @@ in
       whowhatetc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
       grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      lesgrandsvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
     '';
     
     memcached = {
