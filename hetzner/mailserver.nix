@@ -150,7 +150,7 @@ in
       #   passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
       # };
     };
-    extraVirtualAliases = [
+    extraVirtualAliases = {
       "axel.leroux@lesgrandsvoisins.com" = [
         "axel.leroux@resdigita.com  "
         "alex.leroux@resdigita.com "
@@ -183,7 +183,7 @@ in
         "@hopgv.org"
         "@gvois.com"
       ];
-    ];
+    };
     fullTextSearch = {
       enable = true;.
       # index new email as they arrive
