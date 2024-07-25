@@ -77,6 +77,16 @@ in
         gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
         grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
         lesgrandsvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+        lex.larue.fcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+        lex.larue.zytho@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+        alex.larue.kcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+        blex.larue.rock@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+        lex.larue.gml@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+        lex.larue.fcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
+        lex.larue.zytho@resdigita.com axel.leroux@lesgrandsvoisins.com
+        alex.larue.kcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
+        blex.larue.rock@resdigita.com axel.leroux@lesgrandsvoisins.com
+        lex.larue.gml@resdigita.com axel.leroux@lesgrandsvoisins.com
     '';
     
     memcached = {
