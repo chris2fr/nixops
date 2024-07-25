@@ -163,7 +163,6 @@ in
     #     "testalias@resdigita.com"
     #     "bienvenue@lesgrandsvoisins.com"
     #     "chris@lesgrandsvoisins.fr"
-    #     "bienvenue@lesgrandsvoisins.com"
     #     "chris@fastoche.org"
     #     "lesgdvoisins@lesgrandsvoisins.com"
     #     "quiquoietc@lesgrandsvoisins.com"
@@ -194,7 +193,6 @@ in
         "testalias@resdigita.com" = "chris@lesgrandsvoisins.com";
         "bienvenue@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
         "chris@lesgrandsvoisins.fr" = "chris@lesgrandsvoisins.com";
-        "bienvenue@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
         "chris@fastoche.org" = "chris@lesgrandsvoisins.com";
         "lesgdvoisins@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
         "quiquoietc@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
