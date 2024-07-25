@@ -173,8 +173,6 @@ in
     #     "@resdigita.com"
     #     "@resdigita.org"
     #     "@cfran.org"
-    #     "@gvois.org"
-    #     "@cfran.org"
     #     "@hopgv.com"
     #     "@hopgv.org"
     #     "@gvois.com"
@@ -200,7 +198,6 @@ in
         "@gvois.org" = "chris@lesgrandsvoisins.com";
         "@resdigita.com" = "chris@lesgrandsvoisins.com";
         "@resdigita.org" = "chris@lesgrandsvoisins.com";
-        "@cfran.org" = "chris@lesgrandsvoisins.com";
         "@cfran.org" = "chris@lesgrandsvoisins.com";
         "@hopgv.com" = "chris@lesgrandsvoisins.com";
         "@hopgv.org" = "chris@lesgrandsvoisins.com";
