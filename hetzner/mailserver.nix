@@ -60,32 +60,36 @@ in
     #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
   services = {
-    postfix.virtual = ''
-      testalias@resdigita.com chris@lesgrandsvoisins.com
-      axel.leroux@resdigita.com  axel.leroux@lesgrandsvoisins.com
-      alex.leroux@resdigita.com  axel.leroux@lesgrandsvoisins.com 
-      alex.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.com
-      axel.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.com
-      alex.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
-      axel.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
-      bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
-      bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      @hopgv.com chris@lesgrandsvoisins.com
-      @hopgv.org chris@lesgrandsvoisins.com
-      @gvois.com chris@lesgrandsvoisins.com
-      chris@fastoche.org chris@lesgrandsvoisins.com
-      @gvois.org chris@lesgrandsvoisins.com
-      @resdigita.com chris@lesgrandsvoisins.com
-      @resdigita.org chris@lesgrandsvoisins.com
-      @cfran.org chris@lesgrandsvoisins.com
-      lesgdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      quiquoietc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      whowhatetc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-      lesgrandsvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-    '';
+    # postfix.virtual = ''
+    #   testalias@resdigita.com chris@lesgrandsvoisins.com
+    #   axel.leroux@resdigita.com  axel.leroux@lesgrandsvoisins.com
+    #   alex.leroux@resdigita.com  axel.leroux@lesgrandsvoisins.com 
+    #   alex.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.com
+    #   axel.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.com
+    #   alex.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
+    #   axel.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
+    #   bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
+    #   bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   chris@fastoche.org chris@lesgrandsvoisins.com
+    #   lesgdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   quiquoietc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   whowhatetc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   lesgrandsvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #   @gvois.org chris@lesgrandsvoisins.com
+    #   @resdigita.com chris@lesgrandsvoisins.com
+    #   @resdigita.org chris@lesgrandsvoisins.com
+    #   @cfran.org chris@lesgrandsvoisins.com
+    #   @gvois.org chris@lesgrandsvoisins.com
+    #   @resdigita.com chris@lesgrandsvoisins.com
+    #   @resdigita.org chris@lesgrandsvoisins.com
+    #   @cfran.org chris@lesgrandsvoisins.com
+    #   @hopgv.com chris@lesgrandsvoisins.com
+    #   @hopgv.org chris@lesgrandsvoisins.com
+    #   @gvois.com chris@lesgrandsvoisins.com
+    # '';
     
     memcached = {
       enable = true;
@@ -146,6 +150,37 @@ in
       #   passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
       # };
     };
+
+    extraVirtualAliases = ''
+      testalias@resdigita.com chris@lesgrandsvoisins.com
+      axel.leroux@resdigita.com  axel.leroux@lesgrandsvoisins.com
+      alex.leroux@resdigita.com  axel.leroux@lesgrandsvoisins.com 
+      alex.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.com
+      axel.quatorzien@resdigita.com  axel.leroux@lesgrandsvoisins.com
+      alex.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
+      axel.desmoulins@resdigita.com  axel.leroux@lesgrandsvoisins.com
+      bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
+      bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      chris@fastoche.org chris@lesgrandsvoisins.com
+      lesgdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      quiquoietc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      whowhatetc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      lesgrandsvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+      @gvois.org chris@lesgrandsvoisins.com
+      @resdigita.com chris@lesgrandsvoisins.com
+      @resdigita.org chris@lesgrandsvoisins.com
+      @cfran.org chris@lesgrandsvoisins.com
+      @gvois.org chris@lesgrandsvoisins.com
+      @resdigita.com chris@lesgrandsvoisins.com
+      @resdigita.org chris@lesgrandsvoisins.com
+      @cfran.org chris@lesgrandsvoisins.com
+      @hopgv.com chris@lesgrandsvoisins.com
+      @hopgv.org chris@lesgrandsvoisins.com
+      @gvois.com chris@lesgrandsvoisins.com
+    '';
 
     fullTextSearch = {
       enable = true;
