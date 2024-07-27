@@ -133,6 +133,12 @@ in
         uidAttribute = "uid";
         #  filter = "(cn=%s)";
       };
+      indexDir = "/var/lib/dovecot/indices";
+      loginAccounts."chris@lesgrandsvoisins.com".catchAll = [
+        "lesgrandsvoisins.com"
+        "lesgrandsvoisins.fr"
+        "resdigita.com"
+      ];
       # postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
       # postfix.filter = "";
       # dovecot.userAttrs = ''
@@ -207,7 +213,8 @@ in
       autoIndex = true;
       # this only applies to plain text attachments, binary attachments are never indexed
       indexAttachments = false;
-      enforced = "body";
+      enforced = "yes";
+      memoryLimit = 2000;
     };
     # forwards = {
     #   "postmaster@lesgrandsvoisins.com" = "chris@lesgrandsvoisins.com";
