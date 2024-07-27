@@ -116,11 +116,11 @@ in
     #   };
     # };   
       indexDir = "/var/lib/dovecot/indices";
-      loginAccounts."chris@lesgrandsvoisins.com".catchAll = [
-        "lesgrandsvoisins.com"
-        "lesgrandsvoisins.fr"
-        "resdigita.com"
-      ];
+      # loginAccounts."chris@lesgrandsvoisins.com".catchAll = [
+      #   "lesgrandsvoisins.com"
+      #   "lesgrandsvoisins.fr"
+      #   "resdigita.com"
+      # ];
     ldap = {
       enable = true;
       bind = {
