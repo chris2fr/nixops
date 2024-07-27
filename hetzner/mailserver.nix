@@ -115,6 +115,12 @@ in
     #       aliases = [ "testalias@resdigita.com" ];
     #   };
     # };   
+      indexDir = "/var/lib/dovecot/indices";
+      loginAccounts."chris@lesgrandsvoisins.com".catchAll = [
+        "lesgrandsvoisins.com"
+        "lesgrandsvoisins.fr"
+        "resdigita.com"
+      ];
     ldap = {
       enable = true;
       bind = {
@@ -133,12 +139,6 @@ in
         uidAttribute = "uid";
         #  filter = "(cn=%s)";
       };
-      indexDir = "/var/lib/dovecot/indices";
-      loginAccounts."chris@lesgrandsvoisins.com".catchAll = [
-        "lesgrandsvoisins.com"
-        "lesgrandsvoisins.fr"
-        "resdigita.com"
-      ];
       # postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
       # postfix.filter = "";
       # dovecot.userAttrs = ''
