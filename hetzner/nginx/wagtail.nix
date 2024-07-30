@@ -165,7 +165,7 @@ in
       root =  "/var/www/cantine/";
       locations = {
         "/" = {
-          proxyPass = "http://127.0.0.1:8896/";
+          proxyPass = "http://127.0.0.1:8900/";
           extraConfig = nginxLocationWagtailExtraConfig;
         };
         "/fr/".return =  "301 http://www.village.ong$request_uri";

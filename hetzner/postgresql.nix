@@ -22,6 +22,7 @@ services.postgresql = {
       "village"
       "wagtailvillage"
       "resdigitaorg"
+      "cantine"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
@@ -37,6 +38,10 @@ services.postgresql = {
       }
       {
         name = "resdigitaorg";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "cantine";
         ensureDBOwnership = true;
       }
       {
