@@ -168,7 +168,7 @@ in
           proxyPass = "http://127.0.0.1:8900/";
           extraConfig = nginxLocationWagtailExtraConfig;
         };
-        "/fr/".return =  "301 http://www.village.ong$request_uri";
+        # "/fr/".return =  "301 http://www.village.ong$request_uri";
         "/favicon.ico" = { proxyPass = null; };
         "/static" = { proxyPass = null; };
         "/medias" = { proxyPass = null; };
