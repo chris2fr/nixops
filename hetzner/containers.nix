@@ -715,7 +715,7 @@ in
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/cantine/";
-          ExecStart = ''/home/wagtail/cantine/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/cantine-access.log --error-logfile /var/log/wagtail/cantine-error.log --chdir /home/wagtail/cantine --workers 12 --bind 0.0.0.0:8899 cantine.config.wsgi:application'';
+          ExecStart = ''/home/wagtail/cantine/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/cantine-access.log --error-logfile /var/log/wagtail/cantine-error.log --chdir /home/wagtail/cantine --workers 12 --bind 0.0.0.0:8899 wagtail_village.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
