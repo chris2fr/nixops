@@ -414,6 +414,14 @@ in
         hostPath = "/var/www/francemali/static";
         isReadOnly = false; 
        }; 
+       "/home/wagtail/cantine/medias" = { 
+        hostPath = "/var/www/cantine/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/cantine/staticfiles" = { 
+        hostPath = "/var/www/cantine/static";
+        isReadOnly = false; 
+       }; 
        "/home/wagtail/web-fastoche/medias" = { 
         hostPath = "/var/www/web-fastoche/medias";
         isReadOnly = false; 
@@ -685,7 +693,7 @@ in
         };
       };
       systemd.services.wagtail-village = {
-        description = "wagtail.village.org Website based on Wagtail-village";
+        description = "wagtail.village.ngo Website based on Wagtail-village";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
@@ -701,13 +709,28 @@ in
           StartLimitInterval = "1min";
         };
       };
+      systemd.services.cantine = {
+        description = "cantine.resdigita.com Website based on wagtail-village";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/cantine/";
+          ExecStart = ''/home/wagtail/cantine/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/cantine-access.log --error-logfile /var/log/wagtail/cantine-error.log --chdir /home/wagtail/cantine --workers 12 --bind 0.0.0.0:8899 cantine.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
       systemd.services.resdigitaorg = {
         description = "www.resdigita.org Website based on wagtail-village";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/resdigitaorg/";
-          # ExecStart = ''/home/wagtail/resdigitaorg/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access-facile.log --chdir /home/wagtail/resdigitaorg --workers 3 --bind unix:/var/lib/wagtail/resdigitaorg.sock facile.wsgi:application'';
           ExecStart = ''/home/wagtail/resdigitaorg/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/resdigitaorg-access.log --error-logfile /var/log/wagtail/resdigitaorg-error.log --chdir /home/wagtail/resdigitaorg --workers 12 --bind 0.0.0.0:8899 wagtail_village.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";

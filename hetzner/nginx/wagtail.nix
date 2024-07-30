@@ -159,6 +159,22 @@ in
       # locations."/medias" = { proxyPass = null; };
       # locations."/.well-known" = { proxyPass = null; };
     };
+    "cantine.resdigita.com" = {
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/cantine/";
+      locations = {
+        "/" = {
+          proxyPass = "http://127.0.0.1:8896/";
+          extraConfig = nginxLocationWagtailExtraConfig;
+        };
+        "/fr/".return =  "301 http://www.village.ong$request_uri";
+        "/favicon.ico" = { proxyPass = null; };
+        "/static" = { proxyPass = null; };
+        "/medias" = { proxyPass = null; };
+        "/.well-known" = { proxyPass = null; };
+      };
+    };
     "www.village.ngo" = {
       enableACME = true;
       serverAliases = [
