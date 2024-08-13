@@ -1672,7 +1672,6 @@ in
       }; 
     };
     config = { config, pkgs, ... }: {
-      networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 ]; 
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Paris";
       system.stateVersion = "24.05";
