@@ -1694,25 +1694,25 @@ in
           '';
           }
         )
-        python312
-        python312Packages.cherrypy
-        # python312Packages.cherrypy-cors
-        python312Packages.pyyaml
-        python312Packages.mako
-        # python312Packages.pillow
-        # python312Packages.gunicorn
-        # python312Packages.pip
+        python311
+        python311Packages.cherrypy
+        # python311Packages.cherrypy-cors
+        python311Packages.pyyaml
+        python311Packages.mako
+        # python311Packages.pillow
+        # python311Packages.gunicorn
+        # python311Packages.pip
         # libjpeg
         # zlib
         # libtiff
         # freetype
-        # python312Packages.venvShellHook
+        # python311Packages.venvShellHook
         curl
         wget
         lynx
         libclang
         # dig    
-        # python312Packages.pylibjpeg-libjpeg
+        # python311Packages.pylibjpeg-libjpeg
         git
         # tmux
         # bat
@@ -1720,11 +1720,11 @@ in
         # lzlib
         # killall
         # pwgen
-        # python312Packages.pypdf2
-        # python312Packages.python-ldap
-        # python312Packages.pq
-        python312Packages.aiosasl
-        # python312Packages.psycopg2
+        # python311Packages.pypdf2
+        # python311Packages.python-ldap
+        # python311Packages.pq
+        python311Packages.aiosasl
+        # python311Packages.psycopg2
         # gettext
         # sqlite
         # postgresql_14
@@ -1732,27 +1732,27 @@ in
         gnumake
         gcc
         glibcLocales
-        # python312Packages.manimpango
-        # python312Packages.pip
-        # python312Packages.devtools
+        # python311Packages.manimpango
+        # python311Packages.pip
+        # python311Packages.devtools
 
-        # python312Packages.django-auth-ldap
-        # python312Packages.pq
-        # python312Packages.aiosasl
-        # python312Packages.pylibjpeg-libjpeg
-        # python312Packages.virtualenv
-        # python312Packages.toolz
+        # python311Packages.django-auth-ldap
+        # python311Packages.pq
+        # python311Packages.aiosasl
+        # python311Packages.pylibjpeg-libjpeg
+        # python311Packages.virtualenv
+        # python311Packages.toolz
         # libpqxx
         # postgresql
         openldap
-        # python312Packages.pgcli
+        # python311Packages.pgcli
         # cairo
         # cairomm
-        # python312Packages.pycairo
-        # python312Packages.cairosvg
-        # python312Packages.cairocffi
-        python312Packages.devtools
-        python312Packages.pydevtool
+        # python311Packages.pycairo
+        # python311Packages.cairosvg
+        # python311Packages.cairocffi
+        python311Packages.devtools
+        python311Packages.pydevtool
         gnutls
         gnulib
         gnumake
