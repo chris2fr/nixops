@@ -1660,6 +1660,15 @@ in
   };
   containers.ffdncoin = {
     autoStart = true;
+    networking = {
+      nat = {
+        enable = true;
+        internalInterfaces = ["ve-+"];
+        externalInterface = "eno1";
+        # Lazy IPv6 connectivity for the container
+        enableIPv6 = true;
+      };
+    };
     bindMounts = { 
       "/var/local/ffdncoin" = { 
         hostPath = "/var/local/ffdncoin";
