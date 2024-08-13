@@ -23,6 +23,7 @@ services.postgresql = {
       "wagtailvillage"
       "resdigitaorg"
       "cantine"
+      "ffdncoin"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
@@ -82,6 +83,10 @@ services.postgresql = {
       }
       {
         name = "djangocfran";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "ffdncoin";
         ensureDBOwnership = true;
       }
     ]; 
