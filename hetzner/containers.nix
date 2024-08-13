@@ -1737,8 +1737,9 @@ in
       networking = {
         hostName = "ffdncoin"; 
         firewall.allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995 636 ];
-        useHostResolvConf = lib.mkForce true;
-      };        
+        useHostResolvConf = lib.mkForce false;
+      };     
+      services.resolved.enable = true;   
       users.users.ffdncoin = {
         isNormalUser = true;
         uid = 11111;
