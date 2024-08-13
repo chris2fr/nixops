@@ -1730,7 +1730,7 @@ in
         # postgresql_14
         # pipx
         # gnumake
-        # gcc
+        gcc
         # glibcLocales
         # python311Packages.manimpango
         # python311Packages.pip
