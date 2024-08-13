@@ -1661,10 +1661,10 @@ in
   containers.ffdncoin = {
     autoStart = true;
     privateNetwork = true;
-    hostAddress = "192.168.103.1";
-    localAddress = "192.168.103.111";
-    hostAddress6 = "fc00::3:1";
-    localAddress6 = "fc00::3:111"; 
+    hostAddress = "192.168.106.1";
+    localAddress = "192.168.106.2";
+    hostAddress6 = "fc00::6:1";
+    localAddress6 = "fc00::6:2"; 
     bindMounts = { 
       "/var/local/ffdncoin" = { 
         hostPath = "/var/local/ffdncoin";
@@ -1737,7 +1737,7 @@ in
       networking = {
         hostName = "wordpress"; 
         firewall.allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995 636 ];
-        useHostResolvConf = lib.mkForce true;
+        useHostResolvConf = lib.mkForce fakse;
       };        
       users.users.ffdncoin = {
         isNormalUser = true;
