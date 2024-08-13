@@ -581,7 +581,7 @@ in
         pipx
         gnumake
         poetry
-        nodejs_21
+        nodejs_22
         yarn
         ];
 
