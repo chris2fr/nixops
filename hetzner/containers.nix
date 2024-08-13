@@ -1708,12 +1708,12 @@ in
         # libtiff
         # freetype
         # python311Packages.venvShellHook
-        # curl
-        # wget
-        # lynx
+        curl
+        wget
+        lynx
         # dig    
         # python311Packages.pylibjpeg-libjpeg
-        # git
+        git
         # tmux
         # bat
         # cowsay
