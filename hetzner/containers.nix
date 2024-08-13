@@ -1739,6 +1739,8 @@ in
         libpqxx
         postgresql
         openldap
+        python311Packages.pgcli
+        cairo
         ];
       networking = {
         hostName = "ffdncoin"; 
