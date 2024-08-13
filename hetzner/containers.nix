@@ -1734,6 +1734,7 @@ in
         python311Packages.pylibjpeg-libjpeg
         python311Packages.virtualenv
         python311Packages.psycopg2
+        python311Packages.types-psycopg2
         ];
       networking = {
         hostName = "ffdncoin"; 
