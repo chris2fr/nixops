@@ -1736,6 +1736,8 @@ in
         python311Packages.pylibjpeg-libjpeg
         python311Packages.virtualenv
         python311Packages.toolz
+        libpqxx
+        postgresql
         ];
       networking = {
         hostName = "ffdncoin"; 
