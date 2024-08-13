@@ -1735,6 +1735,7 @@ in
         # python311Packages.manimpango
         # python311Packages.pip
         # python311Packages.devtools
+        
         # python311Packages.django-auth-ldap
         # python311Packages.pq
         # python311Packages.aiosasl
@@ -1743,7 +1744,7 @@ in
         # python311Packages.toolz
         # libpqxx
         # postgresql
-        # openldap
+        openldap
         # python311Packages.pgcli
         # cairo
         # cairomm
