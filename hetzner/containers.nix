@@ -1733,6 +1733,7 @@ in
         python311Packages.aiosasl
         python311Packages.pylibjpeg-libjpeg
         python311Packages.virtualenv
+        python311Packages.psycopg2
         ];
       networking = {
         hostName = "ffdncoin"; 
