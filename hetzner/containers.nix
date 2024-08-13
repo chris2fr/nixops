@@ -1696,7 +1696,7 @@ in
         )
         python311
         python311Packages.cherrypy
-        python311Packages.cherrypy-cors
+        # python311Packages.cherrypy-cors
         python311Packages.pyyaml
         python311Packages.mako
         python311Packages.mako
