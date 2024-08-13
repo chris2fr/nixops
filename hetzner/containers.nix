@@ -1741,6 +1741,10 @@ in
         openldap
         python311Packages.pgcli
         cairo
+        cairomm
+        python311Packages.pycairo
+        python311Packages.cairosvg
+        python311Packages.cairocffi
         ];
       networking = {
         hostName = "ffdncoin"; 
