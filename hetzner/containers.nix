@@ -1735,9 +1735,9 @@ in
         python311Packages.virtualenv
         ];
       networking = {
-        hostName = "wordpress"; 
+        hostName = "ffdncoin"; 
         firewall.allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995 636 ];
-        useHostResolvConf = lib.mkForce fakse;
+        useHostResolvConf = lib.mkForce true;
       };        
       users.users.ffdncoin = {
         isNormalUser = true;
