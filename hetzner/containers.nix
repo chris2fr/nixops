@@ -1652,13 +1652,13 @@ in
   #   };
   # };
   systemd.tmpfiles.rules = [
-    "d /var/local/ldapcherry 0755 ldapcherry users"
+    "d /var/local/cherryldap 0755 cherryldap users"
   ];
-  users.users.ldapcherry = {
+  users.users.cherryldap = {
     isNormalUser = true;
     uid = 11111;
   };
-  containers.ldapcherry = {
+  containers.cherryldap = {
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.106.1";
@@ -1666,8 +1666,8 @@ in
     hostAddress6 = "fc00::6:1";
     localAddress6 = "fc00::6:2"; 
     bindMounts = { 
-      "/var/local/ldapcherry" = { 
-        hostPath = "/var/local/ldapcherry";
+      "/var/local/cherryldap" = { 
+        hostPath = "/var/local/cherryldap";
         isReadOnly = false; 
       }; 
     };
@@ -1752,27 +1752,27 @@ in
         # python311Packages.cairocffi
         ];
       networking = {
-        hostName = "ldapcherry"; 
+        hostName = "cherryldap"; 
         firewall.allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995 636 ];
         useHostResolvConf = lib.mkForce false;
       };     
       services.resolved.enable = true;   
-      users.users.ldapcherry = {
+      users.users.cherryldap = {
         isNormalUser = true;
         uid = 11111;
       };
       systemd.tmpfiles.rules = [
-        "d /var/local/ldapcherry 0755 ldapcherry users"
-        "d /var/local/ldapcherry/settings_local.py 0644 ldapcherry users"
+        "d /var/local/cherryldap 0755 cherryldap users"
+        "d /var/local/cherryldap/settings_local.py 0644 cherryldap users"
       ];
 
-      # systemd.services.ldapcherry = {
+      # systemd.services.cherryldap = {
       #   description = "ResDigita FFDN Coin";
       #   after = [ "network.target" ];
       #   wantedBy = [ "multi-user.target" ];
       #   serviceConfig = {
-      #     WorkingDirectory = "/var/local/ldapcherry/";
-      #     ExecStart = ''/var/local/ldapcherry/venv/bin/gunicorn --env LDAP_ACTIVATE='true' --env='DEFAULT_FROM_EMAIL' --access-logfile /var/log/ldapcherry-access.log --error-logfile /var/log/ldapcherry-error.log --chdir /var/local/ldapcherry --workers 12 --bind 127.0.0.1:8000 lesgv.wsgi:application'';
+      #     WorkingDirectory = "/var/local/cherryldap/";
+      #     ExecStart = ''/var/local/cherryldap/venv/bin/gunicorn --env LDAP_ACTIVATE='true' --env='DEFAULT_FROM_EMAIL' --access-logfile /var/log/cherryldap-access.log --error-logfile /var/log/cherryldap-error.log --chdir /var/local/cherryldap --workers 12 --bind 127.0.0.1:8000 lesgv.wsgi:application'';
       #     Restart = "always";
       #     RestartSec = "10s";
       #     User = "wagtail";
