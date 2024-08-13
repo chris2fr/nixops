@@ -1652,13 +1652,13 @@ in
   #   };
   # };
   systemd.tmpfiles.rules = [
-    "d /var/local/ffdncoin 0755 ffdncoin users"
+    "d /var/local/ldapcherry 0755 ldapcherry users"
   ];
-  users.users.ffdncoin = {
+  users.users.ldapcherry = {
     isNormalUser = true;
     uid = 11111;
   };
-  containers.ffdncoin = {
+  containers.ldapcherry = {
     autoStart = true;
     privateNetwork = true;
     hostAddress = "192.168.106.1";
@@ -1666,8 +1666,8 @@ in
     hostAddress6 = "fc00::6:1";
     localAddress6 = "fc00::6:2"; 
     bindMounts = { 
-      "/var/local/ffdncoin" = { 
-        hostPath = "/var/local/ffdncoin";
+      "/var/local/ldapcherry" = { 
+        hostPath = "/var/local/ldapcherry";
         isReadOnly = false; 
       }; 
     };
@@ -1695,79 +1695,84 @@ in
           }
         )
         python311
-        python311Packages.pillow
-        python311Packages.gunicorn
-        python311Packages.pip
-        libjpeg
-        zlib
-        libtiff
-        freetype
-        python311Packages.venvShellHook
-        curl
-        wget
-        lynx
-        dig    
-        python311Packages.pylibjpeg-libjpeg
-        git
-        tmux
-        bat
-        cowsay
-        lzlib
-        killall
-        pwgen
-        python311Packages.pypdf2
-        python311Packages.python-ldap
-        python311Packages.pq
-        python311Packages.aiosasl
-        python311Packages.psycopg2
-        gettext
-        sqlite
-        postgresql_14
-        pipx
-        gnumake
-        gcc
-        glibcLocales
-        python311Packages.manimpango
-        python311Packages.pip
-        python311Packages.devtools
-        python311Packages.django-auth-ldap
-        python311Packages.pq
-        python311Packages.aiosasl
-        python311Packages.pylibjpeg-libjpeg
-        python311Packages.virtualenv
-        python311Packages.toolz
-        libpqxx
-        postgresql
-        openldap
-        python311Packages.pgcli
-        cairo
-        cairomm
-        python311Packages.pycairo
-        python311Packages.cairosvg
-        python311Packages.cairocffi
+        python311Packages.cherrypy
+        python311Packages.cherrypy-cors
+        python311Packages.pyyaml
+        python311Packages.mako
+        python311Packages.mako
+        # python311Packages.pillow
+        # python311Packages.gunicorn
+        # python311Packages.pip
+        # libjpeg
+        # zlib
+        # libtiff
+        # freetype
+        # python311Packages.venvShellHook
+        # curl
+        # wget
+        # lynx
+        # dig    
+        # python311Packages.pylibjpeg-libjpeg
+        # git
+        # tmux
+        # bat
+        # cowsay
+        # lzlib
+        # killall
+        # pwgen
+        # python311Packages.pypdf2
+        # python311Packages.python-ldap
+        # python311Packages.pq
+        # python311Packages.aiosasl
+        # python311Packages.psycopg2
+        # gettext
+        # sqlite
+        # postgresql_14
+        # pipx
+        # gnumake
+        # gcc
+        # glibcLocales
+        # python311Packages.manimpango
+        # python311Packages.pip
+        # python311Packages.devtools
+        # python311Packages.django-auth-ldap
+        # python311Packages.pq
+        # python311Packages.aiosasl
+        # python311Packages.pylibjpeg-libjpeg
+        # python311Packages.virtualenv
+        # python311Packages.toolz
+        # libpqxx
+        # postgresql
+        # openldap
+        # python311Packages.pgcli
+        # cairo
+        # cairomm
+        # python311Packages.pycairo
+        # python311Packages.cairosvg
+        # python311Packages.cairocffi
         ];
       networking = {
-        hostName = "ffdncoin"; 
+        hostName = "ldapcherry"; 
         firewall.allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995 636 ];
         useHostResolvConf = lib.mkForce false;
       };     
       services.resolved.enable = true;   
-      users.users.ffdncoin = {
+      users.users.ldapcherry = {
         isNormalUser = true;
         uid = 11111;
       };
       systemd.tmpfiles.rules = [
-        "d /var/local/ffdncoin 0755 ffdncoin users"
-        "d /var/local/ffdncoin/settings_local.py 0644 ffdncoin users"
+        "d /var/local/ldapcherry 0755 ldapcherry users"
+        "d /var/local/ldapcherry/settings_local.py 0644 ldapcherry users"
       ];
 
-      # systemd.services.ffdncoin = {
+      # systemd.services.ldapcherry = {
       #   description = "ResDigita FFDN Coin";
       #   after = [ "network.target" ];
       #   wantedBy = [ "multi-user.target" ];
       #   serviceConfig = {
-      #     WorkingDirectory = "/var/local/ffdncoin/";
-      #     ExecStart = ''/var/local/ffdncoin/venv/bin/gunicorn --env LDAP_ACTIVATE='true' --env='DEFAULT_FROM_EMAIL' --access-logfile /var/log/ffdncoin-access.log --error-logfile /var/log/ffdncoin-error.log --chdir /var/local/ffdncoin --workers 12 --bind 127.0.0.1:8000 lesgv.wsgi:application'';
+      #     WorkingDirectory = "/var/local/ldapcherry/";
+      #     ExecStart = ''/var/local/ldapcherry/venv/bin/gunicorn --env LDAP_ACTIVATE='true' --env='DEFAULT_FROM_EMAIL' --access-logfile /var/log/ldapcherry-access.log --error-logfile /var/log/ldapcherry-error.log --chdir /var/local/ldapcherry --workers 12 --bind 127.0.0.1:8000 lesgv.wsgi:application'';
       #     Restart = "always";
       #     RestartSec = "10s";
       #     User = "wagtail";
