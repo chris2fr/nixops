@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   # seafilePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.seafile));
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
   my-python-packages = ps: with ps; [
     bleach
     cffi
@@ -34,7 +34,7 @@ let
     python3-gnutls
   ];
   mannchriRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
-  home-manager2305 = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
+  home-manager2305 = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
   hasaeraRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
 in
 {
@@ -129,7 +129,7 @@ in
       };
       system = {
         copySystemConfiguration = true;
-        stateVersion = "23.11";
+        stateVersion = "24.05";
       };
       environment.sessionVariables = rec {
         EDITOR="vim";
@@ -160,7 +160,7 @@ in
       };
       home-manager.users.mannchri = {pkgs, ...}: {
         home.packages = [ pkgs.atool pkgs.httpie ];
-        home.stateVersion = "23.05";
+        home.stateVersion = "24.05";
         programs.home-manager.enable = true;
         programs.vim = {
           enable = true;
@@ -182,7 +182,7 @@ in
       };
       home-manager.users.hasaera = {pkgs, ...}: {
         home.packages = [ pkgs.atool pkgs.httpie ];
-        home.stateVersion = "23.05";
+        home.stateVersion = "24.05";
         programs.home-manager.enable = true;
         programs.vim = {
           enable = true;
@@ -274,7 +274,7 @@ in
     config = { config, pkgs, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
-      system.stateVersion = "23.11";
+      system.stateVersion = "24.05";
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
@@ -329,7 +329,7 @@ in
         home.packages = with pkgs; [ 
           deno
         ];
-        home.stateVersion = "23.11";
+        home.stateVersion = "24.05";
         programs.home-manager.enable = true;
       };
       services = {
@@ -529,7 +529,7 @@ in
       # users.groups.users.gid = 1003;
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
-      system.stateVersion = "23.11";
+      system.stateVersion = "24.05";
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
@@ -863,7 +863,7 @@ in
         lynx
       ];
       virtualisation.docker.enable = true;
-      system.stateVersion = "23.11";
+      system.stateVersion = "24.05";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall.enable = false;
@@ -998,7 +998,7 @@ in
         openldap
       ];
       # virtualisation.docker.enable = true;
-      system.stateVersion = "23.11";
+      system.stateVersion = "24.05";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall = {
@@ -1168,7 +1168,7 @@ in
         libjwt
       ];
       virtualisation.docker.enable = true;
-      system.stateVersion = "23.11";
+      system.stateVersion = "24.05";
       nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall.enable = false;
@@ -1242,7 +1242,7 @@ in
   #       vips
   #       util-linux
   #     ];
-  #     system.stateVersion = "23.11";
+  #     system.stateVersion = "24.05";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       firewall = {
@@ -1348,7 +1348,7 @@ in
   #     config = { config, pkgs, ... }: {
   #       # nix.settings.experimental-features = "nix-command flakes";
   #       time.timeZone = "Europe/Amsterdam";
-  #       system.stateVersion = "23.11";
+  #       system.stateVersion = "24.05";
   #       imports = [
   #         ./common.nix
   #       ];
@@ -1444,7 +1444,7 @@ in
   #     networking.firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 8443 9443 ];
   #     nix.settings.experimental-features = "nix-command flakes";
   #     time.timeZone = "Europe/Amsterdam";
-  #     system.stateVersion = "23.11";
+  #     system.stateVersion = "24.05";
   #     environment.sessionVariables = rec {
   #       NEXT_PUBLIC_API_URL = "apicrabfit.resdigita.com";
   #       FRONTEND_URL =	"https: //crabfit.resdigita.com";
@@ -1527,7 +1527,7 @@ in
   #       python311Packages.seaserv
   #       seahub
   #       ];
-  #     system.stateVersion = "23.11";
+  #     system.stateVersion = "24.05";
   #     nix.settings.experimental-features = "nix-command flakes";
   #     networking = {
   #       firewall = {
@@ -1699,7 +1699,6 @@ in
         # python311Packages.cherrypy-cors
         python311Packages.pyyaml
         python311Packages.mako
-        python311Packages.mako
         # python311Packages.pillow
         # python311Packages.gunicorn
         # python311Packages.pip
@@ -1723,7 +1722,7 @@ in
         # python311Packages.pypdf2
         # python311Packages.python-ldap
         # python311Packages.pq
-        # python311Packages.aiosasl
+        python311Packages.aiosasl
         # python311Packages.psycopg2
         # gettext
         # sqlite
@@ -1735,7 +1734,7 @@ in
         # python311Packages.manimpango
         # python311Packages.pip
         # python311Packages.devtools
-        
+
         # python311Packages.django-auth-ldap
         # python311Packages.pq
         # python311Packages.aiosasl

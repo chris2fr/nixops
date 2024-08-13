@@ -6,7 +6,7 @@ let
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
   keycloakVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
   emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.vikunja));
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
@@ -115,7 +115,7 @@ in
   #   home.packages = with pkgs; [ 
   #     yarn
   #   ];
-  #   home.stateVersion = "23.11";
+  #   home.stateVersion = "24.05";
   #   programs.home-manager.enable = true;
   # };
   home-manager.users = {
@@ -123,7 +123,7 @@ in
       home.packages = with pkgs; [ 
         fossil
       ];
-      home.stateVersion = "23.11";
+      home.stateVersion = "24.05";
       programs.home-manager.enable = true;
     };
     # radicale = {pkgs, ...}: {
@@ -131,7 +131,7 @@ in
     #     python311
     #     python311Packages.gunicorn
     #   ];
-    #   home.stateVersion = "23.11";
+    #   home.stateVersion = "24.05";
     #   programs.home-manager.enable = true;
     # };
     guichet = {pkgs, ...}: {
@@ -141,14 +141,14 @@ in
         python311
         nodejs_20
       ];
-      home.stateVersion = "23.11";
+      home.stateVersion = "24.05";
       programs.home-manager.enable = true;
     };
     filebrowser = {pkgs, ...}: {
       home.packages = with pkgs; [ 
         filebrowser
       ];
-      home.stateVersion = "23.11";
+      home.stateVersion = "24.05";
       programs.home-manager.enable = true;
     };
     mannchri = {pkgs, ...}: {
@@ -157,7 +157,7 @@ in
         pkgs.httpie 
         pkgs.nodejs_20
       ];
-      home.stateVersion = "23.11";
+      home.stateVersion = "24.05";
       programs.home-manager.enable = true;
       programs.vim = {
         enable = true;
@@ -211,7 +211,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
   environment.sessionVariables = rec {
     EDITOR="vim";
     WAGTAIL_ENV = "production";
