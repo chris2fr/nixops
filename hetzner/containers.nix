@@ -1660,15 +1660,11 @@ in
   };
   containers.ffdncoin = {
     autoStart = true;
-    networking = {
-      nat = {
-        enable = true;
-        internalInterfaces = ["ve-+"];
-        externalInterface = "eno1";
-        # Lazy IPv6 connectivity for the container
-        enableIPv6 = true;
-      };
-    };
+    privateNetwork = true;
+    hostAddress = "192.168.103.1";
+    localAddress = "192.168.103.111";
+    hostAddress6 = "fc00::3:1";
+    localAddress6 = "fc00::3:111"; 
     bindMounts = { 
       "/var/local/ffdncoin" = { 
         hostPath = "/var/local/ffdncoin";
@@ -1754,7 +1750,7 @@ in
       #   wantedBy = [ "multi-user.target" ];
       #   serviceConfig = {
       #     WorkingDirectory = "/var/local/ffdncoin/";
-      #     ExecStart = ''/var/local/ffdncoin/venv/bin/gunicorn --env LDAP_ACTIVATE='true' --access-logfile /var/log/wagtail/access.log --error-logfile /var/log/wagtail/error.log --chdir /home/wagtail/wagtail-lesgv --workers 12 --bind 127.0.0.1:8000 lesgv.wsgi:application'';
+      #     ExecStart = ''/var/local/ffdncoin/venv/bin/gunicorn --env LDAP_ACTIVATE='true' --env='DEFAULT_FROM_EMAIL' --access-logfile /var/log/ffdncoin-access.log --error-logfile /var/log/ffdncoin-error.log --chdir /var/local/ffdncoin --workers 12 --bind 127.0.0.1:8000 lesgv.wsgi:application'';
       #     Restart = "always";
       #     RestartSec = "10s";
       #     User = "wagtail";
