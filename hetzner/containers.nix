@@ -1710,6 +1710,7 @@ in
         curl
         wget
         lynx
+        libclang
         # dig    
         # python311Packages.pylibjpeg-libjpeg
         git
@@ -1728,9 +1729,9 @@ in
         # sqlite
         # postgresql_14
         # pipx
-        # gnumake
+        gnumake
         gcc
-        # glibcLocales
+        glibcLocales
         # python311Packages.manimpango
         # python311Packages.pip
         # python311Packages.devtools
@@ -1750,6 +1751,11 @@ in
         # python311Packages.pycairo
         # python311Packages.cairosvg
         # python311Packages.cairocffi
+        python311Packages.devtools
+        python311Packages.pydevtool
+        gnutls
+        gnulib
+        gnumake
         ];
       networking = {
         hostName = "cherryldap"; 
