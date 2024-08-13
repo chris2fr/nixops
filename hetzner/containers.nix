@@ -1725,6 +1725,7 @@ in
         postgresql_14
         pipx
         gnumake
+        gcc
         python311Packages.manimpango
         python311Packages.pip
         python311Packages.devtools
@@ -1733,8 +1734,7 @@ in
         python311Packages.aiosasl
         python311Packages.pylibjpeg-libjpeg
         python311Packages.virtualenv
-        python311Packages.psycopg2
-        python311Packages.types-psycopg2
+        
         ];
       networking = {
         hostName = "ffdncoin"; 
