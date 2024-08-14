@@ -1758,7 +1758,9 @@ in
         gnumake
         openssl
         cyrus_sasl
-
+        # ldapcherry
+        python312Packages.mako
+        python312Packages.pyyaml
         ];
       networking = {
         hostName = "cherryldap"; 
