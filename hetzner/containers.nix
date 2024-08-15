@@ -1765,6 +1765,10 @@ in
         python311Packages.yq
         python311Packages.python-ldap-test
         python311Packages.ldappool
+        python311Packages.wheel
+        python311Packages.wheelUnpackHook
+        python311Packages.installer
+        python311Packages.bootstrap.installer
         # PHP
         php
         ];
