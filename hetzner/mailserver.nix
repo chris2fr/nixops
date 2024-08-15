@@ -59,6 +59,7 @@ in
     };
     #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
+  services.dovecot2.sieve.scripts = {};
   services = {
     postfix.virtual = ''
         axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
