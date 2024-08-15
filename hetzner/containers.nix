@@ -1694,10 +1694,7 @@ in
           '';
           }
         )
-        
         # python311Packages.cherrypy-cors
-        python311Packages.pyyaml
-        python311Packages.mako
         # python311Packages.pillow
         # python311Packages.gunicorn
         # python311Packages.pip
@@ -1721,7 +1718,7 @@ in
         # pwgen
         # python311Packages.pypdf2
         # python311Packages.pq
-        python311Packages.aiosasl
+        # python311Packages.aiosasl
         # python311Packages.psycopg2
         # gettext
         # sqlite
@@ -1731,7 +1728,6 @@ in
         gcc
         glibcLocales
         # python311Packages.manimpango
-        python311Packages.pip
         # python311Packages.devtools
 
         # python311Packages.django-auth-ldap
@@ -1749,26 +1745,32 @@ in
         # python311Packages.pycairo
         # python311Packages.cairosvg
         # python311Packages.cairocffi
-        python311Packages.devtools
-        python311Packages.pydevtool
+
         gnutls
         gnulib
         gnumake
         openssl
         cyrus_sasl
         # ldapcherry
-        python311Full
-        python311Packages.cherrypy
-        python311Packages.mako
-        python311Packages.pyyaml
-        python311Packages.python-ldap
-        python311Packages.yq
-        python311Packages.python-ldap-test
-        python311Packages.ldappool
-        python311Packages.wheel
-        python311Packages.wheelUnpackHook
-        python311Packages.installer
-        python311Packages.bootstrap.installer
+        (pkgs.python3.withPackages (python-pkgs: [
+          # python-pkgs.devtools
+          # python-pkgs.pydevtool
+          python-pkgs.cherrypy
+          python-pkgs.mako
+          python-pkgs.pyyaml
+          python-pkgs.python-ldap
+          python-pkgs.yq
+          python-pkgs.pip
+          # python-pkgs.python-ldap-test
+          # python-pkgs.ldappool
+          # python-pkgs.wheel
+          # python-pkgs.wheelUnpackHook
+          # python-pkgs.installer
+          # python-pkgs.bootstrap.installer
+          # python-pkgs.pandas
+          # python-pkgs.requests
+        ]))
+
         ninja
         cmake
         # PHP
