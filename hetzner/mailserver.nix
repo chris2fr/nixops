@@ -38,7 +38,7 @@ in
   imports = [
     (builtins.fetchTarball {
       url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-24.05.tar.gz";
-      sha256 = "sha256:8e04178564d5567987149f01b3c4fdea50633f9708c17d1d3d8130a6ae02258a";
+      sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
     })
     ./mailserver/sogo.nix
     ./mailserver/ldap.nix
