@@ -60,6 +60,12 @@ in
     #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
   services.dovecot2.sieve.scripts = {};
+  services.dovecot2.sieve.extensions = [
+      "notify"
+      "imapflags"
+      "vnd.dovecot.filter"
+      "fileinto"
+    ];
   services = {
     postfix.virtual = ''
         axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
