@@ -1769,6 +1769,8 @@ in
         python311Packages.wheelUnpackHook
         python311Packages.installer
         python311Packages.bootstrap.installer
+        ninja
+        cmake
         # PHP
         php
         ];

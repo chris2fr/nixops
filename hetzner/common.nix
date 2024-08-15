@@ -43,6 +43,7 @@ in
     mysql80
 #    wkhtmltopdf
     python311Full
+    python311Packages.pip
     python311Packages.pypdf2
     python311Packages.python-ldap
     python311Packages.pq
