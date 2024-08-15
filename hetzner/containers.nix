@@ -1694,8 +1694,7 @@ in
           '';
           }
         )
-        python311
-        python311Packages.cherrypy
+        
         # python311Packages.cherrypy-cors
         python311Packages.pyyaml
         python311Packages.mako
@@ -1721,7 +1720,6 @@ in
         # killall
         # pwgen
         # python311Packages.pypdf2
-        python311Packages.python-ldap
         # python311Packages.pq
         python311Packages.aiosasl
         # python311Packages.psycopg2
@@ -1759,8 +1757,16 @@ in
         openssl
         cyrus_sasl
         # ldapcherry
+        python311Full
+        python311Packages.cherrypy
         python311Packages.mako
         python311Packages.pyyaml
+        python311Packages.python-ldap
+        python311Packages.yq
+        python311Packages.python-ldap-test
+        python311Packages.ldappool
+        # PHP
+        php
         ];
       networking = {
         hostName = "cherryldap"; 
