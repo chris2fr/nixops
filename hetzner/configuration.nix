@@ -44,6 +44,7 @@ in
     # burp
     openssl
     postgresql_13
+    qemu
   ];
   boot.loader = {
     systemd-boot.enable = true;
@@ -544,6 +545,16 @@ in
       '';
     };
   };
+  virtualisation.libvirtd.enable = true;
+  # programs.virt-manager.enable = true;
+  # dconf.settings = {
+  #   "org/virt-manager/virt-manager/connections" = {
+  #     autoconnect = ["qemu:///system"];
+  #     uris = ["qemu:///system"];
+  #   };
+  # };
+  
+
   # services.authelia.instances = {
   #   main = {
   #     enable = true;
