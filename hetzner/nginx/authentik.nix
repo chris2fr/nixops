@@ -4,7 +4,7 @@ in
 { 
   services.nginx.virtualHosts = {
       "auth.lesgrandsvoisins.com" = {
-        serverAliases = ["auth.desgrandsvoisins.org" "auth.desgrandsvoisins.com"];
+        # serverAliases = ["auth.desgrandsvoisins.org" "auth.desgrandsvoisins.com"];
         enableACME = true;
         forceSSL = true;
         globalRedirect = "authentik.resdigita.com";

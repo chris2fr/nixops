@@ -16,7 +16,7 @@ in
     "crabfit.desgv.com" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = ["crabfit.desgrandsvoisins.com"];
+      # serverAliases = ["crabfit.desgrandsvoisins.com"];
       globalRedirect = "crabfit.resdigita.com";
       # rencontre-avec-bgeparif-sviatlana-et-dea-ladapt-visio-243095
     };

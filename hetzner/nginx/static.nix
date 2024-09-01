@@ -3,9 +3,9 @@ let
 in
 { 
   services.nginx.virtualHosts = {
-    "doc.desgrandsvoisins.org" = {
+    "doc.lesgrandsvoisins.com" = {
       # serverAliases = ["resdigita.org" "www.resdigita.org" "doc.desgrandsvoisins.com"  "doc.lesgrandsvoisins.com" "doc.resdigita.com"];
-      serverAliases = ["doc.desgrandsvoisins.com"  "doc.lesgrandsvoisins.com" "doc.resdigita.com"];
+      serverAliases = ["doc.resdigita.com"];
        globalRedirect = "quartz.resdigita.com";
       enableACME = true;
       forceSSL = true;

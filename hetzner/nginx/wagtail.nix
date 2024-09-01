@@ -375,11 +375,7 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "meet.desgrandsvoisins.org" = {
-      serverAliases = [
-        "meet.desgv.com" 
-        "meet.desgrandsvoisins.com"
-      ];
+    "meet.desgv.com"  = {
       enableACME = true;
       forceSSL = true;
       globalRedirect = "meet.resdigita.com";
@@ -555,12 +551,12 @@ in
       }
       '';
     };
-    "www.desgrandsvoisins.org" = {
-      serverAliases = ["desgrandsvoisins.org"  "desgrandsvoisins.com" "www.desgrandsvoisins.com"];
-      globalRedirect = "www.lesgrandsvoisins.com";
-       enableACME = true;
-       forceSSL = true;
-    };
+    # "www.desgrandsvoisins.org" = {
+    #   serverAliases = ["desgrandsvoisins.org"  "desgrandsvoisins.com" "www.desgrandsvoisins.com"];
+    #   globalRedirect = "www.lesgrandsvoisins.com";
+    #    enableACME = true;
+    #    forceSSL = true;
+    # };
 
     "lesgrandsvoisins.com" = {   
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";

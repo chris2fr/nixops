@@ -296,15 +296,15 @@ in
             '';
           };
         };   
-        "list.desgrandsvoisins.org" = {
-          serverAliases = ["list.desgrandsvoisins.com" 
-          "listmonk.gv.coop" 
-          "listmonk.lesgv.org"];
-          # serverAliases = ["list.desgrandsvoisins.com" "listmonk.lesgrandsvoisins.com"];
-          enableACME = true;
-          forceSSL = true;
-          globalRedirect = "list.lesgrandsvoisins.com";
-        };
+        # "list.desgrandsvoisins.org" = {
+        #   serverAliases = ["list.desgrandsvoisins.com" 
+        #   "listmonk.gv.coop" 
+        #   "listmonk.lesgv.org"];
+        #   # serverAliases = ["list.desgrandsvoisins.com" "listmonk.lesgrandsvoisins.com"];
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   globalRedirect = "list.lesgrandsvoisins.com";
+        # };
         "homepage-dashboard.resdigita.com" = {
           serverAliases = [
             "homepage-dashboard.gv.coop" 
