@@ -3,8 +3,8 @@ let
 in
 { 
   services.nginx.virtualHosts = {
-      "guichet.desgrandsvoisins.org" = {
-        serverAliases = ["app.lesgrandsvoisins.com" "guichet.lesgrandsvoisins.com" "guichet.desgrandsvoisins.com" ];
+      "guichet.lesgrandsvoisins.com" = {
+        serverAliases = ["app.lesgrandsvoisins.com"];
         globalRedirect = "guichet.resdigita.com";
         enableACME = true; 
         forceSSL = true;    

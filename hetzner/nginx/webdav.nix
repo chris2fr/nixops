@@ -9,7 +9,7 @@ let
 in
 { 
   services.nginx.virtualHosts = {
-      "dav.lesgrandsvoisins.org" = {
+      "dav.lesgrandsvoisins.com" = {
         serverAliases = ["webdav.lesgv.org"];
         enableACME = true;
         forceSSL = true;
@@ -29,7 +29,7 @@ in
         }
         '';
       };
-      "secret.lesgrandsvoisins.org" = {
+      "secret.lesgrandsvoisins.com" = {
         enableACME = true;
         forceSSL = true;
         serverAliases = ["secret.resdigita.com" "keepass.lesgv.org"];
