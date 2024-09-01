@@ -351,18 +351,18 @@ in
               return 302 $scheme://vikunja.village.ngo$request_uri;
             }
           '';
-          locations."/" = {
-            proxyPass = "http://localhost:3456/";
-            extraConfig = ''
-                proxy_http_version 1.1;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header X-Forwarded-Proto $scheme;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_redirect off;
-                proxy_set_header   Host $host;
-                proxy_redirect off;
-            '';
-          };
+          # locations."/" = {
+          #   proxyPass = "http://localhost:3456/";
+          #   extraConfig = ''
+          #       proxy_http_version 1.1;
+          #       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          #       proxy_set_header X-Forwarded-Proto $scheme;
+          #       proxy_set_header X-Real-IP $remote_addr;
+          #       proxy_redirect off;
+          #       proxy_set_header   Host $host;
+          #       proxy_redirect off;
+          #   '';
+          # };
         };
         "discourse.village.ngo" = {
           enableACME = true;
