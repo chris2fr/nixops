@@ -470,7 +470,7 @@ in
       '';
     };
     
-    "apostrophecms.resdigita.com" = {
+     "apostrophecms.resdigita.com" = {
       root =  "/var/www/wagtail/";
       serverAliases = [
         "manncoach.resdigita.com"
