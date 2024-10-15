@@ -116,6 +116,30 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "www.gv.coop" = {
+      enableACME = true;
+      serverAliases = [
+        "www.lesgv.com"
+        ];
+      forceSSL = true;
+      root =  "/var/www/village/";
+      # extraConfig = ''
+      #   if ($host != 'www.village.ong') {
+      #     return 301 https://www.village.ong/fr/;
+      #   }
+      # '';
+      locations = {
+        "/" = {
+          proxyPass = "http://127.0.0.1:8896/";
+          extraConfig = nginxLocationWagtailExtraConfig;
+        };
+        # "/en/".return =  "301 http://www.village.ngo$request_uri";
+        "/favicon.ico" = { proxyPass = null; };
+        "/static" = { proxyPass = null; };
+        "/medias" = { proxyPass = null; };
+        "/.well-known" = { proxyPass = null; };
+      };
+    };
     "www.village.ong" = {
       enableACME = true;
       serverAliases = [
@@ -175,7 +199,28 @@ in
         "/.well-known" = { proxyPass = null; };
       };
     };
-    "www.village.ngo" = {
+    "www.village.ngo" = {enableACME = true;
+      serverAliases = [
+        "village.ong"
+        ];
+      forceSSL = true;
+      root =  "/var/www/village/";
+      extraConfig = ''
+        if ($host != 'www.village.ong') {
+          return 301 https://www.village.ong/fr/;
+        }
+      '';
+      locations = {
+        "/" = {
+          proxyPass = "http://127.0.0.1:8896/";
+          extraConfig = nginxLocationWagtailExtraConfig;
+        };
+        "/en/".return =  "301 http://www.village.ngo$request_uri";
+        "/favicon.ico" = { proxyPass = null; };
+        "/static" = { proxyPass = null; };
+        "/medias" = { proxyPass = null; };
+        "/.well-known" = { proxyPass = null; };
+      };
       enableACME = true;
       serverAliases = [
         "www.villagengo.org"
