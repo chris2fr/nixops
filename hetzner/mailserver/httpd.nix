@@ -3,7 +3,6 @@ let
   # Each domain alias needs to always point here 
   domainRedirectAliases = [
     "mail.resdigita.org" 
-    "www.lesgv.com" 
     "lesgv.org" 
     "lesgv.com"
     "gvoisin.com" 
@@ -18,6 +17,7 @@ let
     "mail.resdigita.com"
     "www.lesgv.org"
     ];
+    #     "www.lesgv.com" 
     domainNameForEmail = import ./vars/domain-name.nix;
     ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
     domainName = import /etc/nixos/mailserver/vars/domain-name-mail.nix;

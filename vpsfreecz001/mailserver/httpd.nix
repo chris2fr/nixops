@@ -3,7 +3,7 @@ let
   # Each domain alias needs to always point here 
   domainRedirectAliases = [
     "mail.resdigita.org" 
-    "www.lesgv.com" 
+    # "www.lesgv.com" 
     "lesgv.org" 
     "www.lesgv.org" 
     "lesgv.com"

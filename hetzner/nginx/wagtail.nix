@@ -123,11 +123,11 @@ in
         ];
       forceSSL = true;
       root =  "/var/www/village/";
-      extraConfig = ''
-        if ($host != 'www.village.ong') {
-          return 301 https://www.village.ong/fr/;
-        }
-      '';
+      # extraConfig = ''
+      #   if ($host != 'www.village.ong') {
+      #     return 301 https://www.village.ong/fr/;
+      #   }
+      # '';
       locations = {
         "/" = {
           proxyPass = "http://127.0.0.1:8896/";
@@ -482,6 +482,8 @@ in
         "grandsvoisinscom.resdigita.com"
         "forumgrandsvoisinscom.resdigita.com"
         "discoursewww.lesgv.com" 
+        "discourse.lesgv.com" 
+        "discourse.resdigita.com" 
         "lesgvcom.resdigita.com"
         "iriviorg.resdigita.com"
         "hyperattentioncom.resdigita.com"
@@ -563,9 +565,9 @@ in
       if ($host = 'lesgv.com') {
           return 301 $scheme://les.gv.coop$request_uri;
       }
-      if ($host = 'www.lesgv.com') {
-          return 301 $scheme://les.gv.coop$request_uri;
-      }
+      # if ($host = 'www.lesgv.com') {
+      #     return 301 $scheme://les.gv.coop$request_uri;
+      # }
       if ($host = 'gv.coop') {
           return 301 $scheme://les.gv.coop$request_uri;
       }
