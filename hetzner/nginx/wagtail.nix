@@ -191,7 +191,7 @@ in
       locations = {
         "/" = {
           proxyPass = "http://127.0.0.1:8900/";
-          extraConfig = nginxLocationWagtailExtraCovillage.ongnfig;
+          extraConfig = nginxLocationWagtailExtraConfig;
         };
         # "/fr/".return =  "301 http://www.village.ong$request_uri";
         "/favicon.ico" = { proxyPass = null; };
@@ -481,7 +481,7 @@ in
         "popuposcom.resdigita.com"
         "grandsvoisinscom.resdigita.com"
         "forumgrandsvoisinscom.resdigita.com"
-        "discourselesgvcom.resdigita.com"
+        "discoursewww.lesgv.com" lesgvcom.resdigita.com"
         "iriviorg.resdigita.com"
         "hyperattentioncom.resdigita.com"
         "forumgdvoisinscom.resdigita.com"
