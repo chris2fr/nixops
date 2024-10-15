@@ -123,11 +123,11 @@ in
         ];
       forceSSL = true;
       root =  "/var/www/village/";
-      # extraConfig = ''
-      #   if ($host != 'www.village.ong') {
-      #     return 301 https://www.village.ong/fr/;
-      #   }
-      # '';
+      extraConfig = ''
+        if ($host != 'www.village.ong') {
+          return 301 https://www.village.ong/fr/;
+        }
+      '';
       locations = {
         "/" = {
           proxyPass = "http://127.0.0.1:8896/";
@@ -140,6 +140,7 @@ in
         "/.well-known" = { proxyPass = null; };
       };
     };
+    
     "www.village.ong" = {
       enableACME = true;
       serverAliases = [
@@ -190,7 +191,7 @@ in
       locations = {
         "/" = {
           proxyPass = "http://127.0.0.1:8900/";
-          extraConfig = nginxLocationWagtailExtraConfig;
+          extraConfig = nginxLocationWagtailExtraCovillage.ongnfig;
         };
         # "/fr/".return =  "301 http://www.village.ong$request_uri";
         "/favicon.ico" = { proxyPass = null; };
@@ -199,28 +200,7 @@ in
         "/.well-known" = { proxyPass = null; };
       };
     };
-    "www.village.ngo" = {enableACME = true;
-      serverAliases = [
-        "village.ong"
-        ];
-      forceSSL = true;
-      root =  "/var/www/village/";
-      extraConfig = ''
-        if ($host != 'www.village.ong') {
-          return 301 https://www.village.ong/fr/;
-        }
-      '';
-      locations = {
-        "/" = {
-          proxyPass = "http://127.0.0.1:8896/";
-          extraConfig = nginxLocationWagtailExtraConfig;
-        };
-        "/en/".return =  "301 http://www.village.ngo$request_uri";
-        "/favicon.ico" = { proxyPass = null; };
-        "/static" = { proxyPass = null; };
-        "/medias" = { proxyPass = null; };
-        "/.well-known" = { proxyPass = null; };
-      };
+    "www.village.ngo" = {
       enableACME = true;
       serverAliases = [
         "www.villagengo.org"
@@ -468,7 +448,7 @@ in
         "www.gvcoop.com"
         "gvcoop.com"  
         "gv.coop"
-        "www.gv.coop"  
+        # "www.gv.coop"  
         # "wagtail.gv.coop"
         "wagtail.lesgv.org"
       ];
@@ -544,7 +524,8 @@ in
     "www.lesgrandsvoisins.fr" = {
      serverAliases = ["desgv.com" 
       "francemali.lesgrandsvoisins.com" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" 
-      "www.lesgv.com" "lesgv.com" "www.lesgv.org" "lesgv.org" "www.gv.coop" "gv.coop" "www.coopgv.com" "coopgv.com" "www.coopgv.org" "coopgv.org" 
+      # "www.lesgv.com" 
+      "lesgv.com" "www.lesgv.org" "lesgv.org" "www.gv.coop" "gv.coop" "www.coopgv.com" "coopgv.com" "www.coopgv.org" "coopgv.org" 
       "ghost.resdigita.com" "listmonk.resdigita.com" "lesgv.org" ];
       enableACME = true;
       # sslCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
