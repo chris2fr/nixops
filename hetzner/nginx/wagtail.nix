@@ -542,9 +542,9 @@ in
       if ($host = 'gv.coop') {
           return 301 $scheme://les.gv.coop$request_uri;
       }
-      if ($host = 'www.gv.coop') {
-          return 301 $scheme://les.gv.coop$request_uri;
-      }
+      # if ($host = 'www.gv.coop') {
+      #     return 301 $scheme://les.gv.coop$request_uri;
+      # }
 
       if ($host = 'lesgrandsvoisins.fr') {
           return 301 $scheme://www.$host$request_uri;
