@@ -1200,13 +1200,8 @@ in
   # };    
 
   containers.freeipa = {
-    autoStart =       networking = {
-        firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
-        # useHostResolvConf = true;
-        useHostResolvConf = lib.mkForce false;
-        # nameservers = ["8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844"];
-        # nameservers = ["8.8.8.8" "8.8.4.4"];
-      };true;
+    autoStart = true;
+
     privateNetwork = true;
     hostAddress = "192.168.107.10";
     localAddress = "192.168.107.11";
