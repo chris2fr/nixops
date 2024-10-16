@@ -723,7 +723,7 @@ in
         };
         unitConfig = {
           StartLimitInterval = "1min";
-        };
+    container@freeipa.service    };
       };
       systemd.services.resdigitaorg = {
         description = "www.resdigita.org Website based on wagtail-village";
@@ -1056,7 +1056,7 @@ in
     };
   };
   # containers.seafile = {
-  #   autoStart = true;
+  #   autoStart = true;container@freeipa.service
   #   privateNetwork = true;
   #   hostAddress = "192.168.101.10";
   #   localAddress = "192.168.101.11";
@@ -1134,7 +1134,7 @@ in
   #       libarchive
   #       libevent
   #       libgcc
-  #       libglibutil
+  #       libglibutilcontainer@freeipa.service
   #       libmysqlclient
   #       libtool
   #       libuuid
@@ -1147,7 +1147,7 @@ in
   #       openssl
   #       re2c
   #       seafile-server
-  #       sqlite
+  #       sqlitecontainer@freeipa.service
   #       stdenv
   #       util-linux
   #       vala
@@ -1200,12 +1200,18 @@ in
   # };    
 
   containers.freeipa = {
-    autoStart = true;
+    autoStart =       networking = {
+        firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
+        # useHostResolvConf = true;
+        useHostResolvConf = lib.mkForce false;
+        # nameservers = ["8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844"];
+        # nameservers = ["8.8.8.8" "8.8.4.4"];
+      };true;
     privateNetwork = true;
     hostAddress = "192.168.107.10";
     localAddress = "192.168.107.11";
-    hostAddress6 = "ff00::1";
-    localAddress6 = "ff00::2";
+    hostAddress6 = "fa01::1";
+    localAddress6 = "fa01::2";
     config = { config, pkgs, lib, ...  }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
@@ -1230,6 +1236,12 @@ in
       ];
       system.stateVersion = "24.05";
       nix.settings.experimental-features = "nix-command flakes";
+      networking = {
+        firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
+        # useHostResolvConf = true;
+        useHostResolvConf = lib.mkForce false;
+      };
+      time.timeZone = "Europe/Amsterdam";
     };
   };
 
