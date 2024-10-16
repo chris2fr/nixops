@@ -571,7 +571,7 @@ in
         killall
         pwgen
         python311Packages.pypdf2
-        pyafthttps://app.mailjet.com/campaigns/creation/278443/confirmerthon311Packages.python-ldap
+        pyaft
         python311Packages.pq
         python311Packages.aiosasl
         python311Packages.psycopg2
