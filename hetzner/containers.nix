@@ -775,7 +775,7 @@ in
       };
       systemd.services.django-village = {
         description = "django.cfran.org Website based on django-village";
-        after = [ "network.target" ];
+        afthttps://app.mailjet.com/campaigns/creation/278443/confirmer = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/django-village/";
@@ -1199,7 +1199,37 @@ in
     };
   };    
 
-
+  containers.freeipa = {
+    autoStart = true;
+    privateNetwork = true;
+    hostAddress = "192.168.107.10";
+    localAddress = "192.168.107.11";
+    hostAddress6 = "ff00::1";
+    localAddress6 = "ff00::2";
+    config = { config, pkgs, lib, ...  }: {
+      environment.systemPackages = with pkgs; [
+        ((vim_configurable.override {  }).customize{
+          name = "vim";
+          vimrcConfig.customRC = ''
+            " your custom vimrc
+            set mouse=a
+            set nocompatible
+            colo torte
+            syntax on
+            set tabstop     =2
+            set softtabstop =2
+            set shiftwidth  =2
+            set expandtab
+            set autoindent
+            set smartindent
+            " ...
+          '';
+          }
+        )
+        freeipa
+      ];
+    };
+  };
 
   # containers.filestash = {
   #   autoStart = true;
