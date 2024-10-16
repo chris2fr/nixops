@@ -571,7 +571,7 @@ in
         killall
         pwgen
         python311Packages.pypdf2
-        python311Packages.python-ldap
+        pyafthttps://app.mailjet.com/campaigns/creation/278443/confirmerthon311Packages.python-ldap
         python311Packages.pq
         python311Packages.aiosasl
         python311Packages.psycopg2
@@ -775,7 +775,7 @@ in
       };
       systemd.services.django-village = {
         description = "django.cfran.org Website based on django-village";
-        afthttps://app.mailjet.com/campaigns/creation/278443/confirmer = [ "network.target" ];
+        after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/django-village/";
@@ -1075,7 +1075,7 @@ in
             set tabstop     =2
             set softtabstop =2
             set shiftwidth  =2
-            set expandtab
+            set expandtabafthttps://app.mailjet.com/campaigns/creation/278443/confirmer
             set autoindent
             set smartindent
             " ...
