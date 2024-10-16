@@ -723,7 +723,7 @@ in
         };
         unitConfig = {
           StartLimitInterval = "1min";
-    container@freeipa.service    };
+        };
       };
       systemd.services.resdigitaorg = {
         description = "www.resdigita.org Website based on wagtail-village";
