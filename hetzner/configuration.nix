@@ -330,7 +330,8 @@ in
     vikunja = {
       enable = true;
       frontendScheme = "https";
-      frontendHostname = "vikunja.village.ngo";
+      frontendHostname = "vikunja.gv.coop";
+      # frontendHostname = "vikunja.village.ngo";
       # database.type = "postgres";
       settings = {
         mailer = {
@@ -353,7 +354,8 @@ in
         auth = {
           local.enabled = false;
           openid.enabled = true;
-          openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
+          # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
+          openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
           openid.providers = [{
             name = "VillageNgo";
             authurl = "https://keycloak.village.ngo/realms/master";

@@ -711,7 +711,7 @@ in
       };
       systemd.services.cantine = {
         description = "cantine.resdigita.com Website based on wagtail-village";
-        after = [ "network.target" ];
+        after = [ "network.tavillage.ngorget" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/cantine/";
@@ -1228,6 +1228,8 @@ in
         )
         freeipa
       ];
+      system.stateVersion = "24.05";
+      nix.settings.experimental-features = "nix-command flakes";
     };
   };
 
