@@ -711,7 +711,7 @@ in
       };
       systemd.services.cantine = {
         description = "cantine.resdigita.com Website based on wagtail-village";
-        after = [ "network.tavillage.ngorget" ];
+        after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/cantine/";
