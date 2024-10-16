@@ -571,7 +571,7 @@ in
         killall
         pwgen
         python311Packages.pypdf2
-        pyaft
+        python311Packages.python-ldap
         python311Packages.pq
         python311Packages.aiosasl
         python311Packages.psycopg2
