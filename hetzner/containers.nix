@@ -1199,46 +1199,46 @@ in
   #   };
   # };    
 
-  containers.freeipa = {
-    autoStart = true;
+  # containers.freeipa = {
+  #   autoStart = true;
 
-    privateNetwork = true;
-    hostAddress = "192.168.107.10";
-    localAddress = "192.168.107.11";
-    hostAddress6 = "fa01::1";
-    localAddress6 = "fa01::2";
-    config = { config, pkgs, lib, ...  }: {
-      environment.systemPackages = with pkgs; [
-        ((vim_configurable.override {  }).customize{
-          name = "vim";
-          vimrcConfig.customRC = ''
-            " your custom vimrc
-            set mouse=a
-            set nocompatible
-            colo torte
-            syntax on
-            set tabstop     =2
-            set softtabstop =2
-            set shiftwidth  =2
-            set expandtab
-            set autoindent
-            set smartindent
-            " ...
-          '';
-          }
-        )
-        freeipa
-      ];
-      system.stateVersion = "24.05";
-      nix.settings.experimental-features = "nix-command flakes";
-      networking = {
-        firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
-        # useHostResolvConf = true;
-        useHostResolvConf = lib.mkForce false;
-      };
-      time.timeZone = "Europe/Amsterdam";
-    };
-  };
+  #   privateNetwork = true;
+  #   hostAddress = "192.168.107.10";
+  #   localAddress = "192.168.107.11";
+  #   hostAddress6 = "fa01::1";
+  #   localAddress6 = "fa01::2";
+  #   config = { config, pkgs, lib, ...  }: {
+  #     environment.systemPackages = with pkgs; [
+  #       ((vim_configurable.override {  }).customize{
+  #         name = "vim";
+  #         vimrcConfig.customRC = ''
+  #           " your custom vimrc
+  #           set mouse=a
+  #           set nocompatible
+  #           colo torte
+  #           syntax on
+  #           set tabstop     =2
+  #           set softtabstop =2
+  #           set shiftwidth  =2
+  #           set expandtab
+  #           set autoindent
+  #           set smartindent
+  #           " ...
+  #         '';
+  #         }
+  #       )
+  #       freeipa
+  #     ];
+  #     system.stateVersion = "24.05";
+  #     nix.settings.experimental-features = "nix-command flakes";
+  #     networking = {
+  #       firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
+  #       # useHostResolvConf = true;
+  #       useHostResolvConf = lib.mkForce false;
+  #     };
+  #     time.timeZone = "Europe/Amsterdam";
+  #   };
+  # };
 
   # containers.filestash = {
   #   autoStart = true;
