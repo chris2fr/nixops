@@ -1240,7 +1240,7 @@ in
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
-          vimrcConfig.containers.openldap.networking.resolvconf.packagecustomRC = ''
+          vimrcConfig.customRC = ''
             " your custom vimrc
             set mouse=a
             set nocompatible
@@ -1253,7 +1253,7 @@ in
             set autoindent
             set smartindent
             " ...
-          '';containers.openldap.networking.resolvconf.package
+          '';
           }
         )
         lynx
