@@ -1255,6 +1255,9 @@ in
           '';
           }
         )
+        lynx
+        nettools
+        wget
       ];
       users = {
         groups = {
