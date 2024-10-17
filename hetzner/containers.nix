@@ -1232,6 +1232,9 @@ in
       system.stateVersion = "24.05";
       networking = {
         firewall.allowedTCPPorts = [ 8080 10389 10686 22 ];
+        hosts = {
+          "192.168.107.11" = ["ldap.gv.coop"];
+        };
         # useHostResolvConf = true;
         useHostResolvConf = lib.mkForce false;
         # resolvconf.enable = true;
@@ -1306,7 +1309,7 @@ in
         };
         openldap = {
           enable = true;
-          urlList = ["ldap://192.168.107.11:10389/ ldaps://192.168.107.11:10636/ ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/"];
+          urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
           # urlList = [ 
           #   "ldap://ldap.gv.coop:10389/" 
           #   "ldap://192.168.107.11:10389/"
