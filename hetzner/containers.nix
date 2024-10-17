@@ -1306,7 +1306,7 @@ in
         };
         openldap = {
           enable = true;
-          urlList = [ "ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/" ];
+          urlList = [ "ldap://*:10389/ ldaps://*:10636/" ];
           settings = {
             attrs = {
               # olcTLSReqCert = "allow" ;
