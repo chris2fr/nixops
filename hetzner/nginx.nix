@@ -79,8 +79,9 @@ in
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };
-          locations."/pwm" = {
+          locations."/" = {
             extraConfig = ''
+            rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header   Host $host;
@@ -95,9 +96,9 @@ in
             # proxy_redirect off;
             '';
           };
-          locations."/" = {
-            return = "302 https://ldap.gv.coop/pwm$request_uri";
-          };
+          # locations."/" = {
+          #   return = "302 https://ldap.gv.coop/pwm$request_uri";
+          # };
           root = "/var/www/gv.coop/ldap";
         }; 
         "syncthing.resdigita.com" = {
