@@ -1224,17 +1224,17 @@ in
     bindMounts = { 
       "/var/lib/acme/${ldapDomainName}" = { 
         hostPath = "/var/lib/acme/${ldapDomainName}";
-        isReadOnly = true; 
+        isReadOnly = false; 
       }; 
     };
     config = { config, pkgs, lib, ...  }: {
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
-      # networking = {
-      #   firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
-      #   useHostResolvConf = true;
-      #   # useHostResolvConf = lib.mkForce false;
-      # };
+      networking = {
+        # firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
+        # useHostResolvConf = true;
+        useHostResolvConf = lib.mkForce false;
+      };
       time.timeZone = "Europe/Paris";
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
