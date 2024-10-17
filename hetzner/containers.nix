@@ -1265,7 +1265,7 @@ in
         groups = {
           "acme".gid = 993;
           "wwwrun".gid = 54;
-        };'ldap:/// ldaps:///'
+        };
         users = {
           "acme" = {
             uid = 994;
