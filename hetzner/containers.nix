@@ -1282,7 +1282,7 @@ in
       services = {
         resolved = {
           enable = true;
-          fallbackDNS = [
+          fallbackDns = [
               "8.8.8.8"
               "2001:4860:4860::8844"
             ];
