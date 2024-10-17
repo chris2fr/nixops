@@ -1301,7 +1301,7 @@ in
             "/var/tomcat/conf/extra-users.xml"
           ];
           javaOpts = [
-            "-Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true"
+            "com.sun.jndi.ldap.object.disableEndpointIdentification=true"
           ];
         };
         openldap = {
