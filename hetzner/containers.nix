@@ -1216,12 +1216,17 @@ in
   };
   containers.openldap = {
     autoStart = true;
-
     privateNetwork = true;
     hostAddress = "192.168.107.10";
     localAddress = "192.168.107.11";
     hostAddress6 = "fa01::1";
     localAddress6 = "fa01::2";
+    bindMounts = { 
+      "/var/lib/acme/${ldapDomainName}" = { 
+        hostPath = "/var/lib/acme/${ldapDomainName}";
+        isReadOnly = true; 
+      }; 
+    };
     config = { config, pkgs, lib, ...  }: {
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
@@ -1250,6 +1255,25 @@ in
           '';
           }
         )
+      ];
+      users = {
+        groups = {
+          "acme".gid = 993;
+          "wwwrun".gid = 54;
+        };
+        users = {
+          "acme" = {
+            uid = 994;
+            group = "acme";
+          };
+          "wwwrun" = {
+            uid = 54;
+            group = "wwwrun";
+          };
+        };
+      };
+      systemd.tmpfiles.rules = [
+        "/var/lib/acme/${ldapDomainName} 0755 acme wwwrun"
       ];
       services = {
         openldap = {
@@ -1356,7 +1380,8 @@ in
           RemainAfterExit = false;
         };
       };
-      # users.groups.wwwrun.members = [ "openldap" ];
+      users.groups.wwwrun.members = [ "openldap" ];
+      users.groups.acme.members = [ "openldap" ];
     };
   };
   # containers.seafile = {
