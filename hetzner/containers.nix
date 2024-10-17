@@ -1413,14 +1413,15 @@ in
                       by anonymous auth
                       by * read''
                   ''{2}to dn.subtree="ou=users,${ldapBaseDN}"
+                      by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
                       by dn.exact="cn=newuser@gv.coop,ou=users,${ldapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
                       by self write
                       by anonymous auth
                       by * read''
                   ''{3}to attrs=userPassword
+                      by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
                       by self write
-                      by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,dc=gv,dc=coop" write
                       by anonymous auth
                       by * none''
                   ''{4}to *
