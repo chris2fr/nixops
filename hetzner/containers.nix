@@ -1313,7 +1313,8 @@ in
             "ldaps://ldap.gv.coop:10636/"
             "ldapi:///"
             "ldap://localhost:10389/"
-            "ldaps://localhost:10636/" ];
+            "ldaps://localhost:10636/" 
+          ];
           settings = {
             attrs = {
               # olcTLSReqCert = "allow" ;
