@@ -1249,7 +1249,7 @@ in
       system.stateVersion = "24.05";
       networking = {
         firewall.allowedTCPPorts = [ 18080 10389 10686 22 80 443 389 636 993 11211 25 ];
-        trustedInterfaces = ["eno1" "lo"];
+        # trustedInterfaces = ["eno1" "lo"];
         # hosts = {
         #   "192.168.107.11" = ["ldap.gv.coop"];
         # };
