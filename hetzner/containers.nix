@@ -1401,14 +1401,15 @@ in
               olcTLSProtocolMin = "3.1";
               olcThreads = "16";
             };
+             # Flake this
             children = {
               "cn=schema".includes = [
                 "${pkgs.openldap}/etc/schema/core.ldif"
                 "${pkgs.openldap}/etc/schema/cosine.ldif"
                 "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
                 "${pkgs.openldap}/etc/schema/nis.ldif"
-                # "/var/lib/openldap/pmw/schema/pwm.ldif" # Flake this
-              ];
+                "/var/lib/openldap/pmw/schema/pwm.ldif"
+              ]; 
               # Type: attribute
               # Name: pwmData
               # Definition: ( 1.3.6.1.4.1.35015.1.2.7 NAME 'pwmData' SYNTAX 1.3.6.1.4.1.1466.115.121.1.40 )
