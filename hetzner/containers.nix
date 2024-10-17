@@ -1223,6 +1223,18 @@ in
     hostAddress6 = "fa01::1";
     localAddress6 = "fa01::2";
     config = { config, pkgs, lib, ...  }: {
+      nix.settings.experimental-features = "nix-command flakes";
+      system.stateVersion = "24.05";
+      nix.settings.experimental-features = "nix-command flakes";
+      networking = {
+        firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
+        useHostResolvConf = true;
+        # useHostResolvConf = lib.mkForce false;
+      };
+      time.timeZone = "Europe/Paris";
+      environment.systemPackages = with pkgs; [
+        ((vim_configurable.override {  }).customize{
+          name = "vim";
           vimrcConfig.customRC = ''
             " your custom vimrc
             set mouse=a
@@ -1240,110 +1252,104 @@ in
           }
         )
       ];
-      system.stateVersion = "24.05";
-      nix.settings.experimental-features = "nix-command flakes";
-      networking = {
-        firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
-        useHostResolvConf = true;
-        # useHostResolvConf = lib.mkForce false;
-      };
-      time.timeZone = "Europe/Amsterdam";
-      services.openldap = {
-        enable = true;
-        urlList = [ "ldap:/// ldaps:///" ];
-        settings = {
-          attrs = {
-            # olcTLSReqCert = "allow" ;
-            # TLS_CACERTDIR /home/myuser/cacertss
-            # LDAPTLS_CACERT /home/myuser/cacertss
-            olcLogLevel = "conns config";
-            /* settings for acme ssl */
-            olcTLSCACertificateFile = "/var/lib/acme/${ldapDomainName}/full.pem";
-            olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/full.pem";
-            # olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/cert.pem";
-            olcTLSCertificateKeyFile = "/var/lib/acme/${ldapDomainName}/key.pem";
-            olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
-            olcTLSCRLCheck = "none";
-            olcTLSVerifyClient = "never";
-            olcTLSProtocolMin = "3.1";
-            olcThreads = "16";
-          };
-          children = {
-            "cn=schema".includes = [
-              "${pkgs.openldap}/etc/schema/core.ldif"
-              "${pkgs.openldap}/etc/schema/cosine.ldif"
-              "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
-              "${pkgs.openldap}/etc/schema/nis.ldif"
-            ];
-            "olcDatabase={1}mdb".attrs = {
-              objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
-              olcDbIndex = [
-                "displayName,description eq,sub"
-                "uid,ou,c eq"
-                "carLicense,labeledURI,telephoneNumber,mobile,homePhone,title,street,l,st,postalCode eq"
-                "objectClass,cn,sn,givenName,mail eq"
+      services = {
+        openldap = {
+          enable = true;
+          urlList = [ "ldap:/// ldaps:///" ];
+          settings = {
+            attrs = {
+              # olcTLSReqCert = "allow" ;
+              # TLS_CACERTDIR /home/myuser/cacertss
+              # LDAPTLS_CACERT /home/myuser/cacertss
+              olcLogLevel = "conns config";
+              /* settings for acme ssl */
+              olcTLSCACertificateFile = "/var/lib/acme/${ldapDomainName}/full.pem";
+              olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/full.pem";
+              # olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/cert.pem";
+              olcTLSCertificateKeyFile = "/var/lib/acme/${ldapDomainName}/key.pem";
+              olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
+              olcTLSCRLCheck = "none";
+              olcTLSVerifyClient = "never";
+              olcTLSProtocolMin = "3.1";
+              olcThreads = "16";
+            };
+            children = {
+              "cn=schema".includes = [
+                "${pkgs.openldap}/etc/schema/core.ldif"
+                "${pkgs.openldap}/etc/schema/cosine.ldif"
+                "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
+                "${pkgs.openldap}/etc/schema/nis.ldif"
               ];
-              olcDatabase = "{1}mdb";
-              olcDbDirectory = "/var/lib/openldap/data";
-              olcSuffix = "${ldapBaseDN}";
-              /* your admin account, do not use writeText on a production system */
-              olcRootDN = "cn=admin,${ldapBaseDN}";
-              olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
-              olcAccess = [
-                /* custom access rules for userPassword attributes */
-                /* allow read on anything else */
-                ''{0}to dn.subtree="ou=newusers,${ldapBaseDN}"
-                    by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDN}" write
-                    by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
-                    by self write
-                    by anonymous auth
-                    by * read''
-                ''{1}to dn.subtree="ou=invitations,${ldapBaseDN}"
-                    by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDN}" write
-                    by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
-                    by self write
-                    by anonymous auth
-                    by * read''
-                ''{2}to dn.subtree="ou=users,${ldapBaseDN}"
-                    by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDN}" write
-                    by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
-                    by self write
-                    by anonymous auth
-                    by * read''
-                ''{3}to attrs=userPassword
-                    by self write
-                    by anonymous auth
-                    by * none''
-                ''{4}to *
-                    by dn.exact="cn=sogo@resdigita.org,ou=users,${ldapBaseDN}" manage
-                    by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
-                    by dn.exact="cn=chris@mann.fr,ou=users,${ldapBaseDN}" manage
-                    by self write
-                    by anonymous auth''
-                /* custom access rules for userPassword attributes */
-                ''{5}to attrs=cn,sn,givenName,displayName,member,memberof
-                    by self write
-                    by * read''
-                ''{6}to *
-                    by * read''
-              ];
+              "olcDatabase={1}mdb".attrs = {
+                objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
+                olcDbIndex = [
+                  "displayName,description eq,sub"
+                  "uid,ou,c eq"
+                  "carLicense,labeledURI,telephoneNumber,mobile,homePhone,title,street,l,st,postalCode eq"
+                  "objectClass,cn,sn,givenName,mail eq"
+                ];
+                olcDatabase = "{1}mdb";
+                olcDbDirectory = "/var/lib/openldap/data";
+                olcSuffix = "${ldapBaseDN}";
+                /* your admin account, do not use writeText on a production system */
+                olcRootDN = "cn=admin,${ldapBaseDN}";
+                olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
+                olcAccess = [
+                  /* custom access rules for userPassword attributes */
+                  /* allow read on anything else */
+                  ''{0}to dn.subtree="ou=newusers,${ldapBaseDN}"
+                      by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDN}" write
+                      by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
+                      by self write
+                      by anonymous auth
+                      by * read''
+                  ''{1}to dn.subtree="ou=invitations,${ldapBaseDN}"
+                      by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDN}" write
+                      by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
+                      by self write
+                      by anonymous auth
+                      by * read''
+                  ''{2}to dn.subtree="ou=users,${ldapBaseDN}"
+                      by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDN}" write
+                      by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
+                      by self write
+                      by anonymous auth
+                      by * read''
+                  ''{3}to attrs=userPassword
+                      by self write
+                      by anonymous auth
+                      by * none''
+                  ''{4}to *
+                      by dn.exact="cn=sogo@resdigita.org,ou=users,${ldapBaseDN}" manage
+                      by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
+                      by dn.exact="cn=chris@mann.fr,ou=users,${ldapBaseDN}" manage
+                      by self write
+                      by anonymous auth''
+                  /* custom access rules for userPassword attributes */
+                  ''{5}to attrs=cn,sn,givenName,displayName,member,memberof
+                      by self write
+                      by * read''
+                  ''{6}to *
+                      by * read''
+                ];
+              };
             };
           };
         };
       };
-    #  /* ensure openldap is launched after certificates are created */
-    #  systemd.services.openldap = {
-    #    wants = [ "acme-${ldapDomainNameomainName}.service" ];
-    #    after = [ "acme-${ldapDomainName}.service" ];
-    #  };
-    #  /* make acme certificates accessible by openldap */
-    #  security.acme.defaults.group = "certs";
-    #  users.groups.certs.members = [ "openldap" ];
-    #  /* trigger the actual certificate generation for your hostname */
-    #  security.acme.certs."${ldapDomainName}" = {
-    #    extraDomainNames = [];
-    #  };
-    #############################
+      #  /* ensure openldap is launched after certificates are created */
+      #  systemd.services.openldap = {
+      #    wants = [ "acme-${ldapDomainNameomainName}.service" ];
+      #    after = [ "acme-${ldapDomainName}.service" ];
+      #  };
+      #  /* make acme certificates accessible by openldap */
+      #  security.acme.defaults.group = "certs";
+      #  users.groups.certs.members = [ "openldap" ];
+      #  /* trigger the actual certificate generation for your hostname */
+      #  security.acme.certs."${ldapDomainName}" = {
+      #    extraDomainNames = [];
+      #  };
+      #############################
       systemd.services.openldap = {
         wants = [ "acme-${ldapDomainName}.service" ];
         after = [ "acme-${ldapDomainName}.service" ];
@@ -1351,18 +1357,13 @@ in
           RemainAfterExit = false;
         };
       };
-      users.groups.wwwrun.members = [ "openldap" ];
+      # users.groups.wwwrun.members = [ "openldap" ];
     };
   };
   # containers.seafile = {
   #   autoStart = true;container@freeipa.service
   #   privateNetwork = true;
   #   hostAddress = "192.168.101.10";domainName
-domainName
-domainName
-DomainName
-domainName
-domainName
   #   localAddress = "192.168.101.11";
   #   hostAddress6 = "fd00::1";
   #   localAddress6 = "fd00::2";
