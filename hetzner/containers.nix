@@ -1234,13 +1234,13 @@ in
         firewall.allowedTCPPorts = [ 8080 389 686 ];
         # useHostResolvConf = true;
         useHostResolvConf = lib.mkForce false;
-        resolvconf.enable = true;
+        # resolvconf.enable = true;
       };
       time.timeZone = "Europe/Paris";
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
-          vimrcConfig.customRC = ''
+          vimrcConfig.containers.openldap.networking.resolvconf.packagecustomRC = ''
             " your custom vimrc
             set mouse=a
             set nocompatible
@@ -1253,7 +1253,7 @@ in
             set autoindent
             set smartindent
             " ...
-          '';
+          '';containers.openldap.networking.resolvconf.package
           }
         )
         lynx
