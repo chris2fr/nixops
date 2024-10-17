@@ -1297,12 +1297,13 @@ in
           extraEnvironment = [
             "PWM_APPLICATIONPATH=/var/tomcat/pwm"
           ];
-          # extraConfigFiles = [
-          #   "/var/tomcat/conf/extra-users.xml"
-          # ];
-          javaOpts = [
-            "-Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true"
+          extraConfigFiles = [
+            "/var/tomcat/conf/extra-users.xml"
           ];
+          
+          # javaOpts = [
+          #   "-Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true"
+          # ];
         };
         openldap = {
           enable = true;
@@ -1318,7 +1319,7 @@ in
               olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/full.pem";
               # olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/cert.pem";
               olcTLSCertificateKeyFile = "/var/lib/acme/${ldapDomainName}/key.pem";
-              olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
+              olcTLSCipherSuite = "HIGH:MnslookupEDIUM:+3DES:+RC4:+aNULL";
               olcTLSCRLCheck = "none";
               olcTLSVerifyClient = "never";
               olcTLSProtocolMin = "3.1";
@@ -1342,7 +1343,7 @@ in
                 olcDatabase = "{1}mdb";
                 olcDbDirectory = "/var/lib/openldap/data";
                 olcSuffix = "${ldapBaseDN}";
-                /* your admin account, do not use writeText on a production system */
+                /* your admin account, do not use writeText on a production system */nslookup
                 olcRootDN = "cn=admin,${ldapBaseDN}";
                 olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
                 olcAccess = [
@@ -1363,7 +1364,7 @@ in
                   ''{2}to dn.subtree="ou=users,${ldapBaseDN}"
                       by dn.exact="cn=newuser@gv.coop,ou=users,${ldapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
-                      by self write
+                      by self writenslookup
                       by anonymous auth
                       by * read''
                   ''{3}to attrs=userPassword
