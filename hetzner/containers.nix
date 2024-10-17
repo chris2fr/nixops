@@ -1312,7 +1312,7 @@ in
             attrs = {
               # olcTLSReqCert = "allow" ;
               # TLS_CACERTDIR /home/myuser/cacertss
-              # LDAPTLS_CACERT /home/myuser/cacertss
+              # LDAPTLS_CACERT /home/myuser/cacerts@@s
               olcLogLevel = "conns config";
               /* settings for acme ssl */
               olcTLSCACertificateFile = "/var/lib/acme/${ldapDomainName}/full.pem";
@@ -1325,7 +1325,7 @@ in
               olcTLSProtocolMin = "3.1";
               olcThreads = "16";
             };
-            children = {
+            children = {@@
               "cn=schema".includes = [
                 "${pkgs.openldap}/etc/schema/core.ldif"
                 "${pkgs.openldap}/etc/schema/cosine.ldif"
