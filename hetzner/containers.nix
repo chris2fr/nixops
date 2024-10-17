@@ -1241,7 +1241,7 @@ in
         lynx
         nettools
         wget
-        dightml
+        dig
         ((vim_configurable.override {  }).customize{
           name = "vim";
           vimrcConfig.customRC = ''
