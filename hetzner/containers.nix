@@ -1306,15 +1306,16 @@ in
         };
         openldap = {
           enable = true;
-          urlList = [ 
-            "ldap://ldap.gv.coop:10389/" 
-            "ldap://192.168.107.11:10389/"
-            "ldaps://192.168.107.11:10636/"
-            "ldaps://ldap.gv.coop:10636/"
-            "ldapi:///"
-            "ldap://localhost:10389/"
-            "ldaps://localhost:10636/" 
-          ];
+          urlList = ["ldap://192.168.107.11:10389/ ldaps://192.168.107.11:10636/"];
+          # urlList = [ 
+          #   "ldap://ldap.gv.coop:10389/" 
+          #   "ldap://192.168.107.11:10389/"
+          #   "ldaps://192.168.107.11:10636/"
+          #   "ldaps://ldap.gv.coop:10636/"
+          #   "ldapi:///"
+          #   "ldap://localhost:10389/"
+          #   "ldaps://localhost:10636/" 
+          # ];
           settings = {
             attrs = {
               # olcTLSReqCert = "allow" ;
