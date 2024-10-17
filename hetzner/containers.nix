@@ -1300,7 +1300,7 @@ in
           extraConfigFiles = [
             "/var/tomcat/conf/extra-users.xml"
           ];
-          
+
           # javaOpts = [
           #   "-Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true"
           # ];
@@ -1343,7 +1343,7 @@ in
                 olcDatabase = "{1}mdb";
                 olcDbDirectory = "/var/lib/openldap/data";
                 olcSuffix = "${ldapBaseDN}";
-                /* your admin account, do not use writeText on a production system */nslookup
+                /* your admin account, do not use writeText on a production system */
                 olcRootDN = "cn=admin,${ldapBaseDN}";
                 olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
                 olcAccess = [
