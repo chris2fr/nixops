@@ -80,12 +80,12 @@ in
         sourcePort = 12443;
       }
       {
-        destination = "192.168.107.11:10389";
+        destination = "192.168.107.11:389";
         proto = "tcp";
         sourcePort = 10389;
       }
       {
-        destination = "192.168.107.11:10636";
+        destination = "192.168.107.11:636";
         proto = "tcp";
         sourcePort = 10636;
       }
