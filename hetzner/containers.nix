@@ -1222,7 +1222,7 @@ in
     localAddress = "192.168.107.11";
     hostAddress6 = "fa01::1";
     localAddress6 = "fa01::2";
-    config = { config, pkgs, lib, ...  }: {domainName
+    config = { config, pkgs, lib, ...  }: {
           vimrcConfig.customRC = ''
             " your custom vimrc
             set mouse=a
