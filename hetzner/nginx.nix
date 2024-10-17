@@ -26,10 +26,13 @@ in
   #   extraHosts = "192.168.103.2 ghh.resdigita.com";
   # };
   users.users.nginx.group = "wwwrun";
+  systemd.tmpfiles.rules = [
+    "d /var/www/gv.coop/ldap 0775 wwwrun wwwrun"
+  ];
   services = {
     nginx = {
       group = "wwwrun";
-      enable = true;
+      enable = true;  
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
@@ -75,7 +78,8 @@ in
         "ldap.gv.coop" = {
           forceSSL = true;
           enableACME = true;
-          locations."/" = {
+          locations."/.well-known" = { proxyPass = null; };
+          locations."/pwm" = {
             extraConfig = ''
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -91,7 +95,10 @@ in
             # proxy_redirect off;
             '';
           };
-          locations."/.well-known" = { proxyPass = null; };
+          locations."/" = {
+            "302 https://ldap.gv.coop/pwm$request_uri"
+          };
+          root = "/var/www/gv.coop/ldap"
         }; 
         "syncthing.resdigita.com" = {
           forceSSL = true;
