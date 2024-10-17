@@ -96,9 +96,9 @@ in
             '';
           };
           locations."/" = {
-            "302 https://ldap.gv.coop/pwm$request_uri"
+            "302 https://ldap.gv.coop/pwm$request_uri";
           };
-          root = "/var/www/gv.coop/ldap"
+          root = "/var/www/gv.coop/ldap";
         }; 
         "syncthing.resdigita.com" = {
           forceSSL = true;
