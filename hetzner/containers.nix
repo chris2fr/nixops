@@ -1225,7 +1225,6 @@ in
     config = { config, pkgs, lib, ...  }: {
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
-      nix.settings.experimental-features = "nix-command flakes";
       networking = {
         firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
         useHostResolvConf = true;
@@ -1327,7 +1326,16 @@ in
                       by anonymous auth''
                   /* custom access rules for userPassword attributes */
                   ''{5}to attrs=cn,sn,givenName,displayName,member,memberof
-                      by self write
+                      by self write      systemd.services.openldap = {
+        wants = [ "acme-${ldapDomainName}.service" ];
+        after = [ "acme-${ldapDomainName}.service" ];
+        serviceConfig = {
+          RemainAfterExit = false;
+        };
+      };
+      users.groups.wwwrun.members = [ "openldap" ];
+    };
+  };
                       by * read''
                   ''{6}to *
                       by * read''
@@ -1340,7 +1348,16 @@ in
       #  /* ensure openldap is launched after certificates are created */
       #  systemd.services.openldap = {
       #    wants = [ "acme-${ldapDomainNameomainName}.service" ];
-      #    after = [ "acme-${ldapDomainName}.service" ];
+      #    after = [ "acme-${ldapDomainNam      systemd.services.openldap = {
+        wants = [ "acme-${ldapDomainName}.service" ];
+        after = [ "acme-${ldapDomainName}.service" ];
+        serviceConfig = {
+          RemainAfterExit = false;
+        };
+      };
+      users.groups.wwwrun.members = [ "openldap" ];
+    };
+  };e}.service" ];
       #  };
       #  /* make acme certificates accessible by openldap */
       #  security.acme.defaults.group = "certs";
