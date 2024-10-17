@@ -1231,9 +1231,10 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
       networking = {
-        # firewall.allowedTCPPorts = [ 3000 4971 4972 22 25 80 443 143 587 993 995 636 8443 9443 ];
+        firewall.allowedTCPPorts = [ 8080 389 686 ];
         # useHostResolvConf = true;
         useHostResolvConf = lib.mkForce false;
+        resolvconf.enable = true;
       };
       time.timeZone = "Europe/Paris";
       environment.systemPackages = with pkgs; [
@@ -1279,6 +1280,13 @@ in
         "/var/lib/acme/${ldapDomainName} 0755 acme wwwrun"
       ];
       services = {
+        resolved = {
+          enable = true;
+          fallbackDNS = [
+              "8.8.8.8"
+              "2001:4860:4860::8844"
+            ];
+        };
         tomcat = {
           enable = true;
           extraEnvironment = [

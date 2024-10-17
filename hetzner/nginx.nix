@@ -80,7 +80,7 @@ in
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header   Host $host;
-            proxy_pass         http://192.168.107.11:80/;
+            proxy_pass         http://192.168.107.11:8080/;
             proxy_read_timeout 600s;
             proxy_send_timeout 600s;
             # proxy_http_version 1.1;
@@ -91,6 +91,7 @@ in
             # proxy_redirect off;
             '';
           };
+          locations."/.well-known" = { proxyPass = null; };
         }; 
         "syncthing.resdigita.com" = {
           forceSSL = true;
@@ -118,7 +119,8 @@ in
           enableACME = true; 
           locations."/" = {
             proxyPass = "http://localhost:8090";
-            # proxyWebsockets = true;
+            # proxyWebsockets = true      locations."/.well-known" = { proxyPass = null; };
+;
             # extraConfig = ''
             # proxy_set_header   X-Real-IP $remote_addr;
             # proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -131,7 +133,8 @@ in
             # # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             # # proxy_redirect off;
             # '';
-          };
+          };      locations."/.well-known" = { proxyPass = null; };
+
 
         };
         "wordpress.resdigita.com" = {
