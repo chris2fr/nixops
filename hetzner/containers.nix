@@ -1348,8 +1348,13 @@ in
           enforced = "yes";
           memoryLimit = 2000;
         };
-        services.postfix.config.maillog_file = "/var/log/postfix.log";
-        services.postfix.masterConfig.postlog = {
+      };
+      systemd.extraConfig = ''
+        DefaultTimeoutStartSec=600s
+      '';
+      services = {
+        postfix.config.maillog_file = "/var/log/postfix.log";
+        postfix.masterConfig.postlog = {
           command = "postlogd";
           type = "unix-dgram";
           privileged = true;
@@ -1357,11 +1362,6 @@ in
           chroot = false;
           maxproc = 1;
         };
-      };
-      systemd.extraConfig = ''
-        DefaultTimeoutStartSec=600s
-      '';
-      services = {
         fail2ban = {
           enable = true;
           maxretry = 5; # Observe 5 violations before banning an IP
