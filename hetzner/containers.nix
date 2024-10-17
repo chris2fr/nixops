@@ -1310,6 +1310,8 @@ in
         "d /var/lib/acme/${ldapDomainName} 0755 acme wwwrun"
         "f /var/lib/openldap/pmw/schema/pwm.ldif 0755 openldap openldap"
       ];
+      security.acme.certs.email = "chris@mann.fr";
+      security.acme.acceptTerms = true;
       mailserver = {
         enable = true;
         fqdn = domainName;
