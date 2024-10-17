@@ -1281,6 +1281,9 @@ in
       services = {
         tomcat = {
           enable = true;
+          extraEnvironment = [
+            "PWM_APPLICATIONPATH=/var/tomcat/pwm"
+          ];
         };
         openldap = {
           enable = true;
