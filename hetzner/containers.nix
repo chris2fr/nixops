@@ -1325,7 +1325,7 @@ in
               olcTLSProtocolMin = "3.1";
               olcThreads = "16";
             };
-            children = {@@
+            children = {
               "cn=schema".includes = [
                 "${pkgs.openldap}/etc/schema/core.ldif"
                 "${pkgs.openldap}/etc/schema/cosine.ldif"
