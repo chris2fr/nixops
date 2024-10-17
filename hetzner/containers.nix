@@ -1323,19 +1323,19 @@ in
         ldap = {
           enable = true;
           bind = {
-            dn = "cn=admin,${ldapBaseDCDN}";
+            dn = "cn=admin,${ldapBaseDN}";
             passwordFile = "/etc/nixos/.secrets.bind";
           };
           uris = [
             "ldap:///"
           ];
-          searchBase = "ou=users,${ldapBaseDCDN}";
+          searchBase = "ou=users,${ldapBaseDN}";
           searchScope = "sub";
           tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
           startTls = false;
           postfix = {
             mailAttribute = "mail";
-            uidAttribute = "uid";
+            uidAttribute = "cn";
             #  filter = "(cn=%s)";
           };
         };
@@ -1417,12 +1417,12 @@ in
           enable = true;
           # this is the url of the vhost, not necessarily the same as the fqdn of
           # the mailserver
-          hostName = "mail.lesgrandsvoisins.com";
+          hostName = "mail.gv.coop";
           #  dicts =  [ en fr de ];
           extraConfig = ''
               # starttls needed for authentication, so the fqdn required to match
               # the certificate
-              $config['smtp_server'] = "tls://mail.lesgrandsvoisins.com";
+              $config['smtp_server'] = "tls://mail.gv.coop";
               $config['smtp_user'] = "%u";
               $config['smtp_pass'] = "%p";
               # $config['oauth_provider'] = 'generic';
@@ -1435,12 +1435,12 @@ in
               # $config['oauth_scope'] = "openid dovecotprofile email";
               # $config['oauth_auth_parameters'] = [];
               # $config['oauth_identity_fields'] = ['email'];
-              $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
+              $config['generic_message_footer_html'] = '<a href="https://www.gv.coop">Les Grands Voisins .com comme communautés</a>';
               $config['session_samesite'] = "Lax";
-              $config['support_url'] = 'https://www.lesgrandsvoisins.com';
+              $config['support_url'] = 'https://www.gv.coop';
               $config['product_name'] = 'Roundcube Webmail des GV';
               $config['session_debug'] = true;
-              $config['session_domain'] = 'mail.lesgrandsvoisins.com';
+              $config['session_domain'] = 'mail.gv.coop';
               $config['login_password_maxlen'] = 4096;
           '';
           dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
