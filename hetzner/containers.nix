@@ -1216,7 +1216,7 @@ in
   };
   containers.openldap = {
     autoStart = true;
-    privateNetwork = true;
+    # privateNetwork = true;
     # hostAddress = "192.168.107.10";
     # localAddress = "192.168.107.11";
     # hostAddress6 = "fa01::1";
