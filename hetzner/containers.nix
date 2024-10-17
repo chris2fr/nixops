@@ -1231,7 +1231,7 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
       networking = {
-        firewall.allowedTCPPorts = [ 8080 10389 10686 22 ];
+        firewall.allowedTCPPorts = [ 8080 389 686 22 ];
         # useHostResolvConf = true;
         useHostResolvConf = lib.mkForce false;
         # resolvconf.enable = true;
@@ -1265,7 +1265,7 @@ in
         groups = {
           "acme".gid = 993;
           "wwwrun".gid = 54;
-        };
+        };'ldap:/// ldaps:///'
         users = {
           "acme" = {
             uid = 994;
