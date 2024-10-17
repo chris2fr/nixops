@@ -1407,7 +1407,7 @@ in
                 "${pkgs.openldap}/etc/schema/cosine.ldif"
                 "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
                 "${pkgs.openldap}/etc/schema/nis.ldif"
-                "/var/lib/openldap/pmw/schema/pwm.ldif" # Flake this
+                # "/var/lib/openldap/pmw/schema/pwm.ldif" # Flake this
               ];
               # Type: attribute
               # Name: pwmData
