@@ -96,7 +96,7 @@ in
             '';
           };
           locations."/" = {
-            "302 https://ldap.gv.coop/pwm$request_uri";
+            return = "302 https://ldap.gv.coop/pwm$request_uri";
           };
           root = "/var/www/gv.coop/ldap";
         }; 
