@@ -1420,7 +1420,7 @@ in
                       by * read''
                   ''{3}to attrs=userPassword
                       by self write
-                      by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" write
+                      by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,dc=gv,dc=coop" write
                       by anonymous auth
                       by * none''
                   ''{4}to *
