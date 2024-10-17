@@ -1363,7 +1363,7 @@ in
                   ''{2}to dn.subtree="ou=users,${ldapBaseDN}"
                       by dn.exact="cn=newuser@gv.coop,ou=users,${ldapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
-                      by self writenslookup
+                      by self write
                       by anonymous auth
                       by * read''
                   ''{3}to attrs=userPassword
