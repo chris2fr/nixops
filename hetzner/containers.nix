@@ -1217,10 +1217,10 @@ in
   containers.openldap = {
     autoStart = true;
     privateNetwork = true;
-    hostAddress = "192.168.107.10";
-    localAddress = "192.168.107.11";
-    hostAddress6 = "fa01::1";
-    localAddress6 = "fa01::2";
+    # hostAddress = "192.168.107.10";
+    # localAddress = "192.168.107.11";
+    # hostAddress6 = "fa01::1";
+    # localAddress6 = "fa01::2";
     bindMounts = { 
       "/var/lib/acme/${ldapDomainName}" = { 
         hostPath = "/var/lib/acme/${ldapDomainName}";
@@ -1231,12 +1231,12 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
       networking = {
-        firewall.allowedTCPPorts = [ 8080 10389 10686 22 ];
-        hosts = {
-          "192.168.107.11" = ["ldap.gv.coop"];
-        };
+        firewall.allowedTCPPorts = [ 18080 10389 10686 22 ];
+        # hosts = {
+        #   "192.168.107.11" = ["ldap.gv.coop"];
+        # };
         # useHostResolvConf = true;
-        useHostResolvConf = lib.mkForce false;
+        # useHostResolvConf = lib.mkForce false;
         # resolvconf.enable = true;
       };
       time.timeZone = "Europe/Paris";
@@ -1289,13 +1289,13 @@ in
           enable = true;
         };
 
-        resolved = {
-          enable = true;
-          fallbackDns = [
-              "8.8.8.8"
-              "2001:4860:4860::8844"
-            ];
-        };
+        # resolved = {
+        #   enable = true;
+        #   fallbackDns = [
+        #       "8.8.8.8"
+        #       "2001:4860:4860::8844"
+        #     ];
+        # };
         tomcat = {
           enable = true;
           extraEnvironment = [
@@ -1307,10 +1307,74 @@ in
           # javaOpts = [
           #   "-Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true"
           # ];
+          serverXml = ''<?xml version="1.0" encoding="UTF-8"?>
+            <Server port="18005" shutdown="SHUTDOWN">
+              <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
+              <!-- Security listener. Documentation at /docs/config/listeners.html
+              <Listener className="org.apache.catalina.security.SecurityListener" />
+              -->
+              <!-- APR library loader. Documentation at /docs/apr.html -->
+              <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />
+              <!-- Prevent memory leaks due to use of particular java/javax APIs-->
+              <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
+              <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+              <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+
+              <!-- Global JNDI resources
+                  Documentation at /docs/jndi-resources-howto.html
+              -->
+                <GlobalNamingResources>
+                <!-- Editable user database that can also be used by
+                    UserDatabaseRealm to authenticate users
+                -->
+                <Resource name="UserDatabase" auth="Container"
+                          type="org.apache.catalina.UserDatabase"
+                          description="User database that can be updated and saved"
+                          factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+                          pathname="conf/extra-users.xml" />
+                </GlobalNamingResources>
+                <Service name="Catalina">
+                 <Connector port="18080" protocol="HTTP/1.1"
+                    connectionTimeout="20000"
+                    redirectPort="8443"
+                    maxParameterCount="1000"
+                    />
+                  <Engine name="Catalina" defaultHost="localhost">
+                        <!-- Use the LockOutRealm to prevent attempts to guess user passwords
+                        via a brute-force attack -->
+                    <Realm className="org.apache.catalina.realm.LockOutRealm">
+                      <!-- This Realm uses the UserDatabase configured in the global JNDI
+                          resources under the key "UserDatabase".  Any edits
+                          that are performed against this UserDatabase are immediately
+                          available for use by the Realm.  -->
+                      <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+                            resourceName="UserDatabase"/>
+                    </Realm>
+
+                    <Host name="localhost"  appBase="webapps"
+                          unpackWARs="true" autoDeploy="true">
+
+                      <!-- SingleSignOn valve, share authentication between web applications
+                          Documentation at: /docs/config/valve.html -->
+                      <!--
+                      <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
+                      -->
+
+                      <!-- Access log processes all example.
+                          Documentation at: /docs/config/valve.html
+                          Note: The pattern used is equivalent to using pattern="common" -->
+                      <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+                            prefix="localhost_access_log" suffix=".txt"
+                            pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+                    </Host>
+                  </Engine>
+              </Service>
+            </Server>
+          '';
         };
         openldap = {
           enable = true;
-          urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
+          urlList = ["ldap://ldap.gv.coop:10389/ ldap://localhost:10389/  ldaps://ldap.gv.coop:10636/ ldapi:///"];
           # urlList = [ 
           #   "ldap://ldap.gv.coop:10389/" 
           #   "ldap://192.168.107.11:10389/"
@@ -1383,7 +1447,7 @@ in
               # Type: objectclass
               # Name: pwmUser
               # Definition: ( 1.3.6.1.4.1.35015.1.1.1 NAME 'pwmUser' AUXILIARY MAY ( pwmLastPwdUpdate $ pwmEventLog $ pwmResponseSet $ pwmGUID $ pwmToken $ pwmOtpSecret $ pwmData ) )
-              "olcDatabase={1}mdb".attrs = {
+              "olcDatabase={1}mdb".attrs = {ldap.gv.coop
                 objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
                 olcDbIndex = [
                   "displayName,description eq,sub"
