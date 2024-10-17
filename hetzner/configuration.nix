@@ -172,7 +172,7 @@ in
       programs.home-manager.enable = true;
       programs.vim = {
         enable = true;
-        plugins = with pkgs.vimP10389lugins; [ vim-airline ];
+        plugins = with pkgs.vimPlugins; [ vim-airline ];
         settings = { ignorecase = true; tabstop = 2; };
         extraConfig = ''
           set mouse=a
