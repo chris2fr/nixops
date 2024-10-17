@@ -1281,7 +1281,8 @@ in
         };
       };
       systemd.tmpfiles.rules = [
-        "/var/lib/acme/${ldapDomainName} 0755 acme wwwrun"
+        "d /var/lib/acme/${ldapDomainName} 0755 acme wwwrun"
+        "f /var/lib/openldap/pmw/schema/pwm.ldif 0755 openldap openldap"
       ];
       services = {
         openssh = {
@@ -1342,7 +1343,46 @@ in
                 "${pkgs.openldap}/etc/schema/cosine.ldif"
                 "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
                 "${pkgs.openldap}/etc/schema/nis.ldif"
+                "/var/lib/openldap/pmw/schema/pwm.ldif" # Flake this
               ];
+              # Type: attribute
+              # Name: pwmData
+              # Definition: ( 1.3.6.1.4.1.35015.1.2.7 NAME 'pwmData' SYNTAX 1.3.6.1.4.1.1466.115.121.1.40 )
+
+
+              # Type: attribute
+              # Name: pwmEventLog
+              # Definition: ( 1.3.6.1.4.1.35015.1.2.1 NAME 'pwmEventLog' SYNTAX 1.3.6.1.4.1.1466.115.121.1.40 )
+
+
+              # Type: attribute
+              # Name: pwmGUID
+              # Definition: ( 1.3.6.1.4.1.35015.1.2.4 NAME 'pwmGUID' SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+
+
+              # Type: attribute
+              # Name: pwmLastPwdUpdate
+              # Definition: ( 1.3.6.1.4.1.35015.1.2.3 NAME 'pwmLastPwdUpdate' SYNTAX 1.3.6.1.4.1.1466.115.121.1.24 )
+
+
+              # Type: attribute
+              # Name: pwmOtpSecret
+              # Definition: ( 1.3.6.1.4.1.35015.1.2.6 NAME 'pwmOtpSecret' SYNTAX 1.3.6.1.4.1.1466.115.121.1.40 )
+
+
+              # Type: attribute
+              # Name: pwmResponseSet
+              # Definition: ( 1.3.6.1.4.1.35015.1.2.2 NAME 'pwmResponseSet' SYNTAX 1.3.6.1.4.1.1466.115.121.1.40 )
+
+
+              # Type: attribute
+              # Name: pwmToken
+              # Definition: ( 1.3.6.1.4.1.35015.1.2.5 NAME 'pwmToken' SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+
+
+              # Type: objectclass
+              # Name: pwmUser
+              # Definition: ( 1.3.6.1.4.1.35015.1.1.1 NAME 'pwmUser' AUXILIARY MAY ( pwmLastPwdUpdate $ pwmEventLog $ pwmResponseSet $ pwmGUID $ pwmToken $ pwmOtpSecret $ pwmData ) )
               "olcDatabase={1}mdb".attrs = {
                 objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
                 olcDbIndex = [
