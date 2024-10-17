@@ -1427,6 +1427,7 @@ in
                       by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
                       by dn.exact="cn=chris@gv.coop,ou=users,${ldapBaseDN}" manage
                       by dn.exact="cn=chris@mann.fr,ou=users,${ldapBaseDN}" manage
+                      by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
                       by self write
                       by anonymous auth''
                   /* custom access rules for userPassword attributes */
