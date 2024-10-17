@@ -1238,6 +1238,10 @@ in
       };
       time.timeZone = "Europe/Paris";
       environment.systemPackages = with pkgs; [
+        lynx
+        nettools
+        wget
+        dig
         ((vim_configurable.override {  }).customize{
           name = "vim";
           vimrcConfig.customRC = ''
@@ -1256,9 +1260,6 @@ in
           '';
           }
         )
-        lynx
-        nettools
-        wget
       ];
       users = {
         groups = {
@@ -1280,6 +1281,10 @@ in
         "/var/lib/acme/${ldapDomainName} 0755 acme wwwrun"
       ];
       services = {
+        openssh = {
+          enable = true;
+        };
+
         resolved = {
           enable = true;
           fallbackDns = [
