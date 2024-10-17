@@ -80,37 +80,34 @@ in
         sourcePort = 12443;
       }
       {
-        destination = "192.168.107.11:389";
+        destination = "192.168.107.11:10389";
         proto = "tcp";
         sourcePort = 10389;
       }
       {
-        destination = "192.168.107.11:636";
+        destination = "192.168.107.11:10636";
         proto = "tcp";
         sourcePort = 10636;
       }
       ];
     };
     # firewall.enable = false;
-    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet"];
+    firewall.trustedInterfaces = [ "docker0" "lxdbr1" "lxdbr0" "ve-silverbullet" "ve-openldap"];
     # Syncthing ports: 8384 for remote access to GUI
     # 22000 TCP and/or UDP for sync traffic
     # 21027/UDP for discovery
     # source: https://docs.syncthing.net/users/firewall.html
     firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995
-    636 
-    8443 
-    9080 9443 
-    10080 10443 
-    11443
-    12080 12443
-    8384 22000 
-    22000 21027 
-    10389 10636 ];
-    # interfaces."eno1".ipv6 = {
-
-    # }
-    
+      636 
+      8443 
+      9080 9443 
+      10080 10443 
+      11443
+      12080 12443
+      8384 22000 
+      22000 21027 
+      10389 10636 
+    ];
   };
   # Set your time zone.
   time.timeZone = "Europe/Paris";
