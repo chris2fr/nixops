@@ -75,6 +75,22 @@ in
         "ldap.gv.coop" = {
           forceSSL = true;
           enableACME = true;
+          locations."/" = {
+            extraConfig = ''
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   Host $host;
+            proxy_pass         http://192.168.107.11:80/;
+            proxy_read_timeout 600s;
+            proxy_send_timeout 600s;
+            # proxy_http_version 1.1;
+            # proxy_set_header   Upgrade $http_upgrade;
+            # proxy_set_header   Connection "upgrade";
+            # proxy_set_header X-Forwarded-Proto $scheme;
+            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            # proxy_redirect off;
+            '';
+          };
         }; 
         "syncthing.resdigita.com" = {
           forceSSL = true;

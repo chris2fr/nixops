@@ -1276,6 +1276,9 @@ in
         "/var/lib/acme/${ldapDomainName} 0755 acme wwwrun"
       ];
       services = {
+        tomcat = {
+          enable = true;
+        };
         openldap = {
           enable = true;
           urlList = [ "ldap:/// ldaps:///" ];
@@ -1321,19 +1324,19 @@ in
                   /* custom access rules for userPassword attributes */
                   /* allow read on anything else */
                   ''{0}to dn.subtree="ou=newusers,${ldapBaseDN}"
-                      by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDN}" write
+                      by dn.exact="cn=newuser@gv.coop,ou=users,${ldapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
                       by self write
                       by anonymous auth
                       by * read''
                   ''{1}to dn.subtree="ou=invitations,${ldapBaseDN}"
-                      by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDN}" write
+                      by dn.exact="cn=newuser@gv.coop,ou=users,${ldapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
                       by self write
                       by anonymous auth
                       by * read''
                   ''{2}to dn.subtree="ou=users,${ldapBaseDN}"
-                      by dn.exact="cn=newuser@lesgv.com,ou=users,${ldapBaseDN}" write
+                      by dn.exact="cn=newuser@gv.coop,ou=users,${ldapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
                       by self write
                       by anonymous auth
@@ -1343,8 +1346,9 @@ in
                       by anonymous auth
                       by * none''
                   ''{4}to *
-                      by dn.exact="cn=sogo@resdigita.org,ou=users,${ldapBaseDN}" manage
+                      by dn.exact="cn=sogo@gv.coop,ou=users,${ldapBaseDN}" manage
                       by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
+                      by dn.exact="cn=chris@gv.coop,ou=users,${ldapBaseDN}" manage
                       by dn.exact="cn=chris@mann.fr,ou=users,${ldapBaseDN}" manage
                       by self write
                       by anonymous auth''
