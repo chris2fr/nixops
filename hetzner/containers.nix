@@ -1447,7 +1447,7 @@ in
               # Type: objectclass
               # Name: pwmUser
               # Definition: ( 1.3.6.1.4.1.35015.1.1.1 NAME 'pwmUser' AUXILIARY MAY ( pwmLastPwdUpdate $ pwmEventLog $ pwmResponseSet $ pwmGUID $ pwmToken $ pwmOtpSecret $ pwmData ) )
-              "olcDatabase={1}mdb".attrs = {ldap.gv.coop
+              "olcDatabase={1}mdb".attrs = {
                 objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
                 olcDbIndex = [
                   "displayName,description eq,sub"
