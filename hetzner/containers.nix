@@ -1231,7 +1231,7 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
       networking = {
-        firewall.allowedTCPPorts = [ 8080 389 686 22 ];
+        firewall.allowedTCPPorts = [ 8080 10389 10686 22 ];
         # useHostResolvConf = true;
         useHostResolvConf = lib.mkForce false;
         # resolvconf.enable = true;
@@ -1241,7 +1241,7 @@ in
         lynx
         nettools
         wget
-        dig
+        dightml
         ((vim_configurable.override {  }).customize{
           name = "vim";
           vimrcConfig.customRC = ''
