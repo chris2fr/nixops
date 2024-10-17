@@ -1297,10 +1297,9 @@ in
           extraEnvironment = [
             "PWM_APPLICATIONPATH=/var/tomcat/pwm"
           ];
-          extraConfigFiles = [
-            "/var/tomcat/conf/extra-users.xml"
-          ];
-
+          # extraConfigFiles = [
+          #   "/var/tomcat/conf/extra-users.xml"
+          # ];
           # javaOpts = [
           #   "-Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true"
           # ];
