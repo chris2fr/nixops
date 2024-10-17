@@ -1326,16 +1326,7 @@ in
                       by anonymous auth''
                   /* custom access rules for userPassword attributes */
                   ''{5}to attrs=cn,sn,givenName,displayName,member,memberof
-                      by self write      systemd.services.openldap = {
-        wants = [ "acme-${ldapDomainName}.service" ];
-        after = [ "acme-${ldapDomainName}.service" ];
-        serviceConfig = {
-          RemainAfterExit = false;
-        };
-      };
-      users.groups.wwwrun.members = [ "openldap" ];
-    };
-  };
+                      by self write
                       by * read''
                   ''{6}to *
                       by * read''
@@ -1348,16 +1339,7 @@ in
       #  /* ensure openldap is launched after certificates are created */
       #  systemd.services.openldap = {
       #    wants = [ "acme-${ldapDomainNameomainName}.service" ];
-      #    after = [ "acme-${ldapDomainNam      systemd.services.openldap = {
-        wants = [ "acme-${ldapDomainName}.service" ];
-        after = [ "acme-${ldapDomainName}.service" ];
-        serviceConfig = {
-          RemainAfterExit = false;
-        };
-      };
-      users.groups.wwwrun.members = [ "openldap" ];
-    };
-  };e}.service" ];
+      #    after = [ "acme-${ldapDomainName}.service" ];
       #  };
       #  /* make acme certificates accessible by openldap */
       #  security.acme.defaults.group = "certs";
