@@ -72,6 +72,10 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
+        "ldap.gv.coop" = {
+          forceSSL = true;
+          enableACME = true;
+        }; 
         "syncthing.resdigita.com" = {
           forceSSL = true;
           enableACME = true;
