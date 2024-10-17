@@ -1325,7 +1325,7 @@ in
               olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/full.pem";
               # olcTLSCertificateFile = "/var/lib/acme/${ldapDomainName}/cert.pem";
               olcTLSCertificateKeyFile = "/var/lib/acme/${ldapDomainName}/key.pem";
-              olcTLSCipherSuite = "HIGH:MnslookupEDIUM:+3DES:+RC4:+aNULL";
+              olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
               olcTLSCRLCheck = "none";
               olcTLSVerifyClient = "never";
               olcTLSProtocolMin = "3.1";
