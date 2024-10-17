@@ -133,7 +133,7 @@ in
             # # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             # # proxy_redirect off;
             # '';
-          };      locations."/.well-known" = { proxyPass = null; };
+          };      
 
 
         };
