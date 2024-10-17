@@ -79,6 +79,16 @@ in
         proto = "tcp";
         sourcePort = 12443;
       }
+      {
+        destination = "192.168.107.11:10389";
+        proto = "tcp";
+        sourcePort = 10389;
+      }
+      {
+        destination = "192.168.107.11:10636";
+        proto = "tcp";
+        sourcePort = 10636;
+      }
       ];
     };
     # firewall.enable = false;
@@ -162,7 +172,7 @@ in
       programs.home-manager.enable = true;
       programs.vim = {
         enable = true;
-        plugins = with pkgs.vimPlugins; [ vim-airline ];
+        plugins = with pkgs.vimP10389lugins; [ vim-airline ];
         settings = { ignorecase = true; tabstop = 2; };
         extraConfig = ''
           set mouse=a

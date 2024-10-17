@@ -1306,7 +1306,7 @@ in
         };
         openldap = {
           enable = true;
-          urlList = [ "ldap:/// ldaps:///" ];
+          urlList = [ "ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/" ];
           settings = {
             attrs = {
               # olcTLSReqCert = "allow" ;
@@ -1380,7 +1380,7 @@ in
                   /* custom access rules for userPassword attributes */
                   ''{5}to attrs=cn,sn,givenName,displayName,member,memberof
                       by self write
-                      by * read''
+                      by * read''nslookup
                   ''{6}to *
                       by * read''
                 ];
