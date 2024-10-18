@@ -1561,7 +1561,7 @@ in
       users.groups.acme.members = [ "openldap" ];
     };
   };
-containers.mailserver = {
+  containers.mailserver = {
     autoStart = true;
     # localAddress6 = "2a01:4f8:241:4faa::1";
     privateNetwork = true;
@@ -1570,8 +1570,8 @@ containers.mailserver = {
     hostAddress6 = "fa01::1";
     localAddress6 = "fa01::2";
     bindMounts = { 
-      "/var/lib/acme/${ldapDomainName}" = { 
-        hostPath = "/var/lib/acme/${ldapDomainName}";
+      "/var/lib/acme/${domainName}" = { 
+        hostPath = "/var/lib/acme/${domainName}";
         isReadOnly = false; 
       }; 
     };
@@ -1587,6 +1587,9 @@ containers.mailserver = {
         # useHostResolvConf = true;
         useHostResolvConf = lib.mkForce false;
         # resolvconf.enable = true;
+        nat = {
+            externalIPv6 = "2a01:4f8:241:4faa::1";
+        };
       };
       time.timeZone = "Europe/Paris";
       environment.systemPackages = with pkgs; [
@@ -1644,45 +1647,45 @@ containers.mailserver = {
       # ];
       security.acme.defaults.email = "chris@mann.fr";
       security.acme.acceptTerms = true;
-      # mailserver = {
-      #   enable = true;
-      #   fqdn = domainName;
-      #   domains = mailServerDomainAliases;
-      #   certificateScheme = "acme";
-      #   certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
-      #   certificateDirectory = "/var/lib/acme/${domainName}/";
-      #   keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
-      #   messageSizeLimit = 209715200;
-      #   indexDir = "/var/lib/dovecot/indices";
-      #   ldap = {
-      #     enable = true;
-      #     bind = {
-      #       dn = "cn=admin,${ldapBaseDN}";
-      #       passwordFile = "/etc/nixos/.secrets.bind";
-      #     };
-      #     uris = [
-      #       "ldaps://ldap.gv.coop:10636/"
-      #     ];
-      #     searchBase = "ou=users,${ldapBaseDN}";
-      #     searchScope = "sub";
-      #     tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
-      #     startTls = false;
-      #     postfix = {
-      #       mailAttribute = "mail";
-      #       uidAttribute = "cn";
-      #       #  filter = "(cn=%s)";
-      #     };
-      #   };
-      #   fullTextSearch = {
-      #     enable = true;
-      #     # index new email as they arrive
-      #     autoIndex = true;
-      #     # this only applies to plain text attachments, binary attachments are never indexed
-      #     indexAttachments = false;
-      #     enforced = "yes";
-      #     memoryLimit = 2000;
-      #   };
-      # };
+      mailserver = {
+        enable = true;
+        fqdn = domainName;
+        domains = mailServerDomainAliases;
+        certificateScheme = "acme";
+        certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
+        certificateDirectory = "/var/lib/acme/${domainName}/";
+        keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
+        messageSizeLimit = 209715200;
+        indexDir = "/var/lib/dovecot/indices";
+        ldap = {
+          enable = true;
+          bind = {
+            dn = "cn=admin,${ldapBaseDN}";
+            passwordFile = "/etc/nixos/.secrets.bind";
+          };
+          uris = [
+            "ldaps://ldap.gv.coop:10636/"
+          ];
+          searchBase = "ou=users,${ldapBaseDN}";
+          searchScope = "sub";
+          tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
+          startTls = false;
+          postfix = {
+            mailAttribute = "mail";
+            uidAttribute = "cn";
+            #  filter = "(cn=%s)";
+          };
+        };
+        fullTextSearch = {
+          enable = true;
+          # index new email as they arrive
+          autoIndex = true;
+          # this only applies to plain text attachments, binary attachments are never indexed
+          indexAttachments = false;
+          enforced = "yes";
+          memoryLimit = 2000;
+        };
+      };
       systemd.extraConfig = ''
         DefaultTimeoutStartSec=600s
       '';
