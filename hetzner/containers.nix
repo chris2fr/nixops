@@ -1644,45 +1644,45 @@ containers.mailserver = {
       ];
       security.acme.defaults.email = "chris@mann.fr";
       security.acme.acceptTerms = true;
-      mailserver = {
-        enable = true;
-        fqdn = domainName;
-        domains = mailServerDomainAliases;
-        certificateScheme = "acme";
-        certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
-        certificateDirectory = "/var/lib/acme/${domainName}/";
-        keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
-        messageSizeLimit = 209715200;
-        indexDir = "/var/lib/dovecot/indices";
-        ldap = {
-          enable = true;
-          bind = {
-            dn = "cn=admin,${ldapBaseDN}";
-            passwordFile = "/etc/nixos/.secrets.bind";
-          };
-          uris = [
-            "ldaps://ldap.gv.coop:10636/"
-          ];
-          searchBase = "ou=users,${ldapBaseDN}";
-          searchScope = "sub";
-          tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
-          startTls = false;
-          postfix = {
-            mailAttribute = "mail";
-            uidAttribute = "cn";
-            #  filter = "(cn=%s)";
-          };
-        };
-        fullTextSearch = {
-          enable = true;
-          # index new email as they arrive
-          autoIndex = true;
-          # this only applies to plain text attachments, binary attachments are never indexed
-          indexAttachments = false;
-          enforced = "yes";
-          memoryLimit = 2000;
-        };
-      };
+      # mailserver = {
+      #   enable = true;
+      #   fqdn = domainName;
+      #   domains = mailServerDomainAliases;
+      #   certificateScheme = "acme";
+      #   certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
+      #   certificateDirectory = "/var/lib/acme/${domainName}/";
+      #   keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
+      #   messageSizeLimit = 209715200;
+      #   indexDir = "/var/lib/dovecot/indices";
+      #   ldap = {
+      #     enable = true;
+      #     bind = {
+      #       dn = "cn=admin,${ldapBaseDN}";
+      #       passwordFile = "/etc/nixos/.secrets.bind";
+      #     };
+      #     uris = [
+      #       "ldaps://ldap.gv.coop:10636/"
+      #     ];
+      #     searchBase = "ou=users,${ldapBaseDN}";
+      #     searchScope = "sub";
+      #     tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
+      #     startTls = false;
+      #     postfix = {
+      #       mailAttribute = "mail";
+      #       uidAttribute = "cn";
+      #       #  filter = "(cn=%s)";
+      #     };
+      #   };
+      #   fullTextSearch = {
+      #     enable = true;
+      #     # index new email as they arrive
+      #     autoIndex = true;
+      #     # this only applies to plain text attachments, binary attachments are never indexed
+      #     indexAttachments = false;
+      #     enforced = "yes";
+      #     memoryLimit = 2000;
+      #   };
+      # };
       systemd.extraConfig = ''
         DefaultTimeoutStartSec=600s
       '';
