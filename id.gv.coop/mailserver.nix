@@ -8,7 +8,9 @@ let
   oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
   domainName = "id.gv.coop";
   ldapBaseDCDN = "dc=gv,dc=coop";
-  mailServerDomainAliases = [ ];
+  mailServerDomainAliases = [ 
+    "gv.coop"
+  ];
   # mailServerDomainAliases = [ 
   #   "lesgrandsvoisins.com"
   #   #"mail.lesgrandsvoisins.com"
@@ -320,7 +322,7 @@ in
      dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
      maxAttachmentSize = 75;
   };
-  users.users.dovecot2.extraGroups = ["wwwrun"];
+  # users.users.dovecot2.extraGroups = ["wwwrun"];
   # services.postfix.config = {
   #   "smtpd_relay_restrictions" = lib.mkForce "permit_sasl_authenticated, reject";
   #   "smtpd_sasl_type" = lib.mkForce "dovecot";

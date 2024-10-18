@@ -19,7 +19,7 @@
     defaults.email = "chris@mann.fr";
     acceptTerms = true;
     # certs."id.gv.coop".listenHTTP = ":8888";
-    
+
   };
 
   networking.hostName = "id"; # Define your hostname.
@@ -74,18 +74,41 @@
     packages = with pkgs; [
   #     firefox
   #     tree
-        vim
-        wget
-        dig
+        # vim
+        # wget
+        # dig
     ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    ((vim_configurable.override {  }).customize{
+      name = "vim";
+      vimrcConfig.customRC = ''
+        " your custom vimrc
+        set mouse=a
+        set nocompatible
+        colo torte
+        syntax on
+        set tabstop     =2
+        set softtabstop =2
+        set shiftwidth  =2
+        set expandtab
+        set autoindent
+        set smartindent
+        " ...
+      '';
+      }
+    )
     wget
     git
+    dig
+    curl
+    lynx
+    tmux
+    pwgen
+    python311Full
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
