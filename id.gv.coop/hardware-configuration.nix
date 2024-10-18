@@ -38,7 +38,7 @@
       address = "2a01:4f8:c012:c7fd::";
       prefixLength = 64;  
     }];
-    rotues = [
+    routes = [
       {
         address = "2a01:4f8:c012:c7fd:: ";
         prefixLength = 64;
