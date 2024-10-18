@@ -71,7 +71,7 @@ in
       "fileinto"
     ];
   services = {
-    # postfix.virtual = ''
+    # postfix.   = ''
     #     axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
     #     alex.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
     #     alex.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
@@ -152,7 +152,8 @@ in
       # startTls = false;
       postfix = {
         mailAttribute = "mail";
-        uidAttribute = "uid";
+        uidAttribute = "mail";
+        # uidAttribute = "uid";
         #  filter = "(cn=%s)";
       };
       # postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
