@@ -1579,7 +1579,7 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
       networking = {
-        firewall.allowedTCPPorts = [ 22 80 443  11211 25 ];
+        firewall.allowedTCPPorts = [ 22 80 443 1360 11211 25 ];
         # trustedInterfaces = ["eno1" "lo"];
         # hosts = {
         #   "192.168.107.11" = ["ldap.gv.coop"];
@@ -1589,6 +1589,18 @@ in
         # resolvconf.enable = true;
         nat = {
             externalIPv6 = "2a01:4f8:241:4faa::1";
+            forwardPorts = [
+              {
+                destination = "192.168.107.11:1360";
+                proto = "tcp";
+                sourcePort = 1360;
+              }
+              {
+                destination = "[fa01::2]:1360";
+                proto = "tcp";
+                sourcePort = 1360;
+              }
+            ];
         };
       };
       time.timeZone = "Europe/Paris";
@@ -1645,8 +1657,9 @@ in
       #   "d /var/lib/acme/${ldapDomainName} 0755 acme wwwrun"
       #   "f /var/lib/openldap/pmw/schema/pwm.ldif 0755 openldap openldap"
       # ];
-      # security.acme.defaults.email = "chris@mann.fr";
-      # security.acme.acceptTerms = true;
+      security.acme.defaults.email = "chris@mann.fr";
+      security.acme.acceptTerms = true;
+      security.acme.certs.mail.gv.coop.listenHTTP = 1360;
       mailserver = {
         enable = true;
         fqdn = domainName;
