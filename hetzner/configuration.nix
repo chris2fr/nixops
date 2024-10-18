@@ -404,42 +404,60 @@ in
         }
       ];
       services = [
+        {
         "Services GV unifiés stables" = [
+          {
           "Keycloak pour la connexion unifiée" = {
             href = "";
             description = "";
             icon = "";
           };
+          }
+          {
           "HedgeDoc carnets collaboratifs en markdown" = {
             href = "";
             description = "";
             icon = "";
           };
+          }
         ];
+        }
+        {
         "Ressasie de login GV" = [
+          {
           "Guichet du profil et du mot de passe" = {
             href = "";
             description = "";
             icon = "";
           };
+          }
+          {
           "Roundcube Webmail" = {
             href = "";
             description = "";
             icon = "";
           };
+          }
         ];
+        }
+        {
         "Services à accès ouverts stables" = [
+          {
           "BigBlueButton pour les réunions visio et formation" = {
             href = "";
             description = "";
             icon = "";
           };
+          }
+          {
           "Uptime-Kuma pour les statuts des sites essentiels" = {
             href = "";
             description = "";
             icon = "";
           };
+          }
         ];
+        }
       ];
     };
     openssh = {
