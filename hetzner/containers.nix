@@ -1683,11 +1683,11 @@ in
           searchScope = "sub";
           tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
           startTls = false;
-          postfix = {
-            mailAttribute = "mail";
-            uidAttribute = "cn";
-            #  filter = "(cn=%s)";
-          };
+          # postfix = {
+          #   mailAttribute = "mail";
+          #   uidAttribute = "cn";
+          #   #  filter = "(cn=%s)";
+          # };
         };
         fullTextSearch = {
           enable = true;
@@ -1796,14 +1796,14 @@ in
         #   dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
         #   maxAttachmentSize = 75;
         # };
-        memcached = {
-          enable = true;
-          # maxMemory = 256;
-          # enableUnixSocket = true;
-          # port = 11211;
-          # listen = "[::1]";
-          # user = "sogo";
-        };
+        # memcached = {
+        #   enable = true;
+        #   # maxMemory = 256;
+        #   # enableUnixSocket = true;
+        #   # port = 11211;
+        #   # listen = "[::1]";
+        #   # user = "sogo";
+        # };
         openssh = {
           enable = true;
         };

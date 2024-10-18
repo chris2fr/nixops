@@ -390,6 +390,17 @@ in
       enable = true;
       listenPort = 8882;
       openFirewall = true;
+      widgets = [
+        {
+          logo = {
+            icon = "https://www.lesgrandsvoisins.com/media/images/gv.original.svg";
+          };
+          greeting = {
+            text_size = 1;
+            text = "Homepage-Dashboard.resdigita.com. Ce tableau de bord fournit des liens vers toutes les ressources de ResDigita des GV.";
+          };
+        };
+      ];
     };
     openssh = {
       enable = true;
