@@ -71,34 +71,34 @@ in
       "fileinto"
     ];
   services = {
-    postfix.virtual = ''
-        axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
-        alex.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
-        alex.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
-        axel.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
-        alex.desmoulins@resdigita.com axel.leroux@lesgrandsvoisins.com
-        axel.desmoulins@resdigita.com axel.leroux@lesgrandsvoisins.com
-        testalias@resdigita.com chris@lesgrandsvoisins.com
-        bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-        chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
-        chris@fastoche.org chris@lesgrandsvoisins.com
-        lesgdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-        quiquoietc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-        whowhatetc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-        gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-        grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-        lesgrandsvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
-        lex.larue.fcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-        lex.larue.zytho@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-        alex.larue.kcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-        blex.larue.rock@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-        lex.larue.gml@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
-        lex.larue.fcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
-        lex.larue.zytho@resdigita.com axel.leroux@lesgrandsvoisins.com
-        alex.larue.kcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
-        blex.larue.rock@resdigita.com axel.leroux@lesgrandsvoisins.com
-        lex.larue.gml@resdigita.com axel.leroux@lesgrandsvoisins.com
-    '';
+    # postfix.virtual = ''
+    #     axel.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     alex.leroux@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     alex.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     axel.quatorzien@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     alex.desmoulins@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     axel.desmoulins@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     testalias@resdigita.com chris@lesgrandsvoisins.com
+    #     bienvenue@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #     chris@lesgrandsvoisins.fr chris@lesgrandsvoisins.com
+    #     chris@fastoche.org chris@lesgrandsvoisins.com
+    #     lesgdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #     quiquoietc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #     whowhatetc@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #     gdvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #     grandvoisinage@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #     lesgrandsvoisins@lesgrandsvoisins.com chris@lesgrandsvoisins.com
+    #     lex.larue.fcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #     lex.larue.zytho@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #     alex.larue.kcbk@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #     blex.larue.rock@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #     lex.larue.gml@lesgrandsvoisins.com axel.leroux@lesgrandsvoisins.com
+    #     lex.larue.fcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     lex.larue.zytho@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     alex.larue.kcbk@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     blex.larue.rock@resdigita.com axel.leroux@lesgrandsvoisins.com
+    #     lex.larue.gml@resdigita.com axel.leroux@lesgrandsvoisins.com
+    # '';
     
     memcached = {
       enable = true;
@@ -127,12 +127,12 @@ in
     #       aliases = [ "testalias@resdigita.com" ];
     #   };
     # };   
-      indexDir = "/var/lib/dovecot/indices";
-      # loginAccounts."chris@lesgrandsvoisins.com".catchAll = [
-      #   "lesgrandsvoisins.com"
-      #   "lesgrandsvoisins.fr"
-      #   "resdigita.com"
-      # ];
+    indexDir = "/var/lib/dovecot/indices";
+    # loginAccounts."chris@lesgrandsvoisins.com".catchAll = [
+    #   "lesgrandsvoisins.com"
+    #   "lesgrandsvoisins.fr"
+    #   "resdigita.com"
+    # ];
     ldap = {
       enable = true;
       bind = {
@@ -146,7 +146,7 @@ in
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
-      # tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
+      #      = "/var/lib/acme/${domainName}/fullchain.pem";
       # tlsCAFile = "/var/lib/acme/ldap.gv.coop/fullchain.pem";
       startTls = true;
       # startTls = false;
