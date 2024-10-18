@@ -494,6 +494,106 @@ in
           }
         ];
         }
+        {
+        "Services à accès ouverts en bêta" = [
+          {
+          "VaultWarden pour les maux des mots de passe compatible BitWarden" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "EtherCalc pour un tableur collaboratif" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "Crabfit pour trouver un moment de rendez-vous" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+        ];
+        }
+        {
+        "Comptes indépendants" = [
+          {
+          "Wagtail.resdigita.com pour la gestion du contenu des sites webs" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "Ghost pour la gestion du blog.lesgrandsvoisins.com" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "ListMonk pour les listes de diffusion" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "Uptime-Kuma pour le statut des services" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+        ];
+        }
+        {
+        "Services GV unifiés en alpha" = [
+          {
+          "SilverBullet cahier à plusieurs" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "FileBrowser casier numérique" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "Radicale pour les calendriers partagés" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "Xandikos pour un calendrier public partagé" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+        ];
+        }
+        {
+        "Services GV unifiés dépréciés" = [
+          {
+          "KeeWeb pour la gestion des mots de passe" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+        ];
+        }
       ];
     };
     openssh = {
