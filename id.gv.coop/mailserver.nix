@@ -324,7 +324,7 @@ in
      dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
      maxAttachmentSize = 75;
   };
-  # users.users.dovecot2.extraGroups = ["wwwrun"];
+  users.users.dovecot2.extraGroups = ["wwwrun"];
   services.postfix.config = {
     "smtpd_relay_restrictions" = lib.mkForce "permit_sasl_authenticated, reject";
     "smtpd_sasl_type" = lib.mkForce "dovecot";
