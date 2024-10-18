@@ -135,7 +135,8 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
-        "ldap:///"
+        # "ldap:///"
+        "ldaps://ldap.gv.coop:10636/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
