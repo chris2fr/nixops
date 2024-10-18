@@ -109,6 +109,7 @@
     tmux
     pwgen
     python311Full
+    openldap
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
