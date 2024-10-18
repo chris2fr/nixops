@@ -146,7 +146,7 @@ in
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
-      tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
+      # tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       # tlsCAFile = "/var/lib/acme/ldap.gv.coop/fullchain.pem";
       startTls = true;
       # startTls = false;
