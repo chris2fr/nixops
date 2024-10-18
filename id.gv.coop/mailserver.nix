@@ -114,10 +114,10 @@ in
 ###################################################################################################################################
   mailserver = {
     enable = true;
-    fqdn = domainName;
-    domains = mailServerDomainAliases;
+    fqdn = "mail.gv.coop";
+    domains = ["gv.coop"];
     certificateScheme = "acme-nginx";
-    certificateDomains = [ "${domainName}" ];
+    certificateDomains = [ "mail.gv.coop" ];
     # certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
     # certificateDirectory = "/var/lib/acme/${domainName}/";
     # keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
@@ -152,7 +152,7 @@ in
       # startTls = false;
       postfix = {
         mailAttribute = "mail";
-        uidAttribute = "mail";
+        uidAttribute = "className";
         # uidAttribute = "uid";
         #  filter = "(cn=%s)";
       };
@@ -166,10 +166,10 @@ in
       #        =uid=%{ldap:uidNumber}, \
       #        =gid=%{ldap:gidNumber}
       # '';
-      dovecot = {
-        userFilter = "(mail=%u)";
-        passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
-      };
+      # dovecot = {
+      #   userFilter = "(mail=%u)";
+      #   passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
+      # };
     };
     # extraVirtualAliases = {
     #   "axel.leroux@lesgrandsvoisins.com" = [
