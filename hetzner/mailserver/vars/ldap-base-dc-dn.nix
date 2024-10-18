@@ -1,1 +1,1 @@
-"dc=gv,dc=coop"
+"dc=resdigita,dc=org"
