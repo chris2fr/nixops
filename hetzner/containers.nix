@@ -1689,17 +1689,16 @@ in
           #   uidAttribute = "cn";
           #   #  filter = "(cn=%s)";
           # };
-          fullTextSearch = {
-            enable = true;
-            # index new email as they arrive
-            autoIndex = true;
-            # this only applies to plain text attachments, binary attachments are never indexed
-            indexAttachments = false;
-            enforced = "yes";
-            memoryLimit = 2000;
-          };
         };
-
+        fullTextSearch = {
+          enable = true;
+          # index new email as they arrive
+          autoIndex = true;
+          # this only applies to plain text attachments, binary attachments are never indexed
+          indexAttachments = false;
+          enforced = "yes";
+          memoryLimit = 2000;
+        };
       };
       systemd.extraConfig = ''
         DefaultTimeoutStartSec=600s
