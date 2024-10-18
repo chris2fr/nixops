@@ -1569,12 +1569,12 @@ in
     localAddress = "192.168.107.11";
     hostAddress6 = "fa01::1";
     localAddress6 = "fa01::2";
-    bindMounts = { 
-      "/var/lib/acme/${domainName}" = { 
-        hostPath = "/var/lib/acme/${domainName}";
-        isReadOnly = false; 
-      }; 
-    };
+    # bindMounts = { 
+    #   "/var/lib/acme/${domainName}" = { 
+    #     hostPath = "/var/lib/acme/${domainName}";
+    #     isReadOnly = false; 
+    #   }; 
+    # };
     config = { config, pkgs, lib, ...  }: {
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
