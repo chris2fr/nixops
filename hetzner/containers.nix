@@ -1562,14 +1562,6 @@ in
     };
   };
   containers.mailserver = {
-    imports = [
-      (builtins.fetchTarball {
-        # url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-24.05.tar.gz";
-        url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/v2.3.0/nixos-mailserver-v2.3.0.tar.gz";
-        # sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
-        sha256 = "sha256:0lpz08qviccvpfws2nm83n7m2r8add2wvfg9bljx9yxx8107r919";
-      })
-    ];
     autoStart = true;
     # localAddress6 = "2a01:4f8:241:4faa::1";
     privateNetwork = true;
@@ -1584,6 +1576,14 @@ in
     #   }; 
     # };
     config = { config, pkgs, lib, ...  }: {
+      imports = [
+        (builtins.fetchTarball {
+          # url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-24.05.tar.gz";
+          url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/v2.3.0/nixos-mailserver-v2.3.0.tar.gz";
+          # sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
+          sha256 = "sha256:0lpz08qviccvpfws2nm83n7m2r8add2wvfg9bljx9yxx8107r919";
+        })
+      ];
       nix.settings.experimental-features = "nix-command flakes";
       system.stateVersion = "24.05";
       networking = {
