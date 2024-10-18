@@ -62,7 +62,7 @@
   #       # via = "fe80::1b52:aa85:8ada:ffd4";
   #     }
   #   ];
-  };
+  # };
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
