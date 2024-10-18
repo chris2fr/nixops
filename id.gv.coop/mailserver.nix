@@ -8,6 +8,7 @@ let
   oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
   domainName = "id.gv.coop";
   ldapBaseDCDN = "dc=gv,dc=coop";
+  mailServerDomainAliases = [ ];
   # mailServerDomainAliases = [ 
   #   "lesgrandsvoisins.com"
   #   #"mail.lesgrandsvoisins.com"
