@@ -18,7 +18,8 @@
   security.acme = {
     defaults.email = "chris@mann.fr";
     acceptTerms = true;
-    certs."id.gv.coop".listenHTTP = ":8888";
+    # certs."id.gv.coop".listenHTTP = ":8888";
+    
   };
 
   networking.hostName = "id"; # Define your hostname.

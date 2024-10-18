@@ -112,10 +112,11 @@ in
     enable = true;
     fqdn = domainName;
     domains = mailServerDomainAliases;
-    certificateScheme = "acme";
-    certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
-    certificateDirectory = "/var/lib/acme/${domainName}/";
-    keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
+    certificateScheme = "acme-nginx";
+    certificateDomains = [ "${domainName}" ];
+    # certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
+    # certificateDirectory = "/var/lib/acme/${domainName}/";
+    # keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
     messageSizeLimit = 209715200;
     # loginAccounts = {
     #   "chris@lesgrandsvoisins.com" = {
