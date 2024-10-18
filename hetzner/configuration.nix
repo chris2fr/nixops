@@ -79,17 +79,17 @@ in
         proto = "tcp";
         sourcePort = 12443;
       }
-      {
-        destination = "192.168.107.11:10389";
-        proto = "tcp";
-        sourcePort = 10389;
-        # loopbackIPs = ["116.202.236.241" "2a01:4f8:241:4faa::"];
-      }
-      {
-        destination = "192.168.107.11:10636";
-        proto = "tcp";
-        sourcePort = 10636;
-      }
+      # {
+      #   destination = "192.168.107.11:10389";
+      #   proto = "tcp";
+      #   sourcePort = 10389;
+      #   # loopbackIPs = ["116.202.236.241" "2a01:4f8:241:4faa::"];
+      # }
+      # {
+      #   destination = "192.168.107.11:10636";
+      #   proto = "tcp";
+      #   sourcePort = 10636;
+      # }
       # {
       #   destination = "192.168.107.11:10389";
       #   proto = "tcp";
