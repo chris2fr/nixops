@@ -96,14 +96,14 @@ in
         lex.larue.gml@resdigita.com axel.leroux@lesgrandsvoisins.com
     '';
     
-    # memcached = {
-    #   enable = true;
-    #   # maxMemory = 256;
-    #   # enableUnixSocket = true;
-    #   # port = 11211;
-    #   # listen = "[::1]";
-    #   # user = "sogo";
-    # };
+    memcached = {
+      enable = true;
+      # maxMemory = 256;
+      # enableUnixSocket = true;
+      # port = 11211;
+      # listen = "[::1]";
+      # user = "sogo";
+    };
   };
 
 # SOGoMemcachedHost = "/var/run/memcached.sock";
