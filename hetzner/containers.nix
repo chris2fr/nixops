@@ -1663,7 +1663,6 @@ in
       security.acme.acceptTerms = true;
       security.acme.certs."mail.gv.coop".listenHTTP = "1360";
       mailserver = {
-        enable = true;
         fqdn = domainName;
         domains = mailServerDomainAliases;
         certificateScheme = "acme";
