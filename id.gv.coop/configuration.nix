@@ -18,7 +18,7 @@
   security.acme = {
     defaults.email = "chris@mann.fr";
     acceptTerms = true;
-    certs."id.gv.coop".listenHTTP = ":80";
+    certs."id.gv.coop".listenHTTP = ":8888";
   };
 
   networking.hostName = "id"; # Define your hostname.
@@ -101,7 +101,7 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 80 443 25 587 ];
+  networking.firewall.allowedTCPPorts = [ 22 8888 80 443 25 587 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
