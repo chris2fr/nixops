@@ -15,7 +15,7 @@
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/e913a200-2441-4490-b5d9-a89b6948de21";
-      fsType = "ext4";
+      fsTyp e = "ext4";
     };
 
   fileSystems."/boot" =
@@ -40,7 +40,11 @@
     }];
     routes = [
       {
-        address = "2a01:4f8:c012:c7fd:: ";
+        address = "fe80::1b52:aa85:8ada:ffd4";
+        prefixLength = 64;
+      }
+      {
+        address = "2a01:4f8:c012:c7fd::";
         prefixLength = 64;
         via = "fe80::1b52:aa85:8ada:ffd4";
       }
