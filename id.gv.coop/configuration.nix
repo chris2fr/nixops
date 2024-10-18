@@ -15,6 +15,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  security.acme = {
+    defaults.email = "chris@mann.fr";
+    acceptTerms = true;
+    certs."id.gv.coop".listenHTTP = ":80";
+  };
+
   networking.hostName = "id"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -48,7 +54,7 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
+  # Enable sound.ac
   # hardware.pulseaudio.enable = true;
   # OR
   # services.pipewire = {
