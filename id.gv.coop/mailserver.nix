@@ -102,7 +102,7 @@ in
     
     memcached = {
       enable = true;
-      # maxMemory = 256;
+      # maxMhttps://gitlab.com/simple-nixos-mailserver/nixos-mailserveremory = 256;
       # enableUnixSocket = true;
       # port = 11211;
       # listen = "[::1]";
@@ -121,7 +121,7 @@ in
     # certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
     # certificateDirectory = "/var/lib/acme/${domainName}/";
     # keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
-    messageSizeLimit = 209715200;
+    messageSizeLimit = 2097152000;
     # loginAccounts = {
     #   "chris@lesgrandsvoisins.com" = {
     #       aliases = [ "testalias@resdigita.com" ];
@@ -165,10 +165,10 @@ in
       #        =uid=%{ldap:uidNumber}, \
       #        =gid=%{ldap:gidNumber}
       # '';
-      # dovecot = {
-      #   userFilter = "(mail=%u)";
-      #   passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
-      # };
+      dovecot = {
+        userFilter = "(mail=%u)";
+        passFilter = "(|(cn=%u)(uid=%u)(mail=%u))";
+      };
     };
     # extraVirtualAliases = {
     #   "axel.leroux@lesgrandsvoisins.com" = [
@@ -324,12 +324,12 @@ in
      maxAttachmentSize = 75;
   };
   # users.users.dovecot2.extraGroups = ["wwwrun"];
-  # services.postfix.config = {
-  #   "smtpd_relay_restrictions" = lib.mkForce "permit_sasl_authenticated, reject";
-  #   "smtpd_sasl_type" = lib.mkForce "dovecot";
-  #   "smtpd_sasl_path" = lib.mkForce "private/auth";
-  #   "smtpd_sasl_auth_enable" = lib.mkForce "yes";
-  # };
+  services.postfix.config = {
+    "smtpd_relay_restrictions" = lib.mkForce "permit_sasl_authenticated, reject";
+    "smtpd_sasl_type" = lib.mkForce "dovecot";
+    "smtpd_sasl_path" = lib.mkForce "private/auth";
+    "smtpd_sasl_auth_enable" = lib.mkForce "yes";
+  };
 
   #services.postfix.networks = [
   #  "localhost"
