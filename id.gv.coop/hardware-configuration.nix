@@ -33,9 +33,18 @@
   networking.useDHCP = lib.mkDefault true;  
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp7s0.useDHCP = lib.mkDefault true;
-  networking.interfaces.enp1s0.ipv6.addresses = {
-    address = "2a01:4f8:c012:c7fd::";
-    prefixLength = 64;  
+  networking.interfaces.enp1s0.ipv6 = {
+    addresses = [{
+      address = "2a01:4f8:c012:c7fd::";
+      prefixLength = 64;  
+    }];
+    rotues = [
+      {
+        address = "2a01:4f8:c012:c7fd:: ";
+        prefixLength = 64;
+        via = "fe80::1b52:aa85:8ada:ffd4";
+      }
+    ];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
