@@ -137,11 +137,13 @@ in
       uris = [
         "ldap:///"
         # "ldaps://ldap.gv.coop:10636/"
+        # "ldap://ldap.gv.coop:10389/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
       tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
-      startTls = false;
+      # tlsCAFile = "/var/lib/acme/ldap.gv.coop/fullchain.pem";
+      startTls = true;
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "uid";
