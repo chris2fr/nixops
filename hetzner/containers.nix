@@ -1402,7 +1402,7 @@ in
         };
         openldap = {
           enable = true;
-          urlList = ["ldap://ldap.gv.coop:10389/ ldap://localhost:10389/  ldaps://ldap.gv.coop:10636/ ldapi:///"];
+          urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
           # urlList = [ 
           #   "ldap://ldap.gv.coop:10389/" 
           #   "ldap://192.168.107.11:10389/"
