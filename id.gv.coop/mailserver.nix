@@ -52,14 +52,14 @@ in
     # openldap
     pwgen
   ];
-  users.users.nginx.extraGroups = ["wwwrun"];
-    services.phpfpm.pools."roundcube" = {
-    settings = {
-      "listen.owner" = lib.mkForce "wwwrun";
-      "listen.group" = lib.mkForce "wwwrun";
-    };
-    #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
-  };
+  # users.users.nginx.extraGroups = ["wwwrun"];
+  #   services.phpfpm.pools."roundcube" = {
+  #   # settings = {
+  #   #   "listen.owner" = lib.mkForce "wwwrun";
+  #   #   "listen.group" = lib.mkForce "wwwrun";
+  #   # };
+  #   #  phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
+  # };
   services.dovecot2.sieve.scripts = {};
   services.dovecot2.sieve.extensions = [
       "notify"
