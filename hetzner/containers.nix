@@ -1687,15 +1687,15 @@ containers.mailserver = {
         DefaultTimeoutStartSec=600s
       '';
       services = {
-        postfix.config.maillog_file = "/var/log/postfix.log";
-        postfix.masterConfig.postlog = {
-          command = "postlogd";
-          type = "unix-dgram";
-          privileged = true;
-          private = false;
-          chroot = false;
-          maxproc = 1;
-        };
+        # postfix.config.maillog_file = "/var/log/postfix.log";
+        # postfix.masterConfig.postlog = {
+        #   command = "postlogd";
+        #   type = "unix-dgram";
+        #   privileged = true;
+        #   private = false;
+        #   chroot = false;
+        #   maxproc = 1;
+        # };
         fail2ban = {
           enable = true;
           maxretry = 5; # Observe 5 violations before banning an IP
@@ -1721,15 +1721,15 @@ containers.mailserver = {
               bantime  = 600
               maxretry = 5
             '';
-            postfix = ''
-              port     = smtp,465,submission,imap,imaps,pop3,pop3s
-              action = iptables-multiport[name=HTTP, port="smtp,465,submission,imap,imaps,pop3,pop3s"]
-              logpath  = /var/log/postfix.log
-              backend  = auto
-              enabled  = true
-              filter   = postfix[mode=auth]
-              mode     = more
-            '';
+            # postfix = ''
+            #   port     = smtp,465,submission,imap,imaps,pop3,pop3s
+            #   action = iptables-multiport[name=HTTP, port="smtp,465,submission,imap,imaps,pop3,pop3s"]
+            #   logpath  = /var/log/postfix.log
+            #   backend  = auto
+            #   enabled  = true
+            #   filter   = postfix[mode=auth]
+            #   mode     = more
+            # '';
             # dovecot = ''
             #   port     = smtp,465,submission
             #   logpath  = /var/log/fail2ban.log
