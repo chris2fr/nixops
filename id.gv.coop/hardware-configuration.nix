@@ -31,6 +31,19 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;  
+  networking = {
+    enableIPv6 = true;
+    interfaces.enp1s0.ipv6.addresses = [
+      {
+        address = "2a01:4f8:c012:c7fd::";
+        prefixLength = 96;
+      }
+    ];  
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "enp1s0";
+    };
+  };
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp7s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp1s0.ipv6 = {
