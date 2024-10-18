@@ -294,12 +294,12 @@ in
      enable = true;
      # this is the url of the vhost, not necessarily the same as the fqdn of
      # the mailserver
-     hostName = "id.gv.coop";
+     hostName = "mail.gv.coop";
     #  dicts =  [ en fr de ];
      extraConfig = ''
         # starttls needed for authentication, so the fqdn required to match
         # the certificate
-        $config['smtp_server'] = "tls://id.gv.coop";
+        $config['smtp_server'] = "tls://mail.gv.coop";
         $config['smtp_user'] = "%u";
         $config['smtp_pass'] = "%p";
         # $config['oauth_provider'] = 'generic';
@@ -317,7 +317,7 @@ in
         $config['support_url'] = 'https://www.gv.coop';
         $config['product_name'] = 'Roundcube Webmail des GV';
         $config['session_debug'] = true;
-        $config['session_domain'] = 'id.gv.coop';
+        $config['session_domain'] = 'mail.gv.coop';
         $config['login_password_maxlen'] = 4096;
      '';
      dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];
