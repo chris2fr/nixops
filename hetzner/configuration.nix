@@ -458,6 +458,42 @@ in
           }
         ];
         }
+        {
+        "Sites webs publics" = [
+          {
+          "LesGrandsVoisins.fr est notre portail" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "Blog.LesGrandsVoisisns.com pour les nouvelles" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+          {
+          "Quartz.ResDigita.com pour la doc technique" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+        ];
+        }
+        {
+        "Services GV unifiés en bêta" = [
+          {
+          "Vikunja gestionnaire des tâches à faire en équipe" = {
+            href = "";
+            description = "";
+            icon = "";
+          };
+          }
+        ];
+        }
       ];
     };
     openssh = {

@@ -1703,6 +1703,9 @@ in
         DefaultTimeoutStartSec=600s
       '';
       services = {
+        postfix = {
+          enable = true;
+        }
         # postfix.config.maillog_file = "/var/log/postfix.log";
         # postfix.masterConfig.postlog = {
         #   command = "postlogd";
