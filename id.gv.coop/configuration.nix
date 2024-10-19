@@ -112,6 +112,7 @@
     openldap
     unzip
     # jre17_minimal
+    docker
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -126,10 +127,10 @@
 
   # Enable the OpenSSH daemon.
   services = {
-    tomcat = {
-      enable = true;
+    # tomcat = {
+    #   enable = true;
 
-    };
+    # };
     openssh = {
       enable = true;
     };
