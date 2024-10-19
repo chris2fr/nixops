@@ -160,6 +160,21 @@
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
       virtualHosts = {
+        "ldapmanager.gv.coop" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/.well-known" = { proxyPass = null; };
+          locations."/" = {
+            proxyPass = "http://localhost:3000";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
+      };
+      virtualHosts = {
         "ldapui.gv.coop" = {
           enableACME = true; 
           forceSSL = true; 
