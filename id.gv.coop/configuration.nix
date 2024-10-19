@@ -127,6 +127,7 @@
     gnumake
     go
     corepack_22
+    python311Packages.sphinx
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
