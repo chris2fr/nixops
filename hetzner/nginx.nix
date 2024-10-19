@@ -79,8 +79,8 @@ in
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };
-          locations."/pwm/private/changepassword".return = "302 https://auth.login.gv.coop/#password";
-          locations."/pwm/public/forgottenpassword".return = "302 http://auth.login.gv.coop/resetpwd?skin=bootstrap";
+                  # locations."/pwm/private/changepassword".return = "302 https://auth.login.gv.coop/#password";
+                  # locations."/pwm/public/forgottenpassword".return = "302 http://auth.login.gv.coop/resetpwd?skin=bootstrap";
           locations."/" = {
             extraConfig = ''
             rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
