@@ -126,7 +126,7 @@
 
   # Enable the OpenSSH daemon.
   services = {
-    openssh - {
+    openssh = {
       enable = true;
     };
     nginx = {
