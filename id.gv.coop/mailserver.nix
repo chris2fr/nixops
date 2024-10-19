@@ -116,11 +116,11 @@ in
     enable = true;
     fqdn = "mail.gv.coop";
     domains = ["gv.coop"];
-    certificateScheme = "acme-nginx";
+    certificateScheme = "acme";
     certificateDomains = [ "mail.gv.coop" ];
-    # certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
-    # certificateDirectory = "/var/lib/acme/${domainName}/";
-    # keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
+    certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
+    certificateDirectory = "/var/lib/acme/${domainName}/";
+    keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
     messageSizeLimit = 2097152000;
     # loginAccounts = {
     #   "chris@lesgrandsvoisins.com" = {
