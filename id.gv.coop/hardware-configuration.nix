@@ -38,6 +38,10 @@
         address = "2a01:4f8:c012:c7fd::";
         prefixLength = 96;
       }
+      {
+        address = "2a01:4f8:c012:c7fd::1";
+        prefixLength = 96;
+      }
     ];  
     defaultGateway6 = {
       address = "fe80::1";
