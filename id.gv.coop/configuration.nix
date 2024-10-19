@@ -209,7 +209,7 @@
         "manager.lemonldap.gv.coop" = {
           enableACME = true; 
           forceSSL = true; 
-          locations."/.well-known" =manager.login.gv.coop { proxyPass = null; };
+          locations."/.well-known" = { proxyPass = null; };
           locations."/" = {
             proxyPass = "http://manager.lemonldap.internal:8080";
             extraConfig = ''
