@@ -185,8 +185,8 @@
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_redirect off;
-              auth_basic "Administrator’s Area";
-              auth_basic_user_file /var/lib/.htpasswd;
+              # auth_basic "Administrator’s Area";
+              # auth_basic_user_file /var/lib/.htpasswd;
             '';
           };
         };
