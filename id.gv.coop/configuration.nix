@@ -136,7 +136,7 @@
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
       virtualHosts = {
-        "syncope.gv.coop" = {
+        "syn.gv.coop" = {
           enableACME = true; 
           forceSSL = true; 
           locations."/.well-known" = { proxyPass = null; };
