@@ -69,7 +69,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mannchri = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     initialPassword = "reverse";
     packages = with pkgs; [
   #     firefox
@@ -123,6 +123,11 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  virtualisation.docker = {
+    enable = true;
+
+  };
 
   # List services that you want to enable:
 
