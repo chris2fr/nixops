@@ -28,7 +28,7 @@
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     hosts = {
-      "127.0.0.1" = [ "localhost" "lemonldap.internal" "manager.lemonldap.internal" "handler.lemonldap.internal"  "test.lemonldap.internal"  "test2.lemonldap.internal"  "handler.lemonldap.internal"];
+      "127.0.0.1" = [ "localhost" "lemonldap.internal" "manager.lemonldap.internal" "handler.lemonldap.internal"  "test.lemonldap.internal"  "test2.lemonldap.internal"  "api.lemonldap.internal" "wa.lemonldap.internal" "sa.lemonldap.internal"];
       "127.0.0.2" = [ "id"];
       "::1" = [ "id""localhost"];
     };
