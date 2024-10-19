@@ -153,7 +153,7 @@
             "handler.lemonldap.gv.coop"
             "test.lemonldap.gv.coop"
             "test2.lemonldap.gv.coop"
-          ]
+          ];
           enableACME = true; 
           forceSSL = true; 
           locations."/.well-known" = { proxyPass = null; };
