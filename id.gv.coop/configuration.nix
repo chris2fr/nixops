@@ -155,6 +155,45 @@
             '';
           };
         };
+        "syncope.gv.coop" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/.well-known" = { proxyPass = null; };
+          locations."/" = {
+            proxyPass = "http://localhost:18080";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
+        "console.syncope.gv.coop" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/.well-known" = { proxyPass = null; };
+          locations."/" = {
+            proxyPass = "http://localhost:28080";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
+        "enduser.syncope.gv.coop" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/.well-known" = { proxyPass = null; };
+          locations."/" = {
+            proxyPass = "http://localhost:38080";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
       };
     };
   };
