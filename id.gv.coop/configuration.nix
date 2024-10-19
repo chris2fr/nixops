@@ -156,17 +156,50 @@
       recommendedProxySettings = true;
       virtualHosts = {
         "lemonldap.gv.coop" = {
-          serverAliases = [
-            "manager.lemonldap.gv.coop"
-            "handler.lemonldap.gv.coop"
-            "api.lemonldap.gv.coop"
-            "test.lemonldap.gv.coop"
-          ];
           enableACME = true; 
           forceSSL = true; 
           locations."/.well-known" = { proxyPass = null; };
           locations."/" = {
-            proxyPass = "http://localhost:8080";
+            proxyPass = "http://lemonldap.internal:8080";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
+        "manager.lemonldap.gv.coop" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/.well-known" = { proxyPass = null; };
+          locations."/" = {
+            proxyPass = "http://manager.lemonldap.internal:8080";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
+        "handler.lemonldap.gv.coop" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/.well-known" = { proxyPass = null; };
+          locations."/" = {
+            proxyPass = "http://handler.lemonldap.internal:8080";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
+        "api.lemonldap.gv.coop" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/.well-known" = { proxyPass = null; };
+          locations."/" = {
+            proxyPass = "http://api.lemonldap.internal:8080";
             extraConfig = ''
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
