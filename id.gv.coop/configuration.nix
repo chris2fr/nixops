@@ -22,10 +22,18 @@
     # certs."id.gv.coop".listenHTTP = ":8888";
   };
 
-  networking.hostName = "id"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "id"; # Define your hostname.
+    # Pick only one of the below networking options.
+    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    hosts = {
+      "127.0.0.1" = [ "localhost" "lemonldap.internal" "manager.lemonldap.internal" "handler.lemonldap.internal"  "test.lemonldap.internal"  "test2.lemonldap.internal"  "handler.lemonldap.internal"];
+      "127.0.0.2" = [ "id"];
+      "::1" = [ "id"];
+      "::1" = ["localhost"];
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
