@@ -151,8 +151,7 @@
           serverAliases = [
             "manager.lemonldap.gv.coop"
             "handler.lemonldap.gv.coop"
-            "test.lemonldap.gv.coop"
-            "test2.lemonldap.gv.coop"
+            "api.lemonldap.gv.coop"
           ];
           enableACME = true; 
           forceSSL = true; 
