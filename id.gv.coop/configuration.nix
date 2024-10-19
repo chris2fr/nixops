@@ -116,11 +116,15 @@
     tmux
     pwgen
     python311Full
+    python311Packages.pip
+    python311Packages.python-ldap
     openldap
     unzip
     # jre17_minimal
     docker
     docker-compose
+    nodejs_22
+    gnumake
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
