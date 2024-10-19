@@ -111,6 +111,7 @@
     pwgen
     python311Full
     openldap
+    unzip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -124,7 +125,32 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services = {
+    openssh - {
+      enable = true;
+    };
+    nginx = {
+      enable = true;
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedTlsSettings = true;
+      recommendedProxySettings = true;
+      virtualHosts = {
+        "syncope.gv.coop" = {
+          enableACME = true; 
+          forceSSL = true; 
+          locations."/" = {
+            proxyPass = "http://localhost:9080";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_redirect off;
+            '';
+          };
+        };
+      };
+    };
+  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 8888 80 443 25 587 ];
