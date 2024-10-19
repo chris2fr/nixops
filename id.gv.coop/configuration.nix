@@ -139,6 +139,7 @@
         "syncope.gv.coop" = {
           enableACME = true; 
           forceSSL = true; 
+          locations."/.well-known" = { proxyPass = null; };
           locations."/" = {
             proxyPass = "http://localhost:9080";
             extraConfig = ''
