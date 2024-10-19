@@ -113,6 +113,7 @@
     unzip
     # jre17_minimal
     docker
+    docker-compose
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
