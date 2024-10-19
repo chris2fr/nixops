@@ -880,6 +880,9 @@ in
         git
         lynx
       ];
+      nixpkgs.config.permittedInsecurePackages = [
+        "discourse-3.2.5"
+      ];
       virtualisation.docker.enable = true;
       system.stateVersion = "24.05";
       nix.settings.experimental-features = "nix-command flakes";
