@@ -125,6 +125,8 @@
     docker-compose
     nodejs_22
     gnumake
+    go
+    corepack_22
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
