@@ -79,11 +79,11 @@ in
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };
+          locations."/pwm/private/changepassword".return = {"302 http://auth.login.gv.coop/resetpwd?skin=bootstrap"};
+          locations."/pwm/public/forgottenpassword".return = {"302 http://auth.login.gv.coop/resetpwd?skin=bootstrap"};
           locations."/" = {
             extraConfig = ''
             rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
-            rewrite ^/pwm/private/changepassword http://auth.login.gv.coop/resetpwd?skin=bootstrap redirect;
-            rewrite ^/pwm/public/forgottenpassword http://auth.login.gv.coop/resetpwd?skin=bootstrap redirect;
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header   Host $host;
