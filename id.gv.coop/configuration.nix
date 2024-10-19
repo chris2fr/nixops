@@ -30,8 +30,7 @@
     hosts = {
       "127.0.0.1" = [ "localhost" "lemonldap.internal" "manager.lemonldap.internal" "handler.lemonldap.internal"  "test.lemonldap.internal"  "test2.lemonldap.internal"  "handler.lemonldap.internal"];
       "127.0.0.2" = [ "id"];
-      "::1" = [ "id"];
-      "::1" = ["localhost"];
+      "::1" = [ "id""localhost"];
     };
   };
 
