@@ -111,6 +111,7 @@
     python311Full
     openldap
     unzip
+    jre17_minimal
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
