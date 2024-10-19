@@ -111,7 +111,7 @@
     python311Full
     openldap
     unzip
-    jre17_minimal
+    # jre17_minimal
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -126,6 +126,10 @@
 
   # Enable the OpenSSH daemon.
   services = {
+    tomcat = {
+      enable = true;
+      
+    };
     openssh = {
       enable = true;
     };
