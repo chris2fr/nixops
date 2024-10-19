@@ -152,6 +152,7 @@
             "manager.lemonldap.gv.coop"
             "handler.lemonldap.gv.coop"
             "api.lemonldap.gv.coop"
+            "test.lemonldap.gv.coop"
           ];
           enableACME = true; 
           forceSSL = true; 
