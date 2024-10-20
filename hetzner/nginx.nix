@@ -75,16 +75,38 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
+        "link.gv.coop" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/.well-known" = { proxyPass = null; };
+          locations."/" = {
+            extraConfig = ''
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   Host $host;
+            proxy_pass         http://localhost:3000/;
+            proxy_read_timeout 600s;
+            proxy_send_timeout 600s;
+            # proxy_http_version 1.1;
+            # proxy_set_header   Upgrade $http_upgrade;
+            # proxy_set_header   Connection "upgrade";
+            # proxy_set_header X-Forwarded-Proto $scheme;
+            # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            # proxy_redirect off;
+            '';
+          };
+        };
         "ldap.gv.coop" = {
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };
           locations."/pwm/private/changepassword".return = "302 https://auth.gv.coop/reset-password/step1";
           locations."/pwm/public/forgottenpassword".return = "302 https://auth.gv.coop/reset-password/step1";
-          locations."/pwm/public/logout?processAction=showLogout".return = "302 /pwm/";
+          # locations."/pwm/public/logout".return = "302 /pwm/";
           locations."/" = {
             extraConfig = ''
             rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
+            # rewrite ^/pwm/public/logout?processAction=showLogout&stickyRedirectTest=key https://ldap.gv.coop/pwm/ redirect;
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header   Host $host;
