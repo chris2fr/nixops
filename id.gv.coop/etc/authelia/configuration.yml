@@ -18,7 +18,7 @@
 ## Certificates directory specifies where Authelia will load trusted certificates (public portion) from in addition to
 ## the system certificates store.
 ## They should be in base64 format, and have one of the following extensions: *.cer, *.crt, *.pem.
-certificates_directory: '/var/lib/acme/authelia.gv.coop/'
+# certificates_directory: '/etc/letsencrypt/live/auth.gv.coop/' # /var/lib/acme/auth.gv.coop/'
 
 ## The theme to display: light, dark, grey, auto.
 # theme: 'light'
@@ -39,7 +39,7 @@ server:
   ## Square brackets indicate optional portions of the format. Scheme must be 'tcp', 'tcp4', 'tcp6', or 'unix'.
   ## The default scheme is 'unix' if the address is an absolute path otherwise it's 'tcp'. The default port is '9091'.
   ## If the path is specified this configures the router to handle both the `/` path and the configured path.
-  address: 'tcp://:9091/'
+  address: 'tcp://localhost:9091/'
 
   ## Set the path on disk to Authelia assets.
   ## Useful to allow overriding of specific static assets.
@@ -119,18 +119,19 @@ server:
 ##
 ## Log Configuration
 ##
-# log:
+log:
   ## Level of verbosity for logs: info, debug, trace.
-  # level: 'debug'
+  level: 'debug'
 
   ## Format the logs are written as: json, text.
   # format: 'json'
 
   ## File path where the logs will be written. If not set logs are written to stdout.
-  # file_path: '/config/authelia.log'
+  file_path: '/home/mannchri/work/authelia/authelia.log'
 
   ## Whether to also log to stdout when a log_file_path is defined.
   # keep_stdout: false
+  keep_stdout: true
 
 ##
 ## Telemetry Configuration
@@ -178,12 +179,12 @@ server:
 ## TOTP Configuration
 ##
 ## Parameters used for TOTP generation.
-# totp:
+totp:
   ## Disable TOTP.
-  # disable: false
+  disable: false
 
   ## The issuer name displayed in the Authenticator application of your choice.
-  # issuer: 'authelia.com'
+  issuer: 'auth.gv.coop'
 
   ## The TOTP algorithm to use.
   ## It is CRITICAL you read the documentation before changing this option:
@@ -198,7 +199,7 @@ server:
 
   ## The period in seconds a Time-based One-Time Password is valid for.
   ## Changing this option only affects newly generated TOTP configurations.
-  # period: 30
+  period: 180 
 
   ## The skew controls number of Time-based One-Time Passwords either side of the current one that are valid.
   ## Warning: before changing skew read the docs link below.
@@ -268,13 +269,13 @@ identity_validation:
   ## Reset Password flow. Adjusts how the reset password flow operates.
   reset_password:
     ## Maximum allowed time before the JWT is generated and when the user uses it in the duration common syntax.
-    # jwt_lifespan: '5 minutes'
+    jwt_lifespan: '15 minutes'
 
     ## The algorithm used for the Reset Password JWT.
     # jwt_algorithm: 'HS256'
 
     ## The secret key used to sign and verify the JWT.
-    jwt_secret: 'a_very_important_secret'
+    jwt_secret: 'saf;lksahfdkjsadhfkjh432kj3254439857432985fdsajkhfkcv'
 
   ## Elevated Session flows. Adjusts the flow which require elevated sessions for example managing credentials, adding,
   ## removing, etc.
@@ -618,10 +619,10 @@ authentication_backend:
 ##   is optional and matches any resource if not provided.
 ##
 ## Note: the order of the rules is important. The first policy matching (domain, resource, subject) applies.
-# access_control:
+access_control:
   ## Default policy can either be 'bypass', 'one_factor', 'two_factor' or 'deny'. It is the policy applied to any
   ## resource if there is no policy to be applied to the user.
-  # default_policy: 'deny'
+  default_policy: 'one_factor'
 
   # networks:
     # - name: 'internal'
@@ -719,14 +720,14 @@ session:
 
   ## Cookies configures the list of allowed cookie domains for sessions to be created on.
   ## Undefined values will default to the values below.
-  # cookies:
-  #   -
+  cookies:
+    -
       ## The name of the session cookie.
-      # name: 'authelia_session'
+      name: 'gv_authelia_session'
 
       ## The domain to protect.
       ## Note: the Authelia portal must also be in that domain.
-      # domain: 'example.com'
+      domain: 'auth.gv.coop'
 
       ## Required. The fully qualified URI of the portal to redirect users to on proxies that support redirections.
       ## Rules:
@@ -734,7 +735,7 @@ session:
       ##   - The above 'domain' option MUST either:
       ##      - Match the host portion of this URI.
       ##      - Match the suffix of the host portion when prefixed with '.'.
-      # authelia_url: 'https://auth.example.com'
+      authelia_url: 'https://auth.gv.coop'
 
       ## Optional. The fully qualified URI used as the redirection location if the portal is accessed directly. Not
       ## configuring this option disables the automatic redirection behaviour.
@@ -748,7 +749,7 @@ session:
       ##   - The above 'domain' option MUST either:
       ##      - Match the host portion of this URI.
       ##      - Match the suffix of the host portion when prefixed with '.'.
-      # default_redirection_url: 'https://www.example.com'
+      # default_redirection_url: 'https://www.gv.coop'
 
       ## Sets the Cookie SameSite value. Possible options are none, lax, or strict.
       ## Please read https://www.authelia.com/c/session#same_site
@@ -773,13 +774,13 @@ session:
       # remember_me: '1 month'
 
   ## Cookie Session Domain default 'name' value.
-  # name: 'authelia_session'
+  name: 'gv_authelia_session'
 
   ## Cookie Session Domain default 'same_site' value.
-  # same_site: 'lax'
+  same_site: 'lax'
 
   ## Cookie Session Domain default 'inactivity' value.
-  # inactivity: '5m'
+  inactivity: '5m'
 
   ## Cookie Session Domain default 'expiration' value.
   # expiration: '1h'
@@ -901,7 +902,7 @@ storage:
   ## The encryption key that is used to encrypt sensitive information in the database. Must be a string with a minimum
   ## length of 20. Please see the docs if you configure this with an undesirable key and need to change it, you MUST use
   ## the CLI to change this in the database if you want to change it from a previously configured value.
-  # encryption_key: 'you_must_generate_a_random_string_of_more_than_twenty_chars_and_configure_this'
+  encryption_key: 'aksljf435329873298075kjdshfsakjhf9832748513298057akjhfakjhakdsj1024729ce'
 
   ##
   ## Local (Storage Provider)
@@ -913,7 +914,7 @@ storage:
   ##
   local:
     ## Path to the SQLite3 Database.
-    path: '/etc/nixos/etc/authelia/db.sqlite3'
+    path: '/home/mannchri/work/authelia/db.sqlite3'
 
   ##
   ## MySQL / MariaDB (Storage Provider)
@@ -1418,4 +1419,3 @@ notifier:
               # -----BEGIN CERTIFICATE-----
               # ...
               # -----END CERTIFICATE-----
-...
