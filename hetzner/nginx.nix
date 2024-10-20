@@ -81,6 +81,7 @@ in
           locations."/.well-known" = { proxyPass = null; };
           locations."/pwm/private/changepassword".return = "302 https://auth.gv.coop/reset-password/step1";
           locations."/pwm/public/forgottenpassword".return = "302 https://auth.gv.coop/reset-password/step1";
+          locations."/pwm/public/logout?processAction=showLogout".return = "302 /pwm/";
           locations."/" = {
             extraConfig = ''
             rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
