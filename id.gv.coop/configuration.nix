@@ -128,6 +128,7 @@
     go
     corepack_22
     python311Packages.sphinx
+    authelia
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
