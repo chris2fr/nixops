@@ -5,7 +5,8 @@
 let
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
   keycloakVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
-  emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.vikunja));
+  keyGVcoopVikunja = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
+  emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in
 {
@@ -370,13 +371,20 @@ in
         };
         service = {
           timezone = "Europe/Paris";
-        };
+        };  
         auth = {
           local.enabled = false;
           openid.enabled = true;
           # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
           openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
-          openid.providers = [{
+          openid.providers = [
+            {
+            name = "keyGVcoop";
+            authurl = "https://key.gv.coop/realms/master";
+            logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";
+            clientid = "vikunja";
+            clientsecret = keyGVcoopVikunja;
+          }{
             name = "VillageNgo";
             authurl = "https://keycloak.village.ngo/realms/master";
             logouturl = "https://keycloak.village.ngo/realms/master/protocol/openid-connect/logout";
