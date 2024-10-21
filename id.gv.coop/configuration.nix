@@ -128,6 +128,7 @@
     go
     corepack_22
     python311Packages.sphinx
+    postgresql
     # authelia
   ];
 
