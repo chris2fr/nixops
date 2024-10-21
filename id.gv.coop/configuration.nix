@@ -167,7 +167,8 @@
         http-port = 12080;
         # proxy = "passthrough";
         #   proxy = "reencrypt";
-        hostname = "key.gv.coop";
+        proxy = "edge";
+        hostname = "key.gv.coop:12443";
         http-enabled = true;
       };
       sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
