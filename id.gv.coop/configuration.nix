@@ -148,6 +148,19 @@
 
   # Enable the OpenSSH daemon.
   services = {
+    services.postgresql = {
+    enable = true;
+    enableTCPIP = true;
+    package = pkgs.postgresql_14;
+    ensureDatabases = [
+      "keycloak"
+    ];
+    ensureUsers = [
+      {
+        name = "wagtail";
+        ensureDBOwnership = true;
+      }
+    ]; 
     # tomcat = {
     #   enable = true;
 
@@ -312,7 +325,7 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
-  containers.keycloak = {
+  containers.key = {
     bindMounts = {
       "/var/lib/acme/key.gv.coop/" = {
         hostPath = "/var/lib/acme/key.gv.coop/";
@@ -360,7 +373,9 @@
         useHostResolvConf = lib.mkForce false;
       };
       systemd.tmpfiles.rules = [
-       "f /etc/.secret.keycloakdata 0660 root root"
+        "d /var/run/.secret 0755 root nginx"
+        "f /var/run/.secret/.keycloak 0644 root root"
+        # "f /var/run/.secret/.keycloakdata 0666 root root"
       ];
       # security.acme.acceptTerms = true;
       users = {
@@ -390,7 +405,7 @@
         keycloak = {
           enable = true;
           database = {
-            passwordFile = "/etc/.secrets.keycloak";
+            passwordFile = "/var/run/.secret/.keycloak";
             # useSSL = false;
           };
           settings = {
