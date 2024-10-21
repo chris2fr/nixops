@@ -81,6 +81,7 @@ in
           locations."/.well-known" = { proxyPass = null; };
           locations."/" = {
             extraConfig = ''
+            rewrite ^/$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header   Host $host;
@@ -105,7 +106,8 @@ in
           # locations."/pwm/public/logout".return = "302 /pwm/";
           locations."/" = {
             extraConfig = ''
-            rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
+            rewrite ^/$ https://key.gv.coop/ redirect;
+            # rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
             # rewrite ^/pwm/public/logout?processAction=showLogout&stickyRedirectTest=key https://ldap.gv.coop/pwm/ redirect;
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
