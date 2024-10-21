@@ -157,7 +157,7 @@
       ];
       ensureUsers = [
         {
-          name = "wagtail";
+          name = "keycloak";
           ensureDBOwnership = true;
         }
       ]; 
