@@ -212,8 +212,7 @@
         "key.gv.coop" = {
         enableACME = true;
         forceSSL = true;
-        root = "/var/www/keycloakvillagengo";
-
+        root = "/var/www/key";
         # globalRedirect = "key.gv.coop:12443";
         locations."/" = {
           proxyPass = "https://key.gv.coop:12443";
