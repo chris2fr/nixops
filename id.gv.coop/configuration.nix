@@ -128,7 +128,6 @@
     go
     corepack_22
     python311Packages.sphinx
-    postgresql
     # authelia
   ];
 
@@ -170,6 +169,7 @@
       # sslCertificateKey = "/var/lib/acme/key.gv.coop/key.pem";
       # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
     };
+    postgresql.enable = true;
     # postgresql = {
     #   enable = true;
     #   enableTCPIP = true;
