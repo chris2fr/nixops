@@ -165,13 +165,13 @@
       settings = {
         https-port = 12443;
         http-port = 12080;
-        proxy = "passthrough";
-        # proxy = "reencrypt";
+        # proxy = "passthrough";
+        proxy = "reencrypt";
         hostname = "key.gv.coop";
         http-enabled = true;
       };
-      # sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
-      # sslCertificateKey = "/var/lib/acme/key.gv.coop/key.pem";
+      sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/key.gv.coop/key.pem";
       # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
     };
     postgresql.enable = true;
