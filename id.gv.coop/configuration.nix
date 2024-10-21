@@ -166,7 +166,7 @@
         https-port = 12443;
         http-port = 12080;
         # proxy = "passthrough";
-        proxy = "reencrypt";
+        #   proxy = "reencrypt";
         hostname = "key.gv.coop";
         http-enabled = true;
       };
@@ -254,7 +254,7 @@
         enableACME = true;
         forceSSL = true;
         root = "/var/www/key";
-        globalRedirect = "https://key.gv.coop:12443";
+        globalRedirect = "key.gv.coop:12443";
         # locations."/" = {
         #   proxyPass = "https://key.gv.coop:12443";
         #   extraConfig = ''
