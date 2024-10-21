@@ -149,18 +149,19 @@
   # Enable the OpenSSH daemon.
   services = {
     services.postgresql = {
-    enable = true;
-    enableTCPIP = true;
-    package = pkgs.postgresql_14;
-    ensureDatabases = [
-      "keycloak"
-    ];
-    ensureUsers = [
-      {
-        name = "wagtail";
-        ensureDBOwnership = true;
-      }
-    ]; 
+      enable = true;
+      enableTCPIP = true;
+      package = pkgs.postgresql_14;
+      ensureDatabases = [
+        "keycloak"
+      ];
+      ensureUsers = [
+        {
+          name = "wagtail";
+          ensureDBOwnership = true;
+        }
+      ]; 
+    };
     # tomcat = {
     #   enable = true;
 
