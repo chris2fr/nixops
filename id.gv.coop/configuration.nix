@@ -254,19 +254,19 @@
         enableACME = true;
         forceSSL = true;
         root = "/var/www/key";
-        # globalRedirect = "key.gv.coop:12443";
-        locations."/" = {
-          proxyPass = "https://key.gv.coop:12443";
-          extraConfig = ''
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Host $host;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-          add_header Access-Control-Allow-Credentials true;
-          '';
-        };
+        globalRedirect = "https://key.gv.coop:12443";
+        # locations."/" = {
+        #   proxyPass = "https://key.gv.coop:12443";
+        #   extraConfig = ''
+        #   proxy_set_header Host $host;
+        #   proxy_set_header X-Real-IP $remote_addr;
+        #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #   proxy_set_header X-Forwarded-Host $host;
+        #   proxy_set_header X-Forwarded-Proto $scheme;
+        #   add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+        #   add_header Access-Control-Allow-Credentials true;
+        #   '';
+        # };
       };
         "lemonldap.gv.coop" = {
           enableACME = true; 
@@ -342,7 +342,7 @@
   # even if you've upgraded your system to a new NixOS release.
   #
   # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
+  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for howabout:blank#blocked
   # to actually do that.
   #
   # This value being lower than the current NixOS release does NOT mean your system is
