@@ -87,6 +87,11 @@
     ];
   };
 
+  systemd.tmpfiles.rules = [
+    "d /var/run/.secret 0755 root nginx"
+    "f /var/run/.secret/.keycloak 0644 root root"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
