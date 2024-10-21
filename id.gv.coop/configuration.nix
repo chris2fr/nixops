@@ -166,9 +166,9 @@
         https-port = 12443;
         http-port = 12080;
         # proxy = "passthrough";
-        #   proxy = "reencrypt";
-        proxy = "edge";
-        # hostname = "key.gv.coop:12443";
+        # proxy = "reencrypt";
+        # proxy = "edge";
+        hostname = "https://key.gv.coop:12443";
         http-enabled = true;
       };
       sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
