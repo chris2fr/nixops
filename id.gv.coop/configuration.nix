@@ -166,9 +166,9 @@
         https-port = 12443;
         http-port = 12080;
         # proxy = "passthrough";
-        # proxy = "reencrypt";
+        proxy = "reencrypt";
         # proxy = "edge";
-        hostname = "https://key.gv.coop:12443";
+        hostname = "key.gv.coop";
         http-enabled = true;
       };
       sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
@@ -255,19 +255,19 @@
         enableACME = true;
         forceSSL = true;
         root = "/var/www/key";
-        globalRedirect = "key.gv.coop:12443";
-        # locations."/" = {
-        #   proxyPass = "https://key.gv.coop:12443";
-        #   extraConfig = ''
-        #   proxy_set_header Host $host;
-        #   proxy_set_header X-Real-IP $remote_addr;
-        #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        #   proxy_set_header X-Forwarded-Host $host;
-        #   proxy_set_header X-Forwarded-Proto $scheme;
-        #   add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-        #   add_header Access-Control-Allow-Credentials true;
-        #   '';
-        # };
+        # globalRedirect = "key.gv.coop:12443";
+        locations."/" = {
+          proxyPass = "https://key.gv.coop:12443";
+          extraConfig = ''
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+          add_header Access-Control-Allow-Credentials true;
+          '';
+        };
       };
         "lemonldap.gv.coop" = {
           enableACME = true; 
