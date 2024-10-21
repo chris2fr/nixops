@@ -148,7 +148,7 @@
 
   # Enable the OpenSSH daemon.
   services = {
-    services.postgresql = {
+    postgresql = {
       enable = true;
       enableTCPIP = true;
       package = pkgs.postgresql_14;
