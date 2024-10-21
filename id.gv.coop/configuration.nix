@@ -168,7 +168,7 @@
         # proxy = "passthrough";
         #   proxy = "reencrypt";
         proxy = "edge";
-        hostname = "key.gv.coop:12443";
+        # hostname = "key.gv.coop:12443";
         http-enabled = true;
       };
       sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
