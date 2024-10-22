@@ -3,7 +3,17 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, ... }:
-
+let
+  extraConfigNginxKeycloak = ''
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+    add_header Access-Control-Allow-Credentials true;
+  '';
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -255,25 +265,25 @@
         enableACME = true;
         forceSSL = true;
         root = "/var/www/key";
-        extraConfig = ''
-          location /admin/master/console/ {
-            error_page 403 =302 https://key.gv.coop/realms/master/account;
-          }
-          location /realms/master/account/ {
-            error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/logout;
-          }
-        '';
         locations = {
           "/" = {
             proxyPass = "https://key.gv.coop:12443";
-            extraConfig = ''
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Host $host;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-            add_header Access-Control-Allow-Credentials true;
+            extraConfig = extraConfigNginxKeycloak;
+          };
+        };
+        locations = {
+          "/realms/master/account/" = {
+            proxyPass = "https://key.gv.coop:12443";
+            extraConfig = extraConfigNginxKeycloak + ''
+              error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/logout;
+            '';
+          };
+        };
+        locations = {
+          "/admin/master/console/" = {
+            proxyPass = "https://key.gv.coop:12443";
+            extraConfig = extraConfigNginxKeycloak + ''
+              error_page 403 =302 error_page 403 =302 https://key.gv.coop/realms/master/account;
             '';
           };
         };
