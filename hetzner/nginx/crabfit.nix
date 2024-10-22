@@ -6,7 +6,7 @@ in
     "crabfit.resdigita.com" = {
       serverAliases = [
         "crabfit.gv.coop" 
-        "crabfit.village.ngo" 
+        "crabfit.villagegv.com" 
         "crabfit.lesgv.org"];
       enableACME = true;
       forceSSL = true;
@@ -22,7 +22,7 @@ in
       # rencontre-avec-bgeparif-sviatlana-et-dea-ladapt-visio-243095
     };
     "apicrabfit.resdigita.com" = {
-      serverAliases = ["apicrabfit.lesgv.org" "apicrabfit.village.ngo"];
+      serverAliases = ["apicrabfit.lesgv.org" "apicrabfit.villagegv.com"];
       enableACME = true;
       forceSSL = true;
       locations."/" = {

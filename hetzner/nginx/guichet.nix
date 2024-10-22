@@ -10,7 +10,7 @@ in
         forceSSL = true;    
       };
       "guichet.resdigita.com" = {
-        serverAliases = ["guichet.gv.coop" "guichet.lesgv.org" "guichet.village.ngo"];
+        serverAliases = ["guichet.gv.coop" "guichet.lesgv.org" "guichet.villagegv.com"];
         enableACME = true; 
         forceSSL = true;     
         # sslCertificate = "/var/lib/acme/guichet.lesgrandsvoisins.com/fullchain.pem";

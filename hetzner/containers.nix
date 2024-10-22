@@ -37,7 +37,7 @@ let
   home-manager2305 = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
   hasaeraRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
   # ldapDomainName = "ldap.gv.coop";
-  ldapDomainName = "ldap.village.ngo";
+  ldapDomainName = "ldap.villagegv.com";
   # ldapBaseDN = "dc=gv,dc=coop";
   ldapBaseDN = "dc=village,dc=ngo";
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
@@ -46,17 +46,17 @@ let
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
   # domainName = "mail.gv.coop";
-  domainName = "mail.village.ngo";
+  domainName = "mail.villagegv.com";
   whitelistSubnets =  [ 
       "10.0.0.0/8" 
       "172.16.0.0/12" 
       "192.168.0.0/16"
       "8.8.8.8" # Resolves the IP via DNS
       # "mail.gv.coop" 
-      "mail.village.ngo"
+      "mail.villagegv.com"
   ];
   mailServerDomainAliases = [ 
-    "village.ngo"
+    "villagegv.com"
     "gv.coop"
   ];
 in
@@ -716,7 +716,7 @@ in
         };
       };
       systemd.services.wagtail-village = {
-        description = "wagtail.village.ngo Website based on Wagtail-village";
+        description = "wagtail.villagegv.com Website based on Wagtail-village";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
@@ -814,7 +814,7 @@ in
         };
       };
       systemd.services.villagengo = {
-        description = "www.village.ngo";
+        description = "www.villagegv.com";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
@@ -830,7 +830,7 @@ in
         };
       };
       systemd.services.village = {
-        description = "www.village.ngo";
+        description = "www.villagegv.com";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
@@ -849,8 +849,8 @@ in
   };
   containers.discourse = {
     bindMounts = {
-      "/var/lib/acme/discourse.village.ngo/" = {
-        hostPath = "/var/lib/acme/discourse.village.ngo/";
+      "/var/lib/acme/discourse.villagegv.com/" = {
+        hostPath = "/var/lib/acme/discourse.villagegv.com/";
         isReadOnly = true;
       }; 
       # "/run/discourse/sockets/unicorn.sock"
@@ -930,9 +930,9 @@ in
       };
       services = {
         resolved.enable = true;
-        nginx.virtualHosts."discourse.village.ngo" = {
-          sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
-          sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
+        nginx.virtualHosts."discourse.villagegv.com" = {
+          sslCertificate = "/var/lib/acme/discourse.villagegv.com/full.pem";
+          sslCertificateKey = "/var/lib/acme/discourse.villagegv.com/key.pem";
           locations."/" = {
             proxyPass = "http://unix:/var/discourse/shared/standalone/nginx.http.sock";
             extraConfig = ''
@@ -941,16 +941,16 @@ in
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Real-IP $remote_addr;
-              proxy_ssl_trusted_certificate /var/lib/acme/discourse.village.ngo/full.pem;
+              proxy_ssl_trusted_certificate /var/lib/acme/discourse.villagegv.com/full.pem;
               proxy_ssl_verify     off;
             '';
           };
         };
         discourse = {
           enable = true;
-          hostname = "discourse.village.ngo";
-          sslCertificate = "/var/lib/acme/discourse.village.ngo/full.pem";
-          sslCertificateKey = "/var/lib/acme/discourse.village.ngo/key.pem";
+          hostname = "discourse.villagegv.com";
+          sslCertificate = "/var/lib/acme/discourse.villagegv.com/full.pem";
+          sslCertificateKey = "/var/lib/acme/discourse.villagegv.com/key.pem";
           siteSettings = {
             security.forceHttps = true;
           };
@@ -961,7 +961,7 @@ in
             # config.services.discourse.package.plugins.discourse-saml
           ];
           admin = {
-            email = "gv@village.ngo";
+            email = "gv@villagegv.com";
             fullName = "Super Admin";
             username = "admin";
             passwordFile = "/etc/discourse/.admin";
@@ -970,7 +970,7 @@ in
             outgoing = {
               serverAddress = "mail.lesgrandsvoisins.com";
               authentication = "plain";
-              username = "gv@village.ngo";
+              username = "gv@villagegv.com";
               passwordFile = "/etc/.secrets.gvvillagengo";
               # port = 587;
               # forceTLS = true;
@@ -1410,7 +1410,7 @@ in
         };
         openldap = {
           enable = true;
-          urlList = ["ldap://ldap.village.ngo:10389/ ldaps://ldap.village.ngo:10636/ ldapi:///"];
+          urlList = ["ldap://ldap.villagegv.com:10389/ ldaps://ldap.villagegv.com:10636/ ldapi:///"];
           # urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
           # urlList = [ 
           #   "ldap://ldap.gv.coop:10389/" 
@@ -1687,7 +1687,7 @@ in
             passwordFile = "/etc/nixos/.secrets.bind";
           };
           uris = [
-            "ldaps://ldap.village.ngo:10636/"
+            "ldaps://ldap.villagegv.com:10636/"
           ];
           searchBase = "ou=users,${ldapBaseDN}";
           searchScope = "sub";

@@ -251,12 +251,12 @@ in
       settings = {
         global.debug = false;
         global.secret_file = "/var/lib/etebase-server/.secrets.etebase"; # mind permissions
-        allowed_hosts.allowed_host1 = "ete.village.ngo";
+        allowed_hosts.allowed_host1 = "ete.villagegv.com";
       };
     };
     # etesync-dav = {
     #   enable = true;
-    #   apiUrl = "https://ete.village.ngo";
+    #   apiUrl = "https://ete.villagegv.com";
     #   # sslCertificate = "/var/lib/acme/ete.village.ngo/full.pem";
     #   # sslCertificateKey = "/var/lib/acme/ete.village.ngo/key.pem";
     #   host = "https://etedav.village.ngo";
@@ -352,7 +352,7 @@ in
       enable = true;
       frontendScheme = "https";
       #  frontendHostname = "vikunja.gv.coop";
-      frontendHostname = "vikunja.village.ngo";
+      frontendHostname = "vikunja.villagegv.com";
       # database.type = "postgres";
       settings = {
         mailer = {
@@ -375,13 +375,13 @@ in
         auth = {
           local.enabled = false;
           openid.enabled = true;
-          openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
+          openid.redirecturl = "https://vikunja.villagegv.com/auth/openid/";
           # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
           openid.providers = [
             {
             name = "keyGVcoop";
-            authurl = "https://key.village.ngo/realms/master";
-            logouturl = "https://key.village.ngo/realms/master/protocol/openid-connect/logout";
+            authurl = "https://key.villagegv.com/realms/master";
+            logouturl = "https://key.villagegv.com/realms/master/protocol/openid-connect/logout";
             # authurl = "https://key.gv.coop/realms/master";
             # logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";

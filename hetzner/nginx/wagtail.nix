@@ -68,9 +68,9 @@ in
       ];
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "www.village.paris";
+      globalRedirect = "www.villagegv.com";
     };
-    "gv.village.ngo" = {
+    "gv.villagegv.com" = {
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/www-fastoche/";
@@ -83,7 +83,7 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "resdigita.village.ngo" = {
+    "resdigita.villagegv.com" = {
       serverAliases = ["resdigita.fastoche.org"];
       enableACME = true;
       forceSSL = true;
@@ -116,7 +116,7 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.village.ngo" = {
+    "www.villagegv.com" = {
       enableACME = true;
       serverAliases = [
         "www.lesgv.com"
@@ -148,17 +148,17 @@ in
         ];
       forceSSL = true;
       root =  "/var/www/village/";
-      extraConfig = ''
-        if ($host != 'www.village.ong') {
-          return 301 https://www.village.ong/fr/;
-        }
-      '';
+      # extraConfig = ''
+      #   if ($host != 'www.village.ong') {
+      #     return 301 https://www.village.ong/fr/;
+      #   }
+      # '';
       locations = {
         "/" = {
           proxyPass = "http://127.0.0.1:8896/";
           extraConfig = nginxLocationWagtailExtraConfig;
         };
-        "/en/".return =  "301 http://www.village.ngo$request_uri";
+        "/en/".return =  "301 http://www.villagegv.com$request_uri";
         "/favicon.ico" = { proxyPass = null; };
         "/static" = { proxyPass = null; };
         "/medias" = { proxyPass = null; };
@@ -206,6 +206,9 @@ in
         "www.villagengo.org"
         "www.villagengo.com"
         "village.ngo"
+        "villagegv.com"
+        "villagegv.org"
+        "www.villagegv.org"
         "villagengo.org"
         "villagengo.com"
         "villageparis.org"
@@ -229,8 +232,8 @@ in
         # location ~ /fr/(.*)$ {
         #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
         # }
-        if ($host != 'www.gv.coop') {
-          return 301 $scheme://www.gv.coop$request_uri;
+        if ($host != 'www.villagegv.com') {
+          return 301 $scheme://www.villagegv.com$request_uri;
         }
         '';
         #         location ~ /fr/(.*)$ {
@@ -290,7 +293,7 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "wagtail.village.ngo" = {
+    "wagtail.villagegv.com" = {
       enableACME = true;
       forceSSL = true;
       serverAliases = [ "wagtail.villagengo.org" "wagtail.villagengo.com"];
@@ -347,7 +350,7 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "django.village.ngo" = {
+    "django.villagegv.com" = {
       enableACME = true;
       serverAliases = [ "django.fastoche.org" "django.cfran.org" "django.village.ong" "django.villagengo.com" "django.villagengo.org"];
       # extraConfig = ''
@@ -366,10 +369,10 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "fabrique.village.ngo" = {
+    "fabrique.villagegv.com" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [ "designsystem.fastoche.org" "designsystem.village.ngo" "designsystem.cfran.org" "designsystem.village.ong" "designsystem.villagengo.com" "designsystem.villagengo.org"];
+      serverAliases = [ "designsystem.fastoche.org" "designsystem.villagegv.com" "designsystem.cfran.org" "designsystem.village.ong" "designsystem.villagengo.com" "designsystem.villagengo.org"];
       # extraConfig = ''
       #   if ($host != 'designsystem.cfran.org') {
       #     return 301 $scheme://designsystem.cfran.org$request_uri;
@@ -387,7 +390,7 @@ in
       # locations."/.well-known" = { proxyPass = null; };
     };
     "meet.resdigita.com" = {
-      serverAliases = ["meet.lesgv.org" "meet.village.ngo" "meet.village.ong" "meet.villagengo.com" "meet.villagengo.org"];
+      serverAliases = ["meet.lesgv.org" "meet.villagegv.com" "meet.village.ong" "meet.villagengo.com" "meet.villagengo.org"];
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/wagtail/";
@@ -409,7 +412,7 @@ in
       serverAliases = [
         "meet.lesgrandsvoisins.com"
         "discourse.resdigita.com"
-        "meet.village.ngo"
+        "meet.villagegv.com"
         "meet.village.ong"
         # "jswiki.resdigita.com"
         # "gvoisin.desgrandsvoisins.org"
@@ -649,7 +652,7 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "paris14.village.ngo" = {
+    "paris14.villagegv.com" = {
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/village/";

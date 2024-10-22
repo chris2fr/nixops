@@ -15,7 +15,7 @@ in
       serverAliases = [
         "quartz.gv.coop" 
         "quartz.lesgv.org"
-        "quartz.village.ngo"];
+        "quartz.villagegv.com"];
       enableACME = true;
       forceSSL = true;
       root = "/var/www/resdigitacom";

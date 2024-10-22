@@ -29,7 +29,7 @@ let
     "gvpublic.org"
     "gvpublic.com"
     "fastoche.org"
-    "village.ngo"
+    "villagegv.com"
     "village.ong"
     "villageparis.org"
   ];
