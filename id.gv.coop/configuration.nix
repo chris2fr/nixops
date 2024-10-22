@@ -276,20 +276,6 @@
             add_header Access-Control-Allow-Credentials true;
             '';
           };
-
-          "/realms/master/account/" = {
-            proxyPass = "https://key.gv.coop:12443";
-            extraConfig = ''
-            error_page 404 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Host $host;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-            add_header Access-Control-Allow-Credentials true;
-            '';
-          };
         };
       };
         "lemonldap.gv.coop" = {
