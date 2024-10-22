@@ -28,6 +28,7 @@ in
   users.users.nginx.group = "wwwrun";
   systemd.tmpfiles.rules = [
     "d /var/www/gv.coop/ldap 0775 wwwrun wwwrun"
+    "d /var/www/village.ngo/ldap 0775 wwwrun wwwrun"
   ];
   services = {
     nginx = {
@@ -75,14 +76,15 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
-        "link.gv.coop" = {
+        "link.village.ngo" = {
+          domainAlises = ["link.gv.coop"];
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };
           locations."/" = {
             extraConfig = ''
-            rewrite ^/$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
-            # rewrite ^/login$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
+            rewrite ^/$ https://link.village.ngo/api/v1/auth/signin/keycloak? redirect;
+            # rewrite ^/login$ https://link.village.ngo/api/v1/auth/signin/keycloak? redirect;
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header   Host $host;
@@ -98,16 +100,20 @@ in
             '';
           };
         };
-        "ldap.gv.coop" = {
+        "ldap.village.ngo" = {
+          serverAliases = ["ldap.gv.coop"];
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };
-          locations."/pwm/private/changepassword".return = "302 https://auth.gv.coop/reset-password/step1";
-          locations."/pwm/public/forgottenpassword".return = "302 https://auth.gv.coop/reset-password/step1";
+          locations."/pwm/private/changepassword".return = "302 https://auth.village.ngo/reset-password/step1";
+          locations."/pwm/public/forgottenpassword".return = "302 https://auth.village.ngo/reset-password/step1";
+          # locations."/pwm/private/changepassword".return = "302 https://auth.gv.coop/reset-password/step1";
+          # locations."/pwm/public/forgottenpassword".return = "302 https://auth.gv.coop/reset-password/step1";
           # locations."/pwm/public/logout".return = "302 /pwm/";
           locations."/" = {
             extraConfig = ''
-            rewrite ^/$ https://key.gv.coop/ redirect;
+            rewrite ^/$ https://key.village.ngo/ redirect;
+            # rewrite ^/$ https://key.gv.coop/ redirect;
             # rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
             # rewrite ^/pwm/public/logout?processAction=showLogout&stickyRedirectTest=key https://ldap.gv.coop/pwm/ redirect;
             proxy_set_header   X-Real-IP $remote_addr;
@@ -127,7 +133,7 @@ in
           # locations."/" = {
           #   return = "302 https://ldap.gv.coop/pwm$request_uri";
           # };
-          root = "/var/www/gv.coop/ldap";
+          root = "/var/www/village.ngo/ldap";
         }; 
         "syncthing.resdigita.com" = {
           forceSSL = true;
@@ -213,6 +219,9 @@ in
           serverAliases = [
             "vaultwarden.gv.coop" 
             "bitwarden.gv.coop"
+            "vaultwarden.village.ngo" 
+            "bitwarden.village.ngo"
+            "bit.village.ngo"
             "vaultwarden.lesgv.org"
             ];
           enableACME = true; 
@@ -223,7 +232,7 @@ in
           };
         };
         "uptime-kuma.resdigita.com" = {
-          serverAliases = ["uptime-kuma.lesgv.org" "uk.lesgv.org"];
+          serverAliases = ["uptime-kuma.lesgv.org" "uk.lesgv.org" "uptime.village.ngo"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -366,6 +375,7 @@ in
         "homepage-dashboard.resdigita.com" = {
           serverAliases = [
             "homepage-dashboard.gv.coop" 
+            "homepage-dashboard.village.ngo" 
             "homepage-dashboard.lesgv.org" "hd.lesgv.org"];
           enableACME = true;
           forceSSL = true;

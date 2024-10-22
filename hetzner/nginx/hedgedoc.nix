@@ -20,14 +20,14 @@ in
       #   ];
       #   globalRedirect = "hedgedoc.resdigita.com";
       # };
-      "hedgedoc.gv.coop" = {
-        serverAliases = ["hedgedoc.lesgv.org" "hedgedoc.resdigita.com" "hedgedoc.village.ngo"];
+      "hedgedoc.village.ngo" = {
+        serverAliases = ["hedgedoc.lesgv.org" "hedgedoc.resdigita.com" "hedgedoc.gv.coop"];
         enableACME = true;
         forceSSL = true;
         locations."/".proxyPass = "http://localhost:3333/";
         extraConfig = ''
-          if ($host != "hedgedoc.gv.coop") {
-            return 302 $scheme://hedgedoc.gv.coop$request_uri;
+          if ($host != "hedgedoc.village.ngo") {
+            return 302 $scheme://hedgedoc.village.ngo$request_uri;
           }
         '';
       };

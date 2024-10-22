@@ -168,7 +168,7 @@ in
       database = {
         type = "postgresql";
         createLocally = true;
-        username = "keycloak";
+        username = "keyvillagengo";
         passwordFile = "/var/run/.secret/.keycloak";
         # useSSL = false;
       };
@@ -178,11 +178,14 @@ in
         # proxy = "passthrough";
         proxy = "reencrypt";
         # proxy = "edge";
-        hostname = "key.gv.coop";
+        # hostname = "key.gv.coop";
+        hostname = "key.village.ngo";
         http-enabled = true;
       };
-      sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/key.gv.coop/key.pem";
+      sslCertificate = "/var/lib/acme/key.village.ngo/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/key.village.ngo/key.pem";
+      # sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
+      # sslCertificateKey = "/var/lib/acme/key.gv.coop/key.pem";
       # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
     };
     postgresql.enable = true;
@@ -261,38 +264,38 @@ in
         };
       };
       virtualHosts = {
-        "key.gv.coop" = {
+        "key.village.ngo" = {
         enableACME = true;
         forceSSL = true;
         root = "/var/www/key";
         locations = {
           "/realms/master/account" = {
-            proxyPass = "https://key.gv.coop:12443";
+            proxyPass = "https://key.village.ngo:12443";
             extraConfig = extraConfigNginxKeycloak + ''
-              error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
+              error_page 403 =302 https://key.village.ngo/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.village.ngo%2Frealms%2Fmaster%2Faccount%2F;
             '';
           };
           "/admin/master/console" = {
-            proxyPass = "https://key.gv.coop:12443";
+            proxyPass = "https://key.village.ngo:12443";
             extraConfig = extraConfigNginxKeycloak + ''
-              error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
+              error_page 403 =302 https://key.village.ngo/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.village.ngo%2Frealms%2Fmaster%2Faccount%2F;
             '';
           };
           "/admin/serverinfo" = {
-            proxyPass = "https://key.gv.coop:12443";
+            proxyPass = "https://key.village.ngo:12443";
             extraConfig = extraConfigNginxKeycloak + ''
-              error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
+              error_page 403 =302 https://key.village.ngo/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.village.ngo%2Frealms%2Fmaster%2Faccount%2F;
             '';
           };
           "/" = {
-            proxyPass = "https://key.gv.coop:12443";
+            proxyPass = "https://key.village.ngo:12443";
             extraConfig = extraConfigNginxKeycloak + ''
-              rewrite ^/$ https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F redirect;
+              rewrite ^/$ https://key.village.ngo/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.village.ngo%2Frealms%2Fmaster%2Faccount%2F redirect;
             '';
           };
         };
       };
-        "lemonldap.gv.coop" = {
+        "lemonldap.village.ngo" = {
           enableACME = true; 
           forceSSL = true; 
           locations."/.well-known" = { proxyPass = null; };
@@ -305,7 +308,7 @@ in
             '';
           };
         };
-        "manager.lemonldap.gv.coop" = {
+        "manager.lemonldap.village.ngo" = {
           enableACME = true; 
           forceSSL = true; 
           locations."/.well-known" = { proxyPass = null; };
@@ -318,7 +321,7 @@ in
             '';
           };
         };
-        "handler.lemonldap.gv.coop" = {
+        "handler.lemonldap.village.ngo" = {
           enableACME = true; 
           forceSSL = true; 
           locations."/.well-known" = { proxyPass = null; };
@@ -331,7 +334,7 @@ in
             '';
           };
         };
-        "api.lemonldap.gv.coop" = {
+        "api.lemonldap.village.ngo" = {
           enableACME = true; 
           forceSSL = true; 
           locations."/.well-known" = { proxyPass = null; };

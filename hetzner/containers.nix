@@ -36,22 +36,27 @@ let
   mannchriRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
   home-manager2305 = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
   hasaeraRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
-  ldapDomainName = "ldap.gv.coop";
-  ldapBaseDN = "dc=gv,dc=coop";
+  # ldapDomainName = "ldap.gv.coop";
+  ldapDomainName = "ldap.village.ngo";
+  # ldapBaseDN = "dc=gv,dc=coop";
+  ldapBaseDN = "dc=village,dc=ngo";
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
   alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
-  domainName = "mail.gv.coop";
+  # domainName = "mail.gv.coop";
+  domainName = "mail.village.ngo";
   whitelistSubnets =  [ 
       "10.0.0.0/8" 
       "172.16.0.0/12" 
       "192.168.0.0/16"
       "8.8.8.8" # Resolves the IP via DNS
-      "mail.gv.coop" 
+      # "mail.gv.coop" 
+      "mail.village.ngo"
   ];
   mailServerDomainAliases = [ 
+    "village.ngo"
     "gv.coop"
   ];
 in
@@ -1405,7 +1410,8 @@ in
         };
         openldap = {
           enable = true;
-          urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
+          urlList = ["ldap://ldap.village.ngo:10389/ ldaps://ldap.village.ngo:10636/ ldapi:///"];
+          # urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
           # urlList = [ 
           #   "ldap://ldap.gv.coop:10389/" 
           #   "ldap://192.168.107.11:10389/"
@@ -1497,20 +1503,20 @@ in
                   /* custom access rules for userPassword attributes */
                   /* allow read on anything else */
                   ''{0}to dn.subtree="ou=newusers,${ldapBaseDN}"
-                      by dn.exact="cn=newuser@gv.coop,ou=users,${ldapBaseDN}" write
+                      by dn.exact="cn=newuser,ou=users,${ldapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
                       by self write
                       by anonymous auth
                       by * read''
                   ''{1}to dn.subtree="ou=invitations,${ldapBaseDN}"
-                      by dn.exact="cn=newuser@gv.coop,ou=users,${ldapBaseDN}" write
+                      by dn.exact="cn=newuser,ou=users,${ldapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
                       by self write
                       by anonymous auth
                       by * read''
                   ''{2}to dn.subtree="ou=users,${ldapBaseDN}"
                       by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
-                      by dn.exact="cn=newuser@gv.coop,ou=users,${ldapBaseDN}" write
+                      by dn.exact="cn=newuser,ou=users,${ldapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${ldapBaseDN}" write
                       by self write
                       by anonymous auth
@@ -1521,9 +1527,9 @@ in
                       by anonymous auth
                       by * none''
                   ''{4}to *
-                      by dn.exact="cn=sogo@gv.coop,ou=users,${ldapBaseDN}" manage
+                      by dn.exact="cn=sogo,ou=users,${ldapBaseDN}" manage
                       by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
-                      by dn.exact="cn=chris@gv.coop,ou=users,${ldapBaseDN}" manage
+                      by dn.exact="cn=chris,ou=users,${ldapBaseDN}" manage
                       by dn.exact="cn=chris@mann.fr,ou=users,${ldapBaseDN}" manage
                       by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${ldapBaseDN}" manage
                       by self write
@@ -1681,7 +1687,7 @@ in
             passwordFile = "/etc/nixos/.secrets.bind";
           };
           uris = [
-            "ldaps://ldap.gv.coop:10636/"
+            "ldaps://ldap.village.ngo:10636/"
           ];
           searchBase = "ou=users,${ldapBaseDN}";
           searchScope = "sub";

@@ -116,7 +116,7 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "www.gv.coop" = {
+    "www.village.ngo" = {
       enableACME = true;
       serverAliases = [
         "www.lesgv.com"
@@ -200,7 +200,7 @@ in
         "/.well-known" = { proxyPass = null; };
       };
     };
-    "www.village.ngo" = {
+    "www.gv.coop" = {
       enableACME = true;
       serverAliases = [
         "www.villagengo.org"
@@ -229,8 +229,8 @@ in
         # location ~ /fr/(.*)$ {
         #   rewrite ^ https://www.village.ong/fr/$1?$args permanent;
         # }
-        if ($host != 'www.village.ngo') {
-          return 301 $scheme://www.village.ngo$request_uri;
+        if ($host != 'www.gv.coop') {
+          return 301 $scheme://www.gv.coop$request_uri;
         }
         '';
         #         location ~ /fr/(.*)$ {

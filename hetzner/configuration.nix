@@ -351,8 +351,8 @@ in
     vikunja = {
       enable = true;
       frontendScheme = "https";
-      frontendHostname = "vikunja.gv.coop";
-      # frontendHostname = "vikunja.village.ngo";
+      #  frontendHostname = "vikunja.gv.coop";
+      frontendHostname = "vikunja.village.ngo";
       # database.type = "postgres";
       settings = {
         mailer = {
@@ -375,13 +375,15 @@ in
         auth = {
           local.enabled = false;
           openid.enabled = true;
-          # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
-          openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
+          openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
+          # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
           openid.providers = [
             {
             name = "keyGVcoop";
-            authurl = "https://key.gv.coop/realms/master";
-            logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";
+            authurl = "https://key.village.ngo/realms/master";
+            logouturl = "https://key.village.ngo/realms/master/protocol/
+            # authurl = "https://key.gv.coop/realms/master";
+            # logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
             clientsecret = keyGVcoopVikunja;
           }{

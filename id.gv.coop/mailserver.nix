@@ -6,10 +6,12 @@ let
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
   sogoPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.sogo));
   oauthPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.oauthpassword));
-  domainName = "mail.gv.coop";
+  domainName = "mail.village.ngo";
+  # domainName = "mail.gv.coop";
   ldapBaseDCDN = "dc=gv,dc=coop";
   mailServerDomainAliases = [ 
     "gv.coop"
+    "village.ngo"
   ];
   # mailServerDomainAliases = [ 
   #   "lesgrandsvoisins.com"
@@ -114,10 +116,13 @@ in
 ###################################################################################################################################
   mailserver = {
     enable = true;
-    fqdn = "mail.gv.coop";
-    domains = ["gv.coop"];
+    fqdn = "mail.village.ngo";
+    domains = ["village.ngo"];
+    # fqdn = "mail.gv.coop";
+    # domains = ["gv.coop"];
     certificateScheme = "acme";
-    certificateDomains = [ "mail.gv.coop" ];
+    certificateDomains = [ "mail.village.ngo" ];
+    # certificateDomains = [ "mail.gv.coop" ];
     certificateFile = "/var/lib/acme/${domainName}/fullchain.pem";
     certificateDirectory = "/var/lib/acme/${domainName}/";
     keyFile =  "/var/lib/acme/${domainName}/key.pem"; 
@@ -142,7 +147,7 @@ in
       uris = [
         # "ldap:///"
         # "ldaps://ldap.gv.coop:10636/"
-        "ldap://ldap.gv.coop:10389/"
+        "ldap://ldap.village.ngo:10389/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
@@ -295,12 +300,14 @@ in
      enable = true;
      # this is the url of the vhost, not necessarily the same as the fqdn of
      # the mailserver
-     hostName = "mail.gv.coop";
+     hostName = "mail.village.ngo";
+    #  hostName = "mail.gv.coop";
     #  dicts =  [ en fr de ];
      extraConfig = ''
         # starttls needed for authentication, so the fqdn required to match
         # the certificate
-        $config['smtp_server'] = "tls://mail.gv.coop";
+        $config['smtp_server'] = "tls://mail.village.ngo";
+        # $config['smtp_server'] = "tls://mail.gv.coop";
         $config['smtp_user'] = "%u";
         $config['smtp_pass'] = "%p";
         # $config['oauth_provider'] = 'generic';
@@ -315,10 +322,12 @@ in
         # $config['oauth_identity_fields'] = ['email'];
         $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
         $config['session_samesite'] = "Lax";
-        $config['support_url'] = 'https://www.gv.coop';
+        $config['support_url'] = 'https://www.village.ngo';
+        # $config['support_url'] = 'https://www.gv.coop';
         $config['product_name'] = 'Roundcube Webmail des GV';
         $config['session_debug'] = true;
-        $config['session_domain'] = 'mail.gv.coop';
+        $config['session_domain'] = 'mail.village.ngo';
+        # $config['session_domain'] = 'mail.gv.coop';
         $config['login_password_maxlen'] = 4096;
      '';
      dicts = [ pkgs.aspellDicts.fr pkgs.aspellDicts.en ];

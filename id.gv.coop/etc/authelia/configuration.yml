@@ -184,7 +184,8 @@ totp:
   disable: false
 
   ## The issuer name displayed in the Authenticator application of your choice.
-  issuer: 'auth.gv.coop'
+  # issuer: 'auth.gv.coop'
+  issuer: 'auth.village.ngo'
 
   ## The TOTP algorithm to use.
   ## It is CRITICAL you read the documentation before changing this option:
@@ -360,7 +361,8 @@ authentication_backend:
     ## Square brackets indicate optional portions of the format. Scheme must be 'ldap', 'ldaps', or 'ldapi`.
     ## The default scheme is 'ldapi' if the address is an absolute path otherwise it's 'ldaps'.
     ## The default port is '636', unless the scheme is 'ldap' in which case it's '389'.
-    address: 'ldap://ldap.gv.coop:10389'
+    # address: 'ldap://ldap.gv.coop:10389'
+    address: 'ldap://ldap.village.ngo:10389'
 
     ## The LDAP implementation, this affects elements like the attribute utilised for resetting a password.
     ## Acceptable options are as follows:
@@ -727,7 +729,8 @@ session:
 
       ## The domain to protect.
       ## Note: the Authelia portal must also be in that domain.
-      domain: 'auth.gv.coop'
+      # domain: 'auth.gv.coop'
+      domain: 'auth.village.ngo'
 
       ## Required. The fully qualified URI of the portal to redirect users to on proxies that support redirections.
       ## Rules:
@@ -735,7 +738,7 @@ session:
       ##   - The above 'domain' option MUST either:
       ##      - Match the host portion of this URI.
       ##      - Match the suffix of the host portion when prefixed with '.'.
-      authelia_url: 'https://auth.gv.coop'
+      authelia_url: 'https://auth.village.ngo'
 
       ## Optional. The fully qualified URI used as the redirection location if the portal is accessed directly. Not
       ## configuring this option disables the automatic redirection behaviour.
@@ -750,6 +753,7 @@ session:
       ##      - Match the host portion of this URI.
       ##      - Match the suffix of the host portion when prefixed with '.'.
       # default_redirection_url: 'https://www.gv.coop'
+      default_redirection_url: 'https://www.village.ngo'
 
       ## Sets the Cookie SameSite value. Possible options are none, lax, or strict.
       ## Please read https://www.authelia.com/c/session#same_site
