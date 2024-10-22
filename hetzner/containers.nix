@@ -39,7 +39,7 @@ let
   # ldapDomainName = "ldap.gv.coop";
   ldapDomainName = "ldap.villagegv.com";
   # ldapBaseDN = "dc=gv,dc=coop";
-  ldapBaseDN = "dc=village,dc=ngo";
+  ldapBaseDN = "dc=villagegv,dc=com";
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
   alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
