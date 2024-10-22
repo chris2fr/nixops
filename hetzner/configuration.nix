@@ -381,7 +381,7 @@ in
             {
             name = "keyGVcoop";
             authurl = "https://key.village.ngo/realms/master";
-            logouturl = "https://key.village.ngo/realms/master/protocol/
+            logouturl = "https://key.village.ngo/realms/master/protocol/openid-connect/logout";
             # authurl = "https://key.gv.coop/realms/master";
             # logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
