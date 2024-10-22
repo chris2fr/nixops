@@ -271,21 +271,17 @@ in
             extraConfig = extraConfigNginxKeycloak;
           };
         };
-        locations = {
-          "/realms/master/account/" = {
-            proxyPass = "https://key.gv.coop:12443";
-            extraConfig = extraConfigNginxKeycloak + ''
-              error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/logout;
-            '';
-          };
+        "/realms/master/account/" = {
+          proxyPass = "https://key.gv.coop:12443";
+          extraConfig = extraConfigNginxKeycloak + ''
+            error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/logout;
+          '';
         };
-        locations = {
-          "/admin/master/console/" = {
-            proxyPass = "https://key.gv.coop:12443";
-            extraConfig = extraConfigNginxKeycloak + ''
-              error_page 403 =302 https://key.gv.coop/realms/master/account;
-            '';
-          };
+        "/admin/master/console/" = {
+          proxyPass = "https://key.gv.coop:12443";
+          extraConfig = extraConfigNginxKeycloak + ''
+            error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
+          '';
         };
       };
         "lemonldap.gv.coop" = {
