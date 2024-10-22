@@ -283,7 +283,7 @@ in
           "/admin/master/console/" = {
             proxyPass = "https://key.gv.coop:12443";
             extraConfig = extraConfigNginxKeycloak + ''
-              error_page 403 =302 error_page 403 =302 https://key.gv.coop/realms/master/account;
+              error_page 403 =302 https://key.gv.coop/realms/master/account;
             '';
           };
         };
