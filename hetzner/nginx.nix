@@ -75,6 +75,19 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
+        "www.villagegv.com" = {
+          forceSSL = true;
+          enableACME = true;
+          serverAliases = [
+            "villagegv.com"
+            "www.villagegv.org"
+            "villagegv.org"
+          ];
+          root =  "/var/www/village/";
+          extraConfig = ''
+            return 302 $scheme://www.village.ngo$request_uri;
+          '';
+        };
         "link.gv.coop" = {
           forceSSL = true;
           enableACME = true;
