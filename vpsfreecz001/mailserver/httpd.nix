@@ -17,6 +17,8 @@ let
     "gvoisins.com"
     "www.gvoisins.com"
     "mail.resdigita.com"
+    "l-g-v.com"
+    "www.l-g-v.com"
     ];
     domainNameForEmail = import ./vars/domain-name-for-email.nix;
     ldapBaseDCDN = import ./vars/ldap-base-dc-dn.nix;
