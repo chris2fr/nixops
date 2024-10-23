@@ -200,13 +200,7 @@ in
         "/.well-known" = { proxyPass = null; };
       };
     };
-    "l-g-v.com" = {
-      serverAliases = [
-        "www.l-g-v.com"
-        "l-g-v.org"
-        "www.l-g-v.org"
-      ];
-    };
+
     "www.village.ngo" = {
       enableACME = true;
       serverAliases = [
@@ -593,7 +587,19 @@ in
     #    enableACME = true;
     #    forceSSL = true;
     # };
-
+    "l-g-v.com" = {
+      serverAliases = [
+        "www.l-g-v.com"
+        "l-g-v.org"
+        "www.l-g-v.org"
+      ];
+      # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
+      # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
+      # sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
+      enableACME = true;
+      forceSSL = true;
+      globalRedirect = "www.lesgrandsvoisins.com";
+    };  
     "lesgrandsvoisins.com" = {   
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
