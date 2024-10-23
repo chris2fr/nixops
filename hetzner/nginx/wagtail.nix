@@ -206,7 +206,7 @@ in
         # "l-g-v.org"
         # "www.l-g-v.org"
       ];
-    }
+    };
     "www.village.ngo" = {
       enableACME = true;
       serverAliases = [
