@@ -203,8 +203,8 @@ in
     "l-g-v.com" = {
       serverAliases = [
         "www.l-g-v.com"
-        # "l-g-v.org"
-        # "www.l-g-v.org"
+        "l-g-v.org"
+        "www.l-g-v.org"
       ];
     };
     "www.village.ngo" = {
