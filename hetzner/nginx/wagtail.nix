@@ -84,6 +84,7 @@ in
       locations."/.well-known" = { proxyPass = null; };
     };
     "wagtail.lesgrandsvoisins.com" = {
+      serverAliases = ["test.lesgrandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/lesgrandsvoisins/";
