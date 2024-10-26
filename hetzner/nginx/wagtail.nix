@@ -84,7 +84,7 @@ in
       locations."/.well-known" = { proxyPass = null; };
     };
     "www.lesgrandsvoisins.com" = {
-      serverAliases = ["test.lesgrandsvoisins.com", "alt.lesgrandsvoisins.com"];
+      serverAliases = ["test.lesgrandsvoisins.com" "alt.lesgrandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
       root =  "/var/www/lesgrandsvoisins/";
