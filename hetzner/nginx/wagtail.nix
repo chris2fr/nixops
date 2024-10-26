@@ -83,7 +83,7 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "wagtail.lesgrandsvoisins.com" = {
+    "www.lesgrandsvoisins.com" = {
       serverAliases = ["test.lesgrandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
@@ -622,7 +622,7 @@ in
       forceSSL = true;
       globalRedirect = "www.lesgrandsvoisins.com";
     };   
-    "www.lesgrandsvoisins.com" = {      
+    "old.lesgrandsvoisins.com" = {      
       # serverAliases = ["lesgrandsvoisins.com"];
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
