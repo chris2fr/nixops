@@ -32,6 +32,11 @@ in
     ./nginx.nix
     (import "${home-manager}/nixos")
     ];
+    systemd.tmpfiles.rules = [
+      "d /var/www/lesgrandsvoisins 0755 wagtail users"
+      "d /var/www/lesgrandsvoisins/static 0755 wagtail users"
+      "d /var/www/lesgrandsvoisins/medias 0755 wagtail users"
+    ];
   #  environment.systemPackages = with pkgs; [
   #   gcc 
   #   pkg-config

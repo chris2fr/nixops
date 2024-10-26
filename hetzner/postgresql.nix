@@ -24,6 +24,7 @@ services.postgresql = {
       "resdigitaorg"
       "cantine"
       "ffdncoin"
+      "lesgrandsvoisins"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
@@ -36,6 +37,10 @@ services.postgresql = {
         #   "DATABASE \"fairemain\"" = "ALL PRIVILEGES";
         #   "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
         # };
+      }
+      {
+        name = "lesgrandsvoisins";
+        ensureDBOwnership = true;
       }
       {
         name = "resdigitaorg";

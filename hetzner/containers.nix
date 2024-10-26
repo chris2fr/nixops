@@ -419,6 +419,7 @@ in
     # localAddress = "192.168.100.11";
     # hostAddress6 = "fc00::1";
     # localAddress6 = "fc00::2";
+
     bindMounts = { 
       "/var/www/wagtail" = { 
         hostPath = "/var/www/wagtail";
@@ -494,6 +495,14 @@ in
        }; 
       "/home/wagtail/wagtail-village/staticfiles" = { 
         hostPath = "/var/www/wagtail-village/static";
+        isReadOnly = false; 
+       }; 
+       "/home/wagtail/lesgrandsvoisins/medias" = { 
+        hostPath = "/var/www/lesgrandsvoisins/medias";
+        isReadOnly = false; 
+       }; 
+      "/home/wagtail/lesgrandsvoisins/staticfiles" = { 
+        hostPath = "/var/www/lesgrandsvoisins/static";
         isReadOnly = false; 
        }; 
        "/home/wagtail/wagtail-fastoche/medias" = { 
@@ -782,6 +791,22 @@ in
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/www-fastoche/";
           ExecStart = ''/home/wagtail/www-fastoche/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/www-fastoche-access.log --error-logfile /var/log/wagtail/www-fastoche-error.log --chdir /home/wagtail/www-fastoche --workers 12 --bind 0.0.0.0:8893 wagtail_fastoche.config.wsgi:application'';
+          Restart = "always";
+          RestartSec = "10s";
+          User = "wagtail";
+          Group = "users";
+        };
+        unitConfig = {
+          StartLimitInterval = "1min";
+        };
+      };
+      systemd.services.wagtail-lesgrandsvoisins = {
+        description = "wagtail.lesgrandsvoisins.com on 8894";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = "/home/wagtail/lesgrandsvoisins/";
+          ExecStart = ''/home/wagtail/lesgrandsvoisins/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/lesgrandsvoisins-access.log --error-logfile /var/log/wagtail/lesgrandsvoisins-error.log --chdir /home/wagtail/lesgrandsvoisins --workers 12 --bind 0.0.0.0:8894 lesgrandsvoisins.config.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";

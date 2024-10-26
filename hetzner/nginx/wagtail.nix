@@ -83,6 +83,19 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "wagtail.lesgrandsvoisins.com" = {
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/lesgrandsvoisins/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8894/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/medias" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "resdigita.village.ngo" = {
       serverAliases = ["resdigita.fastoche.org"];
       enableACME = true;
@@ -592,7 +605,7 @@ in
         "www.l-g-v.com"
         "l-g-v.org"
         "www.l-g-v.org"
-      ];
+      ];      
       # sslCertificateKey = "/etc/ssl/lesgrandsvoisins.com.key";
       # sslCertificate = "/etc/ssl/lesgrandsvoisins.com.crt";
       # sslTrustedCertificate = "/etc/ssl/lesgrandsvoisins.com.ca-bundle";
