@@ -806,7 +806,7 @@ in
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/lesgrandsvoisins/";
-          ExecStart = ''/home/wagtail/lesgrandsvoisins/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/lesgrandsvoisins-access.log --error-logfile /var/log/wagtail/lesgrandsvoisins-error.log --chdir /home/wagtail/lesgrandsvoisins --workers 12 --bind 0.0.0.0:8894 lesgrandsvoisins.config.wsgi:application'';
+          ExecStart = ''/home/wagtail/lesgrandsvoisins/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/lesgrandsvoisins-access.log --error-logfile /var/log/wagtail/lesgrandsvoisins-error.log --chdir /home/wagtail/lesgrandsvoisins --workers 12 --bind 0.0.0.0:8894 lesgrandsvoisins.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";
