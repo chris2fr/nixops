@@ -4,6 +4,7 @@
 { config, pkgs, lib, ... }:
 let
   mannchriRsaPublic = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/mailserver/vars/cert-public.nix));
+  keyLesgrandsvoisinsVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keylesgrandsvoisins.vikunja));
   keycloakVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
   keyGVcoopVikunja = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
   emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
@@ -399,21 +400,23 @@ in
             authurl = "https://key.lesgrandsvoisins.com/realms/master";
             logouturl = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
-            clientsecret = keyGVcoopVikunja;
+            clientsecret = keyLesgrandsvoisinsVikunja;
           }
+          # {
+          #   name = "keyGVcoop";
+          #   authurl = "https://key.gv.coop/realms/master";
+          #   logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";
+          #   clientid = "vikunja";
+          #   clientsecret = keyGVcoopVikunja;
+          # }
           {
-            name = "keyGVcoop";
-            authurl = "https://key.gv.coop/realms/master";
-            logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";
-            clientid = "vikunja";
-            clientsecret = keyGVcoopVikunja;
-          }{
             name = "VillageNgo";
             authurl = "https://keycloak.village.ngo/realms/master";
             logouturl = "https://keycloak.village.ngo/realms/master/protocol/openid-connect/logout";
             clientid = "vikunja";
             clientsecret = keycloakVikunja;
-          }];
+          }
+          ];
         };
       };
     };
