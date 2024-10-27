@@ -1085,7 +1085,7 @@ in
       services = {
         resolved.enable = true;
         keycloak = {
-          enable = false;
+          enable = true;
           database = {
             username="key";
             name="key";
