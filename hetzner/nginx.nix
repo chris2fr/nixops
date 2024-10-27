@@ -130,6 +130,9 @@ in
           locations."/.well-known" = { proxyPass = null; };
           locations."/" = {
             extraConfig = ''
+            if ($host != "link.lesgrandsvoisins.com") {
+              return 302 $scheme://link.lesgrandsvoisins.com$request_uri;
+            }
             rewrite ^/$ https://link.lesgrandsvoisins.com/api/v1/auth/signin/keycloak? redirect;
             # rewrite ^/$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
             # rewrite ^/login$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
