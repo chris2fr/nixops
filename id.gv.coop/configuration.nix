@@ -13,11 +13,11 @@ let
     add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
     add_header Access-Control-Allow-Credentials true;
   '';
-  repo = fetchurl {
-    url = "https://github.com/eikek/docspell";
-    sha256 = "sha256-X2mM+Z5s8Xm1E6zrZ0wcRaivLEvqbk5Dn+GSXkZHdLM=";
-  };
-  docspellPkgs = pkgs.callPackage (import "${repo}/nix/pkg.nix") {};
+  # repo = fetchurl {
+  #   url = "https://github.com/eikek/docspell";
+  #   sha256 = "sha256-X2mM+Z5s8Xm1E6zrZ0wcRaivLEvqbk5Dn+GSXkZHdLM=";
+  # };
+  # docspellPkgs = pkgs.callPackage (import "${repo}/nix/pkg.nix") {};
 in
 {
   imports =
@@ -150,6 +150,7 @@ in
     corepack_22
     python311Packages.sphinx
     # authelia
+    (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
