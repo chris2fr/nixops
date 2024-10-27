@@ -166,10 +166,10 @@ in
     # authelia
     # docspell
     # docspell.nixosModules.default
-    #  docspellpkgs.docspell-joex
-    #  docspellpkgs.docspell-restserver
+     docspellpkgs.docspell-joex
+     docspellpkgs.docspell-restserver
     # docspellpkgs.nixosModules.default
-    docspellpkgs
+    # docspellpkgs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
