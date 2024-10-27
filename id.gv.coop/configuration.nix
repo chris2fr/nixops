@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 # inputs.docspell.url = "github:eikek/docspell?dir=nix/";
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, builtins, ... }:
 let
   extraConfigNginxKeycloak = ''
     proxy_set_header Host $host;
