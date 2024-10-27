@@ -144,11 +144,11 @@ in
       searchScope = "sub";
       tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       # tlsCAFile = "/var/lib/acme/ldap.gv.coop/fullchain.pem";
-      # startTls = true;
-      startTls = false;
+      startTls = true;
+      # startTls = false;
       postfix = {
         mailAttribute = "mail";
-        uidAttribute = "uid";
+        uidAttribute = "cn";
         #  filter = "(cn=%s)";
       };
       # postfix.filter = "(&(objectClass=inetOrgPerson)(cn=%u))";
@@ -277,7 +277,7 @@ in
   };
 ###################################################################################################################################
   networking.firewall = {
-    allowedTCPPorts = [ 80 443 20000 389 636 993 11211 ];
+    allowedTCPPorts = [ 80 443 20000 389 636 993 11211 14389 14636 ];
     enable = true;
     trustedInterfaces = [ "lo" ];
   };
