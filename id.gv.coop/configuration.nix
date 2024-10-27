@@ -25,7 +25,7 @@ in
       ./hardware-configuration.nix
       # ./mailserver.nix
       # ./keycloak.nix
-      docspell.nixosModules.default
+      # docspell.nixosModules.default
     ];
 
   # Use the systemd-boot EFI boot loader.
