@@ -152,7 +152,7 @@ in
     corepack_22
     python311Packages.sphinx
     # authelia
-    docuspell
+    # docuspell
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
