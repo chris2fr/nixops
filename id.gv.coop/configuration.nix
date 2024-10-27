@@ -21,10 +21,10 @@ let
   # docspell = (builtins.getFlake "github:eikek/docspell");
   # docspell = (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}.default
   # docuspell = (builtins.getFlake "github:eikek/docspell");
-  # docuspellrepo = builtins.fetchurl "https://github.com/eikek/docspell";
-  # docuspellpkgs = docuspellrepo.callPackage (import "${docuspellrepo}/nix/pkg.nix") {} ;
-  # postgresDocuspellPassword = (lib.removeSuffix "\n" (builtins.readFile  "/etc/nixos/.secrets.postgres.docuspell" ));
-  # docuspellServer = (lib.removeSuffix "\n" (builtins.readFile "/etc/nixos/.secrets.docuspell.server"  ));
+  docuspellrepo = builtins.fetchurl "https://github.com/eikek/docspell";
+  docuspellpkgs = docuspellrepo.callPackage (import "${docuspellrepo}/nix/pkg.nix") {} ;
+  postgresDocuspellPassword = (lib.removeSuffix "\n" (builtins.readFile  "/etc/nixos/.secrets.postgres.docuspell" ));
+  docuspellServer = (lib.removeSuffix "\n" (builtins.readFile "/etc/nixos/.secrets.docuspell.server"  ));
 
 in
 {
