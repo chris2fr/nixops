@@ -170,12 +170,12 @@ in
 
   # Enable the OpenSSH daemon.
   services = {
-    docspell-joex = {
-      enable = false;
-    };
-    services.docspell-restserver = {
-      enable = false;
-    };
+    # docspell-joex = {
+    #   enable = false;
+    # };
+    # services.docspell-restserver = {
+    #   enable = false;
+    # };
     keycloak = {
       enable = true;
       database = {
