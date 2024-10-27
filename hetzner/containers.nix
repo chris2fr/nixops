@@ -1087,7 +1087,6 @@ in
         resolved.enable = true;
         keycloak = {
           enable = true;
-          initialAdminPassword
           database = {
             username="key";
             name="key";
