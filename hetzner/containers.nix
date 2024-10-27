@@ -1086,7 +1086,8 @@ in
         keycloak = {
           enable = true;
           database = {
-            passwordFile = "/etc/.secrets.key";
+            username="key";
+            name="key";
             # useSSL = false;
           };
           settings = {

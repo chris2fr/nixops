@@ -25,6 +25,7 @@ services.postgresql = {
       "cantine"
       "ffdncoin"
       "lesgrandsvoisins"
+      "key"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
@@ -38,6 +39,11 @@ services.postgresql = {
         #   "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
         # };
       }
+      {
+        name = "key";
+        ensureDBOwnership = true;
+      }
+      {
       {
         name = "lesgrandsvoisins";
         ensureDBOwnership = true;
