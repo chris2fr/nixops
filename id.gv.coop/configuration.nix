@@ -20,14 +20,14 @@ let
   # docspellPkgs = pkgs.callPackage (import "${repo}/nix/pkg.nix") {};
   # docspell = (builtins.getFlake "github:eikek/docspell");
   # docspell = (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}.default
-  # docuspell = (builtins.getFlake "github:eikek/docspell");
-  docuspellrepo = builtins.fetchurl {
+  # docspell = (builtins.getFlake "github:eikek/docspell");
+  docspellrepo = builtins.fetchurl {
     url = "https://github.com/eikek/docspell";
     sha256 = "sha256:098bxn20s7n5h9daadz2rf8imwbsmxvh7f3mglnwjvcfzj58jm61";
   };
-  docuspellpkgs = docuspellrepo.callPackage (import "${docuspellrepo}/nix/pkg.nix") {} ;
-  postgresDocuspellPassword = (lib.removeSuffix "\n" (builtins.readFile  "/etc/nixos/.secrets.postgres.docuspell" ));
-  docuspellServer = (lib.removeSuffix "\n" (builtins.readFile "/etc/nixos/.secrets.docuspell.server"  ));
+  docspellpkgs = docspellrepo.callPackage (import "${docspellrepo}/nix/pkg.nix") {} ;
+  postgresDocspellPassword = (lib.removeSuffix "\n" (builtins.readFile  "/etc/nixos/.secrets.postgres.docspell" ));
+  docspellServer = (lib.removeSuffix "\n" (builtins.readFile "/etc/nixos/.secrets.docspell.server"  ));
 
 in
 {
@@ -164,12 +164,12 @@ in
     corepack_22
     python311Packages.sphinx
     # authelia
-    # docuspell
-    # docuspell.nixosModules.default
-    #  docuspellpkgs.docspell-joex
-    #  docuspellpkgs.docspell-restserver
-    # docuspellpkgs.nixosModules.default
-    docuspellpkgs
+    # docspell
+    # docspell.nixosModules.default
+    #  docspellpkgs.docspell-joex
+    #  docspellpkgs.docspell-restserver
+    # docspellpkgs.nixosModules.default
+    docspellpkgs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -202,7 +202,7 @@ in
     #   jdbc = {
     #     url = "jdbc:postgresql://localhost:5432/docspell";
     #     user = "docspell";
-    #     password = postgresDocuspellPassword;
+    #     password = postgresDocspellPassword;
     #   };
     # };
     # docspell-restserver = {
@@ -213,7 +213,7 @@ in
     #     port = 7880;
     #   };
     #   auth = {
-    #     server-secret = docuspellServer;
+    #     server-secret = docspellServer;
     #   };
     #   backend = {
     #     signup = {
@@ -224,7 +224,7 @@ in
     #     jdbc = {
     #       url = "jdbc:postgresql://localhost:5432/docspell";
     #       user = "docspell";
-    #       password = postgresDocuspellPassword;
+    #       password = postgresDocspellPassword;
     #     };
     #   };
     # };
@@ -260,7 +260,7 @@ in
     #   package = pkgs.postgresql_14;
       ensureDatabases = [
         "keycloak"
-        "docuspell"
+        "docspell"
       ];
       ensureUsers = [
         {
@@ -268,12 +268,12 @@ in
           ensureDBOwnership = true;
         }
         {
-          name = "docuspell";
+          name = "docspell";
           ensureDBOwnership = true;
         }
       ]; 
     };
-    # postgresDocuspellPassword
+    # postgresDocspellPassword
     # tomcat = {
     #   enable = true;
 
