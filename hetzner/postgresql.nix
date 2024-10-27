@@ -44,7 +44,6 @@ services.postgresql = {
         ensureDBOwnership = true;
       }
       {
-      {
         name = "lesgrandsvoisins";
         ensureDBOwnership = true;
       }
