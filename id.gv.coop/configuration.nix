@@ -165,7 +165,8 @@ in
     # docuspell.nixosModules.default
     #  docuspellpkgs.docspell-joex
     #  docuspellpkgs.docspell-restserver
-    docuspellpkgs.nixosModules.default
+    # docuspellpkgs.nixosModules.default
+    docuspellpkgs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
