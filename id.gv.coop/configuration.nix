@@ -189,22 +189,22 @@ in
 
   # Enable the OpenSSH daemon.
   services = {
-    # docspell-joex = {
-    #   enable = true;
-    #   base-url = "http://localhost:7878";
-    #   bind = {
-    #     address = "0.0.0.0";
-    #     port = 7878;
-    #   };
-    #   scheduler = {
-    #     pool-size = 1;
-    #   };
-    #   jdbc = {
-    #     url = "jdbc:postgresql://localhost:5432/docspell";
-    #     user = "docspell";
-    #     password = postgresDocspellPassword;
-    #   };
-    # };
+    docspell-joex = {
+      enable = true;
+      base-url = "http://localhost:7878";
+      bind = {
+        address = "0.0.0.0";
+        port = 7878;
+      };
+      scheduler = {
+        pool-size = 1;
+      };
+      jdbc = {
+        url = "jdbc:postgresql://localhost:5432/docspell";
+        user = "docspell";
+        password = postgresDocspellPassword;
+      };
+    };
     # docspell-restserver = {
     #   enable = true;
     #   base-url = "http://localhost:7880";
