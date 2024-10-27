@@ -234,7 +234,7 @@ in
             "bit.lesgrandsvoisins.com"
             "vault.lesgrandsvoisins.com"
             "vaultwarden.lesgrandsvoisins.com"
-            "pass.lesgrandsvoisins.com"
+            # "pass.lesgrandsvoisins.com"
             ];
           enableACME = true; 
           forceSSL = true; 
