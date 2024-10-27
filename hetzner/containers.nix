@@ -1088,6 +1088,7 @@ in
           database = {
             username="key";
             name="key";
+            passwordFile="/etc/.secrets.key"
             # useSSL = false;
           };
           settings = {
