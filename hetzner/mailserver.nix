@@ -135,17 +135,17 @@ in
         passwordFile = "/etc/nixos/.secrets.bind";
       };
       uris = [
-        "ldaps://ldap.lesgrandsvoisins.com:14636/"
+        "ldap://ldap.lesgrandsvoisins.com:14389/"
         # "ldap:///"
         # "ldaps://ldap.gv.coop:10636/"
         # "ldap://ldap.gv.coop:10389/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
-      tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
+      # tlsCAFile = "/var/lib/acme/${domainName}/fullchain.pem";
       # tlsCAFile = "/var/lib/acme/ldap.gv.coop/fullchain.pem";
-      # startTls = true;
-      startTls = false;
+      startTls = true;
+      # startTls = false;
       postfix = {
         mailAttribute = "mail";
         uidAttribute = "cn";
