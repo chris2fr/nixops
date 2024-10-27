@@ -435,8 +435,8 @@ in
           locations."/" = {
             proxyPass = "http://localhost:3456/";
             extraConfig = ''
-                if ($host != "vikunja.gv.coop") {
-                  return 302 $scheme://vikunja.gv.coop$request_uri;
+                if ($host != "vikunja.lesgrandsvoisins.com") {
+                  return 302 $scheme://vikunja.lesgrandsvoisins.com$request_uri;
                 }
                 proxy_http_version 1.1;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
