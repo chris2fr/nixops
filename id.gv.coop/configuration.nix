@@ -40,11 +40,11 @@ in
       # ./keycloak.nix
       # docspell.nixosModules.default
       # (builtins.getFlake "github:eikek/docspell")
-      (builtins.fetchGit {
-      url = "https://github.com/eikek/docspell";
-      ref = "refs/tags/v0.42.0";
-      # sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
-    })
+      # (builtins.fetchGit {
+      # url = "https://github.com/eikek/docspell";
+      # ref = "refs/tags/v0.42.0";
+      # # sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
+      # })
     ];
 
   # Use the systemd-boot EFI boot loader.
