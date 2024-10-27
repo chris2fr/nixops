@@ -18,7 +18,7 @@ let
   #   sha256 = "sha256-X2mM+Z5s8Xm1E6zrZ0wcRaivLEvqbk5Dn+GSXkZHdLM=";
   # };
   # docspellPkgs = pkgs.callPackage (import "${repo}/nix/pkg.nix") {};
-  docspell = (builtins.getFlake "github:eikek/docspell")
+  docspell = (builtins.getFlake "github:eikek/docspell");
   # docspell = (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}
 in
 {
