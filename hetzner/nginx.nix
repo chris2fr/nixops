@@ -26,10 +26,6 @@ in
   #   extraHosts = "192.168.103.2 ghh.resdigita.com";
   # };
   users.users.nginx.group = "wwwrun";
-  systemd.tmpfiles.rules = [
-    # "d /var/www/gv.coop/ldap 0775 wwwrun wwwrun"
-    "d /var/www/lesgrandsvoisins.com/ldap 0775 wwwrun wwwrun"
-  ];
   services = {
     nginx = {
       group = "wwwrun";
@@ -88,6 +84,42 @@ in
           extraConfig = ''
             return 302 $scheme://www.village.ngo$request_uri;
           '';
+        };
+        "keycloak.village.ngo" = {
+          enableACME = true;
+          forceSSL = true;
+          root = "/var/www/keycloakvillagengo";
+          # globalRedirect = "keycloak.village.ngo:12443";
+          locations."/" = {
+            proxyPass = "https://keycloak.village.ngo:12443";
+            extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+            add_header Access-Control-Allow-Credentials true;
+            '';
+          };
+        };
+        "key.lesgrandsvoisins.com" = {
+          enableACME = true;
+          forceSSL = true;
+          root = "/var/www/key.lesgrandsvoisins.com";
+          # globalRedirect = "key.lesgrandsvoisins.com:14443";
+          locations."/" = {
+            proxyPass = "https://key.lesgrandsvoisins.com:14443";
+            extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+            add_header Access-Control-Allow-Credentials true;
+            '';
+          };
         };
         "link.lesgrandsvoisins.com" = {
           serverAliases = ["link.gv.coop"];

@@ -17,8 +17,7 @@ in
     "fs.inotify.max_user_instances" = 256;
     "fs.inotify.max_queued_events" = 32768;
   };
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./httpd.nix
     ./mailserver.nix
@@ -32,12 +31,14 @@ in
     ./containers.nix
     ./nginx.nix
     (import "${home-manager}/nixos")
-    ];
-    systemd.tmpfiles.rules = [
-      "d /var/www/lesgrandsvoisins 0755 wagtail users"
-      "d /var/www/lesgrandsvoisins/static 0755 wagtail users"
-      "d /var/www/lesgrandsvoisins/medias 0755 wagtail users"
-    ];
+  ];
+  systemd.tmpfiles.rules = [
+    "d /var/www/key.lesgrandsvoisins.com 0755 www users"
+    "d /var/www/lesgrandsvoisins.com 0755 www users"
+    "d /var/www/lesgrandsvoisins 0755 wagtail users"
+    "d /var/www/lesgrandsvoisins/static 0755 wagtail users"
+    "d /var/www/lesgrandsvoisins/medias 0755 wagtail users"
+  ];
   #  environment.systemPackages = with pkgs; [
   #   gcc 
   #   pkg-config
