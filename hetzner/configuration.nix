@@ -7,6 +7,7 @@ let
   keycloakVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
   keyGVcoopVikunja = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
   emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
+  emailList  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.list));
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in
 {
@@ -364,8 +365,8 @@ in
           enabled = true;
           host = "mail.lesgrandsvoisins.com";
           authtype = "login";
-          username = "vikunja@lesgrandsvoisins.com";
-          password = emailVikunja;
+          username = "list@lesgrandsvoisins.com";
+          password = emailList;
         };
         defaultsettings = {
           week_start = 1;
