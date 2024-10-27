@@ -23,7 +23,7 @@ let
   # docuspell = (builtins.getFlake "github:eikek/docspell");
   docuspellrepo = builtins.fetchurl {
     url = "https://github.com/eikek/docspell";
-    sha256 = "sha256-X2mM+Z5s8Xm1E6zrZ0wcRaivLEvqbk5Dn+GSXkZHdLM=";
+    sha256 = "sha256:098bxn20s7n5h9daadz2rf8imwbsmxvh7f3mglnwjvcfzj58jm61";
   };
   docuspellpkgs = docuspellrepo.callPackage (import "${docuspellrepo}/nix/pkg.nix") {} ;
   postgresDocuspellPassword = (lib.removeSuffix "\n" (builtins.readFile  "/etc/nixos/.secrets.postgres.docuspell" ));
