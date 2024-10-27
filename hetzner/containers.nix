@@ -36,9 +36,10 @@ let
   mannchriRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
   home-manager2305 = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
   hasaeraRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
-  # ldapDomainName = "ldap.gv.coop";
-  ldapDomainName = "ldap.lesgrandsvoisins.com";
+  ldapDomainName = "ldap.gv.coop";
+  lgvLdapDomainName = "ldap.lesgrandsvoisins.com";
   ldapBaseDN = "dc=gv,dc=coop";
+  lgvLdapBaseDN = "dc=lesgrandsvoisins,dc=com";
   bindPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
   alicePassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.alice));
   bobPassword = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bob));
@@ -1086,6 +1087,7 @@ in
         resolved.enable = true;
         keycloak = {
           enable = true;
+          initialAdminPassword
           database = {
             username="key";
             name="key";
@@ -1362,6 +1364,173 @@ in
       # };
     };
   };
+  containers.lgvldap = {
+    autoStart = true;
+    bindMounts = { 
+      "/var/lib/acme/${lgvLdapDomainName}" = { 
+        hostPath = "/var/lib/acme/${lgvLdapDomainName}";
+        isReadOnly = false; 
+      }; 
+    };
+    config = { config, pkgs, lib, ...  }: {
+      nix.settings.experimental-features = "nix-command flakes";
+      system.stateVersion = "24.05";
+      time.timeZone = "Europe/Paris";
+      environment.systemPackages = with pkgs; [
+        lynx
+        nettools
+        wget
+        dig
+        ((vim_configurable.override {  }).customize{
+          name = "vim";
+          vimrcConfig.customRC = ''
+            " your custom vimrc
+            set mouse=a
+            set nocompatible
+            colo torte
+            syntax on
+            set tabstop     =2
+            set softtabstop =2
+            set shiftwidth  =2
+            set expandtab
+            set autoindent
+            set smartindent
+            " ...
+          '';
+          }
+        )
+        # postgresql_14
+        pwgen
+      ];
+      imports = [
+        (builtins.fetchTarball {
+          url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-24.05.tar.gz";
+          sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
+        })
+      ];
+      users = {
+        groups = {
+          "acme".gid = 993;
+          "wwwrun".gid = 54;
+        };
+        users = {
+          "acme" = {
+            uid = 994;
+            group = "acme";
+          };
+          "wwwrun" = {
+            uid = 54;
+            group = "wwwrun";
+          };
+        };
+      };
+      systemd.tmpfiles.rules = [
+        "d /var/lib/acme/${lgvLdapDomainName} 0755 acme wwwrun"
+        "f /var/lib/openldap/pmw/schema/pwm.ldif 0755 openldap openldap"
+        "d /var/www/lesgrandsvoisins.com/ldap 0775 wwwrun wwwrun"
+      ];
+      security.acme.defaults.email = "chris@mann.fr";
+      security.acme.acceptTerms = true;
+      services = {
+        openssh = {
+          enable = true;
+        };
+        openldap = {
+          enable = true;
+          urlList = ["ldap://${lgvLdapDomainName}:14389/ ldaps://${lgvLdapDomainName}:14636/ ldapi:///"];
+          settings = {
+            attrs = {
+              olcLogLevel = "conns config";
+              /* settings for acme ssl */
+              olcTLSCACertificateFile = "/var/lib/acme/${lgvLdapDomainName}/full.pem";
+              olcTLSCertificateFile = "/var/lib/acme/${lgvLdapDomainName}/full.pem";
+              olcTLSCertificateKeyFile = "/var/lib/acme/${lgvLdapDomainName}/key.pem";
+              olcTLSCipherSuite = "HIGH:MEDIUM:+3DES:+RC4:+aNULL";
+              olcTLSCRLCheck = "none";
+              olcTLSVerifyClient = "never";
+              olcTLSProtocolMin = "3.1";
+              olcThreads = "16";
+            };
+             # Flake this
+            children = {
+              "cn=schema".includes = [
+                "${pkgs.openldap}/etc/schema/core.ldif"
+                "${pkgs.openldap}/etc/schema/cosine.ldif"
+                "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
+                "${pkgs.openldap}/etc/schema/nis.ldif"
+                "/var/lib/openldap/pmw/schema/pwm.ldif"
+              ]; 
+              "olcDatabase={1}mdb".attrs = {
+                objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
+                olcDbIndex = [
+                  "displayName,description eq,sub"
+                  "uid,ou,c eq"
+                  "carLicense,labeledURI,telephoneNumber,mobile,homePhone,title,street,l,st,postalCode eq"
+                  "objectClass,cn,sn,givenName,mail eq"
+                ];
+                olcDatabase = "{1}mdb";
+                olcDbDirectory = "/var/lib/openldap/data";
+                olcSuffix = "${lgvLdapBaseDN}";
+                /* your admin account, do not use writeText on a production system */
+                olcRootDN = "cn=admin,${lgvLdapBaseDN}";
+                olcRootPW = (builtins.readFile /etc/nixos/.secrets.bind);
+                olcAccess = [
+                  /* custom access rules for userPassword attributes */
+                  /* allow read on anything else */
+                  ''{0}to dn.subtree="ou=newusers,${lgvLdapBaseDN}"
+                      by dn.exact="cn=newuser@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" write
+                      by group.exact="cn=administration,ou=groups,${lgvLdapBaseDN}" write
+                      by self write
+                      by anonymous auth
+                      by * read''
+                  ''{1}to dn.subtree="ou=invitations,${lgvLdapBaseDN}"
+                      by dn.exact="cn=newuser@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" write
+                      by group.exact="cn=administration,ou=groups,${lgvLdapBaseDN}" write
+                      by self write
+                      by anonymous auth
+                      by * read''
+                  ''{2}to dn.subtree="ou=users,${lgvLdapBaseDN}"
+                      by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" manage
+                      by dn.exact="cn=newuser@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" write
+                      by group.exact="cn=administration,ou=groups,${lgvLdapBaseDN}" write
+                      by self write
+                      by anonymous auth
+                      by * read''
+                  ''{3}to attrs=userPassword
+                      by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" manage
+                      by self write
+                      by anonymous auth
+                      by * none''
+                  ''{4}to *
+                      by dn.exact="cn=sogo@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" manage
+                      by dn.exact="cn=chris@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" manage
+                      by dn.exact="cn=chris@mann.fr,ou=users,${lgvLdapBaseDN}" manage
+                      by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" manage
+                      by self write
+                      by anonymous auth''
+                  /* custom access rules for userPassword attributes */
+                  ''{5}to attrs=cn,sn,givenName,displayName,member,memberof
+                      by self write
+                      by * read''
+                  ''{6}to *
+                      by * read''
+                ];
+              };
+            };
+          };
+        };
+      };
+      systemd.services.openldap = {
+        wants = [ "acme-${lgvLdapDomainName}.service" ];
+        after = [ "acme-${lgvLdapDomainName}.service" ];
+        serviceConfig = {
+          RemainAfterExit = false;
+        };
+      };
+      users.groups.wwwrun.members = [ "openldap" ];
+      users.groups.acme.members = [ "openldap" ];
+    };
+  };
   containers.openldap = {
     autoStart = true;
     # localAddress6 = "2a01:4f8:241:4faa::1";
@@ -1535,7 +1704,7 @@ in
         };
         openldap = {
           enable = true;
-          urlList = ["ldap://ldap.lesgrandsvoisins.com:10389/ ldaps://ldap.lesgrandsvoisins.com:10636/ ldapi:///"];
+          urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
           #  urlList = ["ldap://ldap.gv.coop:10389/ ldaps://ldap.gv.coop:10636/ ldapi:///"];
           # urlList = [ 
           #   "ldap://ldap.gv.coop:10389/" 
