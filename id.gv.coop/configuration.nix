@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 # inputs.docspell.url = "github:eikek/docspell?dir=nix/";
-{ config, lib, pkgs, builtins, ... }:
+{ config, lib, pkgs, ... }:
 let
   extraConfigNginxKeycloak = ''
     proxy_set_header Host $host;
@@ -20,7 +20,7 @@ let
   # docspellPkgs = pkgs.callPackage (import "${repo}/nix/pkg.nix") {};
   # docspell = (builtins.getFlake "github:eikek/docspell");
   # docspell = (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}.default
-  docuspell = (builtins.getFlake "github:eikek/docspell");
+  # docuspell = (builtins.getFlake "github:eikek/docspell");
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
@@ -157,7 +157,7 @@ in
     python311Packages.sphinx
     # authelia
     # docuspell
-    docuspell.nixosModules.default
+    # docuspell.nixosModules.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
