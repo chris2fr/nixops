@@ -109,7 +109,7 @@ in
           root = "/var/www/key.lesgrandsvoisins.com";
           # globalRedirect = "key.lesgrandsvoisins.com:14443";
           locations."/" = {
-            proxyPass = "https://key.lesgrandsvoisins.com:14443";
+            proxyPass = "https://192.168.105.11:14443";
             extraConfig = ''
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
