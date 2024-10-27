@@ -1085,12 +1085,13 @@ in
       services = {
         resolved.enable = true;
         keycloak = {
-          enable = true;
+          enable = false;
           database = {
             username="key";
             name="key";
+            # passwordFile="/etc/.secrets.key";
             passwordFile="/etc/.secrets.key";
-            createLocally=false;
+            # createLocally=false;
             host="localhost";
             # useSSL = false;
           };
