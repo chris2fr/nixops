@@ -156,7 +156,7 @@ in
     python311Packages.sphinx
     # authelia
     # docuspell
-    (builtins.getFlake "github:eikek/docspell")
+    (builtins.getFlake "github:eikek/docspell").nixosModules.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
