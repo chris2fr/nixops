@@ -115,7 +115,7 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
     ((vim_configurable.override {  }).customize{
       name = "vim";
       vimrcConfig.customRC = ''
@@ -156,7 +156,7 @@ in
     python311Packages.sphinx
     # authelia
     # docuspell
-    (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}.default
+    (builtins.getFlake "github:eikek/docspell")
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
