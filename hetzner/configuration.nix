@@ -357,7 +357,8 @@ in
     vikunja = {
       enable = true;
       frontendScheme = "https";
-      frontendHostname = "vikunja.gv.coop";
+      frontendHostname = "vikunja.lesgrandsvoisins.com";
+      # frontendHostname = "vikunja.gv.coop";
       # frontendHostname = "vikunja.village.ngo";
       # database.type = "postgres";
       settings = {
@@ -382,9 +383,17 @@ in
           local.enabled = false;
           openid.enabled = true;
           # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
-          openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
+          # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
+          openid.redirecturl = "https://vikunja.lesgrandsvoisins.com/auth/openid/";
           openid.providers = [
-            {
+          {
+            name = "keyLesGrandsVoisinsCom";
+            authurl = "https://key.lesgrandsvoisins.com/realms/master";
+            logouturl = "https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/logout";
+            clientid = "vikunja";
+            clientsecret = keyGVcoopVikunja;
+          }
+          {
             name = "keyGVcoop";
             authurl = "https://key.gv.coop/realms/master";
             logouturl = "https://key.gv.coop/realms/master/protocol/openid-connect/logout";

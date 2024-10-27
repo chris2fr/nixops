@@ -477,7 +477,7 @@ in
 
     "dav.resdigita.com" = {
       # serverAliases = ["dav.gv.coop"];
-      # serverAliases = ["dav.lesgrandsvoisins.com"];
+      serverAliases = ["dav.lesgrandsvoisins.com"];
       listen = [{port = 8443; ssl=true;}];
       sslServerCert = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
       sslServerChain = "/var/lib/acme/dav.resdigita.com/fullchain.pem";

@@ -142,7 +142,8 @@ in
       uris = [
         # "ldap:///"
         # "ldaps://ldap.gv.coop:10636/"
-        "ldap://ldap.gv.coop:10389/"
+        # "ldap://ldap.gv.coop:10389/"
+        "ldap://ldap.lesgrandsvoisins.com:10389/"
       ];
       searchBase = "ou=users,${ldapBaseDCDN}";
       searchScope = "sub";
@@ -316,6 +317,7 @@ in
         $config['generic_message_footer_html'] = '<a href="https://www.lesgrandsvoisins.com">Les Grands Voisins .com comme communautés</a>';
         $config['session_samesite'] = "Lax";
         $config['support_url'] = 'https://www.gv.coop';
+        # $config['support_url'] = 'https://www.gv.coop';
         $config['product_name'] = 'Roundcube Webmail des GV';
         $config['session_debug'] = true;
         $config['session_domain'] = 'mail.gv.coop';

@@ -27,7 +27,8 @@ in
   # };
   users.users.nginx.group = "wwwrun";
   systemd.tmpfiles.rules = [
-    "d /var/www/gv.coop/ldap 0775 wwwrun wwwrun"
+    # "d /var/www/gv.coop/ldap 0775 wwwrun wwwrun"
+    "d /var/www/lesgrandsvoisins.com/ldap 0775 wwwrun wwwrun"
   ];
   services = {
     nginx = {
@@ -88,13 +89,15 @@ in
             return 302 $scheme://www.village.ngo$request_uri;
           '';
         };
-        "link.gv.coop" = {
+        "link.lesgrandsvoisins.com" = {
+          serverAliases = ["link.gv.coop"];
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };
           locations."/" = {
             extraConfig = ''
-            rewrite ^/$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
+            rewrite ^/$ https://link.lesgrandsvoisins.com/api/v1/auth/signin/keycloak? redirect;
+            # rewrite ^/$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
             # rewrite ^/login$ https://link.gv.coop/api/v1/auth/signin/keycloak? redirect;
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -111,16 +114,18 @@ in
             '';
           };
         };
-        "ldap.gv.coop" = {
+        # "ldap.gv.coop" = {
+        "ldap.lesgrandsvoisins.com" = {
           forceSSL = true;
           enableACME = true;
           locations."/.well-known" = { proxyPass = null; };
-          locations."/pwm/private/changepassword".return = "302 https://auth.gv.coop/reset-password/step1";
-          locations."/pwm/public/forgottenpassword".return = "302 https://auth.gv.coop/reset-password/step1";
+          # locations."/pwm/private/changepassword".return = "302 https://auth.gv.coop/reset-password/step1";
+          # locations."/pwm/public/forgottenpassword".return = "302 https://auth.gv.coop/reset-password/step1";
           # locations."/pwm/public/logout".return = "302 /pwm/";
           locations."/" = {
             extraConfig = ''
-            rewrite ^/$ https://key.gv.coop/ redirect;
+            rewrite ^/$ https://key.lesgrandsvoisins.com/ redirect;
+            # rewrite ^/$ https://key.gv.coop/ redirect;
             # rewrite ^/$ https://ldap.gv.coop/pwm/ redirect;
             # rewrite ^/pwm/public/logout?processAction=showLogout&stickyRedirectTest=key https://ldap.gv.coop/pwm/ redirect;
             proxy_set_header   X-Real-IP $remote_addr;
@@ -140,7 +145,8 @@ in
           # locations."/" = {
           #   return = "302 https://ldap.gv.coop/pwm$request_uri";
           # };
-          root = "/var/www/gv.coop/ldap";
+          root = "/var/www/lesgrandsvoisins.com/ldap";
+          # root = "/var/www/gv.coop/ldap";
         }; 
         "syncthing.resdigita.com" = {
           forceSSL = true;
@@ -182,8 +188,6 @@ in
             # # proxy_redirect off;
             # '';
           };      
-
-
         };
         "wordpress.resdigita.com" = {
           forceSSL = true; 
@@ -227,6 +231,10 @@ in
             "vaultwarden.gv.coop" 
             "bitwarden.gv.coop"
             "vaultwarden.lesgv.org"
+            "bit.lesgrandsvoisins.com"
+            "vault.lesgrandsvoisins.com"
+            "vaultwarden.lesgrandsvoisins.com"
+            "pass.lesgrandsvoisins.com"
             ];
           enableACME = true; 
           forceSSL = true; 
@@ -236,7 +244,7 @@ in
           };
         };
         "uptime-kuma.resdigita.com" = {
-          serverAliases = ["uptime-kuma.lesgv.org" "uk.lesgv.org"];
+          serverAliases = ["uptime-kuma.lesgv.org" "uk.lesgv.org" "up.lesgrandsvoisins.com"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -273,7 +281,7 @@ in
           };
         };
         "ethercalc.resdigita.com" = {
-          serverAliases = ["ethercalc.lesgv.org"];
+          serverAliases = ["ethercalc.lesgv.org" "table.lesgrandsvoisins.com"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -288,7 +296,8 @@ in
         };
         "radicale.resdigita.com" = {
           serverAliases = ["radicale.lesgv.org"
-          "radicale.lesgv.org"];
+          "radicale.lesgv.org"
+          "radicale.lesgrandsvoisins.com"];
           enableACME = true; 
           forceSSL = true; 
           locations."/" = {
@@ -315,7 +324,8 @@ in
         "filebrowser.resdigita.com" = {
           serverAliases = [
             "filebrowser.gv.coop" 
-            "filebrowser.lesgv.org"];
+            "filebrowser.lesgv.org"
+            "filebrowser.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -379,7 +389,8 @@ in
         "homepage-dashboard.resdigita.com" = {
           serverAliases = [
             "homepage-dashboard.gv.coop" 
-            "homepage-dashboard.lesgv.org" "hd.lesgv.org"];
+            "homepage-dashboard.lesgv.org" "hd.lesgv.org"
+            "dash.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
           locations."/".proxyPass = "http://localhost:8882/";
@@ -399,6 +410,7 @@ in
         "ete.village.ngo" = {
           enableACME = true;
           forceSSL = true;
+          serverAliases = ["ete.lesgrandsvoisins.com"];
           locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
         # "etedav.village.ngo" = {
@@ -414,7 +426,10 @@ in
           serverAliases = [
             "vikunja.resdigita.com"
             "vikunja.gv.coop" 
-            "vikunja.lesgv.org"];
+            "vikunja.lesgv.org"
+            "task.lesgrandsvoisins.com"
+            "vikunja.lesgrandsvoisins.com"
+            ];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
@@ -433,6 +448,9 @@ in
           };
         };
         "discourse.village.ngo" = {
+          serverAliases = ["disc.lesgrandsvoisins.com" 
+          "discourse.lesgrandsvoisins.com"
+          "forum.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
           locations."/" = {
