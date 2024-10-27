@@ -21,11 +21,11 @@ let
   # docspell = (builtins.getFlake "github:eikek/docspell");
   # docspell = (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}.default
   # docspell = (builtins.getFlake "github:eikek/docspell");
-  docspellrepo = builtins.fetchurl {
-    url = "https://github.com/eikek/docspell";
-    sha256 = "sha256:098bxn20s7n5h9daadz2rf8imwbsmxvh7f3mglnwjvcfzj58jm61";
-  };
-  docspellpkgs = docspellrepo.callPackage (import "${docspellrepo}/nix/pkg.nix") {} ;
+  # docspellrepo = builtins.fetchurl {
+  #   url = "https://github.com/eikek/docspell";
+  #   sha256 = "sha256:098bxn20s7n5h9daadz2rf8imwbsmxvh7f3mglnwjvcfzj58jm61";
+  # };
+  # docspellpkgs = docspellrepo.callPackage (import "${docspellrepo}/nix/pkg.nix") {} ;
   postgresDocspellPassword = (lib.removeSuffix "\n" (builtins.readFile  "/etc/nixos/.secrets.postgres.docspell" ));
   docspellServer = (lib.removeSuffix "\n" (builtins.readFile "/etc/nixos/.secrets.docspell.server"  ));
 
@@ -40,6 +40,11 @@ in
       # ./keycloak.nix
       # docspell.nixosModules.default
       # (builtins.getFlake "github:eikek/docspell")
+      (builtins.fetchGit {
+      url = "https://github.com/eikek/docspell";
+      ref = "refs/tags/v0.42.0";
+      # sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
+    })
     ];
 
   # Use the systemd-boot EFI boot loader.
