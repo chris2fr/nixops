@@ -178,14 +178,14 @@ in
         # proxy = "passthrough";
         proxy = "reencrypt";
         # proxy = "edge";
-        # hostname = "key.gv.coop";
-        hostname = "key.lesgrandsvoisins.com";
+        hostname = "key.gv.coop";
+        # hostname = "key.lesgrandsvoisins.com";
         http-enabled = true;
       };
-      sslCertificate = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/key.lesgrandsvoisins.com/key.pem";
-      # sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
-      # sslCertificateKey = "/var/lib/acme/key.gv.coop/key.pem";
+      # sslCertificate = "/var/lib/acme/key.lesgrandsvoisins.com/fullchain.pem";
+      # sslCertificateKey = "/var/lib/acme/key.lesgrandsvoisins.com/key.pem";
+      sslCertificate = "/var/lib/acme/key.gv.coop/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/key.gv.coop/key.pem";
       # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
     };
     postgresql.enable = true;
@@ -232,8 +232,8 @@ in
       #   };
       # };
       virtualHosts = {
-        # "ldapmanager.gv.coop" = {
-        "ldapmanager.lesgrandsvoisins.com" = {
+        "ldapmanager.gv.coop" = {
+        # "ldapmanager.lesgrandsvoisins.com" = {
           enableACME = true; 
           forceSSL = true; 
           locations."/.well-known" = { proxyPass = null; };
@@ -248,8 +248,8 @@ in
         };
       };
       virtualHosts = {
-        # "ldapui.gv.coop" = {
-        "ldapui.lesgrandsvoisins.com" = {
+        "ldapui.gv.coop" = {
+        # "ldapui.lesgrandsvoisins.com" = {
           enableACME = true; 
           forceSSL = true; 
           locations."/.well-known" = { proxyPass = null; };
@@ -266,42 +266,42 @@ in
         };
       };
       virtualHosts = {
-        # "key.gv.coop" = {
-        "key.lesgrandsvoisins.com" = {
+        "key.gv.coop" = {
+        # "key.lesgrandsvoisins.com" = {
           enableACME = true;
           forceSSL = true;
           root = "/var/www/key";
           locations = {
             "/realms/master/account" = {
-              proxyPass = "https://key.lesgrandsvoisins.com:12443";
-              # proxyPass = "https://key.gv.coop:12443";
+              # proxyPass = "https://key.lesgrandsvoisins.com:12443";
+              proxyPass = "https://key.gv.coop:12443";
               extraConfig = extraConfigNginxKeycloak + ''
-                error_page 403 =302 https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.lesgrandsvoisins.com%2Frealms%2Fmaster%2Faccount%2F;
-                # error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
+                # error_page 403 =302 https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.lesgrandsvoisins.com%2Frealms%2Fmaster%2Faccount%2F;
+                error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
               '';
             };
             "/admin/master/console" = {
-              proxyPass = "https://key.lesgrandsvoisins.com:12443";
-              # proxyPass = "https://key.gv.coop:12443";
-              extraConfig = extraConfigNginxKeycloak + ''
+              # proxyPass = "https://key.lesgrandsvoisins.com:12443";
+              proxyPass = "https://key.gv.coop:12443";
+              # extraConfig = extraConfigNginxKeycloak + ''
                 error_page 403 =302 https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.lesgrandsvoisins.com%2Frealms%2Fmaster%2Faccount%2F;
-                # error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
+              error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
               '';
             };
             "/admin/serverinfo" = {
-              proxyPass = "https://key.lesgrandsvoisins.com:12443";
-              # proxyPass = "https://key.gv.coop:12443";
+              # proxyPass = "https://key.lesgrandsvoisins.com:12443";
+              proxyPass = "https://key.gv.coop:12443";
               extraConfig = extraConfigNginxKeycloak + ''
-                error_page 403 =302 https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.lesgrandsvoisins.com%2Frealms%2Fmaster%2Faccount%2F;
-                # error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
+                # error_page 403 =302 https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.lesgrandsvoisins.com%2Frealms%2Fmaster%2Faccount%2F;
+                error_page 403 =302 https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F;
               '';
             };
             "/" = {
-              proxyPass = "https://key.lesgrandsvoisins.com:12443";
-              # proxyPass = "https://key.gv.coop:12443";
+              # proxyPass = "https://key.lesgrandsvoisins.com:12443";
+              proxyPass = "https://key.gv.coop:12443";
               extraConfig = extraConfigNginxKeycloak + ''
-                rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.lesgrandsvoisins.com%2Frealms%2Fmaster%2Faccount%2F redirect;
-                # rewrite ^/$ https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F redirect;
+                # rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.lesgrandsvoisins.com%2Frealms%2Fmaster%2Faccount%2F redirect;
+                rewrite ^/$ https://key.gv.coop/realms/master/protocol/openid-connect/auth?client_id=account-console&redirect_uri=https%3A%2F%2Fkey.gv.coop%2Frealms%2Fmaster%2Faccount%2F redirect;
               '';
             };
           };
