@@ -26,8 +26,8 @@ in
         forceSSL = true;
         locations."/".proxyPass = "http://localhost:3333/";
         extraConfig = ''
-          if ($host != "hedgedoc.gv.coop") {
-            return 302 $scheme://hedgedoc.gv.coop$request_uri;
+          if ($host != "mark.lesgrandsvoisins.com") {
+            return 302 $scheme://mark.lesgrandsvoisins.com$request_uri;
           }
         '';
       };

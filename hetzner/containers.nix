@@ -1431,9 +1431,6 @@ in
       security.acme.defaults.email = "chris@mann.fr";
       security.acme.acceptTerms = true;
       services = {
-        openssh = {
-          enable = true;
-        };
         openldap = {
           enable = true;
           urlList = ["ldap://${lgvLdapDomainName}:14389/ ldaps://${lgvLdapDomainName}:14636/ ldapi:///"];
@@ -1457,7 +1454,6 @@ in
                 "${pkgs.openldap}/etc/schema/cosine.ldif"
                 "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
                 "${pkgs.openldap}/etc/schema/nis.ldif"
-                "/var/lib/openldap/pmw/schema/pwm.ldif"
               ]; 
               "olcDatabase={1}mdb".attrs = {
                 objectClass = [ "olcDatabaseConfig" "olcMdbConfig" ];
