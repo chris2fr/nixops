@@ -166,8 +166,8 @@ in
     # authelia
     # docspell
     # docspell.nixosModules.default
-     docspellpkgs.docspell-joex
-     docspellpkgs.docspell-restserver
+      #  docspellpkgs.docspell-joex
+      #  docspellpkgs.docspell-restserver
     # docspellpkgs.nixosModules.default
     # docspellpkgs
   ];
