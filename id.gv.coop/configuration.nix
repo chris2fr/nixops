@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
+# inputs.docspell.url = "github:eikek/docspell?dir=nix/";
 { config, lib, pkgs, ... }:
 let
   extraConfigNginxKeycloak = ''
@@ -13,6 +13,11 @@ let
     add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
     add_header Access-Control-Allow-Credentials true;
   '';
+  repo = fetchurl {
+    url = "https://github.com/eikek/docspell";
+    sha256 = "sha256-X2mM+Z5s8Xm1E6zrZ0wcRaivLEvqbk5Dn+GSXkZHdLM=";
+  };
+  docspellPkgs = pkgs.callPackage (import "${repo}/nix/pkg.nix") {};
 in
 {
   imports =
@@ -20,6 +25,7 @@ in
       ./hardware-configuration.nix
       # ./mailserver.nix
       # ./keycloak.nix
+      docspell.nixosModules.default
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -163,6 +169,12 @@ in
 
   # Enable the OpenSSH daemon.
   services = {
+    docspell-joex = {
+      enable = false;
+    };
+    services.docspell-restserver = {
+      enable = false;
+    };
     keycloak = {
       enable = true;
       database = {
