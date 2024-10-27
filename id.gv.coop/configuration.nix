@@ -184,45 +184,45 @@ in
 
   # Enable the OpenSSH daemon.
   services = {
-    docspell-joex = {
-      enable = true;
-      base-url = "http://localhost:7878";
-      bind = {
-        address = "0.0.0.0";
-        port = 7878;
-      };
-      scheduler = {
-        pool-size = 1;
-      };
-      jdbc = {
-        url = "jdbc:postgresql://localhost:5432/docspell";
-        user = "docspell";
-        password = postgresDocuspellPassword;
-      };
-    };
-    docspell-restserver = {
-      enable = true;
-      base-url = "http://localhost:7880";
-      bind = {
-        address = "0.0.0.0";
-        port = 7880;
-      };
-      auth = {
-        server-secret = docuspellServer;
-      };
-      backend = {
-        signup = {
-          mode = "invite";
-          new-invite-password = "dsinvite2";
-          invite-time = "30 days";
-        };
-        jdbc = {
-          url = "jdbc:postgresql://localhost:5432/docspell";
-          user = "docspell";
-          password = postgresDocuspellPassword;
-        };
-      };
-    };
+    # docspell-joex = {
+    #   enable = true;
+    #   base-url = "http://localhost:7878";
+    #   bind = {
+    #     address = "0.0.0.0";
+    #     port = 7878;
+    #   };
+    #   scheduler = {
+    #     pool-size = 1;
+    #   };
+    #   jdbc = {
+    #     url = "jdbc:postgresql://localhost:5432/docspell";
+    #     user = "docspell";
+    #     password = postgresDocuspellPassword;
+    #   };
+    # };
+    # docspell-restserver = {
+    #   enable = true;
+    #   base-url = "http://localhost:7880";
+    #   bind = {
+    #     address = "0.0.0.0";
+    #     port = 7880;
+    #   };
+    #   auth = {
+    #     server-secret = docuspellServer;
+    #   };
+    #   backend = {
+    #     signup = {
+    #       mode = "invite";
+    #       new-invite-password = "dsinvite2";
+    #       invite-time = "30 days";
+    #     };
+    #     jdbc = {
+    #       url = "jdbc:postgresql://localhost:5432/docspell";
+    #       user = "docspell";
+    #       password = postgresDocuspellPassword;
+    #     };
+    #   };
+    # };
     keycloak = {
       enable = true;
       database = {
