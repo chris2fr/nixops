@@ -20,6 +20,7 @@ let
   # docspellPkgs = pkgs.callPackage (import "${repo}/nix/pkg.nix") {};
   # docspell = (builtins.getFlake "github:eikek/docspell");
   # docspell = (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}.default
+  docuspell = (builtins.getFlake "github:eikek/docspell")
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
@@ -156,7 +157,7 @@ in
     python311Packages.sphinx
     # authelia
     # docuspell
-    (builtins.getFlake "github:eikek/docspell").nixosModules.default
+    docuspell.nixosModules.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
