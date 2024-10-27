@@ -595,6 +595,12 @@ in
       if ($host = 'lesgrandsvoisins.fr') {
           return 301 $scheme://www.$host$request_uri;
       }
+      if ($host = 'lesgrandsvoisins.fr') {
+          return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
+      }
+      if ($host = 'www.lesgrandsvoisins.fr') {
+          return 301 $scheme://www.lesgrandsvoisins.com$request_uri;
+      }
       '';
     };
     # "www.desgrandsvoisins.org" = {
