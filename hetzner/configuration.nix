@@ -82,11 +82,11 @@ in
         proto = "tcp";
         sourcePort = 11443;
       }
-      {
-        destination = "192.168.105.11:12443";
-        proto = "tcp";
-        sourcePort = 12443;
-      }
+      # {
+      #   destination = "192.168.105.11:12443";
+      #   proto = "tcp";
+      #   sourcePort = 12443;
+      # }
       # {
       #   destination = "192.168.107.11:10389";
       #   proto = "tcp";
@@ -123,6 +123,7 @@ in
       10080 10443 
       11443
       12080 12443
+      14443
       8384 22000 
       22000 21027 
       10389 10636 
