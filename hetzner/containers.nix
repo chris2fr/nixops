@@ -1090,6 +1090,7 @@ in
             name="key";
             passwordFile="/etc/.secrets.key";
             createLocally=false;
+            host="localhost";
             # useSSL = false;
           };
           settings = {
