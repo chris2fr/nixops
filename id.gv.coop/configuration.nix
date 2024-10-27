@@ -23,6 +23,9 @@ let
   # docuspell = (builtins.getFlake "github:eikek/docspell");
   docuspellrepo = builtins.fetchurl "https://github.com/eikek/docspell";
   docuspellpkgs = docuspellrepo.callPackage (import "${docuspellrepo}/nix/pkg.nix") {} ;
+  postgresDocuspellPassword = (lib.removeSuffix "\n" (builtins.readFile  "/etc/nixos/.secrets.postgres.docuspell" ));
+  docuspellServer = (lib.removeSuffix "\n" (builtins.readFile "/etc/nixos/.secrets.docuspell.server"  ));
+
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
@@ -160,6 +163,7 @@ in
     # authelia
     # docuspell
     # docuspell.nixosModules.default
+     
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -179,12 +183,45 @@ in
 
   # Enable the OpenSSH daemon.
   services = {
-    # docspell-joex = {
-    #   enable = false;
-    # };
-    # services.docspell-restserver = {
-    #   enable = false;
-    # };
+    docspell-joex = {
+      enable = true;
+      base-url = "http://localhost:7878";
+      bind = {
+        address = "0.0.0.0";
+        port = 7878;
+      };
+      scheduler = {
+        pool-size = 1;
+      };
+      jdbc = {
+        url = "jdbc:postgresql://localhost:5432/docspell";
+        user = "docspell";
+        password = postgresDocuspellPassword;
+      };
+    };
+    services.docspell-restserver = {
+      enable = true;
+      base-url = "http://localhost:7880";
+      bind = {
+        address = "0.0.0.0";
+        port = 7880;
+      };
+      auth = {
+        server-secret = docuspellServer;
+      };
+      backend = {
+        signup = {
+          mode = "invite";
+          new-invite-password = "dsinvite2";
+          invite-time = "30 days";
+        };
+        jdbc = {
+          url = "jdbc:postgresql://localhost:5432/docspell";
+          user = "docspell";
+          password = postgresDocuspellPassword;
+        };
+      };
+    };
     keycloak = {
       enable = true;
       database = {
@@ -211,20 +248,26 @@ in
       # themes = {lesgv = (pkgs.callPackage "/etc/nixos/keycloaktheme/derivation.nix" {});};
     };
     postgresql.enable = true;
-    # postgresql = {
-    #   enable = true;
-    #   enableTCPIP = true;
+    postgresql = {
+      enable = true;
+      enableTCPIP = true;
     #   package = pkgs.postgresql_14;
-    #   ensureDatabases = [
-    #     "keycloak"
-    #   ];
-    #   ensureUsers = [
-    #     {
-    #       name = "keycloak";
-    #       ensureDBOwnership = true;
-    #     }
-    #   ]; 
-    # };
+      ensureDatabases = [
+        "keycloak"
+        "docuspell"
+      ];
+      ensureUsers = [
+        {
+          name = "keycloak";
+          ensureDBOwnership = true;
+        }
+        {
+          name = "docuspell";
+          ensureDBOwnership = true;
+        }
+      ]; 
+    };
+    # postgresDocuspellPassword
     # tomcat = {
     #   enable = true;
 
