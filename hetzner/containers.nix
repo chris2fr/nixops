@@ -1092,7 +1092,7 @@ in
             # passwordFile="/etc/.secrets.key";
             passwordFile="/etc/.secrets.key";
             # createLocally=false;
-            host="localhost";
+            # host="localhost";
             # useSSL = false;
           };
           settings = {
