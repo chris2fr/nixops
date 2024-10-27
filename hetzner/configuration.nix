@@ -366,7 +366,8 @@ in
     vikunja = {
       enable = true;
       frontendScheme = "https";
-      frontendHostname = "vikunja.lesgrandsvoisins.com";
+      frontendHostname = "task.lesgrandsvoisins.com";
+      # frontendHostname = "vikunja.lesgrandsvoisins.com";
       # frontendHostname = "vikunja.gv.coop";
       # frontendHostname = "vikunja.village.ngo";
       # database.type = "postgres";
@@ -393,7 +394,7 @@ in
           openid.enabled = true;
           # openid.redirecturl = "https://vikunja.village.ngo/auth/openid/";
           # openid.redirecturl = "https://vikunja.gv.coop/auth/openid/";
-          openid.redirecturl = "https://vikunja.lesgrandsvoisins.com/auth/openid/";
+          openid.redirecturl = "https://task.lesgrandsvoisins.com/auth/openid/";
           openid.providers = [
           {
             name = "keyLesGrandsVoisinsCom";
