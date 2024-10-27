@@ -163,7 +163,8 @@ in
     # authelia
     # docuspell
     # docuspell.nixosModules.default
-     
+     docuspellpkgs.docspell-joex
+     docuspellpkgs.docspell-restserver
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -199,7 +200,7 @@ in
         password = postgresDocuspellPassword;
       };
     };
-    services.docspell-restserver = {
+    docspell-restserver = {
       enable = true;
       base-url = "http://localhost:7880";
       bind = {
