@@ -1016,11 +1016,11 @@ in
       }; 
     };
     autoStart = true;
-    # privateNetwork = true;
-    # hostAddress = "192.168.105.10";
-    # localAddress = "192.168.105.11";
-    # hostAddress6 = "fa01::1";
-    # localAddress6 = "fa01::2";
+    privateNetwork = true;
+    hostAddress = "192.168.105.10";
+    localAddress = "192.168.105.11";
+    hostAddress6 = "fa01::1";
+    localAddress6 = "fa01::2";
     config = { config, pkgs, lib, ...  }: {
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
