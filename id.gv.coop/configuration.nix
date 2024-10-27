@@ -20,7 +20,7 @@ let
   # docspellPkgs = pkgs.callPackage (import "${repo}/nix/pkg.nix") {};
   # docspell = (builtins.getFlake "github:eikek/docspell");
   # docspell = (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}.default
-  docuspell = (builtins.getFlake "github:eikek/docspell")
+  docuspell = (builtins.getFlake "github:eikek/docspell");
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
