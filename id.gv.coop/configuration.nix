@@ -22,7 +22,7 @@ let
   # docspell = (builtins.getFlake "github:eikek/docspell").packages.${builtins.currentSystem}.default
   # docuspell = (builtins.getFlake "github:eikek/docspell");
   docuspellrepo = builtins.fetchurl "https://github.com/eikek/docspell";
-  docuspellpkgs = docuspellrepo.callPackage (import "${docuspellrepo}/nix/pkg.nix") {};)
+  docuspellpkgs = docuspellrepo.callPackage (import "${docuspellrepo}/nix/pkg.nix") {} ;
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
