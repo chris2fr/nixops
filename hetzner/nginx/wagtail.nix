@@ -545,6 +545,20 @@ in
       locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
     };
 
+    "lesgv.lesgransvoisins.com" = {
+      serverAliases = ["2022.lesgransvoisins.com"];
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8000/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      root = "/var/www/wagtail";
+    };
+
     "www.lesgrandsvoisins.fr" = {
      serverAliases = ["desgv.com" 
       "francemali.lesgrandsvoisins.com" "shitmuststop.com" "www.shitmuststop.com" "www.desgv.com" "lesgrandsvoisins.fr" 
