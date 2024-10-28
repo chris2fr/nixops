@@ -545,8 +545,8 @@ in
       locations."/media/" = { proxyPass = "http://wagtailmedia/"; };
     };
 
-    "lesgv.lesgransvoisins.com" = {
-      serverAliases = ["2022.lesgransvoisins.com"];
+    "lesgv.lesgrandsvoisins.com" = {
+      serverAliases = ["2022.lesgrandsvoisins.com"];
       enableACME = true;
       forceSSL = true;
       locations."/" = {
