@@ -718,5 +718,161 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "8000.lesgrandsvoisins.com" = {
+      enableACME=true;
+       forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8000/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      root = "/var/www/wagtail";
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8893.lesgrandsvoisins.com" = {
+      root = "/var/www/www-fastoche/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8893/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8892.lesgrandsvoisins.com" = {
+      root = "/var/www/resdigita-fastoche/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8892/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8890.lesgrandsvoisins.com" = {
+      root = "/var/www/wagtail-fastoche/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8890/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8894.lesgrandsvoisins.com" = {
+      root = "/var/www/lesgrandsvoisins/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8894/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8888.lesgrandsvoisins.com" = {
+      root = "/var/www/francemali/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8888/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8896.lesgrandsvoisins.com" = {
+      root = "/var/www/village/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8896/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8900.lesgrandsvoisins.com" = {
+      root = "/var/www/cantine/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8900/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8889.lesgrandsvoisins.com" = {
+      root = "/var/www/cfran/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8889/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8897.lesgrandsvoisins.com" = {
+      root = "/var/www/resdigita-fastoche/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8897/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8899.lesgrandsvoisins.com" = {
+      root = "/var/www/resdigitaorg/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8899/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
+    "8891.lesgrandsvoisins.com" = {
+      root = "/var/www/django-village/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8891/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      enableACME=true;
+      forceSSL = true;
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
   };
 }
