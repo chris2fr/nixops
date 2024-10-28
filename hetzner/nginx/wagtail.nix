@@ -87,6 +87,10 @@ in
       serverAliases = [
         "test.lesgrandsvoisins.com" 
         "alt.lesgrandsvoisins.com"
+        "en.lesgrandsvoisins.com"
+        "fr.lesgrandsvoisins.com"
+        "gvcoop.lesgrandsvoisins.com"
+        "old.lesgrandsvoisins.com"
       ];
       enableACME = true;
       forceSSL = true;
