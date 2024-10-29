@@ -421,6 +421,19 @@ in
       locations."/media" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
+    "8895.lesgrandsvoisins.com" = {
+      enableACME = true;
+      forceSSL = true;
+      root =  "/var/www/villagengo/";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8895/";
+        extraConfig = nginxLocationWagtailExtraConfig;
+      };
+      locations."/favicon.ico" = { proxyPass = null; };
+      locations."/static" = { proxyPass = null; };
+      locations."/media" = { proxyPass = null; };
+      locations."/.well-known" = { proxyPass = null; };
+    };
     "meet.desgv.com"  = {
       enableACME = true;
       forceSSL = true;
