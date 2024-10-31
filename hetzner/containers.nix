@@ -1473,20 +1473,20 @@ in
                   /* custom access rules for userPassword attributes */
                   /* allow read on anything else */
                   ''{0}to dn.subtree="ou=newusers,${lgvLdapBaseDN}"
-                      by dn.exact="cn=newuser@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" write
+                      by dn.exact="cn=newuser,ou=users,${lgvLdapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${lgvLdapBaseDN}" write
                       by self write
                       by anonymous auth
                       by * read''
                   ''{1}to dn.subtree="ou=invitations,${lgvLdapBaseDN}"
-                      by dn.exact="cn=newuser@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" write
+                      by dn.exact="cn=newuser,ou=users,${lgvLdapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${lgvLdapBaseDN}" write
                       by self write
                       by anonymous auth
                       by * read''
                   ''{2}to dn.subtree="ou=users,${lgvLdapBaseDN}"
                       by dn.exact="cn=admin@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" manage
-                      by dn.exact="cn=newuser@lesgrandsvoisins.com,ou=users,${lgvLdapBaseDN}" write
+                      by dn.exact="cn=newuser,ou=users,${lgvLdapBaseDN}" write
                       by group.exact="cn=administration,ou=groups,${lgvLdapBaseDN}" write
                       by self write
                       by anonymous auth
