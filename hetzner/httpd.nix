@@ -353,7 +353,7 @@ in
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
           AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-          AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:14389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
+          AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
           # Require valid-user
           Require ldap-attribute cn=%{env:MATCH_USERNAME}
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
@@ -367,7 +367,7 @@ in
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
           AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-          AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:14389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
+          AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
           # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
           # Require valid-user
           Require ldap-attribute cn=%{env:MATCH_USERNAME}
@@ -445,7 +445,7 @@ in
       #       AuthName "Radicale CalDAV et CardDAV par LDAP"
       #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
       #       AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-      #       AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:14389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
+      #       AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
       #       #Require valid-user
       #       Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
 
@@ -460,7 +460,7 @@ in
             AuthName "Radicale CalDAV et CardDAV par LDAP"
             AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
             AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-            AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:14389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
+            AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
             AuthLDAPRemoteUserAttribute cn
             Require valid-user
             #Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
@@ -532,7 +532,7 @@ in
             AuthName "DAV par LDAP"
             AuthLDAPBindDN cn=newuser,ou=users,dc=lesgrandsvoisins,dc=com
             AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-            AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:14389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
+            AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
             # Require valid-user
             # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
             Require ldap-attribute cn=%{env:MATCH_USERNAME}
