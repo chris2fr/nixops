@@ -351,7 +351,7 @@ in
           AuthType Basic
           AuthBasicProvider ldap
           AuthName "DAV par LDAP"
-          AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+          AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
           AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
           AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
           # Require valid-user
@@ -365,7 +365,7 @@ in
           AuthType Basic
           AuthBasicProvider ldap
           AuthName "DAV par LDAP"
-          AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+          AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
           AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
           AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
           # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
@@ -443,7 +443,7 @@ in
       #       AuthType Basic
       #       AuthBasicProvider ldap
       #       AuthName "Radicale CalDAV et CardDAV par LDAP"
-      #       AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+      #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
       #       AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
       #       AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
       #       #Require valid-user
@@ -458,7 +458,7 @@ in
             AuthType Basic
             AuthBasicProvider ldap
             AuthName "Radicale CalDAV et CardDAV par LDAP"
-            AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+            AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
             AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
             AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
             AuthLDAPRemoteUserAttribute cn
@@ -530,7 +530,7 @@ in
             AuthType Basic
             AuthBasicProvider ldap
             AuthName "DAV par LDAP"
-            AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=lesgrandsvoisins,dc=com
+            AuthLDAPBindDN cn=newuser,ou=users,dc=lesgrandsvoisins,dc=com
             AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
             AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
             # Require valid-user
@@ -878,7 +878,7 @@ in
     #     AuthType Basic
     #     AuthBasicProvider ldap
     #     AuthName "DAV par LDAP"
-    #     AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+    #     AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
     #     AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
     #     AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #     </Location>
@@ -972,7 +972,7 @@ in
     #       AuthType Basic
     #       AuthBasicProvider ldap
     #       AuthName "DAV par LDAP"
-    #       AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+    #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
     #       AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
     #       AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #       Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
@@ -984,7 +984,7 @@ in
     #       AuthType Basic
     #       AuthBasicProvider ldap
     #       AuthName "DAV par LDAP"
-    #       AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+    #       AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
     #       AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
     #       AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #       Require ldap-dn cn=%{env:MATCH_USERNAME}@%{env:MATCH_USERNAMEDOMAIN},ou=users,dc=resdigita,dc=org
@@ -1091,7 +1091,7 @@ in
     #         AuthType Basic
     #         AuthBasicProvider ldap
     #         AuthName "DAV par LDAP"
-    #         AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
+    #         AuthLDAPBindDN cn=newuser,ou=users,dc=resdigita,dc=org
     #         AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
     #         AuthLDAPURL "ldap:///ou=users,dc=resdigita,dc=org?cn?sub"
     #         #Require valid-user
