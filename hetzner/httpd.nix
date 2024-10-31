@@ -490,7 +490,7 @@ in
       ''
           DavLockDB /tmp/DesGVDavLock
 
-          OIDCProviderMetadataURL https://keycloak.village.ngo/realms/master/.well-known/openid-configuration
+          OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
           OIDCClientID dav
           OIDCClientSecret ${httpd-dav-oidcclientsecret}
           OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
