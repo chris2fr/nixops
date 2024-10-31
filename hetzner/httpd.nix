@@ -353,12 +353,12 @@ in
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
           AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-          AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?uid STARTTLS"
+          AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
           # Require valid-user
-          Require ldap-attribute uid=%{env:MATCH_USERNAME}
+          Require ldap-attribute cn=%{env:MATCH_USERNAME}
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
             # Require valid-user
-            Require ldap-attribute uid=%{env:MATCH_USERNAME}
+            Require ldap-attribute cn=%{env:MATCH_USERNAME}
           </LimitExcept>
         </LocationMatch>
         <LocationMatch "^/pass/dav/(?<username>[^/]+)">
@@ -367,13 +367,13 @@ in
           AuthName "DAV par LDAP"
           AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
           AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-          AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?uid STARTTLS"
+          AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
           # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
           # Require valid-user
-          Require ldap-attribute uid=%{env:MATCH_USERNAME}
+          Require ldap-attribute cn=%{env:MATCH_USERNAME}
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
             # Require valid-user
-            Require ldap-attribute uid=%{env:MATCH_USERNAME}
+            Require ldap-attribute cn=%{env:MATCH_USERNAME}
           </LimitExcept>
         </LocationMatch>
         <LocationMatch ^/$>
@@ -445,7 +445,7 @@ in
       #       AuthName "Radicale CalDAV et CardDAV par LDAP"
       #       AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
       #       AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-      #       AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?uid STARTTLS"
+      #       AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
       #       #Require valid-user
       #       Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
 
@@ -460,13 +460,13 @@ in
             AuthName "Radicale CalDAV et CardDAV par LDAP"
             AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=resdigita,dc=org
             AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-            AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?uid STARTTLS"
-            AuthLDAPRemoteUserAttribute uid
+            AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
+            AuthLDAPRemoteUserAttribute cn
             Require valid-user
             #Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=resdigita,dc=org
 
           RequestHeader    set X-Script-Name /pass
-          RequestHeader    set X-Remote-User expr=%{env:AUTHENTICATE_uid}
+          RequestHeader    set X-Remote-User expr=%{env:AUTHENTICATE_cn}
           ProxyAddHeaders On
           ProxyPass        http://localhost:5232/ retry=0
           ProxyPassReverse http://localhost:5232/
@@ -532,14 +532,14 @@ in
             AuthName "DAV par LDAP"
             AuthLDAPBindDN cn=newuser@lesgv.com,ou=users,dc=lesgrandsvoisins,dc=com
             AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
-            AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?uid STARTTLS"
+            AuthLDAPURL "ldap://ldap.lesgrandsvoisins.com:10389/ou=users,dc=lesgrandsvoisins,dc=com?cn TLS"
             # Require valid-user
             # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
-            Require ldap-attribute uid=%{env:MATCH_USERNAME}
+            Require ldap-attribute cn=%{env:MATCH_USERNAME}
             
             <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
               # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
-              Require ldap-attribute uid=%{env:MATCH_USERNAME}
+              Require ldap-attribute cn=%{env:MATCH_USERNAME}
               # Require valid-user
             </LimitExcept>
           </LocationMatch>
