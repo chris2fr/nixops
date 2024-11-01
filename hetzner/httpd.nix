@@ -476,10 +476,89 @@ in
        </Location>
       '';
     };
+    
+    "dav.lesgrandsvoisins.com" = {
+      listen = [{port = 8443; ssl=true;}];
+      sslServerCert = "/var/lib/acme/dav.lesgrandsvoisins.com/fullchain.pem";
+      sslServerChain = "/var/lib/acme/dav.lesgrandsvoisins.com/fullchain.pem";
+      sslServerKey = "/var/lib/acme/dav.lesgrandsvoisins.com/key.pem";
+      documentRoot = "/var/www/dav";
+      extraConfig = ''
+        Alias /static /var/www/wagtail/static
+        Alias /media /var/www/wagtail/media
+        DavLockDB /tmp/DesGVDavLock
+
+        OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
+        OIDCClientID dav
+        OIDCClientSecret ${httpd-dav-oidcclientsecret}
+        OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
+        OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
+
+        RedirectMatch ^/?$ /redirect
+
+        <Location "/auth">
+          AuthType openid-connect
+          Require valid-user
+        </Location>
+
+        <LocationMatch "^/auth/(?<username>[^/]+)">
+          AuthType openid-connect
+          Require claim preferred_username:%{env:MATCH_USERNAME}
+            
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPOFIND CONNECT>
+              Require claim preferred_username:%{env:MATCH_USERNAME}
+          </LimitExcept>
+        </LocationMatch>
+
+        <Location "/redirect">
+          AuthType openid-connect
+          Require valid-user
+          RewriteEngine On
+          # Check for the presence of the OIDC_CLAIM_email header
+          # RewriteCond %{env:OIDC_CLAIM_email} ^(.+)$
+          RewriteCond %{env:OIDC_CLAIM_preferred_username} ^(.+)$
+          # Redirect to the specific path based on the header value
+          RewriteRule ^(.*)$ /auth/%1 [R,L]
+        </Location>
+        RedirectMatch ^/$ /redirect
+      
+        Alias /auth /var/www/dav/data
+        Alias /pass /var/www/dav/data
+
+        <LocationMatch "^/pass/(?<username>[^/]+)">
+          AuthType Basic
+          AuthBasicProvider ldap
+          AuthName "DAV par LDAP"
+          AuthLDAPBindDN cn=newuser,ou=users,dc=lesgrandsvoisins,dc=com
+          AuthLDAPBindPassword ${SECRETS_NEWUSER_PASSWORD}
+          AuthLDAPURL "ldaps://ldap.lesgrandsvoisins.com:14636/ou=users,dc=lesgrandsvoisins,dc=com?cn"
+          # Require valid-user
+          # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
+          Require ldap-attribute cn=%{env:MATCH_USERNAME}
+          
+          <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
+            # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
+            Require ldap-attribute cn=%{env:MATCH_USERNAME}
+            # Require valid-user
+          </LimitExcept>
+        </LocationMatch>
+
+        <Directory "/var/www">
+          Options Indexes FollowSymLinks
+          AllowOverride None
+          Require all granted
+        </Directory>
+
+      <Directory "/var/www/dav/data">
+        Dav On
+        DavDepthInfinity On
+      </Directory>
+      '';
+    };
 
     "dav.resdigita.com" = {
       # serverAliases = ["dav.gv.coop"];
-      serverAliases = ["dav.lesgrandsvoisins.com"];
+      # serverAliases = ["dav.lesgrandsvoisins.com"];
       listen = [{port = 8443; ssl=true;}];
       sslServerCert = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
       sslServerChain = "/var/lib/acme/dav.resdigita.com/fullchain.pem";
@@ -496,7 +575,7 @@ in
           OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
           OIDCClientID dav
           OIDCClientSecret ${httpd-dav-oidcclientsecret}
-          OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
+          OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
           OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
           RedirectMatch ^/?$ /redirect
