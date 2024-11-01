@@ -498,7 +498,7 @@ in
 
           RedirectMatch ^/?$ /redirect
 
-          <Location "/auth">
+          <Location "^/auth">
             AuthType openid-connect
             Require valid-user
           </Location>
