@@ -505,10 +505,10 @@ in
 
           <LocationMatch "^/auth/(?<username>[^/]+)">
             AuthType openid-connect
-            Require claim username:%{env:MATCH_USERNAME}
+            Require claim preferred_username:%{env:MATCH_USERNAME}
               
             <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPOFIND CONNECT>
-               Require claim username:%{env:MATCH_USERNAME}
+               Require claim preferred_username:%{env:MATCH_USERNAME}
             </LimitExcept>
           </LocationMatch>
 
