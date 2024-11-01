@@ -324,16 +324,19 @@ in
           # RewriteCond %{env:OIDC_CLAIM_email} ^([^@]+)@(.+)$
           # Redirect to the specific path based on the header value
           # RewriteRule ^(.*)$ /auth/web/%2/%1 [R,L]
-          RewriteCond %{env:OIDC_CLAIM_username} ^(.+)$
+          # RewriteCond %{env:OIDC_CLAIM_username} ^(.+)$
+          RewriteCond %{env:OIDC_CLAIM_preferred_username} ^(.+)$
           RewriteRule ^(.*)$ /auth/web/%1 [R,L]
         </Location>
         <LocationMatch "^/auth/web/(?<username>[^/]+)">
           AuthType openid-connect 
           # Should already be inherited
           # Allow https://httpd.apache.org/docs/2.4/mod/mod_dav.html
-          Require claim username:%{env:MATCH_USERNAME}
+          # Require claim username:%{env:MATCH_USERNAME}
+          Require claim preferred_username:%{env:MATCH_USERNAME}
           <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT>
-             Require claim useername:%{env:MATCH_USERNAME}
+             # Require claim username:%{env:MATCH_USERNAME}
+             Require claim preferred_username:%{env:MATCH_USERNAME}
           </LimitExcept>
         </LocationMatch>
         # <LocationMatch "^/auth/dav/(?<username>[^/]+).*">
@@ -493,7 +496,7 @@ in
           OIDCProviderMetadataURL https://key.lesgrandsvoisins.com/realms/master/.well-known/openid-configuration
           OIDCClientID dav
           OIDCClientSecret ${httpd-dav-oidcclientsecret}
-          OIDCRedirectURI https://dav.resdigita.com/auth/redirect_uri_from_oauth2
+          OIDCRedirectURI https://dav.lesgrandsvoisins.com/auth/redirect_uri_from_oauth2
           OIDCCryptoPassphrase JoWT5Mz1DIzsgI3MT2GH82aA6Xamp2ni
 
           RedirectMatch ^/?$ /redirect
