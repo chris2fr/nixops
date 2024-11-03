@@ -614,6 +614,7 @@ in
         poetry
         nodejs_22
         yarn
+        jq
         ];
 
       # networking = {

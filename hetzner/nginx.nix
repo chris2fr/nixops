@@ -480,6 +480,7 @@ in
                 proxy_set_header X-Forwarded-Proto $scheme;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_redirect off;
+                client_max_body_size 200M;
                 # proxy_set_header Host $host;
             '';
           };
