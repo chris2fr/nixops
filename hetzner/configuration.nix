@@ -13,6 +13,7 @@ let
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
+  nixpkgs.config.allowUnfree = true; 
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 113272;
     "fs.inotify.max_user_instances" = 256;
