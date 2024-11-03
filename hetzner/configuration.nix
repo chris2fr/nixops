@@ -421,6 +421,14 @@ in
         };
       };
     };
+    sftpgo = {
+      enable = true;
+      settings = {
+        httpd.bindings = [{
+          port = 8088;
+        }];
+      };
+    };
     homepage-dashboard = {
       enable = true;
       listenPort = 8882;

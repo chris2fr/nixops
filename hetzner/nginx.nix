@@ -450,6 +450,11 @@ in
           serverAliases = ["ete.lesgrandsvoisins.com"];
           locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
+        "sftpgo.lesgrandsvoisins.com" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/".proxyPass = "http://127.0.0.1:8088";
+        };
         # "etedav.village.ngo" = {
         #   enableACME = true;
         #   forceSSL = true;
