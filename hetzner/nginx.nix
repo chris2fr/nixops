@@ -455,7 +455,7 @@ in
           forceSSL = true;
           locations."/".proxyPass = "http://127.0.0.1:8088";
           extraConfig = ''
-            client_max_body_size 250M;
+            client_max_body_size 500M;
           '';
         };
         "minio.lesgrandsvoisins.com" = {
