@@ -455,6 +455,11 @@ in
           forceSSL = true;
           locations."/".proxyPass = "http://127.0.0.1:8088";
         };
+        "minio.lesgrandsvoisins.com" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/".proxyPass = "http://127.0.0.1:9000";
+        };
         # "etedav.village.ngo" = {
         #   enableACME = true;
         #   forceSSL = true;

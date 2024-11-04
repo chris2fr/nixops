@@ -55,6 +55,7 @@ in
     openssl
     postgresql_13
     qemu
+    sftpgo
   ];
   boot.loader = {
     systemd-boot.enable = true;
@@ -422,13 +423,20 @@ in
         };
       };
     };
-    sftpgo = {
+    # sftpgo = {
+    #   enable = true;
+    #   settings = {
+    #     httpd.bindings = [{
+    #       port = 8088;
+    #     }];
+    #     plugins = [{
+    #       type = "auth";
+    #       cmd = "/var/lib/sftpgo/sftpgo-plugin-auth/sftpgo server";    
+    #     }];
+    #   };
+    # };
+    minio = {
       enable = true;
-      settings = {
-        httpd.bindings = [{
-          port = 8088;
-        }];
-      };
     };
     homepage-dashboard = {
       enable = true;
