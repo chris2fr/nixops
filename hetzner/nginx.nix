@@ -451,6 +451,7 @@ in
           locations."/".proxyPass = "http://unix:/var/lib/etebase-server/etebase-server.sock";
         };
         "sftpgo.lesgrandsvoisins.com" = {
+          serverAliases = ["drive.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
           locations."/".proxyPass = "http://127.0.0.1:8088";
