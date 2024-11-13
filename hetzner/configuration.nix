@@ -446,7 +446,7 @@ in
           }
           {
           port = 10443;
-          address = "2a01:4f8:241:4faa::";
+          address = "[2a01:4f8:241:4faa::]";
           certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
           certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
           enable_https = true;
