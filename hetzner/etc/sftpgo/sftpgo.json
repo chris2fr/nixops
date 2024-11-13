@@ -442,9 +442,10 @@
         {
           "scope": 5
         },
+      "cmd" : "/run/current-system/sw/bin/sftpgo-plugin-auth",
       "args": [
         "serve", 
-        "--config-file sftp-plugin-auth.json"
+        "--config-file=/home/sftpgo/sftpgo/sftp-plugin-auth.json"
       ],
       "auto_mtls": true
     }
