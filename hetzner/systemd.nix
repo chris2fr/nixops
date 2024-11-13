@@ -22,7 +22,7 @@ in
         SFTPGO_PLUGINS__0__AUTO_MTLS="1";
         SFTPGO_PLUGINS__0__TYPE="auth";
         SFTPGO_PLUGINS__0__AUTH_OPTIONS__SCOPE="5";
-        SFTPGO_PLUGINS__0__CMD="/usr/local/bin/sftpgo-plugin-auth";
+        SFTPGO_PLUGINS__0__CMD="/run/current-system/sw/bin/sftpgo-plugin-auth";
         SFTPGO_PLUGINS__0__ARGS="serve";
       };
       serviceConfig = {
