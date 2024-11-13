@@ -78,7 +78,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
             }
         }).then((result) => {
             if (result.isConfirmed){
-                clearLoading();
+                $('#loading_message').text("");
                 KTApp.showPageLoading();
                 let path = '{{.DefenderHostsURL}}' + "/" + encodeURIComponent(id);
 
@@ -131,7 +131,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
                     url: "{{.DefenderHostsURL}}",
                     dataSrc: "",
                     error: function ($xhr, textStatus, errorThrown) {
-                        $(".dt-processing").hide();
+                        $(".dataTables_processing").hide();
                         $('#loader').addClass("d-none");
                         let txt = "";
                         if ($xhr) {

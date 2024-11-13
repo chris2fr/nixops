@@ -174,12 +174,10 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
 
     const lngs = {
         en: { nativeName: 'English' },
-        fr: { nativeName: 'Français (en cours)' },
         it: { nativeName: 'Italiano' }
     };
 
     const renderI18n = () => {
-        document.documentElement.setAttribute('lang', i18next.resolvedLanguage);
         $('title').text('{{.Branding.Name}} - '+$.t('{{.Title}}'));
         $('body').localize();
         let select2elements = [].slice.call(document.querySelectorAll('[data-control="i18n-select2"]'));
@@ -194,7 +192,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
             .use(i18nextBrowserLanguageDetector)
             .init({
                 debug: false,
-                supportedLngs: Object.keys(lngs),
+                supportedLngs: ["en", "it"],
                 fallbackLng: 'en',
                 load: 'languageOnly',
                 backend: {
@@ -312,26 +310,16 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
         }
     }
 
-    function clearLoading() {
-        $('#loading_info').text("");
-        $('#loading_message').text("");
-    }
-
-    function setLoadingText(info, message) {
-        $('#loading_info').text(info);
-        $('#loading_message').text(message);
-    }
-
     KTUtil.onDOMContentLoaded(function () {
         var dismissErrorBtn = $('#id_dismiss_error_msg');
-        if (dismissErrorBtn.length){
+        if (dismissErrorBtn){
             dismissErrorBtn.on("click", function(){
                 $('#errorMsg').addClass("d-none");
             });
         }
 
         var logoutBtn = $('#id_logout_link');
-        if (logoutBtn.length){
+        if (logoutBtn){
             logoutBtn.on("click", function(){
                 doLogout();
             });
@@ -806,18 +794,17 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
-        <meta charset="utf-8" />
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="noindex">
-        <link rel="icon" type="image/png" href="{{.StaticURL}}{{.Branding.FaviconPath}}" />
+		<title></title>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="{{.StaticURL}}{{.Branding.FaviconPath}}" />
 		{{- template "fonts" . }}
-        {{- block "extra_css" .}}{{- end}}
         {{- range .Branding.DefaultCSS}}
         <link href="{{$.StaticURL}}{{.}}" rel="stylesheet" type="text/css">
         {{- end}}
-        {{- template "globalstyle" .CSPNonce }}
+		{{- template "globalstyle" .CSPNonce }}
+		{{- block "extra_css" .}}{{- end}}
         {{- range .Branding.ExtraCSS}}
         <link href="{{$.StaticURL}}{{.}}" rel="stylesheet" type="text/css">
         {{- end}}
@@ -853,17 +840,6 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
                             <div class="d-flex align-self-center flex-center flex-shrink-0">
                                 {{- template "navitems" .}}
 							</div>
-                        </div>
-                    </div>
-                </div>
-                {{- else if .IsLoggedToShare}}
-                <div class="app-container container-fluid d-flex mt-5">
-                    <div class="d-flex align-items-center d-block ms-3">
-                        <img alt="Logo" src="{{.StaticURL}}{{.Branding.LogoPath}}" class="h-50px" />
-                    </div>
-                    <div class="flex-grow-1">
-                        <div class="d-flex justify-content-end">
-                            {{- template "navitems" .}}
                         </div>
                     </div>
                 </div>
@@ -922,8 +898,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
         </div>
         <div class="page-loader flex-column">
 			<span class="spinner-border text-primary" role="status"></span>
-			<span id="loading_info" class="text-muted fs-4 fw-semibold mt-5"></span>
-            <span id="loading_message" class="text-muted fs-4 fw-semibold mt-5"></span>
+			<span id="loading_message" class="text-muted fs-4 fw-semibold mt-5"></span>
 		</div>
 
         <div class="modal fade" tabindex="-1" id="modal_alert">

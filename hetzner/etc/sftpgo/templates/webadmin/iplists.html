@@ -210,7 +210,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
             }
         }).then((result) => {
             if (result.isConfirmed){
-                clearLoading();
+                $('#loading_message').text("");
                 KTApp.showPageLoading();
                 let path = '{{.IPListURL}}' + "/" + encodeURIComponent(listType)+ "/" + encodeURIComponent(ipNet);
                 axios.delete(path, {
@@ -262,7 +262,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
                     url: getSearchURL(),
                     dataSrc: handleResponseData,
                     error: function ($xhr, textStatus, errorThrown) {
-                        $(".dt-processing").hide();
+                        $(".dataTables_processing").hide();
                         $('#loader').addClass("d-none");
                         let txt = "";
                         if ($xhr) {
@@ -329,14 +329,10 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
                     },
                     {
                         data: "description",
-                        visible: true,
-                        defaultContent: "",
+                        visible: false,
                         render: function(data, type, row) {
                             if (type === 'display') {
-                                if (data){
-                                    return escapeHTML(data);
-                                }
-                                return ""
+                                return escapeHTML(data);
                             }
                             return data;
                         }

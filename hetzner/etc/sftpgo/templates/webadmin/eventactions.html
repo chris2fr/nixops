@@ -78,7 +78,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
             }
         }).then((result) => {
             if (result.isConfirmed){
-                clearLoading();
+                $('#loading_message').text("");
                 KTApp.showPageLoading();
                 let path = '{{.EventActionURL}}' + "/" + encodeURIComponent(name);
 
@@ -131,7 +131,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
                     url: "{{.EventActionsURL}}/json",
                     dataSrc: "",
                     error: function ($xhr, textStatus, errorThrown) {
-                        $(".dt-processing").hide();
+                        $(".dataTables_processing").hide();
                         $('#loader').addClass("d-none");
                         let txt = "";
                         if ($xhr) {
@@ -193,8 +193,6 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
                                         return $.t('actions.types.idp_check');
                                     case 14:
                                         return $.t('actions.types.user_inactivity_check');
-                                    case 15:
-                                        return $.t('actions.types.rotate_logs');
                                     default:
                                         return "";
                                 }

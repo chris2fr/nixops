@@ -82,7 +82,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
             }
         }).then((result) => {
             if (result.isConfirmed){
-                clearLoading();
+                $('#loading_message').text("");
                 KTApp.showPageLoading();
                 let path = '{{.ConnectionsURL}}' + "/" + encodeURIComponent(connectionID);
                 if (node) {
@@ -126,7 +126,7 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
                     url: "{{.ConnectionsURL}}/json",
                     dataSrc: "",
                     error: function ($xhr, textStatus, errorThrown) {
-                        $(".dt-processing").hide();
+                        $(".dataTables_processing").hide();
                         $('#loader').addClass("d-none");
                         let txt = "";
                         if ($xhr) {
@@ -245,27 +245,22 @@ explicit grant from the SFTPGo Team (support@sftpgo.com).
                         render: function (data, type, row) {
                             if (type === 'display') {
                                 let result = "";
-                                if (row.active_transfers && row.active_transfers.length > 0) {
-                                    for (let i = 0; i < row.active_transfers.length; i++) {
-                                        if (i > 0){
-                                            result+=". ";
-                                        }
-                                        let transfer = row.active_transfers[i];
-                                        let path = escapeHTML(transfer.path);
-                                        let elapsed = row.current_time - transfer.start_time;
-                                        if (elapsed > 0 && transfer.size > 0) {
-                                            let speed = (transfer.size * 1.0) / (elapsed / 1000.0);
-                                            if (transfer.operation_type === 'upload') {
-                                                result += $.t('connections.upload_info', { path: path, size: fileSizeIEC(transfer.size), speed: humanizeSpeed(speed) });
-                                            } else {
-                                                result += $.t('connections.download_info', { path: path, size: fileSizeIEC(transfer.size), speed: humanizeSpeed(speed) });
-                                            }
+                                if (row.active_transfers && row.active_transfers.length > 0){
+                                    let transfer = row.active_transfers[0];
+                                    let path = escapeHTML(transfer.path);
+                                    let elapsed = row.current_time - transfer.start_time;
+                                    if (elapsed > 0 && transfer.size > 0){
+                                        let speed = (transfer.size*1.0) / (elapsed/1000.0);
+                                        if (transfer.operation_type === 'upload'){
+                                            result = $.t('connections.upload_info', {path: path, size: fileSizeIEC(transfer.size), speed: humanizeSpeed(speed)});
                                         } else {
-                                            if (transfer.operation_type === 'upload') {
-                                                result += $.t('connections.upload', { path: path });
-                                            } else {
-                                                result += $.t('connections.download', { path: path });
-                                            }
+                                            result = $.t('connections.download_info', {path: path, size: fileSizeIEC(transfer.size), speed: humanizeSpeed(speed)});
+                                        }
+                                    } else {
+                                        if (transfer.operation_type === 'upload'){
+                                            result = $.t('connections.upload', {path: path});
+                                        } else {
+                                            result = $.t('connections.download', {path: path});
                                         }
                                     }
                                 }
