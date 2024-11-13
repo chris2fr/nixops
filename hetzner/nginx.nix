@@ -453,9 +453,9 @@ in
           enableACME = true;
           forceSSL = true;
           locations."/" = {
-            return 302 https://sftpgo.lesgrandsvoisins.com:10443$request_uri;
-            proxyPass = "https://sftpgo.lesgrandsvoisins.com:10443";
             extraConfig = ''
+            return 302 https://sftpgo.lesgrandsvoisins.com:10443$request_uri;
+            proxy_pass https://sftpgo.lesgrandsvoisins.com:10443; 
             client_max_body_size 500M;
             proxy_http_version 1.1;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
