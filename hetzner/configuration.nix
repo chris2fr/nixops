@@ -356,7 +356,7 @@ in
           collection = "";
           permissions = "R";
         };
-        principal = {emailList
+        principal = {
           user = ".+";
           collection = "{user}/[^/]+";
           permissions = "rw";
