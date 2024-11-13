@@ -437,7 +437,22 @@ in
           "info"
         ];
       settings = {
-        webdavd.bindings = [];
+        webdavd.bindings = [
+          {
+            port = 14443;
+            address = "116.202.236.241";
+            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
+            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+            enable_https = true;
+          }
+          {
+            port = 14443;
+            address = "[2a01:4f8:241:4faa::]    ";
+            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
+            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+            enable_https = true;
+          }
+        ];
         sftpd.bindings = [
           {
             address = "116.202.236.241";
@@ -458,6 +473,7 @@ in
               client_id = "sftpgo";
               client_secret = keySftpgo;
               username_field = "username";
+              redirect_base_url = "/";
             };
             branding = {
               name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
@@ -474,6 +490,7 @@ in
               config_url = "https://key.lesgrandsvoisins.com/realms/master/";
               client_id = "sftpgo";
               client_secret = keySftpgo;
+              redirect_base_url = "/";
               username_field = "username";
             };
             branding = {
