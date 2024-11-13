@@ -442,7 +442,17 @@
         {
           "scope": 5
         },
-      "cmd": ""
+      "args": [
+        "serve", 
+        "--ldap-url=ldaps://ldap.lesgrandsvoisins.com:14636",
+        "--skip-tls-verify 1",
+        "--ldap-base-dn=dc=lesgrandsvoisins,dc=com",
+        "--ldap-bind-dn=cn=newuser,ou=users,dc=lesgrandsvoisins,dc=com",
+        "--ldap-password=$SFTPGO_PLUGIN_AUTH_LDAP_PASSWORD",
+        "--ldap-search-query=(cn=%username%)",
+        "--users-base-dir /var/www/dav/data"
+      ],
+      "auto_mtls": true
     }
   ]
 }

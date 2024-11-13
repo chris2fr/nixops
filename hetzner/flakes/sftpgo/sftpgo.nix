@@ -1,13 +1,13 @@
-{ lib
-, buildGoModule
-, fetchFromGitHub
-, installShellFiles
-, nixosTests
+{ pkgs ? import <nixpkgs> { system = builtins.currentSystem; }
+, buildGoModule ? pkgs.buildGoModule
+, fetchFromGitHub ? pkgs.fetchFromGitHub
+, installShellFiles ? pkgs.installShellFiles
+, nixosTests ? pkgs.nixosTests
 }:
 
 buildGoModule rec {
   pname = "sftpgo";
-  version = "2.6.2-plugins";
+  version = "2.6.2";
 
   src = fetchFromGitHub {
     owner = "drakkan";
@@ -39,11 +39,6 @@ buildGoModule rec {
       --bash <($out/bin/sftpgo gen completion bash) \
       --zsh <($out/bin/sftpgo gen completion zsh) \
       --fish <($out/bin/sftpgo gen completion fish)
-
-    installShellCompletion --cmd sftpgo-plugin-auth \
-      --bash <($out/bin/sftpgo-plugin-auth gen completion bash) \
-      --zsh <($out/bin/sftpgo-plugin-auth gen completion zsh) \
-      --fish <($out/bin/sftpgo-plugin-auth gen completion fish)
 
     shareDirectory="$out/share/sftpgo"
     mkdir -p "$shareDirectory"

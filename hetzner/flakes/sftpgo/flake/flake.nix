@@ -1,0 +1,36 @@
+{
+  homepage = "https://github.com/sftpgo/sftpgo-plugin-auth";
+  changelog = "https://github.com/sftpgo/sftpgo-plugin-auth/releases/tag/v${version}";
+  description = "This plugin enables LDAP/Active Directory authentication for SFTPGo.";
+  longDescription = ''
+      The plugin can be configured within the plugins section of the SFTPGo configuration file or (recommended) using environment variables. To start the plugin you have to use the serve subcommand.
+    '';
+  mainProgram = "sftpgo-plugin-auth";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs";
+  };
+
+  outputs = {self, nixpkgs}: {
+    defaultPackage.x86_64-linux =
+      with import nixpkgs { system = "x86_64-linux"; };
+
+      stdenv.mkDerivation rec {
+        pname = "sftpgo-plugin-auth";
+        version = "1.0.9";
+
+        src = fetchurl {
+          url = "https://github.com/sftpgo/sftpgo-plugin-auth/releases/download/v1.0.9/sftpgo-plugin-auth-linux-amd64";
+          sha256 = "sha256-xLmFTH6PcNMF73zmhCHalIv6zF+OmwH9GAKEXOXfGdM=";
+        };
+
+        phases = [ "installPhase" ];  
+
+        installPhase = ''
+          install -D $src $out/bin/sftpgo-plugin-auth
+          chmod a+x $out/bin/sftpgo-plugin-auth 
+        '';
+      };
+    };
+  };  
+}
