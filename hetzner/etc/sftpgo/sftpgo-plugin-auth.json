@@ -1,18 +1,18 @@
-  {
-    "cache_size": 100,
-    "configs": [
       {
-          "dial_urls": [
-            "ldaps://ldap.lesgrandsvoisins.com:14636"
-          ],
-          "base_dn": "ou=users,dc=lesgrandsvoisins,dc=com",
-          "bind_dn": "cn=admin,dc=lesgrandsvoisins,dc=com",
-          "password": "change_me",
-          "start_tls": 0,
-          "search_query": "(cn=%username%)",
-          "sftpgo_user_requirements": 0,    
-          "base_dir": "/var/www/dav/data",
-          "cache_time": 0
+        "cache_size": 100,
+        "configs": [
+          {
+              "dial_urls": [
+                "ldaps://ldap.lesgrandsvoisins.com:14636"
+              ],
+              "base_dn": "ou=users,dc=lesgrandsvoisins,dc=com",
+              "bind_dn": "cn=admin,dc=lesgrandsvoisins,dc=com",
+              "password": "change_me",
+              "start_tls": 0,
+              "search_query": "(cn=%username%)",
+              "sftpgo_user_requirements": 0,    
+              "base_dir": "/var/www/dav/data",
+              "cache_time": 0
+          }
+        ]
       }
-    ]
-  }

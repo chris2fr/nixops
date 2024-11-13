@@ -438,7 +438,6 @@ in
       settings = {
         httpd.bindings = [{
           port = 10443;
-          address = "116.202.236.241";
           certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
           certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
           enable_https = true;

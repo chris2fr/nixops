@@ -453,7 +453,7 @@ in
           enableACME = true;
           forceSSL = true;
           locations."/" = {
-            proxyPass = "https://116.202.236.241:8088";
+            proxyPass = "https://sftpgo.lesgrandsvoisins.com:10443";
             extraConfig = ''
             client_max_body_size 500M;
             proxy_http_version 1.1;
@@ -463,9 +463,9 @@ in
             proxy_redirect off;
             proxy_set_header Host $host;
             proxy_set_header X-Forwarded-Host $server_name;
-            proxy_ssl_verify     off;
-            proxy_set_header   Upgrade $http_upgrade;
-            proxy_set_header   Connection "upgrade";
+            proxy_ssl_verify  off;
+            proxy_set_header  Upgrade $http_upgrade;
+            proxy_set_header  Connection "upgrade";
             proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/full.pem;
           '';
           };
