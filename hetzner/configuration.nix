@@ -447,18 +447,8 @@ in
           type = "auth";
           cmd = "/run/current-system/sw/bin/sftpgo-plugin-auth";
           args = ["serve"
-            "--ldap-base-dn"
-            "ou=users,dc=lesgrandsvoisins,dc=com"
-            "--ldap-bind-dn"
-            "cn=admin,dc=lesgrandsvoisins,dc=com"
-            "--ldap-password"
-            "${bindPW}"
-            "--ldap-url"
-            "ldaps://ldap.lesgrandsvoisins.com:14636"
-            "--starttls"
-            "0"
-            "--users-base-dir"
-            "/var/www/dav/data"
+            "--config-file"
+            "/etc/sftpgo-plugin-auth.json"
           ];
           auth_options.scope = 5;
           auto_mtls = true;
