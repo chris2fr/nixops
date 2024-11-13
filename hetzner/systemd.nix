@@ -14,7 +14,7 @@ in
         SFTPGO_PLUGIN_AUTH_LDAP_PASSWORD=newuserPW;
         SFTPGO_PLUGIN_AUTH_LDAP_URL="ldaps://ldap.lesgrandsvoisins.com:14636";
         SFTPGO_PLUGIN_AUTH_STARTTLS="0";
-        SFTPGO_PLUGIN_AUTH_LDAP_BASE_DN="dc=lesgrandsvoisins,dc=com";
+        SFTPGO_PLUGIN_AUTH_LDAP_BASE_DN="ou=users,dc=lesgrandsvoisins,dc=com";
         SFTPGO_PLUGIN_AUTH_LDAP_BIND_DN="cn=admin,dc=lesgrandsvoisins,dc=com";
         SFTPGO_PLUGIN_AUTH_USERS_BASE_DIR="/var/www/dav/data";
         SFTPGO_PLUGIN_AUTH_LDAP_SEARCH_QUERY="(cn=%username%)";
