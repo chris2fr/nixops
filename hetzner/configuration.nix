@@ -428,9 +428,13 @@ in
     };
     sftpgo = {
       enable = true;
-      user = "sftpgo";
+      user = "sftpgo";  
       group = "wwwrun";
       dataDir = "/var/www/dav/data";
+      extraArgs = [
+          "--log-level"
+          "info"
+        ];
       settings = {
         httpd.bindings = [{
           port = 10443;
@@ -447,7 +451,7 @@ in
             "ou=users,dc=lesgrandsvoisins,dc=com"
             "--ldap_bind_dn"
             "cn=admin,dc=lesgrandsvoisins,dc=com"
-            "--ldap_password"
+            "--ldap-password"
             "${bindPW}"
             "--ldap_url"
             "ldaps://ldap.lesgrandsvoisins.com:14636"
