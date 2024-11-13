@@ -455,11 +455,11 @@ in
         ];
         sftpd.bindings = [
           {
-            port = "2022";
+            port = 2022;
             address = "116.202.236.241";
           }
           {
-            port = "2022";
+            port = 2022;
             address = "[2a01:4f8:241:4faa::]";
           }
         ];
