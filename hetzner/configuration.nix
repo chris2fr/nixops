@@ -466,6 +466,10 @@ in
         httpd = {
           static_files_path = "/var/run/sftpgo/static";
           templates_path = "/var/run/sftpgo/templates";
+          branding = {
+            name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
+            short_name = "Drive des Grands Voisins";
+          };
           bindings = [
           {
             port = 10443;
@@ -482,15 +486,10 @@ in
             #   scopes = [
             #     "openid"
             #     "profile"
-            #     "email"                name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
-                short_name = "Drive des GV (SFTPGO)";
+            #     "email"        
             #   ];
             #   implicit_roles = true;
             # };
-            branding = {
-              name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
-              short_name = "Drive des GV (SFTPGO)";
-            };
           }
           {
             port = 10443;
@@ -511,12 +510,6 @@ in
             #   ];
             #   implicit_roles = true;
             # };
-            branding = {
-              web_client = {
-                name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
-                short_name = "Drive des GV (SFTPGO)"; 
-              };
-            };
           }
         ];
         };
