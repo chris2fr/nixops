@@ -467,8 +467,14 @@ in
           static_files_path = "/var/run/sftpgo/static";
           templates_path = "/var/run/sftpgo/templates";
           branding = {
-            name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
-            short_name = "Drive des Grands Voisins";
+            web_admin = {
+              name = "sftpgo.lesgrandsovisins.com : Accès Administrateur au Drive des Grands Voisins";
+              short_name = "ADMIN du Drive des Grands Voisins";
+            };
+            web_client = {
+              name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
+              short_name = "Drive des Grands Voisins";
+            };
           };
           bindings = [
           {
