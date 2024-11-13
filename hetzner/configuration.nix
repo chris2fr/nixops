@@ -450,6 +450,11 @@ in
               client_secret = keySftpgo;
               username = "username";
             };
+            branding = {
+              name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
+              short_name = "Drive des GV (SFTPGO)";
+              
+            };
           }
           {
             port = 10443;
