@@ -9,6 +9,9 @@ in
       wantedBy = ["default.target"];
       script = "${pkgs.sftpgo}/bin/sftpgo serve --config-file sftpgo.json";
       description = "SFTPGo for drive features of Les Grands Voisins";
+      environment = {
+        SFTPGO_PLUGIN_AUTH_CONFIG_FILE="/home/sftpgo/sftpgo/nix/sftpgo-plugin-auth.json";
+      };
       serviceConfig = {
         WorkingDirectory = "/home/sftpgo/sftpgo/nix/";
         User = "sftpgo";
