@@ -438,6 +438,14 @@ in
         ];
       settings = {
         webdavd.bindings = [];
+        sftpd.bindings = [
+          {
+            address = "116.202.236.241";
+          }
+          {
+            address = "[2a01:4f8:241:4faa::]";
+          }
+        ];
         httpd.bindings = [
           {
             port = 10443;
@@ -449,12 +457,11 @@ in
               config_url = "https://key.lesgrandsvoisins.com/realms/master/";
               client_id = "sftpgo";
               client_secret = keySftpgo;
-              username = "username";
+              username_field = "username";
             };
             branding = {
               name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
               short_name = "Drive des GV (SFTPGO)";
-
             };
           }
           {
@@ -467,7 +474,11 @@ in
               config_url = "https://key.lesgrandsvoisins.com/realms/master/";
               client_id = "sftpgo";
               client_secret = keySftpgo;
-              username = "username";
+              username_field = "username";
+            };
+            branding = {
+              name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
+              short_name = "Drive des GV (SFTPGO)";
             };
           }
         ];
