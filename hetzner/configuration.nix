@@ -448,7 +448,7 @@ in
             "--ldap_bind_dn"
             "cn=admin,dc=lesgrandsvoisins,dc=com"
             "--ldap_password"
-            "${bindpw}"
+            "${bindPW}"
             "--ldap_url"
             "ldaps://ldap.lesgrandsvoisins.com:14636"
             "--starttls"
