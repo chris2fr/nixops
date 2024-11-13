@@ -457,6 +457,9 @@ in
           locations."/".proxyPass = "http://127.0.0.1:8088";
           extraConfig = ''
             client_max_body_size 500M;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_redirect off;
           '';
         };
         "minio.lesgrandsvoisins.com" = {

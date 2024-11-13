@@ -1,22 +1,21 @@
 { config, pkgs, lib, ... }:
 let 
   mannchriRsaPublic = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuBWybYSoR6wyd1EG5YnHPaMKE3RQufrK7ycej7avw3Ug8w8Ppx2BgRGNR6EamJUPnHEHfN7ZZCKbrAnuP3ar8mKD7wqB2MxVqhSWvElkwwurlijgKiegYcdDXP0JjypzC7M73Cus3sZT+LgiUp97d6p3fYYOIG7cx19TEKfNzr1zHPeTYPAt5a1Kkb663gCWEfSNuRjD2OKwueeNebbNN/OzFSZMzjT7wBbxLb33QnpW05nXlLhwpfmZ/CVDNCsjVD1+NXWWmQtpRCzETL6uOgirhbXYW8UyihsnvNX8acMSYTT9AA3jpJRrUEMum2VizCkKh7bz87x7gsdA4wF0/w== rsa-key-20220407";
-  newuserPW = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.newuser));
+  newuserPW = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
 in
 {
   systemd.services = {
     sftpgo = {
       enable = true;
       wantedBy = ["default.target"];
-      script = "${pkgs.sftpgo}/bin/sftpgo serve --config-file sftpgo.json";
+      script = "${pkgs.sftpgo}/bin/sftpgo serve";
       description = "SFTPGo for drive features of Les Grands Voisins";
       environment = {
-        NOT_SFTPGO_PLUGIN_AUTH_CONFIG_FILE="/home/sftpgo/sftpgo/nix/sftpgo-plugin-auth.json";
-        SFTPGO_PLUGIN_AUTH_LDAP_PASSWORD = newuserPW;
+        SFTPGO_PLUGIN_AUTH_LDAP_PASSWORD=newuserPW;
         SFTPGO_PLUGIN_AUTH_LDAP_URL="ldaps://ldap.lesgrandsvoisins.com:14636";
         SFTPGO_PLUGIN_AUTH_STARTTLS="0";
         SFTPGO_PLUGIN_AUTH_LDAP_BASE_DN="dc=lesgrandsvoisins,dc=com";
-        SFTPGO_PLUGIN_AUTH_LDAP_BIND_DN="cn=newuser,ou=users,dc=lesgrandsvoisins,dc=com";
+        SFTPGO_PLUGIN_AUTH_LDAP_BIND_DN="cn=admin,dc=lesgrandsvoisins,dc=com";
         SFTPGO_PLUGIN_AUTH_USERS_BASE_DIR="/var/www/dav/data";
         SFTPGO_PLUGIN_AUTH_LDAP_SEARCH_QUERY="(cn=%username%)";
         SFTPGO_PLUGINS__0__AUTO_MTLS="1";
@@ -24,11 +23,13 @@ in
         SFTPGO_PLUGINS__0__AUTH_OPTIONS__SCOPE="5";
         SFTPGO_PLUGINS__0__CMD="/run/current-system/sw/bin/sftpgo-plugin-auth";
         SFTPGO_PLUGINS__0__ARGS="serve";
+        SFTPGO_HTTPD__BINDINGS__0__PORT="8088";
+        NOT_SFTPGO_HTTPD__BINDINGS__0__SECURITY__HTTPS_REDIRECT="true";
       };
       serviceConfig = {
         WorkingDirectory = "/home/sftpgo/sftpgo/nix/";
         User = "sftpgo";
-        Group = "users";
+        Group = "wwwrun";
       };
     };
     "filebrowser@" = {
