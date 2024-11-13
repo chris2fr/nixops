@@ -448,6 +448,7 @@ in
               config_url = "https://key.lesgrandsvoisins.com/realms/master/";
               client_id = "sftpgo";
               client_secret = keySftpgo;
+              username = "username";
             };
           }
           {
