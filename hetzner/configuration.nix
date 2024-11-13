@@ -437,6 +437,7 @@ in
           "info"
         ];
       settings = {
+        webdavd.bindings = [];
         httpd.bindings = [
           {
             port = 10443;
@@ -453,7 +454,7 @@ in
             branding = {
               name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
               short_name = "Drive des GV (SFTPGO)";
-              
+
             };
           }
           {
