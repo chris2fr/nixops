@@ -1,9 +1,12 @@
-{ lib, stdenv, fetchurl }:
+{ 
+  pkgs ? import <nixpkgs> { }
+}:
 :
 stdenv.mkDerivation (finalAttrs: {
   pname = "sftpgo-plugin-auth";
+  name = "sftpgo-plugin-auth";
   version = "1.0.9";
-  src = pkgs.fetchgit {
+  src = pkgs.fetchurl {
     url = "https://github.com/sftpgo/sftpgo-plugin-auth/releases/download/v1.0.9/sftpgo-plugin-auth-linux-amd64";
     sha256 = "sha256-xLmFTH6PcNMF73zmhCHalIv6zF+OmwH9GAKEXOXfGdM=";
   };
@@ -16,7 +19,7 @@ stdenv.mkDerivation (finalAttrs: {
     install -D $src $out/bin/sftpgo-plugin-auth
     chmod a+x $out/bin/sftpgo-plugin-auth 
   '';
-  meta = with lib; {
+  meta = with pkgs.lib; {
     homepage = "https://github.com/sftpgo/sftpgo-plugin-auth";
     changelog = "https://github.com/sftpgo/sftpgo-plugin-auth/releases/tag/v${version}";
     description = "This plugin enables LDAP/Active Directory authentication for SFTPGo.";
@@ -25,4 +28,4 @@ stdenv.mkDerivation (finalAttrs: {
       '';
     mainProgram = "sftpgo-plugin-auth";
   };
-})
+})  
