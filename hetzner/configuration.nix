@@ -473,7 +473,7 @@ in
               client_id = "sftpgo";
               client_secret = keySftpgo;
               username_field = "username";
-              redirect_base_url = "https://sftpgo.lesgrandsvoisins.com";
+              redirect_base_url = "https://sftpgo.lesgrandsvoisins.com:10443";
               scopes = [
                 "openid"
                 "profile"
@@ -496,7 +496,7 @@ in
               config_url = "https://key.lesgrandsvoisins.com/realms/master";
               client_id = "sftpgo";
               client_secret = keySftpgo;
-              redirect_base_url = "https://sftpgo.lesgrandsvoisins.com";
+              redirect_base_url = "https://sftpgo.lesgrandsvoisins.com:10443";
               username_field = "username";
               scopes = [
                 "openid"

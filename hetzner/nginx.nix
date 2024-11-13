@@ -453,6 +453,7 @@ in
           enableACME = true;
           forceSSL = true;
           locations."/" = {
+            return 302 https://sftpgo.lesgrandsvoisins.com:10443$request_uri;
             proxyPass = "https://sftpgo.lesgrandsvoisins.com:10443";
             extraConfig = ''
             client_max_body_size 500M;
@@ -466,7 +467,7 @@ in
             proxy_ssl_verify  off;
             proxy_set_header  Upgrade $http_upgrade;
             proxy_set_header  Connection "upgrade";
-            proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/full.pem;
+            proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/fullchain.pem;
           '';
           };
         };
