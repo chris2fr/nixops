@@ -442,17 +442,22 @@ in
         plugins = [{
           type = "auth";
           cmd = "/run/current-system/sw/bin/sftpgo-plugin-auth";
-          args = ["serve"];
+          args = ["serve"
+            "--ldap_base_dn"
+            "ou=users,dc=lesgrandsvoisins,dc=com"
+            "--ldap_bind_dn"
+            "cn=admin,dc=lesgrandsvoisins,dc=com"
+            "--ldap_password"
+            "${bindpw}"
+            "--ldap_url"
+            "ldaps://ldap.lesgrandsvoisins.com:14636"
+            "--starttls"
+            "0"
+            "--users_base_dir"
+            "/var/www/dav/data"
+          ];
           auth_options.scope = 5;
           auto_mtls = true;
-          env_vars = [
-            "SFTPGO_PLUGIN_AUTH_LDAP_BASE_DN=ou=users,dc=lesgrandsvoisins,dc=com"
-            "SFTPGO_PLUGIN_AUTH_LDAP_BIND_DN=cn=admin,dc=lesgrandsvoisins,dc=com"
-            "SFTPGO_PLUGIN_AUTH_LDAP_PASSWORD=${bindPW}"
-            "SFTPGO_PLUGIN_AUTH_LDAP_URL=ldaps://ldap.lesgrandsvoisins.com:14636"
-            "SFTPGO_PLUGIN_AUTH_STARTTLS=0"
-            "SFTPGO_PLUGIN_AUTH_USERS_BASE_DIR=/var/www/dav/data"
-          ];
         }];
       };  
     };
