@@ -506,8 +506,10 @@ in
             #   implicit_roles = true;
             # };
             branding = {
-              name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
-              short_name = "Drive des GV (SFTPGO)";
+              web_client = {
+                name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
+                short_name = "Drive des GV (SFTPGO)"; 
+              };
             };
           }
         ];
