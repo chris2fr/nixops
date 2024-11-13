@@ -475,8 +475,8 @@ in
               username_field = "username";
               redirect_base_url = "https://sftpgo.lesgrandsvoisins.com";
               scopes = [
-                "openid",
-                "profile",
+                "openid"
+                "profile"
                 "email"
               ];
               implicit_roles = true;
@@ -499,8 +499,8 @@ in
               redirect_base_url = "https://sftpgo.lesgrandsvoisins.com";
               username_field = "username";
               scopes = [
-                "openid",
-                "profile",
+                "openid"
+                "profile"
                 "email"
               ];
               implicit_roles = true;
