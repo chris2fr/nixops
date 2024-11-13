@@ -430,7 +430,7 @@ in
       enable = true;
       user = "sftpgo";
       group = "wwwrun";
-      datadir = "/var/www/dav/data";
+      dataDir = "/var/www/dav/data";
       settings = {
         httpd.bindings = [{
           port = 10443;
