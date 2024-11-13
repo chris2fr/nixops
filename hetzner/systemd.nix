@@ -10,8 +10,8 @@ in
       script = "${pkgs.sftpgo}/bin/sftpgo serve --config-file sftpgo.json";
       description = "SFTPGo for drive features of Les Grands Voisins";
       serviceConfig = {
-        WorkingDirectory = "/home/mannchri/sftpgo/nix/";
-        User = "mannchri";
+        WorkingDirectory = "/home/sftpgo/sftpgo/nix/";
+        User = "sftpgo";
         Group = "users";
       };
     };

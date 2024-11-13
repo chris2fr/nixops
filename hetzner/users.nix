@@ -9,7 +9,11 @@ in
     };
     filebrowser = {
       isNormalUser = true;
-      extraGroups = ["wwwrun"];
+      group = "wwwrun";
+    };
+    sftpgo = {
+      isNormalUser = true;
+      group = "wwwrun";
     };
     haproxy = {
       extraGroups = ["wwwrun" "acme"];
@@ -17,7 +21,7 @@ in
     mannchri = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-      extraGroups = [ "wheel" "syncthing" "libvirtd" ];
+            "syncthing" "libvirtd" "wwwrun" "acme"];
     };
     crabfit = {
       isNormalUser = true;
