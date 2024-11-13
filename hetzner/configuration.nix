@@ -55,8 +55,8 @@ in
     openssl
     postgresql_13
     qemu
-    sftpgo
-    (pkgs.callPackage ./etc/sftpgo/sftpgoPluginAuth.nix { }  )
+    (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )
+    (pkgs.callPackage ./etc/sftpgo/sftpgo-plugin-auth/sftpgoPluginAuth.nix { }  )
   ];
   boot.loader = {
     systemd-boot.enable = true;

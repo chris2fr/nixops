@@ -26,7 +26,7 @@ in
         SFTPGO_HTTPD__BINDINGS__0__PORT="8088";
         SFTPGO_HTTPD__BINDINGS__0__ADDRESS="116.202.236.241";
         SFTPGO_HTTPD__BINDINGS__0__ENABLE_HTTPS="true";
-        SFTPGO_HTTPD__BINDINGS__0__CERTIFICATE_FILE="/var/lib/acme/sftpgo.lesgrandsvoisins.com/fullchain.pem";
+        SFTPGO_HTTPD__BINDINGS__0__CERTIFICATE_FILE="/var/lib/acme/sftpgo.lesgrandsvoisins.com  /fullchain.pem";
         SFTPGO_HTTPD__BINDINGS__0__CERTIFICATE_KEY_FILE="/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
         SFTPGO_COMMON__PROXY_PROTOCOL="2";
       };
