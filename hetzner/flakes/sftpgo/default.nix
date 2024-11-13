@@ -40,6 +40,11 @@ buildGoModule rec {
       --zsh <($out/bin/sftpgo gen completion zsh) \
       --fish <($out/bin/sftpgo gen completion fish)
 
+    installShellCompletion --cmd sftpgo-plugin-auth \
+      --bash <($out/bin/sftpgo-plugin-auth gen completion bash) \
+      --zsh <($out/bin/sftpgo-plugin-auth gen completion zsh) \
+      --fish <($out/bin/sftpgo-plugin-auth gen completion fish)
+
     shareDirectory="$out/share/sftpgo"
     mkdir -p "$shareDirectory"
     cp -r ./{openapi,static,templates} "$shareDirectory"
