@@ -12,7 +12,7 @@ in
       group = "wwwrun";
     };
     sftpgo = {
-      isNormalUser = true;
+      isSystemUser = true;
       extraGroups = ["wwwrun" "acme"];
       # group = lib.mkDefault  "wwwrun";
     };
