@@ -474,6 +474,12 @@ in
               client_secret = keySftpgo;
               username_field = "username";
               redirect_base_url = "https://sftpgo.lesgrandsvoisins.com";
+              scopes = [
+                "openid",
+                "profile",
+                "email"
+              ];
+              implicit_roles = true;
             };
             branding = {
               name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
@@ -492,6 +498,12 @@ in
               client_secret = keySftpgo;
               redirect_base_url = "https://sftpgo.lesgrandsvoisins.com";
               username_field = "username";
+              scopes = [
+                "openid",
+                "profile",
+                "email"
+              ];
+              implicit_roles = true;
             };
             branding = {
               name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
