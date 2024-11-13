@@ -10,6 +10,7 @@ let
   emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
   emailList  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.list));
   bindPW  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
+  keySftpgo = (lib.removeSuffix "\n" (builtins.readFile  /etc/nixos/.secrets.key.sftpgo ));
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in
 {
@@ -438,25 +439,28 @@ in
       settings = {
         httpd.bindings = [
           {
-          port = 10443;
-          address = "116.202.236.241";
-          certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-          certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
-          enable_https = true;
+            port = 10443;
+            address = "116.202.236.241";
+            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
+            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+            enable_https = true;
+            oidc = {
+              config_url = "https://key.lesgrandsvoisins.com/realms/master/";
+              client_id = "sftpgo";
+              client_secret = keySftpgo;
+            };
           }
           {
-          port = 10443;
-          address = "[2a01:4f8:241:4faa::]";
-          certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-          certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
-          enable_https = true;
-          }
-          {
-          port = 10443;
-          address = "";
-          certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-          certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
-          enable_https = true;
+            port = 10443;
+            address = "[2a01:4f8:241:4faa::]";
+            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
+            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+            enable_https = true;
+            oidc = {
+              config_url = "https://key.lesgrandsvoisins.com/realms/master/";
+              client_id = "sftpgo";
+              client_secret = keySftpgo;
+            };
           }
         ];
         plugins = [{
