@@ -455,13 +455,18 @@ in
         ];
         sftpd.bindings = [
           {
+            port = "2022";
             address = "116.202.236.241";
           }
           {
+            port = "2022";
             address = "[2a01:4f8:241:4faa::]";
           }
         ];
-        httpd.bindings = [
+        httpd = {
+          static_files_path = "/var/run/sftpgo/static";
+          templates_path = "/var/run/sftpgo/templates";
+          bindings = [
           {
             port = 10443;
             address = "116.202.236.241";
@@ -477,7 +482,8 @@ in
             #   scopes = [
             #     "openid"
             #     "profile"
-            #     "email"
+            #     "email"                name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
+                short_name = "Drive des GV (SFTPGO)";
             #   ];
             #   implicit_roles = true;
             # };
@@ -513,6 +519,7 @@ in
             };
           }
         ];
+        };
         plugins = [{
           type = "auth";
           cmd = "/run/current-system/sw/bin/sftpgo-plugin-auth";
