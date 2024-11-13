@@ -448,7 +448,7 @@ in
           cmd = "/run/current-system/sw/bin/sftpgo-plugin-auth";
           args = ["serve"
             "--config-file"
-            "/var/run/sftpgo    /sftpgo-plugin-auth.json"
+            "/var/run/sftpgo/sftpgo-plugin-auth.json"
           ];
           auth_options.scope = 5;
           auto_mtls = true;
