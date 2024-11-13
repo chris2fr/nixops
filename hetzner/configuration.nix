@@ -466,16 +466,6 @@ in
         httpd = {
           static_files_path = "/var/run/sftpgo/static";
           templates_path = "/var/run/sftpgo/templates";
-          branding = {
-            web_admin = {
-              name = "sftpgo.lesgrandsovisins.com : Accès Administrateur au Drive des Grands Voisins";
-              short_name = "ADMIN du Drive des Grands Voisins";
-            };
-            web_client = {
-              name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
-              short_name = "Drive des Grands Voisins";
-            };
-          };
           bindings = [
           {
             port = 10443;
@@ -496,6 +486,16 @@ in
             #   ];
             #   implicit_roles = true;
             # };
+            branding = {
+              web_admin = {
+                name = "sftpgo.lesgrandsovisins.com : Accès Administrateur au Drive des Grands Voisins";
+                short_name = "ADMIN du Drive des Grands Voisins";
+              };
+              web_client = {
+                name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
+                short_name = "Drive des Grands Voisins";
+              };
+            };
           }
           {
             port = 10443;
@@ -516,6 +516,16 @@ in
             #   ];
             #   implicit_roles = true;
             # };
+            branding = {
+              web_admin = {
+                name = "sftpgo.lesgrandsovisins.com : Accès Administrateur au Drive des Grands Voisins";
+                short_name = "ADMIN du Drive des Grands Voisins";
+              };
+              web_client = {
+                name = "sftpgo.lesgrandsovisins.com : Accès au Drive des Grands Voisins";
+                short_name = "Drive des Grands Voisins";
+              };
+            };
           }
         ];
         };
