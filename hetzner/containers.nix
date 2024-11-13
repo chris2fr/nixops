@@ -967,7 +967,7 @@ in
               proxy_set_header X-Forwarded-Proto $scheme;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_ssl_trusted_certificate /var/lib/acme/discourse.village.ngo/full.pem;
-              proxy_ssl_verify     off;
+              proxy_ssl_verify off;
             '';
           };
         };

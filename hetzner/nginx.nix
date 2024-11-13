@@ -141,7 +141,6 @@ in
             proxy_set_header   Host $host;
             proxy_pass         http://localhost:3003/;
             proxy_read_timeout 600s;
-            proxy_send_timeout 600s;
             # proxy_http_version 1.1;
             # proxy_set_header   Upgrade $http_upgrade;
             # proxy_set_header   Connection "upgrade";
@@ -170,7 +169,6 @@ in
             proxy_set_header   Host $host;
             proxy_pass         http://localhost:18080/;
             proxy_read_timeout 600s;
-            proxy_send_timeout 600s;
             # proxy_http_version 1.1;
             # proxy_set_header   Upgrade $http_upgrade;
             # proxy_set_header   Connection "upgrade";
@@ -454,8 +452,9 @@ in
           serverAliases = ["drive.lesgrandsvoisins.com"];
           enableACME = true;
           forceSSL = true;
-          locations."/".proxyPass = "http://127.0.0.1:8088";
-          extraConfig = ''
+          locations."/" = {
+            proxyPass = "https://116.202.236.241:8088";
+            extraConfig = ''
             client_max_body_size 500M;
             proxy_http_version 1.1;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -463,7 +462,13 @@ in
             proxy_set_header X-Real-IP $remote_addr;
             proxy_redirect off;
             proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-Host $server_name;
+            proxy_ssl_verify     off;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+            proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/full.pem;
           '';
+          };
         };
         "minio.lesgrandsvoisins.com" = {
           enableACME = true;
