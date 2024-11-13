@@ -13,7 +13,8 @@ in
     };
     sftpgo = {
       isNormalUser = true;
-      group = "wwwrun";
+      extraGroups = ["wwwrun" "acme"];
+      # group = lib.mkDefault  "wwwrun";
     };
     haproxy = {
       extraGroups = ["wwwrun" "acme"];
