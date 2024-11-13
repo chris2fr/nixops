@@ -56,7 +56,7 @@ in
     postgresql_13
     qemu
     sftpgo
-    (pkgs.callPackage ./etc/sftpgo/sftpgoPluginAuth.nix )
+    (pkgs.callPackage ./etc/sftpgo/sftpgoPluginAuth.nix { }  )
   ];
   boot.loader = {
     systemd-boot.enable = true;
