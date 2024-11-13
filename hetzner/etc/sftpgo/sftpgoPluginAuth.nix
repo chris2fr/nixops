@@ -1,8 +1,8 @@
 { 
   pkgs ? import <nixpkgs> { }
 }:
-:
-stdenv.mkDerivation (finalAttrs: {
+
+pkgs.stdenv.mkDerivation (finalAttrs: {
   pname = "sftpgo-plugin-auth";
   name = "sftpgo-plugin-auth";
   version = "1.0.9";
