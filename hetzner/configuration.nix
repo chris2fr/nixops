@@ -9,6 +9,7 @@ let
   keyGVcoopVikunja = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
   emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
   emailList  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.list));
+  bindPW  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in
 {
@@ -55,7 +56,7 @@ in
     openssl
     postgresql_13
     qemu
-    (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )
+    # (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )
     (pkgs.callPackage ./etc/sftpgo/sftpgo-plugin-auth/sftpgoPluginAuth.nix { }  )
   ];
   boot.loader = {
@@ -262,6 +263,12 @@ in
     defaults.webroot = "/var/www";
   };
   services = { 
+    # seafile = {
+    #   enable = true;
+    #   adminEmail = "chris@lesgrandsvoisins.com";
+    #   initialAdminPassword = emailList;
+    #   seahubAddress = "https://drive.lesgrandsvoisins.com:10443";
+    # };
     etebase-server = {
       enable = true;
       unixSocket = "/var/lib/etebase-server/etebase-server.sock"; 
@@ -349,12 +356,7 @@ in
           collection = "";
           permissions = "R";
         };
-        principal = {
-          user = ".+";
-          collection = "{user}";
-          permissions = "RW";
-        };
-        calendars = {
+        principal = {emailList
           user = ".+";
           collection = "{user}/[^/]+";
           permissions = "rw";
@@ -424,18 +426,36 @@ in
         };
       };
     };
-    # sftpgo = {
-    #   enable = true;
-    #   settings = {
-    #     httpd.bindings = [{
-    #       port = 8088;
-    #     }];
-    #     plugins = [{
-    #       type = "auth";
-    #       cmd = "/var/lib/sftpgo/sftpgo-plugin-auth/sftpgo server";    
-    #     }];
-    #   };
-    # };
+    sftpgo = {
+      enable = true;
+      user = "sftpgo";
+      group = "wwwrun";
+      datadir = "/var/www/dav/data";
+      settings = {
+        httpd.bindings = [{
+          port = 10443;
+          address = "116.202.236.241";
+          certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
+          certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+          enable_https = true;
+        }];
+        plugins = [{
+          type = "auth";
+          cmd = "/run/current-system/sw/bin/sftpgo-plugin-auth";
+          args = ["serve"];
+          auth_options.scope = 5;
+          auto_mtls = true;
+          env_vars = [
+            "SFTPGO_PLUGIN_AUTH_LDAP_BASE_DN=ou=users,dc=lesgrandsvoisins,dc=com"
+            "SFTPGO_PLUGIN_AUTH_LDAP_BIND_DN=cn=admin,dc=lesgrandsvoisins,dc=com"
+            "SFTPGO_PLUGIN_AUTH_LDAP_PASSWORD=${bindPW}"
+            "SFTPGO_PLUGIN_AUTH_LDAP_URL=ldaps://ldap.lesgrandsvoisins.com:14636"
+            "SFTPGO_PLUGIN_AUTH_STARTTLS=0"
+            "SFTPGO_PLUGIN_AUTH_USERS_BASE_DIR=/var/www/dav/data"
+          ];
+        }];
+      };  
+    };
     minio = {
       enable = true;
     };
