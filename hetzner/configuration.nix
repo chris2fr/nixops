@@ -469,7 +469,7 @@ in
             certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
             enable_https = true;
             oidc = {
-              config_url = "https://key.lesgrandsvoisins.com/realms/master/";
+              config_url = "https://key.lesgrandsvoisins.com/realms/master";
               client_id = "sftpgo";
               client_secret = keySftpgo;
               username_field = "username";
@@ -493,7 +493,7 @@ in
             certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
             enable_https = true;
             oidc = {
-              config_url = "https://key.lesgrandsvoisins.com/realms/master/";
+              config_url = "https://key.lesgrandsvoisins.com/realms/master";
               client_id = "sftpgo";
               client_secret = keySftpgo;
               redirect_base_url = "https://sftpgo.lesgrandsvoisins.com";
