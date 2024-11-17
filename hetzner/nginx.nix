@@ -106,6 +106,7 @@ in
         "key.lesgrandsvoisins.com" = {
           enableACME = true;
           forceSSL = true;
+          serverAliases = ["adminkey.lesgrandsvoisins.com"];
           root = "/var/www/key.lesgrandsvoisins.com";
           # globalRedirect = "key.lesgrandsvoisins.com:14443";
           locations."/" = {
