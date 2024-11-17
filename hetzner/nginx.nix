@@ -112,6 +112,7 @@ in
           locations."/" = {
             proxyPass = "https://192.168.105.11:14443";
             extraConfig = ''
+            rewrite ^/$ https://key.lesgrandsvoisins.com/realms/master/account/applications redirect;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
