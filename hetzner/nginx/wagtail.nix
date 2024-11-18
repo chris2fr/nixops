@@ -92,15 +92,15 @@ in
         "gvcoop.lesgrandsvoisins.com"
         "old.lesgrandsvoisins.com"
       ];
-      enableACME = true;
-      forceSSL = true;
-      root =  "/var/www/lesgrandsvoisins/";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8894/";
-        extraConfig = nginxLocationWagtailExtraConfig + ''
-          rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;  
-        '';
-      };
+        enableACME = true;
+        forceSSL = true;
+        root =  "/var/www/lesgrandsvoisins/";
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8894/";
+          extraConfig = nginxLocationWagtailExtraConfig + ''
+            rewrite ^/cms-admin/login/?$ https://www.lesgrandsvoisins.com/accounts/oidc/key-lesgrandsvoisins-com/login/?process=cms-admin/login/ redirect;  
+          '';
+        };
       locations."/favicon.ico" = { proxyPass = null; };
       locations."/static" = { proxyPass = null; };
       locations."/medias" = { proxyPass = null; };
