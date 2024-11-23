@@ -282,6 +282,12 @@ in
           file = /var/zone_lesgrandsvoisins_com.txt;
           master = true;
           allowQuery = ["any"];
+          slaves = [
+            "96.126.114.97"
+            "96.126.114.98"
+            "2600:3c00::5e"
+            "2600:3c00::5f"
+          ];
         };
       };
     };
