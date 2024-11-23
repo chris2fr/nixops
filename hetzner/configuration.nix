@@ -321,16 +321,16 @@ in
             # ns2.afraid.org
             "69.65.50.192"
             "2001:1850:1:5:800::6b"
-            # ns1.he.net
+            # ns1.he.net / ns{1,2,3,4,5}.he.net
             "216.218.133.2"
             "2001:470:600::2"
           ];
         };
-        "241.236.202.in-addr.arpa"= {
-          master = true;
-          allowQuery = ["any"];
-          file = /var/zone_reverse_lesgrandsvoisins_com.txt;
-        };
+        # "241.236.202.in-addr.arpa"= {
+        #   master = true;
+        #   allowQuery = ["any"];
+        #   file = /var/zone_reverse_lesgrandsvoisins_com.txt;
+        # };
       };
     };
     # seafile = {
