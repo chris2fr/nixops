@@ -299,13 +299,14 @@ in
       enable = true;
       listenOn = [
         "116.202.236.241"
+      ];
+      listenOnIpv6 = [
         "2a01:4f8:241:4faa::"
         "2a01:4f8:241:4faa::8"
       ];
       cacheNetworks = [
         "116.202.236.241"
-        "2a01:4f8:241:4faa::"
-        "2a01:4f8:241:4faa::8"
+        "2a01:4f8:241:4faa::/96"
       ];
       zones = {
         "lesgrandsvoisins.com" = {
