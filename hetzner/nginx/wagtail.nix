@@ -91,6 +91,7 @@ in
         "fr.lesgrandsvoisins.com"
         "gvcoop.lesgrandsvoisins.com"
         "old.lesgrandsvoisins.com"
+        "excellenxport.hopgv.com"
       ];
         enableACME = true;
         forceSSL = true;
