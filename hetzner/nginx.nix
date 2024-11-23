@@ -76,6 +76,12 @@ in
         "8.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
         };
+        "9.lesgrandsvoisins.com" = {
+          root =  "/var/www/html/";
+        };
+        "10.lesgrandsvoisins.com" = {
+          root =  "/var/www/html/";
+        };
         "www.villagegv.com" = {
           forceSSL = true;
           enableACME = true;

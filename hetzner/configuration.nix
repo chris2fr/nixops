@@ -84,6 +84,14 @@ in
         address = "2a01:4f8:241:4faa::8";
         prefixLength = 96;
       }
+      {
+        address = "2a01:4f8:241:4faa::9";
+        prefixLength = 96;
+      }
+      {
+        address = "2a01:4f8:241:4faa::10";
+        prefixLength = 96;
+      }
     ];
     defaultGateway6 = {
       address = "fe80::1";
@@ -271,9 +279,9 @@ in
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www/html";
-    certs."8.lesgrandsvoisins.com" = {
-      # listenHTTP = ":10080";
-    };  
+    certs."8.lesgrandsvoisins.com" = {};  
+    certs."9.lesgrandsvoisins.com" = {};  
+    certs."10.lesgrandsvoisins.com" = {};  
   };
   services = { 
     bind = {
