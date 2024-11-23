@@ -633,7 +633,9 @@ in
       };
       widgets = [
         {
-          logo.icon = "https://www.lesgrandsvoisins.com/medias/images/lesgrandsvoisinscom-transparent.max-1000x100.svg";
+          logo = { 
+            icon = "https://www.lesgrandsvoisins.com/medias/images/lesgrandsvoisinscom-transparent.max-1000x100.svg";
+          };
         }
         {
           greeting = {
