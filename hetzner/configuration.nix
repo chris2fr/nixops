@@ -266,6 +266,9 @@ in
   services = { 
     bind = {
       enable = true;
+      listenOn = [
+        "eno1"
+      ];
       zones = {
         "lesgrandsvoisins.com" = {
           file = "/var/zone_lesgrandsvoisins_com.txt";
