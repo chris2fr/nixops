@@ -270,7 +270,7 @@ in
         "lesgrandsvoisins.com" = {
           file = "/var/zone_lesgrandsvoisins_com.txt";
           extraConfig = ''
-            8.lesgrandsvoisins.com 300 IN AAAA 2a01:4f8:241:4faa::8
+            8.lesgrandsvoisins.com. 300 IN AAAA 2a01:4f8:241:4faa::8
           '';
           master = true;
         };
