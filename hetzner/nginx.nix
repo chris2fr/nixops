@@ -75,6 +75,19 @@ in
       virtualHosts = {
         "8.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
+          locations."/" = {
+            proxy_pass = "https://[2a01:4f8:241:4faa::8]";
+            extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+            add_header Access-Control-Allow-Credentials true;
+            '';
+          };
+          
         };
         "9.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
