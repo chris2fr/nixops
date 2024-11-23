@@ -90,7 +90,7 @@ in
             proxy_set_header X-Forwarded-Proto $scheme;
             add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
             add_header Access-Control-Allow-Credentials true;
-            proxy_ssl_certificate     /var/lib/acme/8.lesgrandsvoisins.com/fullchain.pem;
+            proxy_ssl_verify  off;
             '';
           };
           
