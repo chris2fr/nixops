@@ -470,6 +470,7 @@ in
             proxy_set_header  Upgrade $http_upgrade;
             proxy_set_header  Connection "upgrade";
             proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/fullchain.pem;
+            proxy_protocol on;
           '';
           };
         };
