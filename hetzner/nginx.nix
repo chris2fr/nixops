@@ -470,8 +470,8 @@ in
             # proxy_set_header Connection $connection_upgrade;
             proxy_pass https://sftpgo.lesgrandsvoisins.com:10443; 
             client_max_body_size 500M;
-            proxy_redirect https://sftpgo.lesgrandsvoisins.com:10443 https://sftpgo.lesgrandsvoisins.com;
-            proxy_ssl_verify  off;
+            # proxy_redirect https://sftpgo.lesgrandsvoisins.com:10443 https://sftpgo.lesgrandsvoisins.com;
+            # proxy_ssl_verify  off;
             proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/fullchain.pem;
           '';
           };
