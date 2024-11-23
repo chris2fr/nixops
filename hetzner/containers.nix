@@ -118,6 +118,9 @@ in
           };
         };
       };
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "sftpgo"
+      ];
       networking = {
         hostName = "sftpgo"; 
         firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 ];
