@@ -664,7 +664,7 @@ in
               };
             }
           ]
-        };
+        }
         {
           "Ressasie de login GV" = [
             {
@@ -682,7 +682,7 @@ in
               };
             }
           ]
-        };
+        }
         {
           "Services à accès ouverts stables" = [
             {
@@ -700,7 +700,7 @@ in
               };
             }
           ]
-        };
+        }
         {
           "Sites webs publics" = [
             {
@@ -725,7 +725,7 @@ in
               };
             }
           ]
-        };
+        }
         {
           "Services GV unifiés en bêta" = [
             {
@@ -736,7 +736,7 @@ in
               };
             }
           ]
-        };
+        }
         {
           "Services à accès ouverts en bêta" = [
             {
@@ -761,7 +761,7 @@ in
               };
             }
           ]
-        };
+        }
         {
           "Comptes indépendants" = [
             {
@@ -794,7 +794,7 @@ in
               };
             }
           ]
-        };
+        }
         {
           "Services GV unifiés en alpha" = [
             {
