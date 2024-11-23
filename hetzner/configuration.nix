@@ -626,7 +626,7 @@ in
         title = "Tableau de bord ResDigita des GV !";
         useEqualHeights = true;
         language = "fr";
-        providers {
+        providers = {
           openweathermap = "openweathermapapikey";
           weatherapi = "weatherapiapikey";
         };
