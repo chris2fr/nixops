@@ -127,7 +127,7 @@ in
     # 22000 TCP and/or UDP for sync traffic
     # 21027/UDP for discovery
     # source: https://docs.syncthing.net/users/firewall.html
-    firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995
+    firewall.allowedTCPPorts = [ 22 25 53 80 443 143 587 993 995
       636 
       8443 
       9080 9443 
