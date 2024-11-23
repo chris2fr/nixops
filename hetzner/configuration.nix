@@ -622,6 +622,22 @@ in
       enable = true;
       listenPort = 8882;
       openFirewall = true;
+      settings = {
+        title = "Tableau de bord ResDigita des GV !";
+        useEqualHeights = true;
+        language = "fr";
+        providers {
+          openweathermap = "openweathermapapikey";
+          weatherapi = "weatherapiapikey";
+        };
+      };
+      widgets = {
+        logo.icon = "https://www.lesgrandsvoisins.com/media/images/gv.original.svg";
+        greeting = {
+          text_size = 1;
+          text = "Homepage-Dashboard.resdigita.com. Ce tableau de bord fournit des liens vers toutes les ressources de ResDigita des GV.";
+        };
+      };
     #   widgets = [
     #     {
     #       logo = {
