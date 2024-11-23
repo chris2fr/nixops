@@ -80,7 +80,6 @@ in
           proxyPass = "https://[2a01:4f8:241:4faa::8]";
           recommendedProxySettings = true;
           proxyWebsockets = true;
-
             extraConfig = ''
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
@@ -92,9 +91,18 @@ in
             proxy_ssl_verify  off;
             '';
           };
-          
+        };
+        "sftpgo.lesgrandsvoisins.com" = {
+          root =  "/var/www/html/";
+          listen = [{
+            addr = "2a01:4f8:241:4faa::8";
+            port = 80;
+          }];
         };
         "9.lesgrandsvoisins.com" = {
+          root =  "/var/www/html/";
+        };
+        "1.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
         };
         "10.lesgrandsvoisins.com" = {

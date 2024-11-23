@@ -288,9 +288,11 @@ in
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www/html";
+    certs."1.lesgrandsvoisins.com" = {};  
     certs."8.lesgrandsvoisins.com" = {};  
     certs."9.lesgrandsvoisins.com" = {};  
     certs."10.lesgrandsvoisins.com" = {};  
+    certs."sftpgo.lesgrandsvoisins.com" = {};  
   };
   services = { 
     bind = {
