@@ -101,19 +101,20 @@ in
     };
     config = { config, pkgs, lib, ... }: {
       users = {
-        groups = {
-          sftpgo = {
-            gid = 979;
-          };
-          wwwrun = {
-            gid = 54;
-            members = ["wwwrun"];
-          };
-        };
         users = {
           sftpgo = {
             uid = 1020;
             group = "sftpgo";
+          };
+        };
+        groups = {
+          sftpgo = {
+            gid = 979;
+            name = "sftpgo";
+          };
+          wwwrun = {
+            gid = 54;
+            members = ["wwwrun"];
           };
         };
       };
