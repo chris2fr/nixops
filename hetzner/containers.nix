@@ -99,6 +99,23 @@ in
         isReadOnly = false;
       }; 
     };
+    users = {
+      groups = {
+        sftpgo = {
+          gid = 979;
+        };
+        wwwrun = {
+          gid = 54;
+          members = ["wwwrun"];
+        };
+      };
+      users = {
+        sftpgo = {
+          uid = 1020;
+          group = "sftpgo";
+        };
+      };
+    };
     config = { config, pkgs, lib, ... }: {
       networking = {
         hostName = "sftpgo"; 
