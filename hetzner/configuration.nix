@@ -71,28 +71,52 @@ in
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     # useDHCP = true;
     enableIPv6 = true;
-    interfaces.eno1.ipv6.addresses = [
-      {
-        address = "2a01:4f8:241:4faa::";
-        prefixLength = 96;
-      }
-      {
-        address = "2a01:4f8:241:4faa::1";
-        prefixLength = 96;
-      }
-      {
-        address = "2a01:4f8:241:4faa::8";
-        prefixLength = 96;
-      }
-      {
-        address = "2a01:4f8:241:4faa::9";
-        prefixLength = 96;
-      }
-      {
-        address = "2a01:4f8:241:4faa::10";
-        prefixLength = 96;
-      }
-    ];
+    interfaces.eno1.ipv6 = {
+      addresses = [
+        {
+          address = "2a01:4f8:241:4faa::";
+          prefixLength = 96;
+        }
+        {
+          address = "2a01:4f8:241:4faa::1";
+          prefixLength = 96;
+        }
+        {
+          address = "2a01:4f8:241:4faa::8";
+          prefixLength = 96;
+        }
+        {
+          address = "2a01:4f8:241:4faa::9";
+          prefixLength = 96;
+        }
+        {
+          address = "2a01:4f8:241:4faa::10";
+          prefixLength = 96;
+        }
+      ];
+      routes = [
+        {
+          address = "2a01:4f8:241:4faa::";
+          prefixLength = 96;
+        }
+        {
+          address = "2a01:4f8:241:4faa::1";
+          prefixLength = 96;
+        }
+        {
+          address = "2a01:4f8:241:4faa::8";
+          prefixLength = 96;
+        }
+        {
+          address = "2a01:4f8:241:4faa::9";
+          prefixLength = 96;
+        }
+        {
+          address = "2a01:4f8:241:4faa::10";
+          prefixLength = 96;
+        }
+      ];
+    };
     defaultGateway6 = {
       address = "fe80::1";
       interface = "eno1";
