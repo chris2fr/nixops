@@ -276,6 +276,7 @@ in
         "lesgrandsvoisins.com" = {
           file = "/var/zone_lesgrandsvoisins_com.txt";
           master = true;
+          allowQuery = ["any"];
         };
       };
     };
