@@ -95,28 +95,28 @@ in
         "sftpgo.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
           listen = [{
-            addr = "2a01:4f8:241:4faa::8";
+            addr = "[2a01:4f8:241:4faa::8]";
             port = 80;
           }];
         };
         "9.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
           listen = [{
-            addr = "2a01:4f8:241:4faa::9";
+            addr = "[2a01:4f8:241:4faa::9]";
             port = 80;
           }];
         };
         "1.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
           listen = [{
-            addr = "2a01:4f8:241:4faa::1";
+            addr = "[2a01:4f8:241:4faa::1]";
             port = 80;
           }];
         };
         "10.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
           listen = [{
-            addr = "2a01:4f8:241:4faa::10";
+            addr = "[2a01:4f8:241:4faa::10]";
             port = 80;
           }];
         };
