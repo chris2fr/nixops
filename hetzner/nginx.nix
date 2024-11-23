@@ -74,11 +74,6 @@ in
       virtualHosts = {
         "8.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
-          listen = [
-            {
-              port = 80;
-            }
-          ];
         };
         "www.villagegv.com" = {
           forceSSL = true;
