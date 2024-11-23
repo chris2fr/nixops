@@ -97,27 +97,22 @@ in
       routes = [
         {
           address = "2a01:4f8:241:4faa::";
-          prefixLength = 96;
           via = "eno1";
         }
         {
           address = "2a01:4f8:241:4faa::1";
-          prefixLength = 96;
           via = "eno1";
         }
         {
           address = "2a01:4f8:241:4faa::8";
-          prefixLength = 96;
           via = "eno1";
         }
         {
           address = "2a01:4f8:241:4faa::9";
-          prefixLength = 96;
           via = "eno1";
         }
         {
           address = "2a01:4f8:241:4faa::10";
-          prefixLength = 96;
           via = "eno1";
         }
       ];
