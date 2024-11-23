@@ -76,7 +76,7 @@ in
         "8.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
           locations."/" = {
-            proxy_pass = "https://[2a01:4f8:241:4faa::8]";
+          proxyPass = "https://[2a01:4f8:241:4faa::8]";
             extraConfig = ''
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
