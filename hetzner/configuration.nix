@@ -80,7 +80,7 @@ in
         {
           address = "2a01:4f8:241:4faa::1";
           prefixLength = 96;
-        }    dhcp.persistent = true;
+        } 
         {
           address = "2a01:4f8:241:4faa::8";
           prefixLength = 96;
