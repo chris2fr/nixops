@@ -631,12 +631,16 @@ in
           weatherapi = "weatherapiapikey";
         };
       };
-      widgets = {
-        logo.icon = "https://www.lesgrandsvoisins.com/media/images/gv.original.svg";
-        greeting = {
-          text_size = 1;
-          text = "Homepage-Dashboard.resdigita.com. Ce tableau de bord fournit des liens vers toutes les ressources de ResDigita des GV.";
-        };
+      widgets = [
+        {
+          logo.icon = "https://www.lesgrandsvoisins.com/medias/images/lesgrandsvoisinscom-transparent.max-1000x100.svg";
+        }
+        {
+          greeting = {
+            text_size = 1;
+            text = "Homepage-Dashboard.resdigita.com. Ce tableau de bord fournit des liens vers toutes les ressources de ResDigita des GV.";
+          };
+        }
       };
     #   widgets = [
     #     {
