@@ -263,6 +263,9 @@ in
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www";
+    "8.lesgrandsvoisins.com" = {
+      
+    };
   };
   services = { 
     bind = {
@@ -466,6 +469,11 @@ in
       settings = {
         # proxy_protocol = 1;
         # proxy_allowed = ["116.202.236.241" "2a01:4f8:241:4faa::" "2a01:4f8:241:4faa::1" "2a01:4f8:241:4faa::2"];
+        acme = {
+          domains = ["8.lesgrandsvoisins.com"];
+          email = "chris@mann.fr";
+
+        };
         webdavd.bindings = [
           {
             port = 14443;
