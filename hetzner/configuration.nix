@@ -319,6 +319,9 @@ in
             "2600:3c00::5f"
           ];
         };
+        "241.236.202.in-addr.arpa"= {
+          file = /var/zone_reverse_lesgrandsvoisins_com.txt;
+        };
       };
     };
     # seafile = {
