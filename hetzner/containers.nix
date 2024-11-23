@@ -99,24 +99,24 @@ in
         isReadOnly = false;
       }; 
     };
-    users = {
-      groups = {
-        sftpgo = {
-          gid = 979;
-        };
-        wwwrun = {
-          gid = 54;
-          members = ["wwwrun"];
-        };
-      };
-      users = {
-        sftpgo = {
-          uid = 1020;
-          group = "sftpgo";
-        };
-      };
-    };
     config = { config, pkgs, lib, ... }: {
+      users = {
+        groups = {
+          sftpgo = {
+            gid = 979;
+          };
+          wwwrun = {
+            gid = 54;
+            members = ["wwwrun"];
+          };
+        };
+        users = {
+          sftpgo = {
+            uid = 1020;
+            group = "sftpgo";
+          };
+        };
+      };
       networking = {
         hostName = "sftpgo"; 
         firewall.allowedTCPPorts = [ 22 25 80 443 143 587 993 995 636 ];
