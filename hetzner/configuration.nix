@@ -264,7 +264,8 @@ in
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www/html";
     certs."8.lesgrandsvoisins.com" = {
-    };
+      listenHTTP = ":10080";
+    };  
   };
   services = { 
     bind = {
