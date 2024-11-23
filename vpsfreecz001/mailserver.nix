@@ -34,7 +34,7 @@ in
   ];
   environment.systemPackages = with pkgs; [
     sogo
-    postgresql
+    # postgresql
     openldap
     pwgen
   ];

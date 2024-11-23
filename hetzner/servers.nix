@@ -94,7 +94,7 @@ in
       nodejs_18
     ];
   };
-  virtualisation.lxd.enable = true;
+     = true;
   virtualisation.lxc.enable = true;
   virtualisation.lxc.lxcfs.enable = true;
 }

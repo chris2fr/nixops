@@ -48,7 +48,7 @@ in
     dig
     lzlib
     sogo
-    postgresql
+    # postgresql
     openldap
     killall
     inetutils
