@@ -34,7 +34,6 @@ in
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
-
       defaultListenAddresses = [ "127.0.0.1" "116.202.236.241" "[2a01:4f8:241:4faa::]" "[::1]"];
       # defaultListenAddresses = [ "0.0.0.0" "116.202.236.241" "[::]" "[::1]"];
       #defaultListen = [{ addr = "0.0.0.0"; port=8888; } { addr = "[::]"; port=8443; } { addr="[2a01:4f8:241:4faa::100]" ; port=443;} ];
