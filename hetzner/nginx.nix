@@ -72,6 +72,9 @@ in
         "wagtailmedia".servers = {"10.245.101.15:8889" = {};};
       };
       virtualHosts = {
+        "8.lesgrandsvoisins.com" = {
+          root =  "/var/www/html/";
+        };
         "www.villagegv.com" = {
           forceSSL = true;
           enableACME = true;

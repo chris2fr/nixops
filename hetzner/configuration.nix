@@ -262,9 +262,9 @@ in
   security.acme = {
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
-    # defaults.webroot = "/var/www/html";
+    defaults.webroot = "/var/www/html";
     certs."8.lesgrandsvoisins.com" = {
-      listenHTTP = ":10080";
+      # listenHTTP = ":10080";
     };  
   };
   services = { 
