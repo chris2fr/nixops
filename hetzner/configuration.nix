@@ -433,10 +433,12 @@ in
       group = "wwwrun";
       dataDir = "/var/www/dav/data";
       extraArgs = [
-          "--log-level"
-          "info"
-        ];
+        "--log-level"
+        "info"
+      ];
       settings = {
+        proxy_protocol = 1;
+        proxy_allowed = ["116.202.236.241" "2a01:4f8:241:4faa::" "2a01:4f8:241:4faa::1" "2a01:4f8:241:4faa::2"];
         webdavd.bindings = [
           {
             port = 14443;
