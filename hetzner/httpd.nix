@@ -622,7 +622,7 @@ in
             
             <LimitExcept OPTIONS GET HEAD POST PUT DELETE TRACE PROPFIND CONNECT>
               # Require ldap-dn cn=%{env:MATCH_USERNAME},ou=users,dc=lesgrandsvoisins,dc=com
-              Require ldap-attribute cn=%{env:MATCH_USERNAME}
+              Require ldap-attribute cn=%{env:MATCH_USERNAME}             
               # Require valid-user
             </LimitExcept>
           </LocationMatch>
