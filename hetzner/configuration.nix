@@ -641,7 +641,9 @@ in
             text = "Homepage-Dashboard.resdigita.com. Ce tableau de bord fournit des liens vers toutes les ressources de ResDigita des GV.";
           };
         }
-      };
+      ];
+    };
+
     #   widgets = [
     #     {
     #       logo = {
