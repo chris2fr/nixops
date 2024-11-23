@@ -75,8 +75,13 @@ in
       virtualHosts = {
         "8.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
+          forceSSL = true;
+          enableACME = true;
           locations."/" = {
           proxyPass = "https://[2a01:4f8:241:4faa::8]";
+          recommendedProxySettings = true;
+          proxyWebsockets = true;
+
             extraConfig = ''
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
@@ -85,6 +90,7 @@ in
             proxy_set_header X-Forwarded-Proto $scheme;
             add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
             add_header Access-Control-Allow-Credentials true;
+            proxy_ssl_certificate     /var/lib/acme/8.lesgrandsvoisins.com/fullchain.pem;
             '';
           };
           
