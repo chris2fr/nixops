@@ -468,9 +468,9 @@ in
             proxy_set_header  Connection "upgrade";
             # proxy_bind $remote_addr transparent;
             # proxy_set_header Connection $connection_upgrade;
-            proxy_pass https://sftpgo.lesgrandsvoisins.com:10443; 
+            proxy_pass http://192.168.108.2:443; 
             client_max_body_size 500M;
-            # proxy_redirect off;
+            proxy_redirect off;
             proxy_ssl_verify  off;
             proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/fullchain.pem;
             proxy_protocol on;
