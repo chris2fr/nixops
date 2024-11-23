@@ -55,7 +55,7 @@ in
     cacert
     # burp
     openssl
-    postgresql_13
+    postgresql_14
     qemu
     # (pkgs.callPackage ./etc/sftpgo/sftpgo/default.nix { }  )
     (pkgs.callPackage ./etc/sftpgo/sftpgo-plugin-auth/sftpgoPluginAuth.nix { }  )
