@@ -100,6 +100,27 @@ in
       }; 
     };
     config = { config, pkgs, lib, ... }: {
+      nix.settings.experimental-features = "nix-command flakes";
+      envronmient.systemPackages = with pkgs; [
+        ((vim_configurable.override {  }).customize{
+          name = "vim";
+          vimrcConfig.customRC = ''
+            " your custom vimrc
+            set mouse=a
+            set nocompatible
+            colo torte
+            syntax on
+            set tabstop     =2
+            set softtabstop =2
+            set shiftwidth  =2
+            set expandtab
+            set autoindent
+            set smartindent
+            " ...
+          '';
+          }
+        )
+      ];
       users = {
         users = {
           sftpgo = {
@@ -304,7 +325,10 @@ in
         lzlib
         dig
         killall
-        pwgen
+        pwgensystem = {
+        copySystemConfiguration = true;
+        stateVersion = "24.05";
+      };
         openldap
         mysql80
         python311Packages.pypdf2
@@ -739,7 +763,7 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "24.05";
-      environment.systemPackages = with pkgs; [
+      envronmient.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
           vimrcConfig.customRC = ''
