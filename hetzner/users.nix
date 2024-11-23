@@ -44,7 +44,7 @@ in
       };
       python = {
         isNormalUser = true;
-      }
+      };
       # radicale = {
       #   isNormalUser = true;
       #   openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
