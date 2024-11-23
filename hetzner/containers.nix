@@ -101,8 +101,8 @@ in
     };
     config = { config, pkgs, lib, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
-      imports = [ (import "${home-manager}/nixos") ];
-      envronmient.systemPackages = with pkgs; [
+      # imports = [ (import "${home-manager}/nixos") ];
+      environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
           vimrcConfig.customRC = ''
