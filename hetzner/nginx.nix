@@ -456,7 +456,7 @@ in
           forceSSL = true;
           locations."/" = {
             extraConfig = ''
-            return 302 https://sftpgo.lesgrandsvoisins.com:10443$request_uri;
+            # return 302 https://sftpgo.lesgrandsvoisins.com$request_uri;
             proxy_pass https://sftpgo.lesgrandsvoisins.com:10443; 
             client_max_body_size 500M;
             proxy_http_version 1.1;
