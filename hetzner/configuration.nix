@@ -320,6 +320,8 @@ in
           ];
         };
         "241.236.202.in-addr.arpa"= {
+          master = true;
+          allowQuery = ["any"];
           file = /var/zone_reverse_lesgrandsvoisins_com.txt;
         };
       };
