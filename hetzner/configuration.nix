@@ -262,9 +262,9 @@ in
   security.acme = {
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
-    defaults.webroot = "/var/www";
-    # certs."8.lesgrandsvoisins.com" = {
-    # };
+    defaults.webroot = "/var/www/html";
+    certs."8.lesgrandsvoisins.com" = {
+    };
   };
   services = { 
     bind = {
@@ -468,22 +468,22 @@ in
       settings = {
         # proxy_protocol = 1;
         # proxy_allowed = ["116.202.236.241" "2a01:4f8:241:4faa::" "2a01:4f8:241:4faa::1" "2a01:4f8:241:4faa::2"];
-        acme = {
-          domains = ["8.lesgrandsvoisins.com"];
-          email = "chris@mann.fr";
-          key_type =  "4096";
-          certs_path =  "/var/run/sftpgo/certs";
-          ca_endpoint =  "https://acme-v02.api.letsencrypt.org/directory";
-          renew_days =  30;
-          http01_challenge =  {
-            port =  10080;
-            proxy_header =  "";
-            webroot =  "/var/www/sftpgo.com";
-          };
-          tls_alpn01_challenge =  {
-            port =  0;
-          };
-        };
+        # acme = {
+        #   domains = ["8.lesgrandsvoisins.com"];
+        #   email = "chris@mann.fr";
+        #   key_type =  "4096";
+        #   certs_path =  "/var/run/sftpgo/certs";
+        #   ca_endpoint =  "https://acme-v02.api.letsencrypt.org/directory";
+        #   renew_days =  30;
+        #   http01_challenge =  {
+        #     port =  10080;
+        #     proxy_header =  "";
+        #     webroot =  "/var/www/sftpgo.com";
+        #   };
+        #   tls_alpn01_challenge =  {
+        #     port =  0;
+        #   };
+        # };
         webdavd.bindings = [
           {
             port = 14443;
