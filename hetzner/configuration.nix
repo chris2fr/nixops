@@ -272,9 +272,14 @@ in
         "2a01:4f8:241:4faa::"
         "2a01:4f8:241:4faa::8"
       ];
+      cacheNetworks = [
+        "116.202.236.241"
+        "2a01:4f8:241:4faa::"
+        "2a01:4f8:241:4faa::8"
+      ];
       zones = {
         "lesgrandsvoisins.com" = {
-          file = "/var/zone_lesgrandsvoisins_com.txt";
+          file = /var/zone_lesgrandsvoisins_com.txt;
           master = true;
           allowQuery = ["any"];
         };
