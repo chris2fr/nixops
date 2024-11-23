@@ -479,10 +479,10 @@ in
             port =  10080;
             proxy_header =  "";
             webroot =  "/var/www/sftpgo.com";
-          },
+          };
           tls_alpn01_challenge =  {
             port =  0;
-          }
+          };
         };
         webdavd.bindings = [
           {
