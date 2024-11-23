@@ -1,0 +1,51 @@
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks
+
+
+#- Sites webs publics:
+#    - LesGrandsVoisins.com:
+#        - abbr: LGV
+#          href: https://www.lesgrandsvoisins.com/
+#          description: Le site internet des GV.
+#    - Blog.LesGrandsVoisisns.com:
+#        - href: https://blog.lesgrandsvoisins.com
+#          abbr: BLOG
+#          description: Le blog des Grands Voisins.
+#    - ResDigita.com:
+#        - href: https://www.resdigita.com/
+#          abbr: RD
+#          description: Le site de dcoumentation du numérique des GV - Salle de sociabilité numérique, constellation de serveurs, pret de matériels et de services d'entraide.
+
+#- Gestion de compte:
+#  - Guichet de compte:
+#      - abbr: MOI
+#        href: https://guichet.resdigita.com
+#        description: Gérer son compte et ses courriels.
+#  - Guichet d'inscription:
+#      - abbr: NOUV
+#        href: https://guichet.resdigita.com/user/new
+#        description: S'inscrire aux Grands Voisins
+#  - Guichet de la refonte du mot de passe:
+#      - abbr: MOT
+#        href: https://guichet.resdigita.com/passwd/lost
+#        description: Refaire son mot de passe avec son courriel. 
+#  - Keycloak compte:
+#      - abbr: KEYK
+#        href: https://keycloak.resdigita.com/realms/master/account/
+#        description: Se Connecter et déconnecter avec Keycloak
+#
+# icon: https://www.lesgrandsvoisins.com/media/images/gv.original.svg
+#- Developer:
+#    - Github:
+#        - abbr: GH
+#          href: https://github.com/
+#
+#- Social:
+#    - Reddit:
+#        - abbr: RE
+#          href: https://reddit.com/
+#
+#- Entertainment:
+#    - YouTube:
+#        - abbr: YT
+#          href: https://youtube.com/
