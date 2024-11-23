@@ -518,7 +518,7 @@ in
         "popuposcom.resdigita.com"
         "grandsvoisinscom.resdigita.com"
         "forumgrandsvoisinscom.resdigita.com"
-        "discoursewww.lesgv.com" 
+        # "discoursewww.lesgv.com" 
         "discourse.lesgv.com" 
         "discourse.resdigita.com" 
         "lesgvcom.resdigita.com"
