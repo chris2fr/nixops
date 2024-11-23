@@ -473,7 +473,7 @@ in
             proxy_redirect off;
             proxy_ssl_verify  off;
             proxy_ssl_trusted_certificate /var/lib/acme/sftp.lesgrandsvoisins.com/fullchain.pem;
-            proxy_protocol on;
+            # proxy_protocol on;
           '';
           };
         };
