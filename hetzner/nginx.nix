@@ -62,10 +62,10 @@ in
             keepalive 10;   
           '';
         };
-        "wagtail".extraConfig = ''
-          # server unix:/var/lib/wagtail/wagtail-lesgv.sock;
-          server localhost:8000;
-        '';
+        # "wagtail".extraConfig = ''
+        #   # server unix:/var/lib/wagtail/wagtail-lesgv.sock;
+        #   server localhost:8000;
+        # '';
         "wagtailstatic".servers = {
           "10.245.101.15:8888" = {};
         };
