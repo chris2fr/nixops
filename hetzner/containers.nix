@@ -325,10 +325,7 @@ in
         lzlib
         dig
         killall
-        pwgensystem = {
-        copySystemConfiguration = true;
-        stateVersion = "24.05";
-      };
+        pwgen
         openldap
         mysql80
         python311Packages.pypdf2
@@ -763,7 +760,7 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "24.05";
-      envronmient.systemPackages = with pkgs; [
+      environment.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
           vimrcConfig.customRC = ''
