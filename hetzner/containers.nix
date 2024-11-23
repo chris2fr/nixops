@@ -85,20 +85,20 @@ in
     localAddress = "192.168.108.2";
     hostAddress6 = "fc00::4:1";
     localAddress6 = "fc00::4:2"; 
-    bindMounts = {
-      "/var/lib/acme/sftpgo.lesgrandsvoisins.com/" = {
-        hostPath = "/var/lib/acme/wordpress.resdigita.com/";
-        isReadOnly = true;
-      }; 
-      "/var/www/dav/data/" = {
-        hostPath = "//var/www/dav/data/";
-        isReadOnly = false;
-      }; 
-      "/var/run/sftpgo/" = {
-        hostPath = "/var/run/sftpgo/";
-        isReadOnly = false;
-      }; 
-    };
+    # bindMounts = {
+    #   "/var/lib/acme/sftpgo.lesgrandsvoisins.com/" = {
+    #     hostPath = "/var/lib/acme/wordpress.resdigita.com/";
+    #     isReadOnly = true;
+    #   }; 
+    #   "/var/www/dav/data/" = {
+    #     hostPath = "//var/www/dav/data/";
+    #     isReadOnly = false;
+    #   }; 
+    #   "/var/run/sftpgo/" = {
+    #     hostPath = "/var/run/sftpgo/";
+    #     isReadOnly = false;
+    #   }; 
+    # };
     config = { config, pkgs, lib, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
       # imports = [ (import "${home-manager}/nixos") ];
@@ -122,24 +122,24 @@ in
           }
         )
       ];
-      users = {
-        users = {
-          sftpgo = {
-            uid = 1020;
-            group = "sftpgo";
-          };
-        };
-        groups = {
-          sftpgo = {
-            gid = 979;
-            name = "sftpgo";
-          };
-          wwwrun = {
-            gid = 54;
-            members = ["wwwrun"];
-          };
-        };
-      };
+      # users = {
+      #   users = {
+      #     sftpgo = {
+      #       uid = 1020;
+      #       group = "sftpgo";
+      #     };
+      #   };
+      #   groups = {
+      #     sftpgo = {
+      #       gid = 979;
+      #       name = "sftpgo";
+      #     };
+      #     wwwrun = {
+      #       gid = 54;
+      #       members = ["wwwrun"];
+      #     };
+      #   };
+      # };
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
         "sftpgo"
       ];
