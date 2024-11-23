@@ -484,7 +484,9 @@ in
           forceSSL = true;
           locations."/" = {
             extraConfig = ''
-            # return 302 https://sftpgo.lesgrandsvoisins.com$request_uri;
+            if ($host != "sftpgo.lesgrandsvoisins.com") {
+              return 302 $scheme://sftpgo.lesgrandsvoisins.com$request_uri;
+            }
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-Proto $scheme;
