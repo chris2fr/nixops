@@ -264,7 +264,7 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -302,6 +302,7 @@ in
       ];
       listenOnIpv6 = [
         "2a01:4f8:241:4faa::"
+        "2a01:4f8:241:4faa::1"
         "2a01:4f8:241:4faa::8"
       ];
       cacheNetworks = [
