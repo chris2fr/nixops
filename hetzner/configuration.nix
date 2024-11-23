@@ -663,7 +663,7 @@ in
                 description = "Un serveur de documents en format Markdown pouvant être modifiés par plusieurs personnes en même temps.";
               };
             }
-          ]
+          ];
         }
         {
           "Ressasie de login GV" = [
@@ -681,7 +681,7 @@ in
                 icon = "https://mail.lesgrandsvoisins.com/skins/elastic/images/logo.svg?s=1";
               };
             }
-          ]
+          ];
         }
         {
           "Services à accès ouverts stables" = [
@@ -699,7 +699,7 @@ in
                 icon = "https://uptime.kuma.pet/img/icon.svg";
               };
             }
-          ]
+          ];
         }
         {
           "Sites webs publics" = [
@@ -724,7 +724,7 @@ in
                 description = "Documentation de Resdigita des GV sur l'ensemble de nos services autonomes de par et pour les GV";
               };
             }
-          ]
+          ];
         }
         {
           "Services GV unifiés en bêta" = [
@@ -735,7 +735,7 @@ in
                 description = "Vikunja nous permet de gérer les tâches à faire dans nos équipes.";
               };
             }
-          ]
+          ];
         }
         {
           "Services à accès ouverts en bêta" = [
@@ -760,7 +760,7 @@ in
                 description = "Indiquer d'abord votre nom, puis choisir les moments où vous êtes possiblement disponibles et c'est tout.";
               };
             }
-          ]
+          ];
         }
         {
           "Comptes indépendants" = [
@@ -793,7 +793,7 @@ in
                 icon = "https://uptime.kuma.pet/img/icon.svg";
               };
             }
-          ]
+          ];
         }
         {
           "Services GV unifiés en alpha" = [
@@ -825,7 +825,7 @@ in
                 description = "Un calendrier public";
               };
             }
-          ]
+          ];
         }
         {
           "Services GV unifiés dépréciés" = [
@@ -836,7 +836,7 @@ in
                 icon = "https://keeweb.info/img/logo.png";
               };
             }
-          ]
+          ];
         }
       ];
     };
