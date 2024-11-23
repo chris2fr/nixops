@@ -267,7 +267,7 @@ in
     bind = {
       enable = true;
       listenOn = [
-        "eno1"
+        "any"
       ];
       zones = {
         "lesgrandsvoisins.com" = {
