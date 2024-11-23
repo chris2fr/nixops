@@ -263,8 +263,8 @@ in
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www";
-    "8.lesgrandsvoisins.com" = {
-      
+    certs."8.lesgrandsvoisins.com" = {
+
     };
   };
   services = { 
