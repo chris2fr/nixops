@@ -2075,7 +2075,7 @@ in
     #     ];
     #     }
     #   ];
-    };
+    # };
     openssh = {
       enable = true;
       settings.PermitRootLogin = "prohibit-password";
