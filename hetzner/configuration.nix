@@ -263,9 +263,8 @@ in
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www";
-    certs."8.lesgrandsvoisins.com" = {
-
-    };
+    # certs."8.lesgrandsvoisins.com" = {
+    # };
   };
   services = { 
     bind = {
@@ -472,21 +471,32 @@ in
         acme = {
           domains = ["8.lesgrandsvoisins.com"];
           email = "chris@mann.fr";
-
+          key_type =  "4096";
+          certs_path =  "/var/run/sftpgo/certs";
+          ca_endpoint =  "https://acme-v02.api.letsencrypt.org/directory";
+          renew_days =  30;
+          http01_challenge =  {
+            port =  10080;
+            proxy_header =  "";
+            webroot =  "/var/www/sftpgo.com";
+          },
+          tls_alpn01_challenge =  {
+            port =  0;
+          }
         };
         webdavd.bindings = [
           {
             port = 14443;
             address = "116.202.236.241";
-            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+            certificate_file = "/var/run/sftpgo/certs/full.pem";
+            certificate_key_file = "/var/run/sftpgo/certs/key.pem";
             enable_https = true;
           }
           {
             port = 443;
             address = "[2a01:4f8:241:4faa::8]";
-            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+            certificate_file = "/var/run/sftpgo/certs/full.pem";
+            certificate_key_file = "/var/run/sftpgo/certs/key.pem";
             enable_https = true;
           }
         ];
@@ -507,8 +517,8 @@ in
           {
             port = 10443;
             address = "116.202.236.241";
-            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+            certificate_file = "/var/run/sftpgo/certs/full.pem";
+            certificate_key_file = "/var/run/sftpgo/certs/key.pem";
             enable_https = true;
             oidc = {
               config_url = "https://key.lesgrandsvoisins.com/realms/master";
@@ -538,8 +548,8 @@ in
           {
             port = 443;
             address = "[2a01:4f8:241:4faa::8]";
-            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+            certificate_file = "/var/run/sftpgo/certs/full.pem";
+            certificate_key_file = "/var/run/sftpgo/certs/key.pem";
             enable_https = true;
             # oidc = {
             #   config_url = "https://key.lesgrandsvoisins.com/realms/master";
