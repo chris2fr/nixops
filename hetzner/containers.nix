@@ -101,6 +101,7 @@ in
     };
     config = { config, pkgs, lib, ... }: {
       nix.settings.experimental-features = "nix-command flakes";
+      imports = [ (import "${home-manager}/nixos") ];
       envronmient.systemPackages = with pkgs; [
         ((vim_configurable.override {  }).customize{
           name = "vim";
@@ -148,7 +149,7 @@ in
         useHostResolvConf = lib.mkForce false;
       };
       system = {
-        copySystemConfiguration = true;
+        # copySystemConfiguration = true;
         stateVersion = "24.05";
       };
       time.timeZone = "Europe/Paris";
@@ -157,6 +158,11 @@ in
         EDITOR="vim";
       };
       services = {
+        resolved.enable = true;
+        openssh = {
+          enable = true;
+          settings.PermitRootLogin = "prohibit-password";
+        };
         sftpgo = {
           enable = true;
           user = "sftpgo";  
