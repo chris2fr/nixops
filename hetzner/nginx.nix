@@ -101,12 +101,24 @@ in
         };
         "9.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
+          listen = [{
+            addr = "2a01:4f8:241:4faa::9";
+            port = 80;
+          }];
         };
         "1.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
+          listen = [{
+            addr = "2a01:4f8:241:4faa::1";
+            port = 80;
+          }];
         };
         "10.lesgrandsvoisins.com" = {
           root =  "/var/www/html/";
+          listen = [{
+            addr = "2a01:4f8:241:4faa::10";
+            port = 80;
+          }];
         };
         "www.villagegv.com" = {
           forceSSL = true;
