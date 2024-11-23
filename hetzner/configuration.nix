@@ -475,19 +475,20 @@ in
             certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
             certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
             enable_https = true;
-            # oidc = {
-            #   config_url = "https://key.lesgrandsvoisins.com/realms/master";
-            #   client_id = "sftpgo";
-            #   client_secret = keySftpgo;
-            #   username_field = "username";
-            #   redirect_base_url = "https://sftpgo.lesgrandsvoisins.com:10443";
-            #   scopes = [
-            #     "openid"
-            #     "profile"
-            #     "email"        
-            #   ];
-            #   implicit_roles = true;
-            # };
+            oidc = {
+              config_url = "https://key.lesgrandsvoisins.com/realms/master";
+              client_id = "sftpgo";
+              client_secret = keySftpgo;
+              username_field = "username";
+              redirect_base_url = "https://sftpgo.lesgrandsvoisins.com";
+              # redirect_base_url = "https://sftpgo.lesgrandsvoisins.com:10443";
+              scopes = [
+                "openid"
+                "profile"
+                "email"        
+              ];
+              implicit_roles = true;
+            };
             branding = {
               web_admin = {
                 name = "sftpgo.lesgrandsovisins.com : Accès Administrateur au Drive des Grands Voisins";
