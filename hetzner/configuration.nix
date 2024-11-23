@@ -437,7 +437,7 @@ in
           "info"
         ];
       settings = {
-        proxy_protocol = 1;
+        proxy_protocol = 0;
         webdavd.bindings = [
           {
             port = 14443;
