@@ -757,6 +757,10 @@ in
        "/home/wagtail/designsystem-village/dist" = { 
         hostPath = "/var/www/designsystem-village/dist";
         isReadOnly = false; 
+       };
+      "/run/wagtail-sockets" = { 
+        hostPath = "/run/wagtail-sockets";
+        isReadOnly = false; 
        }; 
      };
     config = { config, pkgs, ... }: {
@@ -846,17 +850,25 @@ in
           # # ensureDBOwnership = true;
       # };
       users.users.wagtail.isNormalUser = true;
-      # systemd.sockets.wagtail = {
-      #   listenStreams = []    ;
-      # };
+      systemd.sockets.wagtail = {
+        description = "Socket for Wagtail";
+        listenStreams = ["/run/wagtail-sockets/wagtail.sock"];
+        wantedBy = ["sockets.target"];
+        socketConfig = {
+          SocketUser = "wagtail";
+          SocketMode = "0660";
+        };
+      };
       systemd.services.wagtail = {
         description = "Les Grands Voisins Wagtail Website";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
+        # requires = [ "wagtail.socket" ];
         serviceConfig = {
           WorkingDirectory = "/home/wagtail/wagtail-lesgv/";
           # ExecStart = ''/home/wagtail/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile access.log --chdir /home/wagtail/wagtail-lesgv --workers 3 --bind unix:/var/lib/wagtail/wagtail-lesgv.sock lesgv.wsgi:application'';
-          ExecStart = ''/home/wagtail/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/access.log --error-logfile /var/log/wagtail/error.log --chdir /home/wagtail/wagtail-lesgv --workers 12 --bind 127.0.0.1:8000 lesgv.wsgi:application'';
+          ExecStart = ''/home/wagtail/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/access.log --error-logfile /var/log/wagtail/error.log --chdir /home/wagtail/wagtail-lesgv --workers 12 --bind 127.0.0.1:8008 lesgv.wsgi:application'';
+          # ExecStart = ''/home/wagtail/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/access.log --error-logfile /var/log/wagtail/error.log --chdir /home/wagtail/wagtail-lesgv --workers 12 --bind     lesgv.wsgi:application'';
           Restart = "always";
           RestartSec = "10s";
           User = "wagtail";

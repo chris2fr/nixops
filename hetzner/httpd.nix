@@ -9,7 +9,7 @@ let
     ProxyPass /static !
     ProxyPass /media !
     ProxyPass /favicon.ico !
-    ProxyPass /  http://127.0.0.1:8000/
+    ProxyPass /  http://127.0.0.1:8008/
     # ProxyPassReverse /  http://127.0.0.1:8000/
     ProxyPreserveHost On
     ProxyVia On

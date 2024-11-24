@@ -416,7 +416,7 @@ in
       forceSSL = true;
       root =  "/var/www/wagtail/";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -461,7 +461,7 @@ in
       root =  "/var/www/wagtail/";
       locations."/" = {
         #proxyPass = "http://10.245.101.15:8080";
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -492,7 +492,7 @@ in
       enableACME = true;
        forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -566,7 +566,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -587,7 +587,7 @@ in
       # sslTrustedCertificate = "/var/lib/acme/www.lesgrandsvoisins.fr/fullchain.pem";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       locations."/favicon.ico" = { proxyPass = null; };
@@ -670,7 +670,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -689,7 +689,7 @@ in
       }
       '';
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -707,7 +707,7 @@ in
       enableACME=true;
        forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
@@ -734,11 +734,11 @@ in
       locations."/medias" = { proxyPass = null; };
       locations."/.well-known" = { proxyPass = null; };
     };
-    "8000.lesgrandsvoisins.com" = {
+    "8008.lesgrandsvoisins.com" = {
       enableACME=true;
        forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8000/";
+        proxyPass = "http://127.0.0.1:8008/";
         extraConfig = nginxLocationWagtailExtraConfig;
       };
       root = "/var/www/wagtail";
