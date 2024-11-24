@@ -125,11 +125,11 @@ in
             ssl = true;
           }];
           forceSSL = true;
+          enableACME = true;
           locations."/" = {
             recommendedProxySettings = true;
             proxyPass = "http://localhost:8901";
             extraConfig = ''
-
             '';
           };
         };
