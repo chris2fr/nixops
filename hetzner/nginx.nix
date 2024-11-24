@@ -136,6 +136,7 @@ in
           root =  "/var/www/html/";
         };
         "10.lesgrandsvoisins.com" = {
+          # serverAliases = ["linkding"];
           root =  "/var/www/html/";
           listen = [{
             addr = "[2a01:4f8:241:4faa::10]";
@@ -152,6 +153,23 @@ in
             recommendedProxySettings = true;
             proxyPass = "http://localhost:8901";
             extraConfig = ''
+            # if ($host != "linkding.lesgrandsvoisins.com") {
+            #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
+            # }
+            '';
+          };
+        };
+        "linkding.lesgrandsvoisins.com" = {
+          root =  "/var/www/html/";
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            recommendedProxySettings = true;
+            proxyPass = "http://localhost:8901";
+            extraConfig = ''
+            # if ($host != "linkding.lesgrandsvoisins.com") {
+            #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
+            # }
             '';
           };
         };
