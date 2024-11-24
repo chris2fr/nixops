@@ -846,6 +846,9 @@ in
           # # ensureDBOwnership = true;
       # };
       users.users.wagtail.isNormalUser = true;
+      # systemd.sockets.wagtail = {
+      #   listenStreams = []    ;
+      # };
       systemd.services.wagtail = {
         description = "Les Grands Voisins Wagtail Website";
         after = [ "network.target" ];
