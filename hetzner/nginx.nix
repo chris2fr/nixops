@@ -167,7 +167,9 @@ in
             proxyPass = null;
           };
           locations."^/login/$" = {
-            return 302 $scheme://linkding.lesgrandsvoisins.com/oidc/authenticate/;
+            extraConfig = ''
+              return 302 $scheme://linkding.lesgrandsvoisins.com/oidc/authenticate/;
+            '';
           };
           locations."/" = {
             # recommendedProxySettings = true;
