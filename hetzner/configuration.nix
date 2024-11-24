@@ -309,7 +309,7 @@ in
     acceptTerms = true;
     defaults.email = "contact@lesgrandsvoisins.com";
     defaults.webroot = "/var/www/html";
-    certs."0.lesgrandsvoisins.com" = {};  
+    # certs."0.lesgrandsvoisins.com" = {};  
     certs."1.lesgrandsvoisins.com" = {};  
     # certs."2.lesgrandsvoisins.com" = {};  
     # certs."3.lesgrandsvoisins.com" = {};  
