@@ -42,6 +42,8 @@ in
     "d /var/www/lesgrandsvoisins 0755 wagtail users"
     "d /var/www/lesgrandsvoisins/static 0755 wagtail users"
     "d /var/www/lesgrandsvoisins/medias 0755 wagtail users"
+    "d /run/wagtail-sockets/ 0770 wagtail wagtail"
+    "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wagtail"
   ];
   #  environment.systemPackages = with pkgs; [
   #   gcc 

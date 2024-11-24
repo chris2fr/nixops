@@ -769,6 +769,8 @@ in
       # };
       users.users.wagtail.uid = 1003;
       # users.groups.users.gid = 1003;
+      users.groups.wwwrun.gid = 54;
+      users.groups.wwwrun.members = ["wagtail"];
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Amsterdam";
       system.stateVersion = "24.05";
