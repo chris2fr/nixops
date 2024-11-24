@@ -37,12 +37,12 @@ in
     (import "${home-manager}/nixos")
   ];
   systemd.tmpfiles.rules = [
-    "d /var/www/key.lesgrandsvoisins.com 0755 www users"
-    "d /var/www/lesgrandsvoisins.com 0755 www users"
-    "d /var/www/lesgrandsvoisins 0755 wagtail users"
-    "d /var/www/lesgrandsvoisins/static 0755 wagtail users"
-    "d /var/www/lesgrandsvoisins/medias 0755 wagtail users"
-    "d /run/wagtail-sockets 0770 wagtail wwwrun"
+    "d /var/www/key.lesgrandsvoisins.com 0755 www users -"
+    "d /var/www/lesgrandsvoisins.com 0755 www users -"
+    "d /var/www/lesgrandsvoisins 0755 wagtail users -"
+    "d /var/www/lesgrandsvoisins/static 0755 wagtail users -"
+    "d /var/www/lesgrandsvoisins/medias 0755 wagtail users -"
+    "d /run/wagtail-sockets 0770 wagtail wwwrun -"
     "f /run/wagtail-sockets/wagtail.sock 0660 wagtail wwwrun"
   ];
   #  environment.systemPackages = with pkgs; [
