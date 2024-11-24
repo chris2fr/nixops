@@ -127,7 +127,7 @@ in
           forceSSL = true;
           locations."/" = {
             recommendedProxySettings = true;
-            proxyPass = "http://localhost:8901"
+            proxyPass = "http://localhost:8901";
             extraConfig = ''
 
             '';
