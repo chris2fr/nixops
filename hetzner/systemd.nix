@@ -8,7 +8,6 @@ in
   systemd.services = {
     linkding = {
       enable = true;
-      wantedBy = ["default.target"];
       description = "Bookmarking system Linkding on linkding.lesgrandsvoisins.com";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
