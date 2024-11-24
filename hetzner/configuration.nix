@@ -73,7 +73,7 @@ in
     enableIPv6 = true;
     interfaces.eno1.ipv6 = {
       addresses = [
-        { address = "2a01:4f8:241:4faa::0"; prefixLength = 96; }
+        # { address = "2a01:4f8:241:4faa::0"; prefixLength = 96; }
         { address = "2a01:4f8:241:4faa::1"; prefixLength = 96; }
         { address = "2a01:4f8:241:4faa::2"; prefixLength = 96; }
         { address = "2a01:4f8:241:4faa::3"; prefixLength = 96; }
