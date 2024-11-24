@@ -165,7 +165,7 @@ in
           enableACME = true;
           locations."/static/" = {
             proxyPass = null;
-          }
+          };
           locations."/" = {
             # recommendedProxySettings = true;
             # proxyPass = "http://localhost:8901";
