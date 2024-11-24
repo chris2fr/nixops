@@ -160,7 +160,7 @@ in
           };
         };
         "linkding.lesgrandsvoisins.com" = {
-          root =  "/home/live/linkding/";
+          root =  "/var/www/linkding/";
           forceSSL = true;
           enableACME = true;
           locations."/static/" = {
