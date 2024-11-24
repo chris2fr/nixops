@@ -6,6 +6,10 @@ let
 in
 {
   systemd.services = {
+    # linkding = {
+    #    enable = true;
+    #    wantedBy = ["default.target"];
+    # };
     # sftpgo = {
     #   enable = true;
     #   wantedBy = ["default.target"];
