@@ -164,16 +164,21 @@ in
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            recommendedProxySettings = true;
-            proxyPass = "http://localhost:8901";
+            # recommendedProxySettings = true;
+            # proxyPass = "http://localhost:8901";
             extraConfig = ''
+            proxy_pass http://localhost:8901;
             proxy_set_header Host "linkding.lesgrandsvoisins.com";
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Host "linkding.lesgrandsvoisins.com";
             proxy_set_header X-Forwarded-Proto $scheme;
-            add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
-            add_header Access-Control-Allow-Credentials true;
+            proxy_redirect off;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+            # add_header Content-Security-Policy "frame-src *; frame-ancestors *; object-src *;";
+            # add_header Access-Control-Allow-Credentials true;
             # if ($host != "linkding.lesgrandsvoisins.com") {
             #   return 302 $scheme://linkding.lesgrandsvoisins.com$request_uri;
             # }
