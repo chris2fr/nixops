@@ -113,7 +113,7 @@ in
   };
   #services.wordpress.webserver = "httpd"; # Defaults to httpd
   services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "yes";
+  services.openssh.settings.PermitRootLogin = "prohibit-password";
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   time.timeZone = "Europe/Paris";
