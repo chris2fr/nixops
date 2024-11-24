@@ -166,6 +166,9 @@ in
           locations."/static/" = {
             proxyPass = null;
           };
+          locations."^/login/$" = {
+            return 302 $scheme://linkding.lesgrandsvoisins.com/oidc/authenticate/;
+          };
           locations."/" = {
             # recommendedProxySettings = true;
             # proxyPass = "http://localhost:8901";
