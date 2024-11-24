@@ -18,7 +18,7 @@ in
         # ExecStart = ''/home/wagtail/venv/bin/gunicorn --env WAGTAIL_ENV='production' --access-logfile /var/log/wagtail/access.log --error-logfile /var/log/wagtail/error.log --chdir /home/wagtail/wagtail-lesgv --workers 12 --bind unix:/run/wagtail-sockets/wagtail.sock lesgv.wsgi:application'';
         Restart = "always";
         RestartSec = "10s";
-        User = "wagtail";
+        User = "python";
         Group = "users";
       };
       unitConfig = {
