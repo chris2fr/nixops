@@ -118,7 +118,7 @@ in
           listen = [{
             addr = "[2a01:4f8:241:4faa::10]";
             port = 80;
-          },
+          }
           {
             addr = "[2a01:4f8:241:4faa::10]";
             port = 443;
