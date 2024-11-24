@@ -67,7 +67,7 @@ in
   # Networking
   networking = {
     # hostName = "hetzner005"; # Define your hostname.
-    hostName = "mail.lesgrandsvoisins.com"; # Define your hostname
+    hostName = "mail"; # Define your hostname
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     useDHCP = true;
     enableIPv6 = true;
