@@ -114,13 +114,13 @@ in
         { address = "2a01:4f8:241:4faa::38"; prefixLength = 96; }
         { address = "2a01:4f8:241:4faa::39"; prefixLength = 96; }
       ];
-      routes = [
-        {
-          address = "2a01:4f8:241:4faa::";
-          prefixLength = 96;
-          via = "eno1";
-        }
-      ];
+      # routes = [
+      #   {
+      #     address = "2a01:4f8:241:4faa::";
+      #     prefixLength = 96;
+      #     via = "fe80::329c:23ff:fed3:5162";
+      #   }
+      # ];
     };
     defaultGateway6 = {
       address = "fe80::1";
