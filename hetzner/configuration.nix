@@ -637,7 +637,7 @@ in
                 "profile"
                 "email"
               ];
-              role_field = "sftpgo_role";
+              role_field = "resource_access.sftpgo.roles";
               implicit_roles = true;
               # implicit_roles = true;
             };
