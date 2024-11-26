@@ -556,26 +556,26 @@ in
         #   };
         # };
         webdavd.bindings = [
+          # {
+          #   port = 14443;
+          #   address = "116.202.236.241";
+          #   certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
+          #   certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+          #   enable_https = true;
+          # }
           {
-            port = 14443;
-            address = "116.202.236.241";
-            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
-            enable_https = true;
-          }
-          {
-            port = 14443;
-            address = "[2a01:4f8:241:4faa::8]";
-            certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
-            certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
+            port = 443;
+            address = "[2a01:4f8:241:4faa::9]";
+            certificate_file = "/var/lib/acme/9.lesgrandsvoisins.com/full.pem";
+            certificate_key_file = "/var/lib/acme/9.lesgrandsvoisins.com/key.pem";
             enable_https = true;
           }
         ];
         sftpd.bindings = [
-          {
-            port = 2022;
-            address = "116.202.236.241";
-          }
+          # {
+          #   port = 2022;
+          #   address = "116.202.236.241";
+          # }
           {
             port = 2022;
             address = "[2a01:4f8:241:4faa::8]";
