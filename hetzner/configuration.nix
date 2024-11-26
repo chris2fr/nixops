@@ -7,6 +7,7 @@ let
   keyLesgrandsvoisinsVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keylesgrandsvoisins.vikunja));
   keycloakVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keycloak.vikunja));
   keyGVcoopVikunja = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
+  passwordDBSFTPGO = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.db.sftpgo));
   emailVikunja  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.keygvcoop.vikunja));
   emailList  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.email.list));
   bindPW  = (lib.removeSuffix "\n" (builtins.readFile /etc/nixos/.secrets.bind));
@@ -653,6 +654,15 @@ in
             };
           }
         ];
+        };
+        data_provider = {
+          # driver = "postgresql";
+          # name = "sftpgo";
+          # host = "localhost";
+          # port = "5432";
+          # username = "sftpgo";
+          # password = $passwordDBSFTPGO;
+          pre_login_hook = "/home/sftpgo/addsftpgouser.sh";
         };
         plugins = [{
           type = "auth";

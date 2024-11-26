@@ -26,6 +26,7 @@ services.postgresql = {
       "ffdncoin"
       "lesgrandsvoisins"
       "key"
+      "sftpgo"
     ];
         # ensureDBOwnership = true;
     ensureUsers = [
@@ -41,6 +42,10 @@ services.postgresql = {
       }
       {
         name = "key";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "sftpgo";
         ensureDBOwnership = true;
       }
       {
