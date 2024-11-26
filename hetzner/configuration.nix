@@ -624,7 +624,7 @@ in
             certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
             certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
             enable_https = true;
-            enabled_login_methods = 0;
+            enabled_login_methods = 2;
             # enabled_login_methods = 3;
             oidc = {
               config_url = "https://key.lesgrandsvoisins.com/realms/master";
@@ -662,7 +662,7 @@ in
           # port = "5432";
           # username = "sftpgo";
           # password = $passwordDBSFTPGO;
-          pre_login_hook = "/run/addsftpgouser.sh";
+          # pre_login_hook = "/run/addsftpgouser.sh";
         };
         plugins = [{
           type = "auth";
