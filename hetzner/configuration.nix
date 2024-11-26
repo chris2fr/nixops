@@ -623,7 +623,8 @@ in
             certificate_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/full.pem";
             certificate_key_file = "/var/lib/acme/sftpgo.lesgrandsvoisins.com/key.pem";
             enable_https = true;
-            enabled_login_methods = 3;
+            enabled_login_methods = 2;
+            # enabled_login_methods = 3;
             oidc = {
               config_url = "https://key.lesgrandsvoisins.com/realms/master";
               client_id = "sftpgo";
