@@ -662,7 +662,7 @@ in
           # port = "5432";
           # username = "sftpgo";
           # password = $passwordDBSFTPGO;
-          pre_login_hook = "/home/sftpgo/addsftpgouser.sh";
+          pre_login_hook = "/run/addsftpgouser.sh";
         };
         plugins = [{
           type = "auth";
