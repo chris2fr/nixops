@@ -32,7 +32,7 @@ let
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -467,7 +467,7 @@ in
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  # system.stateVersion = "24.05"; # Did you read the comment?
+  # system.stateVersion = "25.05"; # Did you read the comment?
 #   containers.key = {
 #     bindMounts = {
 #       "/var/lib/acme/key.gv.coop/" = {
@@ -506,7 +506,7 @@ in
 #         openldap
 #       ];
 #       # virtualisation.docker.enable = true;
-#       system.stateVersion = "24.05";
+#       system.stateVersion = "25.05";
 #       nix.settings.experimental-features = "nix-command flakes";
 #       networking = {
 #         firewall = {
