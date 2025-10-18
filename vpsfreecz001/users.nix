@@ -24,12 +24,12 @@ in
     home.packages = with pkgs; [ 
       fossil
     ];
-    home.stateVersion = "23.05";
+    home.stateVersion = "25.05";
     programs.home-manager.enable = true;
   };
   home-manager.users.mannchri = {pkgs, ...}: {
     home.packages = [ pkgs.atool pkgs.httpie ];
-    home.stateVersion = "23.05";
+    home.stateVersion = "25.05";
     programs.home-manager.enable = true;
     programs.vim = {
       enable = true;

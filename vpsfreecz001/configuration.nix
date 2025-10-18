@@ -39,12 +39,12 @@ in
       home.packages = with pkgs; [ 
         fossil
       ];
-      home.stateVersion = "23.05";
+      home.stateVersion = "25.05";
       programs.home-manager.enable = true;
     };
     mannchri = {pkgs, ...}: {
       home.packages = [ pkgs.atool pkgs.httpie ];
-      home.stateVersion = "23.05";
+      home.stateVersion = "25.05";
       programs.home-manager.enable = true;
       programs.vim = {
         enable = true;
@@ -84,7 +84,7 @@ in
     DefaultTimeoutStartSec=600s
   '';
   time.timeZone = "Europe/Paris";
-  system.stateVersion = "23.05";
+  system.stateVersion = "25.05";
   environment.sessionVariables = rec {
     EDITOR="vim";
     WAGTAIL_ENV = "production";
