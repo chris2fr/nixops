@@ -51,13 +51,13 @@ in
     };
   };
   home-manager.users = {
-    fossil = {pkgs, ...}: {
-      home.packages = with pkgs; [ 
-        fossil
-      ];
-      home.stateVersion = "25.05";
-      programs.home-manager.enable = true;
-    };
+    # fossil = {pkgs, ...}: {
+    #   home.packages = with pkgs; [ 
+    #     fossil
+    #   ];
+    #   home.stateVersion = "25.05";
+    #   programs.home-manager.enable = true;
+    # };
     mannchri = {pkgs, ...}: {
 
       home.packages = [ pkgs.atool pkgs.httpie ];
