@@ -41,7 +41,7 @@ in
     inetutils
     pwgen
     openldap
-    nftables
+    # nftables
     python311
     python311Packages.pillow
     python311Packages.gunicorn
