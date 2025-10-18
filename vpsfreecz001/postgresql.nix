@@ -14,12 +14,12 @@ services.postgresql = {
     ensureUsers = [
       {
         name = "wagtail";
-        ensurePermissions = {
-          "DATABASE \"wagtail\"" = "ALL PRIVILEGES";
-          "DATABASE \"previous\"" = "ALL PRIVILEGES";
-          "DATABASE \"fairemain\"" = "ALL PRIVILEGES";
-          "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
-        };
+        # ensurePermissions = {
+        #   "DATABASE \"wagtail\"" = "ALL PRIVILEGES";
+        #   "DATABASE \"previous\"" = "ALL PRIVILEGES";
+        #   "DATABASE \"fairemain\"" = "ALL PRIVILEGES";
+        #   "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
+        # };
       }
     ]; 
 #    authentication = ''
