@@ -138,7 +138,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
     listenAddresses = [ "0.0.0.0" ];
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
-    extraConfig = ''n
+    extraConfig = ''
     <Location />
     Require all granted
     </Location>
