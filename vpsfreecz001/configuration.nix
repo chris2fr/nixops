@@ -55,17 +55,7 @@ in
       home.stateVersion = "25.05";
       programs.home-manager.enable = true;
     };
-    mannchri = {pkgs, ...}: {+  services.jitsi-meet = {
-+    enable = true;
-+    hostName = "jitsi.grandzine.org";
-+    interfaceConfig = {
-+      SHOW_JITSI_WATERMARK = false;
-+    };
-+    config = {
-+      prejoinPageEnabled = true;
-+      disableModeratorIndicator = true;
-+    };
-+  };
+    mannchri = {pkgs, ...}: {
 
       home.packages = [ pkgs.atool pkgs.httpie ];
       home.stateVersion = "25.05";
