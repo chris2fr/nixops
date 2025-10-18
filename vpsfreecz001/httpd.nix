@@ -21,7 +21,7 @@ in
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
-    # listenAddresses = [ "0.0.0.0" ];
+    listenAddresses = [ "0.0.0.0" ];
     extraConfig = ''
     # <If "%{HTTP_HOST} != 'www.mann.fr'">
     #   RedirectMatch /(.*)$ https://www.mann.fr/$1
@@ -50,7 +50,7 @@ in
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
-    # listenAddresses = [ "0.0.0.0" ];
+    listenAddresses = [ "0.0.0.0" ];
     # listenAddress = [
     #   "[::]"
     #   "0.0.0.0"
@@ -65,7 +65,7 @@ in
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
-    # listenAddresses = [ "0.0.0.0" ];
+    listenAddresses = [ "0.0.0.0" ];
     # extraConfig = ''
     #    RedirectMatch /(.*)$ https://blog.gvois.in/$1
     # '';
@@ -111,7 +111,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
    enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/";
-    # listenAddresses = [ "0.0.0.0" ];
+    listenAddresses = [ "0.0.0.0" ];
     extraConfig = ''
     <Location />
     Require all granted
@@ -135,7 +135,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
     #   "www.shitmuststop.org"
     # ];
     enableACME = true;
-    # listenAddresses = [ "0.0.0.0" ];
+    listenAddresses = [ "0.0.0.0" ];
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
     extraConfig = ''n
@@ -163,7 +163,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
     #   "lesartsvoisins.com"
     #   "www.lesartsvoisins.com"
     # ];
-    # listenAddresses = [ "0.0.0.0" ];
+    listenAddresses = [ "0.0.0.0" ];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
@@ -190,7 +190,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
     #   "lesgrandsvoisins.fr"
     #   "www.lesgrandsvoisins.fr"
     # ];
-    # listenAddresses = [ "0.0.0.0" ];
+    listenAddresses = [ "0.0.0.0" ];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
@@ -251,7 +251,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
 #         "www.desgrandsvoisins.com"
 #         "francemali.lesgrandsvoisins.com"
 #       ];
-    # listenAddresses = [ "0.0.0.0" ];
+    listenAddresses = [ "0.0.0.0" ];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
