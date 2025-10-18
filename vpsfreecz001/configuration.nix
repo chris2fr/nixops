@@ -98,11 +98,11 @@ users.extraGroups.docker.members = [ "mannchri" ];
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   networking = {
-    firewall.allowedTCPPorts = [ 80 443 636 ];
+    # firewall.allowedTCPPorts = [ 80 443 636 ]; # 2025-10-18
     hostName = "vpsfreecz001"; # Define your hostname.
-    enableIPv6 = true;
-    # firewall.package
-    nftables.enable = true;
+    # enableIPv6 = true;
+    # # firewall.package
+    # nftables.enable = true;
   };
   systemd.extraConfig = ''
     DefaultTimeoutStartSec=600s
