@@ -53,6 +53,10 @@ in
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
+    listenAddresses = [
+      "[::]"
+      "0.0.0.0"
+    ];
     # listenAddress = [
     #   "[::]"
     #   "0.0.0.0"
@@ -112,6 +116,10 @@ services.httpd.virtualHosts."app.gvois.in" = {
    enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/";
+    listenAddresses = [
+      "[::]"
+      "0.0.0.0"
+    ];
     extraConfig = ''
     <Location />
     Require all granted
@@ -135,6 +143,10 @@ services.httpd.virtualHosts."app.gvois.in" = {
     #   "www.shitmuststop.org"
     # ];
     enableACME = true;
+    listenAddresses = [
+      "[::]"
+      "0.0.0.0"
+    ];
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
     extraConfig = ''
@@ -156,11 +168,15 @@ services.httpd.virtualHosts."app.gvois.in" = {
     '';
   };
   services.httpd.virtualHosts."lesartsvoisins.gdvoisins.com" = {
-    serverAliases = [
-      "lesartsvoisins.org"
-      "www.lesartsvoisins.org"
-      "lesartsvoisins.com"
-      "www.lesartsvoisins.com"
+    # serverAliases = [
+    #   "lesartsvoisins.org"
+    #   "www.lesartsvoisins.org"
+    #   "lesartsvoisins.com"
+    #   "www.lesartsvoisins.com"
+    # ];
+    listenAddresses = [
+      "[::]"
+      "0.0.0.0"
     ];
     enableACME = true;
     forceSSL = true;
@@ -184,9 +200,13 @@ services.httpd.virtualHosts."app.gvois.in" = {
     '';
   };
   services.httpd.virtualHosts."lesgrandsvoisinsfr.vpsfree.gdvoisins.com" = {
-    serverAliases = [
-      "lesgrandsvoisins.fr"
-      "www.lesgrandsvoisins.fr"
+    # serverAliases = [
+    #   "lesgrandsvoisins.fr"
+    #   "www.lesgrandsvoisins.fr"
+    # ];
+    listenAddresses = [
+      "[::]"
+      "0.0.0.0"
     ];
     enableACME = true;
     forceSSL = true;
@@ -248,6 +268,10 @@ services.httpd.virtualHosts."app.gvois.in" = {
 #         "www.desgrandsvoisins.com"
 #         "francemali.lesgrandsvoisins.com"
 #       ];
+    listenAddresses = [
+      "[::]"
+      "0.0.0.0"
+    ];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
