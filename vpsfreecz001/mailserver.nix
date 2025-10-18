@@ -157,9 +157,9 @@ in
     ensureUsers = [
       {
         name = "sogo";
-        ensurePermissions = {
-          "DATABASE \"sogo\"" = "ALL PRIVILEGES";
-        };
+        # ensurePermissions = {
+        #   "DATABASE \"sogo\"" = "ALL PRIVILEGES";
+        # };
       }
     ];
   };
