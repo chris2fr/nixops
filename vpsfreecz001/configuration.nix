@@ -34,17 +34,17 @@ users.extraGroups.docker.members = [ "mannchri" ];
   #   arch = "x86_64";
   # };
 
-  services.jitsi-meet = {
-    enable = true;
-    hostName = "jitsi.grandzine.org";
-    interfaceConfig = {
-      SHOW_JITSI_WATERMARK = false;
-    };
-    config = {
-      prejoinPageEnabled = true;
-      disableModeratorIndicator = true;
-    };
-  };
+  # services.jitsi-meet = {
+  #   enable = true;
+  #   hostName = "jitsi.grandzine.org";
+  #   interfaceConfig = {
+  #     SHOW_JITSI_WATERMARK = false;
+  #   };
+  #   config = {
+  #     prejoinPageEnabled = true;
+  #     disableModeratorIndicator = true;
+  #   };
+  # };
 
   users.users = {
     fossil = rec {
