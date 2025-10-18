@@ -22,7 +22,6 @@ in
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
     listenAddresses = [
-      "[::]"
       "0.0.0.0"
     ];
     extraConfig = ''
@@ -54,7 +53,6 @@ in
     forceSSL = true;
     enableACME = true;
     listenAddresses = [
-      "[::]"
       "0.0.0.0"
     ];
     # listenAddress = [
@@ -72,7 +70,6 @@ in
     forceSSL = true;
     enableACME = true;
     listenAddresses = [
-      "[::]"
       "0.0.0.0"
     ];
     # extraConfig = ''
@@ -121,7 +118,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
     forceSSL = true;
     documentRoot =  "/var/www/";
     listenAddresses = [
-      "[::]"
       "0.0.0.0"
     ];
     extraConfig = ''
@@ -148,7 +144,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
     # ];
     enableACME = true;
     listenAddresses = [
-      "[::]"
       "0.0.0.0"
     ];
     forceSSL = true;
@@ -179,7 +174,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
     #   "www.lesartsvoisins.com"
     # ];
     listenAddresses = [
-      "[::]"
       "0.0.0.0"
     ];
     enableACME = true;
@@ -209,7 +203,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
     #   "www.lesgrandsvoisins.fr"
     # ];
     listenAddresses = [
-      "[::]"
       "0.0.0.0"
     ];
     enableACME = true;
@@ -273,7 +266,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
 #         "francemali.lesgrandsvoisins.com"
 #       ];
     listenAddresses = [
-      "[::]"
       "0.0.0.0"
     ];
     enableACME = true;
