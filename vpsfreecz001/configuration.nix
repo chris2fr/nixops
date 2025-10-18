@@ -16,7 +16,7 @@ in
 #    ./users.nix
     ./wagtail.nix
     ./common.nix # Des configurations communes pratiques
-    <home-manager/nixos>
+    # <home-manager/nixos> # 2025-10-18
   ];
 #  virtualisation.docker.enable = true;
 #  users.extraGroups.docker.members = [ "mannchri" ];
@@ -50,38 +50,38 @@ in
       extraGroups = [ "wheel" "networkmanager" ];
     };
   };
-  home-manager.users = {
-    # fossil = {pkgs, ...}: {
-    #   home.packages = with pkgs; [ 
-    #     fossil
-    #   ];
-    #   home.stateVersion = "25.05";
-    #   programs.home-manager.enable = true;
-    # };
-    mannchri = {pkgs, ...}: {
+  # home-manager.users = {
+  #   # fossil = {pkgs, ...}: {
+  #   #   home.packages = with pkgs; [ 
+  #   #     fossil
+  #   #   ];
+  #   #   home.stateVersion = "25.05";
+  #   #   programs.home-manager.enable = true;
+  #   # };
+  #   mannchri = {pkgs, ...}: {
 
-      home.packages = [ pkgs.atool pkgs.httpie ];
-      home.stateVersion = "25.05";
-      programs.home-manager.enable = true;
-      programs.vim = {
-        enable = true;
-        plugins = with pkgs.vimPlugins; [ vim-airline ];
-        settings = { ignorecase = true; tabstop = 2; };
-        extraConfig = ''
-          set mouse=a
-          set nocompatible
-          colo torte
-          syntax on
-          set tabstop     =2
-          set softtabstop =2
-          set shiftwidth  =2
-          set expandtab
-          set autoindent
-          set smartindent
-        '';
-      };
-    };
-  };
+  #     home.packages = [ pkgs.atool pkgs.httpie ];
+  #     home.stateVersion = "25.05";
+  #     programs.home-manager.enable = true;
+  #     programs.vim = {
+  #       enable = true;
+  #       plugins = with pkgs.vimPlugins; [ vim-airline ];
+  #       settings = { ignorecase = true; tabstop = 2; };
+  #       extraConfig = ''
+  #         set mouse=a
+  #         set nocompatible
+  #         colo torte
+  #         syntax on
+  #         set tabstop     =2
+  #         set softtabstop =2
+  #         set shiftwidth  =2
+  #         set expandtab
+  #         set autoindent
+  #         set smartindent
+  #       '';
+  #     };
+  #   };
+  # };
   services = {
     openssh = {
       enable = true;
