@@ -6,7 +6,7 @@ in
   nix.settings.experimental-features = "nix-command flakes";
   users.users.mannchri.extraGroups = [ "wwwrun" ];
   services.httpd.enable = true;
-  services.httpd.enablePHP = false;
+  # services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@lesgrandsvoisins.com";
   # services.httpd.extraConfig = ''
   #   Listen 0.0.0.0:443 https
@@ -15,12 +15,16 @@ in
   services.httpd.extraModules = [ "proxy" "proxy_http" ]; # 2025-10-18
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."mann.vpsfree.gdvoisins.com" = {
-    serverAliases = [
-      "mann.fr"
-    ];
+    # serverAliases = [
+    #   "mann.fr"
+    # ];
     enableACME = true;
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
+    listenAddresses = [
+      "[::]"
+      "0.0.0.0"
+    ];
     extraConfig = ''
     # <If "%{HTTP_HOST} != 'www.mann.fr'">
     #   RedirectMatch /(.*)$ https://www.mann.fr/$1
