@@ -23,6 +23,19 @@ in
 #    imageDigest = "sha256:c34a8feb5978888ebe5ff86884524b30759469c91761a560cdfe968f6637f051";
 #    sha256 = "";
 #  };
+
+  services.jitsi-meet = {
+    enable = true;
+    hostName = "jitsi.grandzine.org";
+    interfaceConfig = {
+      SHOW_JITSI_WATERMARK = false;
+    };
+    config = {
+      prejoinPageEnabled = true;
+      disableModeratorIndicator = true;
+    };
+  };
+
   users.users = {
     fossil = rec {
       isNormalUser = true;
@@ -42,7 +55,18 @@ in
       home.stateVersion = "25.05";
       programs.home-manager.enable = true;
     };
-    mannchri = {pkgs, ...}: {
+    mannchri = {pkgs, ...}: {+  services.jitsi-meet = {
++    enable = true;
++    hostName = "jitsi.grandzine.org";
++    interfaceConfig = {
++      SHOW_JITSI_WATERMARK = false;
++    };
++    config = {
++      prejoinPageEnabled = true;
++      disableModeratorIndicator = true;
++    };
++  };
+
       home.packages = [ pkgs.atool pkgs.httpie ];
       home.stateVersion = "25.05";
       programs.home-manager.enable = true;
