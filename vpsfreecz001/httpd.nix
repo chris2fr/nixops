@@ -51,15 +51,15 @@ in
     enableACME = true;
     listen = 
       [
-        {
-          ip = "[::]";
-          port = 443;
-          ssl = true;
-        }
-        {
-          ip = "[::]";
-          port = 80;
-        }
+        # {
+        #   ip = "[::]";
+        #   port = 443;
+        #   ssl = true;
+        # }
+        # {
+        #   ip = "[::]";
+        #   port = 80;
+        # }
         {
           ip = "0.0.0.0";
           port = 80;
