@@ -4,9 +4,9 @@ let
 in
 {
   nix.settings.experimental-features = "nix-command flakes";
-  nixpkgs.config.permittedInsecurePackages = [
-                "jitsi-meet-1.0.8043"
-              ];
+  # nixpkgs.config.permittedInsecurePackages = [
+  #               "jitsi-meet-1.0.8043"
+  #             ];
   imports = [
     ./vpsadminos.nix
     ./httpd.nix

@@ -12,15 +12,15 @@
   #   home.stateVersion = "25.05";
   #   programs.home-manager.enable = true;
   # };
-  systemd.services.guichet = {
-    enable = true;
-    wantedBy = ["default.target"];
-    script = "/home/guichet/guichet/guichet";
-    description = "Guicher, Self-Service LDAP account admin";
-    serviceConfig = {
-      WorkingDirectory = "/home/guichet/guichet";
-      User = "guichet";
-      Group = "users";
-    };
-  };
+  # systemd.services.guichet = { # 2025-10-18
+  #   enable = true;
+  #   wantedBy = ["default.target"];
+  #   script = "/home/guichet/guichet/guichet";
+  #   description = "Guicher, Self-Service LDAP account admin";
+  #   serviceConfig = {
+  #     WorkingDirectory = "/home/guichet/guichet";
+  #     User = "guichet";
+  #     Group = "users";
+  #   };
+  # };
 }
