@@ -18,8 +18,8 @@ in
     ./common.nix # Des configurations communes pratiques
     # <home-manager/nixos> # 2025-10-18
   ];
-virtualisation.docker.enable = true;
-users.extraGroups.docker.members = [ "mannchri" ];
+# virtualisation.docker.enable = true;
+# users.extraGroups.docker.members = [ "mannchri" ];
 #  pkgs.dockerTools.pullImage = {
 #    imageName = "dnknth/ldap-ui";
 #    finalImageTag = "latest";
