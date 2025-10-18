@@ -41,7 +41,7 @@ in
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     };
-    users.users.mannchri = rec {
+    mannchri = rec {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
       extraGroups = [ "wheel" "networkmanager" ];
