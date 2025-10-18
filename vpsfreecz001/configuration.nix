@@ -101,7 +101,6 @@ in
     firewall.allowedTCPPorts = [ 80 443 636 ]; # 2025-10-18
     hostName = "vpsfreecz001"; # Define your hostname.
     enableIPv6 = true;
-    enableIPv4 = true;
     # firewall.package
     nftables.enable = true;
   };
