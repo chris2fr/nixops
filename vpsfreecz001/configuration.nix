@@ -32,7 +32,7 @@ users.extraGroups.docker.members = [ "mannchri" ];
       "sha256:709bf7f6f021b48c5fb9982f74cd9c276c29dd404215eebc268ec9c9e1a76ca5";
     os = "linux";
     arch = "x86_64";
-  }
+  };
 
   services.jitsi-meet = {
     enable = true;
