@@ -111,14 +111,15 @@ in
     #        =uid=%{ldap:uidNumber}, \
     #        =gid=%{ldap:gidNumber}
     # '';
-    fullTextSearch = {
-      enable = true;
-      # index new email as they arrive
-      autoIndex = true;
-      # this only applies to plain text attachments, binary attachments are never indexed
-      indexAttachments = false;
-      enforced = "body";
-    };
+    #  TODO - REFAIRE
+    # fullTextSearch = {
+    #   enable = true;
+    #   # index new email as they arrive
+    #   autoIndex = true;
+    #   # this only applies to plain text attachments, binary attachments are never indexed
+    #   indexAttachments = false;
+    #   enforced = "body";
+    # };
   };
 #############################################
   services.postfix.config.maillog_file = "/var/log/postfix.log";
