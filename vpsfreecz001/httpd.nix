@@ -1,5 +1,4 @@
-  { config, pkgs, lib, ... }:
-
+{ config, pkgs, lib, ... }:
 let 
 in
 { 
@@ -8,7 +7,7 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@lesgrandsvoisins.com";
-  services.httpd.extraModules = [ "proxy" "proxy_http" ];
+  # services.httpd.extraModules = [ "proxy" "proxy_http" ]; # 2025-10-18
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."www.mann.fr" = {
     serverAliases = [

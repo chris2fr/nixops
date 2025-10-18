@@ -42,14 +42,15 @@ in
     pwgen
     openldap
     nftables
-      python311
-      python311Packages.pillow
-      python311Packages.gunicorn
-      python311Packages.pip
-      libjpeg
-      zlib
-      libtiff
-      freetype
-      python311Packages.venvShellHook
+    python311
+    python311Packages.pillow
+    python311Packages.gunicorn
+    python311Packages.pip
+    libjpeg
+    zlib
+    libtiff
+    freetype
+    python311Packages.venvShellHook
+    fossil
   ];
 }
