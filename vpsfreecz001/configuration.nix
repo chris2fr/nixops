@@ -9,7 +9,7 @@ in
   #             ];
   imports = [
     ./vpsadminos.nix
-    ./httpd.nix
+    # ./httpd.nix
     # ./mailserver.nix # 2025-10-18
     ./guichet.nix
     ./postgresql.nix
