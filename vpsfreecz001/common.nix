@@ -25,7 +25,7 @@ in
     #vim
     #django-redis
     cowsay
-    home-manager
+    # home-manager # 2025-10-18
     curl
     wget
     lynx
@@ -42,5 +42,14 @@ in
     pwgen
     openldap
     nftables
+      python311
+      python311Packages.pillow
+      python311Packages.gunicorn
+      python311Packages.pip
+      libjpeg
+      zlib
+      libtiff
+      freetype
+      python311Packages.venvShellHook
   ];
 }

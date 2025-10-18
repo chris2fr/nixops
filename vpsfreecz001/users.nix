@@ -7,7 +7,7 @@ in
 #    mannchri.isNormalUser = true;
 #  };
   imports = [
-    <home-manager/nixos>
+    # <home-manager/nixos> # 2025-10-18
   ];
   users.users = rec {
     fossil = {
@@ -20,34 +20,34 @@ in
       extraGroups = [ "wheel" "networkmanager" ];
     };
   };
-  home-manager.users.fossil = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      fossil
-    ];
-    home.stateVersion = "25.05";
-    programs.home-manager.enable = true;
-  };
-  home-manager.users.mannchri = {pkgs, ...}: {
-    home.packages = [ pkgs.atool pkgs.httpie ];
-    home.stateVersion = "25.05";
-    programs.home-manager.enable = true;
-    programs.vim = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [ vim-airline ];
-      settings = { ignorecase = true; tabstop = 2; };
-      extraConfig = ''
-        set mouse=a
-        set nocompatible
-        colo torte
-        syntax on
-        set tabstop     =2
-        set softtabstop =2
-        set shiftwidth  =2
-        set expandtab
-        set autoindent
-        set smartindent
-      '';
-    };
-  };
+  # home-manager.users.fossil = {pkgs, ...}: { # 2025-10-18
+  #   home.packages = with pkgs; [ 
+  #     fossil
+  #   ];
+  #   home.stateVersion = "25.05";
+  #   programs.home-manager.enable = true;
+  # };
+  # home-manager.users.mannchri = {pkgs, ...}: { # 2025-10-18
+  #   home.packages = [ pkgs.atool pkgs.httpie ];
+  #   home.stateVersion = "25.05";
+  #   programs.home-manager.enable = true;
+  #   programs.vim = {
+  #     enable = true;
+  #     plugins = with pkgs.vimPlugins; [ vim-airline ];
+  #     settings = { ignorecase = true; tabstop = 2; };
+  #     extraConfig = ''
+  #       set mouse=a
+  #       set nocompatible
+  #       colo torte
+  #       syntax on
+  #       set tabstop     =2
+  #       set softtabstop =2
+  #       set shiftwidth  =2
+  #       set expandtab
+  #       set autoindent
+  #       set smartindent
+  #     '';
+  #   };
+  # };
 
 }

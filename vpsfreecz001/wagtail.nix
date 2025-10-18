@@ -4,21 +4,21 @@ let
 in
 {
   users.users.wagtail.isNormalUser = true;
-  home-manager.users.wagtail = {pkgs, ...}: {
-    home.packages = with pkgs; [ 
-      python311
-      python311Packages.pillow
-      python311Packages.gunicorn
-      python311Packages.pip
-      libjpeg
-      zlib
-      libtiff
-      freetype
-      python311Packages.venvShellHook
-    ];
-    home.stateVersion = "25.05";
-    programs.home-manager.enable = true;
-  };
+  # home-manager.users.wagtail = {pkgs, ...}: { # 2025-10-18
+  #   home.packages = with pkgs; [ 
+  #     python311
+  #     python311Packages.pillow
+  #     python311Packages.gunicorn
+  #     python311Packages.pip
+  #     libjpeg
+  #     zlib
+  #     libtiff
+  #     freetype
+  #     python311Packages.venvShellHook
+  #   ];
+  #   home.stateVersion = "25.05";
+  #   programs.home-manager.enable = true;
+  # };
     systemd.services.wagtail = {
       description = "Les Grands Voisins Wagtail Website";
       after = [ "network.target" ];
