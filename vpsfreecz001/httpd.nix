@@ -166,7 +166,7 @@ services.httpd.virtualHosts."app.gvois.in" = {
     # </If>
     '';
   };
-  services.httpd.virtualHosts."lesartsvoisins.gdvoisins.com" = {
+  services.httpd.virtualHosts."lesartsvoisins.vpsfree.gdvoisins.com" = {
     # serverAliases = [
     #   "lesartsvoisins.org"
     #   "www.lesartsvoisins.org"
