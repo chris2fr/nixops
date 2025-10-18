@@ -24,7 +24,7 @@ in
 {
   imports = [
     (builtins.fetchTarball {
-      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/ldap-support/nixos-mailserver-nixos-25.05.tar.gz";
+      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-25.05/nixos-mailserver-nixos-25.05.tar.gz";
       sha256 = "sha256:15v6b5z8gjspps5hyq16bffbwmq0rwfwmdhyz23frfcni3qkgzpc";
     })
     ./mailserver/sogo.nix
@@ -39,7 +39,7 @@ in
     pwgen
   ];
   ## Needed for the contaiiner system of vpsfree.cz
-  systemd.enableUnifiedCgroupHierarchy = false;
+  # systemd.enableUnifiedCgroupHierarchy = false;
   systemd.enableCgroupAccounting = false;
   # users.users."web2ldap" = {
   #   isNormalUser = true;
