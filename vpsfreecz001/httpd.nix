@@ -49,27 +49,10 @@ in
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
-    listen = 
-      [
-        # {
-        #   ip = "[::]";
-        #   port = 443;
-        #   ssl = true;
-        # }
-        # {
-        #   ip = "[::]";
-        #   port = 80;
-        # }
-        {
-          ip = "0.0.0.0";
-          port = 80;
-        }
-        {
-          ip = "0.0.0.0";
-          port = 443;
-          ssl = true;
-        }
-      ];
+    listenAddress = [
+      "[::]"
+      "0.0.0.0"
+    ]
     # extraConfig = ''
     #   <If "%{HTTP_HOST} != 'www.resdigita.org'">
     #       RedirectMatch /(.*)$ https://www.resdigita.org/$1
