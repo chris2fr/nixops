@@ -52,7 +52,7 @@ in
     listenAddress = [
       "[::]"
       "0.0.0.0"
-    ]
+    ];
     # extraConfig = ''
     #   <If "%{HTTP_HOST} != 'www.resdigita.org'">
     #       RedirectMatch /(.*)$ https://www.resdigita.org/$1
