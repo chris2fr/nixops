@@ -9,7 +9,7 @@ let
   ldapBaseDCDN = import /etc/nixos/mailserver/vars/ldap-base-dc-dn.nix;
   mailServerDomainAliases = [ 
     "gvois.in"
-    "mail.gvois.in"
+    # "mail.gvois.in"
     "lesgrandsvoisins.com"
     "mail.resdigita.com"
     "resdigita.org"
