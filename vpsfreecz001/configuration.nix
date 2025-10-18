@@ -26,13 +26,13 @@ users.extraGroups.docker.members = [ "mannchri" ];
 #    imageDigest = "sha256:c34a8feb5978888ebe5ff86884524b30759469c91761a560cdfe968f6637f051";
 #    sha256 = "";
 #  };
-  nixpkgs.dockerTools.pullImage = {
-    imageName = "machines/filestash";
-    imageDigest =
-      "sha256:709bf7f6f021b48c5fb9982f74cd9c276c29dd404215eebc268ec9c9e1a76ca5";
-    os = "linux";
-    arch = "x86_64";
-  };
+  # nixpkgs.dockerTools.pullImage = {
+  #   imageName = "machines/filestash";
+  #   imageDigest =
+  #     "sha256:709bf7f6f021b48c5fb9982f74cd9c276c29dd404215eebc268ec9c9e1a76ca5";
+  #   os = "linux";
+  #   arch = "x86_64";
+  # };
 
   services.jitsi-meet = {
     enable = true;
