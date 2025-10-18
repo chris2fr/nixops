@@ -23,7 +23,6 @@ in
     documentRoot =  "/var/www/wagtail/";
     listenAddresses = [
       "0.0.0.0"
-      "[::]"
     ];
     extraConfig = ''
     # <If "%{HTTP_HOST} != 'www.mann.fr'">
@@ -55,7 +54,6 @@ in
     enableACME = true;
     listenAddresses = [
       "0.0.0.0"
-      "[::]"
     ];
     # listenAddress = [
     #   "[::]"
@@ -73,7 +71,6 @@ in
     enableACME = true;
     listenAddresses = [
       "0.0.0.0"
-      "[::]"
     ];
     # extraConfig = ''
     #    RedirectMatch /(.*)$ https://blog.gvois.in/$1
@@ -122,7 +119,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
     documentRoot =  "/var/www/";
     listenAddresses = [
       "0.0.0.0"
-      "[::]"
     ];
     extraConfig = ''
     <Location />
@@ -149,7 +145,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
     enableACME = true;
     listenAddresses = [
       "0.0.0.0"
-      "[::]"
     ];
     forceSSL = true;
     documentRoot =  "/var/www/wagtail/";
@@ -180,7 +175,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
     # ];
     listenAddresses = [
       "0.0.0.0"
-      "[::]"
     ];
     enableACME = true;
     forceSSL = true;
@@ -210,7 +204,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
     # ];
     listenAddresses = [
       "0.0.0.0"
-      "[::]"
     ];
     enableACME = true;
     forceSSL = true;
@@ -274,7 +267,6 @@ services.httpd.virtualHosts."app.gvois.in" = {
 #       ];
     listenAddresses = [
       "0.0.0.0"
-      "[::]"
     ];
     enableACME = true;
     forceSSL = true;
