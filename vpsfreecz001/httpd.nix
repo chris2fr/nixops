@@ -8,10 +8,10 @@ in
   services.httpd.enable = true;
   services.httpd.enablePHP = false;
   services.httpd.adminAddr = "contact@lesgrandsvoisins.com";
-  services.httpd.extraConfig = ''
-    Listen 0.0.0.0:443 https
-    Listen 0.0.0.0:80 http
-  '';
+  # services.httpd.extraConfig = ''
+  #   Listen 0.0.0.0:443 https
+  #   Listen 0.0.0.0:80 http
+  # '';
   services.httpd.extraModules = [ "proxy" "proxy_http" ]; # 2025-10-18
   users.users.wwwrun.extraGroups = [ "acme" "wagtail" ];
   services.httpd.virtualHosts."mann.vpsfree.gdvoisins.com" = {
@@ -49,6 +49,27 @@ in
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
+    listen = 
+      [
+        {
+          ip = "[::]";
+          port = 443;
+          ssl = true;
+        }
+        {
+          ip = "[::]";
+          port = 80;
+        }
+        {
+          ip = "0.0.0.0";
+          port = 80;
+        }
+        {
+          ip = "0.0.0.0";
+          port = 443;
+          ssl = true;
+        }
+      ];
     # extraConfig = ''
     #   <If "%{HTTP_HOST} != 'www.resdigita.org'">
     #       RedirectMatch /(.*)$ https://www.resdigita.org/$1
