@@ -71,6 +71,10 @@ in
     documentRoot =  "/var/www/resdigitacom/";
     forceSSL = true;
     enableACME = true;
+    listenAddresses = [
+      "[::]"
+      "0.0.0.0"
+    ];
     # extraConfig = ''
     #    RedirectMatch /(.*)$ https://blog.gvois.in/$1
     # '';
