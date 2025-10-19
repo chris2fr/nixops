@@ -16,7 +16,7 @@ in
 #    ./users.nix
     ./wagtail.nix
     ./common.nix # Des configurations communes pratiques
-    ./docker.nix
+    # ./docker.nix
     # <home-manager/nixos> # 2025-10-18
   ];
 # virtualisation.docker.enable = true;
@@ -106,28 +106,28 @@ in
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   networking = {
-    bridges = {
-      "br-erdock" = {
-        interfaces = [
-          "venet0"
-          # "ve-erdock"
-        ];
-      };
-    };
-    firewall = {
-      allowedTCPPorts = [ 22 25 53 68 80 443 636 22000]; # 2025-10-18
-      allowedUDPPorts = [
-        53 22000 21027
-      ];
-      # enable = true;
-      enable = false;
-      trustedInterfaces = [ "venet0" "br-erdock" "lo" ];
-      package = pkgs.nftables;
-    };
+    # bridges = {
+    #   "br-erdock" = {
+    #     interfaces = [
+    #       "venet0"
+    #       # "ve-erdock"
+    #     ];
+    #   };
+    # };
+    # firewall = {
+    #   allowedTCPPorts = [ 22 25 53 68 80 443 636 22000]; # 2025-10-18
+    #   allowedUDPPorts = [
+    #     53 22000 21027
+    #   ];
+    #   # enable = true;
+    #   enable = false;
+    #   trustedInterfaces = [ "venet0" "br-erdock" "lo" ];
+    #   package = pkgs.nftables;
+    # };
     hostName = "vpsfreecz001"; # Define your hostname.
     enableIPv6 = true;
     # firewall.package
-    nftables.enable = true;
+    # nftables.enable = true;
     useDHCP = true;
 
   };
