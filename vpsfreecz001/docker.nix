@@ -15,6 +15,15 @@ in
       nix.settings.experimental-features = "nix-command flakes";
       time.timeZone = "Europe/Paris";
       system.stateVersion = "25.05";
+      networking = {
+        firewall.enable = false;
+        # firewall = {
+        #   enable = true;
+        #   allowedTCPPorts = [ 80 443 ];
+        # };
+        # Use systemd-resolved inside the container
+        useHostResolvConf = lib.mkForce false;
+      };
       environment.systemPackages = with pkgs; [
         ((vim_configurable.override { }).customize {
           name = "vim";
@@ -37,6 +46,9 @@ in
       # systemd.tmpfiles.rules = [];
       virtualisation.docker.enable = true;
       virtualisation.podman.enable = true;
+      services = {
+        resolved.enable = true;
+      };
     };
   };
 }
