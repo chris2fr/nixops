@@ -112,14 +112,20 @@ in
     #   };
     # };
     firewall = {
-      allowedTCPPorts = [ 22 68 80 443 636 ]; # 2025-10-18
+      allowedTCPPorts = [ 22 25 53 68 80 443 636 22000]; # 2025-10-18
+      allowedUDPPorts = [
+        53 22000 21027
+      ];
       enable = true;
       trustedInterfaces = [ "lo" ];
+      package = pkgs.nftables;
     };
     hostName = "vpsfreecz001"; # Define your hostname.
     enableIPv6 = true;
     # firewall.package
     nftables.enable = true;
+    useDHCP = true;
+
   };
   systemd.extraConfig = ''
     DefaultTimeoutStartSec=600s
