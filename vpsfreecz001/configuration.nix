@@ -106,14 +106,14 @@ in
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   networking = {
-    # bridges = {
-    #   "br-erdock" = {
-    #     interfaces = [
-    #       "venet0"
-    #       # "ve-erdock"
-    #     ];
-    #   };
-    # };
+    bridges = {
+      "br-erdock" = {
+        interfaces = [
+          "venet0"
+          # "ve-erdock"
+        ];
+      };
+    };
     # firewall = {
     #   allowedTCPPorts = [ 22 25 53 68 80 443 636 22000]; # 2025-10-18
     #   allowedUDPPorts = [
