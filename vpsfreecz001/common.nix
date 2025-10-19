@@ -61,7 +61,7 @@ in
     libheif
     giflib
     vips
-    go
+    go_1_23
     glibc
     perl
     jansson
