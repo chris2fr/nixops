@@ -42,6 +42,12 @@ in
             " ...
           '';
         })
+        docker-compose
+        git
+        wget
+        perl
+        podman
+
       ];
       # systemd.tmpfiles.rules = [];
       virtualisation.docker.enable = true;
@@ -49,6 +55,11 @@ in
       services = {
         resolved.enable = true;
       };
+      users.users.filestash = {
+        isNormalUser = true;
+        extraGroups = ["docker"];
+      }
+      users.extraGroups.docker.members = [ "filestash" ];
     };
   };
 }
