@@ -65,5 +65,6 @@ in
     glibc
     perl
     jansson
+    docker-compose
   ];
 }
