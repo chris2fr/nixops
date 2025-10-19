@@ -58,7 +58,7 @@ in
       users.users.filestash = {
         isNormalUser = true;
         extraGroups = ["docker"];
-      }
+      };
       users.extraGroups.docker.members = [ "filestash" ];
     };
   };
