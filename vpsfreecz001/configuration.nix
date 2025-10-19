@@ -50,19 +50,19 @@ in
 
   users.users = {
     fossil = rec {
-      extraGroups = [ "docker" ];
+      # extraGroups = [ "docker" ];
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     };
     filestash = rec {
       isNormalUser = true;
-      extraGroups = [ "docker" ];
+      # extraGroups = [ "docker" ];
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     };
     mannchri = rec {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-      extraGroups = [ "wheel" "networkmanager" "docker" ];
+      extraGroups = [ "wheel" "networkmanager" ];
     };
   };
   # home-manager.users = {
@@ -109,6 +109,7 @@ in
     firewall = {
       allowedTCPPorts = [ 22 68 80 443 636 ]; # 2025-10-18
       enable = true;
+      trustedInterfaces = [ "lo" ];
     };
     hostName = "vpsfreecz001"; # Define your hostname.
     enableIPv6 = true;
