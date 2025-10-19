@@ -19,6 +19,7 @@ in
     # <home-manager/nixos> # 2025-10-18
   ];
 virtualisation.docker.enable = true;
+virtualisation.podman.enable = true;
 users.extraGroups.docker.members = [ "mannchri" ];
 #  pkgs.dockerTools.pullImage = {
 #    imageName = "dnknth/ldap-ui";
@@ -105,6 +106,7 @@ users.extraGroups.docker.members = [ "mannchri" ];
   #  [ "..." ];
   networking = {
     firewall.allowedTCPPorts = [ 80 443 636 ]; # 2025-10-18
+    firewall.enable = true;
     hostName = "vpsfreecz001"; # Define your hostname.
     enableIPv6 = true;
     # firewall.package
