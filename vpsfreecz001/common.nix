@@ -52,5 +52,18 @@ in
     freetype
     python311Packages.venvShellHook
     fossil
+    ffmpeg
+    libjpeg
+    libtiff
+    libpng
+    libwebp
+    libraw
+    libheif
+    giflib
+    vips
+    go
+    glibc
+    perl
+    jansson
   ];
 }

@@ -51,6 +51,10 @@ users.extraGroups.docker.members = [ "mannchri" ];
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     };
+    filestash = rec {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
+    };
     mannchri = rec {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
