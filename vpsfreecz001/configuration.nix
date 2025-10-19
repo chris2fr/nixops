@@ -110,7 +110,7 @@ in
       "br-erdock" = {
         interfaces = [
           "venet0"
-          "ve-erdock"
+          # "ve-erdock"
         ];
       };
     };
