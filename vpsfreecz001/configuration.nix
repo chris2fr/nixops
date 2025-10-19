@@ -108,7 +108,6 @@ in
   networking = {
     bridges = {
       "br0" = {
-        interfaces = [ "if1094" ];
       };
     };
     firewall = {
