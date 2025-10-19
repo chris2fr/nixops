@@ -119,8 +119,9 @@ in
       allowedUDPPorts = [
         53 22000 21027
       ];
-      enable = true;
-      trustedInterfaces = [ "lo" ];
+      # enable = true;
+      enable = false;
+      trustedInterfaces = [ "venet0" "br-erdock" "lo" ];
       package = pkgs.nftables;
     };
     hostName = "vpsfreecz001"; # Define your hostname.
