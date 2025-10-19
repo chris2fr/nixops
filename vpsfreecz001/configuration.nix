@@ -16,11 +16,12 @@ in
 #    ./users.nix
     ./wagtail.nix
     ./common.nix # Des configurations communes pratiques
+    ./docker.nix
     # <home-manager/nixos> # 2025-10-18
   ];
-virtualisation.docker.enable = true;
-virtualisation.podman.enable = true;
-users.extraGroups.docker.members = [ "mannchri" ];
+# virtualisation.docker.enable = true;
+# virtualisation.podman.enable = true;
+# users.extraGroups.docker.members = [ "mannchri" ];
 #  pkgs.dockerTools.pullImage = {
 #    imageName = "dnknth/ldap-ui";
 #    finalImageTag = "latest";
