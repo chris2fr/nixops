@@ -109,7 +109,7 @@ in
     bridges = {
       "br-erdock" = {
         interfaces = [
-          "venet"
+          "venet0"
           "ve-erdock"
         ];
       };
