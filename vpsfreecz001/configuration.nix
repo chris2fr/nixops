@@ -106,16 +106,17 @@ in
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   networking = {
-    interfaces.vedock = {
-      ipv6.addresses = [{
-        address = "fc00::1";
-        prefixLength = 64;
-      }];
-      ipv4.addresses = [{
-        address = "192.168.100.10";
-        prefixLength = 24;
-      }];
-    };
+    # interfaces."vedock" = {
+    #   name = "vedock";
+    #   ipv6.addresses = [{
+    #     address = "fc00::1";
+    #     prefixLength = 64;
+    #   }];
+    #   ipv4.addresses = [{
+    #     address = "192.168.100.10";
+    #     prefixLength = 24;
+    #   }];
+    # };
     # bridges = {
     #   "br-erdock" = {
     #     interfaces = [
