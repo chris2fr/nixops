@@ -2,7 +2,7 @@
 let
 in
 {
-  containers.docker = {
+  containers.erdock = {
     autoStart = true;
     privateNetwork = true;
     hostBridge = "br0";
