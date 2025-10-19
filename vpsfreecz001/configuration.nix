@@ -109,7 +109,7 @@ in
     bridges = {
       "br-erdock" = [
         "venet"
-        "ve-erdock"
+        # "ve-erdock"
       ];
     };
     firewall = {
