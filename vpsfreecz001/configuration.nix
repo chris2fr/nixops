@@ -48,17 +48,19 @@ users.extraGroups.docker.members = [ "mannchri" ];
 
   users.users = {
     fossil = rec {
+      extraGroups = [ "docker" ];
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     };
     filestash = rec {
       isNormalUser = true;
+      extraGroups = [ "docker" ];
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
     };
     mannchri = rec {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ mannchriRsaPublic ];
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [ "wheel" "networkmanager" "docker" ];
     };
   };
   # home-manager.users = {
