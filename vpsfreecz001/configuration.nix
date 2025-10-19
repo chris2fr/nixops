@@ -106,10 +106,11 @@ in
   #users.extraUsers.root.openssh.authorizedKeys.keys =
   #  [ "..." ];
   networking = {
-    bridges = {
-      "br0" = {
-      };
-    };
+    # bridges = {
+    #   "br0" = {
+
+    #   };
+    # };
     firewall = {
       allowedTCPPorts = [ 22 68 80 443 636 ]; # 2025-10-18
       enable = true;
