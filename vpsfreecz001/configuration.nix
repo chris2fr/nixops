@@ -107,10 +107,10 @@ in
   #  [ "..." ];
   networking = {
     bridges = {
-      "br-erdock" = {
+      "br-erdock" = [
         "venet"
         "ve-erdock"
-      };
+      ];
     };
     firewall = {
       allowedTCPPorts = [ 22 25 53 68 80 443 636 22000]; # 2025-10-18
