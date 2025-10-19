@@ -108,7 +108,7 @@ in
   networking = {
     bridges = {
       "br0" = {
-        interfaces = [ "venet0@if1094" ];
+        interfaces = [ "if1094" ];
       };
     };
     firewall = {
